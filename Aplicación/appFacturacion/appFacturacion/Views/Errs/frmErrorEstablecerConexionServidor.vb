@@ -1,0 +1,3 @@
+﻿Public Class frmErrorEstablecerConexionServidor
+
+End Class

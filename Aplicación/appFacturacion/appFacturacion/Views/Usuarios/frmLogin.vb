@@ -1,0 +1,97 @@
+﻿Public Class frmLogin
+
+    'Tipo de inicio de sesión
+    Public Property Type As Boolean
+
+    'Rol o Permiso
+    Public Property Rol As String
+
+    'Tipo de Cerrado del Formulario
+    Dim salir As Boolean = False
+
+    Private Sub frmIniciarSesion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txtUsuario.Focus()
+    End Sub
+
+    Private Sub txtUsuario_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtUsuario.KeyPress
+        If e.KeyChar = ChrW(13) Then
+            If Not txtUsuario.Text.Trim = "" Then
+                txtContraseña.Focus()
+            Else
+                MessageBox.Show("Ingresar el nombre de usuario")
+            End If
+        End If
+    End Sub
+
+    Private Sub txtContraseña_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtContraseña.KeyPress
+        If e.KeyChar = ChrW(13) Then
+            If Not txtContraseña.Text.Trim = "" Then
+                btEntrar.Focus()
+            Else
+                MessageBox.Show("Ingresar la contraseña")
+            End If
+        End If
+    End Sub
+
+    Private Sub btEntrar_Click(sender As Object, e As EventArgs) Handles btEntrar.Click
+        Try
+            If Not txtUsuario.Text = "" And Not txtContraseña.Text = "" Then
+                Using db As New CodeFirst
+                    Config.Usuario = db.USUARIOS.Where(Function(f) f.NombreCuenta = txtUsuario.Text And f.Activo = "S").FirstOrDefault
+                    If Not Config.Usuario Is Nothing Then
+                        If Config.Usuario.Contraseña = txtContraseña.Text Then
+
+                            'Evaluar que tipo de inicio de sesión (-Ingreso  -Autorización)
+                            If Me.Type Then
+
+                                'Aquí se realiza la autorización
+
+
+
+                            Else
+
+                                'Aquí se agrega el proceso de entrada al sistema
+                                frmSeleccionarBodega.frm_return = 1
+                                frmSeleccionarBodega.Show()
+                                salir = True
+                                Me.Close()
+
+                            End If
+
+
+
+                        Else
+                            MessageBox.Show("Contraseña incorrecta")
+                            txtContraseña.Focus()
+                        End If
+                    Else
+                        MessageBox.Show("No se encuentra ningun usuario con este nombre")
+                        txtUsuario.Focus()
+                    End If
+                End Using
+            Else
+                MessageBox.Show("Ingresar usuario y contraseña")
+                txtUsuario.Focus()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error, " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub frmIniciarSesion_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If salir Then
+            Me.Dispose()
+        Else
+            Application.ExitThread()
+        End If
+    End Sub
+
+    Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
+        Me.Close()
+    End Sub
+
+    Private Sub frmIniciarSesion_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        gpSesion.Left = (Me.Width / 2) - (gpSesion.Width / 2)
+        gpSesion.Top = (Me.Height / 2) - (gpSesion.Height / 2) - 10
+    End Sub
+End Class
