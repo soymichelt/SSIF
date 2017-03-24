@@ -4,9 +4,9 @@
         Try
             If Not txtIdCliente.Text.Trim() = "" Then
                 Using db As New CodeFirst
-                    Dim cliente = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                    Dim cliente = db.Clientes.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                     If Not cliente Is Nothing Then
-                        Dim ventas = From ven In db.VENTAS Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.tazadecambio), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.tazadecambio, ven.SALDOCREDITO))
+                        Dim ventas = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.tazadecambio), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.tazadecambio, ven.SALDOCREDITO))
                         If Not ventas Is Nothing Then
                             If ventas.Count() > 0 Then
                                 saldo = ventas.Sum()
@@ -17,7 +17,7 @@
                             saldo = 0.0
                         End If
                         disponible = cliente.LIMITECREDITO - saldo
-                        Dim ventas_vencida = From ven In db.VENTAS Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.tazadecambio), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.tazadecambio, ven.SALDOCREDITO))
+                        Dim ventas_vencida = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.tazadecambio), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.tazadecambio, ven.SALDOCREDITO))
                         If Not ventas_vencida Is Nothing Then
                             If ventas_vencida.Count() > 0 Then
                                 vencido = Decimal.Parse(ventas_vencida.Sum())
@@ -27,8 +27,8 @@
                         Else
                             vencido = 0.0
                         End If
-                        Dim consulta = (From cli In db.CLIENTES Join ven In db.VENTAS On cli.IDCLIENTE Equals ven.IDCLIENTE Join estado In db.ESTADOS_DE_CUENTAS On ven.IDVENTA Equals estado.IDVENTA Join ser In db.SERIES On ser.IDSERIE Equals estado.IDSERIE Where estado.ACTIVO = "S" And ven.ANULADO = "N" And cli.IDCLIENTE = cliente.IDCLIENTE And ven.CREDITO And estado.FECHA <= fechacorte Order By estado.N Ascending Select estado.N, cli.N_CLIENTE, NOMBRECLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, cli.DOMICILIO, cli.TELEFONO, LIMITE = cliente.LIMITECREDITO, SALDOCLIENTE = saldo, DISPONIBLECLIENTE = disponible, VENCIDOCLIENTE = vencido, SERIE = ser.NOMBRE, estado.N_DOCUMENTO, estado.OPERACION, estado.FECHA, estado.PLAZO, estado.FECHAVENCIMIENTO, MONEC = estado.MONEDA, MONEDA = If(estado.MONEDA = Config.cordoba, "Córdoba", "Dólar"), estado.TAZACAMBIO, estado.DEBE_C, estado.DEBE_D, estado.HABER_C, estado.HABER_D, ID = ven.N, ven.IDVENTA, ven.SALDOCREDITO)
-                        Dim s = (From v In db.VENTAS Where v.ANULADO.Equals("N") And v.IDCLIENTE.Equals(cliente.IDCLIENTE) And v.CREDITO And v.FECHAFACTURA < fechacorte Select v.MONEDA, v.SALDOCREDITO)
+                        Dim consulta = (From cli In db.Clientes Join ven In db.Ventas On cli.IDCLIENTE Equals ven.IDCLIENTE Join estado In db.VentasEstadosCuentas On ven.IDVENTA Equals estado.IDVENTA Join ser In db.Series On ser.IDSERIE Equals estado.IDSERIE Where estado.ACTIVO = "S" And ven.ANULADO = "N" And cli.IDCLIENTE = cliente.IDCLIENTE And ven.CREDITO And estado.FECHA <= fechacorte Order By estado.N Ascending Select estado.N, cli.N_CLIENTE, NOMBRECLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, cli.DOMICILIO, cli.TELEFONO, LIMITE = cliente.LIMITECREDITO, SALDOCLIENTE = saldo, DISPONIBLECLIENTE = disponible, VENCIDOCLIENTE = vencido, SERIE = ser.NOMBRE, estado.N_DOCUMENTO, estado.OPERACION, estado.FECHA, estado.PLAZO, estado.FECHAVENCIMIENTO, MONEC = estado.MONEDA, MONEDA = If(estado.MONEDA = Config.cordoba, "Córdoba", "Dólar"), estado.TAZACAMBIO, estado.DEBE_C, estado.DEBE_D, estado.HABER_C, estado.HABER_D, ID = ven.N, ven.IDVENTA, ven.SALDOCREDITO)
+                        Dim s = (From v In db.Ventas Where v.ANULADO.Equals("N") And v.IDCLIENTE.Equals(cliente.IDCLIENTE) And v.CREDITO And v.FECHAFACTURA < fechacorte Select v.MONEDA, v.SALDOCREDITO)
                         If rdPendientes.Checked Then
                             consulta = consulta.Where(Function(f) f.SALDOCREDITO > 0)
                         ElseIf rdCanceladas.Checked Then
@@ -118,7 +118,7 @@
             Try
                 Using db As New CodeFirst
                     If Not txtNCliente.Text.Trim() = "" Then
-                        Dim cliente = db.CLIENTES.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                        Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not cliente Is Nothing Then
                             txtIdCliente.Text = cliente.IDCLIENTE
                             txtNombreCliente.Text = cliente.N_CLIENTE & " | " & cliente.NOMBRES & " " & cliente.APELLIDOS

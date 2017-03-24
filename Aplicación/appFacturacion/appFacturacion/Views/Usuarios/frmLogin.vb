@@ -37,7 +37,7 @@
         Try
             If Not txtUsuario.Text = "" And Not txtContraseña.Text = "" Then
                 Using db As New CodeFirst
-                    Config.Usuario = db.USUARIOS.Where(Function(f) f.NombreCuenta = txtUsuario.Text And f.Activo = "S").FirstOrDefault
+                    Config.Usuario = db.Usuarios.Where(Function(f) f.NombreCuenta = txtUsuario.Text And f.Activo = "S").FirstOrDefault
                     If Not Config.Usuario Is Nothing Then
                         If Config.Usuario.Contraseña = txtContraseña.Text Then
 

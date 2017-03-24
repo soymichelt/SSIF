@@ -135,7 +135,7 @@ Public Class frmProductosComprados
             dtpFechaInicial.Value = DateTime.Now
             dtpFechaFinal.Value = DateTime.Now
             Using db As New CodeFirst
-                cmbBodega.DataSource = (From bod In db.BODEGAS Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
+                cmbBodega.DataSource = (From bod In db.Bodegas Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
                 cmbSerie.DataSource = Nothing
             End Using
 
@@ -149,7 +149,7 @@ Public Class frmProductosComprados
     Sub llenarserie(ByVal bodega As String)
         Try
             Using db As New CodeFirst
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.ACTIVO = "S" And f.OPERACION = "VENTA" And f.IDBODEGA = bodega).ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.ACTIVO = "S" And f.OPERACION = "VENTA" And f.IDBODEGA = bodega).ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)

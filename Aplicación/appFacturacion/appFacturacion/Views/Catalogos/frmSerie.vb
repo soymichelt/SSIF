@@ -3,7 +3,7 @@
     Sub llenar(Optional ByVal nombre As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From ser In db.SERIES Where ser.ACTIVO = "S" And ser.NOMBRE.Contains(nombre) Select ser.IDSERIE, SERIE = ser.NOMBRE, ser.DESCRIPCION, ser.OPERACION, BODEGA = ser.BODEGA.N_BODEGA & " | " & ser.BODEGA.DESCRIPCION, TipoDocumento = If(ser.FACTURA_MANUAL.Equals(Config.vTrue), "Manual", "Sistema"), TipoImpresion = If(ser.TICKET.Equals(Config.vTrue), "Ticket", "Carta")).ToList()
+                dtRegistro.DataSource = (From ser In db.SERIES Where ser.ACTIVO = "S" And ser.NOMBRE.Contains(nombre) Select ser.IDSERIE, SERIE = ser.NOMBRE, ser.DESCRIPCION, ser.OPERACION, BODEGA = ser.Bodega.N_BODEGA & " | " & ser.Bodega.DESCRIPCION, TipoDocumento = If(ser.FACTURA_MANUAL.Equals(Config.vTrue), "Manual", "Sistema"), TipoImpresion = If(ser.TICKET.Equals(Config.vTrue), "Ticket", "Carta")).ToList()
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Visible = False
                     dtRegistro.Columns(1).HeaderText = vbNewLine & "NOMBRE" & vbNewLine
@@ -44,7 +44,7 @@
         Try
             llenar()
             Using db As New CodeFirst
-                cmbBodega.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "DESCRIPCION" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
+                cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "DESCRIPCION" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
@@ -68,7 +68,7 @@
             If txtNombre.Text.Trim <> "" And txtDescripcion.Text.Trim <> "" And (Not cmbOperacion.SelectedItem Is Nothing And Not cmbOperacion.SelectedIndex = -1) And (Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1) Then
                 Using db As New CodeFirst
                     If db.SERIES.Where(Function(f) f.NOMBRE = txtNombre.Text).Count() = 0 Then
-                        Dim serie As New SERIE : serie.Reg = DateTime.Now : serie.IDSERIE = Guid.NewGuid.ToString() : serie.NOMBRE = txtNombre.Text : serie.DESCRIPCION = txtDescripcion.Text : serie.OPERACION = cmbOperacion.SelectedItem.ToString() : serie.IDBODEGA = cmbBodega.SelectedValue.ToString() : serie.ACTIVO = "S"
+                        Dim serie As New Serie : serie.Reg = DateTime.Now : serie.IDSERIE = Guid.NewGuid.ToString() : serie.NOMBRE = txtNombre.Text : serie.DESCRIPCION = txtDescripcion.Text : serie.OPERACION = cmbOperacion.SelectedItem.ToString() : serie.IDBODEGA = cmbBodega.SelectedValue.ToString() : serie.ACTIVO = "S"
                         If chkFacturaManual.Visible Then
                             If chkFacturaManual.Checked Then
                                 serie.FACTURA_MANUAL = Config.vTrue
@@ -163,11 +163,11 @@
             Using db As New CodeFirst
                 If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
                     Dim serie As String = cmbBodega.Text
-                    cmbBodega.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "DESCRIPCION" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
+                    cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "DESCRIPCION" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
                     cmbBodega.Text = serie
                     serie = Nothing
                 Else
-                    cmbBodega.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "DESCRIPCION" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
+                    cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "DESCRIPCION" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
                 End If
             End Using
         Catch ex As Exception
@@ -204,7 +204,7 @@
                         txtNombre.Text = s.NOMBRE
                         txtDescripcion.Text = s.DESCRIPCION
                         cmbOperacion.Text = s.OPERACION : cmbOperacion.Enabled = False
-                        cmbBodega.Text = s.BODEGA.DESCRIPCION : cmbBodega.Enabled = False
+                        cmbBodega.Text = s.Bodega.DESCRIPCION : cmbBodega.Enabled = False
                         If s.OPERACION.Equals("VENTA") Then
                             If s.FACTURA_MANUAL.Equals("S") Then
                                 chkFacturaManual.Checked = True

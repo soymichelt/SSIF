@@ -2,7 +2,7 @@
     Sub llenar(Optional ByVal bodega As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From pre In db.PRESENTACIONES Where pre.ACTIVO = "S" And pre.DESCRIPCION.Contains(bodega) Select pre.IDPRESENTACION, pre.DESCRIPCION).ToList
+                dtRegistro.DataSource = (From pre In db.Presentaciones Where pre.ACTIVO = "S" And pre.DESCRIPCION.Contains(bodega) Select pre.IDPRESENTACION, pre.DESCRIPCION).ToList
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Visible = False
                     dtRegistro.Columns(1).HeaderText = vbNewLine & "DESCRIPCIÓN DE LA PRESENTACIÓN" & vbNewLine : dtRegistro.Columns(1).Width = 450
@@ -43,9 +43,9 @@
         Try
             If Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.PRESENTACIONES.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
-                        Dim presentacion As New PRESENTACION : presentacion.Reg = DateTime.Now : presentacion.IDPRESENTACION = Guid.NewGuid().ToString() : presentacion.DESCRIPCION = txtNombre.Text : presentacion.ACTIVO = "S"
-                        db.PRESENTACIONES.Add(presentacion)
+                    If db.Presentaciones.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
+                        Dim presentacion As New Presentacion : presentacion.Reg = DateTime.Now : presentacion.IDPRESENTACION = Guid.NewGuid().ToString() : presentacion.DESCRIPCION = txtNombre.Text : presentacion.ACTIVO = "S"
+                        db.Presentaciones.Add(presentacion)
                         db.SaveChanges() : limpiar() : llenar(txtBuscar.Text.Trim) : MessageBox.Show("Presentación guardada")
                     Else
                         MessageBox.Show("Error, Ya existe una Presentación con este nombre.")
@@ -63,8 +63,8 @@
         Try
             If Not txtCodigo.Text.Trim = "" And Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.PRESENTACIONES.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDPRESENTACION = txtCodigo.Text).Count() = 0 Then
-                        Dim presentacion = db.PRESENTACIONES.Where(Function(f) f.IDPRESENTACION = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                    If db.Presentaciones.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDPRESENTACION = txtCodigo.Text).Count() = 0 Then
+                        Dim presentacion = db.Presentaciones.Where(Function(f) f.IDPRESENTACION = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not presentacion Is Nothing Then
                             presentacion.DESCRIPCION = txtNombre.Text
                             db.Entry(presentacion).State = EntityState.Modified
@@ -87,7 +87,7 @@
     Private Sub btEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEliminar.Click
         Try
             Using db As New CodeFirst
-                Dim presentacion = db.PRESENTACIONES.Where(Function(f) f.IDPRESENTACION = txtCodigo.Text).FirstOrDefault()
+                Dim presentacion = db.Presentaciones.Where(Function(f) f.IDPRESENTACION = txtCodigo.Text).FirstOrDefault()
                 If Not presentacion Is Nothing Then
                     presentacion.ACTIVO = "N"
                     db.Entry(presentacion).State = EntityState.Modified

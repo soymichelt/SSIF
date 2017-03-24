@@ -3,7 +3,7 @@
     Sub Limpiar()
         Try
             Using db As New CodeFirst
-                Dim p = db.PERIODOS.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
+                Dim p = db.Periodos.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
                 If Not p Is Nothing Then
                     Me.idperiodo = p.IDPERIODO
                     dtpInicio.Value = p.INICIO : dtpInicio.Enabled = False
@@ -60,17 +60,17 @@
             Dim Inicio As DateTime = dtpInicio.Value.ToShortDateString & " 00:00:00"
             Dim Final As DateTime = dtpFinal.Value.ToShortDateString & " 23:59:59"
             Using db As New CodeFirst
-                If Not db.PERIODOS.Where(Function(f) f.ACTIVO.Equals("S") And f.ACTUAL.Equals("S") And f.CIERRE Is Nothing).Count > 0 Then
-                    Dim c = db.PERIODOS.Where(Function(f) f.ACTIVO.Equals("S") And ((f.INICIO <= Inicio And f.FINAL >= Inicio) Or (f.INICIO <= Final And f.FINAL >= Final)))
+                If Not db.Periodos.Where(Function(f) f.ACTIVO.Equals("S") And f.ACTUAL.Equals("S") And f.CIERRE Is Nothing).Count > 0 Then
+                    Dim c = db.Periodos.Where(Function(f) f.ACTIVO.Equals("S") And ((f.INICIO <= Inicio And f.FINAL >= Inicio) Or (f.INICIO <= Final And f.FINAL >= Final)))
                     If Not c Is Nothing Then
                         If c.Count = 0 Then
-                            Dim p As New PERIODO
+                            Dim p As New Periodo
                             p.IDPERIODO = Guid.NewGuid.ToString()
                             p.Reg = DateTime.Now
                             p.INICIO = DateTime.Parse(dtpInicio.Value.ToShortDateString & " 00:00:00")
                             p.FINAL = DateTime.Parse(dtpFinal.Value.ToShortDateString & " 23:59:59")
                             p.ACTUAL = "S" : p.ACTIVO = "S"
-                            db.PERIODOS.Add(p)
+                            db.Periodos.Add(p)
                             db.SaveChanges()
                             lblActual.Text = "Período Actual: Inicio " & p.INICIO.ToShortDateString & " Final " & p.FINAL.ToShortDateString
                             btApertura.Enabled = True : btCierre.Enabled = False : btAnular.Enabled = True : btGuardar.Enabled = False : dtpInicio.Enabled = False : dtpFinal.Enabled = False
@@ -95,7 +95,7 @@
         If MessageBox.Show("¿Desea eliminar el actual 'Período'?", "Pregunta de seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) Then
             Try
                 Using db As New CodeFirst
-                    Dim p = db.PERIODOS.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
+                    Dim p = db.Periodos.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
                     If Not p Is Nothing Then
                         p.ACTUAL = "N"
                         p.ACTIVO = "N"
@@ -121,7 +121,7 @@
     Private Sub btApertura_Click(sender As Object, e As EventArgs) Handles btApertura.Click
         Try
             Using db As New CodeFirst
-                Dim p = db.PERIODOS.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
+                Dim p = db.Periodos.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
                 If Not p Is Nothing Then
                     If p.APERTURA Is Nothing Then
                         p.APERTURA = DateTime.Now
@@ -153,7 +153,7 @@
     Private Sub btCierre_Click(sender As Object, e As EventArgs) Handles btCierre.Click
         Try
             Using db As New CodeFirst
-                Dim p = db.PERIODOS.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
+                Dim p = db.Periodos.Where(Function(f) f.ACTIVO = "S" And f.ACTUAL = "S").FirstOrDefault
                 If Not p Is Nothing Then
                     If Not p.APERTURA Is Nothing Then
                         If p.CIERRE Is Nothing Then

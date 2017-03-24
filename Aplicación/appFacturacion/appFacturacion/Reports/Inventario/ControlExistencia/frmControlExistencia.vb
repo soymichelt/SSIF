@@ -5,7 +5,7 @@
         Try
             Using db As New CodeFirst
                 If dtRegistro.Visible Then
-                    Dim consulta = (From prod In db.PRODUCTOS Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.MARCAS On prod.IDMARCA Equals mar.IDMARCA Where prod.ACTIVO = "S" And exi.BODEGA.ACTIVO = "S" And exi.IDBODEGA = idbodega And prod.DESCRIPCION.Contains(nombre) And prod.IDORIGINAL.Contains(codigo_original) And prod.APLICACION.Contains(aplicacion) And prod.IDALTERNO.Contains(codigo_alterno) And mar.DESCRIPCION.Contains(marcas) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, EXIS = exi.CANTIDAD, MARCA = mar.DESCRIPCION, prod.MODELO, APLIC = prod.APLICACION, PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO).ToList
+                    Dim consulta = (From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.Marcas On prod.IDMARCA Equals mar.IDMARCA Where prod.ACTIVO = "S" And exi.Bodega.ACTIVO = "S" And exi.IDBODEGA = idbodega And prod.DESCRIPCION.Contains(nombre) And prod.IDORIGINAL.Contains(codigo_original) And prod.APLICACION.Contains(aplicacion) And prod.IDALTERNO.Contains(codigo_alterno) And mar.DESCRIPCION.Contains(marcas) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, EXIS = exi.CANTIDAD, MARCA = mar.DESCRIPCION, prod.MODELO, APLIC = prod.APLICACION, PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO).ToList
                     If Not cmbExistencia.SelectedItem Is Nothing Then
                         Select Case cmbExistencia.SelectedItem.ToString()
                             Case "MAYORES A CERO"
@@ -60,7 +60,7 @@
 
                     ' Dim consulta = (From prod In db.PRODUCTOS Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.MARCAS On prod.IDMARCA Equals mar.IDMARCA Where prod.ACTIVO = "S" And exi.BODEGA.ACTIVO = "S" And exi.IDBODEGA = idbodega And prod.DESCRIPCION.Contains(nombre) And prod.IDORIGINAL.Contains(codigo_original) And prod.APLICACION.Contains(aplicacion) And prod.IDALTERNO.Contains(codigo_alterno) And mar.DESCRIPCION.Contains(marcas) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, EXIS = exi.CANTIDAD, MARCA = mar.DESCRIPCION, prod.MODELO, APLIC = prod.APLICACION, PRECIO1 = prod.PRECIO1 * SESION.tazadecambio, PRECIO2 = prod.PRECIO2 * SESION.tazadecambio, PRECIO3 = prod.PRECIO3 * SESION.tazadecambio, PRECIO4 = prod.PRECIO4 * SESION.tazadecambio, prod.IDPRODUCTO).ToList
 
-                    Dim consulta = From bod In db.BODEGAS Join exi In db.EXISTENCIAS On bod.IDBODEGA Equals exi.IDBODEGA Join prod In db.PRODUCTOS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join marc In db.MARCAS On marc.IDMARCA Equals prod.IDMARCA Where bod.IDBODEGA = idbodega And prod.IDALTERNO.Contains(codigo_alterno) And prod.IDORIGINAL.Contains(codigo_original) And prod.DESCRIPCION.Contains(nombre) And prod.APLICACION.Contains(aplicacion) And marc.DESCRIPCION.Contains(marcas) Select BODEGA = bod.N_BODEGA & " | " & bod.DESCRIPCION, marc.IDMARCA, MARCA = marc.DESCRIPCION, prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, exi.CANTIDAD
+                    Dim consulta = From bod In db.Bodegas Join exi In db.Existencias On bod.IDBODEGA Equals exi.IDBODEGA Join prod In db.Productos On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join marc In db.Marcas On marc.IDMARCA Equals prod.IDMARCA Where bod.IDBODEGA = idbodega And prod.IDALTERNO.Contains(codigo_alterno) And prod.IDORIGINAL.Contains(codigo_original) And prod.DESCRIPCION.Contains(nombre) And prod.APLICACION.Contains(aplicacion) And marc.DESCRIPCION.Contains(marcas) Select BODEGA = bod.N_BODEGA & " | " & bod.DESCRIPCION, marc.IDMARCA, MARCA = marc.DESCRIPCION, prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, exi.CANTIDAD
                     If Not cmbExistencia.SelectedItem Is Nothing Then
                         Select Case cmbExistencia.SelectedItem.ToString()
                             Case "MAYORES A CERO"
@@ -90,7 +90,7 @@
     Sub llenarExistencia(ByVal idproducto As String)
         Try
             Using db As New CodeFirst
-                dtExistencia.DataSource = (From exi In db.EXISTENCIAS Join bod In db.BODEGAS On exi.IDBODEGA Equals bod.IDBODEGA Where exi.IDPRODUCTO = idproducto And exi.CANTIDAD <> 0 Select bod.N_BODEGA, BODEGA = bod.DESCRIPCION, EXISTENCIA = exi.CANTIDAD, exi.CONSIGNADO).ToList
+                dtExistencia.DataSource = (From exi In db.Existencias Join bod In db.Bodegas On exi.IDBODEGA Equals bod.IDBODEGA Where exi.IDPRODUCTO = idproducto And exi.CANTIDAD <> 0 Select bod.N_BODEGA, BODEGA = bod.DESCRIPCION, EXISTENCIA = exi.CANTIDAD, exi.CONSIGNADO).ToList
                 If dtExistencia.Columns.Count > 0 Then
                     dtExistencia.Columns(0).HeaderText = vbNewLine & "No. Bodega" & vbNewLine
                     dtExistencia.Columns(1).HeaderText = "Descripción de la Bodega" : dtExistencia.Columns(1).Width = 350
@@ -111,7 +111,7 @@
         cmbExistencia.SelectedIndex = 0
         Try
             Using db As New CodeFirst
-                cmbBodega.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "DESCRIPCION"
+                cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "DESCRIPCION"
                 cmbBodega.Text = Config._Bodega.N_BODEGA & " | " & Config._Bodega.DESCRIPCION
             End Using
         Catch ex As Exception

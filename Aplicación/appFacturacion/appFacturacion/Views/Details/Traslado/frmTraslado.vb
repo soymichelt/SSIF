@@ -24,7 +24,7 @@
     Function generarCodigo(ByVal serie As String) As String
         Try
             Using db As New CodeFirst
-                Dim traslado = db.TRASLADOS.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
+                Dim traslado = db.Traslados.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
                 If Not traslado Is Nothing Then
                     cod = traslado.CONSECUTIVO
                     If Not cod.Trim = "" Then
@@ -68,8 +68,8 @@
             dtpFecha.Value = DateTime.Now
             Using db As New CodeFirst
                 'llenar bodegas
-                cmbBodegaEntra.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.nom_bodega
-                cmbBodegaSale.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
+                cmbBodegaEntra.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.nom_bodega
+                cmbBodegaSale.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
@@ -85,7 +85,7 @@
             If txtIdSerie.Text <> "" Then
                 If Not txtCodigoAlterno.Text.Trim = "" Then
                     Using db As New CodeFirst
-                        If db.PRODUCTOS.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).Count() > 0 Then
+                        If db.Productos.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).Count() > 0 Then
                             txtCantidad.Focus()
                         Else
                             frmBuscarProductos.frm_return = 4 'retornar el valor aqui
@@ -112,13 +112,13 @@
                             ''''''''''''''''''''''''''''''''''''
                             If txtCantidad.Value >= 0 Then
                                 Using db As New CodeFirst
-                                    Dim producto = db.PRODUCTOS.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).FirstOrDefault()
+                                    Dim producto = db.Productos.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).FirstOrDefault()
                                     If Not producto Is Nothing Then
                                         Dim idbodegasale As String = cmbBodegaSale.SelectedValue.ToString()
-                                        Dim productosale = producto.EXISTENCIAS.Where(Function(f) f.IDBODEGA = idbodegasale).FirstOrDefault()
+                                        Dim productosale = producto.Existencias.Where(Function(f) f.IDBODEGA = idbodegasale).FirstOrDefault()
                                         If Not productosale Is Nothing Then
                                             If productosale.CANTIDAD < Decimal.Parse(txtCantidad.Text) Then
-                                                If Not productosale.PRODUCTO.FACTURAR_NEGATIVO Then
+                                                If Not productosale.Producto.FACTURAR_NEGATIVO Then
                                                     MessageBox.Show("Error, La cantidad en existencia de la bodega que sale es menor que la solicitada.")
                                                     Exit Sub
                                                 End If
@@ -149,15 +149,15 @@
                                                 End If
                                             Next
                                             Dim item As New ListViewItem
-                                            item = lvRegistro.Items.Add(producto.EXISTENCIAS.Where(Function(f) f.IDBODEGA = Config.bodega).FirstOrDefault().IDEXISTENCIA)
+                                            item = lvRegistro.Items.Add(producto.Existencias.Where(Function(f) f.IDBODEGA = Config.bodega).FirstOrDefault().IDEXISTENCIA)
                                             item.SubItems.Add(producto.IDALTERNO)
                                             item.SubItems.Add(producto.IDORIGINAL)
                                             item.SubItems.Add(producto.DESCRIPCION)
-                                            item.SubItems.Add(producto.EXISTENCIAS.Where(Function(f) f.IDBODEGA = Config.bodega).FirstOrDefault().CANTIDAD.ToString(Config.f_m))
+                                            item.SubItems.Add(producto.Existencias.Where(Function(f) f.IDBODEGA = Config.bodega).FirstOrDefault().CANTIDAD.ToString(Config.f_m))
                                             item.SubItems.Add(Decimal.Parse(txtCantidad.Text).ToString(Config.f_m))
                                             item.SubItems.Add((producto.COSTO).ToString(Config.f_m))
                                             item.SubItems.Add((producto.COSTO * Decimal.Parse(txtCantidad.Text)).ToString(Config.f_m))
-                                            item.SubItems.Add(producto.EXISTENCIAS.Where(Function(f) f.IDBODEGA = idbodegasale).FirstOrDefault().IDEXISTENCIA)
+                                            item.SubItems.Add(producto.Existencias.Where(Function(f) f.IDBODEGA = idbodegasale).FirstOrDefault().IDEXISTENCIA)
 
                                             'totalizar
                                             txtTotal.Value = txtTotal.Value + Decimal.Parse(item.SubItems(7).Text)
@@ -240,34 +240,34 @@
                             Else
                                 dtpFecha.Value = DateTime.Parse(dtpFecha.Text & " " & DateTime.Now.ToString("HH:mm:ss"))
                             End If
-                            Dim traslado As New TRASLADO : traslado.Reg = DateTime.Now : traslado.IDTRASLADO = Guid.NewGuid.ToString() : traslado.IDSERIE = txtIdSerie.Text : traslado.CONSECUTIVO = txtCodigo.Text : traslado.FECHATRASLADO = dtpFecha.Value : traslado.IDEMPLEADO = txtIdVendedor.Text : traslado.IDBODEGA = cmbBodegaSale.SelectedValue.ToString() : traslado.CONCEPTO = txtConcepto.Text : traslado.REFERENCIA = txtReferTraslado.Text : traslado.TOTAL = 0 : traslado.REIMPRESION = Config.vFalse : traslado.ANULADO = Config.vFalse
-                            db.TRASLADOS.Add(traslado)
+                            Dim traslado As New Traslado : traslado.Reg = DateTime.Now : traslado.IDTRASLADO = Guid.NewGuid.ToString() : traslado.IDSERIE = txtIdSerie.Text : traslado.CONSECUTIVO = txtCodigo.Text : traslado.FECHATRASLADO = dtpFecha.Value : traslado.IDEMPLEADO = txtIdVendedor.Text : traslado.IDBODEGA = cmbBodegaSale.SelectedValue.ToString() : traslado.CONCEPTO = txtConcepto.Text : traslado.REFERENCIA = txtReferTraslado.Text : traslado.TOTAL = 0 : traslado.REIMPRESION = Config.vFalse : traslado.ANULADO = Config.vFalse
+                            db.Traslados.Add(traslado)
 
                             Dim idexistencia As String
                             Dim idexistencia_s As String
                             Dim cont As Integer = 0
                             For i As Integer = 0 To lvRegistro.Items.Count - 1
                                 idexistencia = lvRegistro.Items(i).Text
-                                Dim existencia = db.EXISTENCIAS.Where(Function(f) f.IDEXISTENCIA = idexistencia And f.PRODUCTO.ACTIVO = "S" And f.BODEGA.ACTIVO = "S").FirstOrDefault()
+                                Dim existencia = db.Existencias.Where(Function(f) f.IDEXISTENCIA = idexistencia And f.Producto.ACTIVO = "S" And f.Bodega.ACTIVO = "S").FirstOrDefault()
                                 If Not existencia Is Nothing Then
                                     idexistencia_s = lvRegistro.Items(i).SubItems(8).Text
-                                    Dim existencia_s = db.EXISTENCIAS.Where(Function(f) f.IDEXISTENCIA = idexistencia_s And f.PRODUCTO.ACTIVO = "S" And f.BODEGA.ACTIVO = "S").FirstOrDefault()
+                                    Dim existencia_s = db.Existencias.Where(Function(f) f.IDEXISTENCIA = idexistencia_s And f.Producto.ACTIVO = "S" And f.Bodega.ACTIVO = "S").FirstOrDefault()
                                     If Not existencia_s Is Nothing Then
                                         If existencia_s.CANTIDAD >= Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text) Then
-                                            Dim detalle As New DETALLE_TRASLADO
+                                            Dim detalle As New TrasladoDetalle
                                             detalle.IDDETALLETRASLADO = Guid.NewGuid.ToString()
                                             detalle.EXISTENCIA_PRODUCTO = existencia.CANTIDAD
                                             detalle.EXISTENCIAEXTERNA = existencia_s.CANTIDAD
                                             detalle.CANTIDAD = Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text)
-                                            detalle.CMONEDA = existencia.PRODUCTO.CMONEDA
-                                            detalle.COSTO = existencia.PRODUCTO.COSTO
+                                            detalle.CMONEDA = existencia.Producto.CMONEDA
+                                            detalle.COSTO = existencia.Producto.COSTO
                                             detalle.TOTAL = detalle.COSTO * detalle.CANTIDAD
                                             traslado.TOTAL = traslado.TOTAL + detalle.TOTAL
                                             detalle.IDEXISTENCIA = existencia.IDEXISTENCIA
                                             detalle.IDTRASLADO = traslado.IDTRASLADO
-                                            db.DETALLES_TRASLADOS.Add(detalle)
+                                            db.TrasladosDetalles.Add(detalle)
 
-                                            Dim kardex As New KARDEX
+                                            Dim kardex As New Kardex
                                             kardex.IDKARDEX = Guid.NewGuid.ToString()
                                             kardex.IDEXISTENCIA = existencia.IDEXISTENCIA
                                             kardex.IDSERIE = txtIdSerie.Text
@@ -287,16 +287,16 @@
                                             kardex.DEBER = detalle.TOTAL
                                             kardex.HABER = 0
                                             kardex.PRECIO_C = 0
-                                            kardex.COSTO_PROMEDIO = existencia.PRODUCTO.COSTO
+                                            kardex.COSTO_PROMEDIO = existencia.Producto.COSTO
                                             If existencia.CANTIDAD = 0 Then
                                                 kardex.SALDO = 0
                                             Else
                                                 kardex.SALDO = kardex.EXISTENCIA_ALMACEN * kardex.COSTO_PROMEDIO
                                             End If
                                             kardex.ACTIVO = "S"
-                                            db.KARDEXS.Add(kardex)
+                                            db.Kardexs.Add(kardex)
 
-                                            Dim kardex_s As New KARDEX
+                                            Dim kardex_s As New Kardex
                                             kardex_s.IDKARDEX = Guid.NewGuid.ToString()
                                             kardex_s.IDEXISTENCIA = existencia_s.IDEXISTENCIA
                                             kardex_s.IDSERIE = txtIdSerie.Text
@@ -315,7 +315,7 @@
                                             kardex_s.DEBER = 0
                                             kardex_s.HABER = detalle.TOTAL
                                             kardex_s.PRECIO_C = 0
-                                            kardex_s.COSTO_PROMEDIO = existencia.PRODUCTO.COSTO
+                                            kardex_s.COSTO_PROMEDIO = existencia.Producto.COSTO
                                             kardex_s.SALDO = kardex_s.EXISTENCIA_ALMACEN * kardex_s.COSTO_PROMEDIO
                                             If existencia_s.CANTIDAD = 0 Then
                                                 kardex_s.SALDO = 0
@@ -325,12 +325,12 @@
                                             kardex_s.ACTIVO = "S"
 
                                             If existencia_s.CANTIDAD < 0 Then
-                                                If Not existencia_s.PRODUCTO.FACTURAR_NEGATIVO Then
-                                                    Config.MsgErr("No se puede guardar esta Salida. Ya que la existencia del producto '" & existencia_s.PRODUCTO.IDALTERNO & " - " & existencia_s.PRODUCTO.DESCRIPCION & "' quedaría en negativo.")
+                                                If Not existencia_s.Producto.FACTURAR_NEGATIVO Then
+                                                    Config.MsgErr("No se puede guardar esta Salida. Ya que la existencia del producto '" & existencia_s.Producto.IDALTERNO & " - " & existencia_s.Producto.DESCRIPCION & "' quedaría en negativo.")
                                                     Exit Sub
                                                 End If
                                             End If
-                                            db.KARDEXS.Add(kardex_s)
+                                            db.Kardexs.Add(kardex_s)
 
                                             'destruccion
                                             detalle = Nothing : kardex = Nothing : kardex_s = Nothing
@@ -421,28 +421,28 @@
         frmProducto.BringToFront()
     End Sub
 
-    Private Sub LoadMov(ByVal v As TRASLADO)
+    Private Sub LoadMov(ByVal v As Traslado)
         Try
             Me.ID = v.IDTRASLADO
             txtIdSerie.Text = v.IDSERIE
-            txtSerie.Text = v.SERIE.NOMBRE
+            txtSerie.Text = v.Serie.NOMBRE
             txtCodigo.Text = v.CONSECUTIVO
             txtCodigo.Enabled = False
             dtpFecha.Text = v.FECHATRASLADO.ToShortDateString()
-            txtIdVendedor.Text = v.EMPLEADO.IDEMPLEADO
-            txtNombreVendedor.Text = v.EMPLEADO.N_TRABAJADOR & " | " & v.EMPLEADO.NOMBRES & " " & v.EMPLEADO.APELLIDOS
+            txtIdVendedor.Text = v.Empleado.IDEMPLEADO
+            txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " | " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
             txtConcepto.Text = v.CONCEPTO
             txtReferTraslado.Text = v.REFERENCIA
-            cmbBodegaSale.Text = v.BODEGA.N_BODEGA & " | " & v.BODEGA.DESCRIPCION
+            cmbBodegaSale.Text = v.Bodega.N_BODEGA & " | " & v.Bodega.DESCRIPCION
             cmbBodegaSale.Enabled = False
-            cmbBodegaEntra.Text = v.DETALLES_TRASLADOS.FirstOrDefault().EXISTENCIA.BODEGA.N_BODEGA & " | " & v.DETALLES_TRASLADOS.FirstOrDefault().EXISTENCIA.BODEGA.DESCRIPCION
+            cmbBodegaEntra.Text = v.TrasladosDetalles.FirstOrDefault().Existencia.Bodega.N_BODEGA & " | " & v.TrasladosDetalles.FirstOrDefault().Existencia.Bodega.DESCRIPCION
             Dim item As New ListViewItem
             lvRegistro.Items.Clear()
-            For Each detalle In v.DETALLES_TRASLADOS
+            For Each detalle In v.TrasladosDetalles
                 item = lvRegistro.Items.Add(detalle.IDEXISTENCIA)
-                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.IDALTERNO)
-                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.IDORIGINAL)
-                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.DESCRIPCION)
+                item.SubItems.Add(detalle.Existencia.Producto.IDALTERNO)
+                item.SubItems.Add(detalle.Existencia.Producto.IDORIGINAL)
+                item.SubItems.Add(detalle.Existencia.Producto.DESCRIPCION)
                 item.SubItems.Add(detalle.EXISTENCIA_PRODUCTO.ToString(Config.f_m))
                 item.SubItems.Add(detalle.CANTIDAD.ToString(Config.f_m))
                 item.SubItems.Add(detalle.COSTO.ToString(Config.f_m))
@@ -460,12 +460,12 @@
         End Try
     End Sub
 
-    Public Sub LoadInfo(Optional ByVal vInt As TRASLADO = Nothing, Optional ByVal ByInt As Boolean = False)
+    Public Sub LoadInfo(Optional ByVal vInt As Traslado = Nothing, Optional ByVal ByInt As Boolean = False)
         Try
             If Not ByInt Then
                 Using db As New CodeFirst
                     If txtIdSerie.Text <> "" Then
-                        Dim v = db.TRASLADOS.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
+                        Dim v = db.Traslados.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
                         If Not v Is Nothing Then
                             If v.ANULADO = "N" Then
                                 Me.LoadMov(v)
@@ -550,7 +550,7 @@
             If txtIdSerie.Text <> "" Then
                 Using db As New CodeFirst
                     'llenar bodegas
-                    cmbBodegaEntra.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.nom_bodega
+                    cmbBodegaEntra.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.nom_bodega
                 End Using
                 cmbBodegaEntra.Focus()
             Else
@@ -566,7 +566,7 @@
             If txtIdSerie.Text <> "" Then
                 Using db As New CodeFirst
                     'llenar bodegas
-                    cmbBodegaSale.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
+                    cmbBodegaSale.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
                 End Using
                 cmbBodegaSale.Focus()
             Else
@@ -603,7 +603,7 @@
                 If txtIdSerie.Text <> "" Then
                     Using db As New CodeFirst
                         If Not txtNVendedor.Text.Trim() = "" Then
-                            Dim vendedor = db.EMPLEADOS.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text And f.COMPRA And f.ACTIVO = "S").FirstOrDefault()
+                            Dim vendedor = db.Empleados.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text And f.COMPRA And f.ACTIVO = "S").FirstOrDefault()
                             If Not vendedor Is Nothing Then
                                 txtIdVendedor.Text = vendedor.IDEMPLEADO
                                 txtNombreVendedor.Text = vendedor.N_TRABAJADOR & " | " & vendedor.NOMBRES & " " & vendedor.APELLIDOS
@@ -651,27 +651,27 @@
             If MessageBox.Show("¿Desea anular este Traslado?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                 If Not Me.ID.Trim() = "" Then
                     Using db As New CodeFirst
-                        Dim v = db.TRASLADOS.Where(Function(f) f.IDTRASLADO = Me.ID And f.ANULADO = "N").FirstOrDefault()
+                        Dim v = db.Traslados.Where(Function(f) f.IDTRASLADO = Me.ID And f.ANULADO = "N").FirstOrDefault()
                         If Not v Is Nothing Then
                             If Config.ValidarPeriodo(v.FECHATRASLADO) Then
                                 v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
 
-                                For Each item In v.DETALLES_TRASLADOS
-                                    Dim ExiS = db.EXISTENCIAS.Where(Function(f) f.IDBODEGA = v.IDBODEGA And f.IDPRODUCTO = item.EXISTENCIA.IDPRODUCTO).FirstOrDefault
+                                For Each item In v.TrasladosDetalles
+                                    Dim ExiS = db.Existencias.Where(Function(f) f.IDBODEGA = v.IDBODEGA And f.IDPRODUCTO = item.Existencia.IDPRODUCTO).FirstOrDefault
                                     If ExiS Is Nothing Then
-                                        Config.MsgErr("No se puede anular este Traslado por que no se encuentra el producto '" & item.EXISTENCIA.PRODUCTO.IDALTERNO & " - " & item.EXISTENCIA.PRODUCTO.DESCRIPCION & "' no se encuentra en la bodega que salio.")
+                                        Config.MsgErr("No se puede anular este Traslado por que no se encuentra el producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' no se encuentra en la bodega que salio.")
                                         Exit Sub
                                     End If
 
-                                    item.EXISTENCIA.CANTIDAD = item.EXISTENCIA.CANTIDAD - item.CANTIDAD
-                                    If item.EXISTENCIA.CANTIDAD < 0 Then
-                                        If Not item.EXISTENCIA.PRODUCTO.FACTURAR_NEGATIVO Then
-                                            Config.MsgErr("No se puede anular esta Traslado. Ya que la existencia del producto '" & item.EXISTENCIA.PRODUCTO.IDALTERNO & " - " & item.EXISTENCIA.PRODUCTO.DESCRIPCION & "' quedaría en negativo.")
+                                    item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
+                                    If item.Existencia.CANTIDAD < 0 Then
+                                        If Not item.Existencia.Producto.FACTURAR_NEGATIVO Then
+                                            Config.MsgErr("No se puede anular esta Traslado. Ya que la existencia del producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' quedaría en negativo.")
                                             Exit Sub
                                         End If
                                     End If
 
-                                    db.Entry(item.EXISTENCIA).State = EntityState.Modified
+                                    db.Entry(item.Existencia).State = EntityState.Modified
                                     ExiS.CANTIDAD = ExiS.CANTIDAD + item.CANTIDAD
                                     db.Entry(ExiS).State = EntityState.Modified
                                 Next
@@ -679,10 +679,10 @@
                                 Using db_a As New CodeFirst
                                     Dim band As Boolean = False
                                     Using db_exi As New CodeFirst
-                                        For Each kardex In db.KARDEXS.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
-                                            For Each k In db_a.KARDEXS.Where(Function(f) f.N > kardex.N And f.EXISTENCIA.IDPRODUCTO = kardex.EXISTENCIA.IDPRODUCTO)
-                                                Dim s = db_exi.SERIES.Where(Function(f) f.IDSERIE = k.IDSERIE).FirstOrDefault
-                                                Dim ExiS = db_exi.EXISTENCIAS.Where(Function(f) f.IDEXISTENCIA = k.IDEXISTENCIA).FirstOrDefault
+                                        For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
+                                            For Each k In db_a.Kardexs.Where(Function(f) f.N > kardex.N And f.Existencia.IDPRODUCTO = kardex.Existencia.IDPRODUCTO)
+                                                Dim s = db_exi.Series.Where(Function(f) f.IDSERIE = k.IDSERIE).FirstOrDefault
+                                                Dim ExiS = db_exi.Existencias.Where(Function(f) f.IDEXISTENCIA = k.IDEXISTENCIA).FirstOrDefault
 
                                                 If ExiS.IDBODEGA = s.IDBODEGA Then
                                                     k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR - kardex.ENTRADA

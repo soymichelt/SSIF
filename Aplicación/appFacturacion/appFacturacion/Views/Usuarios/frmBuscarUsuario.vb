@@ -5,7 +5,7 @@
         Try
             Using db As New CodeFirst
                 If dtRegistro.Visible Then
-                    dtRegistro.DataSource = (From user In db.USUARIOS Where (user.Nombres & " " & user.Apellidos).Contains(nombre_) And user.NombreCuenta.Contains(nombreusuario) Select user.IDUsuario, ACTIVO = If(user.Activo.Equals("S"), "Activo", "Desactivado"), NOMBRE = user.Nombres & " " & user.Apellidos, USUARIO = user.NombreCuenta, user.Observacion).ToList
+                    dtRegistro.DataSource = (From user In db.Usuarios Where (user.Nombres & " " & user.Apellidos).Contains(nombre_) And user.NombreCuenta.Contains(nombreusuario) Select user.IDUsuario, ACTIVO = If(user.Activo.Equals("S"), "Activo", "Desactivado"), NOMBRE = user.Nombres & " " & user.Apellidos, USUARIO = user.NombreCuenta, user.Observacion).ToList
                     If dtRegistro.Columns.Count > 0 Then
                         dtRegistro.Columns(0).Visible = False
                         dtRegistro.Columns(1).HeaderText = vbNewLine & "" & vbNewLine
@@ -29,7 +29,7 @@
                     Else
                         band = rpt.Section2.ReportObjects("txtUsuario") : band.Text = "%Todos%"
                     End If
-                    rpt.SetDataSource((From user In db.USUARIOS Where user.Activo = "S" And (user.Nombres & " " & user.Apellidos).Contains(nombre_) And user.NombreCuenta.Contains(nombreusuario) Select user.IDUsuario, NOMBRE = user.Nombres & " " & user.Apellidos, USUARIO = user.NombreCuenta, user.Observacion).ToList)
+                    rpt.SetDataSource((From user In db.Usuarios Where user.Activo = "S" And (user.Nombres & " " & user.Apellidos).Contains(nombre_) And user.NombreCuenta.Contains(nombreusuario) Select user.IDUsuario, NOMBRE = user.Nombres & " " & user.Apellidos, USUARIO = user.NombreCuenta, user.Observacion).ToList)
                     CrystalReportViewer1.ReportSource = rpt
                 End If
             End Using
@@ -78,7 +78,7 @@
     End Sub
 
     Private Sub dtRegistro_SelectionChanged(sender As Object, e As EventArgs) Handles dtRegistro.SelectionChanged
-        
+
     End Sub
 
     Private Sub dtRegistro_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtRegistro.CellDoubleClick
@@ -87,7 +87,7 @@
                 Case 0
                     Using db As New CodeFirst
                         Dim idusuario = dtRegistro.SelectedRows(0).Cells(0).Value.ToString
-                        Dim u = db.USUARIOS.Where(Function(f) f.IDUsuario = idusuario).FirstOrDefault()
+                        Dim u = db.Usuarios.Where(Function(f) f.IDUsuario = idusuario).FirstOrDefault()
 
                         If Not u Is Nothing Then
                             frmUser.txtCodigo.Text = u.IDUsuario
@@ -131,7 +131,7 @@
                 Case 1
                     Using db As New CodeFirst
                         Dim idusuario = dtRegistro.SelectedRows(0).Cells(0).Value.ToString
-                        Dim u = db.USUARIOS.Where(Function(f) f.IDUsuario = idusuario).FirstOrDefault()
+                        Dim u = db.Usuarios.Where(Function(f) f.IDUsuario = idusuario).FirstOrDefault()
 
                         If Not u Is Nothing Then
                             frmUser.txtCodigo.Text = u.IDUsuario

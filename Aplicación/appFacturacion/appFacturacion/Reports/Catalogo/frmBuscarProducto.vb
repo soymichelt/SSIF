@@ -5,7 +5,7 @@
         Try
             Using db As New CodeFirst
                 'Dim consulta = From prod In db.PRODUCTOS Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.MARCAS On prod.IDMARCA Equals mar.IDMARCA Join lab In db.LABORATORIOS On lab.IDLABORATORIO Equals prod.IDLABORATORIO Join pre In db.PRESENTACIONES On pre.IDPRESENTACION Equals prod.IDPRESENTACION Where prod.ACTIVO = "S" And exi.IDBODEGA = Config.bodega And prod.DESCRIPCION.Contains(pNombre) And prod.IDORIGINAL.Contains(pIDOriginal) And prod.APLICACION.Contains(pAplicacion) And prod.IDALTERNO.Contains(pIDAlterno) And mar.DESCRIPCION.Contains(pMarca) And prod.MODELO.Contains(pNombreComercial) And lab.DESCRIPCION.Contains(pLaboratorio) And pre.DESCRIPCION.Contains(pForma) And prod.UBICACIONFISICA.Contains(pUbicacion) Select prod, exi, mar, lab, pre, PRVN = If(prod.PROVEEDOR IsNot Nothing, prod.PROVEEDOR.NOMBRES & " " & prod.PROVEEDOR.APELLIDOS, Config.TextNull), PRVR = If(prod.PROVEEDOR IsNot Nothing, " // " & prod.PROVEEDOR.RAZONSOCIAL, "") Where (PRVN & PRVR).Contains(pDistribuidor) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, prod.MODELO, EXIS = exi.CANTIDAD, MARCA = If(mar.ACTIVO.Equals(Config.vTrue), mar.DESCRIPCION, Config.TextNull), APLIC = prod.APLICACION, MONEDA = If(prod.CMONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO, PRESENTACIÓN = If(prod.PRESENTACION.ACTIVO.Equals(Config.vTrue), prod.PRESENTACION.DESCRIPCION, Config.TextNull), LABORATORIO = If(prod.LABORATORIO.ACTIVO.Equals(Config.vTrue), prod.LABORATORIO.DESCRIPCION, Config.TextNull), UNIDAD_DE_MEDIDA = If(prod.UNIDAD_DE_MEDIDA.ACTIVO.Equals(Config.vTrue), prod.UNIDAD_DE_MEDIDA.DESCRIPCION, Config.TextNull), prod.CONTIENE, prod.CANTIDAD_MINIMA, prod.CANTIDAD_MAXIMA, PROVEEDOR = PRVN & PRVR, prod.UBICACIONFISICA
-                Dim consulta = From prod In db.PRODUCTOS Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.MARCAS On prod.IDMARCA Equals mar.IDMARCA Join lab In db.LABORATORIOS On lab.IDLABORATORIO Equals prod.IDLABORATORIO Join pre In db.PRESENTACIONES On pre.IDPRESENTACION Equals prod.IDPRESENTACION Where prod.ACTIVO = "S" And exi.IDBODEGA = Config.bodega And prod.DESCRIPCION.Contains(pNombre) And prod.IDORIGINAL.Contains(pIDOriginal) And prod.APLICACION.Contains(pAplicacion) And prod.IDALTERNO.Contains(pIDAlterno) And mar.DESCRIPCION.Contains(pMarca) And prod.MODELO.Contains(pNombreComercial) And lab.DESCRIPCION.Contains(pLaboratorio) And pre.DESCRIPCION.Contains(pForma) And prod.UBICACIONFISICA.Contains(pUbicacion) Select prod, exi, mar, lab, pre, PRVN = If(prod.PROVEEDOR IsNot Nothing, prod.PROVEEDOR.NOMBRES & " " & prod.PROVEEDOR.APELLIDOS, Config.TextNull), PRVR = If(prod.PROVEEDOR IsNot Nothing, " // " & prod.PROVEEDOR.RAZONSOCIAL, "") Where (PRVN & PRVR).Contains(pDistribuidor) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, prod.MODELO, EXIS = exi.CANTIDAD, MARCA = If(mar.ACTIVO.Equals(Config.vTrue), mar.DESCRIPCION, Config.TextNull), APLIC = prod.APLICACION, prod.UBICACIONFISICA, PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO, PRESENTACIÓN = If(prod.PRESENTACION.ACTIVO.Equals(Config.vTrue), prod.PRESENTACION.DESCRIPCION, Config.TextNull), LABORATORIO = If(prod.LABORATORIO.ACTIVO.Equals(Config.vTrue), prod.LABORATORIO.DESCRIPCION, Config.TextNull), UNIDAD_DE_MEDIDA = If(prod.UNIDAD_DE_MEDIDA.ACTIVO.Equals(Config.vTrue), prod.UNIDAD_DE_MEDIDA.DESCRIPCION, Config.TextNull), prod.CONTIENE, prod.CANTIDAD_MINIMA, prod.CANTIDAD_MAXIMA, PROVEEDOR = PRVN & PRVR, MONEDA = If(prod.CMONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), prod.COSTO
+                Dim consulta = From prod In db.Productos Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.Marcas On prod.IDMARCA Equals mar.IDMARCA Join lab In db.Laboratorios On lab.IDLABORATORIO Equals prod.IDLABORATORIO Join pre In db.Presentaciones On pre.IDPRESENTACION Equals prod.IDPRESENTACION Where prod.ACTIVO = "S" And exi.IDBODEGA = Config.bodega And prod.DESCRIPCION.Contains(pNombre) And prod.IDORIGINAL.Contains(pIDOriginal) And prod.APLICACION.Contains(pAplicacion) And prod.IDALTERNO.Contains(pIDAlterno) And mar.DESCRIPCION.Contains(pMarca) And prod.MODELO.Contains(pNombreComercial) And lab.DESCRIPCION.Contains(pLaboratorio) And pre.DESCRIPCION.Contains(pForma) And prod.UBICACIONFISICA.Contains(pUbicacion) Select prod, exi, mar, lab, pre, PRVN = If(prod.Proveedor IsNot Nothing, prod.Proveedor.NOMBRES & " " & prod.Proveedor.APELLIDOS, Config.TextNull), PRVR = If(prod.Proveedor IsNot Nothing, " // " & prod.Proveedor.RAZONSOCIAL, "") Where (PRVN & PRVR).Contains(pDistribuidor) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, prod.MODELO, EXIS = exi.CANTIDAD, MARCA = If(mar.ACTIVO.Equals(Config.vTrue), mar.DESCRIPCION, Config.TextNull), APLIC = prod.APLICACION, prod.UBICACIONFISICA, PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO, PRESENTACIÓN = If(prod.Presentacion.ACTIVO.Equals(Config.vTrue), prod.Presentacion.DESCRIPCION, Config.TextNull), LABORATORIO = If(prod.Laboratorio.ACTIVO.Equals(Config.vTrue), prod.Laboratorio.DESCRIPCION, Config.TextNull), UNIDAD_DE_MEDIDA = If(prod.UnidadMedida.ACTIVO.Equals(Config.vTrue), prod.UnidadMedida.DESCRIPCION, Config.TextNull), prod.CONTIENE, prod.CANTIDAD_MINIMA, prod.CANTIDAD_MAXIMA, PROVEEDOR = PRVN & PRVR, MONEDA = If(prod.CMONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), prod.COSTO
                 If rdMinDebajo.Checked Then
                     consulta = consulta.Where(Function(f) f.EXIS < f.CANTIDAD_MINIMA)
                 ElseIf rdMinEncima.Checked Then
@@ -106,7 +106,7 @@
     Sub llenarExistencia(ByVal idproducto As String)
         Try
             Using db As New CodeFirst
-                dtExistencia.DataSource = (From exi In db.EXISTENCIAS Join bod In db.BODEGAS On exi.IDBODEGA Equals bod.IDBODEGA Where exi.IDPRODUCTO = idproducto Select bod.N_BODEGA, BODEGA = bod.DESCRIPCION, EXISTENCIA = exi.CANTIDAD, exi.CONSIGNADO).ToList
+                dtExistencia.DataSource = (From exi In db.EXISTENCIAS Join bod In db.Bodegas On exi.IDBODEGA Equals bod.IDBODEGA Where exi.IDPRODUCTO = idproducto Select bod.N_BODEGA, BODEGA = bod.DESCRIPCION, EXISTENCIA = exi.CANTIDAD, exi.CONSIGNADO).ToList
                 dtExistencia.Columns(1).Width = 200 : dtExistencia.Columns(2).Width = 100 : dtExistencia.Columns(3).Width = 100
                 dtExistencia.Columns(2).DefaultCellStyle.Format = Config.f_m : dtExistencia.Columns(3).DefaultCellStyle.Format = Config.f_m
             End Using
@@ -144,7 +144,7 @@
             If dtRegistro.SelectedRows.Count > 0 Then
                 Using db As New CodeFirst
                     Dim ID = dtRegistro.SelectedRows(0).Cells(12).Value.ToString
-                    Dim p = db.PRODUCTOS.Where(Function(f) f.ACTIVO = "S" And f.IDPRODUCTO = ID).FirstOrDefault()
+                    Dim p = db.Productos.Where(Function(f) f.ACTIVO = "S" And f.IDPRODUCTO = ID).FirstOrDefault()
                     If Not p Is Nothing Then
                         Select Case frm_return
                             Case 0
@@ -152,23 +152,23 @@
                                 frmProducto.txtAlterno.Text = p.IDALTERNO
                                 frmProducto.txtOriginal.Text = p.IDORIGINAL
                                 frmProducto.txtDescripcion.Text = p.DESCRIPCION
-                                If p.MARCA.ACTIVO = "S" Then
-                                    frmProducto.cmbMarca.Text = p.MARCA.DESCRIPCION
+                                If p.Marca.ACTIVO = "S" Then
+                                    frmProducto.cmbMarca.Text = p.Marca.DESCRIPCION
                                 Else
                                     frmProducto.cmbMarca.Text = ""
                                 End If
-                                If p.UNIDAD_DE_MEDIDA.ACTIVO = "S" Then
-                                    frmProducto.cmbUnidaddemedida.Text = p.UNIDAD_DE_MEDIDA.DESCRIPCION
+                                If p.UnidadMedida.ACTIVO = "S" Then
+                                    frmProducto.cmbUnidaddemedida.Text = p.UnidadMedida.DESCRIPCION
                                 Else
                                     frmProducto.cmbUnidaddemedida.Text = ""
                                 End If
-                                If p.PRESENTACION.ACTIVO = "S" Then
-                                    frmProducto.cmbPresentacion.Text = p.PRESENTACION.DESCRIPCION
+                                If p.Presentacion.ACTIVO = "S" Then
+                                    frmProducto.cmbPresentacion.Text = p.Presentacion.DESCRIPCION
                                 Else
                                     frmProducto.cmbPresentacion.Text = ""
                                 End If
-                                If p.LABORATORIO.ACTIVO = "S" Then
-                                    frmProducto.cmbLaboratorio.Text = p.LABORATORIO.DESCRIPCION
+                                If p.Laboratorio.ACTIVO = "S" Then
+                                    frmProducto.cmbLaboratorio.Text = p.Laboratorio.DESCRIPCION
                                 Else
                                     frmProducto.cmbLaboratorio.Text = ""
                                 End If
@@ -187,7 +187,7 @@
 
                                 If Not p.IDPROVEEDOR Is Nothing Then
                                     frmProducto.txtIdProveedor.Text = p.IDPROVEEDOR
-                                    frmProducto.txtProveedor.Text = p.PROVEEDOR.N_PROVEEDOR & " | " & p.PROVEEDOR.NOMBRES & " " & p.PROVEEDOR.APELLIDOS & If(p.PROVEEDOR.RAZONSOCIAL.Trim <> "", " // " & p.PROVEEDOR.RAZONSOCIAL, "")
+                                    frmProducto.txtProveedor.Text = p.Proveedor.N_PROVEEDOR & " | " & p.Proveedor.NOMBRES & " " & p.Proveedor.APELLIDOS & If(p.Proveedor.RAZONSOCIAL.Trim <> "", " // " & p.Proveedor.RAZONSOCIAL, "")
                                 Else
                                     frmProducto.txtIdProveedor.Clear()
                                     frmProducto.txtProveedor.Clear()
@@ -265,23 +265,23 @@
                                 frmProducto.txtOriginal.Text = p.IDORIGINAL
                                 frmProducto.txtDescripcion.Text = p.DESCRIPCION
                                 frmProducto.txtUbicacion.Text = p.UBICACIONFISICA
-                                If p.MARCA.ACTIVO = "S" Then
-                                    frmProducto.cmbMarca.Text = p.MARCA.DESCRIPCION
+                                If p.Marca.ACTIVO = "S" Then
+                                    frmProducto.cmbMarca.Text = p.Marca.DESCRIPCION
                                 Else
                                     frmProducto.cmbMarca.Text = ""
                                 End If
-                                If p.UNIDAD_DE_MEDIDA.ACTIVO = "S" Then
-                                    frmProducto.cmbUnidaddemedida.Text = p.UNIDAD_DE_MEDIDA.DESCRIPCION
+                                If p.UnidadMedida.ACTIVO = "S" Then
+                                    frmProducto.cmbUnidaddemedida.Text = p.UnidadMedida.DESCRIPCION
                                 Else
                                     frmProducto.cmbUnidaddemedida.Text = ""
                                 End If
-                                If p.PRESENTACION.ACTIVO = "S" Then
-                                    frmProducto.cmbPresentacion.Text = p.PRESENTACION.DESCRIPCION
+                                If p.Presentacion.ACTIVO = "S" Then
+                                    frmProducto.cmbPresentacion.Text = p.Presentacion.DESCRIPCION
                                 Else
                                     frmProducto.cmbPresentacion.Text = ""
                                 End If
-                                If p.LABORATORIO.ACTIVO = "S" Then
-                                    frmProducto.cmbLaboratorio.Text = p.LABORATORIO.DESCRIPCION
+                                If p.Laboratorio.ACTIVO = "S" Then
+                                    frmProducto.cmbLaboratorio.Text = p.Laboratorio.DESCRIPCION
                                 Else
                                     frmProducto.cmbLaboratorio.Text = ""
                                 End If
@@ -299,7 +299,7 @@
                                 frmProducto.txtCantidadMaxima.Value = p.CANTIDAD_MAXIMA
                                 If Not p.IDPROVEEDOR Is Nothing Then
                                     frmProducto.txtIdProveedor.Text = p.IDPROVEEDOR
-                                    frmProducto.txtProveedor.Text = p.PROVEEDOR.N_PROVEEDOR & " | " & p.PROVEEDOR.NOMBRES & " " & p.PROVEEDOR.APELLIDOS & If(p.PROVEEDOR.RAZONSOCIAL.Trim <> "", " // " & p.PROVEEDOR.RAZONSOCIAL, "")
+                                    frmProducto.txtProveedor.Text = p.Proveedor.N_PROVEEDOR & " | " & p.Proveedor.NOMBRES & " " & p.Proveedor.APELLIDOS & If(p.Proveedor.RAZONSOCIAL.Trim <> "", " // " & p.Proveedor.RAZONSOCIAL, "")
                                 Else
                                     frmProducto.txtIdProveedor.Clear()
                                     frmProducto.txtProveedor.Clear()

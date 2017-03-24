@@ -62,6 +62,7 @@ Partial Class frmUser
         Me.btImagen = New DevComponents.DotNetBar.ButtonX()
         Me.txtImagen = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.pnImagen = New DevComponents.DotNetBar.PanelEx()
+        Me.chkSalesPriceChange = New System.Windows.Forms.CheckBox()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Menu.SuspendLayout()
         Me.PanelEx1.SuspendLayout()
@@ -162,7 +163,7 @@ Partial Class frmUser
         Me.PanelEx1.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelEx1.Location = New System.Drawing.Point(0, 39)
         Me.PanelEx1.Name = "PanelEx1"
-        Me.PanelEx1.Size = New System.Drawing.Size(307, 354)
+        Me.PanelEx1.Size = New System.Drawing.Size(307, 368)
         Me.PanelEx1.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.PanelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -190,6 +191,7 @@ Partial Class frmUser
         Me.ElGroupBox1.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox1.CaptionStyle.TextStyle.Text = "Labores"
         Me.ElGroupBox1.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox1.Controls.Add(Me.chkSalesPriceChange)
         Me.ElGroupBox1.Controls.Add(Me.chkContabilidad)
         Me.ElGroupBox1.Controls.Add(Me.chkInventario)
         Me.ElGroupBox1.Controls.Add(Me.chkCompra)
@@ -204,7 +206,7 @@ Partial Class frmUser
         Me.ElGroupBox1.Name = "ElGroupBox1"
         Me.ElGroupBox1.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         Me.ElGroupBox1.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
-        Me.ElGroupBox1.Size = New System.Drawing.Size(279, 146)
+        Me.ElGroupBox1.Size = New System.Drawing.Size(279, 178)
         Me.ElGroupBox1.TabIndex = 3
         '
         'chkContabilidad
@@ -484,7 +486,7 @@ Partial Class frmUser
         Me.pnContImage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnContImage.Location = New System.Drawing.Point(307, 39)
         Me.pnContImage.Name = "pnContImage"
-        Me.pnContImage.Size = New System.Drawing.Size(375, 354)
+        Me.pnContImage.Size = New System.Drawing.Size(375, 368)
         Me.pnContImage.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.pnContImage.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.pnContImage.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -526,7 +528,7 @@ Partial Class frmUser
         Me.pnImagen.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.pnImagen.Location = New System.Drawing.Point(6, 31)
         Me.pnImagen.Name = "pnImagen"
-        Me.pnImagen.Size = New System.Drawing.Size(364, 318)
+        Me.pnImagen.Size = New System.Drawing.Size(364, 330)
         Me.pnImagen.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.pnImagen.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.pnImagen.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -536,11 +538,21 @@ Partial Class frmUser
         Me.pnImagen.Style.GradientAngle = 90
         Me.pnImagen.TabIndex = 11
         '
+        'chkSalesPriceChange
+        '
+        Me.chkSalesPriceChange.AutoSize = True
+        Me.chkSalesPriceChange.Location = New System.Drawing.Point(12, 144)
+        Me.chkSalesPriceChange.Name = "chkSalesPriceChange"
+        Me.chkSalesPriceChange.Size = New System.Drawing.Size(132, 18)
+        Me.chkSalesPriceChange.TabIndex = 145
+        Me.chkSalesPriceChange.Text = "Editar Precio de Venta"
+        Me.chkSalesPriceChange.UseVisualStyleBackColor = True
+        '
         'frmUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(682, 393)
+        Me.ClientSize = New System.Drawing.Size(682, 407)
         Me.Controls.Add(Me.pnContImage)
         Me.Controls.Add(Me.PanelEx1)
         Me.Controls.Add(Me.Menu)
@@ -605,4 +617,5 @@ Partial Class frmUser
     Friend WithEvents pnImagen As DevComponents.DotNetBar.PanelEx
     Friend WithEvents chkMostrar As System.Windows.Forms.CheckBox
     Friend WithEvents txtCodigo As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents chkSalesPriceChange As System.Windows.Forms.CheckBox
 End Class

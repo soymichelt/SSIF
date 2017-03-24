@@ -52,7 +52,7 @@
             If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Then
                 Try
                     Using db As New CodeFirst
-                        Dim u As New USUARIO
+                        Dim u As New Usuario
                         u.IDUsuario = Guid.NewGuid.ToString
                         Me.ID = u.IDUsuario
                         u.Reg = DateTime.Now
@@ -92,7 +92,7 @@
                         u.CContabilidad = chkConsultasContabilidad.Checked
 
                         u.Activo = "S"
-                        db.USUARIOS.Add(u)
+                        db.Usuarios.Add(u)
                         db.SaveChanges()
                         u = Nothing
 
@@ -115,7 +115,7 @@
             If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Then
                 Try
                     Using db As New CodeFirst
-                        Dim u = db.USUARIOS.Where(Function(f) f.IDUsuario = Me.txtCodigo.Text).FirstOrDefault
+                        Dim u = db.Usuarios.Where(Function(f) f.IDUsuario = Me.txtCodigo.Text).FirstOrDefault
                         If Not u Is Nothing Then
                             u.Nombres = txtNombres.Text
                             u.Apellidos = txtApellidos.Text
@@ -179,7 +179,7 @@
         If MessageBox.Show("¿Desea eliminar este 'Usuario'?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
             Try
                 Using db As New CodeFirst
-                    Dim u = db.USUARIOS.Where(Function(f) f.IDUsuario = Me.txtCodigo.Text).FirstOrDefault
+                    Dim u = db.Usuarios.Where(Function(f) f.IDUsuario = Me.txtCodigo.Text).FirstOrDefault
                     If Not u Is Nothing Then
                         u.Activo = "N"
                         db.Entry(u).State = EntityState.Modified

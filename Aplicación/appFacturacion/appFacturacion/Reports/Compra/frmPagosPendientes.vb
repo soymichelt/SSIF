@@ -8,9 +8,9 @@
     Sub Llenar()
         Try
             Using db As New CodeFirst
-                Dim p = db.PROVEEDORES.Where(Function(f) f.IDPROVEEDOR.Equals(Me.IdProveedor) And f.ACTIVO.Equals("S")).FirstOrDefault
+                Dim p = db.Proveedores.Where(Function(f) f.IDPROVEEDOR.Equals(Me.IdProveedor) And f.ACTIVO.Equals("S")).FirstOrDefault
                 If Not p Is Nothing Then
-                    Dim query = (From com In db.COMPRAS Join pro In db.PROVEEDORES On com.IDPROVEEDOR Equals pro.IDPROVEEDOR Join ser In db.SERIES On com.IDSERIE Equals ser.IDSERIE Where com.ANULADO = "N" And pro.ACTIVO = "S" And ser.ACTIVO = "S" And com.CREDITO = True And com.SALDOCREDITO > 0.0 And com.IDPROVEEDOR = IdProveedor Select com.IDCOMPRA, ser.NOMBRE, com.CONSECUTIVO, com.N_COMPRA, com.FECHACOMPRA, com.FECHACREDITOVENCIMIENTO, MONEDA = If(com.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), com.TAZACAMBIO, TOTAL = If(com.MONEDA.Equals(Config.cordoba), com.TOTAL_C, com.TOTAL_D), com.SALDOCREDITO Order By FECHACOMPRA Ascending).ToList()
+                    Dim query = (From com In db.Compras Join pro In db.Proveedores On com.IDPROVEEDOR Equals pro.IDPROVEEDOR Join ser In db.Series On com.IDSERIE Equals ser.IDSERIE Where com.ANULADO = "N" And pro.ACTIVO = "S" And ser.ACTIVO = "S" And com.CREDITO = True And com.SALDOCREDITO > 0.0 And com.IDPROVEEDOR = IdProveedor Select com.IDCOMPRA, ser.NOMBRE, com.CONSECUTIVO, com.N_COMPRA, com.FECHACOMPRA, com.FECHACREDITOVENCIMIENTO, MONEDA = If(com.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), com.TAZACAMBIO, TOTAL = If(com.MONEDA.Equals(Config.cordoba), com.TOTAL_C, com.TOTAL_D), com.SALDOCREDITO Order By FECHACOMPRA Ascending).ToList()
                     dtRegistro.DataSource = query
 
                     'llenar textbox
@@ -70,7 +70,7 @@
             If dtRegistro.SelectedRows.Count > 0 Then
                 Using db As New CodeFirst
                     Dim Id = dtRegistro.SelectedRows(0).Cells(0).Value.ToString
-                    Dim v = db.COMPRAS.Where(Function(f) f.IDCOMPRA = Id And f.ANULADO.Equals("N")).FirstOrDefault
+                    Dim v = db.Compras.Where(Function(f) f.IDCOMPRA = Id And f.ANULADO.Equals("N")).FirstOrDefault
                     Id = Nothing
                     If Not v Is Nothing Then
                         If v.SALDOCREDITO > 0.0 Then
@@ -78,28 +78,28 @@
                                 Case 0
                                     With frmReciboCompra
                                         .txtIdFactura.Text = v.IDCOMPRA
-                                        .txtFactura.Text = v.SERIE.NOMBRE & " | " & v.CONSECUTIVO & "(" & v.N_COMPRA & ")"
+                                        .txtFactura.Text = v.Serie.NOMBRE & " | " & v.CONSECUTIVO & "(" & v.N_COMPRA & ")"
                                         .txtMonto.Value = If(Moneda.Equals(Config.cordoba), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * Config.tazadecambio), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / Config.tazadecambio, v.SALDOCREDITO))
                                     End With
                                 Case 1
                                     With frmNotaDevolucionCompra
                                         .txtIdFactura.Text = v.IDCOMPRA
-                                        .txtFactura.Text = v.SERIE.NOMBRE & " | " & v.CONSECUTIVO
+                                        .txtFactura.Text = v.Serie.NOMBRE & " | " & v.CONSECUTIVO
                                         .txtSaldo.Value = If(Moneda.Equals(Config.cordoba), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * Config.tazadecambio), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / Config.tazadecambio, v.SALDOCREDITO))
 
                                         'Cargar detalle de la factura
                                         Dim item As LST_DETALLE_DEVOLUCION_COMPRA
                                         .detalles.RemoveAll(Function(f) True)
-                                        For Each d In v.DETALLES_COMPRAS
+                                        For Each d In v.ComprasDetalles
                                             item = New LST_DETALLE_DEVOLUCION_COMPRA
-                                            item.IDEXISTENCIA = d.EXISTENCIA.IDEXISTENCIA
-                                            item.IDALTERNO = d.EXISTENCIA.PRODUCTO.IDALTERNO
-                                            item.DESCRIPCION = d.EXISTENCIA.PRODUCTO.DESCRIPCION
-                                            item.IVA = d.EXISTENCIA.PRODUCTO.IVA
-                                            item.MARCA = If(d.EXISTENCIA.PRODUCTO.MARCA.ACTIVO.Equals(Config.vTrue), d.EXISTENCIA.PRODUCTO.MARCA.DESCRIPCION, Config.TextNull)
-                                            item.UNIDAD_DE_MEDIDA = If(d.EXISTENCIA.PRODUCTO.UNIDAD_DE_MEDIDA.ACTIVO = "S", d.EXISTENCIA.PRODUCTO.UNIDAD_DE_MEDIDA.DESCRIPCION, Config.TextNull)
-                                            item.PRESENTACION = If(d.EXISTENCIA.PRODUCTO.PRESENTACION.ACTIVO = "S", d.EXISTENCIA.PRODUCTO.PRESENTACION.DESCRIPCION, Config.TextNull)
-                                            item.EXISTENCIA = d.EXISTENCIA.CANTIDAD
+                                            item.IDEXISTENCIA = d.Existencia.IDEXISTENCIA
+                                            item.IDALTERNO = d.Existencia.Producto.IDALTERNO
+                                            item.DESCRIPCION = d.Existencia.Producto.DESCRIPCION
+                                            item.IVA = d.Existencia.Producto.IVA
+                                            item.MARCA = If(d.Existencia.Producto.Marca.ACTIVO.Equals(Config.vTrue), d.Existencia.Producto.Marca.DESCRIPCION, Config.TextNull)
+                                            item.UNIDAD_DE_MEDIDA = If(d.Existencia.Producto.UnidadMedida.ACTIVO = "S", d.Existencia.Producto.UnidadMedida.DESCRIPCION, Config.TextNull)
+                                            item.PRESENTACION = If(d.Existencia.Producto.Presentacion.ACTIVO = "S", d.Existencia.Producto.Presentacion.DESCRIPCION, Config.TextNull)
+                                            item.EXISTENCIA = d.Existencia.CANTIDAD
                                             item.CANTIDAD = d.CANTIDAD
                                             If v.TAZACAMBIO = Me.Taza Then
                                                 item.PRECIOUNITARIO_C = d.PRECIOUNITARIO_C : item.PRECIOUNITARIO_D = d.PRECIOUNITARIO_D

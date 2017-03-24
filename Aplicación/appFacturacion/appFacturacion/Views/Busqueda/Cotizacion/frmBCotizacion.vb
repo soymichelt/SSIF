@@ -5,7 +5,7 @@
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "", Optional ByVal pcodigocliente As String = "", Optional ByVal pnombrecliente As String = "")
         Try
             Using db As New CodeFirst
-                Dim consulta = (From cot In db.COTIZACIONES Join ser In db.SERIES On ser.IDSERIE Equals cot.IDSERIE Join bod In db.BODEGAS On bod.IDBODEGA Equals ser.IDBODEGA Join tra In db.EMPLEADOS On cot.IDEMPLEADO Equals tra.IDEMPLEADO Where ser.IDSERIE.Contains(pserie) And cot.FECHACOTIZACION >= finicio And cot.FECHACOTIZACION <= ffin Select ANULADO = If(cot.ANULADO.Equals("S"), "Anulado", ""), cot.IDCOTIZACION, SERIE = ser.NOMBRE, cot.CONSECUTIVO, cot.FECHACOTIZACION, N_CLIENTE = If(cot.ANULADO.Equals("N"), If(Not cot.IDCLIENTE Is Nothing, cot.CLIENTE.N_CLIENTE, ""), ""), CLIENTE = If(cot.ANULADO.Equals("N"), If(Not cot.IDCLIENTE Is Nothing, cot.CLIENTE.NOMBRES & " " & cot.CLIENTE.APELLIDOS, cot.CLIENTECONTADO), ""), N_VENDEDOR = If(cot.ANULADO.Equals("N"), tra.N_TRABAJADOR, ""), VENDEDOR = If(cot.ANULADO.Equals("N"), tra.NOMBRES & " " & tra.APELLIDOS, ""), CONDICIÓN = If(cot.ANULADO.Equals("N"), If(cot.CREDITO, "Crédito", "Contado"), ""), MONEDA = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), ""), TAZACAMBIO = If(cot.ANULADO.Equals(Config.vFalse), cot.TAZACAMBIO, Nothing), DESCUENTO = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.DESCUENTO_DIN_C, cot.DESCUENTO_DIN_D), Nothing), SUBTOTAL = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.SUBTOTAL_C, cot.SUBTOTAL_D), Nothing), IVA = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.IVA_DIN_C, cot.IVA_DIN_D), Nothing), TOTAL = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.TOTAL_C, cot.TOTAL_D), Nothing), cot.CREDITO).ToList
+                Dim consulta = (From cot In db.Cotizaciones Join ser In db.Series On ser.IDSERIE Equals cot.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Join tra In db.Empleados On cot.IDEMPLEADO Equals tra.IDEMPLEADO Where ser.IDSERIE.Contains(pserie) And cot.FECHACOTIZACION >= finicio And cot.FECHACOTIZACION <= ffin Select ANULADO = If(cot.ANULADO.Equals("S"), "Anulado", ""), cot.IDCOTIZACION, SERIE = ser.NOMBRE, cot.CONSECUTIVO, cot.FECHACOTIZACION, N_CLIENTE = If(cot.ANULADO.Equals("N"), If(Not cot.IDCLIENTE Is Nothing, cot.Cliente.N_CLIENTE, ""), ""), CLIENTE = If(cot.ANULADO.Equals("N"), If(Not cot.IDCLIENTE Is Nothing, cot.Cliente.NOMBRES & " " & cot.Cliente.APELLIDOS, cot.CLIENTECONTADO), ""), N_VENDEDOR = If(cot.ANULADO.Equals("N"), tra.N_TRABAJADOR, ""), VENDEDOR = If(cot.ANULADO.Equals("N"), tra.NOMBRES & " " & tra.APELLIDOS, ""), CONDICIÓN = If(cot.ANULADO.Equals("N"), If(cot.CREDITO, "Crédito", "Contado"), ""), MONEDA = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), ""), TAZACAMBIO = If(cot.ANULADO.Equals(Config.vFalse), cot.TAZACAMBIO, Nothing), DESCUENTO = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.DESCUENTO_DIN_C, cot.DESCUENTO_DIN_D), Nothing), SUBTOTAL = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.SUBTOTAL_C, cot.SUBTOTAL_D), Nothing), IVA = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.IVA_DIN_C, cot.IVA_DIN_D), Nothing), TOTAL = If(cot.ANULADO.Equals("N"), If(cot.MONEDA.Equals(Config.cordoba), cot.TOTAL_C, cot.TOTAL_D), Nothing), cot.CREDITO).ToList
                 If rdContado.Checked Then
                     consulta = consulta.Where(Function(f) f.CREDITO = False And f.ANULADO.Equals("")).ToList
                 ElseIf rdCredito.Checked Then
@@ -52,7 +52,7 @@
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
                 'llenar series
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "VENTA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "VENTA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                 dtpFechaInicial.Value = DateTime.Now
                 dtpFechaFinal.Value = DateTime.Now
                 llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), )
@@ -69,13 +69,13 @@
                 If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                     Dim serie As String = cmbSerie.Text
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COTIZACION").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COTIZACION").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                     cmbSerie.Text = serie
                     serie = Nothing
                 Else
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COTIZACION").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COTIZACION").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                 End If
             End Using
@@ -103,7 +103,7 @@
         If dtRegistro.SelectedRows.Count > 0 Then
             Try
                 Using db As New CodeFirst
-                    Dim idcotizacion As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim cotizacion = db.COTIZACIONES.Where(Function(f) f.IDCOTIZACION = idcotizacion).FirstOrDefault()
+                    Dim idcotizacion As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim cotizacion = db.Cotizaciones.Where(Function(f) f.IDCOTIZACION = idcotizacion).FirstOrDefault()
                     If Not cotizacion Is Nothing Then
                         If cotizacion.ANULADO = "N" Then
                             Select Case frm_return
@@ -116,11 +116,11 @@
                                     frmVenta.dtpFecha.Value = DateTime.Now
                                     frmVenta.chkExonerado.Checked = cotizacion.EXONERADO
                                     frmVenta.txtTazaCambio.Value = cotizacion.TAZACAMBIO
-                                    frmVenta.txtIdVendedor.Text = cotizacion.TRABAJADOR.IDEMPLEADO
-                                    txtNombreCliente.Text = If(cotizacion.CLIENTE.TIPOPERSONA = "Natural", cotizacion.CLIENTE.N_CLIENTE & " " & cotizacion.CLIENTE.NOMBRES & " " & cotizacion.CLIENTE.APELLIDOS & If(cotizacion.CLIENTE.RAZONSOCIAL.Trim() <> "", " // " & cotizacion.CLIENTE.RAZONSOCIAL, ""), cotizacion.CLIENTE.N_CLIENTE & " " & cotizacion.CLIENTE.RAZONSOCIAL)
+                                    frmVenta.txtIdVendedor.Text = cotizacion.Empleado.IDEMPLEADO
+                                    txtNombreCliente.Text = If(cotizacion.Cliente.TIPOPERSONA = "Natural", cotizacion.Cliente.N_CLIENTE & " " & cotizacion.Cliente.NOMBRES & " " & cotizacion.Cliente.APELLIDOS & If(cotizacion.Cliente.RAZONSOCIAL.Trim() <> "", " // " & cotizacion.Cliente.RAZONSOCIAL, ""), cotizacion.Cliente.N_CLIENTE & " " & cotizacion.Cliente.RAZONSOCIAL)
                                     If Not cotizacion.IDCLIENTE Is Nothing Then
-                                        frmVenta.txtIdCliente.Text = cotizacion.CLIENTE.IDCLIENTE
-                                        frmVenta.txtNombreCliente.Text = cotizacion.CLIENTE.N_CLIENTE & " | " & cotizacion.CLIENTE.NOMBRES & " " & cotizacion.CLIENTE.APELLIDOS
+                                        frmVenta.txtIdCliente.Text = cotizacion.Cliente.IDCLIENTE
+                                        frmVenta.txtNombreCliente.Text = cotizacion.Cliente.N_CLIENTE & " | " & cotizacion.Cliente.NOMBRES & " " & cotizacion.Cliente.APELLIDOS
                                         If cotizacion.CREDITO Then
                                             frmVenta.rdCredito.Checked = True
                                         Else
@@ -140,15 +140,15 @@
                                     End If
                                     Dim item As LST_DETALLE_VENTA
                                     frmVenta.detalles.RemoveAll(Function(f) True)
-                                    For Each detalle In cotizacion.DETALLES_COTIZACIONES
+                                    For Each detalle In cotizacion.CotizacionesDetalles
                                         item = New LST_DETALLE_VENTA()
                                         item.IDEXISTENCIA = detalle.IDEXISTENCIA
-                                        item.IDALTERNO = detalle.EXISTENCIA.PRODUCTO.IDALTERNO
-                                        item.DESCRIPCION = detalle.EXISTENCIA.PRODUCTO.DESCRIPCION
-                                        item.IVA = detalle.EXISTENCIA.PRODUCTO.IVA
-                                        item.MARCA = If(detalle.EXISTENCIA.PRODUCTO.MARCA.ACTIVO.Equals("S"), detalle.EXISTENCIA.PRODUCTO.MARCA.DESCRIPCION, "")
-                                        item.UNIDAD_DE_MEDIDA = If(detalle.EXISTENCIA.PRODUCTO.UNIDAD_DE_MEDIDA.ACTIVO.Equals("S"), detalle.EXISTENCIA.PRODUCTO.UNIDAD_DE_MEDIDA.DESCRIPCION, "")
-                                        item.PRESENTACION = If(detalle.EXISTENCIA.PRODUCTO.PRESENTACION.ACTIVO.Equals("S"), detalle.EXISTENCIA.PRODUCTO.PRESENTACION.DESCRIPCION, "")
+                                        item.IDALTERNO = detalle.Existencia.Producto.IDALTERNO
+                                        item.DESCRIPCION = detalle.Existencia.Producto.DESCRIPCION
+                                        item.IVA = detalle.Existencia.Producto.IVA
+                                        item.MARCA = If(detalle.Existencia.Producto.Marca.ACTIVO.Equals("S"), detalle.Existencia.Producto.Marca.DESCRIPCION, "")
+                                        item.UNIDAD_DE_MEDIDA = If(detalle.Existencia.Producto.UnidadMedida.ACTIVO.Equals("S"), detalle.Existencia.Producto.UnidadMedida.DESCRIPCION, "")
+                                        item.PRESENTACION = If(detalle.Existencia.Producto.Presentacion.ACTIVO.Equals("S"), detalle.Existencia.Producto.Presentacion.DESCRIPCION, "")
                                         item.EXISTENCIA = detalle.EXISTENCIA_PRODUCTO
                                         item.CANTIDAD = detalle.CANTIDAD
                                         item.PRECIOUNITARIO_C = detalle.PRECIOUNITARIO_C : item.PRECIOUNITARIO_D = detalle.PRECIOUNITARIO_D

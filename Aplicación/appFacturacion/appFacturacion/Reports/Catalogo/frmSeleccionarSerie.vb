@@ -1,10 +1,10 @@
 ﻿Public Class frmSeleccionarSerie
     Public operacion As String
-    Public serie As SERIE
+    Public serie As Serie
     Sub llenar(Optional ByVal descripcion As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From ser In db.SERIES Where ser.IDBODEGA = Config.bodega And ser.OPERACION = Me.operacion And ser.DESCRIPCION.Contains(descripcion) Select ser.IDSERIE, ser.NOMBRE, SERIE = ser.DESCRIPCION, BODEGA = ser.BODEGA.N_BODEGA & " | " & ser.DESCRIPCION, ser.OPERACION).ToList()
+                dtRegistro.DataSource = (From ser In db.Series Where ser.IDBODEGA = Config.bodega And ser.OPERACION = Me.operacion And ser.DESCRIPCION.Contains(descripcion) Select ser.IDSERIE, ser.NOMBRE, SERIE = ser.DESCRIPCION, BODEGA = ser.Bodega.N_BODEGA & " | " & ser.DESCRIPCION, ser.OPERACION).ToList()
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Visible = False
                     dtRegistro.Columns(1).Width = 120 : dtRegistro.Columns(1).HeaderText = vbNewLine & "SERIE" & vbNewLine
@@ -48,7 +48,7 @@
                     serie = Nothing
                 End If
                 Using db As New CodeFirst
-                    Dim idserie = dtRegistro.SelectedRows(0).Cells(0).Value.ToString() : serie = db.SERIES.Where(Function(f) f.IDSERIE = idserie And f.ACTIVO = "S").FirstOrDefault() : idserie = Nothing
+                    Dim idserie = dtRegistro.SelectedRows(0).Cells(0).Value.ToString() : serie = db.Series.Where(Function(f) f.IDSERIE = idserie And f.ACTIVO = "S").FirstOrDefault() : idserie = Nothing
                     If Not serie Is Nothing Then
                         Me.Close()
                     Else

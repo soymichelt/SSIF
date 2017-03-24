@@ -4,7 +4,7 @@
             lvRegistro.Items.Clear()
             Using db As New CodeFirst
                 Dim item As New ListViewItem
-                For Each taza In db.IVAS
+                For Each taza In db.ImpuestosValoresAgregados
                     item = lvRegistro.Items.Add(taza.IDIVA)
                     item.SubItems.Add(taza.FECHA.ToString(Config.formato_fecha))
                     item.SubItems.Add(taza.PORCENTAJE.ToString(Config.f_m))
@@ -19,7 +19,7 @@
         llenar()
         Try
             Using db As New CodeFirst
-                Dim iva = db.IVAS.ToList().OrderBy(Function(f) f.FECHA).LastOrDefault()
+                Dim iva = db.ImpuestosValoresAgregados.ToList().OrderBy(Function(f) f.FECHA).LastOrDefault()
                 If Not iva Is Nothing Then
                     txtPorcentaje.Text = iva.PORCENTAJE.ToString(Config.f_m)
                 Else
@@ -46,7 +46,7 @@
             If Not txtPorcentaje.Text.Trim() = "" Then
                 If txtPorcentaje.Value > 0 Then
                     Using db As New CodeFirst
-                        Dim iva As New IVA : iva.IDIVA = Guid.NewGuid.ToString() : iva.FECHA = DateTime.Now : iva.PORCENTAJE = Decimal.Parse(txtPorcentaje.Text) : db.IVAS.Add(iva)
+                        Dim iva As New ImpuestoValorAgregado : iva.IDIVA = Guid.NewGuid.ToString() : iva.FECHA = DateTime.Now : iva.PORCENTAJE = Decimal.Parse(txtPorcentaje.Text) : db.ImpuestosValoresAgregados.Add(iva)
                         db.SaveChanges()
                         Config._Iva = iva
                         Config.iva = iva.PORCENTAJE / 100

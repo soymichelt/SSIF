@@ -7,23 +7,23 @@
             Using db As New CodeFirst
                 lvRegistro.Items.Clear()
                 Dim item As New ListViewItem
-                Dim consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                Dim consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 If Not idcliente.Trim() = "" And Not idvendedor.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where cli.N_CLIENTE.Contains(idcliente) And tra.N_TRABAJADOR.Contains(idvendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where cli.N_CLIENTE.Contains(idcliente) And tra.N_TRABAJADOR.Contains(idvendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 ElseIf Not idcliente.Trim() = "" And Not vendedor.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where cli.N_CLIENTE.Contains(idcliente) And (tra.NOMBRES & " " & tra.APELLIDOS).Contains(vendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where cli.N_CLIENTE.Contains(idcliente) And (tra.NOMBRES & " " & tra.APELLIDOS).Contains(vendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 ElseIf Not cliente.Trim() = "" And Not idvendedor.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (cli.NOMBRES & " " & cli.APELLIDOS).Contains(cliente) And tra.N_TRABAJADOR.Contains(idvendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (cli.NOMBRES & " " & cli.APELLIDOS).Contains(cliente) And tra.N_TRABAJADOR.Contains(idvendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 ElseIf Not cliente.Trim() = "" And Not vendedor.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (cli.NOMBRES & " " & cli.APELLIDOS).Contains(cliente) And (tra.NOMBRES & " " & tra.APELLIDOS).Contains(vendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (cli.NOMBRES & " " & cli.APELLIDOS).Contains(cliente) And (tra.NOMBRES & " " & tra.APELLIDOS).Contains(vendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 ElseIf Not idcliente.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where cli.N_CLIENTE.Contains(idcliente) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where cli.N_CLIENTE.Contains(idcliente) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 ElseIf Not cliente.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (cli.NOMBRES & " " & cli.APELLIDOS).Contains(cliente) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (cli.NOMBRES & " " & cli.APELLIDOS).Contains(cliente) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 ElseIf Not idvendedor.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where tra.N_TRABAJADOR.Contains(idvendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where tra.N_TRABAJADOR.Contains(idvendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 ElseIf Not vendedor.Trim() = "" Then
-                    consulta = From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join cli In db.CLIENTES On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.EMPLEADOS On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (tra.NOMBRES & " " & tra.APELLIDOS).Contains(vendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
+                    consulta = From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join cli In db.Clientes On cli.IDCLIENTE Equals con.IDCLIENTE Join tra In db.Empleados On tra.IDEMPLEADO Equals con.IDEMPLEADO Where con.ANULADO = "N" And con.IDSERIE = Me.idserie And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 Where (tra.NOMBRES & " " & tra.APELLIDOS).Contains(vendedor) Select ser, con, cli, tra Order By con.FECHACONSIGNACION
                 End If
                 For Each consignacion In consulta
                     item = lvRegistro.Items.Add(consignacion.con.IDCONSIGNACION)
@@ -59,22 +59,22 @@
             Try
                 Using db As New CodeFirst
                     Dim idconsignacion As String = lvRegistro.SelectedItems(0).Text
-                    Dim consignacion = db.CONSIGNACIONES.Where(Function(f) f.IDCONSIGNACION = idconsignacion).FirstOrDefault()
+                    Dim consignacion = db.Consignaciones.Where(Function(f) f.IDCONSIGNACION = idconsignacion).FirstOrDefault()
                     If Not consignacion Is Nothing Then
                         If consignacion.ANULADO = "N" Then
                             frmConsignacion.txtCodigo.Text = consignacion.CONSECUTIVO
                             frmConsignacion.dtpFecha.Text = consignacion.FECHACONSIGNACION.ToShortDateString()
-                            frmConsignacion.txtIdVendedor.Text = consignacion.EMPLEADO.IDEMPLEADO
-                            frmConsignacion.txtNombreVendedor.Text = consignacion.EMPLEADO.N_TRABAJADOR & " | " & consignacion.EMPLEADO.NOMBRES & " " & consignacion.EMPLEADO.APELLIDOS
-                            frmConsignacion.txtIdCliente.Text = consignacion.CLIENTE.IDCLIENTE
-                            frmConsignacion.txtNombreCliente.Text = consignacion.CLIENTE.N_CLIENTE & " | " & consignacion.CLIENTE.NOMBRES & " " & consignacion.CLIENTE.APELLIDOS
+                            frmConsignacion.txtIdVendedor.Text = consignacion.Empleados.IDEMPLEADO
+                            frmConsignacion.txtNombreVendedor.Text = consignacion.Empleados.N_TRABAJADOR & " | " & consignacion.Empleados.NOMBRES & " " & consignacion.Empleados.APELLIDOS
+                            frmConsignacion.txtIdCliente.Text = consignacion.Cliente.IDCLIENTE
+                            frmConsignacion.txtNombreCliente.Text = consignacion.Cliente.N_CLIENTE & " | " & consignacion.Cliente.NOMBRES & " " & consignacion.Cliente.APELLIDOS
                             frmConsignacion.txtConcepto.Text = consignacion.OBSERVACION
                             Dim item As New ListViewItem
                             frmConsignacion.lvRegistro.Items.Clear()
-                            For Each detalle In consignacion.DETALLES_CONSIGNACIONES
+                            For Each detalle In consignacion.DetallesConsignaciones
                                 item = frmConsignacion.lvRegistro.Items.Add(detalle.IDEXISTENCIA)
-                                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.IDALTERNO)
-                                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.DESCRIPCION)
+                                item.SubItems.Add(detalle.Existencia.Producto.IDALTERNO)
+                                item.SubItems.Add(detalle.Existencia.Producto.DESCRIPCION)
                                 item.SubItems.Add(detalle.EXISTENCIA_PRODUCTO.ToString(Config.f_m))
                                 item.SubItems.Add((detalle.EXISTENCIA_PRODUCTO - detalle.EXISTENCIA_CONSIGNADA).ToString(Config.f_m))
                                 item.SubItems.Add(detalle.EXISTENCIA_CONSIGNADA.ToString(Config.f_m))

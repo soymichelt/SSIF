@@ -2,14 +2,14 @@
     Sub llenar(ByVal idbodega As String, Optional ByVal idcliente As String = "", Optional ByVal alterno As String = "", Optional ByVal original As String = "", Optional ByVal producto As String = "")
         Try
             Using db As New CodeFirst
-                Dim consulta = From cli In db.CLIENTES Join con In db.CONSIGNACIONES On cli.IDCLIENTE Equals con.IDCLIENTE Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Join det In db.DETALLES_CONSIGNACIONES On con.IDCONSIGNACION Equals det.IDCONSIGNACION Join exi In db.EXISTENCIAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join pro In db.PRODUCTOS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.MARCAS On mar.IDMARCA Equals pro.IDMARCA Where bod.IDBODEGA = idbodega And cli.IDCLIENTE.Contains(idcliente) And pro.IDALTERNO.Contains(alterno) And pro.IDORIGINAL.Contains(original) And pro.DESCRIPCION.Contains(producto) Group By CODCLIENTE = cli.IDCLIENTE, cli.N_CLIENTE, CLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, MARCA = mar.DESCRIPCION, pro.IDPRODUCTO, pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, UNIDAD = pro.UNIDAD_DE_MEDIDA.DESCRIPCION Into CONSIGNADO = Sum(det.CANTIDAD) Order By CONSIGNADO Ascending Select CODCLIENTE, N_CLIENTE, CLIENTE, RAZONSOCIAL, MARCA, IDPRODUCTO, IDALTERNO, IDORIGINAL, DESCRIPCION, UNIDAD, CONSIGNADO
+                Dim consulta = From cli In db.Clientes Join con In db.Consignaciones On cli.IDCLIENTE Equals con.IDCLIENTE Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Join bod In db.Bodegas On ser.IDBODEGA Equals bod.IDBODEGA Join det In db.ConsignacionesDetalles On con.IDCONSIGNACION Equals det.IDCONSIGNACION Join exi In db.Existencias On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join pro In db.Productos On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.Marcas On mar.IDMARCA Equals pro.IDMARCA Where bod.IDBODEGA = idbodega And cli.IDCLIENTE.Contains(idcliente) And pro.IDALTERNO.Contains(alterno) And pro.IDORIGINAL.Contains(original) And pro.DESCRIPCION.Contains(producto) Group By CODCLIENTE = cli.IDCLIENTE, cli.N_CLIENTE, CLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, MARCA = mar.DESCRIPCION, pro.IDPRODUCTO, pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, UNIDAD = pro.UnidadMedida.DESCRIPCION Into CONSIGNADO = Sum(det.CANTIDAD) Order By CONSIGNADO Ascending Select CODCLIENTE, N_CLIENTE, CLIENTE, RAZONSOCIAL, MARCA, IDPRODUCTO, IDALTERNO, IDORIGINAL, DESCRIPCION, UNIDAD, CONSIGNADO
                 Dim informeconsignaciones As New List(Of INFORMECONSIGNACION)
                 Dim consig As INFORMECONSIGNACION
                 Using db2 As New CodeFirst
                     For Each c In consulta
                         consig = New INFORMECONSIGNACION()
                         consig.IDCLIENTE = c.CODCLIENTE : consig.N_CLIENTE = c.N_CLIENTE : consig.NOMBRECLIENTE = c.CLIENTE : consig.MARCA = c.MARCA : consig.IDALTERNO = c.IDALTERNO : consig.IDORIGINAL = c.IDORIGINAL : consig.NOMBREPRODUCTO = c.DESCRIPCION : consig.UNIDAD_DE_MEDIDA = c.UNIDAD : consig.CONSIGNADO = c.CONSIGNADO
-                        Dim desconsig = From des In db2.DESCONSIGNACIONES Join det In db2.DETALLES_DESCONSIGNACIONES On des.IDDESCONSIGNACION Equals det.IDDESCONSIGNACION Where des.ANULADO = "N" And des.IDCLIENTE = c.CODCLIENTE And det.EXISTENCIA.IDPRODUCTO = c.IDPRODUCTO Select det.CANTIDAD
+                        Dim desconsig = From des In db2.Desconsignaciones Join det In db2.DesconsignacionesDetalles On des.IDDESCONSIGNACION Equals det.IDDESCONSIGNACION Where des.ANULADO = "N" And des.IDCLIENTE = c.CODCLIENTE And det.Existencia.IDPRODUCTO = c.IDPRODUCTO Select det.CANTIDAD
                         If Not desconsig Is Nothing Then
                             If desconsig.Count() > 0 Then
                                 consig.CONSIGNADO = c.CONSIGNADO - desconsig.Sum()
@@ -43,7 +43,7 @@
     Private Sub frmInformeConsignacionFiltrado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Using db As New CodeFirst
-                cmbBodega.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "BODEGA" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
+                cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "BODEGA" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
@@ -55,7 +55,7 @@
             Try
                 Using db As New CodeFirst
                     If Not txtNCliente.Text.Trim() = "" Then
-                        Dim cliente = db.CLIENTES.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                        Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not cliente Is Nothing Then
                             txtIdCliente.Text = cliente.IDCLIENTE
                             txtNombreCliente.Text = cliente.N_CLIENTE & " | " & cliente.NOMBRES & " " & cliente.APELLIDOS

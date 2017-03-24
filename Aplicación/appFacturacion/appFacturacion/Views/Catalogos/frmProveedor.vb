@@ -42,9 +42,9 @@
                     End If
                 End If
                 Using db As New CodeFirst
-                    If db.PROVEEDORES.Where(Function(f) f.N_PROVEEDOR = txtCodProveedor.Text.Trim).Count() = 0 Then
+                    If db.Proveedores.Where(Function(f) f.N_PROVEEDOR = txtCodProveedor.Text.Trim).Count() = 0 Then
                         If txtCedula.Text.Length = 16 Then
-                            If db.PROVEEDORES.Where(Function(f) f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
+                            If db.Proveedores.Where(Function(f) f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
                                 MessageBox.Show("Error, Ya existe un proveedor con esta cédula.")
                                 Exit Sub
                             End If
@@ -52,8 +52,8 @@
                             'MessageBox.Show("Formato de cédula incorrecto")
                             'Exit Sub
                         End If
-                        Dim proveedor As New PROVEEDOR : proveedor.Reg = DateTime.Now : proveedor.IDPROVEEDOR = Guid.NewGuid.ToString : proveedor.N_PROVEEDOR = txtCodProveedor.Text : proveedor.IDENTIFICACION = txtCedula.Text : proveedor.TIPOPERSONA = If(rdNatural.Checked, "Natural", "Jurídica") : proveedor.NOMBRES = txtNombres.Text : proveedor.APELLIDOS = txtApellidos.Text : proveedor.SEXO = If(rdMasculino.Checked, "Masculino", "Femenino") : proveedor.CORREO = txtCorreo.Text : proveedor.TELEFONO = txtTelefono.Text : proveedor.DOMICILIO = txtDomicilio.Text : proveedor.PLAZO = txtPlazo.Value : proveedor.LIMITECREDITO = txtLimite.Value : proveedor.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : proveedor.FACTURADO_C = 0.0 : proveedor.FACTURADO_D = 0.0 : proveedor.RAZONSOCIAL = txtRazonSocial.Text : proveedor.ACTIVO = "S"
-                        db.PROVEEDORES.Add(proveedor)
+                        Dim proveedor As New Proveedor : proveedor.Reg = DateTime.Now : proveedor.IDPROVEEDOR = Guid.NewGuid.ToString : proveedor.N_PROVEEDOR = txtCodProveedor.Text : proveedor.IDENTIFICACION = txtCedula.Text : proveedor.TIPOPERSONA = If(rdNatural.Checked, "Natural", "Jurídica") : proveedor.NOMBRES = txtNombres.Text : proveedor.APELLIDOS = txtApellidos.Text : proveedor.SEXO = If(rdMasculino.Checked, "Masculino", "Femenino") : proveedor.CORREO = txtCorreo.Text : proveedor.TELEFONO = txtTelefono.Text : proveedor.DOMICILIO = txtDomicilio.Text : proveedor.PLAZO = txtPlazo.Value : proveedor.LIMITECREDITO = txtLimite.Value : proveedor.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : proveedor.FACTURADO_C = 0.0 : proveedor.FACTURADO_D = 0.0 : proveedor.RAZONSOCIAL = txtRazonSocial.Text : proveedor.ACTIVO = "S"
+                        db.Proveedores.Add(proveedor)
                         db.SaveChanges() : limpiar() : MessageBox.Show("Proveedor guardado")
                     Else
                         MessageBox.Show("Error, Ya existe un proveedor con este código.")
@@ -82,9 +82,9 @@
                     End If
                 End If
                 Using db As New CodeFirst
-                    If db.PROVEEDORES.Where(Function(f) Not f.IDPROVEEDOR = txtCodigo.Text And f.N_PROVEEDOR = txtCodProveedor.Text).Count() = 0 Then
+                    If db.Proveedores.Where(Function(f) Not f.IDPROVEEDOR = txtCodigo.Text And f.N_PROVEEDOR = txtCodProveedor.Text).Count() = 0 Then
                         If txtCedula.Text.Length = 16 Then
-                            If db.PROVEEDORES.Where(Function(f) Not f.IDPROVEEDOR = txtCodigo.Text And f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
+                            If db.Proveedores.Where(Function(f) Not f.IDPROVEEDOR = txtCodigo.Text And f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
                                 MessageBox.Show("Error, Ya existe un proveedor con esta cédula.")
                                 Exit Sub
                             End If
@@ -92,7 +92,7 @@
                             'MessageBox.Show("Formato de cédula incorrecto")
                             'Exit Sub
                         End If
-                        Dim proveedor = db.PROVEEDORES.Where(Function(f) f.IDPROVEEDOR = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                        Dim proveedor = db.Proveedores.Where(Function(f) f.IDPROVEEDOR = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not proveedor Is Nothing Then
                             If rdCordoba.Checked Then
                                 If proveedor.FACTURADO_C > txtLimite.Value Then
@@ -126,7 +126,7 @@
     Private Sub btEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEliminar.Click
         Try
             Using db As New CodeFirst
-                Dim proveedor = db.PROVEEDORES.Where(Function(f) f.IDPROVEEDOR = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                Dim proveedor = db.Proveedores.Where(Function(f) f.IDPROVEEDOR = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                 If Not proveedor Is Nothing Then
                     proveedor.ACTIVO = "N"
                     db.Entry(proveedor).State = EntityState.Modified
@@ -153,7 +153,7 @@
         If e.KeyChar = ChrW(13) Then
             If txtCodProveedor.Text.Trim() <> "" Then
                 Using db As New CodeFirst
-                    Dim r = db.PROVEEDORES.Where(Function(f) f.N_PROVEEDOR = txtCodProveedor.Text).FirstOrDefault()
+                    Dim r = db.Proveedores.Where(Function(f) f.N_PROVEEDOR = txtCodProveedor.Text).FirstOrDefault()
                     If r Is Nothing Then
                         txtNombres.Focus()
                     Else

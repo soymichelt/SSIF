@@ -66,7 +66,7 @@
     Function generarCodigo(ByVal serie As String) As String
         Try
             Using db As New CodeFirst
-                Dim cotizacion = (From cot In db.COTIZACIONES Where cot.IDSERIE = serie Select cot.IDSERIE, cot.CONSECUTIVO).OrderBy(Function(f) f.CONSECUTIVO).ToList.LastOrDefault
+                Dim cotizacion = (From cot In db.Cotizaciones Where cot.IDSERIE = serie Select cot.IDSERIE, cot.CONSECUTIVO).OrderBy(Function(f) f.CONSECUTIVO).ToList.LastOrDefault
                 If Not cotizacion Is Nothing Then
                     cod = cotizacion.CONSECUTIVO
                     If Not cod.Trim = "" Then
@@ -104,7 +104,7 @@
 
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
-                Config._Taza = db.TAZAS.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
                 If Not Config._Taza Is Nothing Then
                     Config.tazadecambio = Config._Taza.CAMBIO
                 Else
@@ -131,8 +131,8 @@
                         Using db As New CodeFirst
                             Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.bodega)
                             If Not producto Is Nothing Then
-                                If producto.PRODUCTO.FACTURAR_PRECIO >= 1 And producto.PRODUCTO.FACTURAR_PRECIO <= 4 Then
-                                    With producto.PRODUCTO
+                                If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
+                                    With producto.Producto
                                         If .MARGEN Then
                                             Select Case .FACTURAR_PRECIO
                                                 Case 1
@@ -219,8 +219,8 @@
                             Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.bodega)
                             If Not producto Is Nothing Then
                                 If txtPrecio.Text.Trim = "" Then
-                                    If producto.PRODUCTO.FACTURAR_PRECIO >= 1 And producto.PRODUCTO.FACTURAR_PRECIO <= 4 Then
-                                        With producto.PRODUCTO
+                                    If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
+                                        With producto.Producto
                                             If .MARGEN Then
                                                 Select Case .FACTURAR_PRECIO
                                                     Case 1
@@ -286,7 +286,7 @@
                                     End If
                                 ElseIf Not txtCantidad.Text.Trim = "" And Not txtPrecio.Text.Trim = "" Then
                                     If producto.CANTIDAD < txtCantidad.Value Then
-                                        If Not producto.PRODUCTO.FACTURAR_NEGATIVO Then
+                                        If Not producto.Producto.FACTURAR_NEGATIVO Then
                                             MessageBox.Show("La cantidad solicitada es mayor a la existente. No se puede facturar este producto en negativo.")
                                             Exit Sub
                                         End If
@@ -298,39 +298,39 @@
                                     Else
                                         iva = (txtIva.Value / 100)
                                     End If
-                                    If producto.PRODUCTO.IVA = False Then
+                                    If producto.Producto.IVA = False Then
                                         iva = 0
                                     End If
                                     'validar costo
-                                    Dim Costo As Decimal = If(rdCordoba.Checked, If(producto.PRODUCTO.CMONEDA.Equals(Config.cordoba), producto.PRODUCTO.COSTO, producto.PRODUCTO.COSTO * txtTazaCambio.Value), If(producto.PRODUCTO.CMONEDA.Equals(Config.cordoba), producto.PRODUCTO.COSTO / txtTazaCambio.Value, producto.PRODUCTO.COSTO))
+                                    Dim Costo As Decimal = If(rdCordoba.Checked, If(producto.Producto.CMONEDA.Equals(Config.cordoba), producto.Producto.COSTO, producto.Producto.COSTO * txtTazaCambio.Value), If(producto.Producto.CMONEDA.Equals(Config.cordoba), producto.Producto.COSTO / txtTazaCambio.Value, producto.Producto.COSTO))
                                     If Costo > precioN Then
                                         Config.MsgErr("Error, No se puede facturar producto por debajo del costo.")
                                         Exit Sub
                                     End If
                                     If rdDescuentoPorFactura.Checked Then
-                                        If producto.PRODUCTO.DESCUENTO_MAXIMO < Decimal.Parse(lblDescuentoPorFactura.Text) Then
-                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.PRODUCTO.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                        If producto.Producto.DESCUENTO_MAXIMO < Decimal.Parse(lblDescuentoPorFactura.Text) Then
+                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
                                             Exit Sub
                                         End If
                                     ElseIf rdDescuentoPorProducto.Checked Then
-                                        If producto.PRODUCTO.DESCUENTO_MAXIMO < txtDescuentoPorProducto.Value Then
-                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.PRODUCTO.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                        If producto.Producto.DESCUENTO_MAXIMO < txtDescuentoPorProducto.Value Then
+                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
                                             Exit Sub
                                         End If
                                     End If
                                     'fin validar costo
-                                    Dim detalle = detalles.Where(Function(f) f.IDALTERNO = producto.PRODUCTO.IDALTERNO).FirstOrDefault() : Dim nuevo As Boolean = False
+                                    Dim detalle = detalles.Where(Function(f) f.IDALTERNO = producto.Producto.IDALTERNO).FirstOrDefault() : Dim nuevo As Boolean = False
                                     If detalle Is Nothing Then
                                         detalle = New LST_DETALLE_VENTA : nuevo = True
                                     End If
                                     With detalle
                                         .IDEXISTENCIA = producto.IDEXISTENCIA
-                                        .IDALTERNO = producto.PRODUCTO.IDALTERNO
-                                        .DESCRIPCION = producto.PRODUCTO.DESCRIPCION
-                                        .IVA = producto.PRODUCTO.IVA
-                                        .MARCA = producto.PRODUCTO.MARCA.DESCRIPCION
-                                        .UNIDAD_DE_MEDIDA = producto.PRODUCTO.UNIDAD_DE_MEDIDA.DESCRIPCION
-                                        .PRESENTACION = producto.PRODUCTO.PRESENTACION.DESCRIPCION
+                                        .IDALTERNO = producto.Producto.IDALTERNO
+                                        .DESCRIPCION = producto.Producto.DESCRIPCION
+                                        .IVA = producto.Producto.IVA
+                                        .MARCA = producto.Producto.Marca.DESCRIPCION
+                                        .UNIDAD_DE_MEDIDA = producto.Producto.UnidadMedida.DESCRIPCION
+                                        .PRESENTACION = producto.Producto.Presentacion.DESCRIPCION
                                         .EXISTENCIA = producto.CANTIDAD
                                         .CANTIDAD = txtCantidad.Value
                                         If rdCordoba.Checked Then
@@ -450,57 +450,57 @@
                     txtCodigo.Text = Me.generarCodigo(txtIdSerie.Text)
                     If Not txtCodigo.Text.Trim() = "" Then
                         dtpFecha.Value = If(dtpFecha.Value.ToShortDateString() = DateTime.Now.ToShortDateString(), DateTime.Now, DateTime.Parse(dtpFecha.Value.ToShortDateString() & " " & DateTime.Now.ToString("HH:mm:ss")))
-                        Dim cotizacion As New COTIZACION
+                        Dim cotizacion As New Cotizacion
                         cotizacion.Reg = DateTime.Now
                         If rdContado.Checked Then
                             If Not txtIdCliente.Text.Trim() = "" Then
                                 cotizacion.IDCOTIZACION = Guid.NewGuid.ToString() : cotizacion.IDSERIE = txtIdSerie.Text : cotizacion.CONSECUTIVO = txtCodigo.Text : cotizacion.FECHACOTIZACION = dtpFecha.Value : cotizacion.FORMADEPAGO = "Sin Especificar" : cotizacion.N_PAGO = "" : cotizacion.EXONERADO = chkIncluyeIVA.Checked : cotizacion.CLIENTECONTADO = "" : cotizacion.CREDITO = False : cotizacion.FECHACREDITOVENCIMIENTO = dtpFecha.Value : cotizacion.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : cotizacion.TAZACAMBIO = txtTazaCambio.Value : cotizacion.CONCEPTO = txtNombreCliente.Text : cotizacion.DESCUENTO_POR_FACT = If(rdDescuentoPorFactura.Checked, Decimal.Parse(lblDescuentoPorFactura.Text), 0) : cotizacion.DESCUENTO_DIN_FACT_C = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C), 0) : cotizacion.DESCUENTO_DIN_FACT_D = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D), 0) : cotizacion.DESCUENTO_DIN_C = detalles.Sum(Function(f) f.DESCUENTO_DIN_C) : cotizacion.DESCUENTO_DIN_D = detalles.Sum(Function(f) f.DESCUENTO_DIN_D) : cotizacion.TIPODESCUENTO = If(cotizacion.DESCUENTO_DIN_D > 0, If(rdDescuentoPorProducto.Checked, "POR PRODUCTO", "POR FACTURA"), "SIN DESCUENTO") : cotizacion.SUBTOTAL_C = detalles.Sum(Function(f) f.SUBTOTAL_C) : cotizacion.SUBTOTAL_D = detalles.Sum(Function(f) f.SUBTOTAL_D) : cotizacion.IVA_POR = If(cotizacion.EXONERADO, 0, Config.iva) : cotizacion.IVA_DIN_C = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_C)) : cotizacion.IVA_DIN_D = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)) : cotizacion.TOTAL_C = detalles.Sum(Function(f) f.TOTAL_C) : cotizacion.TOTAL_D = detalles.Sum(Function(f) f.TOTAL_D) : cotizacion.IDEMPLEADO = txtIdVendedor.Text : cotizacion.IDCLIENTE = txtIdCliente.Text : cotizacion.ANULADO = "N"
-                                db.COTIZACIONES.Add(cotizacion)
+                                db.Cotizaciones.Add(cotizacion)
                             Else
                                 cotizacion.IDCOTIZACION = Guid.NewGuid.ToString() : cotizacion.IDSERIE = txtIdSerie.Text : cotizacion.CONSECUTIVO = txtCodigo.Text : cotizacion.FECHACOTIZACION = dtpFecha.Value : cotizacion.FORMADEPAGO = "Sin Especificar" : cotizacion.N_PAGO = "" : cotizacion.EXONERADO = chkIncluyeIVA.Checked : cotizacion.CLIENTECONTADO = txtNombreCliente.Text : cotizacion.CREDITO = False : cotizacion.FECHACREDITOVENCIMIENTO = dtpFecha.Value : cotizacion.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : cotizacion.TAZACAMBIO = txtTazaCambio.Value : cotizacion.CONCEPTO = txtNombreCliente.Text : cotizacion.DESCUENTO_POR_FACT = If(rdDescuentoPorFactura.Checked, Decimal.Parse(lblDescuentoPorFactura.Text), 0) : cotizacion.DESCUENTO_DIN_FACT_C = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C), 0) : cotizacion.DESCUENTO_DIN_FACT_D = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D), 0) : cotizacion.DESCUENTO_DIN_C = detalles.Sum(Function(f) f.DESCUENTO_DIN_C) : cotizacion.DESCUENTO_DIN_D = detalles.Sum(Function(f) f.DESCUENTO_DIN_D) : cotizacion.TIPODESCUENTO = If(cotizacion.DESCUENTO_DIN_D > 0, If(rdDescuentoPorProducto.Checked, "POR PRODUCTO", "POR FACTURA"), "SIN DESCUENTO") : cotizacion.SUBTOTAL_C = detalles.Sum(Function(f) f.SUBTOTAL_C) : cotizacion.SUBTOTAL_D = detalles.Sum(Function(f) f.SUBTOTAL_D) : cotizacion.IVA_POR = If(cotizacion.EXONERADO, 0, Config.iva) : cotizacion.IVA_DIN_C = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_C)) : cotizacion.IVA_DIN_D = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)) : cotizacion.TOTAL_C = detalles.Sum(Function(f) f.TOTAL_C) : cotizacion.TOTAL_D = detalles.Sum(Function(f) f.TOTAL_D) : cotizacion.IDEMPLEADO = txtIdVendedor.Text : cotizacion.ANULADO = "N"
-                                db.COTIZACIONES.Add(cotizacion)
+                                db.Cotizaciones.Add(cotizacion)
                             End If
                         ElseIf rdCredito.Checked Then
-                            Dim c = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text).FirstOrDefault()
+                            Dim c = db.Clientes.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text).FirstOrDefault()
                             If Not c Is Nothing Then
                                 cotizacion.IDCOTIZACION = Guid.NewGuid.ToString() : cotizacion.IDSERIE = txtIdSerie.Text : cotizacion.CONSECUTIVO = txtCodigo.Text : cotizacion.FECHACOTIZACION = dtpFecha.Value : cotizacion.FORMADEPAGO = "Sin Especificar" : cotizacion.N_PAGO = "" : cotizacion.EXONERADO = chkIncluyeIVA.Checked : cotizacion.CLIENTECONTADO = "" : cotizacion.CREDITO = True : cotizacion.FECHACREDITOVENCIMIENTO = dtpFecha.Value.AddDays(c.PLAZO) : cotizacion.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : cotizacion.TAZACAMBIO = txtTazaCambio.Value : cotizacion.CONCEPTO = txtNombreCliente.Text : cotizacion.DESCUENTO_POR_FACT = If(rdDescuentoPorFactura.Checked, Decimal.Parse(lblDescuentoPorFactura.Text), 0) : cotizacion.DESCUENTO_DIN_FACT_C = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C), 0) : cotizacion.DESCUENTO_DIN_FACT_D = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D), 0) : cotizacion.DESCUENTO_DIN_C = detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C) : cotizacion.DESCUENTO_DIN_D = detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D) : cotizacion.TIPODESCUENTO = If(cotizacion.DESCUENTO_DIN_D > 0, If(rdDescuentoPorProducto.Checked, "POR PRODUCTO", "POR FACTURA"), "SIN DESCUENTO") : cotizacion.SUBTOTAL_C = detalles.Sum(Function(f) f.SUBTOTAL_C) : cotizacion.SUBTOTAL_D = detalles.Sum(Function(f) f.SUBTOTAL_D) : cotizacion.IVA_POR = If(cotizacion.EXONERADO, 0, Config.iva) : cotizacion.IVA_DIN_C = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_C)) : cotizacion.IVA_DIN_D = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)) : cotizacion.TOTAL_C = detalles.Sum(Function(f) f.TOTAL_C) : cotizacion.TOTAL_D = detalles.Sum(Function(f) f.TOTAL_D) : cotizacion.IDEMPLEADO = txtIdVendedor.Text : cotizacion.IDCLIENTE = txtIdCliente.Text : cotizacion.ANULADO = "N"
-                                db.COTIZACIONES.Add(cotizacion)
+                                db.Cotizaciones.Add(cotizacion)
                             Else
                                 MessageBox.Show("Error, No se encuentra este cliente en la base de datos. Probablemente ha sido eliminado.")
                                 Exit Sub
                             End If
                             c = Nothing
                         End If
-                        Dim producto As EXISTENCIA : Dim cont As Integer = 0 : Dim d As DETALLE_COTIZACION
+                        Dim producto As Existencia : Dim cont As Integer = 0 : Dim d As CotizacionDetalle
                         For Each item In detalles
-                            producto = db.EXISTENCIAS.Where(Function(f) f.IDEXISTENCIA = item.IDEXISTENCIA And f.PRODUCTO.ACTIVO = "S").FirstOrDefault()
+                            producto = db.Existencias.Where(Function(f) f.IDEXISTENCIA = item.IDEXISTENCIA And f.Producto.ACTIVO = "S").FirstOrDefault()
                             If Not producto Is Nothing Then
                                 If producto.CANTIDAD < item.CANTIDAD Then
-                                    If Not producto.PRODUCTO.FACTURAR_NEGATIVO Then
-                                        Config.MsgErr("No se puede guardar esta Venta. Ya que la existencia del producto '" & producto.PRODUCTO.IDALTERNO & " - " & producto.PRODUCTO.DESCRIPCION & "' quedaría en negativo.")
+                                    If Not producto.Producto.FACTURAR_NEGATIVO Then
+                                        Config.MsgErr("No se puede guardar esta Venta. Ya que la existencia del producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' quedaría en negativo.")
                                         Exit Sub
                                     End If
                                 End If
                                 'Validar Costo
-                                If producto.PRODUCTO.COSTO > If(producto.PRODUCTO.CMONEDA.Equals(Config.cordoba), item.PRECIOUNITARIO_C, item.PRECIOUNITARIO_D) Then
+                                If producto.Producto.COSTO > If(producto.Producto.CMONEDA.Equals(Config.cordoba), item.PRECIOUNITARIO_C, item.PRECIOUNITARIO_D) Then
                                     MessageBox.Show("El precio del producto '" & item.IDALTERNO & "' debe ser menor que el costo.")
                                     Exit Sub
                                 End If
                                 'Descuento costo
                                 If rdDescuentoPorFactura.Checked Then
-                                    If producto.PRODUCTO.DESCUENTO_MAXIMO < item.DESCUENTO_POR Then
-                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.PRODUCTO.IDALTERNO & " - " & producto.PRODUCTO.DESCRIPCION & "' es: " & producto.PRODUCTO.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                    If producto.Producto.DESCUENTO_MAXIMO < item.DESCUENTO_POR Then
+                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
                                         Exit Sub
                                     End If
                                 ElseIf rdDescuentoPorProducto.Checked Then
-                                    If producto.PRODUCTO.DESCUENTO_MAXIMO < item.DESCUENTO_POR Then
-                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.PRODUCTO.IDALTERNO & " - " & producto.PRODUCTO.DESCRIPCION & "' es: " & producto.PRODUCTO.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                    If producto.Producto.DESCUENTO_MAXIMO < item.DESCUENTO_POR Then
+                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
                                         Exit Sub
                                     End If
                                 End If
                                 'fin validar costo
-                                d = New DETALLE_COTIZACION : d.IDDETALLECOTIZACION = Guid.NewGuid.ToString() : d.CMONEDA = producto.PRODUCTO.CMONEDA : d.COSTO = producto.PRODUCTO.COSTO : d.EXISTENCIA_PRODUCTO = producto.CANTIDAD : d.CANTIDAD = item.CANTIDAD : d.PRECIOUNITARIO_D = item.PRECIOUNITARIO_D : d.PRECIOUNITARIO_C = item.PRECIOUNITARIO_C : d.DESCUENTO_POR = item.DESCUENTO_POR : d.DESCUENTO_DIN_C = item.DESCUENTO_DIN_C : d.DESCUENTO_DIN_D = item.DESCUENTO_DIN_D : d.DESCUENTO_DIN_TOTAL_C = item.DESCUENTO_DIN_TOTAL_C : d.DESCUENTO_DIN_TOTAL_D = item.DESCUENTO_DIN_TOTAL_D : d.PRECIONETO_C = item.PRECIONETO_C : d.PRECIONETO_D = item.PRECIONETO_D : d.SUBTOTAL_C = item.SUBTOTAL_C : d.SUBTOTAL_D = item.SUBTOTAL_D : d.IVA_POR = item.IVA_POR : d.IVA_DIN_C = item.IVA_DIN_C : d.IVA_DIN_D = item.IVA_DIN_D : d.IVA_DIN_TOTAL_C = item.IVA_DIN_TOTAL_C : d.IVA_DIN_TOTAL_D = item.IVA_DIN_TOTAL_D : d.TOTAL_C = item.TOTAL_C : d.TOTAL_D = item.TOTAL_D : d.IDEXISTENCIA = item.IDEXISTENCIA : d.IDCOTIZACION = cotizacion.IDCOTIZACION
-                                db.DETALLES_COTIZACIONES.Add(d)
+                                d = New CotizacionDetalle : d.IDDETALLECOTIZACION = Guid.NewGuid.ToString() : d.CMONEDA = producto.Producto.CMONEDA : d.COSTO = producto.Producto.COSTO : d.EXISTENCIA_PRODUCTO = producto.CANTIDAD : d.CANTIDAD = item.CANTIDAD : d.PRECIOUNITARIO_D = item.PRECIOUNITARIO_D : d.PRECIOUNITARIO_C = item.PRECIOUNITARIO_C : d.DESCUENTO_POR = item.DESCUENTO_POR : d.DESCUENTO_DIN_C = item.DESCUENTO_DIN_C : d.DESCUENTO_DIN_D = item.DESCUENTO_DIN_D : d.DESCUENTO_DIN_TOTAL_C = item.DESCUENTO_DIN_TOTAL_C : d.DESCUENTO_DIN_TOTAL_D = item.DESCUENTO_DIN_TOTAL_D : d.PRECIONETO_C = item.PRECIONETO_C : d.PRECIONETO_D = item.PRECIONETO_D : d.SUBTOTAL_C = item.SUBTOTAL_C : d.SUBTOTAL_D = item.SUBTOTAL_D : d.IVA_POR = item.IVA_POR : d.IVA_DIN_C = item.IVA_DIN_C : d.IVA_DIN_D = item.IVA_DIN_D : d.IVA_DIN_TOTAL_C = item.IVA_DIN_TOTAL_C : d.IVA_DIN_TOTAL_D = item.IVA_DIN_TOTAL_D : d.TOTAL_C = item.TOTAL_C : d.TOTAL_D = item.TOTAL_D : d.IDEXISTENCIA = item.IDEXISTENCIA : d.IDCOTIZACION = cotizacion.IDCOTIZACION
+                                db.CotizacionesDetalles.Add(d)
                                 'destrucción
                                 d = Nothing
                                 cont = cont + 1 'incrementar contador
@@ -560,7 +560,7 @@
             If txtIdSerie.Text <> "" Then
                 If Not txtCodigoAlterno.Text.Trim = "" Then
                     Using db As New CodeFirst
-                        Dim producto = db.PRODUCTOS.Where(Function(f) f.IDALTERNO = txtCodigoAlterno.Text And f.ACTIVO = "S" And f.MARCA.ACTIVO = "S").FirstOrDefault()
+                        Dim producto = db.Productos.Where(Function(f) f.IDALTERNO = txtCodigoAlterno.Text And f.ACTIVO = "S" And f.Marca.ACTIVO = "S").FirstOrDefault()
                         If Not producto Is Nothing Then
                             If txtPrecio.Text.Trim() = "" Then
                                 frmBuscarPrecio.taza = txtTazaCambio.Value
@@ -592,7 +592,7 @@
                     If txtIdSerie.Text <> "" Then
                         If Not txtIdCliente.Text.Trim() = "" Then
                             Using db As New CodeFirst
-                                Dim cliente = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                                Dim cliente = db.Clientes.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                                 If Not cliente Is Nothing Then
                                     If cliente.PLAZO > 0 Then
                                         txtPlazo.Text = cliente.PLAZO.ToString()
@@ -789,34 +789,34 @@
         End Try
     End Sub
 
-    Private Sub LoadMov(ByVal v As COTIZACION)
+    Private Sub LoadMov(ByVal v As Cotizacion)
         Try
             Me.FormLoad = False
             Me.Id = v.IDCOTIZACION
             txtIdSerie.Text = v.IDSERIE
-            txtSerie.Text = v.SERIE.NOMBRE
+            txtSerie.Text = v.Serie.NOMBRE
             txtCodigo.Text = v.CONSECUTIVO
             txtCodigo.Enabled = False
             dtpFecha.Text = v.FECHACOTIZACION.ToShortDateString()
-            txtIdVendedor.Text = v.TRABAJADOR.IDEMPLEADO
-            txtNombreVendedor.Text = v.TRABAJADOR.N_TRABAJADOR & " | " & v.TRABAJADOR.NOMBRES & " " & v.TRABAJADOR.APELLIDOS
+            txtIdVendedor.Text = v.Empleado.IDEMPLEADO
+            txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " | " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
             If Not v.IDCLIENTE Is Nothing Then
-                txtIdCliente.Text = v.CLIENTE.IDCLIENTE
+                txtIdCliente.Text = v.Cliente.IDCLIENTE
 
                 'txtNombreCliente.Text = If(v.CLIENTE.TIPOPERSONA = "Natural", v.CLIENTE.NOMBRES & " " & v.CLIENTE.APELLIDOS & If(v.CLIENTE.RAZONSOCIAL.Trim() <> "", " // " & v.CLIENTE.RAZONSOCIAL, ""), v.CLIENTE.RAZONSOCIAL)
 
-                txtNombreCliente.Text = If(v.CLIENTE.TIPOPERSONA = "Natural", v.CLIENTE.N_CLIENTE & " " & v.CLIENTE.NOMBRES & " " & v.CLIENTE.APELLIDOS & If(v.CLIENTE.RAZONSOCIAL.Trim() <> "", " // " & v.CLIENTE.RAZONSOCIAL, ""), v.CLIENTE.N_CLIENTE & " " & v.CLIENTE.RAZONSOCIAL)
+                txtNombreCliente.Text = If(v.Cliente.TIPOPERSONA = "Natural", v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS & If(v.Cliente.RAZONSOCIAL.Trim() <> "", " // " & v.Cliente.RAZONSOCIAL, ""), v.Cliente.N_CLIENTE & " " & v.Cliente.RAZONSOCIAL)
 
 
                 If v.CREDITO Then
-                        rdCredito.Checked = True
-                        txtFechaVencimiento.Text = v.FECHACREDITOVENCIMIENTO.ToString()
-                        txtPlazo.Text = v.CLIENTE.PLAZO.ToString()
-                    Else
-                        rdContado.Checked = True
-                    End If
+                    rdCredito.Checked = True
+                    txtFechaVencimiento.Text = v.FECHACREDITOVENCIMIENTO.ToString()
+                    txtPlazo.Text = v.Cliente.PLAZO.ToString()
                 Else
-                    txtNombreCliente.Text = v.CLIENTECONTADO
+                    rdContado.Checked = True
+                End If
+            Else
+                txtNombreCliente.Text = v.CLIENTECONTADO
             End If
             Select Case v.TIPODESCUENTO
                 Case "SINDESCUENTO"
@@ -839,14 +839,14 @@
                 rdDolar.Checked = True
             End If
             Dim item As LST_DETALLE_VENTA
-            For Each d In v.DETALLES_COTIZACIONES
+            For Each d In v.CotizacionesDetalles
                 item = New LST_DETALLE_VENTA
-                item.IDEXISTENCIA = d.EXISTENCIA.IDEXISTENCIA
-                item.IDALTERNO = d.EXISTENCIA.PRODUCTO.IDALTERNO
-                item.DESCRIPCION = d.EXISTENCIA.PRODUCTO.DESCRIPCION
-                item.MARCA = If(d.EXISTENCIA.PRODUCTO.MARCA.ACTIVO = "S", d.EXISTENCIA.PRODUCTO.MARCA.DESCRIPCION, "")
-                item.UNIDAD_DE_MEDIDA = If(d.EXISTENCIA.PRODUCTO.UNIDAD_DE_MEDIDA.ACTIVO = "S", d.EXISTENCIA.PRODUCTO.UNIDAD_DE_MEDIDA.DESCRIPCION, "")
-                item.PRESENTACION = If(d.EXISTENCIA.PRODUCTO.PRESENTACION.ACTIVO = "S", d.EXISTENCIA.PRODUCTO.PRESENTACION.DESCRIPCION, "")
+                item.IDEXISTENCIA = d.Existencia.IDEXISTENCIA
+                item.IDALTERNO = d.Existencia.Producto.IDALTERNO
+                item.DESCRIPCION = d.Existencia.Producto.DESCRIPCION
+                item.MARCA = If(d.Existencia.Producto.Marca.ACTIVO = "S", d.Existencia.Producto.Marca.DESCRIPCION, "")
+                item.UNIDAD_DE_MEDIDA = If(d.Existencia.Producto.UnidadMedida.ACTIVO = "S", d.Existencia.Producto.UnidadMedida.DESCRIPCION, "")
+                item.PRESENTACION = If(d.Existencia.Producto.Presentacion.ACTIVO = "S", d.Existencia.Producto.Presentacion.DESCRIPCION, "")
                 item.EXISTENCIA = d.EXISTENCIA_PRODUCTO
                 item.CANTIDAD = d.CANTIDAD
                 item.PRECIOUNITARIO_C = d.PRECIOUNITARIO_C : item.PRECIOUNITARIO_D = d.PRECIOUNITARIO_D
@@ -884,12 +884,12 @@
         End Try
     End Sub
 
-    Public Sub LoadInfo(Optional ByVal vInt As COTIZACION = Nothing, Optional ByVal ByInt As Boolean = False)
+    Public Sub LoadInfo(Optional ByVal vInt As Cotizacion = Nothing, Optional ByVal ByInt As Boolean = False)
         Try
             If txtIdSerie.Text <> "" Then
                 If Not ByInt Then
                     Using db As New CodeFirst
-                        Dim v = db.COTIZACIONES.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
+                        Dim v = db.Cotizaciones.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
                         If Not v Is Nothing Then
                             If v.ANULADO = "N" Then
                                 Me.LoadMov(v)
@@ -922,7 +922,7 @@
             If MessageBox.Show("¿Desea anular esta factura?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                 If Not Me.Id.Trim() = "" Then
                     Using db As New CodeFirst
-                        Dim v = db.COTIZACIONES.Where(Function(f) f.IDCOTIZACION = Me.Id And f.ANULADO = "N").FirstOrDefault()
+                        Dim v = db.Cotizaciones.Where(Function(f) f.IDCOTIZACION = Me.Id And f.ANULADO = "N").FirstOrDefault()
                         If Not v Is Nothing Then
                             v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
                             db.SaveChanges()
@@ -990,7 +990,7 @@
                 If txtIdSerie.Text <> "" Then
                     Using db As New CodeFirst
                         If Not txtNCliente.Text.Trim() = "" Then
-                            Dim cliente = db.CLIENTES.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                            Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not cliente Is Nothing Then
 
                                 txtNombreCliente.Text = If(cliente.TIPOPERSONA = "Natural", cliente.N_CLIENTE & " " & cliente.NOMBRES & " " & cliente.APELLIDOS & If(cliente.RAZONSOCIAL.Trim() <> "", " // " & cliente.RAZONSOCIAL, ""), cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL)
@@ -1253,7 +1253,7 @@
             If txtIdSerie.Text <> "" And Not txtIdVendedor.Text.Trim() = "" And Not dtRegistro.Rows.Count = 0 Then
                 Using db As New CodeFirst
                     dtpFecha.Value = If(dtpFecha.Value.ToShortDateString() = DateTime.Now.ToShortDateString(), DateTime.Now, DateTime.Parse(dtpFecha.Value.ToShortDateString() & " " & DateTime.Now.ToString("HH:mm:ss")))
-                    Dim cotizacion = db.COTIZACIONES.Where(Function(f) f.IDCOTIZACION = Me.Id And f.ANULADO = "N").FirstOrDefault
+                    Dim cotizacion = db.Cotizaciones.Where(Function(f) f.IDCOTIZACION = Me.Id And f.ANULADO = "N").FirstOrDefault
                     If Not cotizacion Is Nothing Then
                         If rdContado.Checked Then
                             If Not txtIdCliente.Text.Trim() = "" Then
@@ -1262,7 +1262,7 @@
                                 cotizacion.FECHACOTIZACION = dtpFecha.Value : cotizacion.FORMADEPAGO = "Sin Especificar" : cotizacion.N_PAGO = "" : cotizacion.EXONERADO = chkIncluyeIVA.Checked : cotizacion.CLIENTECONTADO = txtNombreCliente.Text : cotizacion.CREDITO = False : cotizacion.FECHACREDITOVENCIMIENTO = dtpFecha.Value : cotizacion.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : cotizacion.TAZACAMBIO = txtTazaCambio.Value : cotizacion.CONCEPTO = txtNombreCliente.Text : cotizacion.DESCUENTO_POR_FACT = If(rdDescuentoPorFactura.Checked, Decimal.Parse(lblDescuentoPorFactura.Text), 0) : cotizacion.DESCUENTO_DIN_FACT_C = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C), 0) : cotizacion.DESCUENTO_DIN_FACT_D = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D), 0) : cotizacion.DESCUENTO_DIN_C = detalles.Sum(Function(f) f.DESCUENTO_DIN_C) : cotizacion.DESCUENTO_DIN_D = detalles.Sum(Function(f) f.DESCUENTO_DIN_D) : cotizacion.TIPODESCUENTO = If(cotizacion.DESCUENTO_DIN_D > 0, If(rdDescuentoPorProducto.Checked, "POR PRODUCTO", "POR FACTURA"), "SIN DESCUENTO") : cotizacion.SUBTOTAL_C = detalles.Sum(Function(f) f.SUBTOTAL_C) : cotizacion.SUBTOTAL_D = detalles.Sum(Function(f) f.SUBTOTAL_D) : cotizacion.IVA_POR = If(cotizacion.EXONERADO, 0, Config.iva) : cotizacion.IVA_DIN_C = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_C)) : cotizacion.IVA_DIN_D = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)) : cotizacion.TOTAL_C = detalles.Sum(Function(f) f.TOTAL_C) : cotizacion.TOTAL_D = detalles.Sum(Function(f) f.TOTAL_D) : cotizacion.IDEMPLEADO = txtIdVendedor.Text : cotizacion.ANULADO = "N"
                             End If
                         ElseIf rdCredito.Checked Then
-                            Dim c = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text).FirstOrDefault()
+                            Dim c = db.Clientes.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text).FirstOrDefault()
                             If Not c Is Nothing Then
                                 cotizacion.FECHACOTIZACION = dtpFecha.Value : cotizacion.FORMADEPAGO = "Sin Especificar" : cotizacion.N_PAGO = "" : cotizacion.EXONERADO = chkIncluyeIVA.Checked : cotizacion.CLIENTECONTADO = "" : cotizacion.CREDITO = True : cotizacion.FECHACREDITOVENCIMIENTO = dtpFecha.Value.AddDays(c.PLAZO) : cotizacion.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : cotizacion.TAZACAMBIO = txtTazaCambio.Value : cotizacion.CONCEPTO = txtNombreCliente.Text : cotizacion.DESCUENTO_POR_FACT = If(rdDescuentoPorFactura.Checked, Decimal.Parse(lblDescuentoPorFactura.Text), 0) : cotizacion.DESCUENTO_DIN_FACT_C = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C), 0) : cotizacion.DESCUENTO_DIN_FACT_D = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D), 0) : cotizacion.DESCUENTO_DIN_C = detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C) : cotizacion.DESCUENTO_DIN_D = detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D) : cotizacion.TIPODESCUENTO = If(cotizacion.DESCUENTO_DIN_D > 0, If(rdDescuentoPorProducto.Checked, "POR PRODUCTO", "POR FACTURA"), "SIN DESCUENTO") : cotizacion.SUBTOTAL_C = detalles.Sum(Function(f) f.SUBTOTAL_C) : cotizacion.SUBTOTAL_D = detalles.Sum(Function(f) f.SUBTOTAL_D) : cotizacion.IVA_POR = If(cotizacion.EXONERADO, 0, Config.iva) : cotizacion.IVA_DIN_C = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_C)) : cotizacion.IVA_DIN_D = If(cotizacion.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)) : cotizacion.TOTAL_C = detalles.Sum(Function(f) f.TOTAL_C) : cotizacion.TOTAL_D = detalles.Sum(Function(f) f.TOTAL_D) : cotizacion.IDEMPLEADO = txtIdVendedor.Text : cotizacion.IDCLIENTE = txtIdCliente.Text : cotizacion.ANULADO = "N"
                             Else
@@ -1272,27 +1272,27 @@
                             c = Nothing
                         End If
                         db.Entry(cotizacion).State = EntityState.Modified
-                        For Each det In db.DETALLES_COTIZACIONES.Where(Function(f) f.IDCOTIZACION = cotizacion.IDCOTIZACION)
-                            db.DETALLES_COTIZACIONES.Remove(det)
+                        For Each det In db.CotizacionesDetalles.Where(Function(f) f.IDCOTIZACION = cotizacion.IDCOTIZACION)
+                            db.CotizacionesDetalles.Remove(det)
                         Next
-                        Dim producto As EXISTENCIA : Dim cont As Integer = 0 : Dim detalle As DETALLE_COTIZACION
+                        Dim producto As Existencia : Dim cont As Integer = 0 : Dim detalle As CotizacionDetalle
                         For Each item In detalles
-                            producto = db.EXISTENCIAS.Where(Function(f) f.IDEXISTENCIA = item.IDEXISTENCIA And f.PRODUCTO.ACTIVO = "S").FirstOrDefault()
+                            producto = db.Existencias.Where(Function(f) f.IDEXISTENCIA = item.IDEXISTENCIA And f.Producto.ACTIVO = "S").FirstOrDefault()
                             If Not producto Is Nothing Then
                                 If producto.CANTIDAD < item.CANTIDAD Then
-                                    If Not producto.PRODUCTO.FACTURAR_NEGATIVO Then
-                                        Config.MsgErr("No se puede guardar esta Venta. Ya que la existencia del producto '" & producto.PRODUCTO.IDALTERNO & " - " & producto.PRODUCTO.DESCRIPCION & "' quedaría en negativo.")
+                                    If Not producto.Producto.FACTURAR_NEGATIVO Then
+                                        Config.MsgErr("No se puede guardar esta Venta. Ya que la existencia del producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' quedaría en negativo.")
                                         Exit Sub
                                     End If
                                 End If
                                 'validar costo
-                                If producto.PRODUCTO.COSTO > item.PRECIONETO_D Then
+                                If producto.Producto.COSTO > item.PRECIONETO_D Then
                                     MessageBox.Show("El precio neto del producto '" & item.IDALTERNO & "' debe ser menor que el costo.")
                                     Exit Sub
                                 End If
                                 'fin validar costo
-                                detalle = New DETALLE_COTIZACION : detalle.IDDETALLECOTIZACION = Guid.NewGuid.ToString() : detalle.COSTO = producto.PRODUCTO.COSTO : detalle.EXISTENCIA_PRODUCTO = producto.CANTIDAD : detalle.CANTIDAD = item.CANTIDAD : detalle.PRECIOUNITARIO_D = item.PRECIOUNITARIO_D : detalle.PRECIOUNITARIO_C = item.PRECIOUNITARIO_C : detalle.DESCUENTO_POR = item.DESCUENTO_POR : detalle.DESCUENTO_DIN_C = item.DESCUENTO_DIN_C : detalle.DESCUENTO_DIN_D = item.DESCUENTO_DIN_D : detalle.DESCUENTO_DIN_TOTAL_C = item.DESCUENTO_DIN_TOTAL_C : detalle.DESCUENTO_DIN_TOTAL_D = item.DESCUENTO_DIN_TOTAL_D : detalle.PRECIONETO_C = item.PRECIONETO_C : detalle.PRECIONETO_D = item.PRECIONETO_D : detalle.SUBTOTAL_C = item.SUBTOTAL_C : detalle.SUBTOTAL_D = item.SUBTOTAL_D : detalle.IVA_POR = item.IVA_POR : detalle.IVA_DIN_C = item.IVA_DIN_C : detalle.IVA_DIN_D = item.IVA_DIN_D : detalle.IVA_DIN_TOTAL_C = item.IVA_DIN_TOTAL_C : detalle.IVA_DIN_TOTAL_D = detalle.IVA_DIN_TOTAL_D : detalle.TOTAL_C = item.TOTAL_C : detalle.TOTAL_D = item.TOTAL_D : detalle.IDEXISTENCIA = item.IDEXISTENCIA : detalle.IDCOTIZACION = cotizacion.IDCOTIZACION
-                                db.DETALLES_COTIZACIONES.Add(detalle)
+                                detalle = New CotizacionDetalle : detalle.IDDETALLECOTIZACION = Guid.NewGuid.ToString() : detalle.COSTO = producto.Producto.COSTO : detalle.EXISTENCIA_PRODUCTO = producto.CANTIDAD : detalle.CANTIDAD = item.CANTIDAD : detalle.PRECIOUNITARIO_D = item.PRECIOUNITARIO_D : detalle.PRECIOUNITARIO_C = item.PRECIOUNITARIO_C : detalle.DESCUENTO_POR = item.DESCUENTO_POR : detalle.DESCUENTO_DIN_C = item.DESCUENTO_DIN_C : detalle.DESCUENTO_DIN_D = item.DESCUENTO_DIN_D : detalle.DESCUENTO_DIN_TOTAL_C = item.DESCUENTO_DIN_TOTAL_C : detalle.DESCUENTO_DIN_TOTAL_D = item.DESCUENTO_DIN_TOTAL_D : detalle.PRECIONETO_C = item.PRECIONETO_C : detalle.PRECIONETO_D = item.PRECIONETO_D : detalle.SUBTOTAL_C = item.SUBTOTAL_C : detalle.SUBTOTAL_D = item.SUBTOTAL_D : detalle.IVA_POR = item.IVA_POR : detalle.IVA_DIN_C = item.IVA_DIN_C : detalle.IVA_DIN_D = item.IVA_DIN_D : detalle.IVA_DIN_TOTAL_C = item.IVA_DIN_TOTAL_C : detalle.IVA_DIN_TOTAL_D = detalle.IVA_DIN_TOTAL_D : detalle.TOTAL_C = item.TOTAL_C : detalle.TOTAL_D = item.TOTAL_D : detalle.IDEXISTENCIA = item.IDEXISTENCIA : detalle.IDCOTIZACION = cotizacion.IDCOTIZACION
+                                db.CotizacionesDetalles.Add(detalle)
                                 'destrucción
                                 detalle = Nothing
                                 cont = cont + 1 'incrementar contador

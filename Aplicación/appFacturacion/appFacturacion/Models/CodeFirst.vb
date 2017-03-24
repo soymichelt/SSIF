@@ -24,7 +24,7 @@ Public Class Empresa
     Public Property MonedaInventario As String
 End Class
 
-Public Class BODEGA
+Public Class Bodega
     <Key()>
     Public Property IDBODEGA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -34,13 +34,13 @@ Public Class BODEGA
     Public Property DESCRIPCION As String
     Public Property ACTIVO As String
 
-    Public Overridable Property SERIES As ICollection(Of SERIE) = New HashSet(Of SERIE)
-    Public Overridable Property EXISTENCIAS As ICollection(Of EXISTENCIA) = New HashSet(Of EXISTENCIA)
-    Public Overridable Property TRASLADOS As ICollection(Of TRASLADO) = New HashSet(Of TRASLADO)
+    Public Overridable Property Series As ICollection(Of Serie) = New HashSet(Of Serie)
+    Public Overridable Property Existencias As ICollection(Of Existencia) = New HashSet(Of Existencia)
+    Public Overridable Property Traslados As ICollection(Of Traslado) = New HashSet(Of Traslado)
 
 End Class
 
-Partial Public Class CLIENTE
+Partial Public Class Cliente
     <Key()>
     Public Property IDCLIENTE As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -64,16 +64,16 @@ Partial Public Class CLIENTE
     Public Property ACTIVO As String
     'Public Property IDCIUDAD As String
 
-    Public Overridable Property COTIZACIONES As ICollection(Of COTIZACION) = New HashSet(Of COTIZACION)
-    Public Overridable Property VENTAS As ICollection(Of VENTA) = New HashSet(Of VENTA)
-    Public Overridable Property CONSIGNACIONES As ICollection(Of CONSIGNACION) = New HashSet(Of CONSIGNACION)
-    Public Overridable Property DESCONSIGNACIONES As ICollection(Of DESCONSIGNACION) = New HashSet(Of DESCONSIGNACION)
-    Public Overridable Property RECIBOS As ICollection(Of RECIBO) = New HashSet(Of RECIBO)
+    Public Overridable Property Cotizaciones As ICollection(Of Cotizacion) = New HashSet(Of Cotizacion)
+    Public Overridable Property Ventas As ICollection(Of Venta) = New HashSet(Of Venta)
+    Public Overridable Property Consignaciones As ICollection(Of Consignacion) = New HashSet(Of Consignacion)
+    Public Overridable Property Desconsignaciones As ICollection(Of Desconsignacion) = New HashSet(Of Desconsignacion)
+    Public Overridable Property Recibos As ICollection(Of VentaRecibo) = New HashSet(Of VentaRecibo)
 
     'Public Overridable Property CIUDAD As CIUDAD
 End Class
 
-Partial Public Class COMPRA
+Partial Public Class Compra
 
     <Key()>
     Public Property IDCOMPRA As String
@@ -113,17 +113,17 @@ Partial Public Class COMPRA
     Public Property REIMPRESION As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property DETALLES_COMPRAS As ICollection(Of DETALLE_COMPRA) = New HashSet(Of DETALLE_COMPRA)
-    Public Overridable Property EMPLEADO As EMPLEADO
-    Public Overridable Property PROVEEDOR As PROVEEDOR
-    Public Overridable Property COMPRAS_RECIBOS_DETALLES As ICollection(Of COMPRA_RECIBO_DETALLE) = New HashSet(Of COMPRA_RECIBO_DETALLE)
-    Public Overridable Property COMPRAS_DEVOLUCIONES As ICollection(Of COMPRA_DEVOLUCION) = New HashSet(Of COMPRA_DEVOLUCION)
-    Public Overridable Property COMPRAS_PAGOS_PROVEEDORES As ICollection(Of COMPRA_PAGO_PROVEEDOR) = New HashSet(Of COMPRA_PAGO_PROVEEDOR)
+    Public Overridable Property Serie As Serie
+    Public Overridable Property ComprasDetalles As ICollection(Of CompraDetalle) = New HashSet(Of CompraDetalle)
+    Public Overridable Property Empleado As Empleado
+    Public Overridable Property Proveedor As Proveedor
+    Public Overridable Property ComprasRecibosDetalles As ICollection(Of CompraReciboDetalle) = New HashSet(Of CompraReciboDetalle)
+    Public Overridable Property ComprasDevoluciones As ICollection(Of CompraDevolucion) = New HashSet(Of CompraDevolucion)
+    Public Overridable Property ComprasPagosProveedores As ICollection(Of CompraEstadoCuenta) = New HashSet(Of CompraEstadoCuenta)
 
 End Class
 
-Partial Public Class COMPRA_DEVOLUCION
+Partial Public Class CompraDevolucion
     <Key()>
     Public Property IDDEVOLUCION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -160,15 +160,15 @@ Partial Public Class COMPRA_DEVOLUCION
     Public Property REIMPRESION As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property COMPRAS_DEVOLUCIONES_DETALLES As ICollection(Of COMPRA_DEVOLUCION_DETALLE) = New HashSet(Of COMPRA_DEVOLUCION_DETALLE)
-    Public Overridable Property COMPRA As COMPRA
-    Public Overridable Property PROVEEDOR As PROVEEDOR
-    Public Overridable Property EMPLEADO As EMPLEADO
+    Public Overridable Property Serie As Serie
+    Public Overridable Property ComprasDevolucionesDetalles As ICollection(Of CompraDevolucionDetalle) = New HashSet(Of CompraDevolucionDetalle)
+    Public Overridable Property Compra As Compra
+    Public Overridable Property Proveedor As Proveedor
+    Public Overridable Property Empleado As Empleado
 
 End Class
 
-Partial Public Class COMPRA_DEVOLUCION_DETALLE
+Partial Public Class CompraDevolucionDetalle
     <Key()>
     Public Property IDDETALLEDEVOLUCION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -200,12 +200,13 @@ Partial Public Class COMPRA_DEVOLUCION_DETALLE
     Public Property IDEXISTENCIA As String
     Public Property IDDEVOLUCION As String
 
-    Public Overridable Property EXISTENCIA As EXISTENCIA
-    Public Overridable Property COMPRA_DEVOLUCION As COMPRA_DEVOLUCION
+    Public Overridable Property Existencia As Existencia
+    Public Overridable Property CompraDevolucion As CompraDevolucion
 
 End Class
 
-Partial Public Class COMPRA_PAGO_PROVEEDOR
+Partial Public Class CompraEstadoCuenta
+
     <Key()>
     Public Property IDESTADO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -231,12 +232,13 @@ Partial Public Class COMPRA_PAGO_PROVEEDOR
     Public Property IDDEVOLUCION As String
     Public Property ACTIVO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Property COMPRA As COMPRA
-    Public Property COMPRA_RECIBO As COMPRA_RECIBO
+    Public Overridable Property Serie As Serie
+    Public Property Compra As Compra
+    Public Property CompraRecibo As CompraRecibo
+
 End Class
 
-Partial Public Class COMPRA_RECIBO
+Partial Public Class CompraRecibo
     <Key()>
     Public Property IDRECIBO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -264,14 +266,14 @@ Partial Public Class COMPRA_RECIBO
     Public Property IDPROVEEDOR As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property COMPRAS_RECIBOS_DETALLES As ICollection(Of COMPRA_RECIBO_DETALLE) = New HashSet(Of COMPRA_RECIBO_DETALLE)
-    Public Overridable Property COMPRAS_PAGOS_PROVEEDORES As ICollection(Of COMPRA_PAGO_PROVEEDOR) = New HashSet(Of COMPRA_PAGO_PROVEEDOR)
-    Public Overridable Property EMPLEADO As EMPLEADO
-    Public Overridable Property PROVEEDOR As PROVEEDOR
+    Public Overridable Property Serie As Serie
+    Public Overridable Property ComprasRecibosDetalles As ICollection(Of CompraReciboDetalle) = New HashSet(Of CompraReciboDetalle)
+    Public Overridable Property ComprasEstadosCuentas As ICollection(Of CompraEstadoCuenta) = New HashSet(Of CompraEstadoCuenta)
+    Public Overridable Property Empleado As Empleado
+    Public Overridable Property Proveedor As Proveedor
 End Class
 
-Partial Public Class COMPRA_RECIBO_DETALLE
+Partial Public Class CompraReciboDetalle
     <Key()>
     Public Property IDDETALLERECIBO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -288,11 +290,11 @@ Partial Public Class COMPRA_RECIBO_DETALLE
     Public Property NUEVO_SALDO_D As Decimal
     Public Property IDRECIBO As String
 
-    Public Overridable Property COMPRA As COMPRA
-    Public Overridable Property COMPRA_RECIBO As COMPRA_RECIBO
+    Public Overridable Property Compra As Compra
+    Public Overridable Property CompraRecibo As CompraRecibo
 End Class
 
-Partial Public Class CONSIGNACION
+Partial Public Class Consignacion
     <Key()>
     Public Property IDCONSIGNACION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -308,13 +310,13 @@ Partial Public Class CONSIGNACION
     Public Property REIMPRESION As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property CLIENTE As CLIENTE
-    Public Overridable Property DETALLES_CONSIGNACIONES As ICollection(Of DETALLE_DESCONSIGNACION) = New HashSet(Of DETALLE_DESCONSIGNACION)
-    Public Overridable Property EMPLEADO As EMPLEADO
+    Public Overridable Property Serie As Serie
+    Public Overridable Property Cliente As Cliente
+    Public Overridable Property DetallesConsignaciones As ICollection(Of DesconsignacionDetalle) = New HashSet(Of DesconsignacionDetalle)
+    Public Overridable Property Empleados As Empleado
 End Class
 
-Partial Public Class COTIZACION
+Partial Public Class Cotizacion
     <Key()>
     Public Property IDCOTIZACION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -350,15 +352,15 @@ Partial Public Class COTIZACION
     Public Property IDTAZA As String
     Public Property ANULADO As String
 
-    Public Overridable Property TAZA As TAZA
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property CLIENTE As CLIENTE
-    Public Overridable Property DETALLES_COTIZACIONES As ICollection(Of DETALLE_COTIZACION) = New HashSet(Of DETALLE_COTIZACION)
-    Public Overridable Property TRABAJADOR As EMPLEADO
+    Public Overridable Property Taza As Taza
+    Public Overridable Property Serie As Serie
+    Public Overridable Property Cliente As Cliente
+    Public Overridable Property CotizacionesDetalles As ICollection(Of CotizacionDetalle) = New HashSet(Of CotizacionDetalle)
+    Public Overridable Property Empleado As Empleado
 
 End Class
 
-Partial Public Class DESCONSIGNACION
+Partial Public Class Desconsignacion
     <Key()>
     Public Property IDDESCONSIGNACION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -374,13 +376,13 @@ Partial Public Class DESCONSIGNACION
     Public Property REIMPRESION As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property CLIENTE As CLIENTE
-    Public Overridable Property DETALLES_DESCONSIGNACIONES As ICollection(Of DETALLE_DESCONSIGNACION) = New HashSet(Of DETALLE_DESCONSIGNACION)
-    Public Overridable Property EMPLEADO As EMPLEADO
+    Public Overridable Property Serie As Serie
+    Public Overridable Property Cliente As Cliente
+    Public Overridable Property DesconsignacionesDetalles As ICollection(Of DesconsignacionDetalle) = New HashSet(Of DesconsignacionDetalle)
+    Public Overridable Property Empleado As Empleado
 End Class
 
-Partial Public Class DETALLE_COMPRA
+Partial Public Class CompraDetalle
     <Key()>
     Public Property IDDETALLECOMPRA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -410,12 +412,12 @@ Partial Public Class DETALLE_COMPRA
     Public Property IDEXISTENCIA As String
     Public Property IDCOMPRA As String
 
-    Public Overridable Property COMPRA As COMPRA
-    Public Overridable Property EXISTENCIA As EXISTENCIA
+    Public Overridable Property Compra As Compra
+    Public Overridable Property Existencia As Existencia
 
 End Class
 
-Partial Public Class DETALLE_CONSIGNACION
+Partial Public Class ConsignacionDetalle
     <Key()>
     Public Property IDDETALLECONSIGNACION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -427,11 +429,11 @@ Partial Public Class DETALLE_CONSIGNACION
     Public Property IDEXISTENCIA As String
     Public Property IDCONSIGNACION As String
 
-    Public Overridable Property CONSIGNACION As CONSIGNACION
-    Public Overridable Property EXISTENCIA As EXISTENCIA
+    Public Overridable Property Consignacion As Consignacion
+    Public Overridable Property Existencia As Existencia
 End Class
 
-Partial Public Class DETALLE_COTIZACION
+Partial Public Class CotizacionDetalle
     <Key()>
     Public Property IDDETALLECOTIZACION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -461,11 +463,11 @@ Partial Public Class DETALLE_COTIZACION
     Public Property IDEXISTENCIA As String
     Public Property IDCOTIZACION As String
 
-    Public Overridable Property COTIZACION As COTIZACION
-    Public Overridable Property EXISTENCIA As EXISTENCIA
+    Public Overridable Property Cotizacion As Cotizacion
+    Public Overridable Property Existencia As Existencia
 End Class
 
-Partial Public Class DETALLE_DESCONSIGNACION
+Partial Public Class DesconsignacionDetalle
     <Key()>
     Public Property IDDETALLEDESCONSIGNACION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -477,11 +479,11 @@ Partial Public Class DETALLE_DESCONSIGNACION
     Public Property IDEXISTENCIA As String
     Public Property IDDESCONSIGNACION As String
 
-    Public Overridable Property DESCONSIGNACION As DESCONSIGNACION
-    Public Overridable Property EXISTENCIA As EXISTENCIA
+    Public Overridable Property Desconsignacion As Desconsignacion
+    Public Overridable Property Existencia As Existencia
 End Class
 
-Partial Public Class DETALLE_DEVOLUCION
+Partial Public Class VentaDevolucionDetalle
     <Key()>
     Public Property IDDETALLEDEVOLUCION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -511,12 +513,12 @@ Partial Public Class DETALLE_DEVOLUCION
     Public Property IDEXISTENCIA As String
     Public Property IDDEVOLUCION As String
 
-    Public Overridable Property EXISTENCIA As EXISTENCIA
-    Public Overridable Property DEVOLUCION_CLIENTE As DEVOLUCION_CLIENTE
+    Public Overridable Property Existencia As Existencia
+    Public Overridable Property VentaDevolucion As VentaDevolucion
 
 End Class
 
-Partial Public Class DETALLE_ENTRADA
+Partial Public Class EntradaDetalle
     <Key()>
     Public Property IDDETALLEENTRADA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -529,12 +531,12 @@ Partial Public Class DETALLE_ENTRADA
     Public Property IDEXISTENCIA As String
     Public Property IDENTRADA As String
 
-    Public Overridable Property ENTRADA As ENTRADA
-    Public Overridable Property EXISTENCIA As EXISTENCIA
+    Public Overridable Property Entrada As Entrada
+    Public Overridable Property Existencia As Existencia
 
 End Class
 
-Partial Public Class DETALLE_RECIBO
+Partial Public Class VentaReciboDetalle
     <Key()>
     Public Property IDDETALLERECIBO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -550,11 +552,11 @@ Partial Public Class DETALLE_RECIBO
     Public Property NUEVO_SALDO_D As Decimal
     Public Property IDRECIBO As String
 
-    Public Overridable Property VENTA As VENTA
-    Public Overridable Property RECIBO As RECIBO
+    Public Overridable Property Venta As Venta
+    Public Overridable Property Recibo As VentaRecibo
 End Class
 
-Partial Public Class DETALLE_SALIDA
+Partial Public Class SalidaDetalle
     <Key()>
     Public Property IDDETALLESALIDA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -567,12 +569,12 @@ Partial Public Class DETALLE_SALIDA
     Public Property IDEXISTENCIA As String
     Public Property IDSALIDA As String
 
-    Public Overridable Property EXISTENCIA As EXISTENCIA
-    Public Overridable Property SALIDA As SALIDA
+    Public Overridable Property Existencia As Existencia
+    Public Overridable Property Salida As Salida
 
 End Class
 
-Partial Public Class DETALLE_TRASLADO
+Partial Public Class TrasladoDetalle
     <Key()>
     Public Property IDDETALLETRASLADO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -586,12 +588,12 @@ Partial Public Class DETALLE_TRASLADO
     Public Property IDEXISTENCIA As String
     Public Property IDTRASLADO As String
 
-    Public Overridable Property EXISTENCIA As EXISTENCIA
-    Public Overridable Property TRASLADO As TRASLADO
+    Public Overridable Property Existencia As Existencia
+    Public Overridable Property Traslado As Traslado
 
 End Class
 
-Partial Public Class DETALLE_VENTA
+Partial Public Class VentaDetalle
     <Key()>
     Public Property IDDETALLEVENTA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -620,13 +622,14 @@ Partial Public Class DETALLE_VENTA
     Public Property TOTAL_D As Decimal
     Public Property IDEXISTENCIA As String
     Public Property IDVENTA As String
+    Public Property PromocionID As Nullable(Of Guid)
 
-    Public Overridable Property EXISTENCIA As EXISTENCIA
-    Public Overridable Property VENTA As VENTA
+    Public Overridable Property Existencia As Existencia
+    Public Overridable Property Venta As Venta
     'Public Overridable Property VENTAS_VENCIMIENTOS As ICollection(Of VENTA_VENCIMIENTO)
 End Class
 
-Partial Public Class DEVOLUCION_CLIENTE
+Partial Public Class VentaDevolucion
     <Key()>
     Public Property IDDEVOLUCION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -663,16 +666,16 @@ Partial Public Class DEVOLUCION_CLIENTE
     Public Property ANULADO As String
     Public Property IDTAZA As String
 
-    Public Overridable Property TAZA As TAZA
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property DETALLES_DEVOLUCIONES As ICollection(Of DETALLE_DEVOLUCION) = New HashSet(Of DETALLE_DEVOLUCION)
-    Public Overridable Property VENTA As VENTA
-    Public Overridable Property EMPLEADO As EMPLEADO
-    Public Overridable Property CLIENTE As CLIENTE
+    Public Overridable Property Taza As Taza
+    Public Overridable Property Serie As Serie
+    Public Overridable Property VentasDevolucionesDetalles As ICollection(Of VentaDevolucionDetalle) = New HashSet(Of VentaDevolucionDetalle)
+    Public Overridable Property Venta As Venta
+    Public Overridable Property Empleado As Empleado
+    Public Overridable Property Cliente As Cliente
 
 End Class
 
-Partial Public Class ENTRADA
+Partial Public Class Entrada
     <Key()>
     Public Property IDENTRADA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -687,12 +690,12 @@ Partial Public Class ENTRADA
     Public Property REIMPRESION As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property DETALLES_ENTRADAS As ICollection(Of DETALLE_ENTRADA) = New HashSet(Of DETALLE_ENTRADA)
-    Public Overridable Property EMPLEADO As EMPLEADO
+    Public Overridable Property Serie As Serie
+    Public Overridable Property EntradasDetalles As ICollection(Of EntradaDetalle) = New HashSet(Of EntradaDetalle)
+    Public Overridable Property Empleado As Empleado
 End Class
 
-Partial Public Class ESTADO_DE_CUENTA
+Partial Public Class VentaEstadoCuenta
     <Key()>
     Public Property IDESTADO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -718,14 +721,14 @@ Partial Public Class ESTADO_DE_CUENTA
     Public Property ACTIVO As String
     Public Property IDTAZA As String
 
-    Public Overridable Property TAZA As TAZA
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property VENTA As VENTA
-    Public Overridable Property RECIBO As RECIBO
-    Public Overridable Property Devolucion_Cliente As DEVOLUCION_CLIENTE
+    Public Overridable Property Taza As Taza
+    Public Overridable Property Serie As Serie
+    Public Overridable Property Venta As Venta
+    Public Overridable Property Recibo As VentaRecibo
+    Public Overridable Property VentaDevolucion As VentaDevolucion
 End Class
 
-Partial Public Class EXISTENCIA
+Partial Public Class Existencia
     <Key()>
     Public Property IDEXISTENCIA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -736,26 +739,26 @@ Partial Public Class EXISTENCIA
     Public Property IDBODEGA As String
     Public Property IDPRODUCTO As String
 
-    Public Overridable Property BODEGA As BODEGA
-    Public Overridable Property DETALLES_COMPRAS As ICollection(Of DETALLE_COMPRA) = New HashSet(Of DETALLE_COMPRA)
-    Public Overridable Property DETALLES_CONSIGNACIONES As ICollection(Of DETALLE_CONSIGNACION) = New HashSet(Of DETALLE_CONSIGNACION)
-    Public Overridable Property DETALLES_COTIZACIONES As ICollection(Of DETALLE_COTIZACION) = New HashSet(Of DETALLE_COTIZACION)
-    Public Overridable Property DETALLES_DESCONSIGNACIONES As ICollection(Of DETALLE_DESCONSIGNACION) = New HashSet(Of DETALLE_DESCONSIGNACION)
-    Public Overridable Property DETALLES_DEVOLUCIONES As ICollection(Of DETALLE_DEVOLUCION) = New HashSet(Of DETALLE_DEVOLUCION)
-    Public Overridable Property DETALLES_ENTRADAS As ICollection(Of DETALLE_ENTRADA) = New HashSet(Of DETALLE_ENTRADA)
-    Public Overridable Property DETALLES_SALIDAS As ICollection(Of DETALLE_SALIDA) = New HashSet(Of DETALLE_SALIDA)
-    Public Overridable Property DETALLES_TRASLADOS As ICollection(Of DETALLE_TRASLADO) = New HashSet(Of DETALLE_TRASLADO)
-    Public Overridable Property DETALLES_VENTAS As ICollection(Of DETALLE_VENTA) = New HashSet(Of DETALLE_VENTA)
-    Public Overridable Property KARDEXS As ICollection(Of KARDEX) = New HashSet(Of KARDEX)
-    Public Overridable Property PRODUCTO As PRODUCTO
-    Public Overridable Property COMPRAS_DEVOLUCIONES_DETALLES As ICollection(Of COMPRA_DEVOLUCION_DETALLE) = New HashSet(Of COMPRA_DEVOLUCION_DETALLE)
+    Public Overridable Property Bodega As Bodega
+    Public Overridable Property ComprasDetalles As ICollection(Of CompraDetalle) = New HashSet(Of CompraDetalle)
+    Public Overridable Property ConsignacionesDetalles As ICollection(Of ConsignacionDetalle) = New HashSet(Of ConsignacionDetalle)
+    Public Overridable Property CotizacionesDetalles As ICollection(Of CotizacionDetalle) = New HashSet(Of CotizacionDetalle)
+    Public Overridable Property DesconsignacionesDetalles As ICollection(Of DesconsignacionDetalle) = New HashSet(Of DesconsignacionDetalle)
+    Public Overridable Property VentasDevolucionesDetalles As ICollection(Of VentaDevolucionDetalle) = New HashSet(Of VentaDevolucionDetalle)
+    Public Overridable Property EntradasDetalles As ICollection(Of EntradaDetalle) = New HashSet(Of EntradaDetalle)
+    Public Overridable Property SalidasDetalles As ICollection(Of SalidaDetalle) = New HashSet(Of SalidaDetalle)
+    Public Overridable Property TrasladosDetalles As ICollection(Of TrasladoDetalle) = New HashSet(Of TrasladoDetalle)
+    Public Overridable Property VentasDetalles As ICollection(Of VentaDetalle) = New HashSet(Of VentaDetalle)
+    Public Overridable Property Kardexs As ICollection(Of Kardex) = New HashSet(Of Kardex)
+    Public Overridable Property Producto As Producto
+    Public Overridable Property ComprasDevolucionesDetalles As ICollection(Of CompraDevolucionDetalle) = New HashSet(Of CompraDevolucionDetalle)
 
     'Promociones
     Public Overridable Property PromocionesExistencias As ICollection(Of PromocionExistencia)
 
 End Class
 
-Partial Public Class KARDEX
+Partial Public Class Kardex
     <Key()>
     Public Property IDKARDEX As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -783,12 +786,13 @@ Partial Public Class KARDEX
     Public Property SALDO As Decimal
     Public Property ACTIVO As String
 
-    Public Overridable Property EXISTENCIA As EXISTENCIA
-    Public Overridable Property SERIE As SERIE
+    Public Overridable Property Existencia As Existencia
+    Public Overridable Property Serie As Serie
 
 End Class
 
-Partial Public Class MARCA
+Partial Public Class Marca
+
     <Key()>
     Public Property IDMARCA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -797,7 +801,7 @@ Partial Public Class MARCA
     Public Property DESCRIPCION As String
     Public Property ACTIVO As String
 
-    Public Overridable Property PRODUCTOS As ICollection(Of PRODUCTO) = New HashSet(Of PRODUCTO)
+    Public Overridable Property Productos As ICollection(Of Producto) = New HashSet(Of Producto)
 
 End Class
 
@@ -829,11 +833,11 @@ Public Class PromocionExistencia
 
     Public Property Promocion As Promocion
 
-    Public Property EXISTENCIA As EXISTENCIA
+    Public Property Existencia As Existencia
 
 End Class
 
-Partial Public Class PRODUCTO
+Partial Public Class Producto
     <Key()>
     Public Property IDPRODUCTO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -870,15 +874,15 @@ Partial Public Class PRODUCTO
     Public Property SALDO As Decimal
     Public Property ACTIVO As String
 
-    Public Overridable Property EXISTENCIAS As ICollection(Of EXISTENCIA) = New HashSet(Of EXISTENCIA)
-    Public Overridable Property MARCA As MARCA
-    Public Overridable Property PRESENTACION As PRESENTACION
-    Public Overridable Property UNIDAD_DE_MEDIDA As UNIDAD_DE_MEDIDA
-    Public Overridable Property LABORATORIO As LABORATORIO
-    Public Overridable Property PROVEEDOR As PROVEEDOR
+    Public Overridable Property Existencias As ICollection(Of Existencia) = New HashSet(Of Existencia)
+    Public Overridable Property Marca As Marca
+    Public Overridable Property Presentacion As Presentacion
+    Public Overridable Property UnidadMedida As UnidadMedida
+    Public Overridable Property Laboratorio As Laboratorio
+    Public Overridable Property Proveedor As Proveedor
 End Class
 
-Public Class PRESENTACION
+Public Class Presentacion
     <Key()>
     Public Property IDPRESENTACION As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -887,9 +891,10 @@ Public Class PRESENTACION
     Public Property DESCRIPCION As String
     Public Property ACTIVO As String
 
-    Public Overridable Property PRODUCTOS As ICollection(Of PRODUCTO) = New HashSet(Of PRODUCTO)
+    Public Overridable Property Productos As ICollection(Of Producto) = New HashSet(Of Producto)
 End Class
-Public Class LABORATORIO
+
+Public Class Laboratorio
     <Key()>
     Public Property IDLABORATORIO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -898,9 +903,10 @@ Public Class LABORATORIO
     Public Property DESCRIPCION As String
     Public Property ACTIVO As String
 
-    Public Overridable Property PRODUCTOS As ICollection(Of PRODUCTO) = New HashSet(Of PRODUCTO)
+    Public Overridable Property Productos As ICollection(Of Producto) = New HashSet(Of Producto)
 End Class
-Public Class UNIDAD_DE_MEDIDA
+
+Public Class UnidadMedida
     <Key()>
     Public Property IDUNIDAD As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -909,10 +915,10 @@ Public Class UNIDAD_DE_MEDIDA
     Public Property DESCRIPCION As String
     Public Property ACTIVO As String
 
-    Public Overridable Property PRODUCTOS As ICollection(Of PRODUCTO) = New HashSet(Of PRODUCTO)
+    Public Overridable Property Productos As ICollection(Of Producto) = New HashSet(Of Producto)
 End Class
 
-Partial Public Class PROVEEDOR
+Partial Public Class Proveedor
     <Key()>
     Public Property IDPROVEEDOR As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -937,11 +943,11 @@ Partial Public Class PROVEEDOR
     'Public Property IDCIUDAD As String
 
     'Public Overridable Property CIUDAD As CIUDAD
-    Public Overridable Property COMPRAS As ICollection(Of COMPRA) = New HashSet(Of COMPRA)
-    Public Overridable Property COMPRAS_RECIBOS As ICollection(Of COMPRA_RECIBO) = New HashSet(Of COMPRA_RECIBO)
+    Public Overridable Property Compras As ICollection(Of Compra) = New HashSet(Of Compra)
+    Public Overridable Property ComprasRecibos As ICollection(Of CompraRecibo) = New HashSet(Of CompraRecibo)
 End Class
 
-Partial Public Class RECIBO
+Partial Public Class VentaRecibo
     <Key()>
     Public Property IDRECIBO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -969,15 +975,15 @@ Partial Public Class RECIBO
     Public Property ANULADO As String
     Public Property IDTAZA As String
 
-    Public Overridable Property TAZA As TAZA
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property EMPLEADO As EMPLEADO
-    Public Overridable Property CLIENTE As CLIENTE
-    Public Overridable Property DETALLES_RECIBOS As ICollection(Of DETALLE_RECIBO) = New HashSet(Of DETALLE_RECIBO)
-    Public Overridable Property ESTADOS_DE_CUENTAS As ICollection(Of ESTADO_DE_CUENTA) = New HashSet(Of ESTADO_DE_CUENTA)
+    Public Overridable Property Taza As Taza
+    Public Overridable Property Serie As Serie
+    Public Overridable Property Empleado As Empleado
+    Public Overridable Property Cliente As Cliente
+    Public Overridable Property VentasRecibosDetalles As ICollection(Of VentaReciboDetalle) = New HashSet(Of VentaReciboDetalle)
+    Public Overridable Property VentasEstadosCuentas As ICollection(Of VentaEstadoCuenta) = New HashSet(Of VentaEstadoCuenta)
 End Class
 
-Partial Public Class SALIDA
+Partial Public Class Salida
     <Key()>
     Public Property IDSALIDA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -992,12 +998,12 @@ Partial Public Class SALIDA
     Public Property REIMPRESION As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property DETALLES_SALIDAS As ICollection(Of DETALLE_SALIDA) = New HashSet(Of DETALLE_SALIDA)
-    Public Overridable Property EMPLEADO As EMPLEADO
+    Public Overridable Property Serie As Serie
+    Public Overridable Property SalidasDetalles As ICollection(Of SalidaDetalle) = New HashSet(Of SalidaDetalle)
+    Public Overridable Property Empleado As Empleado
 End Class
 
-Partial Public Class SERIE
+Partial Public Class Serie
     <Key()>
     Public Property IDSERIE As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -1011,41 +1017,41 @@ Partial Public Class SERIE
     Public Property IDBODEGA As String
     Public Property ACTIVO As String
 
-    Public Overridable Property BODEGA As BODEGA
-    Public Overridable Property KARDEX As ICollection(Of KARDEX) = New HashSet(Of KARDEX)
-    Public Overridable Property COMPRAS As ICollection(Of COMPRA) = New HashSet(Of COMPRA)
-    Public Overridable Property COMPRAS_DEVOLUCIONES As ICollection(Of COMPRA_DEVOLUCION) = New HashSet(Of COMPRA_DEVOLUCION)
-    Public Overridable Property COMPRAS_PAGOS_PROVEEDORES As ICollection(Of COMPRA_PAGO_PROVEEDOR) = New HashSet(Of COMPRA_PAGO_PROVEEDOR)
-    Public Overridable Property COMPRAS_RECIBOS As ICollection(Of COMPRA_RECIBO) = New HashSet(Of COMPRA_RECIBO)
-    Public Overridable Property CONSIGNACIONES As ICollection(Of CONSIGNACION) = New HashSet(Of CONSIGNACION)
-    Public Overridable Property COTIZACIONES As ICollection(Of COTIZACION) = New HashSet(Of COTIZACION)
-    Public Overridable Property DESCONSIGNACIONES As ICollection(Of DESCONSIGNACION) = New HashSet(Of DESCONSIGNACION)
-    Public Overridable Property DEVOLUCIONES_CLIENTES As ICollection(Of DEVOLUCION_CLIENTE) = New HashSet(Of DEVOLUCION_CLIENTE)
-    Public Overridable Property ENTRADA As ICollection(Of ENTRADA) = New HashSet(Of ENTRADA)
-    Public Overridable Property ESTADOS_DE_CUENTAS As ICollection(Of ESTADO_DE_CUENTA) = New HashSet(Of ESTADO_DE_CUENTA)
-    Public Overridable Property RECIBOS As ICollection(Of RECIBO) = New HashSet(Of RECIBO)
-    Public Overridable Property SALIDAS As ICollection(Of SALIDA) = New HashSet(Of SALIDA)
-    Public Overridable Property TRASLADOS As ICollection(Of TRASLADO) = New HashSet(Of TRASLADO)
-    Public Overridable Property VENTAS As ICollection(Of VENTA) = New HashSet(Of VENTA)
+    Public Overridable Property Bodega As Bodega
+    Public Overridable Property Kardexs As ICollection(Of Kardex) = New HashSet(Of Kardex)
+    Public Overridable Property Compras As ICollection(Of Compra) = New HashSet(Of Compra)
+    Public Overridable Property ComprasDevoluciones As ICollection(Of CompraDevolucion) = New HashSet(Of CompraDevolucion)
+    Public Overridable Property ComprasEstadosCuentas As ICollection(Of CompraEstadoCuenta) = New HashSet(Of CompraEstadoCuenta)
+    Public Overridable Property ComprasRecibos As ICollection(Of CompraRecibo) = New HashSet(Of CompraRecibo)
+    Public Overridable Property Consignaciones As ICollection(Of Consignacion) = New HashSet(Of Consignacion)
+    Public Overridable Property Cotizaciones As ICollection(Of Cotizacion) = New HashSet(Of Cotizacion)
+    Public Overridable Property Desconsignaciones As ICollection(Of Desconsignacion) = New HashSet(Of Desconsignacion)
+    Public Overridable Property VentasDevoluciones As ICollection(Of VentaDevolucion) = New HashSet(Of VentaDevolucion)
+    Public Overridable Property Entradas As ICollection(Of Entrada) = New HashSet(Of Entrada)
+    Public Overridable Property VentasEstadosCuentas As ICollection(Of VentaEstadoCuenta) = New HashSet(Of VentaEstadoCuenta)
+    Public Overridable Property VentasRecibos As ICollection(Of VentaRecibo) = New HashSet(Of VentaRecibo)
+    Public Overridable Property Salidas As ICollection(Of Salida) = New HashSet(Of Salida)
+    Public Overridable Property Traslados As ICollection(Of Traslado) = New HashSet(Of Traslado)
+    Public Overridable Property Ventas As ICollection(Of Venta) = New HashSet(Of Venta)
 
 End Class
 
-Partial Public Class TAZA
+Partial Public Class Taza
     <Key()>
     Public Property IDTAZA As String
     Public Property FECHA As DateTime
     Public Property CAMBIO As Decimal
 
-    Public Overridable Property COMPRAS As ICollection(Of COMPRA)
-    Public Overridable Property VENTAS As ICollection(Of VENTA)
-    Public Overridable Property DEVOLUCIONES_CLIENTES As ICollection(Of DEVOLUCION_CLIENTE)
-    Public Overridable Property COMPRAS_DEVOLUCIONES As ICollection(Of COMPRA_DEVOLUCION)
-    Public Overridable Property RECIBOS As ICollection(Of RECIBO)
-    Public Overridable Property COMPRAS_RECIBOS As ICollection(Of COMPRA_RECIBO)
-    Public Overridable Property COTIZACIONES As ICollection(Of COTIZACION)
+    Public Overridable Property Compras As ICollection(Of Compra)
+    Public Overridable Property Ventas As ICollection(Of Venta)
+    Public Overridable Property VentasDevoluciones As ICollection(Of VentaDevolucion)
+    Public Overridable Property ComprasDevoluciones As ICollection(Of CompraDevolucion)
+    Public Overridable Property VentasRecibos As ICollection(Of VentaRecibo)
+    Public Overridable Property ComprasRecibos As ICollection(Of CompraRecibo)
+    Public Overridable Property Cotizaciones As ICollection(Of Cotizacion)
 End Class
 
-Partial Public Class IVA
+Partial Public Class ImpuestoValorAgregado
     <Key()>
     Public Property IDIVA As String
     Public Property FECHA As Date
@@ -1082,7 +1088,7 @@ End Class
 '    Public Overridable Property PROVEEDORES As ICollection(Of PROVEEDOR) = New HashSet(Of PROVEEDOR)
 'End Class
 
-Partial Public Class EMPLEADO
+Partial Public Class Empleado
     <Key()>
     Public Property IDEMPLEADO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -1124,18 +1130,18 @@ Partial Public Class EMPLEADO
     'Public Property IDAREA As String
     'Public Property IDCIUDAD As String
 
-    Public Overridable Property COTIZACIONES As ICollection(Of COTIZACION) = New HashSet(Of COTIZACION)
-    Public Overridable Property VENTAS As ICollection(Of VENTA) = New HashSet(Of VENTA)
-    Public Overridable Property DEVOLUCIONES_CLIENTES As ICollection(Of DEVOLUCION_CLIENTE) = New HashSet(Of DEVOLUCION_CLIENTE)
-    Public Overridable Property CONSIGNACIONES As ICollection(Of CONSIGNACION) = New HashSet(Of CONSIGNACION)
-    Public Overridable Property DESCONSIGNACIONES As ICollection(Of DESCONSIGNACION) = New HashSet(Of DESCONSIGNACION)
-    Public Overridable Property COMPRAS As ICollection(Of COMPRA) = New HashSet(Of COMPRA)
-    Public Overridable Property COMPRAS_DEVOLUCIONES As ICollection(Of COMPRA_DEVOLUCION) = New HashSet(Of COMPRA_DEVOLUCION)
-    Public Overridable Property ENTRADAS As ICollection(Of ENTRADA) = New HashSet(Of ENTRADA)
-    Public Overridable Property SALIDAS As ICollection(Of SALIDA) = New HashSet(Of SALIDA)
-    Public Overridable Property TRASLADOS As ICollection(Of TRASLADO) = New HashSet(Of TRASLADO)
-    Public Overridable Property RECIBOS As ICollection(Of RECIBO) = New HashSet(Of RECIBO)
-    Public Overridable Property COMPRAS_RECIBOS As ICollection(Of COMPRA_RECIBO) = New HashSet(Of COMPRA_RECIBO)
+    Public Overridable Property Cotizaciones As ICollection(Of Cotizacion) = New HashSet(Of Cotizacion)
+    Public Overridable Property Ventas As ICollection(Of Venta) = New HashSet(Of Venta)
+    Public Overridable Property VentasDevoluciones As ICollection(Of VentaDevolucion) = New HashSet(Of VentaDevolucion)
+    Public Overridable Property Consignaciones As ICollection(Of Consignacion) = New HashSet(Of Consignacion)
+    Public Overridable Property Desconsignaciones As ICollection(Of Desconsignacion) = New HashSet(Of Desconsignacion)
+    Public Overridable Property Compras As ICollection(Of Compra) = New HashSet(Of Compra)
+    Public Overridable Property ComprasDevoluciones As ICollection(Of CompraDevolucion) = New HashSet(Of CompraDevolucion)
+    Public Overridable Property Entradas As ICollection(Of Entrada) = New HashSet(Of Entrada)
+    Public Overridable Property Salidas As ICollection(Of Salida) = New HashSet(Of Salida)
+    Public Overridable Property Traslados As ICollection(Of Traslado) = New HashSet(Of Traslado)
+    Public Overridable Property VentasRecibos As ICollection(Of VentaRecibo) = New HashSet(Of VentaRecibo)
+    Public Overridable Property ComprasRecibos As ICollection(Of CompraRecibo) = New HashSet(Of CompraRecibo)
     'Public Overridable Property POLIZAS As ICollection(Of POLIZA) = New HashSet(Of POLIZA)
 
     'Public Overridable Property TRABAJADOR_PUESTO As TRABAJADOR_PUESTO
@@ -1227,7 +1233,7 @@ End Class
 '    Public Overridable Property TRABAJADOR As TRABAJADOR
 'End Class
 
-Partial Public Class TRASLADO
+Partial Public Class Traslado
     <Key()>
     Public Property IDTRASLADO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -1244,13 +1250,13 @@ Partial Public Class TRASLADO
     Public Property REIMPRESION As String
     Public Property ANULADO As String
 
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property BODEGA As BODEGA
-    Public Overridable Property DETALLES_TRASLADOS As ICollection(Of DETALLE_TRASLADO) = New HashSet(Of DETALLE_TRASLADO)
-    Public Overridable Property EMPLEADO As EMPLEADO
+    Public Overridable Property Serie As Serie
+    Public Overridable Property Bodega As Bodega
+    Public Overridable Property TrasladosDetalles As ICollection(Of TrasladoDetalle) = New HashSet(Of TrasladoDetalle)
+    Public Overridable Property Empleado As Empleado
 End Class
 
-Partial Public Class USUARIO
+Partial Public Class Usuario
     <Key()>
     Public Property IDUsuario As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -1275,11 +1281,12 @@ Partial Public Class USUARIO
     Public Property CInventario As Boolean
     Public Property Contabilidad As Boolean
     Public Property CContabilidad As Boolean
+    Public Property SalesPriceChange As Boolean
 
     Public Property Activo As String
 End Class
 
-Partial Public Class VENTA
+Partial Public Class Venta
     <Key()>
     Public Property IDVENTA As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -1318,18 +1325,19 @@ Partial Public Class VENTA
     Public Property ANULADO As String
     Public Property IDTAZA As String
 
-    Public Overridable Property TAZA As TAZA
-    Public Overridable Property SERIE As SERIE
-    Public Overridable Property CLIENTE As CLIENTE
-    Public Overridable Property DETALLES_VENTAS As ICollection(Of DETALLE_VENTA) = New HashSet(Of DETALLE_VENTA)
-    Public Overridable Property EMPLEADO As EMPLEADO
-    Public Overridable Property DETALLES_RECIBOS As ICollection(Of DETALLE_RECIBO) = New HashSet(Of DETALLE_RECIBO)
-    Public Overridable Property DEVOLUCIONES_CLIENTES As ICollection(Of DEVOLUCION_CLIENTE) = New HashSet(Of DEVOLUCION_CLIENTE)
-    Public Overridable Property ESTADOS_DE_CUENTAS As ICollection(Of ESTADO_DE_CUENTA) = New HashSet(Of ESTADO_DE_CUENTA)
+    Public Overridable Property Taza As Taza
+    Public Overridable Property Serie As Serie
+    Public Overridable Property Cliente As Cliente
+    Public Overridable Property VentasDetalles As ICollection(Of VentaDetalle) = New HashSet(Of VentaDetalle)
+    Public Overridable Property Empleado As Empleado
+    Public Overridable Property VentasRecibosDetalles As ICollection(Of VentaReciboDetalle) = New HashSet(Of VentaReciboDetalle)
+    Public Overridable Property VentasDevoluciones As ICollection(Of VentaDevolucion) = New HashSet(Of VentaDevolucion)
+    Public Overridable Property VentasEstadosCuentas As ICollection(Of VentaEstadoCuenta) = New HashSet(Of VentaEstadoCuenta)
+
 End Class
 
 'MÓDULO DE CONTABILIDAD
-Partial Public Class PERIODO
+Partial Public Class Periodo
     <Key()>
     Public Property IDPERIODO As String
     <DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)>
@@ -1412,362 +1420,362 @@ Public Class CodeFirst
     'MODELO DE CONTEXTO
     'VARIABLES DE NAVEGACION
     Public Property Empresas() As DbSet(Of Empresa)
-    Public Property BODEGAS() As DbSet(Of BODEGA)
+    Public Property Bodegas() As DbSet(Of Bodega)
     'Public Property CIUDADES() As DbSet(Of CIUDAD)
-    Public Property CLIENTES() As DbSet(Of CLIENTE)
-    Public Property COMPRAS() As DbSet(Of COMPRA)
-    Public Property COMPRAS_DEVOLUCIONES As DbSet(Of COMPRA_DEVOLUCION)
-    Public Property COMPRAS_DEVOLUCIONES_DETALLES As DbSet(Of COMPRA_DEVOLUCION_DETALLE)
-    Public Property COMPRAS_RECIBOS As DbSet(Of COMPRA_RECIBO)
-    Public Property COMPRAS_RECIBOS_DETALLES As DbSet(Of COMPRA_RECIBO_DETALLE)
-    Public Property COMPRAS_PAGOS_PROVEEDORES As DbSet(Of COMPRA_PAGO_PROVEEDOR)
-    Public Property CONSIGNACIONES() As DbSet(Of CONSIGNACION)
-    Public Property COTIZACIONES() As DbSet(Of COTIZACION)
+    Public Property Clientes() As DbSet(Of Cliente)
+    Public Property Compras() As DbSet(Of Compra)
+    Public Property ComprasDevoluciones As DbSet(Of CompraDevolucion)
+    Public Property ComprasDevolucionesDetalles As DbSet(Of CompraDevolucionDetalle)
+    Public Property ComprasRecibos As DbSet(Of CompraRecibo)
+    Public Property ComprasRecibosDetalles As DbSet(Of CompraReciboDetalle)
+    Public Property ComprasEstadosCuentas As DbSet(Of CompraEstadoCuenta)
+    Public Property Consignaciones() As DbSet(Of Consignacion)
+    Public Property Cotizaciones() As DbSet(Of Cotizacion)
     'Public Property CUENTAS As DbSet(Of CUENTA)
-    Public Property DESCONSIGNACIONES() As DbSet(Of DESCONSIGNACION)
-    Public Property DETALLES_COMPRAS() As DbSet(Of DETALLE_COMPRA)
-    Public Property DETALLES_CONSIGNACIONES() As DbSet(Of DETALLE_CONSIGNACION)
-    Public Property DETALLES_COTIZACIONES() As DbSet(Of DETALLE_COTIZACION)
-    Public Property DETALLES_DESCONSIGNACIONES() As DbSet(Of DETALLE_DESCONSIGNACION)
-    Public Property DETALLES_DEVOLUCIONES() As DbSet(Of DETALLE_DEVOLUCION)
-    Public Property DETALLES_ENTRADAS() As DbSet(Of DETALLE_ENTRADA)
-    Public Property DETALLES_RECIBOS() As DbSet(Of DETALLE_RECIBO)
-    Public Property DETALLES_SALIDAS() As DbSet(Of DETALLE_SALIDA)
-    Public Property DETALLES_TRASLADOS() As DbSet(Of DETALLE_TRASLADO)
-    Public Property DETALLES_VENTAS() As DbSet(Of DETALLE_VENTA)
-    Public Property DEVOLUCIONES_CLIENTES() As DbSet(Of DEVOLUCION_CLIENTE)
-    Public Property ENTRADAS() As DbSet(Of ENTRADA)
-    Public Property ESTADOS_DE_CUENTAS As DbSet(Of ESTADO_DE_CUENTA)
-    Public Property EXISTENCIAS() As DbSet(Of EXISTENCIA)
-    Public Property KARDEXS() As DbSet(Of KARDEX)
-    Public Property LABORATORIOS() As DbSet(Of LABORATORIO)
-    Public Property MARCAS() As DbSet(Of MARCA)
+    Public Property Desconsignaciones() As DbSet(Of Desconsignacion)
+    Public Property ComprasDetalles() As DbSet(Of CompraDetalle)
+    Public Property ConsignacionesDetalles() As DbSet(Of ConsignacionDetalle)
+    Public Property CotizacionesDetalles() As DbSet(Of CotizacionDetalle)
+    Public Property DesconsignacionesDetalles() As DbSet(Of DesconsignacionDetalle)
+    Public Property VentasDevolucionesDetalles() As DbSet(Of VentaDevolucionDetalle)
+    Public Property EntradasDetalles() As DbSet(Of EntradaDetalle)
+    Public Property VentasRecibosDetalles() As DbSet(Of VentaReciboDetalle)
+    Public Property SalidasDetalles() As DbSet(Of SalidaDetalle)
+    Public Property TrasladosDetalles() As DbSet(Of TrasladoDetalle)
+    Public Property VentasDetalles() As DbSet(Of VentaDetalle)
+    Public Property VentasDevoluciones() As DbSet(Of VentaDevolucion)
+    Public Property Entradas() As DbSet(Of Entrada)
+    Public Property VentasEstadosCuentas As DbSet(Of VentaEstadoCuenta)
+    Public Property Existencias() As DbSet(Of Existencia)
+    Public Property Kardexs() As DbSet(Of Kardex)
+    Public Property Laboratorios() As DbSet(Of Laboratorio)
+    Public Property Marcas() As DbSet(Of Marca)
     'Public Property PAISES() As DbSet(Of PAIS)
-    Public Property PERIODOS() As DbSet(Of PERIODO)
+    Public Property Periodos() As DbSet(Of Periodo)
     'Public Property POLIZAS() As DbSet(Of POLIZA)
     'Public Property POLIZAS_DETALLES() As DbSet(Of POLIZA_DETALLE)
-    Public Property PRESENTACIONES() As DbSet(Of PRESENTACION)
-    Public Property PRODUCTOS() As DbSet(Of PRODUCTO)
+    Public Property Presentaciones() As DbSet(Of Presentacion)
+    Public Property Productos() As DbSet(Of Producto)
     Public Property Promociones() As DbSet(Of Promocion)
     Public Property PromocionesExistencias() As DbSet(Of PromocionExistencia)
-    Public Property PROVEEDORES() As DbSet(Of PROVEEDOR)
-    Public Property RECIBOS() As DbSet(Of RECIBO)
-    Public Property SALIDAS() As DbSet(Of SALIDA)
-    Public Property SERIES() As DbSet(Of SERIE)
-    Public Property TAZAS() As DbSet(Of TAZA)
-    Public Property IVAS() As DbSet(Of IVA)
-    Public Property EMPLEADOS() As DbSet(Of EMPLEADO)
+    Public Property Proveedores() As DbSet(Of Proveedor)
+    Public Property VentasRecibos() As DbSet(Of VentaRecibo)
+    Public Property Salidas() As DbSet(Of Salida)
+    Public Property Series() As DbSet(Of Serie)
+    Public Property Tazas() As DbSet(Of Taza)
+    Public Property ImpuestosValoresAgregados() As DbSet(Of ImpuestoValorAgregado)
+    Public Property Empleados() As DbSet(Of Empleado)
     'Public Property TRABAJADORES_AREAS() As DbSet(Of TRABAJADOR_AREA)
     'Public Property TRABAJADORES_PLANILLAS() As DbSet(Of TRABAJADOR_PLANILLA)
     'Public Property TRABAJADORES_PLANILLAS_DETALLES() As DbSet(Of TRABAJADOR_PLANILLA_DETALLE)
     'Public Property TRABAJADORES_PUESTOS() As DbSet(Of TRABAJADOR_PUESTO)
-    Public Property TRASLADOS() As DbSet(Of TRASLADO)
-    Public Property UNIDADES_DE_MEDIDAS() As DbSet(Of UNIDAD_DE_MEDIDA)
-    Public Property USUARIOS() As DbSet(Of USUARIO)
-    Public Property VENTAS() As DbSet(Of VENTA)
+    Public Property Traslados() As DbSet(Of Traslado)
+    Public Property UnidadesMedidas() As DbSet(Of UnidadMedida)
+    Public Property Usuarios() As DbSet(Of Usuario)
+    Public Property Ventas() As DbSet(Of Venta)
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
         modelBuilder.Conventions.Remove(Of System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention)()
 
         'DECIMALES EN CLIENTE
-        modelBuilder.Entity(Of CLIENTE).Property(Function(f) f.LIMITECREDITO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of CLIENTE).Property(Function(f) f.FACTURADO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of CLIENTE).Property(Function(f) f.FACTURADO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cliente).Property(Function(f) f.LIMITECREDITO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cliente).Property(Function(f) f.FACTURADO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cliente).Property(Function(f) f.FACTURADO_D).HasPrecision(18, 4)
 
         'DECIMALES EN COMPRA
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Compra).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN DEVOLUCION DE COMPRA
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucion).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN DEVOLUCION DE COMPRA DETALLE
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.CANTIDAD_DEVUELTA).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.PRECIOMONEDAORIGINAL).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_DEVOLUCION_DETALLE).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.CANTIDAD_DEVUELTA).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.PRECIOMONEDAORIGINAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDevolucionDetalle).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES COMPRA PAGO PROVEEDOR
-        modelBuilder.Entity(Of COMPRA_PAGO_PROVEEDOR).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_PAGO_PROVEEDOR).Property(Function(f) f.DEBE_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_PAGO_PROVEEDOR).Property(Function(f) f.DEBE_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_PAGO_PROVEEDOR).Property(Function(f) f.HABER_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_PAGO_PROVEEDOR).Property(Function(f) f.HABER_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraEstadoCuenta).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraEstadoCuenta).Property(Function(f) f.DEBE_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraEstadoCuenta).Property(Function(f) f.DEBE_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraEstadoCuenta).Property(Function(f) f.HABER_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraEstadoCuenta).Property(Function(f) f.HABER_D).HasPrecision(18, 4)
 
         'DECIMALES COMPRA RECIBO
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.IMPORTETOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.IMPORTETOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.DESCUENTOTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.DESCUENTOTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.SOBRANTEDECAJA_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.SOBRANTEDECAJA_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.MONTOTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO).Property(Function(f) f.MONTOTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.IMPORTETOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.IMPORTETOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.DESCUENTOTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.DESCUENTOTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.SOBRANTEDECAJA_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.SOBRANTEDECAJA_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.MONTOTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraRecibo).Property(Function(f) f.MONTOTOTAL_D).HasPrecision(18, 4)
 
         'DETALLE COMPRA RECIBO DETALLE
-        modelBuilder.Entity(Of COMPRA_RECIBO_DETALLE).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO_DETALLE).Property(Function(f) f.IMPORTE_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO_DETALLE).Property(Function(f) f.IMPORTE_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO_DETALLE).Property(Function(f) f.DESCUENTO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO_DETALLE).Property(Function(f) f.DESCUENTO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO_DETALLE).Property(Function(f) f.NUEVO_SALDO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COMPRA_RECIBO_DETALLE).Property(Function(f) f.NUEVO_SALDO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraReciboDetalle).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraReciboDetalle).Property(Function(f) f.IMPORTE_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraReciboDetalle).Property(Function(f) f.IMPORTE_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraReciboDetalle).Property(Function(f) f.DESCUENTO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraReciboDetalle).Property(Function(f) f.DESCUENTO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraReciboDetalle).Property(Function(f) f.NUEVO_SALDO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraReciboDetalle).Property(Function(f) f.NUEVO_SALDO_D).HasPrecision(18, 4)
 
         'DECIMALES EN COTIZACION
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of COTIZACION).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Cotizacion).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN DETALLE COMPRA
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COMPRA).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CompraDetalle).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN DETALLE COTIZACION
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_COTIZACION).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of CotizacionDetalle).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN DETALLE DEVOLUCION
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_DEVOLUCION).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucionDetalle).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN DETALLE ENTRADA
-        modelBuilder.Entity(Of DETALLE_ENTRADA).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_ENTRADA).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_ENTRADA).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_ENTRADA).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of EntradaDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of EntradaDetalle).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of EntradaDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of EntradaDetalle).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
 
         'DETALLE VENTA RECIBO DETALLE
-        modelBuilder.Entity(Of DETALLE_RECIBO).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_RECIBO).Property(Function(f) f.IMPORTE_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_RECIBO).Property(Function(f) f.IMPORTE_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_RECIBO).Property(Function(f) f.DESCUENTO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_RECIBO).Property(Function(f) f.DESCUENTO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_RECIBO).Property(Function(f) f.NUEVO_SALDO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_RECIBO).Property(Function(f) f.NUEVO_SALDO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaReciboDetalle).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaReciboDetalle).Property(Function(f) f.IMPORTE_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaReciboDetalle).Property(Function(f) f.IMPORTE_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaReciboDetalle).Property(Function(f) f.DESCUENTO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaReciboDetalle).Property(Function(f) f.DESCUENTO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaReciboDetalle).Property(Function(f) f.NUEVO_SALDO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaReciboDetalle).Property(Function(f) f.NUEVO_SALDO_D).HasPrecision(18, 4)
 
         'DECIMALES EN DETALLE SALIDA
-        modelBuilder.Entity(Of DETALLE_SALIDA).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_SALIDA).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_SALIDA).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_SALIDA).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of SalidaDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of SalidaDetalle).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of SalidaDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of SalidaDetalle).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
 
         'DECIMALES EN DETALLE TRASLADO
-        modelBuilder.Entity(Of DETALLE_TRASLADO).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_TRASLADO).Property(Function(f) f.EXISTENCIAEXTERNA).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_TRASLADO).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_TRASLADO).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_TRASLADO).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of TrasladoDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of TrasladoDetalle).Property(Function(f) f.EXISTENCIAEXTERNA).HasPrecision(18, 4)
+        modelBuilder.Entity(Of TrasladoDetalle).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of TrasladoDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of TrasladoDetalle).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
 
         'DECIMALES EN DETALLE VENTA
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DETALLE_VENTA).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.EXISTENCIA_PRODUCTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.PRECIOUNITARIO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.PRECIOUNITARIO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.DESCUENTO_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.DESCUENTO_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.PRECIONETO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.PRECIONETO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.IVA_DIN_TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.IVA_DIN_TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDetalle).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN DEVOLUCION VENTA
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of DEVOLUCION_CLIENTE).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaDevolucion).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN ENTRADA
-        modelBuilder.Entity(Of ENTRADA).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Entrada).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
 
         'DECIMALES ESTADO DE CUENTA
-        modelBuilder.Entity(Of ESTADO_DE_CUENTA).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of ESTADO_DE_CUENTA).Property(Function(f) f.DEBE_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of ESTADO_DE_CUENTA).Property(Function(f) f.DEBE_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of ESTADO_DE_CUENTA).Property(Function(f) f.HABER_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of ESTADO_DE_CUENTA).Property(Function(f) f.HABER_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaEstadoCuenta).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaEstadoCuenta).Property(Function(f) f.DEBE_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaEstadoCuenta).Property(Function(f) f.DEBE_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaEstadoCuenta).Property(Function(f) f.HABER_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaEstadoCuenta).Property(Function(f) f.HABER_D).HasPrecision(18, 4)
 
         'DECIMALES EN EXISTENCIA
-        modelBuilder.Entity(Of EXISTENCIA).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of EXISTENCIA).Property(Function(f) f.CONSIGNADO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Existencia).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Existencia).Property(Function(f) f.CONSIGNADO).HasPrecision(18, 4)
 
         'DECIMALES EN KARDEX
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.ENTRADA).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.SALIDA).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.EXISTENCIA_ANTERIOR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.EXISTENCIA_ALMACEN).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.COSTO_PROMEDIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.PRECIO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.PRECIO_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.DEBER).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.HABER).HasPrecision(18, 4)
-        modelBuilder.Entity(Of KARDEX).Property(Function(f) f.SALDO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.ENTRADA).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.SALIDA).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.EXISTENCIA_ANTERIOR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.EXISTENCIA_ALMACEN).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.COSTO_PROMEDIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.PRECIO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.PRECIO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.DEBER).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.HABER).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Kardex).Property(Function(f) f.SALDO).HasPrecision(18, 4)
 
         'DECIMALES EN PRODUCTO
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.COSTO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.CONTIENE).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.PRECIO1).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.PRECIO2).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.PRECIO3).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.PRECIO4).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.CANTIDAD_MAXIMA).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.CANTIDAD_MINIMA).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.DESCUENTO_MAXIMO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PRODUCTO).Property(Function(f) f.SALDO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.COSTO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.CONTIENE).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.PRECIO1).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.PRECIO2).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.PRECIO3).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.PRECIO4).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.CANTIDAD_MAXIMA).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.CANTIDAD_MINIMA).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.DESCUENTO_MAXIMO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.SALDO).HasPrecision(18, 4)
 
         'DECIMALES EN PROMOCIONES
         modelBuilder.Entity(Of PromocionExistencia).Property(Function(f) f.Descuento).HasPrecision(18, 4)
 
         'DECIMALES EN PROVEEDOR
-        modelBuilder.Entity(Of PROVEEDOR).Property(Function(f) f.LIMITECREDITO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PROVEEDOR).Property(Function(f) f.FACTURADO_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of PROVEEDOR).Property(Function(f) f.FACTURADO_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Proveedor).Property(Function(f) f.LIMITECREDITO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Proveedor).Property(Function(f) f.FACTURADO_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Proveedor).Property(Function(f) f.FACTURADO_D).HasPrecision(18, 4)
 
         'DECIMALES VENTA RECIBO
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.IMPORTETOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.IMPORTETOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.DESCUENTOTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.DESCUENTOTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.SOBRANTEDECAJA_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.SOBRANTEDECAJA_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.MONTOTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of RECIBO).Property(Function(f) f.MONTOTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.IMPORTETOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.IMPORTETOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.DESCUENTOTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.DESCUENTOTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.SOBRANTEDECAJA_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.SOBRANTEDECAJA_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.MONTOTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of VentaRecibo).Property(Function(f) f.MONTOTOTAL_D).HasPrecision(18, 4)
 
         'DECIMALES EN SALIDA
-        modelBuilder.Entity(Of SALIDA).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Salida).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
 
         'DECIMALES EN TAZA
-        modelBuilder.Entity(Of TAZA).Property(Function(f) f.CAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Taza).Property(Function(f) f.CAMBIO).HasPrecision(18, 4)
 
         'DECIMALES EN IVA
-        modelBuilder.Entity(Of IVA).Property(Function(f) f.PORCENTAJE).HasPrecision(18, 4)
+        modelBuilder.Entity(Of ImpuestoValorAgregado).Property(Function(f) f.PORCENTAJE).HasPrecision(18, 4)
 
         ''DECIMALES EN TRABAJADOR
         'modelBuilder.Entity(Of TRABAJADOR).Property(Function(f) f.SUELDO).HasPrecision(18, 4)
@@ -1795,24 +1803,24 @@ Public Class CodeFirst
         'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.SALARIO_NETO).HasPrecision(18, 4)
 
         'DECIMALES EN TRASLADO
-        modelBuilder.Entity(Of TRASLADO).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Traslado).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
 
         'DECIMALES EN VENTA
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.COSTO_TOTAL).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
-        modelBuilder.Entity(Of VENTA).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.SALDOCREDITO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.TAZACAMBIO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.DESCUENTO_POR_FACT).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.DESCUENTO_DIN_FACT_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.DESCUENTO_DIN_FACT_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.DESCUENTO_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.DESCUENTO_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.COSTO_TOTAL).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.SUBTOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.SUBTOTAL_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.IVA_POR).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.IVA_DIN_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Venta).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
         ''DECIMALES EN CUENTA
         'modelBuilder.Entity(Of CUENTA).Property(Function(f) f.DEBER_C).HasPrecision(18, 4)

@@ -6,7 +6,7 @@
     Private Sub frmTipoPrecio_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Using db As New CodeFirst
-                Dim p = db.PRODUCTOS.Where(Function(f) f.IDPRODUCTO = Me.idproducto And f.ACTIVO = "S" And f.MARCA.ACTIVO = "S").FirstOrDefault()
+                Dim p = db.Productos.Where(Function(f) f.IDPRODUCTO = Me.idproducto And f.ACTIVO = "S" And f.Marca.ACTIVO = "S").FirstOrDefault()
                 If Not p Is Nothing Then
                     If p.MARGEN Then
                         If p.CMONEDA.Equals(Config.cordoba) Then

@@ -5,7 +5,7 @@
             Using db As New CodeFirst
                 Dim item As New ListViewItem
                 lvRegistro.Items.Clear()
-                For Each bodega In db.BODEGAS.Where(Function(f) f.ACTIVO = "S" And f.N_BODEGA.Contains(n_bodega) And f.DESCRIPCION.Contains(nombre)).OrderBy(Function(f) f.N)
+                For Each bodega In db.Bodegas.Where(Function(f) f.ACTIVO = "S" And f.N_BODEGA.Contains(n_bodega) And f.DESCRIPCION.Contains(nombre)).OrderBy(Function(f) f.N)
                     item = lvRegistro.Items.Add(bodega.IDBODEGA)
                     item.SubItems.Add(bodega.N_BODEGA)
                     item.SubItems.Add(bodega.DESCRIPCION)
@@ -35,10 +35,10 @@
             Using db As New CodeFirst
                 If lvRegistro.SelectedItems.Count > 0 Then
                     With lvRegistro.SelectedItems(0)
-                        Config.Usuario = db.USUARIOS.Where(Function(f) f.IDUsuario = Config.Usuario.IDUsuario And f.Activo.Equals(Config.vTrue)).FirstOrDefault()
+                        Config.Usuario = db.Usuarios.Where(Function(f) f.IDUsuario = Config.Usuario.IDUsuario And f.Activo.Equals(Config.vTrue)).FirstOrDefault()
                         If Not Config.Usuario Is Nothing Then
                             Dim IdBodega = .SubItems(0).Text
-                            Config._Bodega = db.BODEGAS.Where(Function(f) f.IDBODEGA = IdBodega And f.ACTIVO = "S").FirstOrDefault()
+                            Config._Bodega = db.Bodegas.Where(Function(f) f.IDBODEGA = IdBodega And f.ACTIVO = "S").FirstOrDefault()
                             If Not Config._Bodega Is Nothing Then
                                 Config.bodega = IdBodega
                                 Config.nom_bodega = Config._Bodega.N_BODEGA & " - " & Config._Bodega.DESCRIPCION

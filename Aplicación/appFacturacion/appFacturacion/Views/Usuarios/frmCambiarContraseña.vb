@@ -4,7 +4,7 @@
         Try
             If Not txtActual.Text.Trim = "" And Not txtNueva.Text.Trim = "" And Not txtConfirmar.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    Config.Usuario = db.USUARIOS.Where(Function(f) f.NombreCuenta = Config.Usuario.NombreCuenta And f.Activo = "S").FirstOrDefault
+                    Config.Usuario = db.Usuarios.Where(Function(f) f.NombreCuenta = Config.Usuario.NombreCuenta And f.Activo = "S").FirstOrDefault
                     If Not Config.Usuario Is Nothing Then
                         If Config.Usuario.Contraseña = txtActual.Text Then
                             If txtNueva.Text = txtConfirmar.Text Then

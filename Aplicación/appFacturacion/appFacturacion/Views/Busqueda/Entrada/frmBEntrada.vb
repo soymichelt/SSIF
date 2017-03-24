@@ -4,7 +4,7 @@
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From ent In db.ENTRADAS Join ser In db.SERIES On ser.IDSERIE Equals ent.IDSERIE Join bod In db.BODEGAS On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And ent.FECHAENTRADA >= finicio And ent.FECHAENTRADA <= ffin Select ANULADO = If(ent.ANULADO.Equals("S"), "Anulado", ""), ent.IDENTRADA, SERIE = ser.NOMBRE, ent.CONSECUTIVO, ent.FECHAENTRADA, N_EMPLEADO = If(ent.ANULADO.Equals(Config.vFalse), ent.EMPLEADO.N_TRABAJADOR, ""), EMPLEADO = If(ent.ANULADO.Equals(Config.vFalse), ent.EMPLEADO.NOMBRES & " " & ent.EMPLEADO.APELLIDOS, ""), OBSERVACION = If(ent.ANULADO.Equals("N"), ent.OBSERVACION, ""), TOTAL = If(ent.ANULADO.Equals("N"), ent.TOTAL, Nothing)).ToList()
+                dtRegistro.DataSource = (From ent In db.Entradas Join ser In db.SERIES On ser.IDSERIE Equals ent.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And ent.FECHAENTRADA >= finicio And ent.FECHAENTRADA <= ffin Select ANULADO = If(ent.ANULADO.Equals("S"), "Anulado", ""), ent.IDENTRADA, SERIE = ser.NOMBRE, ent.CONSECUTIVO, ent.FECHAENTRADA, N_EMPLEADO = If(ent.ANULADO.Equals(Config.vFalse), ent.EMPLEADO.N_TRABAJADOR, ""), EMPLEADO = If(ent.ANULADO.Equals(Config.vFalse), ent.EMPLEADO.NOMBRES & " " & ent.EMPLEADO.APELLIDOS, ""), OBSERVACION = If(ent.ANULADO.Equals("N"), ent.OBSERVACION, ""), TOTAL = If(ent.ANULADO.Equals("N"), ent.TOTAL, Nothing)).ToList()
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = vbNewLine & "" & vbNewLine
                     dtRegistro.Columns(1).Visible = False
@@ -80,7 +80,7 @@
         If dtRegistro.SelectedRows.Count > 0 Then
             Try
                 Using db As New CodeFirst
-                    Dim identrada As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim entrada = db.ENTRADAS.Where(Function(f) f.IDENTRADA = identrada).FirstOrDefault()
+                    Dim identrada As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim entrada = db.Entradas.Where(Function(f) f.IDENTRADA = identrada).FirstOrDefault()
                     If Not entrada Is Nothing Then
                         If entrada.ANULADO = "N" Then
                             Select Case frm_return

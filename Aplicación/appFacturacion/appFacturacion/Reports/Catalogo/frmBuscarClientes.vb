@@ -4,7 +4,7 @@
     Sub llenar(Optional ByVal nombre As String = "", Optional ByVal codigo As String = "", Optional ByVal RazonSocialP As String = "")
         Try
             Using db As New CodeFirst
-                Dim consulta = (From cli In db.CLIENTES Where cli.ACTIVO = "S" And cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(RazonSocialP) Select cli.IDCLIENTE, cli.N_CLIENTE, cli.IDENTIFICACION, NOMBRES = cli.NOMBRES & " " & cli.APELLIDOS, cli.TELEFONO, cli.RAZONSOCIAL, cli.DOMICILIO).ToList()
+                Dim consulta = (From cli In db.Clientes Where cli.ACTIVO = "S" And cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(RazonSocialP) Select cli.IDCLIENTE, cli.N_CLIENTE, cli.IDENTIFICACION, NOMBRES = cli.NOMBRES & " " & cli.APELLIDOS, cli.TELEFONO, cli.RAZONSOCIAL, cli.DOMICILIO).ToList()
                 If dtRegistro.Visible Then
                     dtRegistro.DataSource = consulta
                     If dtRegistro.Columns.Count > 0 Then
@@ -56,7 +56,7 @@
             Try
                 Using db As New CodeFirst
                     Dim id = dtRegistro.SelectedRows(0).Cells(0).Value.ToString()
-                    Dim c = db.CLIENTES.Where(Function(f) f.IDCLIENTE = id And f.ACTIVO = "S").FirstOrDefault
+                    Dim c = db.Clientes.Where(Function(f) f.IDCLIENTE = id And f.ACTIVO = "S").FirstOrDefault
                     If Not c Is Nothing Then
                         Select Case frm_return
                             Case 0
@@ -95,7 +95,7 @@
                                 frmCotizacion.txtIdCliente.Text = c.IDCLIENTE
                                 frmCotizacion.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim() <> "", " // " & c.RAZONSOCIAL, ""), c.N_CLIENTE & " " & c.RAZONSOCIAL)
                             Case 3
-                                
+
                             Case 4
                                 If frmBuscarCotizacion.rdIdCliente.Checked Then
                                     frmBuscarCotizacion.txtIdCliente.Text = c.N_CLIENTE

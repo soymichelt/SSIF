@@ -2,7 +2,7 @@
     Sub llenar(Optional ByVal bodega As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From lab In db.LABORATORIOS Where lab.ACTIVO = "S" And lab.DESCRIPCION.Contains(bodega) Select lab.IDLABORATORIO, lab.DESCRIPCION).ToList
+                dtRegistro.DataSource = (From lab In db.Laboratorios Where lab.ACTIVO = "S" And lab.DESCRIPCION.Contains(bodega) Select lab.IDLABORATORIO, lab.DESCRIPCION).ToList
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Visible = False
                     dtRegistro.Columns(1).HeaderText = vbNewLine & "DESCRIPCIÓN DEL LABORATORIO" & vbNewLine : dtRegistro.Columns(1).Width = 500
@@ -42,9 +42,9 @@
         Try
             If Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.LABORATORIOS.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
-                        Dim laboratorio As New LABORATORIO : laboratorio.Reg = DateTime.Now : laboratorio.IDLABORATORIO = Guid.NewGuid().ToString() : laboratorio.DESCRIPCION = txtNombre.Text : laboratorio.ACTIVO = "S"
-                        db.LABORATORIOS.Add(laboratorio)
+                    If db.Laboratorios.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
+                        Dim laboratorio As New Laboratorio : laboratorio.Reg = DateTime.Now : laboratorio.IDLABORATORIO = Guid.NewGuid().ToString() : laboratorio.DESCRIPCION = txtNombre.Text : laboratorio.ACTIVO = "S"
+                        db.Laboratorios.Add(laboratorio)
                         db.SaveChanges() : limpiar() : llenar(txtBuscar.Text.Trim) : MessageBox.Show("Laboratorio guardada")
                     Else
                         MessageBox.Show("Error, Ya existe una Laboratorio con este nombre.")
@@ -62,8 +62,8 @@
         Try
             If Not txtCodigo.Text.Trim = "" And Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.LABORATORIOS.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDLABORATORIO = txtCodigo.Text).Count() = 0 Then
-                        Dim laboratorio = db.LABORATORIOS.Where(Function(f) f.IDLABORATORIO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                    If db.Laboratorios.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDLABORATORIO = txtCodigo.Text).Count() = 0 Then
+                        Dim laboratorio = db.Laboratorios.Where(Function(f) f.IDLABORATORIO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not laboratorio Is Nothing Then
                             laboratorio.DESCRIPCION = txtNombre.Text
                             db.Entry(laboratorio).State = EntityState.Modified
@@ -86,7 +86,7 @@
     Private Sub btEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEliminar.Click
         Try
             Using db As New CodeFirst
-                Dim laboratorio = db.LABORATORIOS.Where(Function(f) f.IDLABORATORIO = txtCodigo.Text).FirstOrDefault()
+                Dim laboratorio = db.Laboratorios.Where(Function(f) f.IDLABORATORIO = txtCodigo.Text).FirstOrDefault()
                 If Not laboratorio Is Nothing Then
                     laboratorio.ACTIVO = "N"
                     db.Entry(laboratorio).State = EntityState.Modified

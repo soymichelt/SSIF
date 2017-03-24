@@ -6,7 +6,7 @@
         Try
             Using db As New CodeFirst
                 If dtRegistro.Visible Then
-                    Dim consulta = (From sal In db.SALIDAS Join ser In db.SERIES On ser.IDSERIE Equals sal.IDSERIE Where sal.FECHASALIDA >= Fecha1 And sal.FECHASALIDA <= Fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By sal.N Select ANULADO = If(sal.ANULADO.Equals("S"), "Anulado", ""), ID = sal.IDSALIDA, SERIE = ser.NOMBRE, sal.CONSECUTIVO, sal.FECHASALIDA, sal.EMPLEADO.N_TRABAJADOR, EMPLEADO = sal.EMPLEADO.NOMBRES & " " & sal.EMPLEADO.APELLIDOS, OBSERVACION = If(sal.ANULADO.Equals("N"), sal.OBSERVACION, ""), TOTAL = If(sal.ANULADO.Equals("N"), sal.TOTAL, Nothing), sal.N).ToList
+                    Dim consulta = (From sal In db.Salidas Join ser In db.Series On ser.IDSERIE Equals sal.IDSERIE Where sal.FECHASALIDA >= Fecha1 And sal.FECHASALIDA <= Fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By sal.N Select ANULADO = If(sal.ANULADO.Equals("S"), "Anulado", ""), ID = sal.IDSALIDA, SERIE = ser.NOMBRE, sal.CONSECUTIVO, sal.FECHASALIDA, sal.Empleado.N_TRABAJADOR, EMPLEADO = sal.Empleado.NOMBRES & " " & sal.Empleado.APELLIDOS, OBSERVACION = If(sal.ANULADO.Equals("N"), sal.OBSERVACION, ""), TOTAL = If(sal.ANULADO.Equals("N"), sal.TOTAL, Nothing), sal.N).ToList
 
                     If IdEmpleadoP.Trim <> "" Then 'filtro empleado
                         consulta = consulta.Where(Function(f) f.N_TRABAJADOR.Contains(IdEmpleadoP) And f.ANULADO.Equals("")).ToList
@@ -40,7 +40,7 @@
                         expDetalle.TitleText = "MOSTRAR DETALLE DE LA SALIDA SELECCIONADA"
                     End If
                 Else
-                    Dim consulta = (From sal In db.SALIDAS Join ser In db.SERIES On ser.IDSERIE Equals sal.IDSERIE Where sal.FECHASALIDA >= Fecha1 And sal.FECHASALIDA <= Fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By sal.N Select ANULADO = If(sal.ANULADO.Equals("S"), "Anulado", ""), sal.SERIE.IDBODEGA, BODEGA = sal.SERIE.BODEGA.DESCRIPCION, ID = sal.IDSALIDA, SERIE = ser.NOMBRE, sal.CONSECUTIVO, Fecha = sal.FECHASALIDA, NEmpleado = sal.EMPLEADO.N_TRABAJADOR, Empleado = sal.EMPLEADO.NOMBRES & " " & sal.EMPLEADO.APELLIDOS, Concepto = If(sal.ANULADO.Equals("N"), sal.OBSERVACION, ""), TOTAL = If(sal.ANULADO.Equals("N"), sal.TOTAL, Nothing), sal.N).ToList
+                    Dim consulta = (From sal In db.Salidas Join ser In db.Series On ser.IDSERIE Equals sal.IDSERIE Where sal.FECHASALIDA >= Fecha1 And sal.FECHASALIDA <= Fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By sal.N Select ANULADO = If(sal.ANULADO.Equals("S"), "Anulado", ""), sal.Serie.IDBODEGA, BODEGA = sal.Serie.Bodega.DESCRIPCION, ID = sal.IDSALIDA, SERIE = ser.NOMBRE, sal.CONSECUTIVO, Fecha = sal.FECHASALIDA, NEmpleado = sal.Empleado.N_TRABAJADOR, Empleado = sal.Empleado.NOMBRES & " " & sal.Empleado.APELLIDOS, Concepto = If(sal.ANULADO.Equals("N"), sal.OBSERVACION, ""), TOTAL = If(sal.ANULADO.Equals("N"), sal.TOTAL, Nothing), sal.N).ToList
 
                     If IdEmpleadoP.Trim <> "" Then 'filtro empleado
                         consulta = consulta.Where(Function(f) f.NEmpleado.Contains(IdEmpleadoP) And f.ANULADO.Equals("")).ToList
@@ -99,11 +99,11 @@
     Sub ListaDetalle(ByVal id As String)
         Try
             Using db As New CodeFirst
-                Dim v = (From sal In db.SALIDAS Join ser In db.SERIES On sal.IDSERIE Equals ser.IDSERIE Where sal.IDSALIDA = id Select sal.IDSALIDA, sal.ANULADO, SERIE = ser.NOMBRE, sal.CONSECUTIVO).FirstOrDefault()
+                Dim v = (From sal In db.Salidas Join ser In db.Series On sal.IDSERIE Equals ser.IDSERIE Where sal.IDSALIDA = id Select sal.IDSALIDA, sal.ANULADO, SERIE = ser.NOMBRE, sal.CONSECUTIVO).FirstOrDefault()
                 If Not v Is Nothing Then
                     If v.ANULADO = "N" Then
                         expDetalle.TitleText = "MOSTRAR DETALLE DE LA SALIDA '" & v.SERIE & " - " & v.CONSECUTIVO & "'"
-                        dtDetalle.DataSource = (From mar In db.MARCAS Join pro In db.PRODUCTOS On mar.IDMARCA Equals pro.IDMARCA Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_SALIDAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDSALIDA = id Select pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, MARCA = If(pro.MARCA.ACTIVO.Equals("S"), mar.DESCRIPCION, "SIN ESPECIFICAR"), pro.MODELO, UNIDAD_DE_MEDIDA = If(pro.UNIDAD_DE_MEDIDA.ACTIVO.Equals("S"), pro.UNIDAD_DE_MEDIDA.DESCRIPCION, "SIN ESPECIFICAR"), pro.CONTIENE, PRESENTACIÓN = If(pro.PRESENTACION.ACTIVO.Equals("S"), pro.PRESENTACION.DESCRIPCION, "SIN ESPECIFICAR"), LABORATORIO = If(pro.LABORATORIO.ACTIVO.Equals("S"), pro.LABORATORIO.DESCRIPCION, "SIN ESPECIFICAR"), det.CANTIDAD, det.COSTO, det.TOTAL).ToList
+                        dtDetalle.DataSource = (From mar In db.Marcas Join pro In db.Productos On mar.IDMARCA Equals pro.IDMARCA Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.SalidasDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDSALIDA = id Select pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, MARCA = If(pro.Marca.ACTIVO.Equals("S"), mar.DESCRIPCION, "SIN ESPECIFICAR"), pro.MODELO, UNIDAD_DE_MEDIDA = If(pro.UnidadMedida.ACTIVO.Equals("S"), pro.UnidadMedida.DESCRIPCION, "SIN ESPECIFICAR"), pro.CONTIENE, PRESENTACIÓN = If(pro.Presentacion.ACTIVO.Equals("S"), pro.Presentacion.DESCRIPCION, "SIN ESPECIFICAR"), LABORATORIO = If(pro.Laboratorio.ACTIVO.Equals("S"), pro.Laboratorio.DESCRIPCION, "SIN ESPECIFICAR"), det.CANTIDAD, det.COSTO, det.TOTAL).ToList
                         If dtDetalle.Columns.Count > 0 Then
                             dtDetalle.Columns(0).HeaderText = vbNewLine & "Nº PRODUCTO" & vbNewLine : dtDetalle.Columns(0).Width = 120
                             dtDetalle.Columns(1).HeaderText = "ID ORIGINAL"
@@ -155,7 +155,7 @@
         Me.FormLoad = False
         Try
             Using db As New CodeFirst
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.ACTIVO = "S" And f.OPERACION = "SALIDA" And f.IDBODEGA = bodega).ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.ACTIVO = "S" And f.OPERACION = "SALIDA" And f.IDBODEGA = bodega).ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
@@ -187,7 +187,7 @@
             dtDetalle.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             dtpFechaInicial.Value = DateTime.Now : dtpFechaFinal.Value = DateTime.Now
             Using db As New CodeFirst
-                cmbBodega.DataSource = (From bod In db.BODEGAS Where bod.ACTIVO = "S" Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
+                cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
             End Using
 
             Lista(DateTime.Now.ToShortDateString() & " 00:00:00", DateTime.Now.ToShortDateString() & " 23:59:59")

@@ -5,7 +5,7 @@
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From sal In db.SALIDAS Join ser In db.SERIES On ser.IDSERIE Equals sal.IDSERIE Join bod In db.BODEGAS On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And sal.FECHASALIDA >= finicio And sal.FECHASALIDA <= ffin Select ANULADO = If(sal.ANULADO.Equals("S"), "Anulado", ""), sal.IDSALIDA, SERIE = ser.NOMBRE, sal.CONSECUTIVO, sal.FECHASALIDA, N_EMPLEADO = If(sal.ANULADO.Equals(Config.vFalse), sal.EMPLEADO.N_TRABAJADOR, ""), EMPLEADO = If(sal.ANULADO.Equals(Config.vFalse), sal.EMPLEADO.NOMBRES & " " & sal.EMPLEADO.APELLIDOS, ""), OBSERVACION = If(sal.ANULADO.Equals("N"), sal.OBSERVACION, ""), TOTAL = If(sal.ANULADO.Equals("N"), sal.TOTAL, Nothing)).ToList()
+                dtRegistro.DataSource = (From sal In db.Salidas Join ser In db.Series On ser.IDSERIE Equals sal.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And sal.FECHASALIDA >= finicio And sal.FECHASALIDA <= ffin Select ANULADO = If(sal.ANULADO.Equals("S"), "Anulado", ""), sal.IDSALIDA, SERIE = ser.NOMBRE, sal.CONSECUTIVO, sal.FECHASALIDA, N_EMPLEADO = If(sal.ANULADO.Equals(Config.vFalse), sal.Empleado.N_TRABAJADOR, ""), EMPLEADO = If(sal.ANULADO.Equals(Config.vFalse), sal.Empleado.NOMBRES & " " & sal.Empleado.APELLIDOS, ""), OBSERVACION = If(sal.ANULADO.Equals("N"), sal.OBSERVACION, ""), TOTAL = If(sal.ANULADO.Equals("N"), sal.TOTAL, Nothing)).ToList()
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = ""
                     dtRegistro.Columns(1).Visible = False
@@ -27,7 +27,7 @@
         Try
             Using db As New CodeFirst
                 'llenar series
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "SALIDA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "SALIDA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                 dtpFechaInicial.Value = DateTime.Now
                 dtpFechaFinal.Value = DateTime.Now
                 llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), )
@@ -43,13 +43,13 @@
                 If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                     Dim serie As String = cmbSerie.Text
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "SALIDA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "SALIDA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                     cmbSerie.Text = serie
                     serie = Nothing
                 Else
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "SALIDA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "SALIDA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                 End If
             End Using
@@ -77,7 +77,7 @@
         If dtRegistro.SelectedRows.Count > 0 Then
             Try
                 Using db As New CodeFirst
-                    Dim idsalida As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim salida = db.SALIDAS.Where(Function(f) f.IDSALIDA = idsalida).FirstOrDefault()
+                    Dim idsalida As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim salida = db.Salidas.Where(Function(f) f.IDSALIDA = idsalida).FirstOrDefault()
                     If Not salida Is Nothing Then
                         If salida.ANULADO = "N" Then
                             Select Case frm_return

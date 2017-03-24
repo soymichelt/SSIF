@@ -32,7 +32,7 @@
     Function generarCodigo(ByVal serie As String) As String
         Try
             Using db As New CodeFirst
-                Dim consignacion = db.CONSIGNACIONES.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
+                Dim consignacion = db.Consignaciones.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
                 If Not consignacion Is Nothing Then
                     cod = consignacion.CONSECUTIVO
                     If Not cod.Trim = "" Then
@@ -58,7 +58,7 @@
         Try
             dtpFecha.Value = DateTime.Now
             Using db As New CodeFirst
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "CONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "CONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
                 txtReferencia.Clear()
             End Using
         Catch ex As Exception
@@ -71,12 +71,12 @@
             Using db As New CodeFirst
                 If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                     Dim serie As String = cmbSerie.Text
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "CONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "CONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
                     txtReferencia.Clear()
                     cmbSerie.Text = serie
                     serie = Nothing
                 Else
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "CONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "CONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
                     txtReferencia.Clear()
                 End If
                 txtCodigo.Focus()
@@ -92,7 +92,7 @@
                 If Not cmbSerie.SelectedValue Is Nothing Then
                     Using db As New CodeFirst
                         If Not txtNVendedor.Text.Trim() = "" Then
-                            Dim vendedor = db.EMPLEADOS.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text).FirstOrDefault()
+                            Dim vendedor = db.Empleados.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text).FirstOrDefault()
                             If Not vendedor Is Nothing Then
                                 txtIdVendedor.Text = vendedor.IDEMPLEADO
                                 txtNombreVendedor.Text = vendedor.N_TRABAJADOR & " | " & vendedor.NOMBRES & " " & vendedor.APELLIDOS
@@ -122,7 +122,7 @@
                 If Not cmbSerie.SelectedValue Is Nothing Then
                     Using db As New CodeFirst
                         If Not txtNCliente.Text.Trim() = "" Then
-                            Dim cliente = db.CLIENTES.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                            Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not cliente Is Nothing Then
                                 txtIdCliente.Text = cliente.IDCLIENTE
                                 txtNombreCliente.Text = cliente.N_CLIENTE & " | " & cliente.NOMBRES & " " & cliente.APELLIDOS
@@ -152,7 +152,7 @@
             If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
                 Using db As New CodeFirst
                     Dim idserie As String = cmbSerie.SelectedValue.ToString()
-                    Dim serie = db.SERIES.Where(Function(f) f.ACTIVO = "S" And f.IDSERIE = idserie).FirstOrDefault()
+                    Dim serie = db.Series.Where(Function(f) f.ACTIVO = "S" And f.IDSERIE = idserie).FirstOrDefault()
                     If Not serie Is Nothing Then
                         txtCodigo.Text = Me.generarCodigo(cmbSerie.SelectedValue.ToString())
                         txtReferencia.Text = serie.DESCRIPCION
@@ -171,7 +171,7 @@
             If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                 If Not txtCodigoAlterno.Text.Trim = "" Then
                     Using db As New CodeFirst
-                        If db.PRODUCTOS.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).Count() > 0 Then
+                        If db.Productos.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).Count() > 0 Then
                             txtCantidad.Focus()
                         Else
                             frmBuscarProductos.frm_return = 7 'retornar el valor aqui
@@ -197,17 +197,17 @@
                         ''''''''''''''''''''''''''''''''''''
                         If Convert.ToSingle(txtCantidad.Text) > 0 Then
                             Using db As New CodeFirst
-                                Dim producto = (From prod In db.PRODUCTOS Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.bodega And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
+                                Dim producto = (From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.bodega And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
                                 If Not producto Is Nothing Then
 
-                                    Dim consignaciones = From consig In db.CONSIGNACIONES Join det In db.DETALLES_CONSIGNACIONES On consig.IDCONSIGNACION Equals det.IDCONSIGNACION Where consig.ANULADO = "N" And consig.IDCLIENTE = txtIdCliente.Text And det.EXISTENCIA.PRODUCTO.IDALTERNO = producto.prod.IDALTERNO Select det.CANTIDAD
+                                    Dim consignaciones = From consig In db.Consignaciones Join det In db.ConsignacionesDetalles On consig.IDCONSIGNACION Equals det.IDCONSIGNACION Where consig.ANULADO = "N" And consig.IDCLIENTE = txtIdCliente.Text And det.Existencia.Producto.IDALTERNO = producto.prod.IDALTERNO Select det.CANTIDAD
                                     sum_consig = 0
                                     If Not consignaciones Is Nothing Then
                                         If consignaciones.Count() > 0 Then
                                             sum_consig = consignaciones.Sum()
                                         End If
                                     End If
-                                    Dim desconsignaciones = From desconsig In db.DESCONSIGNACIONES Join det In db.DETALLES_DESCONSIGNACIONES On desconsig.IDDESCONSIGNACION Equals det.IDDESCONSIGNACION Where desconsig.ANULADO = "N" And desconsig.IDCLIENTE = txtIdCliente.Text And det.EXISTENCIA.PRODUCTO.IDALTERNO = producto.prod.IDALTERNO Select det.CANTIDAD
+                                    Dim desconsignaciones = From desconsig In db.Desconsignaciones Join det In db.DesconsignacionesDetalles On desconsig.IDDESCONSIGNACION Equals det.IDDESCONSIGNACION Where desconsig.ANULADO = "N" And desconsig.IDCLIENTE = txtIdCliente.Text And det.Existencia.Producto.IDALTERNO = producto.prod.IDALTERNO Select det.CANTIDAD
                                     sum_desconsig = 0
                                     If Not desconsignaciones Is Nothing Then
                                         If desconsignaciones.Count() > 0 Then
@@ -322,23 +322,23 @@
                         Else
                             dtpFecha.Value = DateTime.Parse(dtpFecha.Text & " " & DateTime.Now.ToString("HH:mm:ss"))
                         End If
-                        Dim consignacion As New CONSIGNACION : consignacion.IDCONSIGNACION = Guid.NewGuid.ToString() : consignacion.IDSERIE = cmbSerie.SelectedValue.ToString() : consignacion.CONSECUTIVO = txtCodigo.Text : consignacion.FECHACONSIGNACION = dtpFecha.Value : consignacion.OBSERVACION = txtConcepto.Text : consignacion.TOTAL = Decimal.Parse(txtTotal.Text) : consignacion.IDCLIENTE = txtIdCliente.Text : consignacion.IDEMPLEADO = txtIdVendedor.Text : consignacion.ANULADO = "N"
-                        db.CONSIGNACIONES.Add(consignacion)
+                        Dim consignacion As New Consignacion : consignacion.IDCONSIGNACION = Guid.NewGuid.ToString() : consignacion.IDSERIE = cmbSerie.SelectedValue.ToString() : consignacion.CONSECUTIVO = txtCodigo.Text : consignacion.FECHACONSIGNACION = dtpFecha.Value : consignacion.OBSERVACION = txtConcepto.Text : consignacion.TOTAL = Decimal.Parse(txtTotal.Text) : consignacion.IDCLIENTE = txtIdCliente.Text : consignacion.IDEMPLEADO = txtIdVendedor.Text : consignacion.ANULADO = "N"
+                        db.Consignaciones.Add(consignacion)
 
-                        Dim idexistencia As String : Dim cont As Integer = 0 : Dim existencia As EXISTENCIA
+                        Dim idexistencia As String : Dim cont As Integer = 0 : Dim existencia As Existencia
                         For i As Integer = 0 To lvRegistro.Items.Count - 1
                             idexistencia = lvRegistro.Items(i).Text
-                            existencia = db.EXISTENCIAS.Where(Function(f) f.IDEXISTENCIA = idexistencia And f.PRODUCTO.ACTIVO = "S" And f.BODEGA.ACTIVO = "S").FirstOrDefault()
+                            existencia = db.Existencias.Where(Function(f) f.IDEXISTENCIA = idexistencia And f.Producto.ACTIVO = "S" And f.Bodega.ACTIVO = "S").FirstOrDefault()
                             If Not existencia Is Nothing Then
                                 If existencia.CANTIDAD >= Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text) Then
-                                    Dim consignaciones = From consig In db.CONSIGNACIONES Join det In db.DETALLES_CONSIGNACIONES On consig.IDCONSIGNACION Equals det.IDCONSIGNACION Where consig.ANULADO = "N" And consig.IDCLIENTE = txtIdCliente.Text And det.EXISTENCIA.PRODUCTO.IDALTERNO = existencia.PRODUCTO.IDALTERNO Select det.CANTIDAD
+                                    Dim consignaciones = From consig In db.Consignaciones Join det In db.ConsignacionesDetalles On consig.IDCONSIGNACION Equals det.IDCONSIGNACION Where consig.ANULADO = "N" And consig.IDCLIENTE = txtIdCliente.Text And det.Existencia.Producto.IDALTERNO = existencia.Producto.IDALTERNO Select det.CANTIDAD
                                     sum_consig = 0
                                     If Not consignaciones Is Nothing Then
                                         If consignaciones.Count() > 0 Then
                                             sum_consig = consignaciones.Sum()
                                         End If
                                     End If
-                                    Dim desconsignaciones = From desconsig In db.DESCONSIGNACIONES Join det In db.DETALLES_DESCONSIGNACIONES On desconsig.IDDESCONSIGNACION Equals det.IDDESCONSIGNACION Where desconsig.ANULADO = "N" And desconsig.IDCLIENTE = txtIdCliente.Text And det.EXISTENCIA.PRODUCTO.IDALTERNO = existencia.PRODUCTO.IDALTERNO Select det.CANTIDAD
+                                    Dim desconsignaciones = From desconsig In db.Desconsignaciones Join det In db.DesconsignacionesDetalles On desconsig.IDDESCONSIGNACION Equals det.IDDESCONSIGNACION Where desconsig.ANULADO = "N" And desconsig.IDCLIENTE = txtIdCliente.Text And det.Existencia.Producto.IDALTERNO = existencia.Producto.IDALTERNO Select det.CANTIDAD
                                     sum_desconsig = 0
                                     If Not desconsignaciones Is Nothing Then
                                         If desconsignaciones.Count() > 0 Then
@@ -346,7 +346,7 @@
                                         End If
                                     End If
 
-                                    Dim detalle As New DETALLE_CONSIGNACION : detalle.IDDETALLECONSIGNACION = Guid.NewGuid.ToString() : detalle.EXISTENCIA_PRODUCTO = existencia.CANTIDAD : detalle.EXISTENCIA_SIN_CONSIGNAR = existencia.CANTIDAD - existencia.CONSIGNADO : detalle.EXISTENCIA_CONSIGNADA = sum_consig - sum_desconsig : detalle.CANTIDAD = Decimal.Parse(lvRegistro.Items(i).SubItems(6).Text) : detalle.IDEXISTENCIA = existencia.IDEXISTENCIA : detalle.IDCONSIGNACION = consignacion.IDCONSIGNACION : db.DETALLES_CONSIGNACIONES.Add(detalle)
+                                    Dim detalle As New ConsignacionDetalle : detalle.IDDETALLECONSIGNACION = Guid.NewGuid.ToString() : detalle.EXISTENCIA_PRODUCTO = existencia.CANTIDAD : detalle.EXISTENCIA_SIN_CONSIGNAR = existencia.CANTIDAD - existencia.CONSIGNADO : detalle.EXISTENCIA_CONSIGNADA = sum_consig - sum_desconsig : detalle.CANTIDAD = Decimal.Parse(lvRegistro.Items(i).SubItems(6).Text) : detalle.IDEXISTENCIA = existencia.IDEXISTENCIA : detalle.IDCONSIGNACION = consignacion.IDCONSIGNACION : db.ConsignacionesDetalles.Add(detalle)
                                     existencia.CONSIGNADO = existencia.CONSIGNADO + Decimal.Parse(lvRegistro.Items(i).SubItems(6).Text) : db.Entry(existencia).State = EntityState.Modified
                                     detalle = Nothing
 
@@ -393,21 +393,21 @@
                     If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
                         Using db As New CodeFirst
                             Dim idserie As String = cmbSerie.SelectedValue.ToString()
-                            Dim consignacion = db.CONSIGNACIONES.Where(Function(f) f.IDSERIE = idserie And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
+                            Dim consignacion = db.Consignaciones.Where(Function(f) f.IDSERIE = idserie And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
                             If Not consignacion Is Nothing Then
                                 If consignacion.ANULADO = "N" Then
                                     Me.idconsignacion = consignacion.IDCONSIGNACION
                                     txtCodigo.Enabled = False
                                     dtpFecha.Text = consignacion.FECHACONSIGNACION.ToShortDateString()
-                                    txtIdVendedor.Text = consignacion.EMPLEADO.IDEMPLEADO
-                                    txtNombreVendedor.Text = consignacion.EMPLEADO.N_TRABAJADOR & " | " & consignacion.EMPLEADO.NOMBRES & " " & consignacion.EMPLEADO.APELLIDOS
-                                    txtIdCliente.Text = consignacion.CLIENTE.IDCLIENTE
-                                    txtNombreCliente.Text = consignacion.CLIENTE.N_CLIENTE & " | " & consignacion.CLIENTE.NOMBRES & " " & consignacion.CLIENTE.APELLIDOS
+                                    txtIdVendedor.Text = consignacion.Empleados.IDEMPLEADO
+                                    txtNombreVendedor.Text = consignacion.Empleados.N_TRABAJADOR & " | " & consignacion.Empleados.NOMBRES & " " & consignacion.Empleados.APELLIDOS
+                                    txtIdCliente.Text = consignacion.Cliente.IDCLIENTE
+                                    txtNombreCliente.Text = consignacion.Cliente.N_CLIENTE & " | " & consignacion.Cliente.NOMBRES & " " & consignacion.Cliente.APELLIDOS
                                     txtConcepto.Text = consignacion.OBSERVACION
 
                                     lvRegistro.Items.Clear()
                                     Dim item As New ListViewItem
-                                    For Each detalle In From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_CONSIGNACIONES On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDCONSIGNACION = consignacion.IDCONSIGNACION Select pro, exi, det
+                                    For Each detalle In From pro In db.Productos Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.ConsignacionesDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDCONSIGNACION = consignacion.IDCONSIGNACION Select pro, exi, det
                                         item = lvRegistro.Items.Add(detalle.exi.IDEXISTENCIA)
                                         item.SubItems.Add(detalle.pro.IDALTERNO)
                                         item.SubItems.Add(detalle.pro.DESCRIPCION)

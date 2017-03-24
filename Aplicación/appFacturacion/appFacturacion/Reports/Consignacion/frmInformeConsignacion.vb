@@ -4,11 +4,11 @@
         Try
             Using db As New CodeFirst
                 If dtRegistro.Visible Then
-                    dtRegistro.DataSource = (From con In db.CONSIGNACIONES Join ser In db.SERIES On ser.IDSERIE Equals con.IDSERIE Where con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By con.N Select ANULADO = If(con.ANULADO.Equals("S"), "Anulado", ""), con.IDCONSIGNACION, SERIE = ser.NOMBRE, con.CONSECUTIVO, con.FECHACONSIGNACION, N_VENDEDOR = If(con.ANULADO.Equals("N"), con.EMPLEADO.N_TRABAJADOR, ""), VENDEDOR = If(con.ANULADO.Equals("N"), con.EMPLEADO.NOMBRES & " " & con.EMPLEADO.APELLIDOS, ""), N_CLIENTE = If(con.ANULADO.Equals("N"), con.CLIENTE.N_CLIENTE, ""), CLIENTE = If(con.ANULADO.Equals("N"), con.CLIENTE.NOMBRES & " " & con.CLIENTE.APELLIDOS, ""), OBSERVACION = If(con.ANULADO.Equals("N"), con.OBSERVACION, "")).ToList
+                    dtRegistro.DataSource = (From con In db.Consignaciones Join ser In db.Series On ser.IDSERIE Equals con.IDSERIE Where con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By con.N Select ANULADO = If(con.ANULADO.Equals("S"), "Anulado", ""), con.IDCONSIGNACION, SERIE = ser.NOMBRE, con.CONSECUTIVO, con.FECHACONSIGNACION, N_VENDEDOR = If(con.ANULADO.Equals("N"), con.Empleados.N_TRABAJADOR, ""), VENDEDOR = If(con.ANULADO.Equals("N"), con.Empleados.NOMBRES & " " & con.Empleados.APELLIDOS, ""), N_CLIENTE = If(con.ANULADO.Equals("N"), con.Cliente.N_CLIENTE, ""), CLIENTE = If(con.ANULADO.Equals("N"), con.Cliente.NOMBRES & " " & con.Cliente.APELLIDOS, ""), OBSERVACION = If(con.ANULADO.Equals("N"), con.OBSERVACION, "")).ToList
                     If dtRegistro.Rows.Count = 0 Then
                         dtDetalle.DataSource = Nothing
                     Else
-                        txtTotal.Value = (From con In db.CONSIGNACIONES Join ser In db.SERIES On ser.IDSERIE Equals con.IDSERIE Where con.ANULADO = "N" And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Select con.TOTAL).Sum()
+                        txtTotal.Value = (From con In db.Consignaciones Join ser In db.Series On ser.IDSERIE Equals con.IDSERIE Where con.ANULADO = "N" And con.FECHACONSIGNACION >= fecha1 And con.FECHACONSIGNACION <= fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Select con.TOTAL).Sum()
                     End If
                     If dtRegistro.Columns.Count > 0 Then
                         dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = ""
@@ -38,7 +38,7 @@
                     Else
                         band = rpt.Section2.ReportObjects("txtSerie") : band.Text = "%Todos%"
                     End If
-                    rpt.SetDataSource((From ent In db.ENTRADAS Join ser In db.SERIES On ser.IDSERIE Equals ent.IDSERIE Join det In db.DETALLES_ENTRADAS On ent.IDENTRADA Equals det.IDENTRADA Join exi In db.EXISTENCIAS On det.IDEXISTENCIA Equals exi.IDEXISTENCIA Join pro In db.PRODUCTOS On exi.IDPRODUCTO Equals pro.IDPRODUCTO Join mar In db.MARCAS On pro.IDMARCA Equals mar.IDMARCA Where ent.FECHAENTRADA >= fecha1 And ent.FECHAENTRADA <= fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By ent.N Select ent.IDENTRADA, SERIE = ser.NOMBRE, ent.CONSECUTIVO, ent.FECHAENTRADA, ent.OBSERVACION, ent.TOTAL, pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, MARCA = mar.DESCRIPCION, pro.IDUNIDAD, COSTO_UNITARIO = det.COSTO, det.CANTIDAD, SUBTOTAL = det.TOTAL).ToList)
+                    rpt.SetDataSource((From ent In db.Entradas Join ser In db.Series On ser.IDSERIE Equals ent.IDSERIE Join det In db.EntradasDetalles On ent.IDENTRADA Equals det.IDENTRADA Join exi In db.Existencias On det.IDEXISTENCIA Equals exi.IDEXISTENCIA Join pro In db.Productos On exi.IDPRODUCTO Equals pro.IDPRODUCTO Join mar In db.Marcas On pro.IDMARCA Equals mar.IDMARCA Where ent.FECHAENTRADA >= fecha1 And ent.FECHAENTRADA <= fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) And ser.IDSERIE.Contains(seriep) Order By ent.N Select ent.IDENTRADA, SERIE = ser.NOMBRE, ent.CONSECUTIVO, ent.FECHAENTRADA, ent.OBSERVACION, ent.TOTAL, pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, MARCA = mar.DESCRIPCION, pro.IDUNIDAD, COSTO_UNITARIO = det.COSTO, det.CANTIDAD, SUBTOTAL = det.TOTAL).ToList)
                     CrystalReportViewer1.ReportSource = rpt
                     CrystalReportViewer1.Zoom(75)
                     rpt = Nothing : band = Nothing
@@ -52,11 +52,11 @@
     Sub llenarDetalle(ByVal id As String)
         Try
             Using db As New CodeFirst
-                Dim consignacion = (From con In db.CONSIGNACIONES Join ser In db.SERIES On con.IDSERIE Equals ser.IDSERIE Where con.IDCONSIGNACION = id Select con.IDCONSIGNACION, SERIE = ser.NOMBRE, con.CONSECUTIVO, con.ANULADO).FirstOrDefault()
+                Dim consignacion = (From con In db.Consignaciones Join ser In db.Series On con.IDSERIE Equals ser.IDSERIE Where con.IDCONSIGNACION = id Select con.IDCONSIGNACION, SERIE = ser.NOMBRE, con.CONSECUTIVO, con.ANULADO).FirstOrDefault()
                 If Not consignacion Is Nothing Then
                     If consignacion.ANULADO = "N" Then
                         ExpandablePanel1.TitleText = "Mostrar detalle de la consignación '" & consignacion.SERIE & " - " & consignacion.CONSECUTIVO & "'"
-                        dtDetalle.DataSource = (From mar In db.MARCAS Join pro In db.PRODUCTOS On mar.IDMARCA Equals pro.IDMARCA Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_CONSIGNACIONES On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDCONSIGNACION = id Select pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, MARCA = If(pro.MARCA.ACTIVO = "S", pro.MARCA.DESCRIPCION, "SIN ESPECIFICAR"), UNIDAD_DE_MEDIDA = If(pro.UNIDAD_DE_MEDIDA.ACTIVO = "S", pro.UNIDAD_DE_MEDIDA.DESCRIPCION, "SIN ESPECIFICAR"), det.CANTIDAD).ToList
+                        dtDetalle.DataSource = (From mar In db.Marcas Join pro In db.Productos On mar.IDMARCA Equals pro.IDMARCA Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.ConsignacionesDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDCONSIGNACION = id Select pro.IDALTERNO, pro.IDORIGINAL, pro.DESCRIPCION, MARCA = If(pro.Marca.ACTIVO = "S", pro.Marca.DESCRIPCION, "SIN ESPECIFICAR"), UNIDAD_DE_MEDIDA = If(pro.UnidadMedida.ACTIVO = "S", pro.UnidadMedida.DESCRIPCION, "SIN ESPECIFICAR"), det.CANTIDAD).ToList
                         If dtDetalle.Columns.Count > 0 Then
                             dtDetalle.Columns(5).DefaultCellStyle.Format = Config.f_m
                         End If
@@ -80,7 +80,7 @@
             dtpFechaInicial.Value = DateTime.Now
             dtpFechaFinal.Value = DateTime.Now
             Using db As New CodeFirst
-                cmbBodega.DataSource = (From bod In db.BODEGAS Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
+                cmbBodega.DataSource = (From bod In db.Bodegas Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
                 cmbSerie.DataSource = Nothing
             End Using
 
@@ -108,7 +108,7 @@
     Sub llenarserie(ByVal bodega As String)
         Try
             Using db As New CodeFirst
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.ACTIVO = "S" And f.OPERACION = "ENTRADA" And f.IDBODEGA = bodega).ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.ACTIVO = "S" And f.OPERACION = "ENTRADA" And f.IDBODEGA = bodega).ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)

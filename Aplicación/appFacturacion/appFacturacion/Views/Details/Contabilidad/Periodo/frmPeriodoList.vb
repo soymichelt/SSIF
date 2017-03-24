@@ -3,7 +3,7 @@
     Public Sub PeriodoList()
         Try
             Using db As New CodeFirst
-                Dim consulta = (From p In db.PERIODOS Where p.ACTIVO = "S" Select p.IDPERIODO, p.Reg, p.INICIO, p.FINAL, p.APERTURA, p.CIERRE)
+                Dim consulta = (From p In db.Periodos Where p.ACTIVO = "S" Select p.IDPERIODO, p.Reg, p.INICIO, p.FINAL, p.APERTURA, p.CIERRE)
                 dtRegistro.DataSource = consulta.ToList
                 If dtRegistro.Columns.Count > 0 Then
                     With dtRegistro
@@ -36,7 +36,7 @@
             Try
                 Using db As New CodeFirst
                     Dim id = dtRegistro.SelectedRows(0).Cells(0).Value.ToString
-                    Dim p = db.PERIODOS.Where(Function(f) f.IDPERIODO = id).FirstOrDefault
+                    Dim p = db.Periodos.Where(Function(f) f.IDPERIODO = id).FirstOrDefault
                     If Not p Is Nothing Then
                         Select Case Me.FrmReturn
                             Case 0

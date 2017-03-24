@@ -80,7 +80,7 @@
     Function generarCodigo(ByVal serie As String) As String
         Try
             Using db As New CodeFirst
-                Dim recibo = db.RECIBOS.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
+                Dim recibo = db.VentasRecibos.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
                 If Not recibo Is Nothing Then
                     cod = recibo.CONSECUTIVO
                     If Not cod.Trim = "" Then
@@ -118,7 +118,7 @@
 
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
-                Config._Taza = db.TAZAS.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
                 If Not Config._Taza Is Nothing Then
                     Config.tazadecambio = Config._Taza.CAMBIO
                 Else
@@ -170,7 +170,7 @@
                 If txtIdSerie.Text <> "" Then
                     If Not txtNCliente.Text.Trim() = "" Then
                         Using db As New CodeFirst
-                            Dim cliente = db.CLIENTES.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                            Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not cliente Is Nothing Then
                                 'cargar otros datos del cliente
                                 If cliente.LIMITECREDITO <= 0 Then
@@ -198,7 +198,7 @@
                             frmBuscarClientes.ShowDialog()
                             If Not txtIdCliente.Text.Trim() = "" Then
                                 Using db As New CodeFirst
-                                    Dim cliente = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                                    Dim cliente = db.Clientes.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                                     If Not cliente Is Nothing Then
                                         'cargar otros datos del cliente
                                         If cliente.LIMITECREDITO <= 0 Then
@@ -238,7 +238,7 @@
                 frmBuscarClientes.ShowDialog()
                 If Not txtIdCliente.Text.Trim() = "" Then
                     Using db As New CodeFirst
-                        Dim cliente = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
+                        Dim cliente = db.Clientes.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not cliente Is Nothing Then
                             'cargar otros datos del cliente
                             If cliente.LIMITECREDITO <= 0 Then
@@ -332,7 +332,7 @@
                 If Not txtIdCliente.Text.Trim() = "" Then
                     If Not txtIdFactura.Text.Trim = "" Then
                         Using db As New CodeFirst
-                            Dim v = (From ven In db.VENTAS Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Where ven.ANULADO = "N" And ven.IDVENTA = txtIdFactura.Text Select ven, ser).FirstOrDefault()
+                            Dim v = (From ven In db.Ventas Join ser In db.Series On ven.IDSERIE Equals ser.IDSERIE Where ven.ANULADO = "N" And ven.IDVENTA = txtIdFactura.Text Select ven, ser).FirstOrDefault()
                             If Not v Is Nothing Then
                                 If v.ven.SALDOCREDITO >= If(v.ven.MONEDA.Equals(Config.cordoba), If(rdCordoba.Checked, (txtMonto.Value + txtDescuento.Value), (txtMonto.Value + txtDescuento.Value) * txtTazaCambio.Value), If(rdDolar.Checked, (txtMonto.Value + txtDescuento.Value), (txtMonto.Value + txtDescuento.Value) / txtTazaCambio.Value)) Then
                                     Dim d = detalles.Where(Function(f) f.IDVENTA = v.ven.IDVENTA).FirstOrDefault()
@@ -455,16 +455,16 @@
                                 Else
                                     dtpFecha.Value = DateTime.Parse(dtpFecha.Text & " " & DateTime.Now.ToString("HH:mm:ss"))
                                 End If
-                                Dim recibo As New RECIBO : recibo.Reg = DateTime.Now : recibo.IDRECIBO = Guid.NewGuid.ToString() : recibo.IDSERIE = txtIdSerie.Text : recibo.CONSECUTIVO = txtCodigo.Text : recibo.FECHARECIBO = dtpFecha.Value : recibo.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : recibo.TAZACAMBIO = txtTazaCambio.Value : recibo.FORMADEPAGO = "Sin Especificar" : recibo.N_PAGO = "" : recibo.CONCEPTO = txtObservacion.Text : recibo.IMPORTETOTAL_C = detalles.Sum(Function(f) f.IMPORTE_C) : recibo.IMPORTETOTAL_D = detalles.Sum(Function(f) f.IMPORTE_D) : recibo.DESCUENTOTOTAL_C = detalles.Sum(Function(f) f.DESCUENTO_C) : recibo.DESCUENTOTOTAL_D = detalles.Sum(Function(f) f.DESCUENTO_D) : recibo.SOBRANTEDECAJA_C = txtSobrantedeCaja.Value : recibo.MONTOTOTAL_C = txtMontoTotal.Value : recibo.IDEMPLEADO = txtIdVendedor.Text : recibo.IDCLIENTE = txtIdCliente.Text : recibo.REIMPRESION = "N" : recibo.ANULADO = "N" : db.RECIBOS.Add(recibo)
-                                Dim cont As Integer = 0 : Dim v As VENTA
+                                Dim recibo As New VentaRecibo : recibo.Reg = DateTime.Now : recibo.IDRECIBO = Guid.NewGuid.ToString() : recibo.IDSERIE = txtIdSerie.Text : recibo.CONSECUTIVO = txtCodigo.Text : recibo.FECHARECIBO = dtpFecha.Value : recibo.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : recibo.TAZACAMBIO = txtTazaCambio.Value : recibo.FORMADEPAGO = "Sin Especificar" : recibo.N_PAGO = "" : recibo.CONCEPTO = txtObservacion.Text : recibo.IMPORTETOTAL_C = detalles.Sum(Function(f) f.IMPORTE_C) : recibo.IMPORTETOTAL_D = detalles.Sum(Function(f) f.IMPORTE_D) : recibo.DESCUENTOTOTAL_C = detalles.Sum(Function(f) f.DESCUENTO_C) : recibo.DESCUENTOTOTAL_D = detalles.Sum(Function(f) f.DESCUENTO_D) : recibo.SOBRANTEDECAJA_C = txtSobrantedeCaja.Value : recibo.MONTOTOTAL_C = txtMontoTotal.Value : recibo.IDEMPLEADO = txtIdVendedor.Text : recibo.IDCLIENTE = txtIdCliente.Text : recibo.REIMPRESION = "N" : recibo.ANULADO = "N" : db.VentasRecibos.Add(recibo)
+                                Dim cont As Integer = 0 : Dim v As Venta
 
                                 '******************Ciclo para recorrer el detalle*******************
                                 For Each i In Me.detalles
-                                    v = db.VENTAS.Where(Function(f) f.ANULADO = "N" And f.IDVENTA = i.IDVENTA).FirstOrDefault
+                                    v = db.Ventas.Where(Function(f) f.ANULADO = "N" And f.IDVENTA = i.IDVENTA).FirstOrDefault
                                     If Not v Is Nothing Then
                                         If v.SALDOCREDITO > 0 Then
                                             If v.SALDOCREDITO >= If(v.MONEDA.Equals(Config.cordoba), i.IMPORTE_C + i.DESCUENTO_C, i.IMPORTE_D + i.DESCUENTO_D) Then
-                                                Dim d As New DETALLE_RECIBO : d.IDDETALLERECIBO = Guid.NewGuid.ToString() : d.IDVENTA = v.IDVENTA : d.SALDOCREDITO = v.SALDOCREDITO : d.OPERACION = i.OPERACION : d.IMPORTE_C = i.IMPORTE_C : d.IMPORTE_D = i.IMPORTE_D : d.DESCUENTO_C = i.DESCUENTO_C : d.DESCUENTO_D = i.DESCUENTO_D : d.NUEVO_SALDO_C = If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * txtTazaCambio.Value) - i.IMPORTE_C - i.DESCUENTO_C : d.NUEVO_SALDO_D = If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / txtTazaCambio.Value, v.SALDOCREDITO) - i.IMPORTE_D - i.DESCUENTO_D : d.IDRECIBO = recibo.IDRECIBO : db.DETALLES_RECIBOS.Add(d)
+                                                Dim d As New VentaReciboDetalle : d.IDDETALLERECIBO = Guid.NewGuid.ToString() : d.IDVENTA = v.IDVENTA : d.SALDOCREDITO = v.SALDOCREDITO : d.OPERACION = i.OPERACION : d.IMPORTE_C = i.IMPORTE_C : d.IMPORTE_D = i.IMPORTE_D : d.DESCUENTO_C = i.DESCUENTO_C : d.DESCUENTO_D = i.DESCUENTO_D : d.NUEVO_SALDO_C = If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * txtTazaCambio.Value) - i.IMPORTE_C - i.DESCUENTO_C : d.NUEVO_SALDO_D = If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / txtTazaCambio.Value, v.SALDOCREDITO) - i.IMPORTE_D - i.DESCUENTO_D : d.IDRECIBO = recibo.IDRECIBO : db.VentasRecibosDetalles.Add(d)
                                                 v.SALDOCREDITO = If(v.MONEDA.Equals(Config.cordoba), d.NUEVO_SALDO_C, d.NUEVO_SALDO_D)
                                                 db.Entry(v).State = EntityState.Modified
                                                 If v.SALDOCREDITO <= 0 Then
@@ -473,12 +473,12 @@
                                                     d.OPERACION = "A"
                                                 End If
                                                 If v.MONEDA.Equals(Config.cordoba) Then
-                                                    v.CLIENTE.FACTURADO_C = v.CLIENTE.FACTURADO_C - d.IMPORTE_C - d.DESCUENTO_C
+                                                    v.Cliente.FACTURADO_C = v.Cliente.FACTURADO_C - d.IMPORTE_C - d.DESCUENTO_C
                                                 Else
-                                                    v.CLIENTE.FACTURADO_D = v.CLIENTE.FACTURADO_D - d.IMPORTE_D - d.DESCUENTO_D
+                                                    v.Cliente.FACTURADO_D = v.Cliente.FACTURADO_D - d.IMPORTE_D - d.DESCUENTO_D
                                                 End If
-                                                db.Entry(v.CLIENTE).State = EntityState.Modified
-                                                Dim estado As New ESTADO_DE_CUENTA : estado.IDESTADO = Guid.NewGuid.ToString() : estado.IDSERIE = recibo.IDSERIE : estado.N_DOCUMENTO = recibo.CONSECUTIVO : estado.OPERACION = "R/C" : estado.FECHA = recibo.FECHARECIBO : estado.PLAZO = 0 : estado.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : estado.TAZACAMBIO = txtTazaCambio.Value : estado.DEBE_C = 0.0 : estado.DEBE_D = 0.0 : estado.HABER_C = d.IMPORTE_C + d.DESCUENTO_C : estado.HABER_D = d.IMPORTE_D + d.DESCUENTO_D : estado.ACTIVO = "S" : estado.IDVENTA = v.IDVENTA : estado.IDRECIBO = recibo.IDRECIBO : db.ESTADOS_DE_CUENTAS.Add(estado) : estado = Nothing
+                                                db.Entry(v.Cliente).State = EntityState.Modified
+                                                Dim estado As New VentaEstadoCuenta : estado.IDESTADO = Guid.NewGuid.ToString() : estado.IDSERIE = recibo.IDSERIE : estado.N_DOCUMENTO = recibo.CONSECUTIVO : estado.OPERACION = "R/C" : estado.FECHA = recibo.FECHARECIBO : estado.PLAZO = 0 : estado.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : estado.TAZACAMBIO = txtTazaCambio.Value : estado.DEBE_C = 0.0 : estado.DEBE_D = 0.0 : estado.HABER_C = d.IMPORTE_C + d.DESCUENTO_C : estado.HABER_D = d.IMPORTE_D + d.DESCUENTO_D : estado.ACTIVO = "S" : estado.IDVENTA = v.IDVENTA : estado.IDRECIBO = recibo.IDRECIBO : db.VentasEstadosCuentas.Add(estado) : estado = Nothing
                                                 d = Nothing
                                                 cont = cont + 1 'incrementar contador
                                             Else
@@ -519,20 +519,20 @@
         End If
     End Sub
 
-    Private Sub LoadMov(ByVal v As RECIBO)
+    Private Sub LoadMov(ByVal v As VentaRecibo)
         Try
             Me.FormLoad = False
             Me.Id = v.IDRECIBO
             txtIdSerie.Text = v.IDSERIE
-            txtSerie.Text = v.SERIE.NOMBRE
+            txtSerie.Text = v.Serie.NOMBRE
             txtCodigo.Text = v.CONSECUTIVO
             txtCodigo.Enabled = False
             dtpFecha.Text = v.FECHARECIBO.ToShortDateString()
-            txtIdVendedor.Text = v.EMPLEADO.IDEMPLEADO
-            txtNombreVendedor.Text = v.EMPLEADO.N_TRABAJADOR & " | " & v.EMPLEADO.NOMBRES & " " & v.EMPLEADO.APELLIDOS
-            If v.DETALLES_RECIBOS.Count > 0 Then
-                txtIdCliente.Text = v.DETALLES_RECIBOS(0).VENTA.CLIENTE.IDCLIENTE
-                txtNombreCliente.Text = v.DETALLES_RECIBOS(0).VENTA.CLIENTE.N_CLIENTE & " | " & v.DETALLES_RECIBOS(0).VENTA.CLIENTE.NOMBRES & " " & v.DETALLES_RECIBOS(0).VENTA.CLIENTE.APELLIDOS
+            txtIdVendedor.Text = v.Empleado.IDEMPLEADO
+            txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " | " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
+            If v.VentasRecibosDetalles.Count > 0 Then
+                txtIdCliente.Text = v.VentasRecibosDetalles(0).Venta.Cliente.IDCLIENTE
+                txtNombreCliente.Text = v.VentasRecibosDetalles(0).Venta.Cliente.N_CLIENTE & " | " & v.VentasRecibosDetalles(0).Venta.Cliente.NOMBRES & " " & v.VentasRecibosDetalles(0).Venta.Cliente.APELLIDOS
             End If
             txtObservacion.Text = v.CONCEPTO
             txtMontoTotal.Text = v.MONTOTOTAL_C
@@ -547,17 +547,17 @@
                 rdDolar.Checked = True
             End If
             Dim item As LST_DETALLE_RECIBO
-            For Each d In v.DETALLES_RECIBOS
+            For Each d In v.VentasRecibosDetalles
                 item = New LST_DETALLE_RECIBO
-                item.IDVENTA = d.VENTA.IDVENTA
-                item.SERIE = d.VENTA.SERIE.NOMBRE
-                item.CONSECUTIVO = d.VENTA.CONSECUTIVO
-                item.FECHA = d.VENTA.FECHAFACTURA
-                item.MONEDA = d.VENTA.MONEDA
-                item.SUBTOTAL_C = d.VENTA.SUBTOTAL_C : item.SUBTOTAL_D = d.VENTA.SUBTOTAL_D
-                item.DESCUENTO_DIN_TOTAL_C = d.VENTA.DESCUENTO_DIN_C : item.DESCUENTO_DIN_TOTAL_D = d.VENTA.DESCUENTO_DIN_D
-                item.IVA_DIN_TOTAL_C = d.VENTA.IVA_DIN_C : item.IVA_DIN_TOTAL_D = d.VENTA.IVA_DIN_D
-                item.TOTAL_C = d.VENTA.TOTAL_C : item.TOTAL_D = d.VENTA.TOTAL_D
+                item.IDVENTA = d.Venta.IDVENTA
+                item.SERIE = d.Venta.Serie.NOMBRE
+                item.CONSECUTIVO = d.Venta.CONSECUTIVO
+                item.FECHA = d.Venta.FECHAFACTURA
+                item.MONEDA = d.Venta.MONEDA
+                item.SUBTOTAL_C = d.Venta.SUBTOTAL_C : item.SUBTOTAL_D = d.Venta.SUBTOTAL_D
+                item.DESCUENTO_DIN_TOTAL_C = d.Venta.DESCUENTO_DIN_C : item.DESCUENTO_DIN_TOTAL_D = d.Venta.DESCUENTO_DIN_D
+                item.IVA_DIN_TOTAL_C = d.Venta.IVA_DIN_C : item.IVA_DIN_TOTAL_D = d.Venta.IVA_DIN_D
+                item.TOTAL_C = d.Venta.TOTAL_C : item.TOTAL_D = d.Venta.TOTAL_D
                 item.SALDOCREDITO = d.SALDOCREDITO
 
                 item.OPERACION = d.OPERACION
@@ -580,12 +580,12 @@
         End Try
     End Sub
 
-    Public Sub LoadInfo(Optional ByVal vInt As RECIBO = Nothing, Optional ByVal ByInt As Boolean = False)
+    Public Sub LoadInfo(Optional ByVal vInt As VentaRecibo = Nothing, Optional ByVal ByInt As Boolean = False)
         Try
             If txtIdSerie.Text <> "" Then
                 If Not ByInt Then
                     Using db As New CodeFirst
-                        Dim v = db.RECIBOS.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
+                        Dim v = db.VentasRecibos.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
                         If Not v Is Nothing Then
                             If v.ANULADO = "N" Then
                                 Me.LoadMov(v)
@@ -617,24 +617,24 @@
             If MessageBox.Show("¿Desea anular esta Recibo?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                 If Not Me.Id.Trim = "" Then
                     Using db As New CodeFirst
-                        Dim r = db.RECIBOS.Where(Function(f) f.IDRECIBO = Me.Id And f.ANULADO = "N").FirstOrDefault()
+                        Dim r = db.VentasRecibos.Where(Function(f) f.IDRECIBO = Me.Id And f.ANULADO = "N").FirstOrDefault()
                         If Not r Is Nothing Then
                             If Config.ValidarPeriodo(r.FECHARECIBO) Then
                                 r.ANULADO = "S" : db.Entry(r).State = EntityState.Modified
-                                For Each est In db.ESTADOS_DE_CUENTAS.Where(Function(f) f.IDRECIBO IsNot Nothing).Where(Function(f) f.IDRECIBO = r.IDRECIBO)
+                                For Each est In db.VentasEstadosCuentas.Where(Function(f) f.IDRECIBO IsNot Nothing).Where(Function(f) f.IDRECIBO = r.IDRECIBO)
                                     est.ACTIVO = "N" : db.Entry(est).State = EntityState.Modified
                                 Next
-                                For Each d_r In r.DETALLES_RECIBOS
-                                    Dim v = db.VENTAS.Where(Function(f) f.IDVENTA = d_r.IDVENTA).FirstOrDefault()
+                                For Each d_r In r.VentasRecibosDetalles
+                                    Dim v = db.Ventas.Where(Function(f) f.IDVENTA = d_r.IDVENTA).FirstOrDefault()
                                     If Not v Is Nothing Then
                                         If v.MONEDA.Equals(Config.cordoba) Then
-                                            v.CLIENTE.FACTURADO_C = v.CLIENTE.FACTURADO_C + d_r.IMPORTE_C + d_r.DESCUENTO_C
+                                            v.Cliente.FACTURADO_C = v.Cliente.FACTURADO_C + d_r.IMPORTE_C + d_r.DESCUENTO_C
                                             v.SALDOCREDITO = v.SALDOCREDITO + d_r.IMPORTE_C + d_r.DESCUENTO_C
                                         Else
-                                            v.CLIENTE.FACTURADO_D = v.CLIENTE.FACTURADO_D + d_r.IMPORTE_D + d_r.DESCUENTO_D
+                                            v.Cliente.FACTURADO_D = v.Cliente.FACTURADO_D + d_r.IMPORTE_D + d_r.DESCUENTO_D
                                             v.SALDOCREDITO = v.SALDOCREDITO + d_r.IMPORTE_D + d_r.DESCUENTO_D
                                         End If
-                                        db.Entry(v.CLIENTE).State = EntityState.Modified : db.Entry(v).State = EntityState.Modified
+                                        db.Entry(v.Cliente).State = EntityState.Modified : db.Entry(v).State = EntityState.Modified
                                     End If
                                 Next
                                 db.SaveChanges() : limpiar() : MessageBox.Show("Recibo Anulado")
@@ -694,19 +694,19 @@
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
         Try
             Using db As New CodeFirst
-                Dim v = db.RECIBOS.Where(Function(f) f.IDRECIBO = Me.Id).FirstOrDefault
+                Dim v = db.VentasRecibos.Where(Function(f) f.IDRECIBO = Me.Id).FirstOrDefault
                 If Not v Is Nothing Then
                     If v.ANULADO = "N" Then
                         Dim t As TicketClass = New TicketClass
                         If t.ImpresoraExistente(Config.PrintName) Then
                             t.EncabezadoPredefinido("RECIBO DE VENTA", If(v.REIMPRESION.Equals("S"), "REIMPRESIÓN", "ORIGINAL"))
 
-                            t.AnadirLineaSubcabeza(t.AlinearElementos("N° RECIBO: " & v.CONSECUTIVO, v.SERIE.NOMBRE))
+                            t.AnadirLineaSubcabeza(t.AlinearElementos("N° RECIBO: " & v.CONSECUTIVO, v.Serie.NOMBRE))
                             t.AnadirLineaSubcabeza("FECHA:   " & v.FECHARECIBO.ToShortDateString())
-                            t.AnadirLineaSubcabeza("CÓDIGO:  " & If(v.CLIENTE IsNot Nothing, v.CLIENTE.N_CLIENTE, ""))
-                            t.AnadirLineaSubcabeza("CLIENTE: " & v.CLIENTE.NOMBRES & " " & v.CLIENTE.APELLIDOS)
-                            t.AnadirLineaSubcabeza("R. SOC.: " & v.CLIENTE.RAZONSOCIAL)
-                            t.AnadirLineaSubcabeza("ATENDIÓ: " & v.EMPLEADO.NOMBRES & " " & v.EMPLEADO.APELLIDOS)
+                            t.AnadirLineaSubcabeza("CÓDIGO:  " & If(v.Cliente IsNot Nothing, v.Cliente.N_CLIENTE, ""))
+                            t.AnadirLineaSubcabeza("CLIENTE: " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS)
+                            t.AnadirLineaSubcabeza("R. SOC.: " & v.Cliente.RAZONSOCIAL)
+                            t.AnadirLineaSubcabeza("ATENDIÓ: " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS)
                             t.AnadirEspacio()
                             t.AnadirElemento(t.Linea5())
                             t.AnadirElemento("FACT.     SALDO     IMPOR     DESC")
@@ -714,7 +714,7 @@
                             t.AnadirEspacio()
 
                             t.DetalleSeparador()
-                            For Each i In From ven In db.VENTAS Join det In db.DETALLES_RECIBOS On ven.IDVENTA Equals det.IDVENTA Where det.IDRECIBO = v.IDRECIBO Select SERIE = ven.SERIE.NOMBRE, ven.CONSECUTIVO, ven.FECHAFACTURA, ven.MONEDA, TOTAL = If(ven.MONEDA.Equals(Config.cordoba), ven.TOTAL_C, ven.TOTAL_D), det.SALDOCREDITO, OPERACION = If(det.OPERACION.Equals("C"), "Cancelar", "Abonar"), IMPORTE = If(v.MONEDA.Equals(Config.cordoba), det.IMPORTE_C, det.IMPORTE_D), DESCUENTO = If(v.MONEDA.Equals(Config.cordoba), det.DESCUENTO_C, det.DESCUENTO_D), NUEVO_SALDO = If(v.MONEDA.Equals(Config.cordoba), det.NUEVO_SALDO_C, det.NUEVO_SALDO_D)
+                            For Each i In From ven In db.Ventas Join det In db.VentasRecibosDetalles On ven.IDVENTA Equals det.IDVENTA Where det.IDRECIBO = v.IDRECIBO Select SERIE = ven.Serie.NOMBRE, ven.CONSECUTIVO, ven.FECHAFACTURA, ven.MONEDA, TOTAL = If(ven.MONEDA.Equals(Config.cordoba), ven.TOTAL_C, ven.TOTAL_D), det.SALDOCREDITO, OPERACION = If(det.OPERACION.Equals("C"), "Cancelar", "Abonar"), IMPORTE = If(v.MONEDA.Equals(Config.cordoba), det.IMPORTE_C, det.IMPORTE_D), DESCUENTO = If(v.MONEDA.Equals(Config.cordoba), det.DESCUENTO_C, det.DESCUENTO_D), NUEVO_SALDO = If(v.MONEDA.Equals(Config.cordoba), det.NUEVO_SALDO_C, det.NUEVO_SALDO_D)
                                 t.AnadirElemento(i.SERIE & " - " & i.CONSECUTIVO)
                                 t.AnadirElementoTotales(i.SALDOCREDITO.ToString(Config.f_m), i.IMPORTE.ToString(Config.f_m), i.DESCUENTO.ToString(Config.f_m))
                                 t.AnadirEspacio()
@@ -735,7 +735,7 @@
                             t.AnadeLineaAlPie("           FIRMA DEL CLIENTE")
                             '//El metodo AddFooterLine funciona igual que la cabecera 
                             t.AnadeLineaAlPie("*******GRACIAS POR TU VISITA******")
-                            t.AnadeLineaAlPie(t.Centrar(v.SERIE.BODEGA.DESCRIPCION, "", ""))
+                            t.AnadeLineaAlPie(t.Centrar(v.Serie.Bodega.DESCRIPCION, "", ""))
 
                             '//Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un 
                             '//parametro de tipo string que debe de ser el nombre de la impresora. 
@@ -851,7 +851,7 @@
                 If txtIdSerie.Text <> "" Then
                     Using db As New CodeFirst
                         If Not txtNVendedor.Text.Trim() = "" Then
-                            Dim vendedor = db.EMPLEADOS.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text And f.CONTABILIDAD And f.ACTIVO = "S").FirstOrDefault()
+                            Dim vendedor = db.Empleados.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text And f.CONTABILIDAD And f.ACTIVO = "S").FirstOrDefault()
                             If Not vendedor Is Nothing Then
                                 txtIdVendedor.Text = vendedor.IDEMPLEADO
                                 txtNombreVendedor.Text = vendedor.N_TRABAJADOR & " | " & vendedor.NOMBRES & " " & vendedor.APELLIDOS

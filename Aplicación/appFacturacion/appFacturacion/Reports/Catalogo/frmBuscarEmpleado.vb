@@ -6,7 +6,7 @@
         Try
             Using db As New CodeFirst
                 If dtRegistro.Visible Then
-                    dtRegistro.DataSource = (From ven In db.EMPLEADOS Where ven.ACTIVO = "S" And ven.N_TRABAJADOR.Contains(codigo) And (ven.NOMBRES & " " & ven.APELLIDOS).Contains(nombre) Select ven.IDEMPLEADO, ven.N_TRABAJADOR, ven.IDENTIFICACION, NOMBRES = ven.NOMBRES & " " & ven.APELLIDOS, VENTA = If(ven.VENTA, "VENTA", ""), COMPRA = If(ven.COMPRA, "COMPRA", ""), INVENTARIO = If(ven.INVENTARIO, "INVENTARIO", ""), CONTABILIDAD = If(ven.CONTABILIDAD, "CONTABILIDAD", ""), ven.TELEFONO, ven.DOMICILIO).ToList()
+                    dtRegistro.DataSource = (From ven In db.Empleados Where ven.ACTIVO = "S" And ven.N_TRABAJADOR.Contains(codigo) And (ven.NOMBRES & " " & ven.APELLIDOS).Contains(nombre) Select ven.IDEMPLEADO, ven.N_TRABAJADOR, ven.IDENTIFICACION, NOMBRES = ven.NOMBRES & " " & ven.APELLIDOS, VENTA = If(ven.VENTA, "VENTA", ""), COMPRA = If(ven.COMPRA, "COMPRA", ""), INVENTARIO = If(ven.INVENTARIO, "INVENTARIO", ""), CONTABILIDAD = If(ven.CONTABILIDAD, "CONTABILIDAD", ""), ven.TELEFONO, ven.DOMICILIO).ToList()
                     If dtRegistro.Columns.Count > 0 Then
                         dtRegistro.Columns(0).Visible = False
                         dtRegistro.Columns(1).Width = 150 : dtRegistro.Columns(1).HeaderText = vbNewLine & "N° EMPLEADO" & vbNewLine
@@ -35,7 +35,7 @@
                     Else
                         band = rpt.Section2.ReportObjects("txtCodigo") : band.Text = "%Todos%"
                     End If
-                    rpt.SetDataSource((From tra In db.EMPLEADOS Where tra.N_TRABAJADOR.Contains(codigo) And (tra.NOMBRES & " " & tra.APELLIDOS).Contains(nombre) Select N_VENDEDOR = tra.N_TRABAJADOR, tra.IDENTIFICACION, tra.NOMBRES, tra.APELLIDOS, VENTA = If(tra.VENTA, "VENTA", ""), COMPRA = If(tra.COMPRA, "COMPRA", ""), INVENTARIO = If(tra.INVENTARIO, "INVENTARIO", ""), CONTABILIDAD = If(tra.CONTABILIDAD, "CONTABILIDAD", ""), tra.TELEFONO, tra.DOMICILIO, tra.OBSERVACION).ToList)
+                    rpt.SetDataSource((From tra In db.Empleados Where tra.N_TRABAJADOR.Contains(codigo) And (tra.NOMBRES & " " & tra.APELLIDOS).Contains(nombre) Select N_VENDEDOR = tra.N_TRABAJADOR, tra.IDENTIFICACION, tra.NOMBRES, tra.APELLIDOS, VENTA = If(tra.VENTA, "VENTA", ""), COMPRA = If(tra.COMPRA, "COMPRA", ""), INVENTARIO = If(tra.INVENTARIO, "INVENTARIO", ""), CONTABILIDAD = If(tra.CONTABILIDAD, "CONTABILIDAD", ""), tra.TELEFONO, tra.DOMICILIO, tra.OBSERVACION).ToList)
                     CrystalReportViewer1.ReportSource = rpt
                     CrystalReportViewer1.Zoom(75)
                     rpt = Nothing : band = Nothing
@@ -66,7 +66,7 @@
             Try
                 Using db As New CodeFirst
                     Dim id = dtRegistro.SelectedRows(0).Cells(0).Value.ToString
-                    Dim v = db.EMPLEADOS.Where(Function(f) f.ACTIVO = "S" And f.IDEMPLEADO = id).FirstOrDefault()
+                    Dim v = db.Empleados.Where(Function(f) f.ACTIVO = "S" And f.IDEMPLEADO = id).FirstOrDefault()
                     If Not v Is Nothing Then
                         Select Case frm_return
                             Case 0

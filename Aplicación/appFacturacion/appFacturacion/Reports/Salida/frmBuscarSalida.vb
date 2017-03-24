@@ -7,7 +7,7 @@
             Using db As New CodeFirst
                 lvRegistro.Items.Clear()
                 Dim item As New ListViewItem
-                For Each salida In From sal In db.SALIDAS Join ser In db.SERIES On sal.IDSERIE Equals ser.IDSERIE Where sal.ANULADO = "N" And sal.IDSERIE = Me.idserie And sal.FECHASALIDA >= fecha1 And sal.FECHASALIDA <= fecha2 Select ser, sal Order By sal.FECHASALIDA
+                For Each salida In From sal In db.Salidas Join ser In db.Series On sal.IDSERIE Equals ser.IDSERIE Where sal.ANULADO = "N" And sal.IDSERIE = Me.idserie And sal.FECHASALIDA >= fecha1 And sal.FECHASALIDA <= fecha2 Select ser, sal Order By sal.FECHASALIDA
                     item = lvRegistro.Items.Add(salida.sal.IDSALIDA)
                     item.SubItems.Add(salida.ser.NOMBRE)
                     item.SubItems.Add(salida.sal.CONSECUTIVO)
@@ -34,7 +34,7 @@
         Try
             Using db As New CodeFirst
                 Dim idsalida As String = lvRegistro.SelectedItems(0).Text
-                Dim salida = db.SALIDAS.Where(Function(f) f.IDSALIDA = idsalida).FirstOrDefault()
+                Dim salida = db.Salidas.Where(Function(f) f.IDSALIDA = idsalida).FirstOrDefault()
                 If Not salida Is Nothing Then
                     If salida.ANULADO = "N" Then
                         frmSalida.txtCodigo.Text = salida.CONSECUTIVO
@@ -42,11 +42,11 @@
                         frmSalida.txtConcepto.Text = salida.OBSERVACION
                         Dim item As New ListViewItem
                         frmSalida.lvRegistro.Items.Clear()
-                        For Each detalle In salida.DETALLES_SALIDAS
+                        For Each detalle In salida.SalidasDetalles
                             item = frmSalida.lvRegistro.Items.Add(detalle.IDEXISTENCIA)
-                            item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.IDALTERNO)
-                            item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.IDORIGINAL)
-                            item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.DESCRIPCION)
+                            item.SubItems.Add(detalle.Existencia.Producto.IDALTERNO)
+                            item.SubItems.Add(detalle.Existencia.Producto.IDORIGINAL)
+                            item.SubItems.Add(detalle.Existencia.Producto.DESCRIPCION)
                             item.SubItems.Add(detalle.EXISTENCIA_PRODUCTO.ToString(Config.f_m))
                             item.SubItems.Add(detalle.CANTIDAD.ToString(Config.f_m))
                             item.SubItems.Add(detalle.COSTO.ToString(Config.f_m))

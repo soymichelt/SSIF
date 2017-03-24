@@ -5,13 +5,13 @@
     Sub List(ByVal fecha1 As DateTime, ByVal fecha2 As DateTime, Optional ByVal transaccion As String = "", Optional ByVal sucursal As String = "", Optional ByVal producto As String = "")
         Try
             Using db As New CodeFirst
-                Dim p As PRODUCTO
+                Dim p As Producto
                 If Not producto.Trim = "" Then
-                    p = db.PRODUCTOS.Where(Function(f) f.IDALTERNO = Me.producto).FirstOrDefault
+                    p = db.Productos.Where(Function(f) f.IDALTERNO = Me.producto).FirstOrDefault
                 End If
                 If p Is Nothing Then
                     If dtRegistro.Visible Then
-                        Dim consulta = From kar In db.KARDEXS Join ser In db.SERIES On kar.IDSERIE Equals ser.IDSERIE Join exi In db.EXISTENCIAS On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.BODEGAS On exi.IDBODEGA Equals bod.IDBODEGA
+                        Dim consulta = From kar In db.Kardexs Join ser In db.Series On kar.IDSERIE Equals ser.IDSERIE Join exi In db.Existencias On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.Bodegas On exi.IDBODEGA Equals bod.IDBODEGA
                             Where kar.ACTIVO = "S" And kar.FECHADOCUMENTO >= fecha1 And kar.FECHADOCUMENTO <= fecha2 And kar.OPERACION.Contains(transaccion) And bod.IDBODEGA.Contains(sucursal)
                             Order By kar.FECHADOCUMENTO, kar.N
                             Select BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION, SERIE = ser.NOMBRE, kar.N_DOCUMENTO, kar.FECHADOCUMENTO, OPERACION = (If(kar.OPERACION = "VENTA CREDITO", "V/Cr.", If(kar.OPERACION = "VENTA CONTADO", "V/Co.", If(kar.OPERACION = "VENTA", "Vent.", If(kar.OPERACION = "COMPRA CREDITO", "C/Cre.", If(kar.OPERACION = "COMPRA CONTADO", "C/Co.", If(kar.OPERACION = "COMPRA", "Comp.", If(kar.OPERACION = "ENTRADA", "Ent.", If(kar.OPERACION = "SALIDA", "Sal.", If(kar.OPERACION = "TRASLADO", "Tras.", If(kar.OPERACION = "DEVOLUCION VENTA", "D/Vent.", If(kar.OPERACION = "DEVOLUCION COMPRA", "D/Comp.", kar.OPERACION)))))))))))),
@@ -42,7 +42,7 @@
                         txtIdAlterno.Clear()
                     Else
                         'Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION, SERIE = ser.NOMBRE, kar.N_DOCUMENTO, kar.FECHADOCUMENTO, OPERACION = (If(kar.OPERACION = "VENTA CREDITO", "V/Cr.", If(kar.OPERACION = "VENTA CONTADO", "V/Co.", If(kar.OPERACION = "VENTA", "Vent.", If(kar.OPERACION = "COMPRA CREDITO", "C/Cre.", If(kar.OPERACION = "COMPRA CONTADO", "C/Co.", If(kar.OPERACION = "COMPRA", "Comp.", If(kar.OPERACION = "ENTRADA", "Ent.", If(kar.OPERACION = "SALIDA", "Sal.", If(kar.OPERACION = "TRASLADO", "Tras.", If(kar.OPERACION = "DEVOLUCION VENTA", "D/Vent.", If(kar.OPERACION = "DEVOLUCION COMPRA", "D/Comp.", If(kar.OPERACION = "CONSIGNACION", "Consig.", If(kar.OPERACION = "DESCONSIGNACION", "Desconsig.", "")))))))))))))),
-                        Dim consulta = From kar In db.KARDEXS Join ser In db.SERIES On kar.IDSERIE Equals ser.IDSERIE Join exi In db.EXISTENCIAS On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.BODEGAS On exi.IDBODEGA Equals bod.IDBODEGA
+                        Dim consulta = From kar In db.Kardexs Join ser In db.Series On kar.IDSERIE Equals ser.IDSERIE Join exi In db.Existencias On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.Bodegas On exi.IDBODEGA Equals bod.IDBODEGA
                             Where kar.ACTIVO = "S" And kar.FECHADOCUMENTO >= fecha1 And kar.FECHADOCUMENTO <= fecha2 And kar.OPERACION.Contains(transaccion) And bod.IDBODEGA.Contains(sucursal)
                             Order By kar.FECHADOCUMENTO, kar.N
                             Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION, SERIE = ser.NOMBRE, kar.N_DOCUMENTO, kar.FECHADOCUMENTO, OPERACION = (If(kar.OPERACION = "VENTA CREDITO", "V/Cr.", If(kar.OPERACION = "VENTA CONTADO", "V/Co.", If(kar.OPERACION = "VENTA", "Vent.", If(kar.OPERACION = "COMPRA CREDITO", "C/Cre.", If(kar.OPERACION = "COMPRA CONTADO", "C/Co.", If(kar.OPERACION = "COMPRA", "Comp.", If(kar.OPERACION = "ENTRADA", "Ent.", If(kar.OPERACION = "SALIDA", "Sal.", If(kar.OPERACION = "TRASLADO", "Tras.", If(kar.OPERACION = "DEVOLUCION VENTA", "D/Vent.", If(kar.OPERACION = "DEVOLUCION COMPRA", "D/Comp.", kar.OPERACION)))))))))))),
@@ -72,8 +72,8 @@
                 Else
                     lblArticulo.Text = "ARTICULO: <font color='#C0504D'>" & p.IDALTERNO & " - " & p.DESCRIPCION & "</font>"
                     If dtRegistro.Visible Then
-                        Dim consulta = From kar In db.KARDEXS Join ser In db.SERIES On kar.IDSERIE Equals ser.IDSERIE Join exi In db.EXISTENCIAS On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.BODEGAS On exi.IDBODEGA Equals bod.IDBODEGA
-                            Where kar.ACTIVO = "S" And exi.PRODUCTO.IDALTERNO = producto And kar.FECHADOCUMENTO >= fecha1 And kar.FECHADOCUMENTO <= fecha2 And kar.OPERACION.Contains(transaccion) And bod.IDBODEGA.Contains(sucursal)
+                        Dim consulta = From kar In db.Kardexs Join ser In db.Series On kar.IDSERIE Equals ser.IDSERIE Join exi In db.Existencias On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.Bodegas On exi.IDBODEGA Equals bod.IDBODEGA
+                            Where kar.ACTIVO = "S" And exi.Producto.IDALTERNO = producto And kar.FECHADOCUMENTO >= fecha1 And kar.FECHADOCUMENTO <= fecha2 And kar.OPERACION.Contains(transaccion) And bod.IDBODEGA.Contains(sucursal)
                             Order By kar.FECHADOCUMENTO, kar.N
                             Select BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION, SERIE = ser.NOMBRE, kar.N_DOCUMENTO, kar.FECHADOCUMENTO, OPERACION = (If(kar.OPERACION = "VENTA CREDITO", "V/Cr.", If(kar.OPERACION = "VENTA CONTADO", "V/Co.", If(kar.OPERACION = "VENTA", "Vent.", If(kar.OPERACION = "COMPRA CREDITO", "C/Cre.", If(kar.OPERACION = "COMPRA CONTADO", "C/Co.", If(kar.OPERACION = "COMPRA", "Comp.", If(kar.OPERACION = "ENTRADA", "Ent.", If(kar.OPERACION = "SALIDA", "Sal.", If(kar.OPERACION = "TRASLADO", "Tras.", If(kar.OPERACION = "DEVOLUCION VENTA", "D/Vent.", If(kar.OPERACION = "DEVOLUCION COMPRA", "D/Comp.", kar.OPERACION)))))))))))),
                             kar.DESCRIPCION, kar.ENTRADA, kar.SALIDA, EXISTENCIA = kar.EXISTENCIA_ALMACEN, CMONEDA = If(kar.CMONEDA.Equals(Config.cordoba), "C$", "$"), kar.COSTO, kar.TAZACAMBIO, kar.COSTO_PROMEDIO, MONEDA = If(kar.MONEDA.Equals(Config.cordoba), "C$", If(kar.MONEDA.Equals(Config.dolar), "$", "")), PRECIO = If(kar.MONEDA.Equals(Config.cordoba), kar.PRECIO_C, If(kar.MONEDA.Equals(Config.dolar), kar.PRECIO_D, 0.0)), kar.DEBER, kar.HABER, kar.SALDO
@@ -103,7 +103,7 @@
                         txtIdAlterno.Clear()
                     Else
                         'Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION, SERIE = ser.NOMBRE, kar.N_DOCUMENTO, kar.FECHADOCUMENTO, OPERACION = (If(kar.OPERACION = "VENTA CREDITO", "V/Cr.", If(kar.OPERACION = "VENTA CONTADO", "V/Co.", If(kar.OPERACION = "VENTA", "Vent.", If(kar.OPERACION = "COMPRA CREDITO", "C/Cre.", If(kar.OPERACION = "COMPRA CONTADO", "C/Co.", If(kar.OPERACION = "COMPRA", "Comp.", If(kar.OPERACION = "ENTRADA", "Ent.", If(kar.OPERACION = "SALIDA", "Sal.", If(kar.OPERACION = "TRASLADO", "Tras.", If(kar.OPERACION = "DEVOLUCION VENTA", "D/Vent.", If(kar.OPERACION = "DEVOLUCION COMPRA", "D/Comp.", If(kar.OPERACION = "CONSIGNACION", "Consig.", If(kar.OPERACION = "DESCONSIGNACION", "Desconsig.", "")))))))))))))),
-                        Dim consulta = From kar In db.KARDEXS Join ser In db.SERIES On kar.IDSERIE Equals ser.IDSERIE Join exi In db.EXISTENCIAS On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.BODEGAS On exi.IDBODEGA Equals bod.IDBODEGA Where kar.ACTIVO = "S" And exi.PRODUCTO.IDALTERNO = producto And kar.FECHADOCUMENTO >= fecha1 And kar.FECHADOCUMENTO <= fecha2 And kar.OPERACION.Contains(transaccion) And bod.IDBODEGA.Contains(sucursal) Order By kar.FECHADOCUMENTO, kar.N
+                        Dim consulta = From kar In db.Kardexs Join ser In db.Series On kar.IDSERIE Equals ser.IDSERIE Join exi In db.Existencias On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Join bod In db.Bodegas On exi.IDBODEGA Equals bod.IDBODEGA Where kar.ACTIVO = "S" And exi.Producto.IDALTERNO = producto And kar.FECHADOCUMENTO >= fecha1 And kar.FECHADOCUMENTO <= fecha2 And kar.OPERACION.Contains(transaccion) And bod.IDBODEGA.Contains(sucursal) Order By kar.FECHADOCUMENTO, kar.N
                         Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION, SERIE = ser.NOMBRE, kar.N_DOCUMENTO, kar.FECHADOCUMENTO, OPERACION = (If(kar.OPERACION = "VENTA CREDITO", "V/Cr.", If(kar.OPERACION = "VENTA CONTADO", "V/Co.", If(kar.OPERACION = "VENTA", "Vent.", If(kar.OPERACION = "COMPRA CREDITO", "C/Cre.", If(kar.OPERACION = "COMPRA CONTADO", "C/Co.", If(kar.OPERACION = "COMPRA", "Comp.", If(kar.OPERACION = "ENTRADA", "Ent.", If(kar.OPERACION = "SALIDA", "Sal.", If(kar.OPERACION = "TRASLADO", "Tras.", If(kar.OPERACION = "DEVOLUCION VENTA", "D/Vent.", If(kar.OPERACION = "DEVOLUCION COMPRA", "D/Comp.", kar.OPERACION)))))))))))),
                         kar.DESCRIPCION, kar.ENTRADA, kar.SALIDA, EXISTENCIA = kar.EXISTENCIA_ALMACEN, kar.CMONEDA, kar.COSTO, kar.COSTO_PROMEDIO, kar.PRECIO_C, kar.DEBER, kar.HABER, kar.SALDO
                         Dim rpt As New rptKardex
@@ -142,7 +142,7 @@
             dtpFecha2.Value = DateTime.Now
             cmbOperacion.SelectedIndex = 0
             Using db As New CodeFirst
-                cmbBodega.DataSource = (From bod In db.BODEGAS Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "BODEGA" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
+                cmbBodega.DataSource = (From bod In db.Bodegas Select bod.IDBODEGA, BODEGA = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.DisplayMember = "BODEGA" : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)

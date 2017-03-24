@@ -5,7 +5,7 @@
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From tra In db.TRASLADOS Join ser In db.SERIES On ser.IDSERIE Equals tra.IDSERIE Join bod In db.BODEGAS On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And tra.FECHATRASLADO >= finicio And tra.FECHATRASLADO <= ffin Select ANULADO = If(tra.ANULADO.Equals("S"), "Anulado", ""), tra.IDTRASLADO, SERIE = ser.NOMBRE, tra.CONSECUTIVO, tra.FECHATRASLADO, N_EMPLEADO = If(tra.ANULADO.Equals(Config.vFalse), tra.EMPLEADO.N_TRABAJADOR, ""), EMPLEADO = If(tra.ANULADO.Equals(Config.vFalse), tra.EMPLEADO.NOMBRES & " " & tra.EMPLEADO.APELLIDOS, ""), OBSERVACION = If(tra.ANULADO.Equals("N"), tra.CONCEPTO, ""), REFERENCIA = If(tra.ANULADO.Equals(Config.vFalse), tra.REFERENCIA, ""), TOTAL = If(tra.ANULADO.Equals("N"), tra.TOTAL, Nothing)).ToList()
+                dtRegistro.DataSource = (From tra In db.Traslados Join ser In db.Series On ser.IDSERIE Equals tra.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And tra.FECHATRASLADO >= finicio And tra.FECHATRASLADO <= ffin Select ANULADO = If(tra.ANULADO.Equals("S"), "Anulado", ""), tra.IDTRASLADO, SERIE = ser.NOMBRE, tra.CONSECUTIVO, tra.FECHATRASLADO, N_EMPLEADO = If(tra.ANULADO.Equals(Config.vFalse), tra.Empleado.N_TRABAJADOR, ""), EMPLEADO = If(tra.ANULADO.Equals(Config.vFalse), tra.Empleado.NOMBRES & " " & tra.Empleado.APELLIDOS, ""), OBSERVACION = If(tra.ANULADO.Equals("N"), tra.CONCEPTO, ""), REFERENCIA = If(tra.ANULADO.Equals(Config.vFalse), tra.REFERENCIA, ""), TOTAL = If(tra.ANULADO.Equals("N"), tra.TOTAL, Nothing)).ToList()
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = ""
                     dtRegistro.Columns(1).Visible = False
@@ -31,7 +31,7 @@
         Try
             Using db As New CodeFirst
                 'llenar series
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "TRASLADO").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "TRASLADO").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                 dtpFechaInicial.Value = DateTime.Now
                 dtpFechaFinal.Value = DateTime.Now
                 llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), )
@@ -48,13 +48,13 @@
                 If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                     Dim serie As String = cmbSerie.Text
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "TRASLADO").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "TRASLADO").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                     cmbSerie.Text = serie
                     serie = Nothing
                 Else
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "TRASLADO").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "TRASLADO").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                 End If
             End Using
@@ -82,7 +82,7 @@
         If dtRegistro.SelectedRows.Count > 0 Then
             Try
                 Using db As New CodeFirst
-                    Dim idtraslado As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim traslado = db.TRASLADOS.Where(Function(f) f.IDTRASLADO = idtraslado).FirstOrDefault()
+                    Dim idtraslado As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim traslado = db.Traslados.Where(Function(f) f.IDTRASLADO = idtraslado).FirstOrDefault()
                     If Not traslado Is Nothing Then
                         If traslado.ANULADO = "N" Then
                             Select Case frm_return

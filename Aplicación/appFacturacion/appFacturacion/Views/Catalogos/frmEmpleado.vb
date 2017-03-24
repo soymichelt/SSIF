@@ -37,17 +37,17 @@
                 Exit Sub
             End If
             Using db As New CodeFirst
-                If Not db.EMPLEADOS.Where(Function(f) f.N_TRABAJADOR = txtCodTrabajador.Text.Trim).Count() = 0 Then
+                If Not db.Empleados.Where(Function(f) f.N_TRABAJADOR = txtCodTrabajador.Text.Trim).Count() = 0 Then
                     MessageBox.Show("Ya existe un empleado con este Código.")
                     txtCodTrabajador.Focus()
                     Exit Sub
                 End If
-                If Not db.EMPLEADOS.Where(Function(f) f.IDENTIFICACION = txtCedula.Text.Trim).Count() = 0 Then
+                If Not db.Empleados.Where(Function(f) f.IDENTIFICACION = txtCedula.Text.Trim).Count() = 0 Then
                     MessageBox.Show("Ya existe un empleado con esta Cédula.")
                     txtCedula.Focus()
                     Exit Sub
                 End If
-                db.EMPLEADOS.Add(New EMPLEADO With {.Reg = DateTime.Now, .IDEMPLEADO = Guid.NewGuid.ToString, .N_TRABAJADOR = txtCodTrabajador.Text, .SEXO = If(rdMasculino.Checked, "Masculino", "Femenino"), .NOMBRES = txtNombres.Text, .APELLIDOS = txtApellidos.Text, .TELEFONO = txtTelefono.Text, .IDENTIFICACION = txtCedula.Text, .DOMICILIO = txtDomicilio.Text, .OBSERVACION = txtObservacion.Text, .CORREO = txtCorreo.Text, .VENTA = chkVentas.Checked, .COMPRA = chkCompras.Checked, .INVENTARIO = chkInventario.Checked, .CONTABILIDAD = chkContabilidad.Checked, .ACTIVO = "S"})
+                db.Empleados.Add(New Empleado With {.Reg = DateTime.Now, .IDEMPLEADO = Guid.NewGuid.ToString, .N_TRABAJADOR = txtCodTrabajador.Text, .SEXO = If(rdMasculino.Checked, "Masculino", "Femenino"), .NOMBRES = txtNombres.Text, .APELLIDOS = txtApellidos.Text, .TELEFONO = txtTelefono.Text, .IDENTIFICACION = txtCedula.Text, .DOMICILIO = txtDomicilio.Text, .OBSERVACION = txtObservacion.Text, .CORREO = txtCorreo.Text, .VENTA = chkVentas.Checked, .COMPRA = chkCompras.Checked, .INVENTARIO = chkInventario.Checked, .CONTABILIDAD = chkContabilidad.Checked, .ACTIVO = "S"})
                 db.SaveChanges()
             End Using
             limpiar()
@@ -72,17 +72,17 @@
                 Exit Sub
             End If
             Using db As New CodeFirst
-                If Not db.EMPLEADOS.Where(Function(f) f.IDEMPLEADO <> txtCodigo.Text And f.N_TRABAJADOR = txtCodTrabajador.Text.Trim).Count() = 0 Then
+                If Not db.Empleados.Where(Function(f) f.IDEMPLEADO <> txtCodigo.Text And f.N_TRABAJADOR = txtCodTrabajador.Text.Trim).Count() = 0 Then
                     MessageBox.Show("Ya existe un empleado con este Código.")
                     txtCodTrabajador.Focus()
                     Exit Sub
                 End If
-                If Not db.EMPLEADOS.Where(Function(f) f.IDEMPLEADO <> txtCodigo.Text And f.IDENTIFICACION = txtCedula.Text.Trim).Count() = 0 Then
+                If Not db.Empleados.Where(Function(f) f.IDEMPLEADO <> txtCodigo.Text And f.IDENTIFICACION = txtCedula.Text.Trim).Count() = 0 Then
                     MessageBox.Show("Ya existe un empleado con esta Cédula.")
                     txtCedula.Focus()
                     Exit Sub
                 End If
-                Dim t = db.EMPLEADOS.Where(Function(f) f.IDEMPLEADO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault
+                Dim t = db.Empleados.Where(Function(f) f.IDEMPLEADO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault
                 If Not t Is Nothing Then
                     With t
                         .N_TRABAJADOR = txtCodTrabajador.Text
@@ -117,7 +117,7 @@
         If MessageBox.Show("¿Desea eliminar este empleado?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) = Windows.Forms.DialogResult.Yes Then
             Try
                 Using db As New CodeFirst
-                    Dim t = db.EMPLEADOS.Where(Function(f) f.IDEMPLEADO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                    Dim t = db.Empleados.Where(Function(f) f.IDEMPLEADO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                     If Not t Is Nothing Then
                         t.ACTIVO = "N"
                         db.Entry(t).State = EntityState.Modified
@@ -165,7 +165,7 @@
         If e.KeyData = Keys.Enter Then
             If txtCodTrabajador.Text.Trim() <> "" Then
                 Using db As New CodeFirst
-                    Dim t = db.EMPLEADOS.Where(Function(f) f.N_TRABAJADOR = txtCodTrabajador.Text).FirstOrDefault()
+                    Dim t = db.Empleados.Where(Function(f) f.N_TRABAJADOR = txtCodTrabajador.Text).FirstOrDefault()
                     If t Is Nothing Then
                         txtNombres.Focus()
                     Else

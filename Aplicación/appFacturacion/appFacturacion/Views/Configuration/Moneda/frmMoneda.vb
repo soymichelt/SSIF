@@ -3,7 +3,7 @@
     Sub llenar()
         Try
             Using db As New CodeFirst
-                Dim t = (From taz In db.TAZAS Select taz.IDTAZA, taz.FECHA, taz.CAMBIO Order By FECHA).ToList()
+                Dim t = (From taz In db.Tazas Select taz.IDTAZA, taz.FECHA, taz.CAMBIO Order By FECHA).ToList()
                 txtTazadecambio.Value = If(Not t.LastOrDefault Is Nothing, t.LastOrDefault.CAMBIO, 27.0)
                 dtRegistro.DataSource = t
                 If dtRegistro.Columns.Count > 0 Then
@@ -40,7 +40,7 @@
             If Not txtTazadecambio.Text.Trim() = "" Then
                 If txtTazadecambio.Value > 0 Then
                     Using db As New CodeFirst
-                        Dim taza As New TAZA : taza.IDTAZA = Guid.NewGuid.ToString() : taza.FECHA = DateTime.Now : taza.CAMBIO = txtTazadecambio.Value : db.TAZAS.Add(taza)
+                        Dim taza As New Taza : taza.IDTAZA = Guid.NewGuid.ToString() : taza.FECHA = DateTime.Now : taza.CAMBIO = txtTazadecambio.Value : db.Tazas.Add(taza)
                         db.SaveChanges()
                         taza = Nothing
                     End Using
@@ -75,7 +75,7 @@
             If dtRegistro.SelectedRows.Count > 0 Then
                 Using db As New CodeFirst
                     Dim idtaza = dtRegistro.SelectedRows(0).Cells(0).Value.ToString()
-                    Dim taza = db.TAZAS.Where(Function(f) f.IDTAZA = idtaza).FirstOrDefault
+                    Dim taza = db.Tazas.Where(Function(f) f.IDTAZA = idtaza).FirstOrDefault
                     If Not taza Is Nothing Then
                         txtCodigo.Text = taza.IDTAZA
                         txtTazadecambio.Value = taza.CAMBIO
@@ -100,7 +100,7 @@
             If Not txtTazadecambio.Text.Trim() = "" Then
                 If txtTazadecambio.Value > 0 Then
                     Using db As New CodeFirst
-                        Dim moneda = db.TAZAS.Where(Function(f) f.IDTAZA = txtCodigo.Text).FirstOrDefault
+                        Dim moneda = db.Tazas.Where(Function(f) f.IDTAZA = txtCodigo.Text).FirstOrDefault
                         If Not moneda Is Nothing Then
                             moneda.CAMBIO = Decimal.Parse(txtTazadecambio.Text) : db.Entry(moneda).State = EntityState.Modified
                             db.SaveChanges()
@@ -126,7 +126,7 @@
     Private Sub btEliminar_Click(sender As Object, e As EventArgs) Handles btEliminar.Click
         Try
             Using db As New CodeFirst
-                Dim taza = db.TAZAS.Where(Function(f) f.IDTAZA = txtCodigo.Text).FirstOrDefault
+                Dim taza = db.Tazas.Where(Function(f) f.IDTAZA = txtCodigo.Text).FirstOrDefault
                 If Not taza Is Nothing Then
                     db.SaveChanges()
                     taza = Nothing

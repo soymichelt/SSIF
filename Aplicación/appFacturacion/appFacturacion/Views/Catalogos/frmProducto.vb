@@ -60,10 +60,10 @@
             cmbFacturarConPrecio.SelectedIndex = 0
             Limpiar()
             Using db As New CodeFirst
-                cmbMarca.DataSource = db.MARCAS.Where(Function(f) f.ACTIVO = "S").ToList() : cmbMarca.DisplayMember = "DESCRIPCION" : cmbMarca.ValueMember = "IDMARCA" : cmbMarca.SelectedIndex = -1
-                cmbUnidaddemedida.DataSource = db.UNIDADES_DE_MEDIDAS.Where(Function(f) f.ACTIVO = "S").ToList() : cmbUnidaddemedida.DisplayMember = "DESCRIPCION" : cmbUnidaddemedida.ValueMember = "IDUNIDAD" : cmbUnidaddemedida.SelectedIndex = -1
-                cmbPresentacion.DataSource = db.PRESENTACIONES.Where(Function(f) f.ACTIVO = "S").ToList() : cmbPresentacion.DisplayMember = "DESCRIPCION" : cmbPresentacion.ValueMember = "IDPRESENTACION" : cmbPresentacion.SelectedIndex = -1
-                cmbLaboratorio.DataSource = db.LABORATORIOS.Where(Function(f) f.ACTIVO = "S").ToList() : cmbLaboratorio.DisplayMember = "DESCRIPCION" : cmbLaboratorio.ValueMember = "IDLABORATORIO" : cmbLaboratorio.SelectedIndex = -1
+                cmbMarca.DataSource = db.Marcas.Where(Function(f) f.ACTIVO = "S").ToList() : cmbMarca.DisplayMember = "DESCRIPCION" : cmbMarca.ValueMember = "IDMARCA" : cmbMarca.SelectedIndex = -1
+                cmbUnidaddemedida.DataSource = db.UnidadesMedidas.Where(Function(f) f.ACTIVO = "S").ToList() : cmbUnidaddemedida.DisplayMember = "DESCRIPCION" : cmbUnidaddemedida.ValueMember = "IDUNIDAD" : cmbUnidaddemedida.SelectedIndex = -1
+                cmbPresentacion.DataSource = db.Presentaciones.Where(Function(f) f.ACTIVO = "S").ToList() : cmbPresentacion.DisplayMember = "DESCRIPCION" : cmbPresentacion.ValueMember = "IDPRESENTACION" : cmbPresentacion.SelectedIndex = -1
+                cmbLaboratorio.DataSource = db.Laboratorios.Where(Function(f) f.ACTIVO = "S").ToList() : cmbLaboratorio.DisplayMember = "DESCRIPCION" : cmbLaboratorio.ValueMember = "IDLABORATORIO" : cmbLaboratorio.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error," & ex.Message)
@@ -80,7 +80,7 @@
         Try
             If txtAlterno.Text.Trim <> "" And txtOriginal.Text.Trim <> "" And (Not cmbMarca.SelectedValue Is Nothing And Not cmbMarca.SelectedIndex = -1) And (Not cmbUnidaddemedida.SelectedValue Is Nothing And Not cmbUnidaddemedida.SelectedIndex = -1) And (Not cmbPresentacion.SelectedValue Is Nothing And Not cmbPresentacion.SelectedIndex = -1) And (Not cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1) And Not txtDescripcion.Text.Trim = "" And Not txtCosto.Text = "" And Not txtPrecio1.Text = "" And Not txtPrecio2.Text = "" And Not txtPrecio3.Text = "" And Not txtPrecio4.Text = "" And Not txtContiene.Text = "" And Not txtCantidadMinima.Text = "" And Not txtCantidadMaxima.Text = "" And Not txtDescuentoMaximo.Text = "" Then
                 Using db As New CodeFirst
-                    If db.PRODUCTOS.Where(Function(f) f.IDALTERNO = txtAlterno.Text.Trim).Count() = 0 Then
+                    If db.Productos.Where(Function(f) f.IDALTERNO = txtAlterno.Text.Trim).Count() = 0 Then
                         If txtCantidadMinima.Value > txtCantidadMaxima.Value Then
                             MessageBox.Show("La cantidad mínima no puede ser mayor que la cantidad máxima.")
                             Exit Sub
@@ -95,10 +95,10 @@
                             MessageBox.Show("El costo debe ser un número mayor que 0")
                             Exit Sub
                         End If
-                        Dim producto As New PRODUCTO : producto.Reg = DateTime.Now : producto.IDPRODUCTO = Guid.NewGuid.ToString() : producto.IDALTERNO = txtAlterno.Text : producto.IDORIGINAL = txtOriginal.Text : producto.IDMARCA = cmbMarca.SelectedValue.ToString() : producto.DESCRIPCION = txtDescripcion.Text : producto.MODELO = txtModelo.Text : producto.APLICACION = txtAplicacion.Text : producto.OBSERVACION = txtObservacion.Text : producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : producto.COSTO = Decimal.Parse(txtCosto.Text) : producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = Decimal.Parse(txtPrecio1.Text) : producto.PRECIO2 = Decimal.Parse(txtPrecio2.Text) : producto.PRECIO3 = Decimal.Parse(txtPrecio3.Text) : producto.PRECIO4 = Decimal.Parse(txtPrecio4.Text) : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = Decimal.Parse(txtContiene.Text) : producto.CANTIDAD_MINIMA = Decimal.Parse(txtCantidadMinima.Text) : producto.CANTIDAD_MAXIMA = Decimal.Parse(txtCantidadMaxima.Text) : producto.DESCUENTO_MAXIMO = Decimal.Parse(txtDescuentoMaximo.Text) : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.CANTIDAD = 0 : producto.SALDO = 0 : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked : If txtIdProveedor.Text.Trim <> "" Then : producto.IDPROVEEDOR = txtIdProveedor.Text : End If : producto.ACTIVO = "S"
-                        For Each bodega In db.BODEGAS
-                            Dim existencia As New EXISTENCIA : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
-                            db.EXISTENCIAS.Add(existencia)
+                        Dim producto As New Producto : producto.Reg = DateTime.Now : producto.IDPRODUCTO = Guid.NewGuid.ToString() : producto.IDALTERNO = txtAlterno.Text : producto.IDORIGINAL = txtOriginal.Text : producto.IDMARCA = cmbMarca.SelectedValue.ToString() : producto.DESCRIPCION = txtDescripcion.Text : producto.MODELO = txtModelo.Text : producto.APLICACION = txtAplicacion.Text : producto.OBSERVACION = txtObservacion.Text : producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : producto.COSTO = Decimal.Parse(txtCosto.Text) : producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = Decimal.Parse(txtPrecio1.Text) : producto.PRECIO2 = Decimal.Parse(txtPrecio2.Text) : producto.PRECIO3 = Decimal.Parse(txtPrecio3.Text) : producto.PRECIO4 = Decimal.Parse(txtPrecio4.Text) : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = Decimal.Parse(txtContiene.Text) : producto.CANTIDAD_MINIMA = Decimal.Parse(txtCantidadMinima.Text) : producto.CANTIDAD_MAXIMA = Decimal.Parse(txtCantidadMaxima.Text) : producto.DESCUENTO_MAXIMO = Decimal.Parse(txtDescuentoMaximo.Text) : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.CANTIDAD = 0 : producto.SALDO = 0 : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked : If txtIdProveedor.Text.Trim <> "" Then : producto.IDPROVEEDOR = txtIdProveedor.Text : End If : producto.ACTIVO = "S"
+                        For Each bodega In db.Bodegas
+                            Dim existencia As New Existencia : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
+                            db.Existencias.Add(existencia)
                         Next
                         Try
                             If Not txtImagen.Text.Trim() = "" Then
@@ -117,7 +117,7 @@
                         Catch ex As Exception
                             MessageBox.Show("Error al guardar la imagen. Error, " & ex.Message)
                         End Try
-                        db.PRODUCTOS.Add(producto) : producto = Nothing
+                        db.Productos.Add(producto) : producto = Nothing
                         db.SaveChanges() : Limpiar() : MessageBox.Show("Producto guardado")
                     Else
                         MessageBox.Show("Error, No puede crear este producto por que el codigo alterno ya lo posee otro producto.")
@@ -210,7 +210,7 @@
         Try
             If txtAlterno.Text.Trim <> "" And txtOriginal.Text.Trim <> "" And (Not cmbMarca.SelectedValue Is Nothing And Not cmbMarca.SelectedIndex = -1) And (Not cmbUnidaddemedida.SelectedValue Is Nothing And Not cmbUnidaddemedida.SelectedIndex = -1) And (Not cmbPresentacion.SelectedValue Is Nothing And Not cmbPresentacion.SelectedIndex = -1) And (Not cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1) And Not txtDescripcion.Text.Trim = "" And Not txtCosto.Text = "" And Not txtPrecio1.Text = "" And Not txtPrecio2.Text = "" And Not txtPrecio3.Text = "" And Not txtPrecio4.Text = "" And Not txtContiene.Text = "" And Not txtCantidadMinima.Text = "" And Not txtCantidadMaxima.Text = "" And Not txtDescuentoMaximo.Text = "" Then
                 Using db As New CodeFirst
-                    If db.PRODUCTOS.Where(Function(f) f.IDPRODUCTO <> txtCodigo.Text And f.IDALTERNO = txtAlterno.Text.Trim()).Count() = 0 Then
+                    If db.Productos.Where(Function(f) f.IDPRODUCTO <> txtCodigo.Text And f.IDALTERNO = txtAlterno.Text.Trim()).Count() = 0 Then
                         If txtCantidadMinima.Value > txtCantidadMaxima.Value Then
                             MessageBox.Show("La cantidad mínima no puede ser mayor que la cantidad máxima.")
                             Exit Sub
@@ -221,7 +221,7 @@
                                 Exit Sub
                             End If
                         End If
-                        Dim producto = db.PRODUCTOS.Where(Function(f) f.IDPRODUCTO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                        Dim producto = db.Productos.Where(Function(f) f.IDPRODUCTO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not producto Is Nothing Then
                             producto.IDALTERNO = txtAlterno.Text : producto.IDORIGINAL = txtOriginal.Text : producto.IDMARCA = cmbMarca.SelectedValue.ToString() : producto.DESCRIPCION = txtDescripcion.Text : producto.MODELO = txtModelo.Text : producto.APLICACION = txtAplicacion.Text : producto.OBSERVACION = txtObservacion.Text : If txtIdProveedor.Text.Trim <> "" Then : producto.IDPROVEEDOR = txtIdProveedor.Text : Else : producto.IDPROVEEDOR = Nothing : End If
                             If MessageBox.Show("¿Descartar cambios en el Costo?", "Pregunta de seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
@@ -346,7 +346,7 @@
         Try
             If MessageBox.Show("¿Desea eliminar este Producto?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                 Using db As New CodeFirst
-                    Dim producto = db.PRODUCTOS.Where(Function(f) f.IDPRODUCTO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                    Dim producto = db.Productos.Where(Function(f) f.IDPRODUCTO = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                     If Not producto Is Nothing Then
                         producto.ACTIVO = "N"
                         db.Entry(producto).State = EntityState.Modified
@@ -366,7 +366,7 @@
             If Not txtAlterno.Text.Trim = "" Then
                 Try
                     Using db As New CodeFirst
-                        Dim producto = db.PRODUCTOS.Where(Function(f) f.IDALTERNO = txtAlterno.Text).FirstOrDefault()
+                        Dim producto = db.Productos.Where(Function(f) f.IDALTERNO = txtAlterno.Text).FirstOrDefault()
                         If producto Is Nothing Then
                             txtOriginal.Focus()
                         Else
@@ -375,8 +375,8 @@
                             txtCodigo.Text = producto.IDPRODUCTO
                             txtAlterno.Text = producto.IDALTERNO
                             txtOriginal.Text = producto.IDORIGINAL
-                            If producto.MARCA.ACTIVO = "S" Then
-                                cmbMarca.Text = producto.MARCA.DESCRIPCION
+                            If producto.Marca.ACTIVO = "S" Then
+                                cmbMarca.Text = producto.Marca.DESCRIPCION
                             Else
                                 cmbMarca.Text = ""
                             End If
@@ -390,25 +390,25 @@
                             txtPrecio2.Text = producto.PRECIO2.ToString(Config.f_m)
                             txtPrecio3.Text = producto.PRECIO3.ToString(Config.f_m)
                             txtPrecio4.Text = producto.PRECIO4.ToString(Config.f_m)
-                            If producto.UNIDAD_DE_MEDIDA.ACTIVO = "S" Then
-                                cmbUnidaddemedida.Text = producto.UNIDAD_DE_MEDIDA.DESCRIPCION
+                            If producto.UnidadMedida.ACTIVO = "S" Then
+                                cmbUnidaddemedida.Text = producto.UnidadMedida.DESCRIPCION
                             Else
                                 cmbUnidaddemedida.Text = ""
                             End If
                             txtContiene.Value = producto.CONTIENE
-                            If producto.PRESENTACION.ACTIVO = "S" Then
-                                cmbPresentacion.Text = producto.PRESENTACION.DESCRIPCION
+                            If producto.Presentacion.ACTIVO = "S" Then
+                                cmbPresentacion.Text = producto.Presentacion.DESCRIPCION
                             Else
                                 cmbPresentacion.Text = ""
                             End If
-                            If producto.LABORATORIO.ACTIVO = "S" Then
-                                cmbLaboratorio.Text = producto.LABORATORIO.DESCRIPCION
+                            If producto.Laboratorio.ACTIVO = "S" Then
+                                cmbLaboratorio.Text = producto.Laboratorio.DESCRIPCION
                             Else
                                 cmbLaboratorio.Text = ""
                             End If
                             If Not producto.IDPROVEEDOR Is Nothing Then
                                 txtIdProveedor.Text = producto.IDPROVEEDOR
-                                txtProveedor.Text = producto.PROVEEDOR.N_PROVEEDOR & " | " & producto.PROVEEDOR.NOMBRES & " " & producto.PROVEEDOR.APELLIDOS & If(producto.PROVEEDOR.RAZONSOCIAL.Trim <> "", " // " & producto.PROVEEDOR.RAZONSOCIAL, "")
+                                txtProveedor.Text = producto.Proveedor.N_PROVEEDOR & " | " & producto.Proveedor.NOMBRES & " " & producto.Proveedor.APELLIDOS & If(producto.Proveedor.RAZONSOCIAL.Trim <> "", " // " & producto.Proveedor.RAZONSOCIAL, "")
                             Else
                                 txtIdProveedor.Clear()
                                 txtProveedor.Clear()
@@ -494,11 +494,11 @@
                 Else
                     Try
                         Using db As New CodeFirst
-                            If db.MARCAS.Where(Function(f) f.DESCRIPCION = cmbMarca.Text.Trim).Count() > 0 Then
+                            If db.Marcas.Where(Function(f) f.DESCRIPCION = cmbMarca.Text.Trim).Count() > 0 Then
                                 btActualizarMarca_Click(Nothing, Nothing)
                             Else
                                 If MessageBox.Show("No se encuentra esta marca ¿Desea crearlo?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                                    Dim marca As New MARCA : marca.IDMARCA = Guid.NewGuid.ToString : marca.DESCRIPCION = cmbMarca.Text : marca.ACTIVO = "S" : db.MARCAS.Add(marca) : db.SaveChanges() : marca = Nothing
+                                    Dim marca As New Marca : marca.IDMARCA = Guid.NewGuid.ToString : marca.DESCRIPCION = cmbMarca.Text : marca.ACTIVO = "S" : db.Marcas.Add(marca) : db.SaveChanges() : marca = Nothing
                                     btActualizarMarca_Click(Nothing, Nothing)
                                     txtDescripcion.Focus()
                                 End If
@@ -629,7 +629,7 @@
         Try
             Using db As New CodeFirst
                 Dim marca As String = cmbMarca.Text
-                cmbMarca.DataSource = db.MARCAS.Where(Function(f) f.ACTIVO = "S").ToList() : cmbMarca.DisplayMember = "DESCRIPCION" : cmbMarca.ValueMember = "IDMARCA"
+                cmbMarca.DataSource = db.Marcas.Where(Function(f) f.ACTIVO = "S").ToList() : cmbMarca.DisplayMember = "DESCRIPCION" : cmbMarca.ValueMember = "IDMARCA"
                 cmbMarca.Text = marca
                 marca = Nothing
                 cmbMarca.SelectionLength = 0
@@ -672,11 +672,11 @@
                 Else
                     Try
                         Using db As New CodeFirst
-                            If db.UNIDADES_DE_MEDIDAS.Where(Function(f) f.DESCRIPCION = cmbUnidaddemedida.Text.Trim).Count() > 0 Then
+                            If db.UnidadesMedidas.Where(Function(f) f.DESCRIPCION = cmbUnidaddemedida.Text.Trim).Count() > 0 Then
                                 btActualizarMarca_Click(Nothing, Nothing)
                             Else
                                 If MessageBox.Show("No se encuentra esta Unidad de Medida ¿Desea crearlo?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                                    Dim unidad As New UNIDAD_DE_MEDIDA : unidad.IDUNIDAD = Guid.NewGuid.ToString : unidad.DESCRIPCION = cmbUnidaddemedida.Text : unidad.ACTIVO = "S" : db.UNIDADES_DE_MEDIDAS.Add(unidad) : db.SaveChanges() : unidad = Nothing
+                                    Dim unidad As New UnidadMedida : unidad.IDUNIDAD = Guid.NewGuid.ToString : unidad.DESCRIPCION = cmbUnidaddemedida.Text : unidad.ACTIVO = "S" : db.UnidadesMedidas.Add(unidad) : db.SaveChanges() : unidad = Nothing
                                     btUnidaddemedida_Click(Nothing, Nothing)
                                     txtContiene.Focus()
                                 End If
@@ -698,7 +698,7 @@
         Try
             Using db As New CodeFirst
                 Dim unidad As String = cmbUnidaddemedida.Text
-                cmbUnidaddemedida.DataSource = db.UNIDADES_DE_MEDIDAS.Where(Function(f) f.ACTIVO = "S").ToList() : cmbUnidaddemedida.DisplayMember = "DESCRIPCION" : cmbUnidaddemedida.ValueMember = "IDUNIDAD"
+                cmbUnidaddemedida.DataSource = db.UnidadesMedidas.Where(Function(f) f.ACTIVO = "S").ToList() : cmbUnidaddemedida.DisplayMember = "DESCRIPCION" : cmbUnidaddemedida.ValueMember = "IDUNIDAD"
                 cmbUnidaddemedida.Text = unidad
                 unidad = Nothing
                 cmbUnidaddemedida.SelectionLength = 0
@@ -718,11 +718,11 @@
                 Else
                     Try
                         Using db As New CodeFirst
-                            If db.PRESENTACIONES.Where(Function(f) f.DESCRIPCION = cmbPresentacion.Text.Trim).Count() > 0 Then
+                            If db.Presentaciones.Where(Function(f) f.DESCRIPCION = cmbPresentacion.Text.Trim).Count() > 0 Then
                                 btPresentacion_Click(Nothing, Nothing)
                             Else
                                 If MessageBox.Show("No se encuentra esta Presentación ¿Desea crearlo?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                                    Dim presentacion As New PRESENTACION : presentacion.IDPRESENTACION = Guid.NewGuid.ToString : presentacion.DESCRIPCION = cmbPresentacion.Text : presentacion.ACTIVO = "S" : db.PRESENTACIONES.Add(presentacion) : db.SaveChanges() : presentacion = Nothing
+                                    Dim presentacion As New Presentacion : presentacion.IDPRESENTACION = Guid.NewGuid.ToString : presentacion.DESCRIPCION = cmbPresentacion.Text : presentacion.ACTIVO = "S" : db.Presentaciones.Add(presentacion) : db.SaveChanges() : presentacion = Nothing
                                     btPresentacion_Click(Nothing, Nothing)
                                     cmbLaboratorio.Focus()
                                 End If
@@ -744,7 +744,7 @@
         Try
             Using db As New CodeFirst
                 Dim presentacion As String = cmbPresentacion.Text
-                cmbPresentacion.DataSource = db.PRESENTACIONES.Where(Function(f) f.ACTIVO = "S").ToList() : cmbPresentacion.DisplayMember = "DESCRIPCION" : cmbPresentacion.ValueMember = "IDPRESENTACION"
+                cmbPresentacion.DataSource = db.Presentaciones.Where(Function(f) f.ACTIVO = "S").ToList() : cmbPresentacion.DisplayMember = "DESCRIPCION" : cmbPresentacion.ValueMember = "IDPRESENTACION"
                 cmbPresentacion.Text = presentacion
                 presentacion = Nothing
                 cmbPresentacion.SelectionLength = 0
@@ -764,11 +764,11 @@
                 Else
                     Try
                         Using db As New CodeFirst
-                            If db.LABORATORIOS.Where(Function(f) f.DESCRIPCION = cmbLaboratorio.Text.Trim).Count() > 0 Then
+                            If db.Laboratorios.Where(Function(f) f.DESCRIPCION = cmbLaboratorio.Text.Trim).Count() > 0 Then
                                 btLaboratorio_Click(Nothing, Nothing)
                             Else
                                 If MessageBox.Show("No se encuentra esta empresa ¿Desea crearlo?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                                    Dim laboratorio As New LABORATORIO : laboratorio.IDLABORATORIO = Guid.NewGuid.ToString : laboratorio.DESCRIPCION = cmbLaboratorio.Text : laboratorio.ACTIVO = "S" : db.LABORATORIOS.Add(laboratorio) : db.SaveChanges() : laboratorio = Nothing
+                                    Dim laboratorio As New Laboratorio : laboratorio.IDLABORATORIO = Guid.NewGuid.ToString : laboratorio.DESCRIPCION = cmbLaboratorio.Text : laboratorio.ACTIVO = "S" : db.Laboratorios.Add(laboratorio) : db.SaveChanges() : laboratorio = Nothing
                                     btLaboratorio_Click(Nothing, Nothing)
                                     txtProveedor.Focus()
                                 End If
@@ -802,7 +802,7 @@
         Try
             Using db As New CodeFirst
                 Dim laboratorio As String = cmbLaboratorio.Text
-                cmbLaboratorio.DataSource = db.LABORATORIOS.Where(Function(f) f.ACTIVO = "S").ToList() : cmbLaboratorio.DisplayMember = "DESCRIPCION" : cmbLaboratorio.ValueMember = "IDLABORATORIO"
+                cmbLaboratorio.DataSource = db.Laboratorios.Where(Function(f) f.ACTIVO = "S").ToList() : cmbLaboratorio.DisplayMember = "DESCRIPCION" : cmbLaboratorio.ValueMember = "IDLABORATORIO"
                 cmbLaboratorio.Text = laboratorio
                 laboratorio = Nothing
                 cmbLaboratorio.SelectionLength = 0
@@ -938,7 +938,7 @@
         Try
             If MessageBox.Show("¿Desea activar este Producto?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                 Using db As New CodeFirst
-                    Dim producto = db.PRODUCTOS.Where(Function(f) f.IDPRODUCTO = txtCodigo.Text And f.ACTIVO = "N").FirstOrDefault()
+                    Dim producto = db.Productos.Where(Function(f) f.IDPRODUCTO = txtCodigo.Text And f.ACTIVO = "N").FirstOrDefault()
                     If Not producto Is Nothing Then
                         producto.ACTIVO = "S"
                         db.Entry(producto).State = EntityState.Modified

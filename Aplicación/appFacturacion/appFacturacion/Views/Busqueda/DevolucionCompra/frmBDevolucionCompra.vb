@@ -4,7 +4,7 @@
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "")
         Try
             Using db As New CodeFirst
-                Dim consulta = (From dev In db.COMPRAS_DEVOLUCIONES Join ser In db.SERIES On ser.IDSERIE Equals dev.IDSERIE Join bod In db.BODEGAS On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And dev.FECHADEVOLUCION >= finicio And dev.FECHADEVOLUCION <= ffin Select ANULADO = If(dev.ANULADO.Equals("S"), "Anulado", ""), dev.IDDEVOLUCION, SERIE = ser.NOMBRE, dev.CONSECUTIVO, dev.N_DEVOLUCION, dev.FECHADEVOLUCION, N_EMPLEADO = If(dev.ANULADO.Equals(Config.vFalse), dev.EMPLEADO.N_TRABAJADOR, ""), EMPLEADO = If(dev.ANULADO.Equals(Config.vFalse), dev.EMPLEADO.NOMBRES & " " & dev.EMPLEADO.APELLIDOS, ""), N_PROVEEDOR = If(dev.ANULADO.Equals("N"), If(Not dev.IDPROVEEDOR Is Nothing, dev.PROVEEDOR.N_PROVEEDOR, ""), ""), PROVEEDOR = If(dev.ANULADO.Equals("N"), If(Not dev.IDPROVEEDOR Is Nothing, dev.PROVEEDOR.NOMBRES & " " & dev.PROVEEDOR.APELLIDOS, dev.PROVEEDORCONTADO), ""), CONDICIÓN = If(dev.ANULADO.Equals("N"), If(dev.CREDITO, "Crédito", "Contado"), ""), MONEDA = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), ""), TAZACAMBIO = If(dev.ANULADO.Equals(vFalse), dev.TAZACAMBIO, Nothing), DESCUENTO = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.DESCUENTO_DIN_C, dev.DESCUENTO_DIN_D), Nothing), SUBTOTAL = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.SUBTOTAL_C, dev.SUBTOTAL_D), Nothing), IVA = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.IVA_DIN_C, dev.IVA_DIN_D), Nothing), TOTAL = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.TOTAL_C, dev.TOTAL_D), Nothing), dev.CREDITO).ToList
+                Dim consulta = (From dev In db.ComprasDevoluciones Join ser In db.Series On ser.IDSERIE Equals dev.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Where ser.IDSERIE.Contains(pserie) And dev.FECHADEVOLUCION >= finicio And dev.FECHADEVOLUCION <= ffin Select ANULADO = If(dev.ANULADO.Equals("S"), "Anulado", ""), dev.IDDEVOLUCION, SERIE = ser.NOMBRE, dev.CONSECUTIVO, dev.N_DEVOLUCION, dev.FECHADEVOLUCION, N_EMPLEADO = If(dev.ANULADO.Equals(Config.vFalse), dev.Empleado.N_TRABAJADOR, ""), EMPLEADO = If(dev.ANULADO.Equals(Config.vFalse), dev.Empleado.NOMBRES & " " & dev.Empleado.APELLIDOS, ""), N_PROVEEDOR = If(dev.ANULADO.Equals("N"), If(Not dev.IDPROVEEDOR Is Nothing, dev.Proveedor.N_PROVEEDOR, ""), ""), PROVEEDOR = If(dev.ANULADO.Equals("N"), If(Not dev.IDPROVEEDOR Is Nothing, dev.Proveedor.NOMBRES & " " & dev.Proveedor.APELLIDOS, dev.PROVEEDORCONTADO), ""), CONDICIÓN = If(dev.ANULADO.Equals("N"), If(dev.CREDITO, "Crédito", "Contado"), ""), MONEDA = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), ""), TAZACAMBIO = If(dev.ANULADO.Equals(vFalse), dev.TAZACAMBIO, Nothing), DESCUENTO = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.DESCUENTO_DIN_C, dev.DESCUENTO_DIN_D), Nothing), SUBTOTAL = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.SUBTOTAL_C, dev.SUBTOTAL_D), Nothing), IVA = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.IVA_DIN_C, dev.IVA_DIN_D), Nothing), TOTAL = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.TOTAL_C, dev.TOTAL_D), Nothing), dev.CREDITO).ToList
                 dtRegistro.DataSource = consulta.ToList()
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = vbNewLine & "" & vbNewLine
@@ -39,7 +39,7 @@
         Try
             Using db As New CodeFirst
                 'llenar series
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                 dtpFechaInicial.Value = DateTime.Now
                 dtpFechaFinal.Value = DateTime.Now
                 llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), )
@@ -56,13 +56,13 @@
                 If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                     Dim serie As String = cmbSerie.Text
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                     cmbSerie.Text = serie
                     serie = Nothing
                 Else
                     'llenar series
-                    cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                 End If
             End Using
@@ -90,7 +90,7 @@
         If dtRegistro.SelectedRows.Count > 0 Then
             Try
                 Using db As New CodeFirst
-                    Dim iddevolucion As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim devolucion = db.COMPRAS_DEVOLUCIONES.Where(Function(f) f.IDDEVOLUCION = iddevolucion).FirstOrDefault()
+                    Dim iddevolucion As String = dtRegistro.SelectedRows(0).Cells(1).Value.ToString() : Dim devolucion = db.ComprasDevoluciones.Where(Function(f) f.IDDEVOLUCION = iddevolucion).FirstOrDefault()
                     If Not devolucion Is Nothing Then
                         If devolucion.ANULADO = "N" Then
                             Select Case frm_return

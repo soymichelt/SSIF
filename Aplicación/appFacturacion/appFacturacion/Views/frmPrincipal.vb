@@ -113,21 +113,21 @@
             lblBodega.Text = "Sucursal: " & Config._Bodega.N_BODEGA & " - " & Config._Bodega.DESCRIPCION
             Using db As New CodeFirst
                 'IVA
-                Config._Iva = db.IVAS.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                Config._Iva = db.ImpuestosValoresAgregados.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
                 If Not Config._Iva Is Nothing Then
                     Config.iva = Config._Iva.PORCENTAJE / 100
                 Else
                     Config.iva = 0
                 End If
                 'Taza de Cambio
-                Config._Taza = db.TAZAS.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
                 If Not Config._Taza Is Nothing Then
                     Config.tazadecambio = Config._Taza.CAMBIO
                 Else
                     Config.tazadecambio = 0
                 End If
                 'Periodo Contable
-                Config._Periodo = db.PERIODOS.Where(Function(f) f.ACTUAL.Equals("S") And f.ACTIVO.Equals("S") And f.APERTURA IsNot Nothing).FirstOrDefault()
+                Config._Periodo = db.Periodos.Where(Function(f) f.ACTUAL.Equals("S") And f.ACTIVO.Equals("S") And f.APERTURA IsNot Nothing).FirstOrDefault()
                 If Not Config._Periodo Is Nothing Then
                     txtInicio.Text = Config._Periodo.INICIO.ToShortDateString
                     txtFinal.Text = Config._Periodo.FINAL.ToShortDateString

@@ -3,12 +3,12 @@
     Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Using db As New CodeFirst
-                Dim salida = db.SALIDAS.Where(Function(f) f.IDSALIDA = Me.idsalida).FirstOrDefault
+                Dim salida = db.Salidas.Where(Function(f) f.IDSALIDA = Me.idsalida).FirstOrDefault
                 If Not salida Is Nothing Then
                     If salida.ANULADO = "N" Then
                         Dim rpt As New rptImprimirSalida
                         Config.CrystalTitle("SALIDA DE INVENTARIO", rpt)
-                        rpt.SetDataSource((From sal In db.SALIDAS Join det In db.DETALLES_SALIDAS On sal.IDSALIDA Equals det.IDSALIDA Join ser In db.SERIES On sal.IDSERIE Equals ser.IDSERIE Join exi In db.EXISTENCIAS On det.IDEXISTENCIA Equals exi.IDEXISTENCIA Join pro In db.PRODUCTOS On exi.IDPRODUCTO Equals pro.IDPRODUCTO Join bod In db.BODEGAS On exi.IDBODEGA Equals bod.IDBODEGA Where sal.IDSALIDA = Me.idsalida Select IDCOMPRA = sal.IDSALIDA, BODEGA = bod.N_BODEGA & " " & bod.DESCRIPCION, SERIE = ser.NOMBRE, sal.CONSECUTIVO, FECHA = sal.FECHASALIDA, N_EMPLEADO = sal.EMPLEADO.N_TRABAJADOR, EMPLEADO = sal.EMPLEADO.NOMBRES & " " & sal.EMPLEADO.APELLIDOS, CONCEPTO = sal.OBSERVACION, pro.IDALTERNO, pro.DESCRIPCION, det.CANTIDAD, MONEDA = If(det.CMONEDA.Equals(Config.cordoba), "C$", "$ "), COSTOUNITARIO = det.COSTO, det.TOTAL, TOTAL_NETO = sal.TOTAL, REIMPRESION = If(sal.REIMPRESION.Equals("S"), "COPIA", "ORIGINAL")).ToList())
+                        rpt.SetDataSource((From sal In db.Salidas Join det In db.SalidasDetalles On sal.IDSALIDA Equals det.IDSALIDA Join ser In db.Series On sal.IDSERIE Equals ser.IDSERIE Join exi In db.Existencias On det.IDEXISTENCIA Equals exi.IDEXISTENCIA Join pro In db.Productos On exi.IDPRODUCTO Equals pro.IDPRODUCTO Join bod In db.Bodegas On exi.IDBODEGA Equals bod.IDBODEGA Where sal.IDSALIDA = Me.idsalida Select IDCOMPRA = sal.IDSALIDA, BODEGA = bod.N_BODEGA & " " & bod.DESCRIPCION, SERIE = ser.NOMBRE, sal.CONSECUTIVO, FECHA = sal.FECHASALIDA, N_EMPLEADO = sal.Empleado.N_TRABAJADOR, EMPLEADO = sal.Empleado.NOMBRES & " " & sal.Empleado.APELLIDOS, CONCEPTO = sal.OBSERVACION, pro.IDALTERNO, pro.DESCRIPCION, det.CANTIDAD, MONEDA = If(det.CMONEDA.Equals(Config.cordoba), "C$", "$ "), COSTOUNITARIO = det.COSTO, det.TOTAL, TOTAL_NETO = sal.TOTAL, REIMPRESION = If(sal.REIMPRESION.Equals("S"), "COPIA", "ORIGINAL")).ToList())
                         CrystalReportViewer1.ReportSource = rpt
                         If salida.REIMPRESION <> "S" Then
                             salida.REIMPRESION = "S" : db.Entry(salida).State = EntityState.Modified : db.SaveChanges()

@@ -9,7 +9,7 @@
                 Dim desc_venta As Decimal = 0
                 Dim iva_venta As Decimal = 0
                 Dim costo_venta As Decimal = 0
-                Dim ventas = From ven In db.VENTAS Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Where ven.ANULADO = "N" And ven.FECHAFACTURA >= fecha1 And ven.FECHAFACTURA <= fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) Select ven
+                Dim ventas = From ven In db.Ventas Join ser In db.Series On ven.IDSERIE Equals ser.IDSERIE Where ven.ANULADO = "N" And ven.FECHAFACTURA >= fecha1 And ven.FECHAFACTURA <= fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) Select ven
                 If Not ventas Is Nothing Then
                     If ventas.Count() > 0 Then
                         venta = ventas.Sum(Function(f) f.TOTAL_C) : desc_venta = ventas.Sum(Function(f) f.DESCUENTO_DIN_C) : iva_venta = ventas.Sum(Function(f) f.IVA_DIN_C) : costo_venta = ventas.Sum(Function(f) f.COSTO_TOTAL)
@@ -21,7 +21,7 @@
                 Dim devolucion_venta As Decimal = 0
                 Dim desc_devolucion_venta As Decimal = 0
                 Dim iva_devolucion As Decimal = 0
-                Dim devoluciones_ventas = From dev In db.DEVOLUCIONES_CLIENTES Join ser In db.SERIES On dev.IDSERIE Equals ser.IDSERIE Where dev.ANULADO = "N" And dev.FECHADEVOLUCION >= fecha1 And dev.FECHADEVOLUCION <= fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) Select dev
+                Dim devoluciones_ventas = From dev In db.VentasDevoluciones Join ser In db.Series On dev.IDSERIE Equals ser.IDSERIE Where dev.ANULADO = "N" And dev.FECHADEVOLUCION >= fecha1 And dev.FECHADEVOLUCION <= fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) Select dev
                 If Not devoluciones_ventas Is Nothing Then
                     If devoluciones_ventas.Count() > 0 Then
                         devolucion_venta = devoluciones_ventas.Sum(Function(f) f.TOTAL_C) : desc_devolucion_venta = devoluciones_ventas.Sum(Function(f) f.DESCUENTO_DIN_C) : iva_devolucion = devoluciones_ventas.Sum(Function(f) f.IVA_DIN_C)
@@ -47,7 +47,7 @@
 
                 Dim recibo_venta As Decimal = 0
                 Dim desc_recibo_venta As Decimal = 0
-                Dim recibos_ventas = From rec In db.RECIBOS Join ser In db.SERIES On rec.IDSERIE Equals ser.IDSERIE Where rec.ANULADO = "N" And rec.FECHARECIBO >= fecha1 And rec.FECHARECIBO <= fecha2 And ser.BODEGA.IDBODEGA.Contains(bodegap) Select rec
+                Dim recibos_ventas = From rec In db.VentasRecibos Join ser In db.Series On rec.IDSERIE Equals ser.IDSERIE Where rec.ANULADO = "N" And rec.FECHARECIBO >= fecha1 And rec.FECHARECIBO <= fecha2 And ser.Bodega.IDBODEGA.Contains(bodegap) Select rec
                 If Not recibos_ventas Is Nothing Then
                     If recibos_ventas.Count() > 0 Then
                         recibo_venta = recibos_ventas.Sum(Function(f) f.MONTOTOTAL_C) : desc_recibo_venta = recibos_ventas.Sum(Function(f) f.DESCUENTOTOTAL_C)

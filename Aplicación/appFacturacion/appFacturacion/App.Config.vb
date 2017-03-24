@@ -132,12 +132,12 @@ Module Config
     Public iva As Decimal
 
     'objetos
-    Public _Bodega As BODEGA
-    Public _Taza As TAZA
-    Public _Iva As IVA
+    Public _Bodega As Bodega
+    Public _Taza As Taza
+    Public _Iva As ImpuestoValorAgregado
 
     'datos de usuario
-    Public Usuario As USUARIO
+    Public Usuario As Usuario
 
     'datos del tema
     Public tema_ribon_dev As New DevComponents.DotNetBar.StyleManager
@@ -168,13 +168,13 @@ Module Config
 
     End Sub
 
-    Public Sub MetodoPromedio(ByVal producto As PRODUCTO)
+    Public Sub MetodoPromedio(ByVal producto As Producto)
         Using db As New CodeFirst
-            If producto.EXISTENCIAS.Count > 0 Then
-                Dim kardexs = From kar In db.KARDEXS Join exi In db.EXISTENCIAS On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Where exi.IDPRODUCTO = producto.IDPRODUCTO And kar.ACTIVO = "S" Select SALDO = kar.DEBER - kar.HABER
+            If producto.Existencias.Count > 0 Then
+                Dim kardexs = From kar In db.Kardexs Join exi In db.Existencias On kar.IDEXISTENCIA Equals exi.IDEXISTENCIA Where exi.IDPRODUCTO = producto.IDPRODUCTO And kar.ACTIVO = "S" Select SALDO = kar.DEBER - kar.HABER
                 Dim costo_promedio As Decimal = 0
                 If kardexs.Count() > 0 Then
-                    costo_promedio = kardexs.Sum() / producto.EXISTENCIAS.Sum(Function(f) f.BODEGA.ACTIVO = "S" And f.CANTIDAD + f.CONSIGNADO)
+                    costo_promedio = kardexs.Sum() / producto.Existencias.Sum(Function(f) f.Bodega.ACTIVO = "S" And f.CANTIDAD + f.CONSIGNADO)
                 End If
             End If
         End Using
@@ -183,7 +183,7 @@ Module Config
     Public Function ValidarPeriodo(ByVal Fecha As DateTime) As Boolean
         Try
             Using db As New CodeFirst
-                Config._Periodo = db.PERIODOS.Where(Function(f) f.IDPERIODO = Config._Periodo.IDPERIODO And f.ACTIVO.Equals(Config.vTrue) And f.ACTUAL.Equals(Config.vTrue)).FirstOrDefault
+                Config._Periodo = db.Periodos.Where(Function(f) f.IDPERIODO = Config._Periodo.IDPERIODO And f.ACTIVO.Equals(Config.vTrue) And f.ACTUAL.Equals(Config.vTrue)).FirstOrDefault
                 If Not Config._Periodo Is Nothing Then
                     With Config._Periodo
                         If Not .APERTURA Is Nothing Then
@@ -221,7 +221,7 @@ Module Config
     Public PrintName As String = "EPSON TM-U220 Receipt"
 
     'datos de periodo
-    Public _Periodo As PERIODO
+    Public _Periodo As Periodo
 
     'valores
     Public vTrue As String = "S"

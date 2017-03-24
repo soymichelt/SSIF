@@ -44,9 +44,9 @@
                     End If
                 End If
                 Using db As New CodeFirst
-                    If db.CLIENTES.Where(Function(f) f.N_CLIENTE = txtCodCliente.Text.Trim).Count() = 0 Then
+                    If db.Clientes.Where(Function(f) f.N_CLIENTE = txtCodCliente.Text.Trim).Count() = 0 Then
                         If txtCedula.Text.Length = 16 Then
-                            If db.CLIENTES.Where(Function(f) f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
+                            If db.Clientes.Where(Function(f) f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
                                 MessageBox.Show("Error, Ya existe un cliente con esta cédula.")
                                 Exit Sub
                             End If
@@ -54,8 +54,8 @@
                             'MessageBox.Show("Formato de cédula incorrecto")
                             'Exit Sub
                         End If
-                        Dim cliente As New CLIENTE : cliente.Reg = DateTime.Now : cliente.IDCLIENTE = Guid.NewGuid.ToString : cliente.N_CLIENTE = txtCodCliente.Text : cliente.IDENTIFICACION = txtCedula.Text : cliente.TIPOPERSONA = If(rdNatural.Checked, "Natural", "Jurídica") : cliente.NOMBRES = txtNombres.Text : cliente.APELLIDOS = txtApellidos.Text : cliente.RAZONSOCIAL = txtRazonSocial.Text : cliente.TELEFONO = txtTelefono.Text : cliente.DOMICILIO = txtDomicilio.Text : cliente.LIMITECREDITO = txtLimite.Value : cliente.PLAZO = txtPlazo.Value : cliente.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : cliente.SEXO = If(rdMasculino.Checked, "Masculino", "Femenino") : cliente.CORREO = txtCorreo.Text : cliente.FACTURADO_C = 0 : cliente.FACTURADO_D = 0 : cliente.ACTIVO = "S"
-                        db.CLIENTES.Add(cliente)
+                        Dim cliente As New Cliente : cliente.Reg = DateTime.Now : cliente.IDCLIENTE = Guid.NewGuid.ToString : cliente.N_CLIENTE = txtCodCliente.Text : cliente.IDENTIFICACION = txtCedula.Text : cliente.TIPOPERSONA = If(rdNatural.Checked, "Natural", "Jurídica") : cliente.NOMBRES = txtNombres.Text : cliente.APELLIDOS = txtApellidos.Text : cliente.RAZONSOCIAL = txtRazonSocial.Text : cliente.TELEFONO = txtTelefono.Text : cliente.DOMICILIO = txtDomicilio.Text : cliente.LIMITECREDITO = txtLimite.Value : cliente.PLAZO = txtPlazo.Value : cliente.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : cliente.SEXO = If(rdMasculino.Checked, "Masculino", "Femenino") : cliente.CORREO = txtCorreo.Text : cliente.FACTURADO_C = 0 : cliente.FACTURADO_D = 0 : cliente.ACTIVO = "S"
+                        db.Clientes.Add(cliente)
                         db.SaveChanges() : limpiar() : MessageBox.Show("Cliente guardado")
                     Else
                         MessageBox.Show("Error, Ya existe un cliente con este código.")
@@ -84,9 +84,9 @@
                     End If
                 End If
                 Using db As New CodeFirst
-                    If db.CLIENTES.Where(Function(f) Not f.IDCLIENTE = txtCodigo.Text And f.N_CLIENTE = txtCodCliente.Text.Trim).Count() = 0 Then
+                    If db.Clientes.Where(Function(f) Not f.IDCLIENTE = txtCodigo.Text And f.N_CLIENTE = txtCodCliente.Text.Trim).Count() = 0 Then
                         If txtCedula.Text.Length = 16 Then
-                            If db.CLIENTES.Where(Function(f) Not f.IDCLIENTE = txtCodigo.Text And f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
+                            If db.Clientes.Where(Function(f) Not f.IDCLIENTE = txtCodigo.Text And f.IDENTIFICACION = txtCedula.Text.Trim).Count() > 0 Then
                                 MessageBox.Show("Error, Ya existe un cliente con esta cédula.")
                                 Exit Sub
                             End If
@@ -94,7 +94,7 @@
                             'MessageBox.Show("Formato de cédula incorrecto")
                             'Exit Sub
                         End If
-                        Dim cliente = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                        Dim cliente = db.Clientes.Where(Function(f) f.IDCLIENTE = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not cliente Is Nothing Then
                             If rdCordoba.Checked Then
                                 If cliente.FACTURADO_C > txtLimite.Value Then
@@ -128,7 +128,7 @@
     Private Sub btEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEliminar.Click
         Try
             Using db As New CodeFirst
-                Dim cliente = db.CLIENTES.Where(Function(f) f.IDCLIENTE = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                Dim cliente = db.Clientes.Where(Function(f) f.IDCLIENTE = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                 If Not cliente Is Nothing Then
                     If cliente.FACTURADO_C <= 0 Then
                         cliente.ACTIVO = "N"
@@ -159,7 +159,7 @@
         If e.KeyChar = ChrW(13) Then
             If txtCodCliente.Text.Trim() <> "" Then
                 Using db As New CodeFirst
-                    Dim r = db.CLIENTES.Where(Function(f) f.N_CLIENTE = txtCodCliente.Text).FirstOrDefault()
+                    Dim r = db.Clientes.Where(Function(f) f.N_CLIENTE = txtCodCliente.Text).FirstOrDefault()
                     If r Is Nothing Then
                         txtNombres.Focus()
                     Else

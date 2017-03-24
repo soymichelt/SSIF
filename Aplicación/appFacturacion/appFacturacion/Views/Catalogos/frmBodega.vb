@@ -2,7 +2,7 @@
     Sub llenar(Optional ByVal bodega As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From b In db.BODEGAS Where b.ACTIVO.Equals(Config.vTrue) And b.DESCRIPCION.Contains(bodega) Select b.IDBODEGA, b.N_BODEGA, b.DESCRIPCION Order By N_BODEGA).ToList
+                dtRegistro.DataSource = (From b In db.Bodegas Where b.ACTIVO.Equals(Config.vTrue) And b.DESCRIPCION.Contains(bodega) Select b.IDBODEGA, b.N_BODEGA, b.DESCRIPCION Order By N_BODEGA).ToList
                 If dtRegistro.Columns.Count > 0 Then
                     With dtRegistro
                         .Columns(0).Visible = False
@@ -49,12 +49,12 @@
         Try
             If Not txtCodBodega.Text.Trim = "" And Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.BODEGAS.Where(Function(f) f.N_BODEGA = txtCodBodega.Text.Trim).Count() = 0 Then
-                        Dim bodega As New BODEGA : bodega.Reg = DateTime.Now : bodega.IDBODEGA = Guid.NewGuid.ToString() : bodega.N_BODEGA = txtCodBodega.Text : bodega.DESCRIPCION = txtNombre.Text : bodega.ACTIVO = "S"
-                        db.BODEGAS.Add(bodega)
-                        For Each producto In db.PRODUCTOS
-                            Dim existencia As New EXISTENCIA : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
-                            db.EXISTENCIAS.Add(existencia)
+                    If db.Bodegas.Where(Function(f) f.N_BODEGA = txtCodBodega.Text.Trim).Count() = 0 Then
+                        Dim bodega As New Bodega : bodega.Reg = DateTime.Now : bodega.IDBODEGA = Guid.NewGuid.ToString() : bodega.N_BODEGA = txtCodBodega.Text : bodega.DESCRIPCION = txtNombre.Text : bodega.ACTIVO = "S"
+                        db.Bodegas.Add(bodega)
+                        For Each producto In db.Productos
+                            Dim existencia As New Existencia : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
+                            db.Existencias.Add(existencia)
                         Next
                         db.SaveChanges() : limpiar() : llenar(txtBuscar.Text.Trim) : MessageBox.Show("Bodega guardada")
                     Else
@@ -73,8 +73,8 @@
         Try
             If Not txtCodigo.Text.Trim = "" And Not txtCodBodega.Text.Trim = "" And Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.BODEGAS.Where(Function(f) Not f.IDBODEGA = txtCodigo.Text And f.N_BODEGA = txtCodBodega.Text).Count() = 0 Then
-                        Dim bodega = db.BODEGAS.Where(Function(f) f.IDBODEGA = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                    If db.Bodegas.Where(Function(f) Not f.IDBODEGA = txtCodigo.Text And f.N_BODEGA = txtCodBodega.Text).Count() = 0 Then
+                        Dim bodega = db.Bodegas.Where(Function(f) f.IDBODEGA = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not bodega Is Nothing Then
                             bodega.N_BODEGA = txtCodBodega.Text : bodega.DESCRIPCION = txtNombre.Text
                             db.Entry(bodega).State = EntityState.Modified
@@ -98,7 +98,7 @@
         If MessageBox.Show("¿Desea eliminar esta bodega?", "Pregunta de seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Error) = Windows.Forms.DialogResult.Yes Then
             Try
                 Using db As New CodeFirst
-                    Dim bodega = db.BODEGAS.Where(Function(f) f.IDBODEGA = txtCodigo.Text).FirstOrDefault()
+                    Dim bodega = db.Bodegas.Where(Function(f) f.IDBODEGA = txtCodigo.Text).FirstOrDefault()
                     If Not bodega Is Nothing Then
                         bodega.ACTIVO = "N"
                         db.Entry(bodega).State = EntityState.Modified
@@ -121,7 +121,7 @@
         If e.KeyChar = ChrW(13) Then
             If txtCodBodega.Text.Trim() <> "" Then
                 Using db As New CodeFirst
-                    Dim bodega = db.BODEGAS.Where(Function(f) f.N_BODEGA = txtCodBodega.Text).FirstOrDefault()
+                    Dim bodega = db.Bodegas.Where(Function(f) f.N_BODEGA = txtCodBodega.Text).FirstOrDefault()
                     If bodega Is Nothing Then
                         txtNombre.Focus()
                     Else
@@ -159,7 +159,7 @@
             Try
                 Using db As New CodeFirst
                     txtCodigo.Text = dtRegistro.SelectedRows(0).Cells(0).Value.ToString()
-                    Dim b = db.BODEGAS.Where(Function(f) f.IDBODEGA.Equals(txtCodigo.Text) And f.ACTIVO.Equals(Config.vTrue)).FirstOrDefault
+                    Dim b = db.Bodegas.Where(Function(f) f.IDBODEGA.Equals(txtCodigo.Text) And f.ACTIVO.Equals(Config.vTrue)).FirstOrDefault
                     If Not b Is Nothing Then
                         txtCodBodega.Text = b.N_BODEGA
                         txtNombre.Text = b.DESCRIPCION

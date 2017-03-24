@@ -25,7 +25,7 @@
     Function generarCodigo(ByVal serie As String) As String
         Try
             Using db As New CodeFirst
-                Dim entrada = db.ENTRADAS.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
+                Dim entrada = db.Entradas.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
                 If Not ENTRADA Is Nothing Then
                     cod = entrada.CONSECUTIVO
                     If Not cod.Trim = "" Then
@@ -100,7 +100,7 @@
             If txtIdSerie.Text.Trim <> "" Then
                 If Not txtCodigoAlterno.Text.Trim = "" Then
                     Using db As New CodeFirst
-                        If db.PRODUCTOS.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).Count() > 0 Then
+                        If db.Productos.Where(Function(f) f.ACTIVO = "S" And f.IDALTERNO = txtCodigoAlterno.Text).Count() > 0 Then
                             txtCantidad.Focus()
                         Else
                             frmBuscarProductos.frm_return = 2 'retornar el valor aqui
@@ -126,7 +126,7 @@
                         ''''''''''''''''''''''''''''''''''''
                         If txtCantidad.Value > 0 Then
                             Using db As New CodeFirst
-                                Dim producto = (From prod In db.PRODUCTOS Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.bodega And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
+                                Dim producto = (From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.bodega And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
                                 For i As Integer = 0 To lvRegistro.Items.Count - 1
                                     If txtCodigoAlterno.Text = lvRegistro.Items(i).SubItems(1).Text Then
                                         If Not producto Is Nothing Then
@@ -228,16 +228,16 @@
                             Else
                                 dtpFecha.Value = DateTime.Parse(dtpFecha.Text & " " & DateTime.Now.ToString("HH:mm:ss"))
                             End If
-                            Dim v As New ENTRADA : v.Reg = DateTime.Now : v.IDENTRADA = Guid.NewGuid.ToString() : v.IDSERIE = txtIdSerie.Text : v.CONSECUTIVO = txtCodigo.Text : v.FECHAENTRADA = dtpFecha.Value : v.IDEMPLEADO = txtIdVendedor.Text : v.OBSERVACION = txtConcepto.Text : v.TOTAL = 0 : v.ANULADO = "N" : v.REIMPRESION = "N"
-                            db.ENTRADAS.Add(v)
+                            Dim v As New Entrada : v.Reg = DateTime.Now : v.IDENTRADA = Guid.NewGuid.ToString() : v.IDSERIE = txtIdSerie.Text : v.CONSECUTIVO = txtCodigo.Text : v.FECHAENTRADA = dtpFecha.Value : v.IDEMPLEADO = txtIdVendedor.Text : v.OBSERVACION = txtConcepto.Text : v.TOTAL = 0 : v.ANULADO = "N" : v.REIMPRESION = "N"
+                            db.Entradas.Add(v)
 
-                            Dim idexistencia As String : Dim cont As Integer = 0 : Dim producto As EXISTENCIA
+                            Dim idexistencia As String : Dim cont As Integer = 0 : Dim producto As Existencia
                             For i As Integer = 0 To lvRegistro.Items.Count - 1
                                 idexistencia = lvRegistro.Items(i).Text
-                                producto = db.EXISTENCIAS.Where(Function(f) f.IDEXISTENCIA = idexistencia And f.PRODUCTO.ACTIVO = "S" And f.BODEGA.ACTIVO = "S").FirstOrDefault()
+                                producto = db.Existencias.Where(Function(f) f.IDEXISTENCIA = idexistencia And f.Producto.ACTIVO = "S" And f.Bodega.ACTIVO = "S").FirstOrDefault()
                                 If Not producto Is Nothing Then
-                                    Dim d As New DETALLE_ENTRADA : d.IDDETALLEENTRADA = Guid.NewGuid.ToString() : d.EXISTENCIA_PRODUCTO = producto.CANTIDAD : d.CANTIDAD = Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text) : d.CMONEDA = producto.PRODUCTO.CMONEDA : d.COSTO = producto.PRODUCTO.COSTO : d.TOTAL = d.CANTIDAD * d.COSTO : v.TOTAL = v.TOTAL + d.TOTAL : d.IDEXISTENCIA = producto.IDEXISTENCIA : d.IDENTRADA = v.IDENTRADA : db.DETALLES_ENTRADAS.Add(d)
-                                    Dim k As New KARDEX
+                                    Dim d As New EntradaDetalle : d.IDDETALLEENTRADA = Guid.NewGuid.ToString() : d.EXISTENCIA_PRODUCTO = producto.CANTIDAD : d.CANTIDAD = Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text) : d.CMONEDA = producto.Producto.CMONEDA : d.COSTO = producto.Producto.COSTO : d.TOTAL = d.CANTIDAD * d.COSTO : v.TOTAL = v.TOTAL + d.TOTAL : d.IDEXISTENCIA = producto.IDEXISTENCIA : d.IDENTRADA = v.IDENTRADA : db.EntradasDetalles.Add(d)
+                                    Dim k As New Kardex
                                     k.IDKARDEX = Guid.NewGuid.ToString()
                                     k.IDEXISTENCIA = producto.IDEXISTENCIA
                                     k.IDSERIE = txtIdSerie.Text
@@ -259,22 +259,22 @@
                                     k.HABER = 0
                                     k.PRECIO_C = 0
                                     k.ACTIVO = "S"
-                                    producto.PRODUCTO.CANTIDAD = producto.PRODUCTO.CANTIDAD + d.CANTIDAD
-                                    If producto.PRODUCTO.CANTIDAD = 0 Then
-                                        k.COSTO_PROMEDIO = producto.PRODUCTO.COSTO
-                                        producto.PRODUCTO.SALDO = 0
+                                    producto.Producto.CANTIDAD = producto.Producto.CANTIDAD + d.CANTIDAD
+                                    If producto.Producto.CANTIDAD = 0 Then
+                                        k.COSTO_PROMEDIO = producto.Producto.COSTO
+                                        producto.Producto.SALDO = 0
                                         k.SALDO = 0
                                     Else
-                                        k.COSTO_PROMEDIO = producto.PRODUCTO.COSTO
-                                        producto.PRODUCTO.SALDO = producto.PRODUCTO.SALDO + d.TOTAL
+                                        k.COSTO_PROMEDIO = producto.Producto.COSTO
+                                        producto.Producto.SALDO = producto.Producto.SALDO + d.TOTAL
                                         If producto.CANTIDAD = 0 Then
                                             k.SALDO = 0
                                         Else
                                             k.SALDO = k.EXISTENCIA_ALMACEN * k.COSTO_PROMEDIO
                                         End If
                                     End If
-                                    db.Entry(producto.PRODUCTO).State = EntityState.Modified
-                                    db.KARDEXS.Add(k)
+                                    db.Entry(producto.Producto).State = EntityState.Modified
+                                    db.Kardexs.Add(k)
                                     'destruccion
                                     d = Nothing : k = Nothing
                                     'incrementar contador
@@ -319,24 +319,24 @@
         frmProducto.BringToFront()
     End Sub
 
-    Private Sub LoadMov(ByVal v As ENTRADA)
+    Private Sub LoadMov(ByVal v As Entrada)
         Try
             Me.ID = v.IDENTRADA
             txtIdSerie.Text = v.IDSERIE
-            txtSerie.Text = v.SERIE.NOMBRE
+            txtSerie.Text = v.Serie.NOMBRE
             txtCodigo.Text = v.CONSECUTIVO
             txtCodigo.Enabled = False : txtSerie.Enabled = False : btActualizarSerie.Enabled = False
             dtpFecha.Text = v.FECHAENTRADA.ToShortDateString()
             txtConcepto.Text = v.OBSERVACION
-            txtIdVendedor.Text = v.EMPLEADO.IDEMPLEADO
-            txtNombreVendedor.Text = v.EMPLEADO.N_TRABAJADOR & " | " & v.EMPLEADO.NOMBRES & " " & v.EMPLEADO.APELLIDOS
+            txtIdVendedor.Text = v.Empleado.IDEMPLEADO
+            txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " | " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
             Dim item As New ListViewItem
             lvRegistro.Items.Clear()
-            For Each detalle In v.DETALLES_ENTRADAS
+            For Each detalle In v.EntradasDetalles
                 item = lvRegistro.Items.Add(detalle.IDEXISTENCIA)
-                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.IDALTERNO)
-                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.IDORIGINAL)
-                item.SubItems.Add(detalle.EXISTENCIA.PRODUCTO.DESCRIPCION)
+                item.SubItems.Add(detalle.Existencia.Producto.IDALTERNO)
+                item.SubItems.Add(detalle.Existencia.Producto.IDORIGINAL)
+                item.SubItems.Add(detalle.Existencia.Producto.DESCRIPCION)
                 item.SubItems.Add(detalle.EXISTENCIA_PRODUCTO.ToString(Config.f_m))
                 item.SubItems.Add(detalle.CANTIDAD.ToString(Config.f_m))
                 item.SubItems.Add(detalle.COSTO.ToString(Config.f_m))
@@ -355,13 +355,13 @@
         End Try
     End Sub
 
-    Public Sub LoadInfo(Optional ByVal vInt As ENTRADA = Nothing, Optional ByVal ByInt As Boolean = False)
+    Public Sub LoadInfo(Optional ByVal vInt As Entrada = Nothing, Optional ByVal ByInt As Boolean = False)
         Try
             Try
                 Using db As New CodeFirst
                     If txtIdSerie.Text.Trim <> "" Then
                         If Not ByInt Then
-                            Dim v = db.ENTRADAS.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
+                            Dim v = db.Entradas.Where(Function(f) f.IDSERIE = txtIdSerie.Text And f.CONSECUTIVO = txtCodigo.Text).FirstOrDefault()
                             If Not v Is Nothing Then
                                 If v.ANULADO = "N" Then
                                     Me.LoadMov(v)
@@ -475,7 +475,7 @@
                 If txtIdSerie.Text <> "" Then
                     Using db As New CodeFirst
                         If Not txtNVendedor.Text.Trim() = "" Then
-                            Dim vendedor = db.EMPLEADOS.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text And f.COMPRA And f.ACTIVO = "S").FirstOrDefault()
+                            Dim vendedor = db.Empleados.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text And f.COMPRA And f.ACTIVO = "S").FirstOrDefault()
                             If Not vendedor Is Nothing Then
                                 txtIdVendedor.Text = vendedor.IDEMPLEADO
                                 txtNombreVendedor.Text = vendedor.N_TRABAJADOR & " | " & vendedor.NOMBRES & " " & vendedor.APELLIDOS
@@ -523,47 +523,47 @@
             If MessageBox.Show("¿Desea anular esta Entrada?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                 If Not Me.ID.Trim() = "" Then
                     Using db As New CodeFirst
-                        Dim v = db.ENTRADAS.Where(Function(f) f.IDENTRADA = Me.ID And f.ANULADO = "N").FirstOrDefault()
+                        Dim v = db.Entradas.Where(Function(f) f.IDENTRADA = Me.ID And f.ANULADO = "N").FirstOrDefault()
                         If Not v Is Nothing Then
                             If Config.ValidarPeriodo(v.FECHAENTRADA) Then
                                 v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
 
-                                For Each item In v.DETALLES_ENTRADAS
-                                    item.EXISTENCIA.CANTIDAD = item.EXISTENCIA.CANTIDAD - item.CANTIDAD
-                                    item.EXISTENCIA.PRODUCTO.CANTIDAD = item.EXISTENCIA.PRODUCTO.CANTIDAD - item.CANTIDAD
-                                    If item.EXISTENCIA.CANTIDAD < 0 Then
-                                        If Not item.EXISTENCIA.PRODUCTO.FACTURAR_NEGATIVO Then
-                                            Config.MsgErr("No se puede anular esta Entrada. Ya que la existencia del producto '" & item.EXISTENCIA.PRODUCTO.IDALTERNO & " - " & item.EXISTENCIA.PRODUCTO.DESCRIPCION & "' quedaría en negativo.")
+                                For Each item In v.EntradasDetalles
+                                    item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
+                                    item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD - item.CANTIDAD
+                                    If item.Existencia.CANTIDAD < 0 Then
+                                        If Not item.Existencia.Producto.FACTURAR_NEGATIVO Then
+                                            Config.MsgErr("No se puede anular esta Entrada. Ya que la existencia del producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' quedaría en negativo.")
                                             Exit Sub
                                         End If
                                     End If
-                                    If item.EXISTENCIA.PRODUCTO.CANTIDAD = 0 Then
-                                        item.EXISTENCIA.PRODUCTO.SALDO = 0
+                                    If item.Existencia.Producto.CANTIDAD = 0 Then
+                                        item.Existencia.Producto.SALDO = 0
                                     Else
-                                        If item.CMONEDA.Equals(item.EXISTENCIA.PRODUCTO.CMONEDA) Then
-                                            item.EXISTENCIA.PRODUCTO.SALDO = item.EXISTENCIA.PRODUCTO.SALDO - (item.CANTIDAD * item.COSTO)
+                                        If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
+                                            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO)
                                         Else
                                             If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.EXISTENCIA.PRODUCTO.SALDO = item.EXISTENCIA.PRODUCTO.SALDO - (item.CANTIDAD * item.COSTO / Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO / Config.tazadecambio)
                                             Else
-                                                item.EXISTENCIA.PRODUCTO.SALDO = item.EXISTENCIA.PRODUCTO.SALDO - (item.CANTIDAD * item.COSTO * Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO * Config.tazadecambio)
                                             End If
                                         End If
                                     End If
-                                    If item.EXISTENCIA.PRODUCTO.CANTIDAD <> 0 Then
-                                        If item.EXISTENCIA.PRODUCTO.COSTO <> item.COSTO Then
-                                            item.EXISTENCIA.PRODUCTO.COSTO = item.EXISTENCIA.PRODUCTO.SALDO / item.EXISTENCIA.PRODUCTO.CANTIDAD
+                                    If item.Existencia.Producto.CANTIDAD <> 0 Then
+                                        If item.Existencia.Producto.COSTO <> item.COSTO Then
+                                            item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
                                         End If
                                     End If
 
-                                    db.Entry(item.EXISTENCIA.PRODUCTO).State = EntityState.Modified
-                                    db.Entry(item.EXISTENCIA).State = EntityState.Modified
+                                    db.Entry(item.Existencia.Producto).State = EntityState.Modified
+                                    db.Entry(item.Existencia).State = EntityState.Modified
                                 Next
 
                                 Using db_a As New CodeFirst
                                     Dim band As Boolean = False
-                                    For Each kardex In db.KARDEXS.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
-                                        For Each k In db_a.KARDEXS.Where(Function(f) f.N > kardex.N And f.IDEXISTENCIA = kardex.IDEXISTENCIA)
+                                    For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
+                                        For Each k In db_a.Kardexs.Where(Function(f) f.N > kardex.N And f.IDEXISTENCIA = kardex.IDEXISTENCIA)
                                             k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR - kardex.ENTRADA
                                             k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN - kardex.ENTRADA
                                             If k.EXISTENCIA_ALMACEN = 0 Then

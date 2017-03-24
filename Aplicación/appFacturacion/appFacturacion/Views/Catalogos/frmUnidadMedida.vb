@@ -2,7 +2,7 @@
     Sub llenar(Optional ByVal bodega As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From uni In db.UNIDADES_DE_MEDIDAS Where uni.ACTIVO = "S" And uni.DESCRIPCION.Contains(bodega) Select uni.IDUNIDAD, uni.DESCRIPCION).ToList
+                dtRegistro.DataSource = (From uni In db.UnidadesMedidas Where uni.ACTIVO = "S" And uni.DESCRIPCION.Contains(bodega) Select uni.IDUNIDAD, uni.DESCRIPCION).ToList
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Visible = False
                     dtRegistro.Columns(1).HeaderText = vbNewLine & "DESCRIPCIÓN DE LAS UNIDADES DE MEDIDAS" & vbNewLine : dtRegistro.Columns(1).Width = 450
@@ -43,9 +43,9 @@
         Try
             If Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.UNIDADES_DE_MEDIDAS.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
-                        Dim unidad As New UNIDAD_DE_MEDIDA : unidad.Reg = DateTime.Now : unidad.IDUNIDAD = Guid.NewGuid().ToString() : unidad.DESCRIPCION = txtNombre.Text : unidad.ACTIVO = "S"
-                        db.UNIDADES_DE_MEDIDAS.Add(unidad)
+                    If db.UnidadesMedidas.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
+                        Dim unidad As New UnidadMedida : unidad.Reg = DateTime.Now : unidad.IDUNIDAD = Guid.NewGuid().ToString() : unidad.DESCRIPCION = txtNombre.Text : unidad.ACTIVO = "S"
+                        db.UnidadesMedidas.Add(unidad)
                         db.SaveChanges() : limpiar() : llenar(txtBuscar.Text.Trim) : MessageBox.Show("Unidad de Medida guardada")
                     Else
                         MessageBox.Show("Error, Ya existe una Unidad de Medida con este nombre.")
@@ -63,8 +63,8 @@
         Try
             If Not txtCodigo.Text.Trim = "" And Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.UNIDADES_DE_MEDIDAS.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDUNIDAD = txtCodigo.Text).Count() = 0 Then
-                        Dim unidad = db.UNIDADES_DE_MEDIDAS.Where(Function(f) f.IDUNIDAD = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                    If db.UnidadesMedidas.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDUNIDAD = txtCodigo.Text).Count() = 0 Then
+                        Dim unidad = db.UnidadesMedidas.Where(Function(f) f.IDUNIDAD = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not unidad Is Nothing Then
                             unidad.DESCRIPCION = txtNombre.Text
                             db.Entry(unidad).State = EntityState.Modified
@@ -87,7 +87,7 @@
     Private Sub btEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEliminar.Click
         Try
             Using db As New CodeFirst
-                Dim unidad = db.UNIDADES_DE_MEDIDAS.Where(Function(f) f.IDUNIDAD = txtCodigo.Text).FirstOrDefault()
+                Dim unidad = db.UnidadesMedidas.Where(Function(f) f.IDUNIDAD = txtCodigo.Text).FirstOrDefault()
                 If Not unidad Is Nothing Then
                     unidad.ACTIVO = "N"
                     db.Entry(unidad).State = EntityState.Modified

@@ -3,7 +3,7 @@
     Sub llenar(Optional ByVal nproveedor As String = "", Optional ByVal nombreproveedor As String = "", Optional ByVal RazonSocialP As String = "")
         Try
             Using db As New CodeFirst
-                Dim consulta = (From pro In db.PROVEEDORES Where pro.ACTIVO = "S" And pro.N_PROVEEDOR.Contains(nproveedor) And pro.NOMBRES.Contains(nombreproveedor) And pro.RAZONSOCIAL.Contains(RazonSocialP) Select pro.IDPROVEEDOR, pro.N_PROVEEDOR, PROVEEDOR = pro.NOMBRES & " " & pro.APELLIDOS, pro.RAZONSOCIAL, pro.TELEFONO, pro.DOMICILIO).ToList()
+                Dim consulta = (From pro In db.Proveedores Where pro.ACTIVO = "S" And pro.N_PROVEEDOR.Contains(nproveedor) And pro.NOMBRES.Contains(nombreproveedor) And pro.RAZONSOCIAL.Contains(RazonSocialP) Select pro.IDPROVEEDOR, pro.N_PROVEEDOR, PROVEEDOR = pro.NOMBRES & " " & pro.APELLIDOS, pro.RAZONSOCIAL, pro.TELEFONO, pro.DOMICILIO).ToList()
                 If dtRegistro.Visible Then
                     dtRegistro.DataSource = consulta
                     If dtRegistro.Columns.Count > 0 Then
@@ -68,7 +68,7 @@
             If dtRegistro.SelectedRows.Count > 0 Then
                 Using db As New CodeFirst
                     Dim id = dtRegistro.SelectedRows(0).Cells(0).Value.ToString
-                    Dim p = db.PROVEEDORES.Where(Function(f) f.ACTIVO = "S" And f.IDPROVEEDOR = id).FirstOrDefault()
+                    Dim p = db.Proveedores.Where(Function(f) f.ACTIVO = "S" And f.IDPROVEEDOR = id).FirstOrDefault()
                     If Not p Is Nothing Then
                         Select Case frm_return
                             Case 0

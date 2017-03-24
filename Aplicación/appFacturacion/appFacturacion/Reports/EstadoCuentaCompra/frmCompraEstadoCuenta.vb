@@ -4,9 +4,9 @@
         Try
             If Not txtIdProveedor.Text.Trim() = "" Then
                 Using db As New CodeFirst
-                    Dim proveedor = db.PROVEEDORES.Where(Function(f) f.IDPROVEEDOR = txtIdProveedor.Text And f.ACTIVO = "S").FirstOrDefault()
+                    Dim proveedor = db.Proveedores.Where(Function(f) f.IDPROVEEDOR = txtIdProveedor.Text And f.ACTIVO = "S").FirstOrDefault()
                     If Not proveedor Is Nothing Then
-                        Dim compras = From com In db.COMPRAS Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.tazadecambio), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.tazadecambio, com.SALDOCREDITO))
+                        Dim compras = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.tazadecambio), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.tazadecambio, com.SALDOCREDITO))
                         If Not compras Is Nothing Then
                             If compras.Count() > 0 Then
                                 saldo = Decimal.Parse(compras.Sum())
@@ -17,7 +17,7 @@
                             saldo = 0.0
                         End If
                         disponible = proveedor.LIMITECREDITO - saldo
-                        Dim compras_vencida = From com In db.COMPRAS Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True And com.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.tazadecambio), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.tazadecambio, com.SALDOCREDITO))
+                        Dim compras_vencida = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True And com.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.tazadecambio), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.tazadecambio, com.SALDOCREDITO))
                         If Not compras_vencida Is Nothing Then
                             If compras_vencida.Count() > 0 Then
                                 vencido = Decimal.Parse(compras_vencida.Sum())
@@ -27,8 +27,8 @@
                         Else
                             vencido = 0.0
                         End If
-                        Dim consulta = From pro In db.PROVEEDORES Join com In db.COMPRAS On pro.IDPROVEEDOR Equals com.IDPROVEEDOR Join estado In db.COMPRAS_PAGOS_PROVEEDORES On com.IDCOMPRA Equals estado.IDCOMPRA Join ser In db.SERIES On ser.IDSERIE Equals estado.IDSERIE Where estado.ACTIVO = "S" And pro.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO And com.FECHACOMPRA <= fechacorte Order By estado.N Ascending Select estado.N, SERIE = ser.NOMBRE, estado.N_DOCUMENTO, estado.N_COMPRA, estado.FORMADEPAGO, estado.N_PAGO, estado.OPERACION, estado.FECHA, estado.PLAZO, estado.FECHAVENCIMIENTO, MONEC = estado.MONEDA, MONEDA = If(estado.MONEDA = Config.cordoba, "Córdoba", "Dólar"), estado.TAZACAMBIO, estado.DEBE_C, estado.DEBE_D, estado.HABER_C, estado.HABER_D, ID = com.N, com.SALDOCREDITO
-                        Dim s = (From v In db.COMPRAS Where v.ANULADO.Equals("N") And v.IDPROVEEDOR.Equals(proveedor.IDPROVEEDOR) And v.CREDITO And v.FECHACOMPRA < fechacorte Select v.MONEDA, v.SALDOCREDITO)
+                        Dim consulta = From pro In db.Proveedores Join com In db.Compras On pro.IDPROVEEDOR Equals com.IDPROVEEDOR Join estado In db.ComprasEstadosCuentas On com.IDCOMPRA Equals estado.IDCOMPRA Join ser In db.SERIES On ser.IDSERIE Equals estado.IDSERIE Where estado.ACTIVO = "S" And pro.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO And com.FECHACOMPRA <= fechacorte Order By estado.N Ascending Select estado.N, SERIE = ser.NOMBRE, estado.N_DOCUMENTO, estado.N_COMPRA, estado.FORMADEPAGO, estado.N_PAGO, estado.OPERACION, estado.FECHA, estado.PLAZO, estado.FECHAVENCIMIENTO, MONEC = estado.MONEDA, MONEDA = If(estado.MONEDA = Config.cordoba, "Córdoba", "Dólar"), estado.TAZACAMBIO, estado.DEBE_C, estado.DEBE_D, estado.HABER_C, estado.HABER_D, ID = com.N, com.SALDOCREDITO
+                        Dim s = (From v In db.Compras Where v.ANULADO.Equals("N") And v.IDPROVEEDOR.Equals(proveedor.IDPROVEEDOR) And v.CREDITO And v.FECHACOMPRA < fechacorte Select v.MONEDA, v.SALDOCREDITO)
                         If rdPendientes.Checked Then
                             consulta = consulta.Where(Function(f) f.SALDOCREDITO > 0)
                         ElseIf rdCanceladas.Checked Then
@@ -99,7 +99,7 @@
             Try
                 Using db As New CodeFirst
                     If Not txtNProveedor.Text.Trim() = "" Then
-                        Dim proveedor = db.PROVEEDORES.Where(Function(f) f.N_PROVEEDOR = txtNProveedor.Text And f.ACTIVO = "S").FirstOrDefault()
+                        Dim proveedor = db.Proveedores.Where(Function(f) f.N_PROVEEDOR = txtNProveedor.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not proveedor Is Nothing Then
                             txtIdProveedor.Text = proveedor.IDPROVEEDOR
                             txtNombreProveedor.Text = proveedor.N_PROVEEDOR & " | " & proveedor.NOMBRES & " " & proveedor.APELLIDOS

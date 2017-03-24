@@ -2,7 +2,7 @@
     Sub llenar(Optional ByVal bodega As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From mar In db.MARCAS Where mar.ACTIVO = "S" And mar.DESCRIPCION.Contains(bodega) Select mar.IDMARCA, mar.DESCRIPCION).ToList
+                dtRegistro.DataSource = (From mar In db.Marcas Where mar.ACTIVO = "S" And mar.DESCRIPCION.Contains(bodega) Select mar.IDMARCA, mar.DESCRIPCION).ToList
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Visible = False
                     dtRegistro.Columns(1).HeaderText = vbNewLine & "DESCRIPCIÓN DE LA MARCA" & vbNewLine : dtRegistro.Columns(1).Width = 450
@@ -43,9 +43,9 @@
         Try
             If Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.MARCAS.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
-                        Dim marca As New MARCA : marca.Reg = DateTime.Now : marca.IDMARCA = Guid.NewGuid().ToString() : marca.DESCRIPCION = txtNombre.Text : marca.ACTIVO = "S"
-                        db.MARCAS.Add(marca)
+                    If db.Marcas.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim).Count() = 0 Then
+                        Dim marca As New Marca : marca.Reg = DateTime.Now : marca.IDMARCA = Guid.NewGuid().ToString() : marca.DESCRIPCION = txtNombre.Text : marca.ACTIVO = "S"
+                        db.Marcas.Add(marca)
                         db.SaveChanges() : limpiar() : llenar(txtBuscar.Text.Trim) : MessageBox.Show("Marca guardada")
                     Else
                         MessageBox.Show("Error, Ya existe una marca con este nombre.")
@@ -63,8 +63,8 @@
         Try
             If Not txtCodigo.Text.Trim = "" And Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
-                    If db.MARCAS.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDMARCA = txtCodigo.Text).Count() = 0 Then
-                        Dim marca = db.MARCAS.Where(Function(f) f.IDMARCA = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
+                    If db.Marcas.Where(Function(f) f.DESCRIPCION = txtNombre.Text.Trim And Not f.IDMARCA = txtCodigo.Text).Count() = 0 Then
+                        Dim marca = db.Marcas.Where(Function(f) f.IDMARCA = txtCodigo.Text And f.ACTIVO = "S").FirstOrDefault()
                         If Not marca Is Nothing Then
                             marca.DESCRIPCION = txtNombre.Text
                             db.Entry(marca).State = EntityState.Modified
@@ -87,7 +87,7 @@
     Private Sub btEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEliminar.Click
         Try
             Using db As New CodeFirst
-                Dim marca = db.MARCAS.Where(Function(f) f.IDMARCA = txtCodigo.Text).FirstOrDefault()
+                Dim marca = db.Marcas.Where(Function(f) f.IDMARCA = txtCodigo.Text).FirstOrDefault()
                 If Not marca Is Nothing Then
                     marca.ACTIVO = "N"
                     db.Entry(marca).State = EntityState.Modified

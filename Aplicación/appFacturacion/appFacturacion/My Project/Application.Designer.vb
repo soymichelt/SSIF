@@ -70,24 +70,24 @@ Namespace My
 
                 Using db As New CodeFirst
                     db.Database.CreateIfNotExists()
-                    If Not db.BODEGAS.Count() > 0 Then
+                    If Not db.Bodegas.Count() > 0 Then
                         If MessageBox.Show("¿Desea que el sistema cargue información de inicio?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                            Dim bod As New BODEGA
+                            Dim bod As New Bodega
                             bod.IDBODEGA = Guid.NewGuid.ToString()
                             bod.N_BODEGA = "SUC001"
                             bod.DESCRIPCION = "SUCURSAL CENTRAL"
                             bod.ACTIVO = "S"
-                            db.BODEGAS.Add(bod)
+                            db.Bodegas.Add(bod)
                             db.SaveChanges()
-                            If Not db.PERIODOS.Count() > 0 Then
-                                Dim periodo As New PERIODO
+                            If Not db.Periodos.Count() > 0 Then
+                                Dim periodo As New Periodo
                                 periodo.IDPERIODO = Guid.NewGuid.ToString()
                                 periodo.Reg = DateTime.Now
                                 periodo.INICIO = DateTime.Parse("01/01/" & DateTime.Now.Year & " 00:00:00")
                                 periodo.FINAL = DateTime.Parse("31/12/" & DateTime.Now.Year & " 23:59:59")
                                 periodo.ACTUAL = "S"
                                 periodo.ACTIVO = "S"
-                                db.PERIODOS.Add(periodo)
+                                db.Periodos.Add(periodo)
                                 db.SaveChanges()
                             End If
                             'cargar catalogos de cuentas
@@ -184,8 +184,8 @@ Namespace My
                             '    db.CUENTAS.Add(cuenta)
                             'End If
                             'crear mas informacion de inicio
-                            If Not db.USUARIOS.Count() > 0 Then
-                                Dim user As New USUARIO
+                            If Not db.Usuarios.Count() > 0 Then
+                                Dim user As New Usuario
                                 user.IDUsuario = Guid.NewGuid.ToString()
                                 user.NombreCuenta = "Admin"
                                 user.Contraseña = "admin*123"
@@ -205,14 +205,14 @@ Namespace My
                                 user.ImageName = ""
                                 user.Observacion = "USUARIO CREADO AUTOMÁTICAMENTE POR EL SISTEMA"
                                 user.Activo = "S"
-                                db.USUARIOS.Add(user)
+                                db.Usuarios.Add(user)
                                 db.SaveChanges()
                                 user = Nothing
                             End If
                             If Not db.SERIES.Count() > 0 Then
-                                Dim serie As SERIE
+                                Dim serie As Serie
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "VENTA").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "FACT"
@@ -224,7 +224,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "COMPRA").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "COMP"
@@ -236,7 +236,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "ENTRADA").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "ENTR"
@@ -248,7 +248,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "SALIDA").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "SALI"
@@ -260,7 +260,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "TRASLADO").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "TRASL"
@@ -272,7 +272,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "RECIBO DE VENTA").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "REC-V"
@@ -284,7 +284,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "RECIBO DE COMPRA").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "REC-C"
@@ -296,7 +296,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "CONSIGNACION").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "CONSIG"
@@ -308,7 +308,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "DESCONSIGNACION").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "DESCON"
@@ -320,7 +320,7 @@ Namespace My
                                     db.SERIES.Add(serie)
                                 End If
                                 If Not db.SERIES.Where(Function(f) f.OPERACION = "COTIZACION").Count() > 0 Then
-                                    serie = New SERIE
+                                    serie = New Serie
                                     serie.IDSERIE = Guid.NewGuid.ToString()
                                     serie.IDBODEGA = bod.IDBODEGA
                                     serie.NOMBRE = "COTIZ"
@@ -336,23 +336,23 @@ Namespace My
                             End If
                             bod = Nothing
 
-                            If Not db.TAZAS.Count() > 0 Then
-                                Dim taza As New TAZA
+                            If Not db.Tazas.Count() > 0 Then
+                                Dim taza As New Taza
                                 taza.IDTAZA = Guid.NewGuid.ToString()
                                 taza.FECHA = DateTime.Now
                                 taza.CAMBIO = 27
 
-                                db.TAZAS.Add(taza)
+                                db.Tazas.Add(taza)
                                 db.SaveChanges()
                                 taza = Nothing
                             End If
-                            If Not db.IVAS.Count() > 0 Then
-                                Dim iva As New IVA
+                            If Not db.ImpuestosValoresAgregados.Count() > 0 Then
+                                Dim iva As New ImpuestoValorAgregado
                                 iva.IDIVA = Guid.NewGuid.ToString()
                                 iva.FECHA = DateTime.Now
                                 iva.PORCENTAJE = 15
 
-                                db.IVAS.Add(iva)
+                                db.ImpuestosValoresAgregados.Add(iva)
                                 db.SaveChanges()
                                 iva = Nothing
                             End If
