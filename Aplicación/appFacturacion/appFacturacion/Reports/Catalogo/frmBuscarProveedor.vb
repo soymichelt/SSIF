@@ -119,20 +119,20 @@
                                 frmProveedor.txtCodProveedor.Focus()
                             Case 2
                                 frmCompra.txtIdProveedor.Text = p.IDPROVEEDOR
-                                frmCompra.txtNombreProveedor.Text = p.N_PROVEEDOR & " | " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim <> "", " // " & p.RAZONSOCIAL, "")
+                                frmCompra.txtNombreProveedor.Text = If(p.TIPOPERSONA = "Natural", p.N_PROVEEDOR & " " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim() <> "", " // " & p.N_PROVEEDOR & " " & p.RAZONSOCIAL, ""), p.N_PROVEEDOR & " " & p.RAZONSOCIAL)
                             Case 3
                                 frmReciboCompra.txtIdProveedor.Text = p.IDPROVEEDOR
-                                frmReciboCompra.txtNombreProveedor.Text = p.N_PROVEEDOR & " | " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim <> "", " // " & p.RAZONSOCIAL, "")
+                                frmReciboCompra.txtNombreProveedor.Text = If(p.TIPOPERSONA = "Natural", p.N_PROVEEDOR & " " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim() <> "", " // " & p.N_PROVEEDOR & " " & p.RAZONSOCIAL, ""), p.N_PROVEEDOR & " " & p.RAZONSOCIAL)
                             Case 4
                                 frmCompraEstadoCuenta.txtIdProveedor.Text = p.IDPROVEEDOR
-                                frmCompraEstadoCuenta.txtNombreProveedor.Text = p.N_PROVEEDOR & " | " & p.NOMBRES & " " & p.APELLIDOS
+                                frmCompraEstadoCuenta.txtNombreProveedor.Text = If(p.TIPOPERSONA = "Natural", p.N_PROVEEDOR & " " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim() <> "", " // " & p.N_PROVEEDOR & " " & p.RAZONSOCIAL, ""), p.N_PROVEEDOR & " " & p.RAZONSOCIAL)
                                 frmCompraEstadoCuenta.txtRazonSocial.Text = p.RAZONSOCIAL
                             Case 5
                                 frmNotaDevolucionCompra.txtIdProveedor.Text = p.IDPROVEEDOR
-                                frmNotaDevolucionCompra.txtNombreProveedor.Text = p.N_PROVEEDOR & " | " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim <> "", " // " & p.RAZONSOCIAL, "")
+                                frmNotaDevolucionCompra.txtNombreProveedor.Text = If(p.TIPOPERSONA = "Natural", p.N_PROVEEDOR & " " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim() <> "", " // " & p.N_PROVEEDOR & " " & p.RAZONSOCIAL, ""), p.N_PROVEEDOR & " " & p.RAZONSOCIAL)
                             Case 6
                                 frmProducto.txtIdProveedor.Text = p.IDPROVEEDOR
-                                frmProducto.txtProveedor.Text = p.N_PROVEEDOR & " | " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim <> "", " // " & p.RAZONSOCIAL, "")
+                                frmProducto.txtProveedor.Text = If(p.TIPOPERSONA = "Natural", p.N_PROVEEDOR & " " & p.NOMBRES & " " & p.APELLIDOS & If(p.RAZONSOCIAL.Trim() <> "", " // " & p.N_PROVEEDOR & " " & p.RAZONSOCIAL, ""), p.N_PROVEEDOR & " " & p.RAZONSOCIAL)
                         End Select
                         Me.Close()
                     Else

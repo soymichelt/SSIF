@@ -37,23 +37,25 @@
         Try
             If Not txtUsuario.Text = "" And Not txtContraseña.Text = "" Then
                 Using db As New CodeFirst
-                    Config.Usuario = db.Usuarios.Where(Function(f) f.NombreCuenta = txtUsuario.Text And f.Activo = "S").FirstOrDefault
-                    If Not Config.Usuario Is Nothing Then
-                        If Config.Usuario.Contraseña = txtContraseña.Text Then
+                    Dim User = db.Usuarios.Where(Function(f) f.NombreCuenta = txtUsuario.Text And f.Activo = "S").FirstOrDefault
+                    If Not User Is Nothing Then
+                        If User.Contraseña = txtContraseña.Text Then
 
                             'Evaluar que tipo de inicio de sesión (-Ingreso  -Autorización)
                             If Me.Type Then
 
                                 'Aquí se realiza la autorización
-
-
+                                Config.ActivarPrivilegio = User
+                                Me.salir = True
+                                Me.Close()
 
                             Else
 
                                 'Aquí se agrega el proceso de entrada al sistema
+                                Config.Usuario = User
                                 frmSeleccionarBodega.frm_return = 1
                                 frmSeleccionarBodega.Show()
-                                salir = True
+                                Me.salir = True
                                 Me.Close()
 
                             End If
@@ -79,7 +81,7 @@
     End Sub
 
     Private Sub frmIniciarSesion_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        If salir Then
+        If salir Or Me.Type Then
             Me.Dispose()
         Else
             Application.ExitThread()

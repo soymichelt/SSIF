@@ -149,7 +149,7 @@
                             Dim proveedor = db.Proveedores.Where(Function(f) f.N_PROVEEDOR = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not proveedor Is Nothing Then
                                 txtIdProveedor.Text = proveedor.IDPROVEEDOR
-                                txtNombreProveedor.Text = proveedor.N_PROVEEDOR & " | " & proveedor.NOMBRES & " " & proveedor.APELLIDOS & If(proveedor.RAZONSOCIAL.Trim <> "", " // " & proveedor.RAZONSOCIAL, "")
+                                txtNombreProveedor.Text = If(proveedor.TIPOPERSONA = "Natural", proveedor.N_PROVEEDOR & " " & proveedor.NOMBRES & " " & proveedor.APELLIDOS & If(proveedor.RAZONSOCIAL.Trim() <> "", " // " & proveedor.N_PROVEEDOR & " " & proveedor.RAZONSOCIAL, ""), proveedor.N_PROVEEDOR & " " & proveedor.RAZONSOCIAL)
                                 txtNCliente.Clear()
                                 txtObservacion.Focus()
                             Else
@@ -1049,6 +1049,11 @@
                 txtTotalIva.Value = detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)
                 txtTotal.Value = detalles.Sum(Function(f) f.TOTAL_D)
             End If
+        Else
+            txtTotalDescuento.Value = 0
+            txtTotalSubtotal.Value = 0
+            txtTotalIva.Value = 0
+            txtTotal.Value = 0
         End If
         If rdCordoba.Checked Then
             dtRegistro.DataSource = (From det In detalles Select det.IDEXISTENCIA, det.IDALTERNO, det.DESCRIPCION, det.MARCA, det.UNIDAD_DE_MEDIDA, det.PRESENTACION, det.EXISTENCIA, det.CANTIDAD, det.PRECIOUNITARIO_C, det.DESCUENTO_POR, det.DESCUENTO_DIN_C, det.PRECIONETO_C, det.IVA_POR, det.IVA_DIN_C, det.DESCUENTO_DIN_TOTAL_C, det.SUBTOTAL_C, det.IVA_DIN_TOTAL_C, det.TOTAL_C).ToList()

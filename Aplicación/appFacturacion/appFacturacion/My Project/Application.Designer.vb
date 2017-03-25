@@ -202,6 +202,7 @@ Namespace My
                                 user.CContabilidad = True
                                 user.Inventario = True
                                 user.CInventario = True
+                                user.SalesPriceChange = True
                                 user.ImageName = ""
                                 user.Observacion = "USUARIO CREADO AUTOMÁTICAMENTE POR EL SISTEMA"
                                 user.Activo = "S"

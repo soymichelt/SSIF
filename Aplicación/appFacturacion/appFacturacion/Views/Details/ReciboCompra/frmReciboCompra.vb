@@ -48,6 +48,10 @@
                 txtTotalDescuento.Value = detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D)
                 txtTotalNuevoSaldo.Value = detalles.Sum(Function(f) f.NUEVO_SALDO_D)
             End If
+        Else
+            txtTotalImporte.Value = 0
+            txtDescuento.Value = 0
+            txtTotalNuevoSaldo.Value = 0
         End If
         If rdCordoba.Checked Then
             dtRegistro.DataSource = (From det In detalles Select det.IDVENTA, det.SERIE, det.CONSECUTIVO, det.FECHA, MONEDA = If(det.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), det.TAZA, SUBTOTAL = If(det.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, det.SUBTOTAL_D), DESCUENTO = If(det.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D), IVA = If(det.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D), TOTAL = If(det.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D), det.SALDOCREDITO, det.OPERACION, det.IMPORTE_C, det.DESCUENTO_C, det.NUEVO_SALDO_C).ToList()
@@ -181,7 +185,7 @@
                                     Exit Sub
                                 End If
                                 txtIdProveedor.Text = proveedor.IDPROVEEDOR
-                                txtNombreProveedor.Text = proveedor.N_PROVEEDOR & " | " & proveedor.NOMBRES & " " & proveedor.APELLIDOS & If(proveedor.RAZONSOCIAL.Trim <> "", " // " & proveedor.RAZONSOCIAL, "")
+                                txtNombreProveedor.Text = If(proveedor.TIPOPERSONA = "Natural", proveedor.N_PROVEEDOR & " " & proveedor.NOMBRES & " " & proveedor.APELLIDOS & If(proveedor.RAZONSOCIAL.Trim() <> "", " // " & proveedor.N_PROVEEDOR & " " & proveedor.RAZONSOCIAL, ""), proveedor.N_PROVEEDOR & " " & proveedor.RAZONSOCIAL)
 
                                 txtNProveedor.Clear()
                                 txtObservacion.Focus()

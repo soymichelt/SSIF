@@ -138,6 +138,7 @@ Module Config
 
     'datos de usuario
     Public Usuario As Usuario
+    Public ActivarPrivilegio As Usuario
 
     'datos del tema
     Public tema_ribon_dev As New DevComponents.DotNetBar.StyleManager

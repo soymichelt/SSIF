@@ -1681,6 +1681,7 @@
     <None Include="Resources\Cancelar.png" />
     <Content Include="Resources\dinero.png" />
     <Content Include="Resources\editar.png" />
+    <None Include="Resources\EditPrice.png" />
     <Content Include="Resources\eliminar.png" />
     <None Include="Resources\Entrar.png" />
     <None Include="Resources\Error.png" />
@@ -1807,6 +1808,7 @@
     <None Include="Resources\Menu_Principal\EstadoCuentaCliente.png" />
     <None Include="Resources\Menu_Principal\EstadoCuentaProveedor.png" />
     <None Include="Resources\Menu_Principal\PrinterSetting.png" />
+    <None Include="Resources\Promocion.png" />
     <Content Include="Resources\Serie.png" />
     <None Include="Resources\guardar1.png" />
     <Content Include="Resources\maquina_registradora.png" />

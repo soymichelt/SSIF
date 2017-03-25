@@ -35,6 +35,7 @@ Partial Class frmUser
         Me.btBuscar = New System.Windows.Forms.ToolStripButton()
         Me.PanelEx1 = New DevComponents.DotNetBar.PanelEx()
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.chkSalesPriceChange = New System.Windows.Forms.CheckBox()
         Me.chkContabilidad = New System.Windows.Forms.CheckBox()
         Me.chkInventario = New System.Windows.Forms.CheckBox()
         Me.chkCompra = New System.Windows.Forms.CheckBox()
@@ -62,7 +63,6 @@ Partial Class frmUser
         Me.btImagen = New DevComponents.DotNetBar.ButtonX()
         Me.txtImagen = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.pnImagen = New DevComponents.DotNetBar.PanelEx()
-        Me.chkSalesPriceChange = New System.Windows.Forms.CheckBox()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Menu.SuspendLayout()
         Me.PanelEx1.SuspendLayout()
@@ -208,6 +208,16 @@ Partial Class frmUser
         Me.ElGroupBox1.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
         Me.ElGroupBox1.Size = New System.Drawing.Size(279, 178)
         Me.ElGroupBox1.TabIndex = 3
+        '
+        'chkSalesPriceChange
+        '
+        Me.chkSalesPriceChange.AutoSize = True
+        Me.chkSalesPriceChange.Location = New System.Drawing.Point(12, 144)
+        Me.chkSalesPriceChange.Name = "chkSalesPriceChange"
+        Me.chkSalesPriceChange.Size = New System.Drawing.Size(132, 18)
+        Me.chkSalesPriceChange.TabIndex = 143
+        Me.chkSalesPriceChange.Text = "Editar Precio de Venta"
+        Me.chkSalesPriceChange.UseVisualStyleBackColor = True
         '
         'chkContabilidad
         '
@@ -537,16 +547,6 @@ Partial Class frmUser
         Me.pnImagen.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.pnImagen.Style.GradientAngle = 90
         Me.pnImagen.TabIndex = 11
-        '
-        'chkSalesPriceChange
-        '
-        Me.chkSalesPriceChange.AutoSize = True
-        Me.chkSalesPriceChange.Location = New System.Drawing.Point(12, 144)
-        Me.chkSalesPriceChange.Name = "chkSalesPriceChange"
-        Me.chkSalesPriceChange.Size = New System.Drawing.Size(132, 18)
-        Me.chkSalesPriceChange.TabIndex = 145
-        Me.chkSalesPriceChange.Text = "Editar Precio de Venta"
-        Me.chkSalesPriceChange.UseVisualStyleBackColor = True
         '
         'frmUser
         '

@@ -150,6 +150,11 @@
                         Using db As New CodeFirst
                             Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.bodega)
                             If Not producto Is Nothing Then
+
+                                'Evaluar si tiene permisos de editar el precio
+                                txtPrecio.IsInputReadOnly = If(Config.Usuario.SalesPriceChange, False, True)
+
+                                '
                                 If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
                                     With producto.Producto
                                         If .MARGEN Then
@@ -640,11 +645,8 @@
         End If
     End Sub
 
-    Private Sub btAgregarProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btAgregarProducto.Click
-        Me.txtCodigoAlterno.Focus()
-        frmProducto.MdiParent = frmPrincipal
-        frmProducto.Show()
-        frmProducto.BringToFront()
+    Private Sub btPromocion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPromocion.Click
+
     End Sub
 
     Private Sub cmbSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -673,16 +675,20 @@
                         Dim p = db.Productos.Where(Function(f) f.IDALTERNO = txtCodigoAlterno.Text And f.ACTIVO = "S" And f.Marca.ACTIVO = "S").FirstOrDefault()
                         If Not p Is Nothing Then
                             If txtPrecio.Text = "" Then
+
                                 frmBuscarPrecio.taza = txtTazaCambio.Value
                                 frmBuscarPrecio.frm_return = 1
                                 frmBuscarPrecio.idproducto = p.IDPRODUCTO
                                 frmBuscarPrecio.ShowDialog()
+
                             Else
+
                                 If txtDescuentoPorProducto.Enabled Then
                                     txtDescuentoPorProducto.Focus()
                                 Else
                                     txtCantidad.Focus()
                                 End If
+
                             End If
                         Else
                             Config.MsgErr("No se encuentra ningun producto con este codigo alterno.")
@@ -1396,6 +1402,11 @@
                 txtTotalIva.Value = detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)
                 txtTotal.Value = detalles.Sum(Function(f) f.TOTAL_D)
             End If
+        Else
+            txtTotalDescuento.Value = 0
+            txtTotalSubtotal.Value = 0
+            txtTotalIva.Value = 0
+            txtTotal.Value = 0
         End If
         If rdCordoba.Checked Then
             dtRegistro.DataSource = (From det In detalles Select det.IDEXISTENCIA, det.IDALTERNO, det.DESCRIPCION, det.MARCA, det.UNIDAD_DE_MEDIDA, det.PRESENTACION, det.EXISTENCIA, det.CANTIDAD, det.PRECIOUNITARIO_C, det.DESCUENTO_POR, det.DESCUENTO_DIN_C, det.DESCUENTO_DIN_TOTAL_C, det.PRECIONETO_C, det.IVA_POR, det.IVA_DIN_C, det.SUBTOTAL_C, det.IVA_DIN_TOTAL_C, det.TOTAL_C).ToList()
@@ -1558,6 +1569,61 @@
                 txtFechaVencimiento.Clear()
                 txtCodigoAlterno.Focus()
             End If
+        End If
+    End Sub
+
+    Private Sub btListadoPrecio_Click(sender As Object, e As EventArgs) Handles btListadoPrecio.Click
+        If txtIdSerie.Text <> "" Then
+            If Not txtCodigoAlterno.Text.Trim = "" Then
+                Using db As New CodeFirst
+                    Dim p = db.Productos.Where(Function(f) f.IDALTERNO = txtCodigoAlterno.Text And f.ACTIVO = "S" And f.Marca.ACTIVO = "S").FirstOrDefault()
+                    If Not p Is Nothing Then
+                        frmBuscarPrecio.taza = txtTazaCambio.Value
+                        frmBuscarPrecio.frm_return = 1
+                        frmBuscarPrecio.idproducto = p.IDPRODUCTO
+                        frmBuscarPrecio.ShowDialog()
+
+                        txtPrecio.Focus()
+                    Else
+                        Config.MsgErr("No se encuentra ningun producto con este codigo alterno.")
+                        txtCodigoAlterno.Focus()
+                    End If
+                End Using
+            Else
+                Config.MsgErr("Seleccione un producto")
+                txtCodigoAlterno.Focus()
+            End If
+        Else
+            Config.MsgErr("Seleccione la serie")
+        End If
+    End Sub
+
+    Private Sub btEditarPrecio_Click(sender As Object, e As EventArgs) Handles btEditarPrecio.Click
+        '
+        If Config.Usuario.SalesPriceChange Then
+
+            'si tiene el privilegio
+            txtPrecio.Focus()
+
+        Else
+
+            'solicitar privilegio
+            frmLogin.Type = True
+            frmLogin.ShowDialog()
+
+            'evaluación del privilegio
+            If Not Config.ActivarPrivilegio Is Nothing Then
+
+                If Config.ActivarPrivilegio.SalesPriceChange Then
+                    txtPrecio.IsInputReadOnly = False
+                    txtPrecio.Focus()
+                Else
+                    txtPrecio.IsInputReadOnly = True
+                    Config.MsgErr("No cuenta con los privilegios para editar el Precio.")
+                End If
+
+            End If
+
         End If
     End Sub
 End Class

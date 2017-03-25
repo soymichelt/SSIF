@@ -49,7 +49,7 @@
 
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
         If txtNombres.Text.Trim <> "" And txtApellidos.Text.Trim <> "" And txtUsuario.Text.Trim <> "" And txtContraseña.Text.Trim <> "" Then
-            If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Then
+            If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Or chkSalesPriceChange.Checked Then
                 Try
                     Using db As New CodeFirst
                         Dim u As New Usuario
@@ -90,6 +90,7 @@
                         u.CInventario = chkConsultasInventario.Checked
                         u.Contabilidad = chkContabilidad.Checked
                         u.CContabilidad = chkConsultasContabilidad.Checked
+                        u.SalesPriceChange = chkSalesPriceChange.Checked
 
                         u.Activo = "S"
                         db.Usuarios.Add(u)
@@ -112,7 +113,7 @@
 
     Private Sub btEditar_Click(sender As Object, e As EventArgs) Handles btEditar.Click
         If txtNombres.Text.Trim <> "" And txtApellidos.Text.Trim <> "" And txtUsuario.Text.Trim <> "" Then
-            If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Then
+            If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Or chkSalesPriceChange.Checked Then
                 Try
                     Using db As New CodeFirst
                         Dim u = db.Usuarios.Where(Function(f) f.IDUsuario = Me.txtCodigo.Text).FirstOrDefault
@@ -153,6 +154,7 @@
                             u.CInventario = chkConsultasInventario.Checked
                             u.Contabilidad = chkContabilidad.Checked
                             u.CContabilidad = chkConsultasContabilidad.Checked
+                            u.SalesPriceChange = chkSalesPriceChange.Checked
 
                             u.Activo = "S"
                             db.Entry(u).State = EntityState.Modified
