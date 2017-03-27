@@ -1,0 +1,201 @@
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.Resources.resources
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.pdb
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\Antlr3.Runtime.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.Core.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\EntityFramework.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\Newtonsoft.Json.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Net.Http.Formatting.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Helpers.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.WebHost.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Mvc.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Optimization.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Razor.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\WebGrease.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.Data.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.WebData.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\EntityFramework.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\Newtonsoft.Json.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Net.Http.Formatting.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Helpers.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.WebHost.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Mvc.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Razor.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.Data.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.WebData.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.Core.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\EntityFramework.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Net.Http.Formatting.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Http.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Http.WebHost.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Razor.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\WebMatrix.Data.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\Microsoft.Web.WebPages.OAuth.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\bin\es\WebMatrix.WebData.resources.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.dll
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.xml
+C:\Users\Administrator\Dropbox\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.pdb
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.pdb
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\Antlr3.Runtime.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.AspNet.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.Core.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\EntityFramework.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.Infrastructure.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\Newtonsoft.Json.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Net.Http.Formatting.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Helpers.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.WebHost.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Mvc.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Optimization.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Razor.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Deployment.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Razor.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\WebGrease.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.Data.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.WebData.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\EntityFramework.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\Newtonsoft.Json.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Net.Http.Formatting.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Helpers.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.WebHost.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Mvc.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Razor.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Deployment.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Razor.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.Data.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.WebData.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.AspNet.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.Core.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\EntityFramework.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Net.Http.Formatting.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Helpers.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Http.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Http.WebHost.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Mvc.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Optimization.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Razor.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.Deployment.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.Razor.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\WebMatrix.Data.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\Microsoft.Web.WebPages.OAuth.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\bin\es\WebMatrix.WebData.resources.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.vbprojResolveAssemblyReference.cache
+H:\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.Resources.resources
+H:\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.vbproj.GenerateResource.Cache
+H:\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.dll
+H:\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.xml
+H:\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.pdb
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.pdb
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\CapaDePresentacionAppWeb.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\Antlr3.Runtime.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.AspNet.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.Core.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\EntityFramework.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.Infrastructure.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\Newtonsoft.Json.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Net.Http.Formatting.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Helpers.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.WebHost.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Mvc.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Optimization.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Razor.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Deployment.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Razor.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\WebGrease.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.Data.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.WebData.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\EntityFramework.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\Newtonsoft.Json.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Net.Http.Formatting.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Helpers.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Http.WebHost.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Mvc.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.Razor.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Deployment.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\System.Web.WebPages.Razor.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.Data.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\WebMatrix.WebData.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.AspNet.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.Core.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OAuth.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\EntityFramework.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Net.Http.Formatting.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Helpers.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Http.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Http.WebHost.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Mvc.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Optimization.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.Razor.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.Deployment.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\System.Web.WebPages.Razor.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\WebMatrix.Data.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\Microsoft.Web.WebPages.OAuth.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\bin\es\WebMatrix.WebData.resources.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.vbprojResolveAssemblyReference.cache
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.Resources.resources
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.vbproj.GenerateResource.Cache
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.dll
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.xml
+F:\Nueva carpeta\appFacturacion\CapaDePresentacionAppWeb\obj\Debug\CapaDePresentacionAppWeb.pdb

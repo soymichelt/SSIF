@@ -1,0 +1,396 @@
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\ruta3\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\Marlon\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\Administrator\Dropbox\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\ruta3\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\admin\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+D:\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\ELI\Google Drive\SISTEMA DE INVENTARIO\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+D:\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+D:\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+D:\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+D:\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+D:\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+D:\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+D:\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+D:\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+D:\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+D:\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+D:\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+D:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+D:\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+D:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+D:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+D:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+D:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+D:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+D:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+D:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+D:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+D:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+D:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+E:\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+E:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+E:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+E:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+E:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+E:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+E:\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\Michel\Documents\sistema veterinaria\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\Carlos Reyna\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+H:\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+H:\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+H:\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+H:\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+H:\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+H:\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+H:\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+H:\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+H:\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+H:\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+H:\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+H:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+H:\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+H:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+H:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+H:\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+F:\Nueva carpeta\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+F:\Nueva carpeta\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+F:\Nueva carpeta\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+F:\Nueva carpeta\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+F:\Nueva carpeta\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+F:\Nueva carpeta\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+F:\Nueva carpeta\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\Michel\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\SIF\Desktop\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+F:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+F:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+F:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+F:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+F:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+F:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+F:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+M:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+M:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+M:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+M:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+M:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+M:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+M:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+D:\sitema250616local\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+D:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+D:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+D:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+D:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+D:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+D:\sitema250616local\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\win8pc\Desktop\SIF280716\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+G:\SIS181011\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+G:\SIS181011\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+G:\SIS181011\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+G:\SIS181011\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+G:\SIS181011\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+G:\SIS181011\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+G:\SIS181011\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+G:\SIS181011\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+G:\SIS181011\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+G:\SIS181011\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+G:\SIS181011\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+G:\SIS181011\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+G:\SIS181011\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+G:\SIS181011\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.dll.config
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\win8pc\Desktop\sistema280117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.dll.config
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+C:\Users\win8pc\Desktop\sistema290117en uso\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\Capadenegocio.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\Capadenegocio.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\Capadenegocio.xml
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.exe
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\EntityFramework.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\CapaDeDatosORM.xml
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\EntityFramework.xml
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\bin\EntityFramework.SqlServer.xml
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbprojResolveAssemblyReference.cache
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.Resources.resources
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\obj\Debug\ServiciosWeb.vbproj.GenerateResource.Cache
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.xml
+D:\GitHub\SSIF\Aplicación\appFacturacion\Capadenegocio\obj\Debug\Capadenegocio.pdb
