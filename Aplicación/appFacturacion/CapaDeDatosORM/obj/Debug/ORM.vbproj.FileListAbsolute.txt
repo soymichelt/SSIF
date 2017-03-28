@@ -338,3 +338,4 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\CapaDeDatosORM\obj\Debug\ORM.vbproj.Ge
 D:\GitHub\SSIF\Aplicación\appFacturacion\CapaDeDatosORM\obj\Debug\CapaDeDatosORM.exe
 D:\GitHub\SSIF\Aplicación\appFacturacion\CapaDeDatosORM\obj\Debug\CapaDeDatosORM.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\CapaDeDatosORM\obj\Debug\CapaDeDatosORM.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\CapaDeDatosORM\obj\Debug\ORM.vbprojResolveAssemblyReference.cache
