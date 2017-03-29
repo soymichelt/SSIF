@@ -827,6 +827,8 @@ Public Class PromocionExistencia
 
     Public Property Descuento As Decimal
 
+    Public Property Cantidad As Decimal
+
     Public Property PromocionID As Guid
 
     Public Property IDEXISTENCIA As String
@@ -836,6 +838,7 @@ Public Class PromocionExistencia
     Public Property Existencia As Existencia
 
 End Class
+
 
 Partial Public Class Producto
     <Key()>
@@ -864,7 +867,12 @@ Partial Public Class Producto
     Public Property FACTURAR_NEGATIVO As Boolean
     Public Property CANTIDAD_MINIMA As Decimal
     Public Property CANTIDAD_MAXIMA As Decimal
-    Public Property DESCUENTO_MAXIMO As Decimal
+
+
+    Public Property PromocionInicio As DateTime
+    Public Property PromocionFinal As DateTime
+    Public Property Descuento As Decimal
+
     Public Property IDPRESENTACION As String
     Public Property IDLABORATORIO As String
     Public Property IDPROVEEDOR As String
@@ -1281,6 +1289,8 @@ Partial Public Class Usuario
     Public Property CInventario As Boolean
     Public Property Contabilidad As Boolean
     Public Property CContabilidad As Boolean
+    Public Property Promocion As Boolean
+    Public Property CPromocion As Boolean
     Public Property SalesPriceChange As Boolean
 
     Public Property Activo As String
@@ -1745,7 +1755,7 @@ Public Class CodeFirst
         modelBuilder.Entity(Of Producto).Property(Function(f) f.PRECIO4).HasPrecision(18, 4)
         modelBuilder.Entity(Of Producto).Property(Function(f) f.CANTIDAD_MAXIMA).HasPrecision(18, 4)
         modelBuilder.Entity(Of Producto).Property(Function(f) f.CANTIDAD_MINIMA).HasPrecision(18, 4)
-        modelBuilder.Entity(Of Producto).Property(Function(f) f.DESCUENTO_MAXIMO).HasPrecision(18, 4)
+        modelBuilder.Entity(Of Producto).Property(Function(f) f.Descuento).HasPrecision(18, 4)
         modelBuilder.Entity(Of Producto).Property(Function(f) f.CANTIDAD).HasPrecision(18, 4)
         modelBuilder.Entity(Of Producto).Property(Function(f) f.SALDO).HasPrecision(18, 4)
 

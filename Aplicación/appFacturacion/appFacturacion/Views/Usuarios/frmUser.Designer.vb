@@ -63,6 +63,8 @@ Partial Class frmUser
         Me.btImagen = New DevComponents.DotNetBar.ButtonX()
         Me.txtImagen = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.pnImagen = New DevComponents.DotNetBar.PanelEx()
+        Me.chkPromocion = New System.Windows.Forms.CheckBox()
+        Me.chkConsultasPromocion = New System.Windows.Forms.CheckBox()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Menu.SuspendLayout()
         Me.PanelEx1.SuspendLayout()
@@ -163,7 +165,7 @@ Partial Class frmUser
         Me.PanelEx1.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelEx1.Location = New System.Drawing.Point(0, 39)
         Me.PanelEx1.Name = "PanelEx1"
-        Me.PanelEx1.Size = New System.Drawing.Size(307, 368)
+        Me.PanelEx1.Size = New System.Drawing.Size(307, 395)
         Me.PanelEx1.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.PanelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -191,6 +193,8 @@ Partial Class frmUser
         Me.ElGroupBox1.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox1.CaptionStyle.TextStyle.Text = "Labores"
         Me.ElGroupBox1.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox1.Controls.Add(Me.chkConsultasPromocion)
+        Me.ElGroupBox1.Controls.Add(Me.chkPromocion)
         Me.ElGroupBox1.Controls.Add(Me.chkSalesPriceChange)
         Me.ElGroupBox1.Controls.Add(Me.chkContabilidad)
         Me.ElGroupBox1.Controls.Add(Me.chkInventario)
@@ -206,16 +210,16 @@ Partial Class frmUser
         Me.ElGroupBox1.Name = "ElGroupBox1"
         Me.ElGroupBox1.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         Me.ElGroupBox1.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
-        Me.ElGroupBox1.Size = New System.Drawing.Size(279, 178)
+        Me.ElGroupBox1.Size = New System.Drawing.Size(279, 200)
         Me.ElGroupBox1.TabIndex = 3
         '
         'chkSalesPriceChange
         '
         Me.chkSalesPriceChange.AutoSize = True
-        Me.chkSalesPriceChange.Location = New System.Drawing.Point(12, 144)
+        Me.chkSalesPriceChange.Location = New System.Drawing.Point(12, 168)
         Me.chkSalesPriceChange.Name = "chkSalesPriceChange"
         Me.chkSalesPriceChange.Size = New System.Drawing.Size(132, 18)
-        Me.chkSalesPriceChange.TabIndex = 143
+        Me.chkSalesPriceChange.TabIndex = 145
         Me.chkSalesPriceChange.Text = "Editar Precio de Venta"
         Me.chkSalesPriceChange.UseVisualStyleBackColor = True
         '
@@ -496,7 +500,7 @@ Partial Class frmUser
         Me.pnContImage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnContImage.Location = New System.Drawing.Point(307, 39)
         Me.pnContImage.Name = "pnContImage"
-        Me.pnContImage.Size = New System.Drawing.Size(375, 368)
+        Me.pnContImage.Size = New System.Drawing.Size(375, 395)
         Me.pnContImage.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.pnContImage.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.pnContImage.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -536,9 +540,9 @@ Partial Class frmUser
         Me.pnImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pnImagen.CanvasColor = System.Drawing.SystemColors.Control
         Me.pnImagen.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.pnImagen.Location = New System.Drawing.Point(6, 31)
+        Me.pnImagen.Location = New System.Drawing.Point(6, 33)
         Me.pnImagen.Name = "pnImagen"
-        Me.pnImagen.Size = New System.Drawing.Size(364, 330)
+        Me.pnImagen.Size = New System.Drawing.Size(364, 350)
         Me.pnImagen.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.pnImagen.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.pnImagen.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -548,11 +552,31 @@ Partial Class frmUser
         Me.pnImagen.Style.GradientAngle = 90
         Me.pnImagen.TabIndex = 11
         '
+        'chkPromocion
+        '
+        Me.chkPromocion.AutoSize = True
+        Me.chkPromocion.Location = New System.Drawing.Point(12, 144)
+        Me.chkPromocion.Name = "chkPromocion"
+        Me.chkPromocion.Size = New System.Drawing.Size(76, 18)
+        Me.chkPromocion.TabIndex = 143
+        Me.chkPromocion.Text = "Promoción"
+        Me.chkPromocion.UseVisualStyleBackColor = True
+        '
+        'chkConsultasPromocion
+        '
+        Me.chkConsultasPromocion.AutoSize = True
+        Me.chkConsultasPromocion.Location = New System.Drawing.Point(111, 144)
+        Me.chkConsultasPromocion.Name = "chkConsultasPromocion"
+        Me.chkConsultasPromocion.Size = New System.Drawing.Size(148, 18)
+        Me.chkConsultasPromocion.TabIndex = 144
+        Me.chkConsultasPromocion.Text = "Consultas de Promciones"
+        Me.chkConsultasPromocion.UseVisualStyleBackColor = True
+        '
         'frmUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(682, 407)
+        Me.ClientSize = New System.Drawing.Size(682, 434)
         Me.Controls.Add(Me.pnContImage)
         Me.Controls.Add(Me.PanelEx1)
         Me.Controls.Add(Me.Menu)
@@ -618,4 +642,6 @@ Partial Class frmUser
     Friend WithEvents chkMostrar As System.Windows.Forms.CheckBox
     Friend WithEvents txtCodigo As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents chkSalesPriceChange As System.Windows.Forms.CheckBox
+    Friend WithEvents chkPromocion As System.Windows.Forms.CheckBox
+    Friend WithEvents chkConsultasPromocion As System.Windows.Forms.CheckBox
 End Class

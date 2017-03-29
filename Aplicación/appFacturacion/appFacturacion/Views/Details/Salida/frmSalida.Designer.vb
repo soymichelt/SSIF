@@ -592,6 +592,7 @@ Partial Class frmSalida
         Me.txtTotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotal.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.Increment = 1.0R
+        Me.txtTotal.IsInputReadOnly = True
         Me.txtTotal.Location = New System.Drawing.Point(96, 6)
         Me.txtTotal.MinValue = 0.0R
         Me.txtTotal.Name = "txtTotal"

@@ -24,16 +24,16 @@ Partial Class frmNotaDevolucion
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim PaintStyle9 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle10 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle11 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle12 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle13 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle14 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle15 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle16 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim PaintStyle1 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle2 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle3 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle4 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNotaDevolucion))
+        Dim PaintStyle5 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle6 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle7 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle8 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -48,6 +48,9 @@ Partial Class frmNotaDevolucion
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
         Me.ElGroupBox4 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtIdFactura = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtSaldo = New DevComponents.Editors.DoubleInput()
+        Me.btBuscarFactura = New DevComponents.DotNetBar.ButtonX()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.rdContado = New System.Windows.Forms.RadioButton()
         Me.rdCredito = New System.Windows.Forms.RadioButton()
@@ -120,15 +123,13 @@ Partial Class frmNotaDevolucion
         Me.txtPrecio = New DevComponents.Editors.DoubleInput()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.sptInfo = New DevComponents.DotNetBar.SuperTooltip()
-        Me.btBuscarFactura = New DevComponents.DotNetBar.ButtonX()
-        Me.txtSaldo = New DevComponents.Editors.DoubleInput()
-        Me.txtIdFactura = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox4.SuspendLayout()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox1.SuspendLayout()
+        CType(Me.txtSaldo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox6.SuspendLayout()
         CType(Me.txtTazaCambio, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,7 +160,6 @@ Partial Class frmNotaDevolucion
         CType(Me.txtIva, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPrecio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtSaldo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -387,6 +387,53 @@ Partial Class frmNotaDevolucion
         Me.ElGroupBox1.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ElGroupBox1.Size = New System.Drawing.Size(162, 92)
         Me.ElGroupBox1.TabIndex = 132
+        '
+        'txtIdFactura
+        '
+        Me.txtIdFactura.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txtIdFactura.Border.Class = "TextBoxBorder"
+        Me.txtIdFactura.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtIdFactura.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIdFactura.Location = New System.Drawing.Point(-2, 88)
+        Me.txtIdFactura.Name = "txtIdFactura"
+        Me.txtIdFactura.ReadOnly = True
+        Me.txtIdFactura.Size = New System.Drawing.Size(5, 20)
+        Me.txtIdFactura.TabIndex = 19
+        '
+        'txtSaldo
+        '
+        '
+        '
+        '
+        Me.txtSaldo.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtSaldo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtSaldo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtSaldo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSaldo.ForeColor = System.Drawing.Color.Red
+        Me.txtSaldo.Increment = 1.0R
+        Me.txtSaldo.IsInputReadOnly = True
+        Me.txtSaldo.Location = New System.Drawing.Point(82, 66)
+        Me.txtSaldo.MinValue = 0.0R
+        Me.txtSaldo.Name = "txtSaldo"
+        Me.txtSaldo.Size = New System.Drawing.Size(73, 20)
+        Me.txtSaldo.TabIndex = 18
+        '
+        'btBuscarFactura
+        '
+        Me.btBuscarFactura.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btBuscarFactura.BackColor = System.Drawing.Color.Transparent
+        Me.btBuscarFactura.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btBuscarFactura.Enabled = False
+        Me.btBuscarFactura.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.btBuscarFactura.Image = Global.appFacturacion.My.Resources.Resources.btn_buscar
+        Me.btBuscarFactura.Location = New System.Drawing.Point(126, 43)
+        Me.btBuscarFactura.Name = "btBuscarFactura"
+        Me.btBuscarFactura.Size = New System.Drawing.Size(29, 22)
+        Me.btBuscarFactura.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btBuscarFactura.TabIndex = 17
         '
         'Label17
         '
@@ -1142,9 +1189,9 @@ Partial Class frmNotaDevolucion
         'ElLabel8
         '
         Me.ElLabel8.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle9.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle9.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel8.FlashStyle = PaintStyle9
+        PaintStyle1.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle1.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel8.FlashStyle = PaintStyle1
         Me.ElLabel8.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel8.Location = New System.Drawing.Point(7, 81)
         Me.ElLabel8.Name = "ElLabel8"
@@ -1158,9 +1205,9 @@ Partial Class frmNotaDevolucion
         'ElLabel7
         '
         Me.ElLabel7.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle10.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle10.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel7.FlashStyle = PaintStyle10
+        PaintStyle2.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle2.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel7.FlashStyle = PaintStyle2
         Me.ElLabel7.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel7.Location = New System.Drawing.Point(7, 56)
         Me.ElLabel7.Name = "ElLabel7"
@@ -1186,9 +1233,9 @@ Partial Class frmNotaDevolucion
         'ElLabel5
         '
         Me.ElLabel5.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle11.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle11.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel5.FlashStyle = PaintStyle11
+        PaintStyle3.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle3.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel5.FlashStyle = PaintStyle3
         Me.ElLabel5.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel5.Location = New System.Drawing.Point(7, 31)
         Me.ElLabel5.Name = "ElLabel5"
@@ -1219,9 +1266,9 @@ Partial Class frmNotaDevolucion
         'ElLabel6
         '
         Me.ElLabel6.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle12.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle12.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel6.FlashStyle = PaintStyle12
+        PaintStyle4.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle4.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel6.FlashStyle = PaintStyle4
         Me.ElLabel6.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel6.Location = New System.Drawing.Point(7, 6)
         Me.ElLabel6.Name = "ElLabel6"
@@ -1301,9 +1348,9 @@ Partial Class frmNotaDevolucion
         'ElLabel3
         '
         Me.ElLabel3.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle13.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle13.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel3.FlashStyle = PaintStyle13
+        PaintStyle5.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle5.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel3.FlashStyle = PaintStyle5
         Me.ElLabel3.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel3.Location = New System.Drawing.Point(7, 82)
         Me.ElLabel3.Name = "ElLabel3"
@@ -1317,9 +1364,9 @@ Partial Class frmNotaDevolucion
         'ElLabel2
         '
         Me.ElLabel2.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle14.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle14.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel2.FlashStyle = PaintStyle14
+        PaintStyle6.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle6.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel2.FlashStyle = PaintStyle6
         Me.ElLabel2.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel2.Location = New System.Drawing.Point(7, 56)
         Me.ElLabel2.Name = "ElLabel2"
@@ -1333,9 +1380,9 @@ Partial Class frmNotaDevolucion
         'ElLabel1
         '
         Me.ElLabel1.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle15.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle15.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel1.FlashStyle = PaintStyle15
+        PaintStyle7.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle7.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel1.FlashStyle = PaintStyle7
         Me.ElLabel1.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel1.Location = New System.Drawing.Point(7, 31)
         Me.ElLabel1.Name = "ElLabel1"
@@ -1349,9 +1396,9 @@ Partial Class frmNotaDevolucion
         'ElLabel4
         '
         Me.ElLabel4.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle16.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle16.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel4.FlashStyle = PaintStyle16
+        PaintStyle8.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle8.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel4.FlashStyle = PaintStyle8
         Me.ElLabel4.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel4.Location = New System.Drawing.Point(7, 6)
         Me.ElLabel4.Name = "ElLabel4"
@@ -1477,14 +1524,14 @@ Partial Class frmNotaDevolucion
         'dtRegistro
         '
         Me.dtRegistro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(394, 212)
@@ -1493,53 +1540,6 @@ Partial Class frmNotaDevolucion
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtRegistro.Size = New System.Drawing.Size(565, 183)
         Me.dtRegistro.TabIndex = 3
-        '
-        'btBuscarFactura
-        '
-        Me.btBuscarFactura.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btBuscarFactura.BackColor = System.Drawing.Color.Transparent
-        Me.btBuscarFactura.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btBuscarFactura.Enabled = False
-        Me.btBuscarFactura.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.btBuscarFactura.Image = Global.appFacturacion.My.Resources.Resources.btn_buscar
-        Me.btBuscarFactura.Location = New System.Drawing.Point(126, 43)
-        Me.btBuscarFactura.Name = "btBuscarFactura"
-        Me.btBuscarFactura.Size = New System.Drawing.Size(29, 22)
-        Me.btBuscarFactura.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btBuscarFactura.TabIndex = 17
-        '
-        'txtSaldo
-        '
-        '
-        '
-        '
-        Me.txtSaldo.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtSaldo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtSaldo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtSaldo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSaldo.ForeColor = System.Drawing.Color.Red
-        Me.txtSaldo.Increment = 1.0R
-        Me.txtSaldo.IsInputReadOnly = True
-        Me.txtSaldo.Location = New System.Drawing.Point(82, 66)
-        Me.txtSaldo.MinValue = 0.0R
-        Me.txtSaldo.Name = "txtSaldo"
-        Me.txtSaldo.Size = New System.Drawing.Size(73, 20)
-        Me.txtSaldo.TabIndex = 18
-        '
-        'txtIdFactura
-        '
-        Me.txtIdFactura.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.txtIdFactura.Border.Class = "TextBoxBorder"
-        Me.txtIdFactura.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtIdFactura.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtIdFactura.Location = New System.Drawing.Point(-2, 88)
-        Me.txtIdFactura.Name = "txtIdFactura"
-        Me.txtIdFactura.ReadOnly = True
-        Me.txtIdFactura.Size = New System.Drawing.Size(5, 20)
-        Me.txtIdFactura.TabIndex = 19
         '
         'frmNotaDevolucion
         '
@@ -1569,6 +1569,7 @@ Partial Class frmNotaDevolucion
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox1.ResumeLayout(False)
         Me.ElGroupBox1.PerformLayout()
+        CType(Me.txtSaldo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox6.ResumeLayout(False)
         Me.ElGroupBox6.PerformLayout()
@@ -1603,7 +1604,6 @@ Partial Class frmNotaDevolucion
         CType(Me.txtIva, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPrecio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtSaldo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -308,13 +308,13 @@
                                         Exit Sub
                                     End If
                                     If rdDescuentoPorFactura.Checked Then
-                                        If producto.Producto.DESCUENTO_MAXIMO < Decimal.Parse(lblDescuentoPorFactura.Text) Then
-                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                        If producto.Producto.Descuento < Decimal.Parse(lblDescuentoPorFactura.Text) Then
+                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.Producto.Descuento.ToString(Config.f_m))
                                             Exit Sub
                                         End If
                                     ElseIf rdDescuentoPorProducto.Checked Then
-                                        If producto.Producto.DESCUENTO_MAXIMO < txtDescuentoPorProducto.Value Then
-                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                        If producto.Producto.Descuento < txtDescuentoPorProducto.Value Then
+                                            Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para este producto es: " & producto.Producto.Descuento.ToString(Config.f_m))
                                             Exit Sub
                                         End If
                                     End If
@@ -488,13 +488,13 @@
                                 End If
                                 'Descuento costo
                                 If rdDescuentoPorFactura.Checked Then
-                                    If producto.Producto.DESCUENTO_MAXIMO < item.DESCUENTO_POR Then
-                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                    If producto.Producto.Descuento < item.DESCUENTO_POR Then
+                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' es: " & producto.Producto.Descuento.ToString(Config.f_m))
                                         Exit Sub
                                     End If
                                 ElseIf rdDescuentoPorProducto.Checked Then
-                                    If producto.Producto.DESCUENTO_MAXIMO < item.DESCUENTO_POR Then
-                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' es: " & producto.Producto.DESCUENTO_MAXIMO.ToString(Config.f_m))
+                                    If producto.Producto.Descuento < item.DESCUENTO_POR Then
+                                        Config.MsgErr("No se puede aplicar este descuento por que el máximo de descuento permitido para el producto '" & producto.Producto.IDALTERNO & " - " & producto.Producto.DESCRIPCION & "' es: " & producto.Producto.Descuento.ToString(Config.f_m))
                                         Exit Sub
                                     End If
                                 End If

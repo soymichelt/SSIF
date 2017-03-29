@@ -67,8 +67,6 @@ Partial Class frmProducto
         Me.btPresentacion = New DevComponents.DotNetBar.ButtonX()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.cmbPresentacion = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.txtDescuentoMaximo = New DevComponents.Editors.DoubleInput()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.txtCantidadMinima = New DevComponents.Editors.DoubleInput()
         Me.txtObservacion = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.txtModelo = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -102,7 +100,6 @@ Partial Class frmProducto
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
-        Me.Label37 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.opArchivo = New System.Windows.Forms.OpenFileDialog()
@@ -131,6 +128,14 @@ Partial Class frmProducto
         Me.sptInfo = New DevComponents.DotNetBar.SuperTooltip()
         Me.pnContImage = New DevComponents.DotNetBar.PanelEx()
         Me.btEliminarImagen = New DevComponents.DotNetBar.ButtonX()
+        Me.ElGroupBox6 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtDescuentoMaximo = New DevComponents.Editors.DoubleInput()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.dtpInicio = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.dtpFinal = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.Label40 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,7 +144,6 @@ Partial Class frmProducto
         Me.ElGroupBox5.SuspendLayout()
         CType(Me.txtCantidadMaxima, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtContiene, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCantidadMinima, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCosto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPrecio1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +163,11 @@ Partial Class frmProducto
         CType(Me.ElGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox3.SuspendLayout()
         Me.pnContImage.SuspendLayout()
+        CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ElGroupBox6.SuspendLayout()
+        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtpInicio, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtpFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu
@@ -407,8 +416,6 @@ Partial Class frmProducto
         Me.ElGroupBox1.Controls.Add(Me.btPresentacion)
         Me.ElGroupBox1.Controls.Add(Me.Label16)
         Me.ElGroupBox1.Controls.Add(Me.cmbPresentacion)
-        Me.ElGroupBox1.Controls.Add(Me.txtDescuentoMaximo)
-        Me.ElGroupBox1.Controls.Add(Me.Label15)
         Me.ElGroupBox1.Controls.Add(Me.txtCantidadMinima)
         Me.ElGroupBox1.Controls.Add(Me.txtObservacion)
         Me.ElGroupBox1.Controls.Add(Me.txtModelo)
@@ -454,7 +461,6 @@ Partial Class frmProducto
         Me.ElGroupBox1.Controls.Add(Me.Label34)
         Me.ElGroupBox1.Controls.Add(Me.Label35)
         Me.ElGroupBox1.Controls.Add(Me.Label36)
-        Me.ElGroupBox1.Controls.Add(Me.Label37)
         Me.ElGroupBox1.Controls.Add(Me.Label38)
         Me.ElGroupBox1.Controls.Add(Me.Label39)
         Me.ElGroupBox1.Location = New System.Drawing.Point(7, 4)
@@ -744,33 +750,6 @@ Partial Class frmProducto
         Me.cmbPresentacion.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.cmbPresentacion.TabIndex = 21
         '
-        'txtDescuentoMaximo
-        '
-        '
-        '
-        '
-        Me.txtDescuentoMaximo.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtDescuentoMaximo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtDescuentoMaximo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtDescuentoMaximo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescuentoMaximo.Increment = 1.0R
-        Me.txtDescuentoMaximo.Location = New System.Drawing.Point(492, 206)
-        Me.txtDescuentoMaximo.MaxValue = 100.0R
-        Me.txtDescuentoMaximo.MinValue = 0.0R
-        Me.txtDescuentoMaximo.Name = "txtDescuentoMaximo"
-        Me.txtDescuentoMaximo.Size = New System.Drawing.Size(48, 20)
-        Me.txtDescuentoMaximo.TabIndex = 20
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(386, 207)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(101, 14)
-        Me.Label15.TabIndex = 20
-        Me.Label15.Text = "Descuento Máximo:"
-        '
         'txtCantidadMinima
         '
         '
@@ -1024,7 +1003,7 @@ Partial Class frmProducto
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(17, 207)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(87, 14)
+        Me.Label3.Size = New System.Drawing.Size(88, 14)
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "Cantidad Mínima:"
         '
@@ -1194,18 +1173,6 @@ Partial Class frmProducto
         Me.Label36.TabIndex = 130
         Me.Label36.Text = "*"
         '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.ForeColor = System.Drawing.Color.Red
-        Me.Label37.Location = New System.Drawing.Point(538, 208)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(11, 14)
-        Me.sptInfo.SetSuperTooltip(Me.Label37, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label37.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
-        Me.Label37.TabIndex = 131
-        Me.Label37.Text = "*"
-        '
         'Label38
         '
         Me.Label38.AutoSize = True
@@ -1267,6 +1234,7 @@ Partial Class frmProducto
         Me.ElTabPage2.CaptionImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElTabPage2.CaptionTextStyle.ForeColor = System.Drawing.Color.White
         Me.ElTabPage2.CaptionTextStyle.Text = "Detalles Adicionales"
+        Me.ElTabPage2.Controls.Add(Me.ElGroupBox6)
         Me.ElTabPage2.Controls.Add(Me.ElGroupBox4)
         Me.ElTabPage2.Controls.Add(Me.ElGroupBox2)
         Me.ElTabPage2.Controls.Add(Me.ElGroupBox3)
@@ -1561,6 +1529,196 @@ Partial Class frmProducto
         Me.btEliminarImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.btEliminarImagen.TabIndex = 32
         '
+        'ElGroupBox6
+        '
+        Me.ElGroupBox6.BackgroundStyle.GradientAngle = 45.0!
+        Me.ElGroupBox6.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox6.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox6.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox6.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox6.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElGroupBox6.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox6.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ClassicBlack
+        Me.ElGroupBox6.CaptionStyle.TextStyle.Text = "Promociones"
+        Me.ElGroupBox6.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox6.Controls.Add(Me.dtpFinal)
+        Me.ElGroupBox6.Controls.Add(Me.Label40)
+        Me.ElGroupBox6.Controls.Add(Me.dtpInicio)
+        Me.ElGroupBox6.Controls.Add(Me.Label22)
+        Me.ElGroupBox6.Controls.Add(Me.txtDescuentoMaximo)
+        Me.ElGroupBox6.Controls.Add(Me.Label15)
+        Me.ElGroupBox6.Controls.Add(Me.Label37)
+        Me.ElGroupBox6.Location = New System.Drawing.Point(3, 57)
+        Me.ElGroupBox6.Name = "ElGroupBox6"
+        Me.ElGroupBox6.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ClassicBlack
+        Me.ElGroupBox6.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
+        Me.ElGroupBox6.Size = New System.Drawing.Size(556, 72)
+        Me.ElGroupBox6.TabIndex = 39
+        '
+        'txtDescuentoMaximo
+        '
+        '
+        '
+        '
+        Me.txtDescuentoMaximo.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtDescuentoMaximo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtDescuentoMaximo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtDescuentoMaximo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDescuentoMaximo.Increment = 1.0R
+        Me.txtDescuentoMaximo.Location = New System.Drawing.Point(470, 35)
+        Me.txtDescuentoMaximo.MaxValue = 100.0R
+        Me.txtDescuentoMaximo.MinValue = 0.0R
+        Me.txtDescuentoMaximo.Name = "txtDescuentoMaximo"
+        Me.txtDescuentoMaximo.Size = New System.Drawing.Size(72, 20)
+        Me.txtDescuentoMaximo.TabIndex = 132
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(363, 37)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(101, 14)
+        Me.Label15.TabIndex = 133
+        Me.Label15.Text = "Descuento Máximo:"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label37.ForeColor = System.Drawing.Color.Red
+        Me.Label37.Location = New System.Drawing.Point(540, 38)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(11, 14)
+        Me.sptInfo.SetSuperTooltip(Me.Label37, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label37.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
+        Me.Label37.TabIndex = 134
+        Me.Label37.Text = "*"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Location = New System.Drawing.Point(7, 37)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(67, 14)
+        Me.Label22.TabIndex = 135
+        Me.Label22.Text = "Fecha Inicio:"
+        '
+        'dtpInicio
+        '
+        '
+        '
+        '
+        Me.dtpInicio.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.dtpInicio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpInicio.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
+        Me.dtpInicio.ButtonDropDown.Visible = True
+        Me.dtpInicio.Location = New System.Drawing.Point(80, 35)
+        '
+        '
+        '
+        Me.dtpInicio.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
+        '
+        '
+        '
+        Me.dtpInicio.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpInicio.MonthCalendar.BackgroundStyle.Class = ""
+        Me.dtpInicio.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpInicio.MonthCalendar.ClearButtonVisible = True
+        '
+        '
+        '
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.Class = ""
+        Me.dtpInicio.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpInicio.MonthCalendar.DisplayMonth = New Date(2017, 3, 1, 0, 0, 0, 0)
+        Me.dtpInicio.MonthCalendar.MarkedDates = New Date(-1) {}
+        Me.dtpInicio.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
+        '
+        '
+        '
+        Me.dtpInicio.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.dtpInicio.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
+        Me.dtpInicio.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.dtpInicio.MonthCalendar.NavigationBackgroundStyle.Class = ""
+        Me.dtpInicio.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpInicio.MonthCalendar.TodayButtonVisible = True
+        Me.dtpInicio.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
+        Me.dtpInicio.Name = "dtpInicio"
+        Me.dtpInicio.Size = New System.Drawing.Size(95, 20)
+        Me.dtpInicio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.dtpInicio.TabIndex = 136
+        '
+        'dtpFinal
+        '
+        '
+        '
+        '
+        Me.dtpFinal.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.dtpFinal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFinal.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
+        Me.dtpFinal.ButtonDropDown.Visible = True
+        Me.dtpFinal.Location = New System.Drawing.Point(259, 35)
+        '
+        '
+        '
+        Me.dtpFinal.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
+        '
+        '
+        '
+        Me.dtpFinal.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpFinal.MonthCalendar.BackgroundStyle.Class = ""
+        Me.dtpFinal.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFinal.MonthCalendar.ClearButtonVisible = True
+        '
+        '
+        '
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.Class = ""
+        Me.dtpFinal.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFinal.MonthCalendar.DisplayMonth = New Date(2017, 3, 1, 0, 0, 0, 0)
+        Me.dtpFinal.MonthCalendar.MarkedDates = New Date(-1) {}
+        Me.dtpFinal.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
+        '
+        '
+        '
+        Me.dtpFinal.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.dtpFinal.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
+        Me.dtpFinal.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.dtpFinal.MonthCalendar.NavigationBackgroundStyle.Class = ""
+        Me.dtpFinal.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFinal.MonthCalendar.TodayButtonVisible = True
+        Me.dtpFinal.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
+        Me.dtpFinal.Name = "dtpFinal"
+        Me.dtpFinal.Size = New System.Drawing.Size(95, 20)
+        Me.dtpFinal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.dtpFinal.TabIndex = 138
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label40.Location = New System.Drawing.Point(186, 37)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(65, 14)
+        Me.Label40.TabIndex = 137
+        Me.Label40.Text = "Fecha Final:"
+        '
         'frmProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -1588,7 +1746,6 @@ Partial Class frmProducto
         Me.ElGroupBox5.PerformLayout()
         CType(Me.txtCantidadMaxima, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtContiene, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCantidadMinima, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCosto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPrecio1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1610,6 +1767,12 @@ Partial Class frmProducto
         Me.ElGroupBox3.ResumeLayout(False)
         Me.ElGroupBox3.PerformLayout()
         Me.pnContImage.ResumeLayout(False)
+        CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ElGroupBox6.ResumeLayout(False)
+        Me.ElGroupBox6.PerformLayout()
+        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtpInicio, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtpFinal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1653,8 +1816,6 @@ Partial Class frmProducto
     Friend WithEvents txtPrecio4 As DevComponents.Editors.DoubleInput
     Friend WithEvents txtCantidadMinima As DevComponents.Editors.DoubleInput
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents txtDescuentoMaximo As DevComponents.Editors.DoubleInput
-    Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents btPresentacion As DevComponents.DotNetBar.ButtonX
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents cmbPresentacion As DevComponents.DotNetBar.Controls.ComboBoxEx
@@ -1711,7 +1872,6 @@ Partial Class frmProducto
     Friend WithEvents Label34 As System.Windows.Forms.Label
     Friend WithEvents Label35 As System.Windows.Forms.Label
     Friend WithEvents Label36 As System.Windows.Forms.Label
-    Friend WithEvents Label37 As System.Windows.Forms.Label
     Friend WithEvents Label38 As System.Windows.Forms.Label
     Friend WithEvents Label39 As System.Windows.Forms.Label
     Friend WithEvents pnContImage As DevComponents.DotNetBar.PanelEx
@@ -1721,4 +1881,12 @@ Partial Class frmProducto
     Friend WithEvents rdCordoba As System.Windows.Forms.RadioButton
     Friend WithEvents btDarAlta As System.Windows.Forms.ToolStripButton
     Friend WithEvents btEliminarImagen As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents ElGroupBox6 As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
+    Friend WithEvents txtDescuentoMaximo As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents Label37 As System.Windows.Forms.Label
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents dtpInicio As DevComponents.Editors.DateTimeAdv.DateTimeInput
+    Friend WithEvents dtpFinal As DevComponents.Editors.DateTimeAdv.DateTimeInput
+    Friend WithEvents Label40 As System.Windows.Forms.Label
 End Class

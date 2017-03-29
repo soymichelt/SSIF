@@ -25,15 +25,15 @@ Partial Class frmVenta
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVenta))
-        Dim PaintStyle9 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle10 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle11 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle12 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle13 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle14 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle15 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle16 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim PaintStyle1 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle2 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle3 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle4 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle5 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle6 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle7 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle8 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -1242,9 +1242,9 @@ Partial Class frmVenta
         'ElLabel3
         '
         Me.ElLabel3.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle9.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle9.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel3.FlashStyle = PaintStyle9
+        PaintStyle1.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle1.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel3.FlashStyle = PaintStyle1
         Me.ElLabel3.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel3.Location = New System.Drawing.Point(7, 81)
         Me.ElLabel3.Name = "ElLabel3"
@@ -1258,9 +1258,9 @@ Partial Class frmVenta
         'ElLabel2
         '
         Me.ElLabel2.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle10.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle10.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel2.FlashStyle = PaintStyle10
+        PaintStyle2.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle2.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel2.FlashStyle = PaintStyle2
         Me.ElLabel2.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel2.Location = New System.Drawing.Point(7, 56)
         Me.ElLabel2.Name = "ElLabel2"
@@ -1274,9 +1274,9 @@ Partial Class frmVenta
         'ElLabel1
         '
         Me.ElLabel1.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle11.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle11.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel1.FlashStyle = PaintStyle11
+        PaintStyle3.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle3.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel1.FlashStyle = PaintStyle3
         Me.ElLabel1.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel1.Location = New System.Drawing.Point(7, 31)
         Me.ElLabel1.Name = "ElLabel1"
@@ -1290,9 +1290,9 @@ Partial Class frmVenta
         'ElLabel4
         '
         Me.ElLabel4.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle12.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle12.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel4.FlashStyle = PaintStyle12
+        PaintStyle4.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle4.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel4.FlashStyle = PaintStyle4
         Me.ElLabel4.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel4.Location = New System.Drawing.Point(7, 6)
         Me.ElLabel4.Name = "ElLabel4"
@@ -1374,6 +1374,7 @@ Partial Class frmVenta
         Me.txtTotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotal.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.Increment = 1.0R
+        Me.txtTotal.IsInputReadOnly = True
         Me.txtTotal.Location = New System.Drawing.Point(96, 81)
         Me.txtTotal.MinValue = 0.0R
         Me.txtTotal.Name = "txtTotal"
@@ -1390,6 +1391,7 @@ Partial Class frmVenta
         Me.txtTotalIva.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalIva.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalIva.Increment = 1.0R
+        Me.txtTotalIva.IsInputReadOnly = True
         Me.txtTotalIva.Location = New System.Drawing.Point(96, 56)
         Me.txtTotalIva.MinValue = 0.0R
         Me.txtTotalIva.Name = "txtTotalIva"
@@ -1406,6 +1408,7 @@ Partial Class frmVenta
         Me.txtTotalSubtotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalSubtotal.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalSubtotal.Increment = 1.0R
+        Me.txtTotalSubtotal.IsInputReadOnly = True
         Me.txtTotalSubtotal.Location = New System.Drawing.Point(96, 31)
         Me.txtTotalSubtotal.MinValue = 0.0R
         Me.txtTotalSubtotal.Name = "txtTotalSubtotal"
@@ -1415,9 +1418,9 @@ Partial Class frmVenta
         'ElLabel8
         '
         Me.ElLabel8.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle13.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle13.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel8.FlashStyle = PaintStyle13
+        PaintStyle5.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle5.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel8.FlashStyle = PaintStyle5
         Me.ElLabel8.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel8.Location = New System.Drawing.Point(7, 81)
         Me.ElLabel8.Name = "ElLabel8"
@@ -1431,9 +1434,9 @@ Partial Class frmVenta
         'ElLabel7
         '
         Me.ElLabel7.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle14.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle14.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel7.FlashStyle = PaintStyle14
+        PaintStyle6.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle6.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel7.FlashStyle = PaintStyle6
         Me.ElLabel7.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel7.Location = New System.Drawing.Point(7, 56)
         Me.ElLabel7.Name = "ElLabel7"
@@ -1447,9 +1450,9 @@ Partial Class frmVenta
         'ElLabel5
         '
         Me.ElLabel5.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle15.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle15.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel5.FlashStyle = PaintStyle15
+        PaintStyle7.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle7.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel5.FlashStyle = PaintStyle7
         Me.ElLabel5.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel5.Location = New System.Drawing.Point(7, 31)
         Me.ElLabel5.Name = "ElLabel5"
@@ -1470,6 +1473,7 @@ Partial Class frmVenta
         Me.txtTotalDescuento.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalDescuento.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalDescuento.Increment = 1.0R
+        Me.txtTotalDescuento.IsInputReadOnly = True
         Me.txtTotalDescuento.Location = New System.Drawing.Point(96, 6)
         Me.txtTotalDescuento.MinValue = 0.0R
         Me.txtTotalDescuento.Name = "txtTotalDescuento"
@@ -1479,9 +1483,9 @@ Partial Class frmVenta
         'ElLabel6
         '
         Me.ElLabel6.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle16.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle16.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel6.FlashStyle = PaintStyle16
+        PaintStyle8.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle8.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel6.FlashStyle = PaintStyle8
         Me.ElLabel6.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel6.Location = New System.Drawing.Point(7, 6)
         Me.ElLabel6.Name = "ElLabel6"
@@ -1497,16 +1501,16 @@ Partial Class frmVenta
         Me.dtRegistro.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dtRegistro.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.dtRegistro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(394, 197)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"

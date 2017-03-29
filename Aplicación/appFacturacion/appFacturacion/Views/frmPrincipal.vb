@@ -705,4 +705,10 @@
     Private Sub btPrinterSetting_Click(sender As Object, e As EventArgs) Handles btPrinterSetting.Click
         frmPrinterSettings.ShowDialog()
     End Sub
+
+    Private Sub btProductoOferta_Click(sender As Object, e As EventArgs) Handles btProductoOferta.Click
+        frmPromocion.MdiParent = Me
+        frmPromocion.BringToFront()
+        frmPromocion.Show()
+    End Sub
 End Class

@@ -1021,4 +1021,5 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.exe
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmPromocion.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\SIF.Views.Destok.vbprojResolveAssemblyReference.cache

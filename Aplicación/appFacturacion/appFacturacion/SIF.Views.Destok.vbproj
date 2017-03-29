@@ -949,6 +949,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Views\Details\Promocion\frmPromocion.Designer.vb">
+      <DependentUpon>frmPromocion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Details\Promocion\frmPromocion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\Details\ReciboCompra\frmReciboCompra.Designer.vb">
       <DependentUpon>frmReciboCompra.vb</DependentUpon>
     </Compile>
@@ -1515,6 +1521,9 @@
     <EmbeddedResource Include="Reports\Traslado\rptImprimirTraslado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptImprimirTraslado.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Details\Promocion\frmPromocion.resx">
+      <DependentUpon>frmPromocion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Details\ReciboCompra\frmReciboCompra.resx">
       <DependentUpon>frmReciboCompra.vb</DependentUpon>

@@ -1261,6 +1261,7 @@ Partial Class frmCotizacion
         Me.txtTotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotal.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.Increment = 1.0R
+        Me.txtTotal.IsInputReadOnly = True
         Me.txtTotal.Location = New System.Drawing.Point(96, 81)
         Me.txtTotal.MinValue = 0.0R
         Me.txtTotal.Name = "txtTotal"
@@ -1277,6 +1278,7 @@ Partial Class frmCotizacion
         Me.txtTotalIva.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalIva.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalIva.Increment = 1.0R
+        Me.txtTotalIva.IsInputReadOnly = True
         Me.txtTotalIva.Location = New System.Drawing.Point(96, 56)
         Me.txtTotalIva.MinValue = 0.0R
         Me.txtTotalIva.Name = "txtTotalIva"
@@ -1293,6 +1295,7 @@ Partial Class frmCotizacion
         Me.txtTotalSubtotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalSubtotal.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalSubtotal.Increment = 1.0R
+        Me.txtTotalSubtotal.IsInputReadOnly = True
         Me.txtTotalSubtotal.Location = New System.Drawing.Point(96, 31)
         Me.txtTotalSubtotal.MinValue = 0.0R
         Me.txtTotalSubtotal.Name = "txtTotalSubtotal"
@@ -1357,6 +1360,7 @@ Partial Class frmCotizacion
         Me.txtTotalDescuento.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalDescuento.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalDescuento.Increment = 1.0R
+        Me.txtTotalDescuento.IsInputReadOnly = True
         Me.txtTotalDescuento.Location = New System.Drawing.Point(96, 6)
         Me.txtTotalDescuento.MinValue = 0.0R
         Me.txtTotalDescuento.Name = "txtTotalDescuento"

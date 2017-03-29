@@ -1116,6 +1116,7 @@ Partial Class frmReciboCompra
         Me.txtTotalNuevoSaldo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalNuevoSaldo.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalNuevoSaldo.Increment = 1.0R
+        Me.txtTotalNuevoSaldo.IsInputReadOnly = True
         Me.txtTotalNuevoSaldo.Location = New System.Drawing.Point(96, 58)
         Me.txtTotalNuevoSaldo.MinValue = 0.0R
         Me.txtTotalNuevoSaldo.Name = "txtTotalNuevoSaldo"
@@ -1132,6 +1133,7 @@ Partial Class frmReciboCompra
         Me.txtTotalDescuento.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalDescuento.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalDescuento.Increment = 1.0R
+        Me.txtTotalDescuento.IsInputReadOnly = True
         Me.txtTotalDescuento.Location = New System.Drawing.Point(96, 32)
         Me.txtTotalDescuento.MinValue = 0.0R
         Me.txtTotalDescuento.Name = "txtTotalDescuento"
@@ -1148,6 +1150,7 @@ Partial Class frmReciboCompra
         Me.txtTotalImporte.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtTotalImporte.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalImporte.Increment = 1.0R
+        Me.txtTotalImporte.IsInputReadOnly = True
         Me.txtTotalImporte.Location = New System.Drawing.Point(96, 6)
         Me.txtTotalImporte.MinValue = 0.0R
         Me.txtTotalImporte.Name = "txtTotalImporte"
@@ -1345,7 +1348,7 @@ Partial Class frmReciboCompra
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(394, 212)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"

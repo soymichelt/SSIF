@@ -124,7 +124,7 @@
     <value>85, 18</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>55</value>
+    <value>60</value>
   </metadata>
   <metadata name="sptInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>279, 18</value>
@@ -194,17 +194,17 @@ Alguna duda comunicarse con el área de Soporte Técnico.</value>
 
 Alguna duda comunicarse con el área de Soporte Técnico.</value>
   </data>
-  <data name="Label37.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
   <data name="Label38.SuperTooltip" xml:space="preserve">
     <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
 
 Alguna duda comunicarse con el área de Soporte Técnico.</value>
   </data>
   <data name="Label39.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label37.SuperTooltip" xml:space="preserve">
     <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
 
 Alguna duda comunicarse con el área de Soporte Técnico.</value>
