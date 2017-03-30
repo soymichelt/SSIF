@@ -126,89 +126,6 @@
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>60</value>
   </metadata>
-  <metadata name="sptInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>279, 18</value>
-  </metadata>
-  <data name="Label24.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label25.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label26.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label27.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label28.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label29.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label30.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label31.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label32.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label33.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label34.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label35.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label36.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label38.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label39.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <data name="Label37.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -604,6 +521,84 @@ Alguna duda comunicarse con el área de Soporte Técnico.</value>
         vpTKgN642WIoKHUCWJpnKcFXLpoOqYsbPW5vAlkhACmQBQk6UASRlJBVMct2yhqgl3ECEonAxoXZetdT
         qrsc+P8BDJiLroM6BHEAAAAASUVORK5CYII=
 </value>
+  </data>
+  <metadata name="sptInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>279, 18</value>
+  </metadata>
+  <data name="Label24.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label25.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label26.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label27.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label28.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label29.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label30.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label31.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label32.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label33.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label34.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label35.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label36.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label38.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
+  <data name="Label39.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
   </data>
   <metadata name="opArchivo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>179, 18</value>

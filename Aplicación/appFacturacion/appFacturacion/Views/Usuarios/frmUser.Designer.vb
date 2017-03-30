@@ -35,6 +35,8 @@ Partial Class frmUser
         Me.btBuscar = New System.Windows.Forms.ToolStripButton()
         Me.PanelEx1 = New DevComponents.DotNetBar.PanelEx()
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.chkConsultasPromocion = New System.Windows.Forms.CheckBox()
+        Me.chkPromocion = New System.Windows.Forms.CheckBox()
         Me.chkSalesPriceChange = New System.Windows.Forms.CheckBox()
         Me.chkContabilidad = New System.Windows.Forms.CheckBox()
         Me.chkInventario = New System.Windows.Forms.CheckBox()
@@ -63,8 +65,6 @@ Partial Class frmUser
         Me.btImagen = New DevComponents.DotNetBar.ButtonX()
         Me.txtImagen = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.pnImagen = New DevComponents.DotNetBar.PanelEx()
-        Me.chkPromocion = New System.Windows.Forms.CheckBox()
-        Me.chkConsultasPromocion = New System.Windows.Forms.CheckBox()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Menu.SuspendLayout()
         Me.PanelEx1.SuspendLayout()
@@ -212,6 +212,26 @@ Partial Class frmUser
         Me.ElGroupBox1.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
         Me.ElGroupBox1.Size = New System.Drawing.Size(279, 200)
         Me.ElGroupBox1.TabIndex = 3
+        '
+        'chkConsultasPromocion
+        '
+        Me.chkConsultasPromocion.AutoSize = True
+        Me.chkConsultasPromocion.Location = New System.Drawing.Point(111, 144)
+        Me.chkConsultasPromocion.Name = "chkConsultasPromocion"
+        Me.chkConsultasPromocion.Size = New System.Drawing.Size(148, 18)
+        Me.chkConsultasPromocion.TabIndex = 144
+        Me.chkConsultasPromocion.Text = "Consultas de Promciones"
+        Me.chkConsultasPromocion.UseVisualStyleBackColor = True
+        '
+        'chkPromocion
+        '
+        Me.chkPromocion.AutoSize = True
+        Me.chkPromocion.Location = New System.Drawing.Point(12, 144)
+        Me.chkPromocion.Name = "chkPromocion"
+        Me.chkPromocion.Size = New System.Drawing.Size(76, 18)
+        Me.chkPromocion.TabIndex = 143
+        Me.chkPromocion.Text = "Promoción"
+        Me.chkPromocion.UseVisualStyleBackColor = True
         '
         'chkSalesPriceChange
         '
@@ -551,26 +571,6 @@ Partial Class frmUser
         Me.pnImagen.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.pnImagen.Style.GradientAngle = 90
         Me.pnImagen.TabIndex = 11
-        '
-        'chkPromocion
-        '
-        Me.chkPromocion.AutoSize = True
-        Me.chkPromocion.Location = New System.Drawing.Point(12, 144)
-        Me.chkPromocion.Name = "chkPromocion"
-        Me.chkPromocion.Size = New System.Drawing.Size(76, 18)
-        Me.chkPromocion.TabIndex = 143
-        Me.chkPromocion.Text = "Promoción"
-        Me.chkPromocion.UseVisualStyleBackColor = True
-        '
-        'chkConsultasPromocion
-        '
-        Me.chkConsultasPromocion.AutoSize = True
-        Me.chkConsultasPromocion.Location = New System.Drawing.Point(111, 144)
-        Me.chkConsultasPromocion.Name = "chkConsultasPromocion"
-        Me.chkConsultasPromocion.Size = New System.Drawing.Size(148, 18)
-        Me.chkConsultasPromocion.TabIndex = 144
-        Me.chkConsultasPromocion.Text = "Consultas de Promciones"
-        Me.chkConsultasPromocion.UseVisualStyleBackColor = True
         '
         'frmUser
         '
