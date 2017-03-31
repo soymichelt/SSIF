@@ -18,9 +18,9 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE SpCrearExistenciaPorBodega
+CREATE PROCEDURE SpCrearExistenciaPorProducto
 	-- Add the parameters for the stored procedure here
-	@IDProducto AS CHAR(36)
+	@IDBodega AS CHAR(36)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -42,15 +42,19 @@ BEGIN
 		GETDATE() AS Reg,
 		0 AS CANTIDAD,
 		0 AS CONSIGNADO,
-		Bodega.IDBODEGA,
-		@IDProducto AS IDPRODUCTO
+		@IDBodega AS IDBODEGA,
+		Producto.IDPRODUCTO
 	FROM
-		Bodega
-	INNER JOIN
-		Existencia ON Bodega.IDBODEGA = Existencia.IDPRODUCTO
+		Producto
 	WHERE
-		Existencia.IDPRODUCTO <> @IDProducto
-	
-	
+		Producto.IDPRODUCTO NOT IN(
+			SELECT
+				Existencia.IDPRODUCTO
+			FROM
+				Existencia
+				INNER JOIN Producto ON Existencia.IDPRODUCTO = Producto.IDPRODUCTO
+			WHERE
+				Existencia.IDBODEGA = @IDBodega
+		)
 END
 GO

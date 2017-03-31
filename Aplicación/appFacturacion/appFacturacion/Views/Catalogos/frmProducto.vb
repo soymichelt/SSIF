@@ -80,7 +80,7 @@ Public Class frmProducto
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click
         Try
-            If txtAlterno.Text.Trim <> "" And txtOriginal.Text.Trim <> "" And (Not cmbMarca.SelectedValue Is Nothing And Not cmbMarca.SelectedIndex = -1) And (Not cmbUnidaddemedida.SelectedValue Is Nothing And Not cmbUnidaddemedida.SelectedIndex = -1) And (Not cmbPresentacion.SelectedValue Is Nothing And Not cmbPresentacion.SelectedIndex = -1) And (Not cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1) And Not txtDescripcion.Text.Trim = "" And Not txtCosto.Text = "" And Not txtPrecio1.Text = "" And Not txtPrecio2.Text = "" And Not txtPrecio3.Text = "" And Not txtPrecio4.Text = "" And Not txtContiene.Text = "" And Not txtCantidadMinima.Text = "" And Not txtCantidadMaxima.Text = "" And Not txtDescuentoMaximo.Text = "" Then
+            If txtAlterno.Text.Trim <> "" And txtOriginal.Text.Trim <> "" And (Not cmbMarca.SelectedValue Is Nothing And Not cmbMarca.SelectedIndex = -1) And (Not cmbUnidaddemedida.SelectedValue Is Nothing And Not cmbUnidaddemedida.SelectedIndex = -1) And (Not cmbPresentacion.SelectedValue Is Nothing And Not cmbPresentacion.SelectedIndex = -1) And (Not cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1) And Not txtDescripcion.Text.Trim = "" And Not txtCosto.Text = "" And Not txtPrecio1.Text = "" And Not txtPrecio2.Text = "" And Not txtPrecio3.Text = "" And Not txtPrecio4.Text = "" And Not txtContiene.Text = "" And Not txtCantidadMinima.Text = "" And Not txtCantidadMaxima.Text = "" Then
                 Using db As New CodeFirst
                     If db.Productos.Where(Function(f) f.IDALTERNO = txtAlterno.Text.Trim).Count() = 0 Then
                         If txtCantidadMinima.Value > txtCantidadMaxima.Value Then
@@ -235,7 +235,7 @@ Public Class frmProducto
 
     Private Sub btEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEditar.Click
         Try
-            If txtAlterno.Text.Trim <> "" And txtOriginal.Text.Trim <> "" And (Not cmbMarca.SelectedValue Is Nothing And Not cmbMarca.SelectedIndex = -1) And (Not cmbUnidaddemedida.SelectedValue Is Nothing And Not cmbUnidaddemedida.SelectedIndex = -1) And (Not cmbPresentacion.SelectedValue Is Nothing And Not cmbPresentacion.SelectedIndex = -1) And (Not cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1) And Not txtDescripcion.Text.Trim = "" And Not txtCosto.Text = "" And Not txtPrecio1.Text = "" And Not txtPrecio2.Text = "" And Not txtPrecio3.Text = "" And Not txtPrecio4.Text = "" And Not txtContiene.Text = "" And Not txtCantidadMinima.Text = "" And Not txtCantidadMaxima.Text = "" And Not txtDescuentoMaximo.Text = "" Then
+            If txtAlterno.Text.Trim <> "" And txtOriginal.Text.Trim <> "" And (Not cmbMarca.SelectedValue Is Nothing And Not cmbMarca.SelectedIndex = -1) And (Not cmbUnidaddemedida.SelectedValue Is Nothing And Not cmbUnidaddemedida.SelectedIndex = -1) And (Not cmbPresentacion.SelectedValue Is Nothing And Not cmbPresentacion.SelectedIndex = -1) And (Not cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1) And Not txtDescripcion.Text.Trim = "" And Not txtCosto.Text = "" And Not txtPrecio1.Text = "" And Not txtPrecio2.Text = "" And Not txtPrecio3.Text = "" And Not txtPrecio4.Text = "" And Not txtContiene.Text = "" And Not txtCantidadMinima.Text = "" And Not txtCantidadMaxima.Text = "" Then
                 Using db As New CodeFirst
                     If db.Productos.Where(Function(f) f.IDPRODUCTO <> txtCodigo.Text And f.IDALTERNO = txtAlterno.Text.Trim()).Count() = 0 Then
                         If txtCantidadMinima.Value > txtCantidadMaxima.Value Then
@@ -254,6 +254,7 @@ Public Class frmProducto
                             If MessageBox.Show("¿Descartar cambios en el Costo?", "Pregunta de seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
                                 producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : producto.COSTO = txtCosto.Value : producto.SALDO = producto.CANTIDAD * producto.COSTO
                             End If
+
                             producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = txtPrecio1.Value : producto.PRECIO2 = txtPrecio2.Value : producto.PRECIO3 = txtPrecio3.Value : producto.PRECIO4 = txtPrecio4.Value : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = txtContiene.Value : producto.CANTIDAD_MINIMA = txtCantidadMinima.Value : producto.CANTIDAD_MAXIMA = txtCantidadMaxima.Value : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked
 
                             'Promociones
@@ -450,7 +451,11 @@ Public Class frmProducto
                             End If
                             txtCantidadMinima.Value = producto.CANTIDAD_MINIMA
                             txtCantidadMaxima.Value = producto.CANTIDAD_MAXIMA
+
+                            dtpInicio.Text = If(producto.PromocionInicio IsNot Nothing, producto.PromocionInicio, "")
+                            dtpFinal.Text = If(producto.PromocionFinal IsNot Nothing, producto.PromocionFinal, "")
                             txtDescuentoMaximo.Value = producto.Descuento
+
                             txtUbicacion.Text = producto.UBICACIONFISICA
                             Select Case producto.FACTURAR_PRECIO
                                 Case 1

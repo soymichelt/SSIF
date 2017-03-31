@@ -5,7 +5,7 @@
         Try
             Using db As New CodeFirst
                 'Dim consulta = From prod In db.PRODUCTOS Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.MARCAS On prod.IDMARCA Equals mar.IDMARCA Join lab In db.LABORATORIOS On lab.IDLABORATORIO Equals prod.IDLABORATORIO Join pre In db.PRESENTACIONES On pre.IDPRESENTACION Equals prod.IDPRESENTACION Where prod.ACTIVO = "S" And exi.IDBODEGA = Config.bodega And prod.DESCRIPCION.Contains(pNombre) And prod.IDORIGINAL.Contains(pIDOriginal) And prod.APLICACION.Contains(pAplicacion) And prod.IDALTERNO.Contains(pIDAlterno) And mar.DESCRIPCION.Contains(pMarca) And prod.MODELO.Contains(pNombreComercial) And lab.DESCRIPCION.Contains(pLaboratorio) And pre.DESCRIPCION.Contains(pForma) And prod.UBICACIONFISICA.Contains(pUbicacion) Select prod, exi, mar, lab, pre, PRVN = If(prod.PROVEEDOR IsNot Nothing, prod.PROVEEDOR.NOMBRES & " " & prod.PROVEEDOR.APELLIDOS, Config.TextNull), PRVR = If(prod.PROVEEDOR IsNot Nothing, " // " & prod.PROVEEDOR.RAZONSOCIAL, "") Where (PRVN & PRVR).Contains(pDistribuidor) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, prod.MODELO, EXIS = exi.CANTIDAD, MARCA = If(mar.ACTIVO.Equals(Config.vTrue), mar.DESCRIPCION, Config.TextNull), APLIC = prod.APLICACION, MONEDA = If(prod.CMONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO, PRESENTACIÓN = If(prod.PRESENTACION.ACTIVO.Equals(Config.vTrue), prod.PRESENTACION.DESCRIPCION, Config.TextNull), LABORATORIO = If(prod.LABORATORIO.ACTIVO.Equals(Config.vTrue), prod.LABORATORIO.DESCRIPCION, Config.TextNull), UNIDAD_DE_MEDIDA = If(prod.UNIDAD_DE_MEDIDA.ACTIVO.Equals(Config.vTrue), prod.UNIDAD_DE_MEDIDA.DESCRIPCION, Config.TextNull), prod.CONTIENE, prod.CANTIDAD_MINIMA, prod.CANTIDAD_MAXIMA, PROVEEDOR = PRVN & PRVR, prod.UBICACIONFISICA
-                Dim consulta = From prod In db.Productos Join exi In db.EXISTENCIAS On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.Marcas On prod.IDMARCA Equals mar.IDMARCA Join lab In db.Laboratorios On lab.IDLABORATORIO Equals prod.IDLABORATORIO Join pre In db.Presentaciones On pre.IDPRESENTACION Equals prod.IDPRESENTACION Where prod.ACTIVO = "S" And exi.IDBODEGA = Config.bodega And prod.DESCRIPCION.Contains(pNombre) And prod.IDORIGINAL.Contains(pIDOriginal) And prod.APLICACION.Contains(pAplicacion) And prod.IDALTERNO.Contains(pIDAlterno) And mar.DESCRIPCION.Contains(pMarca) And prod.MODELO.Contains(pNombreComercial) And lab.DESCRIPCION.Contains(pLaboratorio) And pre.DESCRIPCION.Contains(pForma) And prod.UBICACIONFISICA.Contains(pUbicacion) Select prod, exi, mar, lab, pre, PRVN = If(prod.Proveedor IsNot Nothing, prod.Proveedor.NOMBRES & " " & prod.Proveedor.APELLIDOS, Config.TextNull), PRVR = If(prod.Proveedor IsNot Nothing, " // " & prod.Proveedor.RAZONSOCIAL, "") Where (PRVN & PRVR).Contains(pDistribuidor) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, prod.MODELO, EXIS = exi.CANTIDAD, MARCA = If(mar.ACTIVO.Equals(Config.vTrue), mar.DESCRIPCION, Config.TextNull), APLIC = prod.APLICACION, prod.UBICACIONFISICA, PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO, PRESENTACIÓN = If(prod.Presentacion.ACTIVO.Equals(Config.vTrue), prod.Presentacion.DESCRIPCION, Config.TextNull), LABORATORIO = If(prod.Laboratorio.ACTIVO.Equals(Config.vTrue), prod.Laboratorio.DESCRIPCION, Config.TextNull), UNIDAD_DE_MEDIDA = If(prod.UnidadMedida.ACTIVO.Equals(Config.vTrue), prod.UnidadMedida.DESCRIPCION, Config.TextNull), prod.CONTIENE, prod.CANTIDAD_MINIMA, prod.CANTIDAD_MAXIMA, PROVEEDOR = PRVN & PRVR, MONEDA = If(prod.CMONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), prod.COSTO
+                Dim consulta = From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Join mar In db.Marcas On prod.IDMARCA Equals mar.IDMARCA Join lab In db.Laboratorios On lab.IDLABORATORIO Equals prod.IDLABORATORIO Join pre In db.Presentaciones On pre.IDPRESENTACION Equals prod.IDPRESENTACION Where prod.ACTIVO = "S" And exi.IDBODEGA = Config.bodega And prod.DESCRIPCION.Contains(pNombre) And prod.IDORIGINAL.Contains(pIDOriginal) And prod.APLICACION.Contains(pAplicacion) And prod.IDALTERNO.Contains(pIDAlterno) And mar.DESCRIPCION.Contains(pMarca) And prod.MODELO.Contains(pNombreComercial) And lab.DESCRIPCION.Contains(pLaboratorio) And pre.DESCRIPCION.Contains(pForma) And prod.UBICACIONFISICA.Contains(pUbicacion) Select prod, exi, mar, lab, pre, PRVN = If(prod.Proveedor IsNot Nothing, prod.Proveedor.NOMBRES & " " & prod.Proveedor.APELLIDOS, Config.TextNull), PRVR = If(prod.Proveedor IsNot Nothing, " // " & prod.Proveedor.RAZONSOCIAL, "") Where (PRVN & PRVR).Contains(pDistribuidor) Select prod.IDALTERNO, prod.IDORIGINAL, PRODUCTO = prod.DESCRIPCION, prod.MODELO, EXIS = exi.CANTIDAD, MARCA = If(mar.ACTIVO.Equals(Config.vTrue), mar.DESCRIPCION, Config.TextNull), APLIC = prod.APLICACION, prod.UBICACIONFISICA, PRECIO1 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO1 / 100), prod.PRECIO1), PRECIO2 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO2 / 100), prod.PRECIO2), PRECIO3 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO3 / 100), prod.PRECIO3), PRECIO4 = If(prod.MARGEN, prod.COSTO + (prod.COSTO * prod.PRECIO4 / 100), prod.PRECIO4), prod.IDPRODUCTO, PRESENTACIÓN = If(prod.Presentacion.ACTIVO.Equals(Config.vTrue), prod.Presentacion.DESCRIPCION, Config.TextNull), LABORATORIO = If(prod.Laboratorio.ACTIVO.Equals(Config.vTrue), prod.Laboratorio.DESCRIPCION, Config.TextNull), UNIDAD_DE_MEDIDA = If(prod.UnidadMedida.ACTIVO.Equals(Config.vTrue), prod.UnidadMedida.DESCRIPCION, Config.TextNull), prod.CONTIENE, prod.CANTIDAD_MINIMA, prod.CANTIDAD_MAXIMA, PROVEEDOR = PRVN & PRVR, MONEDA = If(prod.CMONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), prod.COSTO, prod.Descuento
                 If rdMinDebajo.Checked Then
                     consulta = consulta.Where(Function(f) f.EXIS < f.CANTIDAD_MINIMA)
                 ElseIf rdMinEncima.Checked Then
@@ -92,6 +92,7 @@
                     dtRegistro.Columns(19).Width = 150 : dtRegistro.Columns(19).HeaderText = "PROVEEDOR"
                     dtRegistro.Columns(20).HeaderText = "MONEDA" : dtRegistro.Columns(20).Width = 70
                     dtRegistro.Columns(21).Visible = False
+                    dtRegistro.Columns(22).HeaderText = "DESCUENTO" : dtRegistro.Columns(22).Width = 70
                     For Each c As DataGridViewColumn In dtRegistro.Columns
                         c.DefaultCellStyle.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
                     Next
@@ -185,6 +186,10 @@
                                 frmProducto.txtCantidadMinima.Value = p.CANTIDAD_MINIMA
                                 frmProducto.txtCantidadMaxima.Value = p.CANTIDAD_MAXIMA
 
+                                frmProducto.dtpInicio.Text = If(p.PromocionInicio IsNot Nothing, p.PromocionInicio, "")
+                                frmProducto.dtpFinal.Text = If(p.PromocionFinal IsNot Nothing, p.PromocionFinal, "")
+                                frmProducto.txtDescuentoMaximo.Value = p.Descuento
+
                                 If Not p.IDPROVEEDOR Is Nothing Then
                                     frmProducto.txtIdProveedor.Text = p.IDPROVEEDOR
                                     frmProducto.txtProveedor.Text = p.Proveedor.N_PROVEEDOR & " | " & p.Proveedor.NOMBRES & " " & p.Proveedor.APELLIDOS & If(p.Proveedor.RAZONSOCIAL.Trim <> "", " // " & p.Proveedor.RAZONSOCIAL, "")
@@ -204,11 +209,13 @@
                                     Case 5
                                         frmProducto.cmbFacturarConPrecio.SelectedIndex = 4
                                 End Select
+
                                 If p.IVA Then
                                     frmProducto.rdConIVA.Checked = True
                                 Else
                                     frmProducto.rdSinIVA.Checked = True
                                 End If
+
                                 If p.FACTURAR_NEGATIVO Then
                                     frmProducto.rdSinExistencia.Checked = True
                                 Else
@@ -297,6 +304,11 @@
                                 frmProducto.txtContiene.Value = p.CONTIENE
                                 frmProducto.txtCantidadMinima.Value = p.CANTIDAD_MINIMA
                                 frmProducto.txtCantidadMaxima.Value = p.CANTIDAD_MAXIMA
+
+                                frmProducto.dtpInicio.Text = If(p.PromocionInicio IsNot Nothing, p.PromocionInicio, "")
+                                frmProducto.dtpFinal.Text = If(p.PromocionFinal IsNot Nothing, p.PromocionFinal, "")
+                                frmProducto.txtDescuentoMaximo.Value = p.Descuento
+
                                 If Not p.IDPROVEEDOR Is Nothing Then
                                     frmProducto.txtIdProveedor.Text = p.IDPROVEEDOR
                                     frmProducto.txtProveedor.Text = p.Proveedor.N_PROVEEDOR & " | " & p.Proveedor.NOMBRES & " " & p.Proveedor.APELLIDOS & If(p.Proveedor.RAZONSOCIAL.Trim <> "", " // " & p.Proveedor.RAZONSOCIAL, "")

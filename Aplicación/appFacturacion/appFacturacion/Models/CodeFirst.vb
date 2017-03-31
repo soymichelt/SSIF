@@ -871,7 +871,7 @@ Partial Public Class Producto
 
     Public Property PromocionInicio As Nullable(Of DateTime)
     Public Property PromocionFinal As Nullable(Of DateTime)
-    Public Property Descuento As Nullable(Of Decimal)
+    Public Property Descuento As Decimal
 
     Public Property IDPRESENTACION As String
     Public Property IDLABORATORIO As String
