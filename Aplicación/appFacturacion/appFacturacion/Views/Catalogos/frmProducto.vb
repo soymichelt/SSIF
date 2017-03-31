@@ -1,4 +1,6 @@
-﻿Public Class frmProducto
+﻿Imports System.Data.SqlClient
+
+Public Class frmProducto
 
     Dim FormLoad As Boolean = False
 
@@ -95,11 +97,21 @@
                             MessageBox.Show("El costo debe ser un número mayor que 0")
                             Exit Sub
                         End If
-                        Dim producto As New Producto : producto.Reg = DateTime.Now : producto.IDPRODUCTO = Guid.NewGuid.ToString() : producto.IDALTERNO = txtAlterno.Text : producto.IDORIGINAL = txtOriginal.Text : producto.IDMARCA = cmbMarca.SelectedValue.ToString() : producto.DESCRIPCION = txtDescripcion.Text : producto.MODELO = txtModelo.Text : producto.APLICACION = txtAplicacion.Text : producto.OBSERVACION = txtObservacion.Text : producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : producto.COSTO = Decimal.Parse(txtCosto.Text) : producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = txtPrecio1.Value : producto.PRECIO2 = txtPrecio2.Value : producto.PRECIO3 = txtPrecio3.Value : producto.PRECIO4 = txtPrecio4.Value : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = txtContiene.Value : producto.CANTIDAD_MINIMA = txtCantidadMinima.Value : producto.CANTIDAD_MAXIMA = txtCantidadMaxima.Value : producto.Descuento = Decimal.Parse(txtDescuentoMaximo.Text) : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.CANTIDAD = 0 : producto.SALDO = 0 : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked : If txtIdProveedor.Text.Trim <> "" Then : producto.IDPROVEEDOR = txtIdProveedor.Text : End If : producto.ACTIVO = "S"
-                        For Each bodega In db.Bodegas
-                            Dim existencia As New Existencia : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
-                            db.Existencias.Add(existencia)
-                        Next
+
+                        Dim producto As New Producto : producto.Reg = DateTime.Now : producto.IDPRODUCTO = Guid.NewGuid.ToString() : producto.IDALTERNO = txtAlterno.Text : producto.IDORIGINAL = txtOriginal.Text : producto.IDMARCA = cmbMarca.SelectedValue.ToString() : producto.DESCRIPCION = txtDescripcion.Text : producto.MODELO = txtModelo.Text : producto.APLICACION = txtAplicacion.Text : producto.OBSERVACION = txtObservacion.Text : producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : producto.COSTO = Decimal.Parse(txtCosto.Text) : producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = txtPrecio1.Value : producto.PRECIO2 = txtPrecio2.Value : producto.PRECIO3 = txtPrecio3.Value : producto.PRECIO4 = txtPrecio4.Value : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = txtContiene.Value : producto.CANTIDAD_MINIMA = txtCantidadMinima.Value : producto.CANTIDAD_MAXIMA = txtCantidadMaxima.Value : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.CANTIDAD = 0 : producto.SALDO = 0 : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked : If txtIdProveedor.Text.Trim <> "" Then : producto.IDPROVEEDOR = txtIdProveedor.Text : End If : producto.ACTIVO = "S"
+
+                        'Promociones
+                        If dtpInicio.Text <> "" And dtpFinal.Text <> "" And txtDescuentoMaximo.Value > 0 Then
+                            producto.PromocionInicio = dtpInicio.Value
+                            producto.PromocionFinal = dtpFinal.Value
+                            producto.Descuento = txtDescuentoMaximo.Value
+                        End If
+
+                        'For Each bodega In db.Bodegas
+                        '    Dim existencia As New Existencia : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
+                        '    db.Existencias.Add(existencia)
+                        'Next
+
                         Try
                             If Not txtImagen.Text.Trim() = "" Then
                                 If System.IO.Directory.Exists(Config.DirectoryPathImageProducts) = False Then
@@ -117,8 +129,23 @@
                         Catch ex As Exception
                             MessageBox.Show("Error al guardar la imagen. Error, " & ex.Message)
                         End Try
-                        db.Productos.Add(producto) : producto = Nothing
-                        db.SaveChanges() : Limpiar() : MessageBox.Show("Producto guardado")
+
+                        db.Productos.Add(producto)
+
+                        db.SaveChanges()
+
+                        'Crear existencias
+                        Try
+                            db.Database.ExecuteSqlCommand("Exec SpCrearExistenciaPorBodega @IDProducto", New SqlParameter("@IDProducto", producto.IDPRODUCTO))
+                        Catch ex As Exception
+                            Config.MsgAdv("No se han podido crear las existencias. Para poder manipular los productos es necesario crear las existencias. Detalles del error: " & ex.Message)
+                        End Try
+
+                        producto = Nothing
+
+                        Limpiar()
+
+                        MessageBox.Show("Producto guardado")
                     Else
                         MessageBox.Show("Error, No puede crear este producto por que el codigo alterno ya lo posee otro producto.")
                     End If
@@ -227,7 +254,15 @@
                             If MessageBox.Show("¿Descartar cambios en el Costo?", "Pregunta de seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
                                 producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : producto.COSTO = txtCosto.Value : producto.SALDO = producto.CANTIDAD * producto.COSTO
                             End If
-                            producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = txtPrecio1.Value : producto.PRECIO2 = txtPrecio2.Value : producto.PRECIO3 = txtPrecio3.Value : producto.PRECIO4 = txtPrecio4.Value : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = txtContiene.Value : producto.CANTIDAD_MINIMA = txtCantidadMinima.Value : producto.CANTIDAD_MAXIMA = txtCantidadMaxima.Value : producto.Descuento = txtDescuentoMaximo.Value : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked
+                            producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = txtPrecio1.Value : producto.PRECIO2 = txtPrecio2.Value : producto.PRECIO3 = txtPrecio3.Value : producto.PRECIO4 = txtPrecio4.Value : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = txtContiene.Value : producto.CANTIDAD_MINIMA = txtCantidadMinima.Value : producto.CANTIDAD_MAXIMA = txtCantidadMaxima.Value : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked
+
+                            'Promociones
+                            If dtpInicio.Text <> "" Or dtpFinal.Text <> "" Then
+                                producto.PromocionInicio = dtpInicio.Value
+                                producto.PromocionFinal = dtpFinal.Value
+                                producto.Descuento = txtDescuentoMaximo.Value
+                            End If
+
                             db.Entry(producto).State = EntityState.Modified
                             Try
                                 If Not txtImagen.Text = "" Then
@@ -736,7 +771,7 @@
                 MessageBox.Show("Error, Debe de ingresar la presentación del producto.")
             End If
         ElseIf e.KeyData = Keys.Escape Then
-            txtDescuentoMaximo.Focus()
+            txtCantidadMaxima.Focus()
         End If
     End Sub
 
@@ -826,22 +861,12 @@
         End If
     End Sub
 
-    Private Sub txtDescuentoMaximo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDescuentoMaximo.KeyPress
-        If e.KeyChar = ChrW(13) Then
-            If txtCantidadMinima.Text.Trim <> "" Then
-                cmbPresentacion.Focus()
-            Else
-                MessageBox.Show("Error, Debe ingresar el descuento máximo del producto.")
-            End If
-        ElseIf e.KeyChar = ChrW(27) Then
-            txtCantidadMaxima.Focus()
-        End If
-    End Sub
+
 
     Private Sub txtCantidadMaxima_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCantidadMaxima.KeyPress
         If e.KeyChar = ChrW(13) Then
             If txtCantidadMaxima.Text.Trim <> "" Then
-                txtDescuentoMaximo.Focus()
+                cmbPresentacion.Focus()
             Else
                 MessageBox.Show("Error, Debe ingresar la cantidad máxima del producto.")
             End If
@@ -955,9 +980,72 @@
     End Sub
 
     Private Sub btEliminarImagen_Click(sender As Object, e As EventArgs) Handles btEliminarImagen.Click
-       
+
         pnImagen.Style.BackgroundImage = Nothing
         txtImagen.Clear()
 
+    End Sub
+
+    Private Sub dtpInicio_KeyDown(sender As Object, e As KeyEventArgs) Handles dtpInicio.KeyDown
+        If e.KeyData = Keys.Enter Then
+            If dtpInicio.Text = "" Then
+                dtpFinal.Text = ""
+                txtDescuentoMaximo.Value = 0
+            End If
+            dtpFinal.Focus()
+        ElseIf e.KeyData = Keys.Escape Then
+
+        End If
+    End Sub
+
+    Private Sub dtpFinal_KeyDown(sender As Object, e As KeyEventArgs) Handles dtpFinal.KeyDown
+        If e.KeyData = Keys.Enter Then
+            If dtpFinal.Text = "" Then
+                dtpInicio.Text = ""
+                txtDescuentoMaximo.Value = 0
+            End If
+            txtDescuentoMaximo.Focus()
+        ElseIf e.KeyData = Keys.Escape Then
+            dtpInicio.Focus()
+        End If
+    End Sub
+
+    Private Sub txtDescuentoMaximo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDescuentoMaximo.KeyPress
+
+        If e.KeyChar = ChrW(13) Then
+            If txtDescuentoMaximo.Value = 0 Then
+                dtpInicio.Text = ""
+                dtpFinal.Text = ""
+            Else
+                If dtpInicio.Text = "" Or dtpFinal.Text = "" Then
+                    dtpInicio.Text = ""
+                    dtpFinal.Text = ""
+                End If
+            End If
+            If txtCodigo.Text.Trim = "" Then
+                btGuardar_Click(Nothing, Nothing)
+            Else
+                btEditar_Click(Nothing, Nothing)
+            End If
+        ElseIf e.KeyChar = ChrW(27) Then
+            dtpFinal.Focus()
+        End If
+
+    End Sub
+
+    Private Sub dtpInicio_ValueChanged(sender As Object, e As EventArgs) Handles dtpInicio.ValueChanged
+        If dtpInicio.Text = "" Then
+            dtpFinal.Text = ""
+            txtDescuentoMaximo.Value = 0
+        End If
+        dtpFinal.Focus()
+    End Sub
+
+    Private Sub dtpFinal_Click(sender As Object, e As EventArgs) Handles dtpFinal.Click
+        If dtpFinal.Text = "" Then
+            dtpInicio.Text = ""
+            txtDescuentoMaximo.Value = 0
+        End If
+        txtDescuentoMaximo.Focus()
     End Sub
 End Class

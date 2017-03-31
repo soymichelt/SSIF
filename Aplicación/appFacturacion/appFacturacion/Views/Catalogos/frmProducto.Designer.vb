@@ -631,7 +631,7 @@ Partial Class frmProducto
         Me.txtCantidadMaxima.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtCantidadMaxima.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidadMaxima.Increment = 1.0R
-        Me.txtCantidadMaxima.Location = New System.Drawing.Point(292, 205)
+        Me.txtCantidadMaxima.Location = New System.Drawing.Point(234, 206)
         Me.txtCantidadMaxima.MinValue = 0.0R
         Me.txtCantidadMaxima.Name = "txtCantidadMaxima"
         Me.txtCantidadMaxima.Size = New System.Drawing.Size(48, 20)
@@ -642,11 +642,11 @@ Partial Class frmProducto
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(195, 207)
+        Me.Label20.Location = New System.Drawing.Point(154, 207)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(91, 14)
+        Me.Label20.Size = New System.Drawing.Size(74, 14)
         Me.Label20.TabIndex = 19
-        Me.Label20.Text = "Cantidad Máxima:"
+        Me.Label20.Text = "Cant. Máxima:"
         '
         'Label19
         '
@@ -706,9 +706,9 @@ Partial Class frmProducto
         Me.cmbLaboratorio.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbLaboratorio.FormattingEnabled = True
         Me.cmbLaboratorio.ItemHeight = 14
-        Me.cmbLaboratorio.Location = New System.Drawing.Point(371, 231)
+        Me.cmbLaboratorio.Location = New System.Drawing.Point(75, 231)
         Me.cmbLaboratorio.Name = "cmbLaboratorio"
-        Me.cmbLaboratorio.Size = New System.Drawing.Size(157, 20)
+        Me.cmbLaboratorio.Size = New System.Drawing.Size(453, 20)
         Me.cmbLaboratorio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.cmbLaboratorio.TabIndex = 23
         '
@@ -718,7 +718,7 @@ Partial Class frmProducto
         Me.btPresentacion.BackColor = System.Drawing.Color.Transparent
         Me.btPresentacion.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.btPresentacion.Image = Global.appFacturacion.My.Resources.Resources.Actualizar_16_16
-        Me.btPresentacion.Location = New System.Drawing.Point(261, 230)
+        Me.btPresentacion.Location = New System.Drawing.Point(510, 205)
         Me.btPresentacion.Name = "btPresentacion"
         Me.btPresentacion.Size = New System.Drawing.Size(29, 22)
         Me.btPresentacion.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -728,7 +728,7 @@ Partial Class frmProducto
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(17, 233)
+        Me.Label16.Location = New System.Drawing.Point(294, 207)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(73, 14)
         Me.Label16.TabIndex = 21
@@ -743,9 +743,9 @@ Partial Class frmProducto
         Me.cmbPresentacion.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbPresentacion.FormattingEnabled = True
         Me.cmbPresentacion.ItemHeight = 14
-        Me.cmbPresentacion.Location = New System.Drawing.Point(95, 231)
+        Me.cmbPresentacion.Location = New System.Drawing.Point(373, 206)
         Me.cmbPresentacion.Name = "cmbPresentacion"
-        Me.cmbPresentacion.Size = New System.Drawing.Size(184, 20)
+        Me.cmbPresentacion.Size = New System.Drawing.Size(155, 20)
         Me.cmbPresentacion.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.cmbPresentacion.TabIndex = 21
         '
@@ -759,7 +759,7 @@ Partial Class frmProducto
         Me.txtCantidadMinima.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtCantidadMinima.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidadMinima.Increment = 1.0R
-        Me.txtCantidadMinima.Location = New System.Drawing.Point(110, 205)
+        Me.txtCantidadMinima.Location = New System.Drawing.Point(93, 206)
         Me.txtCantidadMinima.MinValue = 0.0R
         Me.txtCantidadMinima.Name = "txtCantidadMinima"
         Me.txtCantidadMinima.Size = New System.Drawing.Size(48, 20)
@@ -1002,15 +1002,15 @@ Partial Class frmProducto
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(17, 207)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(88, 14)
+        Me.Label3.Size = New System.Drawing.Size(70, 14)
         Me.Label3.TabIndex = 18
-        Me.Label3.Text = "Cantidad Mínima:"
+        Me.Label3.Text = "Cant. Mínima:"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(303, 233)
+        Me.Label17.Location = New System.Drawing.Point(17, 233)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(52, 14)
         Me.Label17.TabIndex = 23
@@ -1153,7 +1153,7 @@ Partial Class frmProducto
         Me.Label35.AutoSize = True
         Me.Label35.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.ForeColor = System.Drawing.Color.Red
-        Me.Label35.Location = New System.Drawing.Point(156, 208)
+        Me.Label35.Location = New System.Drawing.Point(139, 208)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(11, 14)
         Me.sptInfo.SetSuperTooltip(Me.Label35, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label35.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
@@ -1165,7 +1165,7 @@ Partial Class frmProducto
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label36.ForeColor = System.Drawing.Color.Red
-        Me.Label36.Location = New System.Drawing.Point(338, 208)
+        Me.Label36.Location = New System.Drawing.Point(280, 208)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(11, 14)
         Me.sptInfo.SetSuperTooltip(Me.Label36, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label36.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
@@ -1177,7 +1177,7 @@ Partial Class frmProducto
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label38.ForeColor = System.Drawing.Color.Red
-        Me.Label38.Location = New System.Drawing.Point(289, 235)
+        Me.Label38.Location = New System.Drawing.Point(538, 210)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(11, 14)
         Me.sptInfo.SetSuperTooltip(Me.Label38, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label38.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))

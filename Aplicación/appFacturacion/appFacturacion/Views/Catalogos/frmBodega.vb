@@ -1,4 +1,7 @@
-﻿Public Class frmBodega
+﻿Imports System.Data.SqlClient
+
+Public Class frmBodega
+
     Sub llenar(Optional ByVal bodega As String = "")
         Try
             Using db As New CodeFirst
@@ -50,13 +53,33 @@
             If Not txtCodBodega.Text.Trim = "" And Not txtNombre.Text.Trim = "" Then
                 Using db As New CodeFirst
                     If db.Bodegas.Where(Function(f) f.N_BODEGA = txtCodBodega.Text.Trim).Count() = 0 Then
+
                         Dim bodega As New Bodega : bodega.Reg = DateTime.Now : bodega.IDBODEGA = Guid.NewGuid.ToString() : bodega.N_BODEGA = txtCodBodega.Text : bodega.DESCRIPCION = txtNombre.Text : bodega.ACTIVO = "S"
+
                         db.Bodegas.Add(bodega)
-                        For Each producto In db.Productos
-                            Dim existencia As New Existencia : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
-                            db.Existencias.Add(existencia)
-                        Next
-                        db.SaveChanges() : limpiar() : llenar(txtBuscar.Text.Trim) : MessageBox.Show("Bodega guardada")
+
+                        'For Each producto In db.Productos
+                        '    Dim existencia As New Existencia : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
+                        '    db.Existencias.Add(existencia)
+                        'Next
+
+                        db.SaveChanges()
+
+                        'Crear existencias
+                        Try
+                            db.Database.ExecuteSqlCommand("Exec SpCrearExistenciaPorProducto @IDBodega", New SqlParameter("@IDBodega", bodega.IDBODEGA))
+                        Catch ex As Exception
+                            Config.MsgAdv("No se han podido crear las existencias. Para poder manipular los productos es necesario crear las existencias. Detalles del error: " & ex.Message)
+                        End Try
+
+                        bodega = Nothing
+
+                        limpiar()
+
+                        llenar(txtBuscar.Text.Trim)
+
+                        MessageBox.Show("Bodega guardada")
+
                     Else
                         MessageBox.Show("Error, Ya existe una bodega con este código.")
                     End If

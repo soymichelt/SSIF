@@ -869,9 +869,9 @@ Partial Public Class Producto
     Public Property CANTIDAD_MAXIMA As Decimal
 
 
-    Public Property PromocionInicio As DateTime
-    Public Property PromocionFinal As DateTime
-    Public Property Descuento As Decimal
+    Public Property PromocionInicio As Nullable(Of DateTime)
+    Public Property PromocionFinal As Nullable(Of DateTime)
+    Public Property Descuento As Nullable(Of Decimal)
 
     Public Property IDPRESENTACION As String
     Public Property IDLABORATORIO As String
