@@ -1,3 +1,5 @@
+USE [SadaraDB]
+GO
 -- ================================================
 -- Template generated from Template Explorer using:
 -- Create Procedure (New Menu).SQL
@@ -18,7 +20,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE SpCrearExistenciaPorProducto
+CREATE PROCEDURE [dbo].[SpCrearExistenciaPorProducto]
 	-- Add the parameters for the stored procedure here
 	@IDBodega AS CHAR(36)
 AS

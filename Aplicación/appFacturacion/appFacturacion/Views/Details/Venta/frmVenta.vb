@@ -154,6 +154,27 @@
                                 'Evaluar si tiene permisos de editar el precio
                                 txtPrecio.IsInputReadOnly = If(Config.Usuario.SalesPriceChange, False, True)
 
+                                'Promociones
+                                With producto.Producto
+
+                                    'Se evalua si hay una promoción
+                                    If .PromocionInicio IsNot Nothing And .PromocionFinal IsNot Nothing And .Descuento > 0 Then
+
+                                        'Se evalua si es valida la promoción
+                                        If .PromocionInicio >= DateTime.Now And .PromocionFinal <= DateTime.Now Then
+
+                                            'Se establece el descuento en Descuento por producto
+                                            rdDescuentoPorProducto.Checked = True
+
+                                            'Se asigna la promoción
+                                            txtPrecio.Value = .Descuento
+
+                                        End If
+
+                                    End If
+
+                                End With
+
                                 '
                                 If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
                                     With producto.Producto
@@ -1626,6 +1647,7 @@
 
         End If
     End Sub
+
 
 
 End Class

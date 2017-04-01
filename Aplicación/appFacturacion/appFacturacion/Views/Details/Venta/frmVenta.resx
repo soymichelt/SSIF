@@ -129,6 +129,14 @@
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>28</value>
   </metadata>
+  <metadata name="sptInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>145, 7</value>
+  </metadata>
+  <data name="Label19.SuperTooltip" xml:space="preserve">
+    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
+
+Alguna duda comunicarse con el área de Soporte Técnico.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -541,14 +549,6 @@ Alguna duda comunicarse con el área de Soporte Técnico.</value>
 Alguna duda comunicarse con el área de Soporte Técnico.</value>
   </data>
   <data name="Label13.SuperTooltip" xml:space="preserve">
-    <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
-
-Alguna duda comunicarse con el área de Soporte Técnico.</value>
-  </data>
-  <metadata name="sptInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>145, 7</value>
-  </metadata>
-  <data name="Label19.SuperTooltip" xml:space="preserve">
     <value>El Sistema requiere estrictamente el ingreso de este campo. Por tal razón no lo puede dejar vacio. Le solicitamos que lo rellene para poder guardar o modificar cambios de este registro.
 
 Alguna duda comunicarse con el área de Soporte Técnico.</value>
