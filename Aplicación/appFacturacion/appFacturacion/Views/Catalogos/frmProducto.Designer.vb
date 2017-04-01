@@ -111,8 +111,6 @@ Partial Class frmProducto
         Me.Label40 = New System.Windows.Forms.Label()
         Me.dtpInicio = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.Label22 = New System.Windows.Forms.Label()
-        Me.txtDescuentoMaximo = New DevComponents.Editors.DoubleInput()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.ElGroupBox4 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.rdSinIVA = New System.Windows.Forms.RadioButton()
@@ -135,6 +133,8 @@ Partial Class frmProducto
         Me.sptInfo = New DevComponents.DotNetBar.SuperTooltip()
         Me.pnContImage = New DevComponents.DotNetBar.PanelEx()
         Me.btEliminarImagen = New DevComponents.DotNetBar.ButtonX()
+        Me.txtDescuentoMaximo = New DevComponents.Editors.DoubleInput()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,7 +159,6 @@ Partial Class frmProducto
         Me.ElGroupBox6.SuspendLayout()
         CType(Me.dtpFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpInicio, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox4.SuspendLayout()
         CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,6 +166,7 @@ Partial Class frmProducto
         CType(Me.ElGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox3.SuspendLayout()
         Me.pnContImage.SuspendLayout()
+        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu
@@ -252,7 +252,7 @@ Partial Class frmProducto
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(429, 182)
+        Me.Label14.Location = New System.Drawing.Point(427, 182)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(55, 14)
         Me.Label14.TabIndex = 17
@@ -262,7 +262,7 @@ Partial Class frmProducto
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(294, 182)
+        Me.Label13.Location = New System.Drawing.Point(292, 182)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(55, 14)
         Me.Label13.TabIndex = 16
@@ -272,7 +272,7 @@ Partial Class frmProducto
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(156, 182)
+        Me.Label12.Location = New System.Drawing.Point(154, 182)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(55, 14)
         Me.Label12.TabIndex = 15
@@ -396,6 +396,8 @@ Partial Class frmProducto
         Me.ElGroupBox1.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox1.CaptionStyle.TextStyle.Text = "Datos Producto"
         Me.ElGroupBox1.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox1.Controls.Add(Me.txtDescuentoMaximo)
+        Me.ElGroupBox1.Controls.Add(Me.Label15)
         Me.ElGroupBox1.Controls.Add(Me.ElGroupBox5)
         Me.ElGroupBox1.Controls.Add(Me.chkMargen)
         Me.ElGroupBox1.Controls.Add(Me.txtIdProveedor)
@@ -691,7 +693,7 @@ Partial Class frmProducto
         Me.btLaboratorio.BackColor = System.Drawing.Color.Transparent
         Me.btLaboratorio.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.btLaboratorio.Image = Global.appFacturacion.My.Resources.Resources.Actualizar_16_16
-        Me.btLaboratorio.Location = New System.Drawing.Point(511, 230)
+        Me.btLaboratorio.Location = New System.Drawing.Point(317, 230)
         Me.btLaboratorio.Name = "btLaboratorio"
         Me.btLaboratorio.Size = New System.Drawing.Size(29, 22)
         Me.btLaboratorio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -708,7 +710,7 @@ Partial Class frmProducto
         Me.cmbLaboratorio.ItemHeight = 14
         Me.cmbLaboratorio.Location = New System.Drawing.Point(75, 231)
         Me.cmbLaboratorio.Name = "cmbLaboratorio"
-        Me.cmbLaboratorio.Size = New System.Drawing.Size(453, 20)
+        Me.cmbLaboratorio.Size = New System.Drawing.Size(259, 20)
         Me.cmbLaboratorio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.cmbLaboratorio.TabIndex = 23
         '
@@ -800,9 +802,9 @@ Partial Class frmProducto
         Me.txtDescripcion.Border.Class = "TextBoxBorder"
         Me.txtDescripcion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtDescripcion.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescripcion.Location = New System.Drawing.Point(358, 54)
+        Me.txtDescripcion.Location = New System.Drawing.Point(338, 54)
         Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(182, 20)
+        Me.txtDescripcion.Size = New System.Drawing.Size(202, 20)
         Me.txtDescripcion.TabIndex = 5
         '
         'txtOriginal
@@ -813,9 +815,9 @@ Partial Class frmProducto
         Me.txtOriginal.Border.Class = "TextBoxBorder"
         Me.txtOriginal.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtOriginal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtOriginal.Location = New System.Drawing.Point(357, 29)
+        Me.txtOriginal.Location = New System.Drawing.Point(348, 29)
         Me.txtOriginal.Name = "txtOriginal"
-        Me.txtOriginal.Size = New System.Drawing.Size(179, 20)
+        Me.txtOriginal.Size = New System.Drawing.Size(191, 20)
         Me.txtOriginal.TabIndex = 2
         '
         'txtAlterno
@@ -913,7 +915,7 @@ Partial Class frmProducto
         Me.txtAplicacion.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAplicacion.Location = New System.Drawing.Point(83, 283)
         Me.txtAplicacion.Name = "txtAplicacion"
-        Me.txtAplicacion.Size = New System.Drawing.Size(457, 20)
+        Me.txtAplicacion.Size = New System.Drawing.Size(456, 20)
         Me.txtAplicacion.TabIndex = 30
         '
         'txtCosto
@@ -942,10 +944,10 @@ Partial Class frmProducto
         Me.txtPrecio1.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtPrecio1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio1.Increment = 1.0R
-        Me.txtPrecio1.Location = New System.Drawing.Point(81, 180)
+        Me.txtPrecio1.Location = New System.Drawing.Point(76, 180)
         Me.txtPrecio1.MinValue = 0.0R
         Me.txtPrecio1.Name = "txtPrecio1"
-        Me.txtPrecio1.Size = New System.Drawing.Size(48, 20)
+        Me.txtPrecio1.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio1.TabIndex = 14
         '
         'txtPrecio2
@@ -958,10 +960,10 @@ Partial Class frmProducto
         Me.txtPrecio2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtPrecio2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio2.Increment = 1.0R
-        Me.txtPrecio2.Location = New System.Drawing.Point(220, 180)
+        Me.txtPrecio2.Location = New System.Drawing.Point(213, 180)
         Me.txtPrecio2.MinValue = 0.0R
         Me.txtPrecio2.Name = "txtPrecio2"
-        Me.txtPrecio2.Size = New System.Drawing.Size(48, 20)
+        Me.txtPrecio2.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio2.TabIndex = 15
         '
         'txtPrecio3
@@ -974,10 +976,10 @@ Partial Class frmProducto
         Me.txtPrecio3.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtPrecio3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio3.Increment = 1.0R
-        Me.txtPrecio3.Location = New System.Drawing.Point(358, 180)
+        Me.txtPrecio3.Location = New System.Drawing.Point(351, 180)
         Me.txtPrecio3.MinValue = 0.0R
         Me.txtPrecio3.Name = "txtPrecio3"
-        Me.txtPrecio3.Size = New System.Drawing.Size(48, 20)
+        Me.txtPrecio3.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio3.TabIndex = 16
         '
         'txtPrecio4
@@ -990,10 +992,10 @@ Partial Class frmProducto
         Me.txtPrecio4.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.txtPrecio4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio4.Increment = 1.0R
-        Me.txtPrecio4.Location = New System.Drawing.Point(492, 180)
+        Me.txtPrecio4.Location = New System.Drawing.Point(485, 180)
         Me.txtPrecio4.MinValue = 0.0R
         Me.txtPrecio4.Name = "txtPrecio4"
-        Me.txtPrecio4.Size = New System.Drawing.Size(48, 20)
+        Me.txtPrecio4.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio4.TabIndex = 17
         '
         'Label3
@@ -1002,7 +1004,7 @@ Partial Class frmProducto
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(17, 207)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(70, 14)
+        Me.Label3.Size = New System.Drawing.Size(71, 14)
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "Cant. Mínima:"
         '
@@ -1105,7 +1107,7 @@ Partial Class frmProducto
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label31.ForeColor = System.Drawing.Color.Red
-        Me.Label31.Location = New System.Drawing.Point(127, 183)
+        Me.Label31.Location = New System.Drawing.Point(130, 183)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(11, 14)
         Me.sptInfo.SetSuperTooltip(Me.Label31, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label31.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
@@ -1117,7 +1119,7 @@ Partial Class frmProducto
         Me.Label32.AutoSize = True
         Me.Label32.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.ForeColor = System.Drawing.Color.Red
-        Me.Label32.Location = New System.Drawing.Point(266, 183)
+        Me.Label32.Location = New System.Drawing.Point(267, 183)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(11, 14)
         Me.sptInfo.SetSuperTooltip(Me.Label32, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label32.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
@@ -1153,7 +1155,7 @@ Partial Class frmProducto
         Me.Label35.AutoSize = True
         Me.Label35.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.ForeColor = System.Drawing.Color.Red
-        Me.Label35.Location = New System.Drawing.Point(139, 208)
+        Me.Label35.Location = New System.Drawing.Point(140, 208)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(11, 14)
         Me.sptInfo.SetSuperTooltip(Me.Label35, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label35.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
@@ -1189,7 +1191,7 @@ Partial Class frmProducto
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.ForeColor = System.Drawing.Color.Red
-        Me.Label39.Location = New System.Drawing.Point(539, 235)
+        Me.Label39.Location = New System.Drawing.Point(345, 235)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(11, 14)
         Me.sptInfo.SetSuperTooltip(Me.Label39, New DevComponents.DotNetBar.SuperTooltipInfo("Advertencia! Campo de orden obligatorio (*).", "Sistema de Inventario y Facturación // SIF", resources.GetString("Label39.SuperTooltip"), Global.appFacturacion.My.Resources.Resources._Error, Nothing, DevComponents.DotNetBar.eTooltipColor.Red))
@@ -1262,14 +1264,13 @@ Partial Class frmProducto
         Me.ElGroupBox6.Controls.Add(Me.Label40)
         Me.ElGroupBox6.Controls.Add(Me.dtpInicio)
         Me.ElGroupBox6.Controls.Add(Me.Label22)
-        Me.ElGroupBox6.Controls.Add(Me.txtDescuentoMaximo)
-        Me.ElGroupBox6.Controls.Add(Me.Label15)
         Me.ElGroupBox6.Location = New System.Drawing.Point(3, 57)
         Me.ElGroupBox6.Name = "ElGroupBox6"
         Me.ElGroupBox6.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ClassicBlack
         Me.ElGroupBox6.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
         Me.ElGroupBox6.Size = New System.Drawing.Size(557, 72)
         Me.ElGroupBox6.TabIndex = 39
+        Me.ElGroupBox6.Visible = False
         '
         'dtpFinal
         '
@@ -1390,33 +1391,6 @@ Partial Class frmProducto
         Me.Label22.Size = New System.Drawing.Size(67, 14)
         Me.Label22.TabIndex = 135
         Me.Label22.Text = "Fecha Inicio:"
-        '
-        'txtDescuentoMaximo
-        '
-        '
-        '
-        '
-        Me.txtDescuentoMaximo.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtDescuentoMaximo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtDescuentoMaximo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtDescuentoMaximo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescuentoMaximo.Increment = 1.0R
-        Me.txtDescuentoMaximo.Location = New System.Drawing.Point(470, 35)
-        Me.txtDescuentoMaximo.MaxValue = 100.0R
-        Me.txtDescuentoMaximo.MinValue = 0.0R
-        Me.txtDescuentoMaximo.Name = "txtDescuentoMaximo"
-        Me.txtDescuentoMaximo.Size = New System.Drawing.Size(74, 20)
-        Me.txtDescuentoMaximo.TabIndex = 132
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(363, 37)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(101, 14)
-        Me.Label15.TabIndex = 133
-        Me.Label15.Text = "Descuento Máximo:"
         '
         'ElGroupBox4
         '
@@ -1705,6 +1679,33 @@ Partial Class frmProducto
         Me.btEliminarImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.btEliminarImagen.TabIndex = 32
         '
+        'txtDescuentoMaximo
+        '
+        '
+        '
+        '
+        Me.txtDescuentoMaximo.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtDescuentoMaximo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtDescuentoMaximo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtDescuentoMaximo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDescuentoMaximo.Increment = 1.0R
+        Me.txtDescuentoMaximo.Location = New System.Drawing.Point(465, 231)
+        Me.txtDescuentoMaximo.MaxValue = 100.0R
+        Me.txtDescuentoMaximo.MinValue = 0.0R
+        Me.txtDescuentoMaximo.Name = "txtDescuentoMaximo"
+        Me.txtDescuentoMaximo.Size = New System.Drawing.Size(74, 20)
+        Me.txtDescuentoMaximo.TabIndex = 138
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(358, 233)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(101, 14)
+        Me.Label15.TabIndex = 139
+        Me.Label15.Text = "Descuento Máximo:"
+        '
         'frmProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -1749,7 +1750,6 @@ Partial Class frmProducto
         Me.ElGroupBox6.PerformLayout()
         CType(Me.dtpFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpInicio, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ElGroupBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox4.ResumeLayout(False)
         Me.ElGroupBox4.PerformLayout()
@@ -1759,6 +1759,7 @@ Partial Class frmProducto
         Me.ElGroupBox3.ResumeLayout(False)
         Me.ElGroupBox3.PerformLayout()
         Me.pnContImage.ResumeLayout(False)
+        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1868,10 +1869,10 @@ Partial Class frmProducto
     Friend WithEvents btDarAlta As System.Windows.Forms.ToolStripButton
     Friend WithEvents btEliminarImagen As DevComponents.DotNetBar.ButtonX
     Friend WithEvents ElGroupBox6 As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
-    Friend WithEvents txtDescuentoMaximo As DevComponents.Editors.DoubleInput
-    Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents dtpInicio As DevComponents.Editors.DateTimeAdv.DateTimeInput
     Friend WithEvents dtpFinal As DevComponents.Editors.DateTimeAdv.DateTimeInput
     Friend WithEvents Label40 As System.Windows.Forms.Label
+    Friend WithEvents txtDescuentoMaximo As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label15 As System.Windows.Forms.Label
 End Class
