@@ -12,6 +12,10 @@
         txtCedula.Text = ""
         txtTelefono.Text = ""
         txtCorreo.Clear()
+        chkVentas.Checked = False
+        chkCompras.Checked = False
+        chkInventario.Checked = False
+        chkContabilidad.Checked = False
         btGuardar.Enabled = True
         btEliminar.Enabled = False
         btEditar.Enabled = False

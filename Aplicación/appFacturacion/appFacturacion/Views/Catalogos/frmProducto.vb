@@ -802,7 +802,7 @@ Public Class frmProducto
         If e.KeyData = Keys.Enter Then
             If cmbLaboratorio.Text.Trim <> "" Then
                 If Not cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1 Then
-                    txtProveedor.Focus()
+                    txtDescuentoMaximo.Focus()
                 Else
                     Try
                         Using db As New CodeFirst
@@ -1040,6 +1040,14 @@ Public Class frmProducto
 
     End Sub
 
+    Private Sub txtDescuentoMaximo_KeyDown(sender As Object, e As KeyEventArgs) Handles txtDescuentoMaximo.KeyDown
+        If e.KeyData = Keys.Enter Then
+            txtProveedor.Focus()
+        ElseIf e.KeyData = Keys.Escape Then
+            cmbLaboratorio.Focus()
+        End If
+    End Sub
+
     Private Sub dtpInicio_ValueChanged(sender As Object, e As EventArgs) Handles dtpInicio.ValueChanged
         If dtpInicio.Text = "" Then
             dtpFinal.Text = ""
@@ -1055,4 +1063,5 @@ Public Class frmProducto
         End If
         txtDescuentoMaximo.Focus()
     End Sub
+
 End Class

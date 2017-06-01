@@ -46,6 +46,8 @@ Partial Class frmProducto
         Me.Label2 = New System.Windows.Forms.Label()
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtDescuentoMaximo = New DevComponents.Editors.DoubleInput()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.ElGroupBox5 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.rdDolar = New System.Windows.Forms.RadioButton()
         Me.rdCordoba = New System.Windows.Forms.RadioButton()
@@ -133,12 +135,11 @@ Partial Class frmProducto
         Me.sptInfo = New DevComponents.DotNetBar.SuperTooltip()
         Me.pnContImage = New DevComponents.DotNetBar.PanelEx()
         Me.btEliminarImagen = New DevComponents.DotNetBar.ButtonX()
-        Me.txtDescuentoMaximo = New DevComponents.Editors.DoubleInput()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox1.SuspendLayout()
+        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox5.SuspendLayout()
         CType(Me.txtCantidadMaxima, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,7 +167,6 @@ Partial Class frmProducto
         CType(Me.ElGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox3.SuspendLayout()
         Me.pnContImage.SuspendLayout()
-        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu
@@ -315,7 +315,7 @@ Partial Class frmProducto
         Me.Label8.Location = New System.Drawing.Point(17, 285)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(60, 14)
-        Me.Label8.TabIndex = 30
+        Me.Label8.TabIndex = 29
         Me.Label8.Text = "Aplicación:"
         '
         'Label7
@@ -471,6 +471,33 @@ Partial Class frmProducto
         Me.ElGroupBox1.Size = New System.Drawing.Size(552, 317)
         Me.ElGroupBox1.TabIndex = 1
         '
+        'txtDescuentoMaximo
+        '
+        '
+        '
+        '
+        Me.txtDescuentoMaximo.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtDescuentoMaximo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtDescuentoMaximo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtDescuentoMaximo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDescuentoMaximo.Increment = 1.0R
+        Me.txtDescuentoMaximo.Location = New System.Drawing.Point(465, 231)
+        Me.txtDescuentoMaximo.MaxValue = 100.0R
+        Me.txtDescuentoMaximo.MinValue = 0.0R
+        Me.txtDescuentoMaximo.Name = "txtDescuentoMaximo"
+        Me.txtDescuentoMaximo.Size = New System.Drawing.Size(74, 20)
+        Me.txtDescuentoMaximo.TabIndex = 25
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(358, 233)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(101, 14)
+        Me.Label15.TabIndex = 25
+        Me.Label15.Text = "Descuento Máximo:"
+        '
         'ElGroupBox5
         '
         Me.ElGroupBox5.BackgroundStyle.GradientAngle = 45.0!
@@ -548,7 +575,7 @@ Partial Class frmProducto
         Me.txtIdProveedor.Location = New System.Drawing.Point(95, 257)
         Me.txtIdProveedor.Name = "txtIdProveedor"
         Me.txtIdProveedor.Size = New System.Drawing.Size(5, 20)
-        Me.txtIdProveedor.TabIndex = 25
+        Me.txtIdProveedor.TabIndex = 26
         Me.txtIdProveedor.Visible = False
         '
         'btAgregarProveedor
@@ -561,7 +588,7 @@ Partial Class frmProducto
         Me.btAgregarProveedor.Name = "btAgregarProveedor"
         Me.btAgregarProveedor.Size = New System.Drawing.Size(29, 22)
         Me.btAgregarProveedor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btAgregarProveedor.TabIndex = 27
+        Me.btAgregarProveedor.TabIndex = 28
         '
         'btBuscarProveedor
         '
@@ -573,7 +600,7 @@ Partial Class frmProducto
         Me.btBuscarProveedor.Name = "btBuscarProveedor"
         Me.btBuscarProveedor.Size = New System.Drawing.Size(29, 22)
         Me.btBuscarProveedor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btBuscarProveedor.TabIndex = 26
+        Me.btBuscarProveedor.TabIndex = 27
         '
         'Label23
         '
@@ -582,7 +609,7 @@ Partial Class frmProducto
         Me.Label23.Location = New System.Drawing.Point(17, 259)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(60, 14)
-        Me.Label23.TabIndex = 25
+        Me.Label23.TabIndex = 26
         Me.Label23.Text = "Proveedor:"
         '
         'txtProveedor
@@ -598,7 +625,7 @@ Partial Class frmProducto
         Me.txtProveedor.Name = "txtProveedor"
         Me.txtProveedor.ReadOnly = True
         Me.txtProveedor.Size = New System.Drawing.Size(382, 20)
-        Me.txtProveedor.TabIndex = 25
+        Me.txtProveedor.TabIndex = 26
         '
         'txtUbicacion
         '
@@ -916,7 +943,7 @@ Partial Class frmProducto
         Me.txtAplicacion.Location = New System.Drawing.Point(83, 283)
         Me.txtAplicacion.Name = "txtAplicacion"
         Me.txtAplicacion.Size = New System.Drawing.Size(456, 20)
-        Me.txtAplicacion.TabIndex = 30
+        Me.txtAplicacion.TabIndex = 29
         '
         'txtCosto
         '
@@ -1679,33 +1706,6 @@ Partial Class frmProducto
         Me.btEliminarImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.btEliminarImagen.TabIndex = 32
         '
-        'txtDescuentoMaximo
-        '
-        '
-        '
-        '
-        Me.txtDescuentoMaximo.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtDescuentoMaximo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtDescuentoMaximo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtDescuentoMaximo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescuentoMaximo.Increment = 1.0R
-        Me.txtDescuentoMaximo.Location = New System.Drawing.Point(465, 231)
-        Me.txtDescuentoMaximo.MaxValue = 100.0R
-        Me.txtDescuentoMaximo.MinValue = 0.0R
-        Me.txtDescuentoMaximo.Name = "txtDescuentoMaximo"
-        Me.txtDescuentoMaximo.Size = New System.Drawing.Size(74, 20)
-        Me.txtDescuentoMaximo.TabIndex = 138
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(358, 233)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(101, 14)
-        Me.Label15.TabIndex = 139
-        Me.Label15.Text = "Descuento Máximo:"
-        '
         'frmProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -1728,6 +1728,7 @@ Partial Class frmProducto
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox1.ResumeLayout(False)
         Me.ElGroupBox1.PerformLayout()
+        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox5.ResumeLayout(False)
         Me.ElGroupBox5.PerformLayout()
@@ -1759,7 +1760,6 @@ Partial Class frmProducto
         Me.ElGroupBox3.ResumeLayout(False)
         Me.ElGroupBox3.PerformLayout()
         Me.pnContImage.ResumeLayout(False)
-        CType(Me.txtDescuentoMaximo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
