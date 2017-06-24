@@ -58,12 +58,17 @@
                             reg.DEBE = If(c.MONEC.Equals(Config.cordoba), c.DEBE_C, c.DEBE_D)
                             reg.HABER = If(c.MONEC.Equals(Config.cordoba), c.HABER_C, c.HABER_D)
                             reg.SALDO = temp
+
+                            reg.FV_1_30 = 0.0
+                            reg.FV_31_60 = 0.0
+                            reg.FV_61_90 = 0.0
+
                             reg.ID = c.ID
                             estadodecuenta.Add(reg)
                             reg = Nothing
                         Next
                         temp = Nothing : tmpb = Nothing
-                        Dim rpt As New rptEstadoCuenta
+                        Dim rpt As New rptEstadoCuentaNuevo
                         Dim itextobject As CrystalDecisions.CrystalReports.Engine.TextObject
                         If rdPendientes.Checked Then
                             itextobject = rpt.ReportDefinition.ReportObjects("txtFactura") : itextobject.Text = "(FACTURAS PENDIENTES)"

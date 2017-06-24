@@ -4257,6 +4257,12 @@ Partial Public Class dtDatos
         
         Private columnID As Global.System.Data.DataColumn
         
+        Private columnFV_1_30 As Global.System.Data.DataColumn
+        
+        Private columnFV_31_60 As Global.System.Data.DataColumn
+        
+        Private columnFV_61_90 As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -4421,6 +4427,30 @@ Partial Public Class dtDatos
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FV_1_30Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFV_1_30
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FV_31_60Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFV_31_60
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FV_61_90Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFV_61_90
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4473,9 +4503,12 @@ Partial Public Class dtDatos
                     ByVal DEBE As Decimal,  _
                     ByVal HABER As Decimal,  _
                     ByVal SALDO As Decimal,  _
-                    ByVal ID As String) As ESTADODECUENTARow
+                    ByVal ID As String,  _
+                    ByVal FV_1_30 As Decimal,  _
+                    ByVal FV_31_60 As Decimal,  _
+                    ByVal FV_61_90 As Decimal) As ESTADODECUENTARow
             Dim rowESTADODECUENTARow As ESTADODECUENTARow = CType(Me.NewRow,ESTADODECUENTARow)
-            Dim columnValuesArray() As Object = New Object() {N, SERIE, N_DOCUMENTO, N_COMPRA, FORMADEPAGO, N_PAGO, OPERACION, FECHA, PLAZO, FECHAVENCIMIENTO, MONEDA, TAZA, DEBE, HABER, SALDO, ID}
+            Dim columnValuesArray() As Object = New Object() {N, SERIE, N_DOCUMENTO, N_COMPRA, FORMADEPAGO, N_PAGO, OPERACION, FECHA, PLAZO, FECHAVENCIMIENTO, MONEDA, TAZA, DEBE, HABER, SALDO, ID, FV_1_30, FV_31_60, FV_61_90}
             rowESTADODECUENTARow.ItemArray = columnValuesArray
             Me.Rows.Add(rowESTADODECUENTARow)
             Return rowESTADODECUENTARow
@@ -4514,6 +4547,9 @@ Partial Public Class dtDatos
             Me.columnHABER = MyBase.Columns("HABER")
             Me.columnSALDO = MyBase.Columns("SALDO")
             Me.columnID = MyBase.Columns("ID")
+            Me.columnFV_1_30 = MyBase.Columns("FV_1_30")
+            Me.columnFV_31_60 = MyBase.Columns("FV_31_60")
+            Me.columnFV_61_90 = MyBase.Columns("FV_61_90")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4551,6 +4587,12 @@ Partial Public Class dtDatos
             MyBase.Columns.Add(Me.columnSALDO)
             Me.columnID = New Global.System.Data.DataColumn("ID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnID)
+            Me.columnFV_1_30 = New Global.System.Data.DataColumn("FV_1_30", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFV_1_30)
+            Me.columnFV_31_60 = New Global.System.Data.DataColumn("FV_31_60", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFV_31_60)
+            Me.columnFV_61_90 = New Global.System.Data.DataColumn("FV_61_90", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFV_61_90)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -19771,6 +19813,51 @@ Partial Public Class dtDatos
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property FV_1_30() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableESTADODECUENTA.FV_1_30Column),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FV_1_30' de la tabla 'ESTADODECUENTA' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableESTADODECUENTA.FV_1_30Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property FV_31_60() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableESTADODECUENTA.FV_31_60Column),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FV_31_60' de la tabla 'ESTADODECUENTA' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableESTADODECUENTA.FV_31_60Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property FV_61_90() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableESTADODECUENTA.FV_61_90Column),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FV_61_90' de la tabla 'ESTADODECUENTA' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableESTADODECUENTA.FV_61_90Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsNNull() As Boolean
             Return Me.IsNull(Me.tableESTADODECUENTA.NColumn)
         End Function
@@ -19959,6 +20046,42 @@ Partial Public Class dtDatos
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetIDNull()
             Me(Me.tableESTADODECUENTA.IDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFV_1_30Null() As Boolean
+            Return Me.IsNull(Me.tableESTADODECUENTA.FV_1_30Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFV_1_30Null()
+            Me(Me.tableESTADODECUENTA.FV_1_30Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFV_31_60Null() As Boolean
+            Return Me.IsNull(Me.tableESTADODECUENTA.FV_31_60Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFV_31_60Null()
+            Me(Me.tableESTADODECUENTA.FV_31_60Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFV_61_90Null() As Boolean
+            Return Me.IsNull(Me.tableESTADODECUENTA.FV_61_90Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFV_61_90Null()
+            Me(Me.tableESTADODECUENTA.FV_61_90Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     

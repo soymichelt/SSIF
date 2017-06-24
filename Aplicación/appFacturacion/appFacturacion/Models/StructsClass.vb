@@ -27,6 +27,12 @@ Public Class ESTADODECUENTA
     Public DEBE As Decimal
     Public HABER As Decimal
     Public SALDO As Decimal
+
+    'Dias vencidos
+    Public FV_1_30 As Decimal
+    Public FV_31_60 As Decimal
+    Public FV_61_90 As Decimal
+
     Public ID As String
 End Class
 

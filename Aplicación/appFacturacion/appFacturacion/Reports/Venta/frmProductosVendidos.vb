@@ -6,48 +6,41 @@ Public Class frmProductosVendidos
     Sub Lista(ByVal Fecha1 As DateTime, ByVal Fecha2 As DateTime, Optional ByVal IDBodega As String = "", Optional ByVal IDSerie As String = "", Optional ByVal NEmpleado As String = "", Optional ByVal Empleado As String = "", Optional ByVal NCliente As String = "", Optional ByVal Cliente As String = "")
         Try
             Using db As New CodeFirst
-                'Dim consulta = (((From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE IsNot Nothing And ven.CLIENTE.N_CLIENTE.Contains(NCliente) And (ven.CLIENTE.NOMBRES & " " & ven.CLIENTE.APELLIDOS).Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, (det.SUBTOTAL_D * Config.tazadecambio))), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D * Config.tazadecambio)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D * Config.tazadecambio)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL - DESCUENTO).ToList).Union((From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE Is Nothing And NCliente = "" And ven.CLIENTECONTADO.Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C + det.DESCUENTO_DIN_TOTAL_C, (det.SUBTOTAL_D * Config.tazadecambio) + (det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio))), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D * Config.tazadecambio)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D * Config.tazadecambio)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).ToList)).ToList
-                'If Config.Empresa.MonedaInventario.Equals(Config.cordoba) Then
-                '    If rdContado.Checked Then
-                '        consulta = (From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And Not ven.CREDITO And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE IsNot Nothing And ven.CLIENTE.N_CLIENTE.Contains(NCliente) And (ven.CLIENTE.NOMBRES & " " & ven.CLIENTE.APELLIDOS).Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, (det.SUBTOTAL_D * Config.tazadecambio))), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D * Config.tazadecambio)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D * Config.tazadecambio)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).Union(From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And Not ven.CREDITO And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE Is Nothing And NCliente = "" And ven.CLIENTECONTADO.Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C + det.DESCUENTO_DIN_TOTAL_C, (det.SUBTOTAL_D * Config.tazadecambio) + (det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio))), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D * Config.tazadecambio)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D * Config.tazadecambio)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).ToList
-                '    ElseIf rdCredito.Checked Then
-                '        consulta = (From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And ven.CREDITO And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE IsNot Nothing And ven.CLIENTE.N_CLIENTE.Contains(NCliente) And (ven.CLIENTE.NOMBRES & " " & ven.CLIENTE.APELLIDOS).Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, (det.SUBTOTAL_D * Config.tazadecambio))), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D * Config.tazadecambio)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D * Config.tazadecambio)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).ToList
-                '    End If
-                'Else
-                '    consulta = (From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE IsNot Nothing And ven.CLIENTE.N_CLIENTE.Contains(NCliente) And (ven.CLIENTE.NOMBRES & " " & ven.CLIENTE.APELLIDOS).Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C / Config.tazadecambio, det.DESCUENTO_DIN_TOTAL_D)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), (det.SUBTOTAL_C / Config.tazadecambio), det.SUBTOTAL_D)), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C / Config.tazadecambio, det.IVA_DIN_TOTAL_D)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C / Config.tazadecambio, det.TOTAL_D)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL - DESCUENTO).Union(From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE Is Nothing And NCliente = "" And ven.CLIENTECONTADO.Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C + det.DESCUENTO_DIN_TOTAL_C, (det.SUBTOTAL_D * Config.tazadecambio) + (det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio))), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D * Config.tazadecambio)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D * Config.tazadecambio)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).ToList
-                '    If rdContado.Checked Then
-                '        consulta = (From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And Not ven.CREDITO And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE IsNot Nothing And ven.CLIENTE.N_CLIENTE.Contains(NCliente) And (ven.CLIENTE.NOMBRES & " " & ven.CLIENTE.APELLIDOS).Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), (det.SUBTOTAL_C / Config.tazadecambio), det.SUBTOTAL_D)), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C / Config.tazadecambio, det.IVA_DIN_TOTAL_D)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C / Config.tazadecambio, det.TOTAL_D)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).Union(From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And Not ven.CREDITO And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE Is Nothing And NCliente = "" And ven.CLIENTECONTADO.Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C + det.DESCUENTO_DIN_TOTAL_C, (det.SUBTOTAL_D * Config.tazadecambio) + (det.DESCUENTO_DIN_TOTAL_D * Config.tazadecambio))), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C, det.IVA_DIN_TOTAL_D * Config.tazadecambio)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C, det.TOTAL_D * Config.tazadecambio)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).ToList
-                '    ElseIf rdCredito.Checked Then
-                '        consulta = (From pro In db.PRODUCTOS Join exi In db.EXISTENCIAS On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.DETALLES_VENTAS On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Join ven In db.VENTAS On ven.IDVENTA Equals det.IDVENTA Join ser In db.SERIES On ven.IDSERIE Equals ser.IDSERIE Join bod In db.BODEGAS On ser.IDBODEGA Equals bod.IDBODEGA Where ven.ANULADO = "N" And ven.FECHAFACTURA >= Fecha1 And ven.FECHAFACTURA <= Fecha2 And bod.IDBODEGA.Contains(IDBodega) And ser.IDSERIE.Contains(IDSerie) And ven.CREDITO And ven.EMPLEADO.N_TRABAJADOR.Contains(NEmpleado) And (ven.EMPLEADO.NOMBRES & " " & ven.EMPLEADO.APELLIDOS).Contains(Empleado) And ven.IDCLIENTE IsNot Nothing And ven.CLIENTE.N_CLIENTE.Contains(NCliente) And (ven.CLIENTE.NOMBRES & " " & ven.CLIENTE.APELLIDOS).Contains(Cliente) Group By pro.IDALTERNO, pro.DESCRIPCION Into COSTOTOTAL = Sum(det.COSTO * det.CANTIDAD), CANTIDAD = Sum(det.CANTIDAD), DESCUENTO = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.DESCUENTO_DIN_TOTAL_C, det.DESCUENTO_DIN_TOTAL_D)), SUBTOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), (det.SUBTOTAL_C / Config.tazadecambio), det.SUBTOTAL_D)), IVA = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.IVA_DIN_TOTAL_C / Config.tazadecambio, det.IVA_DIN_TOTAL_D)), TOTAL = Sum(If(ven.MONEDA.Equals(Config.cordoba), det.TOTAL_C / Config.tazadecambio, det.TOTAL_D)) Select IDALTERNO, DESCRIPCION, COSTOPROMEDIO = COSTOTOTAL / CANTIDAD, COSTOTOTAL, PRECIOPROMEDIO = SUBTOTAL / CANTIDAD, CANTIDAD, DESCUENTO, SUBTOTAL, IVA, TOTAL, UTILIDAD = SUBTOTAL - COSTOTOTAL).ToList
-                '    End If
-                'End If
-                'Dim sAgg = (Aggregate agg In consulta Into DESCUENTO = Sum(agg.DESCUENTO), COSTOTOTAL = Sum(agg.COSTOTOTAL), SUBTOTAL = Sum(agg.SUBTOTAL), IVA = Sum(agg.IVA), TOTAL = Sum(agg.TOTAL), UTILIDAD = Sum(agg.UTILIDAD))
-
-                'Dim Str = "SELECT" + _
-                '    "" + _
-                '    "PRODUCTO "
-
-
+                
                 Dim SpSQL = db.Database.SqlQuery(Of lstProductosVendidos)("SpProductosVendidos @Inicio, @Final, @IDBodega, @IDSerie, @NEmpleado, @Empleado, @NCliente, @Cliente, @TipoVenta, @MonInv, @Taza", New SqlParameter("@Inicio", Fecha1), New SqlParameter("@Final", Fecha2), New SqlParameter("@IDBodega", IDBodega), New SqlParameter("@IDSerie", IDSerie), New SqlParameter("@NEmpleado", NEmpleado), New SqlParameter("@Empleado", Empleado), New SqlParameter("@NCliente", NCliente), New SqlParameter("@Cliente", Cliente), New SqlParameter("@TipoVenta", If(rdContado.Checked, 1, If(rdCredito.Checked, 2, 0))), New SqlParameter("@MonInv", If(Config.Empresa.MonedaInventario.Equals(Config.cordoba), 1, 2)), New SqlParameter("@Taza", Config.tazadecambio)).ToList()
 
+                'Unificando información
+
                 If Not SpSQL Is Nothing Then
-                    txtDescuento.Value = SpSQL.Sum(Function(f) f.Descuento)
-                    txtCostoTotal.Value = SpSQL.Sum(Function(f) f.Costo_Total)
-                    txtSubtotal.Value = SpSQL.Sum(Function(f) f.SubTotal)
-                    txtIva.Value = SpSQL.Sum(Function(f) f.Iva)
-                    txtTotal.Value = SpSQL.Sum(Function(f) f.Total)
-                    txtUtilidad.Value = SpSQL.Sum(Function(f) f.Utilidad)
+
+                    With SpSQL
+
+                        txtDescuento.Value = .Sum(Function(f) f.Descuento)
+                        txtCostoTotal.Value = .Sum(Function(f) f.Costo_Total)
+                        txtSubtotal.Value = .Sum(Function(f) f.SubTotal)
+                        txtIva.Value = .Sum(Function(f) f.Iva)
+                        txtTotal.Value = .Sum(Function(f) f.Total)
+                        txtUtilidad.Value = .Sum(Function(f) f.Utilidad)
+
+                    End With
+
                 Else
+
                     txtDescuento.Value = 0.0
                     txtCostoTotal.Value = 0.0
                     txtSubtotal.Value = 0.0
                     txtIva.Value = 0.0
                     txtTotal.Value = 0.0
                     txtUtilidad.Value = 0.0
+
                 End If
+
                 If dtRegistro.Visible Then
-                    dtRegistro.DataSource = (From c In SpSQL Select c.IDAlterno, c.Descripcion, c.Cantidad, c.CostoPromedio, c.Costo_Total, c.PrecioPromedio, c.Descuento, c.SubTotal, c.Utilidad, c.Iva, c.Total Order By IDAlterno Descending).ToList
+
+                    dtRegistro.DataSource = (From c In SpSQL Select c.IDAlterno, c.Descripcion, c.Cantidad, c.CostoPromedio, c.Costo_Total, c.PrecioPromedio, c.Descuento, c.SubTotal, c.Utilidad, c.Iva, c.Total).ToList
+
                     If dtRegistro.Columns.Count > 0 Then
+
                         dtRegistro.Columns(0).HeaderText = vbNewLine & "ID ALTERNO" & vbNewLine : dtRegistro.Columns(0).Width = 145
                         dtRegistro.Columns(1).HeaderText = "DESCRIPCIÓN DEL PRODUCTO" : dtRegistro.Columns(1).Width = 250
                         dtRegistro.Columns(2).HeaderText = "CANTIDAD" : dtRegistro.Columns(2).Width = 145 : dtRegistro.Columns(2).DefaultCellStyle.Format = Config.f_m
@@ -59,31 +52,41 @@ Public Class frmProductosVendidos
                         dtRegistro.Columns(8).HeaderText = "UTILIDAD" : dtRegistro.Columns(8).Width = 145 : dtRegistro.Columns(8).DefaultCellStyle.Format = Config.f_m
                         dtRegistro.Columns(9).HeaderText = "IVA" : dtRegistro.Columns(9).Width = 145 : dtRegistro.Columns(9).DefaultCellStyle.Format = Config.f_m
                         dtRegistro.Columns(10).HeaderText = "TOTAL NETO" : dtRegistro.Columns(10).Width = 145 : dtRegistro.Columns(10).DefaultCellStyle.Format = Config.f_m
+
                         For Each c As DataGridViewColumn In dtRegistro.Columns
+
                             c.DefaultCellStyle.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
+
                         Next
+
                     End If
+
                 Else
+
                     Dim rpt As New rptInformeVentaDetalle
                     Config.CrystalTitle("VENTA DETALLADA", rpt)
                     Dim band As CrystalDecisions.CrystalReports.Engine.TextObject
                     band = rpt.Section2.ReportObjects("txtFecha1") : band.Text = dtpFechaInicial.Value.ToLongDateString()
                     band = rpt.Section2.ReportObjects("txtFecha2") : band.Text = dtpFechaFinal.Value.ToLongDateString()
+
                     If IDBodega <> "" Then
                         band = rpt.Section2.ReportObjects("txtSucursal") : band.Text = cmbBodega.Text
                     Else
                         band = rpt.Section2.ReportObjects("txtSucursal") : band.Text = "%Todos%"
                     End If
+
                     If IDSerie <> "" Then
                         band = rpt.Section2.ReportObjects("txtSerie") : band.Text = cmbSerie.Text
                     Else
                         band = rpt.Section2.ReportObjects("txtSerie") : band.Text = "%Todos%"
                     End If
+
                     If NEmpleado <> "" Then
                         band = rpt.Section2.ReportObjects("txtVendedor") : band.Text = txtNombreVendedor.Text
                     Else
                         band = rpt.Section2.ReportObjects("txtVendedor") : band.Text = "%Todos%"
                     End If
+
                     If rdContado.Checked Then
                         band = rpt.Section2.ReportObjects("txtTipoFactura") : band.Text = "Contado"
                     ElseIf rdCredito.Checked Then
@@ -91,25 +94,35 @@ Public Class frmProductosVendidos
                     Else
                         band = rpt.Section2.ReportObjects("txtTipoFactura") : band.Text = "%Todos%"
                     End If
+
                     If NCliente <> "" Then
                         band = rpt.Section2.ReportObjects("txtNCliente") : band.Text = NCliente
                     Else
                         band = rpt.Section2.ReportObjects("txtNCliente") : band.Text = "%Todos%"
                     End If
+
                     If NCliente <> "" Then
                         band = rpt.Section2.ReportObjects("txtNombreCliente") : band.Text = Cliente
                     Else
                         band = rpt.Section2.ReportObjects("txtNombreCliente") : band.Text = "%Todos%"
                     End If
+
                     rpt.SetDataSource(SpSQL.ToList)
                     CrystalReportViewer1.ReportSource = rpt
                     rpt = Nothing : band = Nothing
+
                 End If
+
                 SpSQL = Nothing ': sAgg = Nothing
+
             End Using
+
         Catch ex As Exception
+
             MessageBox.Show("Error, " & ex.Message)
+
         End Try
+
     End Sub
 
     Sub Filtrar()
@@ -155,6 +168,14 @@ Public Class frmProductosVendidos
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
+        End Try
+
+
+
+        Try
+
+        Catch ex As Exception
+
         End Try
     End Sub
 
