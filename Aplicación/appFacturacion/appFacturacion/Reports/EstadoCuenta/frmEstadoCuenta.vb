@@ -51,7 +51,36 @@
                             reg.N_DOCUMENTO = c.N_DOCUMENTO
                             reg.OPERACION = c.OPERACION
                             reg.FECHA = c.FECHA
-                            reg.PLAZO = If(Not c.FECHAVENCIMIENTO Is Nothing, DateDiff("d", c.FECHA, c.FECHAVENCIMIENTO).ToString(), "")
+
+                            'Dias vencidos
+                            If (Not c.FECHAVENCIMIENTO Is Nothing) Then
+
+                                'asignando plazo del crédito
+                                reg.PLAZO = DateDiff("d", c.FECHA, c.FECHAVENCIMIENTO).ToString()
+
+                                'calcular dias vencidos
+                                Dim dVencidos As Integer = DateDiff("d", c.FECHAVENCIMIENTO, DateTime.Now).ToString()
+
+                                If (dVencidos >= 1 And dVencidos <= 30) Then
+                                    reg.FV_1_30 = c.SALDOCREDITO
+                                End If
+                                If (dVencidos >= 31 And dVencidos <= 60) Then
+                                    reg.FV_31_60 = c.SALDOCREDITO
+                                End If
+                                If (dVencidos >= 61 And dVencidos <= 90) Then
+                                    reg.FV_61_90 = temp
+                                End If
+
+                            Else
+
+                                'si no hay fecha de vencimiento no se hace nada
+                                reg.PLAZO = ""
+                                reg.FV_1_30 = 0.0
+                                reg.FV_31_60 = 0.0
+                                reg.FV_61_90 = 0.0
+
+                            End If
+
                             reg.FECHAVENCIMIENTO = If(Not c.FECHAVENCIMIENTO Is Nothing, c.FECHAVENCIMIENTO.Value.ToShortDateString(), "")
                             reg.MONEDA = c.MONEDA
                             reg.TAZA = c.TAZACAMBIO
@@ -59,13 +88,10 @@
                             reg.HABER = If(c.MONEC.Equals(Config.cordoba), c.HABER_C, c.HABER_D)
                             reg.SALDO = temp
 
-                            reg.FV_1_30 = 0.0
-                            reg.FV_31_60 = 0.0
-                            reg.FV_61_90 = 0.0
-
                             reg.ID = c.ID
                             estadodecuenta.Add(reg)
                             reg = Nothing
+
                         Next
                         temp = Nothing : tmpb = Nothing
                         Dim rpt As New rptEstadoCuentaNuevo
