@@ -711,4 +711,10 @@
         frmPromocion.BringToFront()
         frmPromocion.Show()
     End Sub
+
+    Private Sub btGraficosVenta_Click(sender As Object, e As EventArgs) Handles btGraficosVenta.Click
+        frmDashboard.MdiParent = Me
+        frmDashboard.BringToFront()
+        frmDashboard.Show()
+    End Sub
 End Class

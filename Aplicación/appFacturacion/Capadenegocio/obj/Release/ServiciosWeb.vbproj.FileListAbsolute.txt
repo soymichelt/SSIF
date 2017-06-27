@@ -1,3 +1,0 @@
-C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Release\ServiciosWeb.vbprojResolveAssemblyReference.cache
-C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Release\Capadenegocio.Resources.resources
-C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\Capadenegocio\obj\Release\ServiciosWeb.vbproj.GenerateResource.Cache

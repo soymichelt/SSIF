@@ -907,6 +907,7 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\System.Data.d
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\System.Data.Linq.dll
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\EntityFramework.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\es\EntityFramework.resources.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\SIF.Views.Destok.vbprojResolveAssemblyReference.cache
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmImprimirCompra.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmInformeCompras.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmPagosPendientes.resources
@@ -997,6 +998,7 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmImprimirEntrada.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmImprimirSalida.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmImprimirTraslado.resources
+D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmPromocion.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmReciboCompra.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmVenta.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmBuscarPrecio.resources
@@ -1012,6 +1014,7 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmErrorEstablecerConexionServidor.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmPrincipal.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.Resources.resources
+D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmDashboard.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmBuscarUsuario.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmCambiarContraseña.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmLogin.resources
@@ -1021,5 +1024,3 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.exe
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.pdb
-D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmPromocion.resources
-D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\SIF.Views.Destok.vbprojResolveAssemblyReference.cache

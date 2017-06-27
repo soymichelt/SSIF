@@ -735,6 +735,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:appFacturacion.My.Resources.Resources.Dashboard">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:appFacturacion.My.Resources.Resources.Desconsignar">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.

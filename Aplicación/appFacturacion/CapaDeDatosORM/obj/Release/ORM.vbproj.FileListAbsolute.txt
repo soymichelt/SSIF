@@ -1,2 +1,0 @@
-C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\CapaDeDatosORM\obj\Release\CapaDeDatosORM.Resources.resources
-C:\Users\win8pc\Desktop\sis que uso031216\appFacturacion\CapaDeDatosORM\obj\Release\ORM.vbproj.GenerateResource.Cache
