@@ -27,48 +27,144 @@ Partial Class frmPrincipal
         Dim PaintStyle2 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
         Me.stsEstado = New System.Windows.Forms.StatusStrip()
+        Me.lblEmpresa = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblNombreUsuario = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblUsuario = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblBodega = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblIva = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblTaza = New System.Windows.Forms.ToolStripStatusLabel()
         Me.rcCintaMenu = New DevComponents.DotNetBar.RibbonControl()
-        Me.RibbonPanel1 = New DevComponents.DotNetBar.RibbonPanel()
-        Me.RibbonBar20 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar6 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar2 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar1 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonPanel8 = New DevComponents.DotNetBar.RibbonPanel()
-        Me.RibbonBar19 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar18 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonPanel4 = New DevComponents.DotNetBar.RibbonPanel()
-        Me.RibbonBar23 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar22 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar21 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar14 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar11 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar9 = New DevComponents.DotNetBar.RibbonBar()
-        Me.ItemContainer5 = New DevComponents.DotNetBar.ItemContainer()
-        Me.RibbonPanel3 = New DevComponents.DotNetBar.RibbonPanel()
-        Me.RibbonBar24 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar10 = New DevComponents.DotNetBar.RibbonBar()
-        Me.RibbonBar8 = New DevComponents.DotNetBar.RibbonBar()
         Me.RibbonPanel7 = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar7 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btInformeVentaDetalle = New DevComponents.DotNetBar.ButtonItem()
+        Me.btGraficosVenta = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar16 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btVenta = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaFactura = New DevComponents.DotNetBar.ButtonItem()
+        Me.btDevolucionesVentas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaDevolucion = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCotizar = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaCotizacion = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar13 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btClientes = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaClientes = New DevComponents.DotNetBar.ButtonItem()
+        Me.btEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonPanel1 = New DevComponents.DotNetBar.RibbonPanel()
+        Me.RibbonBar20 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btPaises = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaPais = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCiudades = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaCiudades = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar6 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btIva = New DevComponents.DotNetBar.ButtonItem()
+        Me.btTaza = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar2 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btMarcas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btUnidadMedida = New DevComponents.DotNetBar.ButtonItem()
+        Me.btPresentacion = New DevComponents.DotNetBar.ButtonItem()
+        Me.btLaboratorio = New DevComponents.DotNetBar.ButtonItem()
+        Me.btProductos = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaProductos = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar1 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btEmpresa = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBodega = New DevComponents.DotNetBar.ButtonItem()
+        Me.btSerie = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonPanel8 = New DevComponents.DotNetBar.RibbonPanel()
+        Me.RibbonBar19 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btProductoOferta = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem8 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem7 = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar18 = New DevComponents.DotNetBar.RibbonBar()
+        Me.ButtonItem5 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem6 = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonPanel4 = New DevComponents.DotNetBar.RibbonPanel()
+        Me.RibbonBar23 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btReciboCompra = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaReciboCompra = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar22 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btReciboVenta = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaRecibo = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar21 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btCatalogoCuentas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btPeriodo = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar14 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btCPEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCuentasPagar = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar11 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btCCEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCuentasCobrar = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar9 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btEstadoResultados = New DevComponents.DotNetBar.ButtonItem()
+        Me.btPeriodoContable = New DevComponents.DotNetBar.ButtonItem()
+        Me.ItemContainer5 = New DevComponents.DotNetBar.ItemContainer()
+        Me.btSeleccionar = New DevComponents.DotNetBar.ButtonItem()
+        Me.btApertura = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCierre = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonPanel3 = New DevComponents.DotNetBar.RibbonPanel()
+        Me.RibbonBar24 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btPrinterSetting = New DevComponents.DotNetBar.ButtonItem()
+        Me.btServidor = New DevComponents.DotNetBar.ButtonItem()
+        Me.btRegistro = New DevComponents.DotNetBar.ButtonItem()
+        Me.btAyuda = New DevComponents.DotNetBar.ButtonItem()
+        Me.btAcercaDe = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar10 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btCrearRespaldo = New DevComponents.DotNetBar.ButtonItem()
+        Me.btRestaurar = New DevComponents.DotNetBar.ButtonItem()
+        Me.RibbonBar8 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btLogo = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonPanel2 = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar25 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btKardex = New DevComponents.DotNetBar.ButtonItem()
+        Me.btControlExistencia = New DevComponents.DotNetBar.ButtonItem()
+        Me.btValuacionInventario = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar15 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btConsignar = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaConsignacion = New DevComponents.DotNetBar.ButtonItem()
+        Me.btDesconsignar = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaDesconsignacion = New DevComponents.DotNetBar.ButtonItem()
+        Me.btReporteConsignacion = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar5 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btEntradas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaEntradas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btSalidas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaSalida = New DevComponents.DotNetBar.ButtonItem()
+        Me.btTraslados = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaTraslado = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonPanel6 = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar26 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btProductosComprados = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar4 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btCompra = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaCompra = New DevComponents.DotNetBar.ButtonItem()
+        Me.btDevolucionCompra = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaDevolucionesCompras = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar3 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btProveedores = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaProveedores = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCompraEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonPanel9 = New DevComponents.DotNetBar.RibbonPanel()
         Me.RibbonBar17 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btPlanilla = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedasPlanillas = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar12 = New DevComponents.DotNetBar.RibbonBar()
+        Me.btVendedores = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaVendedor = New DevComponents.DotNetBar.ButtonItem()
+        Me.btTrabajoArea = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaAreas = New DevComponents.DotNetBar.ButtonItem()
+        Me.btTrabajoPuestos = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBusquedaPuestos = New DevComponents.DotNetBar.ButtonItem()
         Me.mnuArchivo = New DevComponents.DotNetBar.Office2007StartButton()
         Me.ItemContainer1 = New DevComponents.DotNetBar.ItemContainer()
         Me.ItemContainer2 = New DevComponents.DotNetBar.ItemContainer()
         Me.ItemContainer3 = New DevComponents.DotNetBar.ItemContainer()
+        Me.btUsuarios = New DevComponents.DotNetBar.ButtonItem()
+        Me.btInformeUsuarios = New DevComponents.DotNetBar.ButtonItem()
+        Me.btBitacora = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCambiarPassword = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCerrarSesion = New DevComponents.DotNetBar.ButtonItem()
         Me.ItemContainer4 = New DevComponents.DotNetBar.ItemContainer()
+        Me.btSalir = New DevComponents.DotNetBar.ButtonItem()
         Me.mnuCatalogos = New DevComponents.DotNetBar.RibbonTabItem()
         Me.RibbonTabItem1 = New DevComponents.DotNetBar.RibbonTabItem()
         Me.RibbonTabItem6 = New DevComponents.DotNetBar.RibbonTabItem()
@@ -77,123 +173,27 @@ Partial Class frmPrincipal
         Me.RibbonTabItem7 = New DevComponents.DotNetBar.RibbonTabItem()
         Me.RibbonTabItem3 = New DevComponents.DotNetBar.RibbonTabItem()
         Me.RibbonTabItem2 = New DevComponents.DotNetBar.RibbonTabItem()
+        Me.btCreditos = New DevComponents.DotNetBar.ButtonItem()
         Me.styEstiloSistema = New DevComponents.DotNetBar.StyleManager(Me.components)
         Me.txtBodega = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.tmLimpiarMemoria = New System.Windows.Forms.Timer(Me.components)
         Me.ElGroupBox2 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.btCargarCiclo = New DevComponents.DotNetBar.ButtonX()
         Me.ElLabel2 = New Klik.Windows.Forms.v1.EntryLib.ELLabel()
         Me.ElLabel1 = New Klik.Windows.Forms.v1.EntryLib.ELLabel()
         Me.txtFinal = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.txtInicio = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.btCargar = New DevComponents.DotNetBar.ButtonX()
         Me.ExpandablePanel1 = New DevComponents.DotNetBar.ExpandablePanel()
         Me.pcLogo = New System.Windows.Forms.PictureBox()
-        Me.btCargarCiclo = New DevComponents.DotNetBar.ButtonX()
-        Me.btCargar = New DevComponents.DotNetBar.ButtonX()
-        Me.btInformeVentaDetalle = New DevComponents.DotNetBar.ButtonItem()
-        Me.btGraficosVenta = New DevComponents.DotNetBar.ButtonItem()
-        Me.btVenta = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaFactura = New DevComponents.DotNetBar.ButtonItem()
-        Me.btDevolucionesVentas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaDevolucion = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCotizar = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaCotizacion = New DevComponents.DotNetBar.ButtonItem()
-        Me.btClientes = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaClientes = New DevComponents.DotNetBar.ButtonItem()
-        Me.btEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
-        Me.btPaises = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaPais = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCiudades = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaCiudades = New DevComponents.DotNetBar.ButtonItem()
-        Me.btIva = New DevComponents.DotNetBar.ButtonItem()
-        Me.btTaza = New DevComponents.DotNetBar.ButtonItem()
-        Me.btMarcas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btUnidadMedida = New DevComponents.DotNetBar.ButtonItem()
-        Me.btPresentacion = New DevComponents.DotNetBar.ButtonItem()
-        Me.btLaboratorio = New DevComponents.DotNetBar.ButtonItem()
-        Me.btProductos = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaProductos = New DevComponents.DotNetBar.ButtonItem()
-        Me.btEmpresa = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBodega = New DevComponents.DotNetBar.ButtonItem()
-        Me.btSerie = New DevComponents.DotNetBar.ButtonItem()
-        Me.btProductoOferta = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem8 = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem7 = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem5 = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem6 = New DevComponents.DotNetBar.ButtonItem()
-        Me.btReciboCompra = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaReciboCompra = New DevComponents.DotNetBar.ButtonItem()
-        Me.btReciboVenta = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaRecibo = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCatalogoCuentas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btPeriodo = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCPEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCuentasPagar = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCCEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCuentasCobrar = New DevComponents.DotNetBar.ButtonItem()
-        Me.btEstadoResultados = New DevComponents.DotNetBar.ButtonItem()
-        Me.btPeriodoContable = New DevComponents.DotNetBar.ButtonItem()
-        Me.btSeleccionar = New DevComponents.DotNetBar.ButtonItem()
-        Me.btApertura = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCierre = New DevComponents.DotNetBar.ButtonItem()
-        Me.btPrinterSetting = New DevComponents.DotNetBar.ButtonItem()
-        Me.btServidor = New DevComponents.DotNetBar.ButtonItem()
-        Me.btRegistro = New DevComponents.DotNetBar.ButtonItem()
-        Me.btAyuda = New DevComponents.DotNetBar.ButtonItem()
-        Me.btAcercaDe = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCrearRespaldo = New DevComponents.DotNetBar.ButtonItem()
-        Me.btRestaurar = New DevComponents.DotNetBar.ButtonItem()
-        Me.btLogo = New DevComponents.DotNetBar.ButtonItem()
-        Me.btKardex = New DevComponents.DotNetBar.ButtonItem()
-        Me.btControlExistencia = New DevComponents.DotNetBar.ButtonItem()
-        Me.btValuacionInventario = New DevComponents.DotNetBar.ButtonItem()
-        Me.btConsignar = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaConsignacion = New DevComponents.DotNetBar.ButtonItem()
-        Me.btDesconsignar = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaDesconsignacion = New DevComponents.DotNetBar.ButtonItem()
-        Me.btReporteConsignacion = New DevComponents.DotNetBar.ButtonItem()
-        Me.btEntradas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaEntradas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btSalidas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaSalida = New DevComponents.DotNetBar.ButtonItem()
-        Me.btTraslados = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaTraslado = New DevComponents.DotNetBar.ButtonItem()
-        Me.btProductosComprados = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCompra = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaCompra = New DevComponents.DotNetBar.ButtonItem()
-        Me.btDevolucionCompra = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaDevolucionesCompras = New DevComponents.DotNetBar.ButtonItem()
-        Me.btProveedores = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaProveedores = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCompraEstadoCuenta = New DevComponents.DotNetBar.ButtonItem()
-        Me.btPlanilla = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedasPlanillas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btVendedores = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaVendedor = New DevComponents.DotNetBar.ButtonItem()
-        Me.btTrabajoArea = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaAreas = New DevComponents.DotNetBar.ButtonItem()
-        Me.btTrabajoPuestos = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBusquedaPuestos = New DevComponents.DotNetBar.ButtonItem()
-        Me.btUsuarios = New DevComponents.DotNetBar.ButtonItem()
-        Me.btInformeUsuarios = New DevComponents.DotNetBar.ButtonItem()
-        Me.btBitacora = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCambiarPassword = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCerrarSesion = New DevComponents.DotNetBar.ButtonItem()
-        Me.btSalir = New DevComponents.DotNetBar.ButtonItem()
-        Me.btCreditos = New DevComponents.DotNetBar.ButtonItem()
-        Me.lblEmpresa = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblNombreUsuario = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblUsuario = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblBodega = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblIva = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblTaza = New System.Windows.Forms.ToolStripStatusLabel()
         Me.stsEstado.SuspendLayout()
         Me.rcCintaMenu.SuspendLayout()
+        Me.RibbonPanel7.SuspendLayout()
         Me.RibbonPanel1.SuspendLayout()
         Me.RibbonPanel8.SuspendLayout()
         Me.RibbonPanel4.SuspendLayout()
         Me.RibbonPanel3.SuspendLayout()
-        Me.RibbonPanel7.SuspendLayout()
         Me.RibbonPanel2.SuspendLayout()
         Me.RibbonPanel6.SuspendLayout()
         Me.RibbonPanel9.SuspendLayout()
@@ -217,12 +217,77 @@ Partial Class frmPrincipal
         Me.stsEstado.TabIndex = 3
         Me.stsEstado.Text = "BARRA DE ESTADO"
         '
+        'lblEmpresa
+        '
+        Me.lblEmpresa.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
+        Me.lblEmpresa.ForeColor = System.Drawing.Color.Black
+        Me.lblEmpresa.Image = Global.appFacturacion.My.Resources.Resources.Icono32x32
+        Me.lblEmpresa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.lblEmpresa.Name = "lblEmpresa"
+        Me.lblEmpresa.Size = New System.Drawing.Size(266, 32)
+        Me.lblEmpresa.Text = "Sistema de Facturación de Sucursales // SIF"
+        Me.lblEmpresa.ToolTipText = "Sistema de Facturación de Sucursales // SIF"
+        '
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
         Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(216, 32)
         Me.ToolStripStatusLabel2.Spring = True
         Me.ToolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblNombreUsuario
+        '
+        Me.lblNombreUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.lblNombreUsuario.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
+        Me.lblNombreUsuario.ForeColor = System.Drawing.Color.Black
+        Me.lblNombreUsuario.Image = Global.appFacturacion.My.Resources.Resources.Codigo
+        Me.lblNombreUsuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.lblNombreUsuario.Name = "lblNombreUsuario"
+        Me.lblNombreUsuario.Size = New System.Drawing.Size(130, 32)
+        Me.lblNombreUsuario.Text = "Nombre Personal:"
+        '
+        'lblUsuario
+        '
+        Me.lblUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.lblUsuario.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
+        Me.lblUsuario.ForeColor = System.Drawing.Color.Black
+        Me.lblUsuario.Image = Global.appFacturacion.My.Resources.Resources.Usuario
+        Me.lblUsuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.lblUsuario.Name = "lblUsuario"
+        Me.lblUsuario.Size = New System.Drawing.Size(78, 32)
+        Me.lblUsuario.Text = "Usuario:"
+        '
+        'lblBodega
+        '
+        Me.lblBodega.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.lblBodega.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
+        Me.lblBodega.ForeColor = System.Drawing.Color.Black
+        Me.lblBodega.Image = Global.appFacturacion.My.Resources.Resources.Bodega1
+        Me.lblBodega.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.lblBodega.Name = "lblBodega"
+        Me.lblBodega.Size = New System.Drawing.Size(82, 32)
+        Me.lblBodega.Text = "Sucursal:"
+        '
+        'lblIva
+        '
+        Me.lblIva.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.lblIva.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
+        Me.lblIva.ForeColor = System.Drawing.Color.Black
+        Me.lblIva.Image = Global.appFacturacion.My.Resources.Resources.BarImpuesto
+        Me.lblIva.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.lblIva.Name = "lblIva"
+        Me.lblIva.Size = New System.Drawing.Size(81, 32)
+        Me.lblIva.Text = "I.V.A: 0%"
+        '
+        'lblTaza
+        '
+        Me.lblTaza.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
+        Me.lblTaza.ForeColor = System.Drawing.Color.Black
+        Me.lblTaza.Image = Global.appFacturacion.My.Resources.Resources.Tazadecambio1
+        Me.lblTaza.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.lblTaza.Name = "lblTaza"
+        Me.lblTaza.Size = New System.Drawing.Size(158, 32)
+        Me.lblTaza.Text = "T. / Cambio: $ 1 = C$ 27"
         '
         'rcCintaMenu
         '
@@ -271,6 +336,242 @@ Partial Class frmPrincipal
         Me.rcCintaMenu.TabIndex = 4
         Me.rcCintaMenu.Text = "Menu del Sistema"
         Me.rcCintaMenu.TitleText = "Sistema de <font color='#C0504D'><b>Inventario y Facturación</b></font>"
+        '
+        'RibbonPanel7
+        '
+        Me.RibbonPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonPanel7.Controls.Add(Me.RibbonBar7)
+        Me.RibbonPanel7.Controls.Add(Me.RibbonBar16)
+        Me.RibbonPanel7.Controls.Add(Me.RibbonBar13)
+        Me.RibbonPanel7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RibbonPanel7.Location = New System.Drawing.Point(0, 53)
+        Me.RibbonPanel7.Name = "RibbonPanel7"
+        Me.RibbonPanel7.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
+        Me.RibbonPanel7.Size = New System.Drawing.Size(1026, 115)
+        '
+        '
+        '
+        Me.RibbonPanel7.Style.Class = ""
+        Me.RibbonPanel7.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel7.StyleMouseDown.Class = ""
+        Me.RibbonPanel7.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonPanel7.StyleMouseOver.Class = ""
+        Me.RibbonPanel7.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonPanel7.TabIndex = 7
+        '
+        'RibbonBar7
+        '
+        Me.RibbonBar7.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.RibbonBar7.BackgroundMouseOverStyle.Class = ""
+        Me.RibbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar7.BackgroundStyle.Class = ""
+        Me.RibbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonBar7.ContainerControlProcessDialogKey = True
+        Me.RibbonBar7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.RibbonBar7.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btInformeVentaDetalle, Me.btGraficosVenta})
+        Me.RibbonBar7.Location = New System.Drawing.Point(655, 0)
+        Me.RibbonBar7.Name = "RibbonBar7"
+        Me.RibbonBar7.Size = New System.Drawing.Size(164, 112)
+        Me.RibbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonBar7.TabIndex = 5
+        Me.RibbonBar7.Text = "Informe de ventas"
+        '
+        '
+        '
+        Me.RibbonBar7.TitleStyle.Class = ""
+        Me.RibbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar7.TitleStyleMouseOver.Class = ""
+        Me.RibbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btInformeVentaDetalle
+        '
+        Me.btInformeVentaDetalle.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btInformeVentaDetalle.Enabled = False
+        Me.btInformeVentaDetalle.Image = Global.appFacturacion.My.Resources.Resources.InformeVentaDetalle
+        Me.btInformeVentaDetalle.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btInformeVentaDetalle.Name = "btInformeVentaDetalle"
+        Me.btInformeVentaDetalle.SubItemsExpandWidth = 14
+        Me.btInformeVentaDetalle.Text = "Productos Vendidos"
+        '
+        'btGraficosVenta
+        '
+        Me.btGraficosVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btGraficosVenta.Image = Global.appFacturacion.My.Resources.Resources.Dashboard
+        Me.btGraficosVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btGraficosVenta.Name = "btGraficosVenta"
+        Me.btGraficosVenta.SubItemsExpandWidth = 14
+        Me.btGraficosVenta.Text = "Gráficos de Ventas"
+        '
+        'RibbonBar16
+        '
+        Me.RibbonBar16.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.RibbonBar16.BackgroundMouseOverStyle.Class = ""
+        Me.RibbonBar16.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar16.BackgroundStyle.Class = ""
+        Me.RibbonBar16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonBar16.ContainerControlProcessDialogKey = True
+        Me.RibbonBar16.Dock = System.Windows.Forms.DockStyle.Left
+        Me.RibbonBar16.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btVenta, Me.btBusquedaFactura, Me.btDevolucionesVentas, Me.btBusquedaDevolucion, Me.btCotizar, Me.btBusquedaCotizacion})
+        Me.RibbonBar16.Location = New System.Drawing.Point(203, 0)
+        Me.RibbonBar16.Name = "RibbonBar16"
+        Me.RibbonBar16.Size = New System.Drawing.Size(452, 112)
+        Me.RibbonBar16.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonBar16.TabIndex = 2
+        Me.RibbonBar16.Text = "Facturación"
+        '
+        '
+        '
+        Me.RibbonBar16.TitleStyle.Class = ""
+        Me.RibbonBar16.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar16.TitleStyleMouseOver.Class = ""
+        Me.RibbonBar16.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btVenta
+        '
+        Me.btVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btVenta.Enabled = False
+        Me.btVenta.Image = Global.appFacturacion.My.Resources.Resources.Venta
+        Me.btVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btVenta.Name = "btVenta"
+        Me.btVenta.SubItemsExpandWidth = 14
+        Me.btVenta.Text = "Facturar Productos"
+        '
+        'btBusquedaFactura
+        '
+        Me.btBusquedaFactura.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaFactura.Enabled = False
+        Me.btBusquedaFactura.Image = Global.appFacturacion.My.Resources.Resources.BusquedaVenta
+        Me.btBusquedaFactura.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaFactura.Name = "btBusquedaFactura"
+        Me.btBusquedaFactura.SubItemsExpandWidth = 14
+        Me.btBusquedaFactura.Text = "Busqueda de Facturas"
+        '
+        'btDevolucionesVentas
+        '
+        Me.btDevolucionesVentas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btDevolucionesVentas.Enabled = False
+        Me.btDevolucionesVentas.Image = Global.appFacturacion.My.Resources.Resources.Devolucion
+        Me.btDevolucionesVentas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btDevolucionesVentas.Name = "btDevolucionesVentas"
+        Me.btDevolucionesVentas.SubItemsExpandWidth = 14
+        Me.btDevolucionesVentas.Text = "Devoluciones de Ventas"
+        '
+        'btBusquedaDevolucion
+        '
+        Me.btBusquedaDevolucion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaDevolucion.Enabled = False
+        Me.btBusquedaDevolucion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaDevolucion
+        Me.btBusquedaDevolucion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaDevolucion.Name = "btBusquedaDevolucion"
+        Me.btBusquedaDevolucion.SubItemsExpandWidth = 14
+        Me.btBusquedaDevolucion.Text = "Busqueda de Devoluciones"
+        '
+        'btCotizar
+        '
+        Me.btCotizar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCotizar.Enabled = False
+        Me.btCotizar.Image = Global.appFacturacion.My.Resources.Resources.Cotizacion
+        Me.btCotizar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCotizar.Name = "btCotizar"
+        Me.btCotizar.SubItemsExpandWidth = 14
+        Me.btCotizar.Text = "Cotizaciónes / Proformas"
+        '
+        'btBusquedaCotizacion
+        '
+        Me.btBusquedaCotizacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaCotizacion.Enabled = False
+        Me.btBusquedaCotizacion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCotizacion
+        Me.btBusquedaCotizacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaCotizacion.Name = "btBusquedaCotizacion"
+        Me.btBusquedaCotizacion.SubItemsExpandWidth = 14
+        Me.btBusquedaCotizacion.Text = "Busqueda de Cotizaciones"
+        '
+        'RibbonBar13
+        '
+        Me.RibbonBar13.AutoOverflowEnabled = True
+        '
+        '
+        '
+        Me.RibbonBar13.BackgroundMouseOverStyle.Class = ""
+        Me.RibbonBar13.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar13.BackgroundStyle.Class = ""
+        Me.RibbonBar13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.RibbonBar13.ContainerControlProcessDialogKey = True
+        Me.RibbonBar13.Dock = System.Windows.Forms.DockStyle.Left
+        Me.RibbonBar13.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btClientes, Me.btBusquedaClientes, Me.btEstadoCuenta})
+        Me.RibbonBar13.Location = New System.Drawing.Point(3, 0)
+        Me.RibbonBar13.Name = "RibbonBar13"
+        Me.RibbonBar13.Size = New System.Drawing.Size(200, 112)
+        Me.RibbonBar13.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.RibbonBar13.TabIndex = 1
+        Me.RibbonBar13.Text = "Clientes Potenciales"
+        '
+        '
+        '
+        Me.RibbonBar13.TitleStyle.Class = ""
+        Me.RibbonBar13.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.RibbonBar13.TitleStyleMouseOver.Class = ""
+        Me.RibbonBar13.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btClientes
+        '
+        Me.btClientes.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btClientes.Enabled = False
+        Me.btClientes.Image = Global.appFacturacion.My.Resources.Resources.Cliente
+        Me.btClientes.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btClientes.Name = "btClientes"
+        Me.btClientes.SubItemsExpandWidth = 14
+        Me.btClientes.Text = "Edición de Clientes"
+        '
+        'btBusquedaClientes
+        '
+        Me.btBusquedaClientes.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaClientes.Enabled = False
+        Me.btBusquedaClientes.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCliente
+        Me.btBusquedaClientes.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaClientes.Name = "btBusquedaClientes"
+        Me.btBusquedaClientes.SubItemsExpandWidth = 14
+        Me.btBusquedaClientes.Text = "Búsqueda de Clientes"
+        '
+        'btEstadoCuenta
+        '
+        Me.btEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btEstadoCuenta.Enabled = False
+        Me.btEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaCliente
+        Me.btEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btEstadoCuenta.Name = "btEstadoCuenta"
+        Me.btEstadoCuenta.SubItemsExpandWidth = 14
+        Me.btEstadoCuenta.Text = "Estado de cuenta"
         '
         'RibbonPanel1
         '
@@ -336,6 +637,42 @@ Partial Class frmPrincipal
         Me.RibbonBar20.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar20.Visible = False
         '
+        'btPaises
+        '
+        Me.btPaises.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btPaises.Enabled = False
+        Me.btPaises.Image = Global.appFacturacion.My.Resources.Resources.Pais
+        Me.btPaises.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btPaises.Name = "btPaises"
+        Me.btPaises.Text = "Edición de Paises"
+        '
+        'btBusquedaPais
+        '
+        Me.btBusquedaPais.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaPais.Enabled = False
+        Me.btBusquedaPais.Image = Global.appFacturacion.My.Resources.Resources.BusquedaPais
+        Me.btBusquedaPais.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaPais.Name = "btBusquedaPais"
+        Me.btBusquedaPais.Text = "Búsqueda de Paises"
+        '
+        'btCiudades
+        '
+        Me.btCiudades.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCiudades.Enabled = False
+        Me.btCiudades.Image = Global.appFacturacion.My.Resources.Resources.Ciudad
+        Me.btCiudades.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCiudades.Name = "btCiudades"
+        Me.btCiudades.Text = "Edición de Ciudades"
+        '
+        'btBusquedaCiudades
+        '
+        Me.btBusquedaCiudades.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaCiudades.Enabled = False
+        Me.btBusquedaCiudades.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCiudad
+        Me.btBusquedaCiudades.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaCiudades.Name = "btBusquedaCiudades"
+        Me.btBusquedaCiudades.Text = "Búsqueda de Ciudades"
+        '
         'RibbonBar6
         '
         Me.RibbonBar6.AutoOverflowEnabled = True
@@ -369,6 +706,25 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar6.TitleStyleMouseOver.Class = ""
         Me.RibbonBar6.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btIva
+        '
+        Me.btIva.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btIva.Enabled = False
+        Me.btIva.Image = Global.appFacturacion.My.Resources.Resources.Impuesto
+        Me.btIva.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btIva.Name = "btIva"
+        Me.btIva.Text = "Impuesto I.V.A"
+        '
+        'btTaza
+        '
+        Me.btTaza.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btTaza.Enabled = False
+        Me.btTaza.Image = Global.appFacturacion.My.Resources.Resources.Tazadecambio
+        Me.btTaza.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btTaza.Name = "btTaza"
+        Me.btTaza.SubItemsExpandWidth = 14
+        Me.btTaza.Text = "Taza de Cambio"
         '
         'RibbonBar2
         '
@@ -404,6 +760,66 @@ Partial Class frmPrincipal
         Me.RibbonBar2.TitleStyleMouseOver.Class = ""
         Me.RibbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btMarcas
+        '
+        Me.btMarcas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btMarcas.Enabled = False
+        Me.btMarcas.Image = Global.appFacturacion.My.Resources.Resources.Marca
+        Me.btMarcas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btMarcas.Name = "btMarcas"
+        Me.btMarcas.SubItemsExpandWidth = 14
+        Me.btMarcas.Text = "Edición de Concentración"
+        '
+        'btUnidadMedida
+        '
+        Me.btUnidadMedida.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btUnidadMedida.Enabled = False
+        Me.btUnidadMedida.Image = Global.appFacturacion.My.Resources.Resources.UnidadMedida
+        Me.btUnidadMedida.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btUnidadMedida.Name = "btUnidadMedida"
+        Me.btUnidadMedida.SubItemsExpandWidth = 14
+        Me.btUnidadMedida.Text = "Edición de Medidas"
+        '
+        'btPresentacion
+        '
+        Me.btPresentacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btPresentacion.Enabled = False
+        Me.btPresentacion.Image = Global.appFacturacion.My.Resources.Resources.Laboratorio
+        Me.btPresentacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btPresentacion.Name = "btPresentacion"
+        Me.btPresentacion.SubItemsExpandWidth = 14
+        Me.btPresentacion.Text = "Edición de Presentación"
+        '
+        'btLaboratorio
+        '
+        Me.btLaboratorio.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btLaboratorio.Enabled = False
+        Me.btLaboratorio.Image = Global.appFacturacion.My.Resources.Resources.Presentacion
+        Me.btLaboratorio.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btLaboratorio.Name = "btLaboratorio"
+        Me.btLaboratorio.SubItemsExpandWidth = 14
+        Me.btLaboratorio.Text = "Edición de Laboratorio"
+        '
+        'btProductos
+        '
+        Me.btProductos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btProductos.Enabled = False
+        Me.btProductos.Image = Global.appFacturacion.My.Resources.Resources.Producto
+        Me.btProductos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btProductos.Name = "btProductos"
+        Me.btProductos.SubItemsExpandWidth = 14
+        Me.btProductos.Text = "Edición de Productos"
+        '
+        'btBusquedaProductos
+        '
+        Me.btBusquedaProductos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaProductos.Enabled = False
+        Me.btBusquedaProductos.Image = Global.appFacturacion.My.Resources.Resources.BusquedaProducto
+        Me.btBusquedaProductos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaProductos.Name = "btBusquedaProductos"
+        Me.btBusquedaProductos.SubItemsExpandWidth = 14
+        Me.btBusquedaProductos.Text = "Búsqueda de Productos"
+        '
         'RibbonBar1
         '
         Me.RibbonBar1.AutoOverflowEnabled = True
@@ -437,6 +853,36 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar1.TitleStyleMouseOver.Class = ""
         Me.RibbonBar1.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btEmpresa
+        '
+        Me.btEmpresa.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btEmpresa.Enabled = False
+        Me.btEmpresa.Image = Global.appFacturacion.My.Resources.Resources.Empresa
+        Me.btEmpresa.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btEmpresa.Name = "btEmpresa"
+        Me.btEmpresa.SubItemsExpandWidth = 14
+        Me.btEmpresa.Text = "Datos de la Empresa"
+        '
+        'btBodega
+        '
+        Me.btBodega.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBodega.Enabled = False
+        Me.btBodega.Image = Global.appFacturacion.My.Resources.Resources.Bodega
+        Me.btBodega.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBodega.Name = "btBodega"
+        Me.btBodega.SubItemsExpandWidth = 14
+        Me.btBodega.Text = "Sucursal / Bodegas"
+        '
+        'btSerie
+        '
+        Me.btSerie.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btSerie.Enabled = False
+        Me.btSerie.Image = Global.appFacturacion.My.Resources.Resources.Serie
+        Me.btSerie.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btSerie.Name = "btSerie"
+        Me.btSerie.SubItemsExpandWidth = 14
+        Me.btSerie.Text = "Series de Documentos"
         '
         'RibbonPanel8
         '
@@ -499,6 +945,37 @@ Partial Class frmPrincipal
         Me.RibbonBar19.TitleStyleMouseOver.Class = ""
         Me.RibbonBar19.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btProductoOferta
+        '
+        Me.btProductoOferta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btProductoOferta.Enabled = False
+        Me.btProductoOferta.Image = Global.appFacturacion.My.Resources.Resources.ProductoOferta
+        Me.btProductoOferta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btProductoOferta.Name = "btProductoOferta"
+        Me.btProductoOferta.SubItemsExpandWidth = 14
+        Me.btProductoOferta.Text = "Ofertas de Productos"
+        '
+        'ButtonItem8
+        '
+        Me.ButtonItem8.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.ButtonItem8.Enabled = False
+        Me.ButtonItem8.Image = Global.appFacturacion.My.Resources.Resources.ClienteOferta
+        Me.ButtonItem8.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.ButtonItem8.Name = "ButtonItem8"
+        Me.ButtonItem8.SubItemsExpandWidth = 14
+        Me.ButtonItem8.Text = "Ofertas de Clientes"
+        Me.ButtonItem8.Visible = False
+        '
+        'ButtonItem7
+        '
+        Me.ButtonItem7.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.ButtonItem7.Enabled = False
+        Me.ButtonItem7.Image = Global.appFacturacion.My.Resources.Resources.AnalisisVenta
+        Me.ButtonItem7.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.ButtonItem7.Name = "ButtonItem7"
+        Me.ButtonItem7.SubItemsExpandWidth = 14
+        Me.ButtonItem7.Text = "Estadísticas de Ventas"
+        '
         'RibbonBar18
         '
         Me.RibbonBar18.AutoOverflowEnabled = True
@@ -532,6 +1009,26 @@ Partial Class frmPrincipal
         Me.RibbonBar18.TitleStyleMouseOver.Class = ""
         Me.RibbonBar18.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar18.Visible = False
+        '
+        'ButtonItem5
+        '
+        Me.ButtonItem5.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.ButtonItem5.Enabled = False
+        Me.ButtonItem5.Image = Global.appFacturacion.My.Resources.Resources.Emailing
+        Me.ButtonItem5.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.ButtonItem5.Name = "ButtonItem5"
+        Me.ButtonItem5.SubItemsExpandWidth = 14
+        Me.ButtonItem5.Text = "Gestión de E-Mailing"
+        '
+        'ButtonItem6
+        '
+        Me.ButtonItem6.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.ButtonItem6.Enabled = False
+        Me.ButtonItem6.Image = Global.appFacturacion.My.Resources.Resources.Agenda
+        Me.ButtonItem6.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.ButtonItem6.Name = "ButtonItem6"
+        Me.ButtonItem6.SubItemsExpandWidth = 14
+        Me.ButtonItem6.Text = "Agenda de los Clientes"
         '
         'RibbonPanel4
         '
@@ -598,6 +1095,24 @@ Partial Class frmPrincipal
         Me.RibbonBar23.TitleStyleMouseOver.Class = ""
         Me.RibbonBar23.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btReciboCompra
+        '
+        Me.btReciboCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btReciboCompra.Enabled = False
+        Me.btReciboCompra.Image = Global.appFacturacion.My.Resources.Resources.ReciboCompra
+        Me.btReciboCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btReciboCompra.Name = "btReciboCompra"
+        Me.btReciboCompra.Text = "Pago de Proveedores"
+        '
+        'btBusquedaReciboCompra
+        '
+        Me.btBusquedaReciboCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaReciboCompra.Enabled = False
+        Me.btBusquedaReciboCompra.Image = Global.appFacturacion.My.Resources.Resources.BusquedaReciboCompra
+        Me.btBusquedaReciboCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaReciboCompra.Name = "btBusquedaReciboCompra"
+        Me.btBusquedaReciboCompra.Text = "Busqueda de Pago"
+        '
         'RibbonBar22
         '
         Me.RibbonBar22.AutoOverflowEnabled = True
@@ -630,6 +1145,26 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar22.TitleStyleMouseOver.Class = ""
         Me.RibbonBar22.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btReciboVenta
+        '
+        Me.btReciboVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btReciboVenta.Enabled = False
+        Me.btReciboVenta.Image = Global.appFacturacion.My.Resources.Resources.Recibo
+        Me.btReciboVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btReciboVenta.Name = "btReciboVenta"
+        Me.btReciboVenta.SubItemsExpandWidth = 14
+        Me.btReciboVenta.Text = "Recibos de Ventas"
+        '
+        'btBusquedaRecibo
+        '
+        Me.btBusquedaRecibo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaRecibo.Enabled = False
+        Me.btBusquedaRecibo.Image = Global.appFacturacion.My.Resources.Resources.BusquedaRecibo
+        Me.btBusquedaRecibo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaRecibo.Name = "btBusquedaRecibo"
+        Me.btBusquedaRecibo.SubItemsExpandWidth = 14
+        Me.btBusquedaRecibo.Text = "Busqueda de Recibos"
         '
         'RibbonBar21
         '
@@ -665,6 +1200,26 @@ Partial Class frmPrincipal
         Me.RibbonBar21.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar21.Visible = False
         '
+        'btCatalogoCuentas
+        '
+        Me.btCatalogoCuentas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCatalogoCuentas.Enabled = False
+        Me.btCatalogoCuentas.Image = Global.appFacturacion.My.Resources.Resources.CatalogoCuentas
+        Me.btCatalogoCuentas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCatalogoCuentas.Name = "btCatalogoCuentas"
+        Me.btCatalogoCuentas.SubItemsExpandWidth = 14
+        Me.btCatalogoCuentas.Text = "Catalogo de Cuentas"
+        '
+        'btPeriodo
+        '
+        Me.btPeriodo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btPeriodo.Enabled = False
+        Me.btPeriodo.Image = Global.appFacturacion.My.Resources.Resources.PeriodoContable
+        Me.btPeriodo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btPeriodo.Name = "btPeriodo"
+        Me.btPeriodo.SubItemsExpandWidth = 14
+        Me.btPeriodo.Text = "Período de Contabilidad"
+        '
         'RibbonBar14
         '
         Me.RibbonBar14.AutoOverflowEnabled = True
@@ -697,6 +1252,26 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar14.TitleStyleMouseOver.Class = ""
         Me.RibbonBar14.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btCPEstadoCuenta
+        '
+        Me.btCPEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCPEstadoCuenta.Enabled = False
+        Me.btCPEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaProveedor
+        Me.btCPEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCPEstadoCuenta.Name = "btCPEstadoCuenta"
+        Me.btCPEstadoCuenta.SubItemsExpandWidth = 14
+        Me.btCPEstadoCuenta.Text = "Estado de cuenta"
+        '
+        'btCuentasPagar
+        '
+        Me.btCuentasPagar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCuentasPagar.Enabled = False
+        Me.btCuentasPagar.Image = Global.appFacturacion.My.Resources.Resources.CuentasporPagar
+        Me.btCuentasPagar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCuentasPagar.Name = "btCuentasPagar"
+        Me.btCuentasPagar.SubItemsExpandWidth = 14
+        Me.btCuentasPagar.Text = "Listado de Deudas"
         '
         'RibbonBar11
         '
@@ -731,6 +1306,26 @@ Partial Class frmPrincipal
         Me.RibbonBar11.TitleStyleMouseOver.Class = ""
         Me.RibbonBar11.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btCCEstadoCuenta
+        '
+        Me.btCCEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCCEstadoCuenta.Enabled = False
+        Me.btCCEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaCliente
+        Me.btCCEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCCEstadoCuenta.Name = "btCCEstadoCuenta"
+        Me.btCCEstadoCuenta.SubItemsExpandWidth = 14
+        Me.btCCEstadoCuenta.Text = "Estado de Cuenta"
+        '
+        'btCuentasCobrar
+        '
+        Me.btCuentasCobrar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCuentasCobrar.Enabled = False
+        Me.btCuentasCobrar.Image = Global.appFacturacion.My.Resources.Resources.CuentasporCobrar
+        Me.btCuentasCobrar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCuentasCobrar.Name = "btCuentasCobrar"
+        Me.btCuentasCobrar.SubItemsExpandWidth = 14
+        Me.btCuentasCobrar.Text = "Listado de Cobros"
+        '
         'RibbonBar9
         '
         Me.RibbonBar9.AutoOverflowEnabled = True
@@ -764,6 +1359,26 @@ Partial Class frmPrincipal
         Me.RibbonBar9.TitleStyleMouseOver.Class = ""
         Me.RibbonBar9.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btEstadoResultados
+        '
+        Me.btEstadoResultados.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btEstadoResultados.Enabled = False
+        Me.btEstadoResultados.Image = Global.appFacturacion.My.Resources.Resources.EstadoResultados
+        Me.btEstadoResultados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btEstadoResultados.Name = "btEstadoResultados"
+        Me.btEstadoResultados.SubItemsExpandWidth = 14
+        Me.btEstadoResultados.Text = "Estado de Resultados"
+        '
+        'btPeriodoContable
+        '
+        Me.btPeriodoContable.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btPeriodoContable.Enabled = False
+        Me.btPeriodoContable.Image = Global.appFacturacion.My.Resources.Resources.PeriodoContable
+        Me.btPeriodoContable.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btPeriodoContable.Name = "btPeriodoContable"
+        Me.btPeriodoContable.SubItemsExpandWidth = 14
+        Me.btPeriodoContable.Text = "Período de Contabilidad"
+        '
         'ItemContainer5
         '
         '
@@ -774,6 +1389,36 @@ Partial Class frmPrincipal
         Me.ItemContainer5.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical
         Me.ItemContainer5.Name = "ItemContainer5"
         Me.ItemContainer5.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btSeleccionar, Me.btApertura, Me.btCierre})
+        '
+        'btSeleccionar
+        '
+        Me.btSeleccionar.Enabled = False
+        Me.btSeleccionar.Image = Global.appFacturacion.My.Resources.Resources.Periodo
+        Me.btSeleccionar.Name = "btSeleccionar"
+        Me.btSeleccionar.SubItemsExpandWidth = 14
+        Me.btSeleccionar.Tag = "Cambiar Período"
+        Me.btSeleccionar.Text = "Seleccionar"
+        Me.btSeleccionar.Tooltip = "Cambiar Período"
+        '
+        'btApertura
+        '
+        Me.btApertura.Enabled = False
+        Me.btApertura.Image = Global.appFacturacion.My.Resources.Resources.PeriodoApertura
+        Me.btApertura.Name = "btApertura"
+        Me.btApertura.SubItemsExpandWidth = 14
+        Me.btApertura.Tag = "Aperturar Período Actual"
+        Me.btApertura.Text = "Aperturar"
+        Me.btApertura.Tooltip = "Aperturar Período Actual"
+        '
+        'btCierre
+        '
+        Me.btCierre.Enabled = False
+        Me.btCierre.Image = Global.appFacturacion.My.Resources.Resources.PeriodoCierre
+        Me.btCierre.Name = "btCierre"
+        Me.btCierre.SubItemsExpandWidth = 14
+        Me.btCierre.Tag = "Cerrar Período Actual"
+        Me.btCierre.Text = "Cierre"
+        Me.btCierre.Tooltip = "Cerrar Período Actual"
         '
         'RibbonPanel3
         '
@@ -837,6 +1482,52 @@ Partial Class frmPrincipal
         Me.RibbonBar24.TitleStyleMouseOver.Class = ""
         Me.RibbonBar24.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btPrinterSetting
+        '
+        Me.btPrinterSetting.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btPrinterSetting.Image = Global.appFacturacion.My.Resources.Resources.PrinterSetting
+        Me.btPrinterSetting.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btPrinterSetting.Name = "btPrinterSetting"
+        Me.btPrinterSetting.SubItemsExpandWidth = 14
+        Me.btPrinterSetting.Text = "Configuración de Impresora"
+        '
+        'btServidor
+        '
+        Me.btServidor.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btServidor.Enabled = False
+        Me.btServidor.Image = Global.appFacturacion.My.Resources.Resources.Servidor
+        Me.btServidor.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btServidor.Name = "btServidor"
+        Me.btServidor.SubItemsExpandWidth = 14
+        Me.btServidor.Text = "Configurar Servidor"
+        '
+        'btRegistro
+        '
+        Me.btRegistro.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btRegistro.Image = Global.appFacturacion.My.Resources.Resources.Registrar
+        Me.btRegistro.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btRegistro.Name = "btRegistro"
+        Me.btRegistro.SubItemsExpandWidth = 14
+        Me.btRegistro.Text = "Registrar el Software"
+        '
+        'btAyuda
+        '
+        Me.btAyuda.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btAyuda.Image = Global.appFacturacion.My.Resources.Resources.Ayuda
+        Me.btAyuda.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btAyuda.Name = "btAyuda"
+        Me.btAyuda.SubItemsExpandWidth = 14
+        Me.btAyuda.Text = "Ayuda del Software"
+        '
+        'btAcercaDe
+        '
+        Me.btAcercaDe.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btAcercaDe.Image = Global.appFacturacion.My.Resources.Resources.Acerca
+        Me.btAcercaDe.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btAcercaDe.Name = "btAcercaDe"
+        Me.btAcercaDe.SubItemsExpandWidth = 14
+        Me.btAcercaDe.Text = "Acerca del Software"
+        '
         'RibbonBar10
         '
         Me.RibbonBar10.AutoOverflowEnabled = True
@@ -870,6 +1561,26 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar10.TitleStyleMouseOver.Class = ""
         Me.RibbonBar10.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btCrearRespaldo
+        '
+        Me.btCrearRespaldo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCrearRespaldo.Enabled = False
+        Me.btCrearRespaldo.Image = Global.appFacturacion.My.Resources.Resources.CrearRespaldo
+        Me.btCrearRespaldo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCrearRespaldo.Name = "btCrearRespaldo"
+        Me.btCrearRespaldo.SubItemsExpandWidth = 14
+        Me.btCrearRespaldo.Text = "Respaldar base de datos"
+        '
+        'btRestaurar
+        '
+        Me.btRestaurar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btRestaurar.Enabled = False
+        Me.btRestaurar.Image = Global.appFacturacion.My.Resources.Resources.Restaurar
+        Me.btRestaurar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btRestaurar.Name = "btRestaurar"
+        Me.btRestaurar.SubItemsExpandWidth = 14
+        Me.btRestaurar.Text = "Restaurar Datos"
         '
         'RibbonBar8
         '
@@ -906,132 +1617,14 @@ Partial Class frmPrincipal
         Me.RibbonBar8.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar8.Visible = False
         '
-        'RibbonPanel7
+        'btLogo
         '
-        Me.RibbonPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonPanel7.Controls.Add(Me.RibbonBar7)
-        Me.RibbonPanel7.Controls.Add(Me.RibbonBar16)
-        Me.RibbonPanel7.Controls.Add(Me.RibbonBar13)
-        Me.RibbonPanel7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RibbonPanel7.Location = New System.Drawing.Point(0, 53)
-        Me.RibbonPanel7.Name = "RibbonPanel7"
-        Me.RibbonPanel7.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel7.Size = New System.Drawing.Size(1026, 115)
-        '
-        '
-        '
-        Me.RibbonPanel7.Style.Class = ""
-        Me.RibbonPanel7.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel7.StyleMouseDown.Class = ""
-        Me.RibbonPanel7.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonPanel7.StyleMouseOver.Class = ""
-        Me.RibbonPanel7.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonPanel7.TabIndex = 7
-        '
-        'RibbonBar7
-        '
-        Me.RibbonBar7.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.RibbonBar7.BackgroundMouseOverStyle.Class = ""
-        Me.RibbonBar7.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar7.BackgroundStyle.Class = ""
-        Me.RibbonBar7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonBar7.ContainerControlProcessDialogKey = True
-        Me.RibbonBar7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.RibbonBar7.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btInformeVentaDetalle, Me.btGraficosVenta})
-        Me.RibbonBar7.Location = New System.Drawing.Point(655, 0)
-        Me.RibbonBar7.Name = "RibbonBar7"
-        Me.RibbonBar7.Size = New System.Drawing.Size(164, 112)
-        Me.RibbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonBar7.TabIndex = 5
-        Me.RibbonBar7.Text = "Informe de ventas"
-        '
-        '
-        '
-        Me.RibbonBar7.TitleStyle.Class = ""
-        Me.RibbonBar7.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar7.TitleStyleMouseOver.Class = ""
-        Me.RibbonBar7.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'RibbonBar16
-        '
-        Me.RibbonBar16.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.RibbonBar16.BackgroundMouseOverStyle.Class = ""
-        Me.RibbonBar16.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar16.BackgroundStyle.Class = ""
-        Me.RibbonBar16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonBar16.ContainerControlProcessDialogKey = True
-        Me.RibbonBar16.Dock = System.Windows.Forms.DockStyle.Left
-        Me.RibbonBar16.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btVenta, Me.btBusquedaFactura, Me.btDevolucionesVentas, Me.btBusquedaDevolucion, Me.btCotizar, Me.btBusquedaCotizacion})
-        Me.RibbonBar16.Location = New System.Drawing.Point(203, 0)
-        Me.RibbonBar16.Name = "RibbonBar16"
-        Me.RibbonBar16.Size = New System.Drawing.Size(452, 112)
-        Me.RibbonBar16.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonBar16.TabIndex = 2
-        Me.RibbonBar16.Text = "Facturación"
-        '
-        '
-        '
-        Me.RibbonBar16.TitleStyle.Class = ""
-        Me.RibbonBar16.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar16.TitleStyleMouseOver.Class = ""
-        Me.RibbonBar16.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        'RibbonBar13
-        '
-        Me.RibbonBar13.AutoOverflowEnabled = True
-        '
-        '
-        '
-        Me.RibbonBar13.BackgroundMouseOverStyle.Class = ""
-        Me.RibbonBar13.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar13.BackgroundStyle.Class = ""
-        Me.RibbonBar13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.RibbonBar13.ContainerControlProcessDialogKey = True
-        Me.RibbonBar13.Dock = System.Windows.Forms.DockStyle.Left
-        Me.RibbonBar13.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btClientes, Me.btBusquedaClientes, Me.btEstadoCuenta})
-        Me.RibbonBar13.Location = New System.Drawing.Point(3, 0)
-        Me.RibbonBar13.Name = "RibbonBar13"
-        Me.RibbonBar13.Size = New System.Drawing.Size(200, 112)
-        Me.RibbonBar13.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.RibbonBar13.TabIndex = 1
-        Me.RibbonBar13.Text = "Clientes Potenciales"
-        '
-        '
-        '
-        Me.RibbonBar13.TitleStyle.Class = ""
-        Me.RibbonBar13.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.RibbonBar13.TitleStyleMouseOver.Class = ""
-        Me.RibbonBar13.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btLogo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btLogo.Image = Global.appFacturacion.My.Resources.Resources.Logo
+        Me.btLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btLogo.Name = "btLogo"
+        Me.btLogo.SubItemsExpandWidth = 14
+        Me.btLogo.Text = "Logo de Empresa"
         '
         'RibbonPanel2
         '
@@ -1095,6 +1688,36 @@ Partial Class frmPrincipal
         Me.RibbonBar25.TitleStyleMouseOver.Class = ""
         Me.RibbonBar25.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btKardex
+        '
+        Me.btKardex.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btKardex.Enabled = False
+        Me.btKardex.Image = Global.appFacturacion.My.Resources.Resources.Kardex
+        Me.btKardex.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btKardex.Name = "btKardex"
+        Me.btKardex.SubItemsExpandWidth = 14
+        Me.btKardex.Text = "Hoja de Kardex"
+        '
+        'btControlExistencia
+        '
+        Me.btControlExistencia.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btControlExistencia.Enabled = False
+        Me.btControlExistencia.Image = Global.appFacturacion.My.Resources.Resources.ControlExistencia
+        Me.btControlExistencia.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btControlExistencia.Name = "btControlExistencia"
+        Me.btControlExistencia.SubItemsExpandWidth = 14
+        Me.btControlExistencia.Text = "Control de Existencia"
+        '
+        'btValuacionInventario
+        '
+        Me.btValuacionInventario.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btValuacionInventario.Enabled = False
+        Me.btValuacionInventario.Image = Global.appFacturacion.My.Resources.Resources.ValuacionInventario
+        Me.btValuacionInventario.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btValuacionInventario.Name = "btValuacionInventario"
+        Me.btValuacionInventario.SubItemsExpandWidth = 14
+        Me.btValuacionInventario.Text = "Valuación de Inventario"
+        '
         'RibbonBar15
         '
         Me.RibbonBar15.AutoOverflowEnabled = True
@@ -1129,6 +1752,51 @@ Partial Class frmPrincipal
         Me.RibbonBar15.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar15.Visible = False
         '
+        'btConsignar
+        '
+        Me.btConsignar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btConsignar.Enabled = False
+        Me.btConsignar.Image = Global.appFacturacion.My.Resources.Resources.Consignar
+        Me.btConsignar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btConsignar.Name = "btConsignar"
+        Me.btConsignar.Text = "Consignar Productos"
+        '
+        'btBusquedaConsignacion
+        '
+        Me.btBusquedaConsignacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaConsignacion.Enabled = False
+        Me.btBusquedaConsignacion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaConsignacion
+        Me.btBusquedaConsignacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaConsignacion.Name = "btBusquedaConsignacion"
+        Me.btBusquedaConsignacion.Text = "Busqueda de Consignaciones"
+        '
+        'btDesconsignar
+        '
+        Me.btDesconsignar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btDesconsignar.Enabled = False
+        Me.btDesconsignar.Image = Global.appFacturacion.My.Resources.Resources.Desconsignar
+        Me.btDesconsignar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btDesconsignar.Name = "btDesconsignar"
+        Me.btDesconsignar.Text = "Desconsignar productos"
+        '
+        'btBusquedaDesconsignacion
+        '
+        Me.btBusquedaDesconsignacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaDesconsignacion.Enabled = False
+        Me.btBusquedaDesconsignacion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaConsignacion
+        Me.btBusquedaDesconsignacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaDesconsignacion.Name = "btBusquedaDesconsignacion"
+        Me.btBusquedaDesconsignacion.Text = "Busqueda de Desconsignaciones"
+        '
+        'btReporteConsignacion
+        '
+        Me.btReporteConsignacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btReporteConsignacion.Enabled = False
+        Me.btReporteConsignacion.Image = Global.appFacturacion.My.Resources.Resources.ReporteConsignacion
+        Me.btReporteConsignacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btReporteConsignacion.Name = "btReporteConsignacion"
+        Me.btReporteConsignacion.Text = "Reporte de Consignacion"
+        '
         'RibbonBar5
         '
         Me.RibbonBar5.AutoOverflowEnabled = True
@@ -1162,6 +1830,66 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar5.TitleStyleMouseOver.Class = ""
         Me.RibbonBar5.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btEntradas
+        '
+        Me.btEntradas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btEntradas.Enabled = False
+        Me.btEntradas.Image = Global.appFacturacion.My.Resources.Resources.Entrada
+        Me.btEntradas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btEntradas.Name = "btEntradas"
+        Me.btEntradas.SubItemsExpandWidth = 14
+        Me.btEntradas.Text = "Entradas de Productos"
+        '
+        'btBusquedaEntradas
+        '
+        Me.btBusquedaEntradas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaEntradas.Enabled = False
+        Me.btBusquedaEntradas.Image = Global.appFacturacion.My.Resources.Resources.BusquedaEntrada
+        Me.btBusquedaEntradas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaEntradas.Name = "btBusquedaEntradas"
+        Me.btBusquedaEntradas.SubItemsExpandWidth = 14
+        Me.btBusquedaEntradas.Text = "Busqueda de Entradas"
+        '
+        'btSalidas
+        '
+        Me.btSalidas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btSalidas.Enabled = False
+        Me.btSalidas.Image = Global.appFacturacion.My.Resources.Resources.Salidas
+        Me.btSalidas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btSalidas.Name = "btSalidas"
+        Me.btSalidas.SubItemsExpandWidth = 14
+        Me.btSalidas.Text = "Salidas de Productos"
+        '
+        'btBusquedaSalida
+        '
+        Me.btBusquedaSalida.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaSalida.Enabled = False
+        Me.btBusquedaSalida.Image = Global.appFacturacion.My.Resources.Resources.BusquedaSalida
+        Me.btBusquedaSalida.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaSalida.Name = "btBusquedaSalida"
+        Me.btBusquedaSalida.SubItemsExpandWidth = 14
+        Me.btBusquedaSalida.Text = "Busqueda de Salidas"
+        '
+        'btTraslados
+        '
+        Me.btTraslados.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btTraslados.Enabled = False
+        Me.btTraslados.Image = Global.appFacturacion.My.Resources.Resources.Traslados
+        Me.btTraslados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btTraslados.Name = "btTraslados"
+        Me.btTraslados.SubItemsExpandWidth = 14
+        Me.btTraslados.Text = "Traslados de Bodega"
+        '
+        'btBusquedaTraslado
+        '
+        Me.btBusquedaTraslado.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaTraslado.Enabled = False
+        Me.btBusquedaTraslado.Image = Global.appFacturacion.My.Resources.Resources.BusquedaTraslado
+        Me.btBusquedaTraslado.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaTraslado.Name = "btBusquedaTraslado"
+        Me.btBusquedaTraslado.SubItemsExpandWidth = 14
+        Me.btBusquedaTraslado.Text = "Busqueda de Traslados"
         '
         'RibbonPanel6
         '
@@ -1225,6 +1953,16 @@ Partial Class frmPrincipal
         Me.RibbonBar26.TitleStyleMouseOver.Class = ""
         Me.RibbonBar26.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btProductosComprados
+        '
+        Me.btProductosComprados.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btProductosComprados.Enabled = False
+        Me.btProductosComprados.Image = Global.appFacturacion.My.Resources.Resources.InformeVentaDetalle
+        Me.btProductosComprados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btProductosComprados.Name = "btProductosComprados"
+        Me.btProductosComprados.SubItemsExpandWidth = 14
+        Me.btProductosComprados.Text = "Compras Detalladas"
+        '
         'RibbonBar4
         '
         Me.RibbonBar4.AutoOverflowEnabled = True
@@ -1259,6 +1997,44 @@ Partial Class frmPrincipal
         Me.RibbonBar4.TitleStyleMouseOver.Class = ""
         Me.RibbonBar4.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
+        'btCompra
+        '
+        Me.btCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCompra.Enabled = False
+        Me.btCompra.Image = Global.appFacturacion.My.Resources.Resources.Compra
+        Me.btCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCompra.Name = "btCompra"
+        Me.btCompra.SubItemsExpandWidth = 14
+        Me.btCompra.Text = "Compras de Productos"
+        '
+        'btBusquedaCompra
+        '
+        Me.btBusquedaCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaCompra.Enabled = False
+        Me.btBusquedaCompra.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCompra
+        Me.btBusquedaCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaCompra.Name = "btBusquedaCompra"
+        Me.btBusquedaCompra.SubItemsExpandWidth = 14
+        Me.btBusquedaCompra.Text = "Busqueda de Compras"
+        '
+        'btDevolucionCompra
+        '
+        Me.btDevolucionCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btDevolucionCompra.Enabled = False
+        Me.btDevolucionCompra.Image = Global.appFacturacion.My.Resources.Resources.DevolucionCompra
+        Me.btDevolucionCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btDevolucionCompra.Name = "btDevolucionCompra"
+        Me.btDevolucionCompra.Text = "Devoluciones de Compras"
+        '
+        'btBusquedaDevolucionesCompras
+        '
+        Me.btBusquedaDevolucionesCompras.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaDevolucionesCompras.Enabled = False
+        Me.btBusquedaDevolucionesCompras.Image = Global.appFacturacion.My.Resources.Resources.BusquedaDevolucionCompra
+        Me.btBusquedaDevolucionesCompras.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaDevolucionesCompras.Name = "btBusquedaDevolucionesCompras"
+        Me.btBusquedaDevolucionesCompras.Text = "Busqueda de Devoluciones"
+        '
         'RibbonBar3
         '
         Me.RibbonBar3.AutoOverflowEnabled = True
@@ -1292,6 +2068,36 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar3.TitleStyleMouseOver.Class = ""
         Me.RibbonBar3.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btProveedores
+        '
+        Me.btProveedores.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btProveedores.Enabled = False
+        Me.btProveedores.Image = Global.appFacturacion.My.Resources.Resources.Proveedor
+        Me.btProveedores.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btProveedores.Name = "btProveedores"
+        Me.btProveedores.SubItemsExpandWidth = 14
+        Me.btProveedores.Text = "Edición de Proveedores"
+        '
+        'btBusquedaProveedores
+        '
+        Me.btBusquedaProveedores.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaProveedores.Enabled = False
+        Me.btBusquedaProveedores.Image = Global.appFacturacion.My.Resources.Resources.BusquedaProveedor
+        Me.btBusquedaProveedores.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaProveedores.Name = "btBusquedaProveedores"
+        Me.btBusquedaProveedores.SubItemsExpandWidth = 14
+        Me.btBusquedaProveedores.Text = "Búsqueda de Proveedores"
+        '
+        'btCompraEstadoCuenta
+        '
+        Me.btCompraEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCompraEstadoCuenta.Enabled = False
+        Me.btCompraEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaProveedor
+        Me.btCompraEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCompraEstadoCuenta.Name = "btCompraEstadoCuenta"
+        Me.btCompraEstadoCuenta.SubItemsExpandWidth = 14
+        Me.btCompraEstadoCuenta.Text = "Estado de cuenta"
         '
         'RibbonPanel9
         '
@@ -1355,6 +2161,26 @@ Partial Class frmPrincipal
         Me.RibbonBar17.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar17.Visible = False
         '
+        'btPlanilla
+        '
+        Me.btPlanilla.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btPlanilla.Enabled = False
+        Me.btPlanilla.Image = Global.appFacturacion.My.Resources.Resources.TrabajadorPlanilla
+        Me.btPlanilla.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btPlanilla.Name = "btPlanilla"
+        Me.btPlanilla.SubItemsExpandWidth = 14
+        Me.btPlanilla.Text = "Planillas de Pago"
+        '
+        'btBusquedasPlanillas
+        '
+        Me.btBusquedasPlanillas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedasPlanillas.Enabled = False
+        Me.btBusquedasPlanillas.Image = Global.appFacturacion.My.Resources.Resources.BusquedaTrabajadorPlanilla
+        Me.btBusquedasPlanillas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedasPlanillas.Name = "btBusquedasPlanillas"
+        Me.btBusquedasPlanillas.SubItemsExpandWidth = 14
+        Me.btBusquedasPlanillas.Text = "Búsquedas de Planillas de Pago"
+        '
         'RibbonBar12
         '
         Me.RibbonBar12.AutoOverflowEnabled = True
@@ -1387,6 +2213,70 @@ Partial Class frmPrincipal
         '
         Me.RibbonBar12.TitleStyleMouseOver.Class = ""
         Me.RibbonBar12.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'btVendedores
+        '
+        Me.btVendedores.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btVendedores.Enabled = False
+        Me.btVendedores.Image = Global.appFacturacion.My.Resources.Resources.Vendedor
+        Me.btVendedores.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btVendedores.Name = "btVendedores"
+        Me.btVendedores.SubItemsExpandWidth = 14
+        Me.btVendedores.Text = "Edición de Trabajadores"
+        '
+        'btBusquedaVendedor
+        '
+        Me.btBusquedaVendedor.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaVendedor.Enabled = False
+        Me.btBusquedaVendedor.Image = Global.appFacturacion.My.Resources.Resources.BusquedaVendedor
+        Me.btBusquedaVendedor.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaVendedor.Name = "btBusquedaVendedor"
+        Me.btBusquedaVendedor.SubItemsExpandWidth = 14
+        Me.btBusquedaVendedor.Text = "Búsqueda de Trabajadores"
+        '
+        'btTrabajoArea
+        '
+        Me.btTrabajoArea.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btTrabajoArea.Enabled = False
+        Me.btTrabajoArea.Image = Global.appFacturacion.My.Resources.Resources.TrabajoArea
+        Me.btTrabajoArea.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btTrabajoArea.Name = "btTrabajoArea"
+        Me.btTrabajoArea.SubItemsExpandWidth = 14
+        Me.btTrabajoArea.Text = "Edición de las Áreas"
+        Me.btTrabajoArea.Visible = False
+        '
+        'btBusquedaAreas
+        '
+        Me.btBusquedaAreas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaAreas.Enabled = False
+        Me.btBusquedaAreas.Image = Global.appFacturacion.My.Resources.Resources.TrabajoArea
+        Me.btBusquedaAreas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaAreas.Name = "btBusquedaAreas"
+        Me.btBusquedaAreas.SubItemsExpandWidth = 14
+        Me.btBusquedaAreas.Text = "Búsqueda de las Áreas"
+        Me.btBusquedaAreas.Visible = False
+        '
+        'btTrabajoPuestos
+        '
+        Me.btTrabajoPuestos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btTrabajoPuestos.Enabled = False
+        Me.btTrabajoPuestos.Image = Global.appFacturacion.My.Resources.Resources.TrabajoPuesto
+        Me.btTrabajoPuestos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btTrabajoPuestos.Name = "btTrabajoPuestos"
+        Me.btTrabajoPuestos.SubItemsExpandWidth = 14
+        Me.btTrabajoPuestos.Text = "Edición de los Puestos"
+        Me.btTrabajoPuestos.Visible = False
+        '
+        'btBusquedaPuestos
+        '
+        Me.btBusquedaPuestos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBusquedaPuestos.Enabled = False
+        Me.btBusquedaPuestos.Image = Global.appFacturacion.My.Resources.Resources.TrabajoPuesto
+        Me.btBusquedaPuestos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btBusquedaPuestos.Name = "btBusquedaPuestos"
+        Me.btBusquedaPuestos.SubItemsExpandWidth = 14
+        Me.btBusquedaPuestos.Text = "Búsqueda de los Puestos"
+        Me.btBusquedaPuestos.Visible = False
         '
         'mnuArchivo
         '
@@ -1435,6 +2325,46 @@ Partial Class frmPrincipal
         Me.ItemContainer3.Name = "ItemContainer3"
         Me.ItemContainer3.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btUsuarios, Me.btInformeUsuarios, Me.btBitacora, Me.btCambiarPassword, Me.btCerrarSesion})
         '
+        'btUsuarios
+        '
+        Me.btUsuarios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btUsuarios.Enabled = False
+        Me.btUsuarios.Image = Global.appFacturacion.My.Resources.Resources.Usuarios
+        Me.btUsuarios.Name = "btUsuarios"
+        Me.btUsuarios.SubItemsExpandWidth = 24
+        Me.btUsuarios.Text = "Usuarios"
+        '
+        'btInformeUsuarios
+        '
+        Me.btInformeUsuarios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btInformeUsuarios.Enabled = False
+        Me.btInformeUsuarios.Image = Global.appFacturacion.My.Resources.Resources.UsuariosConsulta
+        Me.btInformeUsuarios.Name = "btInformeUsuarios"
+        Me.btInformeUsuarios.Text = "Consultar Usuarios"
+        '
+        'btBitacora
+        '
+        Me.btBitacora.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btBitacora.Enabled = False
+        Me.btBitacora.Image = Global.appFacturacion.My.Resources.Resources.Log
+        Me.btBitacora.Name = "btBitacora"
+        Me.btBitacora.Text = "Bitacora de Usuarios"
+        Me.btBitacora.Visible = False
+        '
+        'btCambiarPassword
+        '
+        Me.btCambiarPassword.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCambiarPassword.Image = Global.appFacturacion.My.Resources.Resources.Contraseña
+        Me.btCambiarPassword.Name = "btCambiarPassword"
+        Me.btCambiarPassword.Text = "Cambiar Contraseña"
+        '
+        'btCerrarSesion
+        '
+        Me.btCerrarSesion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCerrarSesion.Image = Global.appFacturacion.My.Resources.Resources.CerrarSesion
+        Me.btCerrarSesion.Name = "btCerrarSesion"
+        Me.btCerrarSesion.Text = "Cerrar sesión"
+        '
         'ItemContainer4
         '
         '
@@ -1445,6 +2375,15 @@ Partial Class frmPrincipal
         Me.ItemContainer4.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Right
         Me.ItemContainer4.Name = "ItemContainer4"
         Me.ItemContainer4.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btSalir})
+        '
+        'btSalir
+        '
+        Me.btSalir.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btSalir.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btSalir.Image = Global.appFacturacion.My.Resources.Resources.Cerrar_24_24
+        Me.btSalir.Name = "btSalir"
+        Me.btSalir.SubItemsExpandWidth = 24
+        Me.btSalir.Text = "&Salir"
         '
         'mnuCatalogos
         '
@@ -1496,6 +2435,15 @@ Partial Class frmPrincipal
         Me.RibbonTabItem2.Name = "RibbonTabItem2"
         Me.RibbonTabItem2.Panel = Me.RibbonPanel3
         Me.RibbonTabItem2.Text = "CON&FIGURACIÓN"
+        '
+        'btCreditos
+        '
+        Me.btCreditos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCreditos.FontBold = True
+        Me.btCreditos.ForeColor = System.Drawing.Color.Yellow
+        Me.btCreditos.Image = Global.appFacturacion.My.Resources.Resources.Creditos
+        Me.btCreditos.Name = "btCreditos"
+        Me.btCreditos.Text = "Créditos"
         '
         'styEstiloSistema
         '
@@ -1550,6 +2498,19 @@ Partial Class frmPrincipal
         Me.ElGroupBox2.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
         Me.ElGroupBox2.Size = New System.Drawing.Size(509, 58)
         Me.ElGroupBox2.TabIndex = 6
+        '
+        'btCargarCiclo
+        '
+        Me.btCargarCiclo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btCargarCiclo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btCargarCiclo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btCargarCiclo.Image = Global.appFacturacion.My.Resources.Resources.Periodo
+        Me.btCargarCiclo.Location = New System.Drawing.Point(10, 26)
+        Me.btCargarCiclo.Name = "btCargarCiclo"
+        Me.btCargarCiclo.Size = New System.Drawing.Size(63, 28)
+        Me.btCargarCiclo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btCargarCiclo.TabIndex = 13
+        Me.btCargarCiclo.Text = "Ciclo"
         '
         'ElLabel2
         '
@@ -1641,6 +2602,18 @@ Partial Class frmPrincipal
         Me.ElGroupBox1.Size = New System.Drawing.Size(237, 58)
         Me.ElGroupBox1.TabIndex = 4
         '
+        'btCargar
+        '
+        Me.btCargar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btCargar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btCargar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btCargar.Image = Global.appFacturacion.My.Resources.Resources.Cargar_24_24
+        Me.btCargar.Location = New System.Drawing.Point(196, 26)
+        Me.btCargar.Name = "btCargar"
+        Me.btCargar.Size = New System.Drawing.Size(32, 28)
+        Me.btCargar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btCargar.TabIndex = 3
+        '
         'ExpandablePanel1
         '
         Me.ExpandablePanel1.CanvasColor = System.Drawing.SystemColors.Control
@@ -1684,979 +2657,6 @@ Partial Class frmPrincipal
         Me.pcLogo.TabIndex = 7
         Me.pcLogo.TabStop = False
         '
-        'btCargarCiclo
-        '
-        Me.btCargarCiclo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btCargarCiclo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btCargarCiclo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btCargarCiclo.Image = Global.appFacturacion.My.Resources.Resources.Periodo
-        Me.btCargarCiclo.Location = New System.Drawing.Point(10, 26)
-        Me.btCargarCiclo.Name = "btCargarCiclo"
-        Me.btCargarCiclo.Size = New System.Drawing.Size(63, 28)
-        Me.btCargarCiclo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btCargarCiclo.TabIndex = 13
-        Me.btCargarCiclo.Text = "Ciclo"
-        '
-        'btCargar
-        '
-        Me.btCargar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btCargar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btCargar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btCargar.Image = Global.appFacturacion.My.Resources.Resources.Cargar_24_24
-        Me.btCargar.Location = New System.Drawing.Point(196, 26)
-        Me.btCargar.Name = "btCargar"
-        Me.btCargar.Size = New System.Drawing.Size(32, 28)
-        Me.btCargar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btCargar.TabIndex = 3
-        '
-        'btInformeVentaDetalle
-        '
-        Me.btInformeVentaDetalle.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btInformeVentaDetalle.Enabled = False
-        Me.btInformeVentaDetalle.Image = Global.appFacturacion.My.Resources.Resources.InformeVentaDetalle
-        Me.btInformeVentaDetalle.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btInformeVentaDetalle.Name = "btInformeVentaDetalle"
-        Me.btInformeVentaDetalle.SubItemsExpandWidth = 14
-        Me.btInformeVentaDetalle.Text = "Productos Vendidos"
-        '
-        'btGraficosVenta
-        '
-        Me.btGraficosVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btGraficosVenta.Image = Global.appFacturacion.My.Resources.Resources.Dashboard
-        Me.btGraficosVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btGraficosVenta.Name = "btGraficosVenta"
-        Me.btGraficosVenta.SubItemsExpandWidth = 14
-        Me.btGraficosVenta.Text = "Gráficos de Ventas"
-        '
-        'btVenta
-        '
-        Me.btVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btVenta.Enabled = False
-        Me.btVenta.Image = Global.appFacturacion.My.Resources.Resources.Venta
-        Me.btVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btVenta.Name = "btVenta"
-        Me.btVenta.SubItemsExpandWidth = 14
-        Me.btVenta.Text = "Facturar Productos"
-        '
-        'btBusquedaFactura
-        '
-        Me.btBusquedaFactura.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaFactura.Enabled = False
-        Me.btBusquedaFactura.Image = Global.appFacturacion.My.Resources.Resources.BusquedaVenta
-        Me.btBusquedaFactura.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaFactura.Name = "btBusquedaFactura"
-        Me.btBusquedaFactura.SubItemsExpandWidth = 14
-        Me.btBusquedaFactura.Text = "Busqueda de Facturas"
-        '
-        'btDevolucionesVentas
-        '
-        Me.btDevolucionesVentas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btDevolucionesVentas.Enabled = False
-        Me.btDevolucionesVentas.Image = Global.appFacturacion.My.Resources.Resources.Devolucion
-        Me.btDevolucionesVentas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btDevolucionesVentas.Name = "btDevolucionesVentas"
-        Me.btDevolucionesVentas.SubItemsExpandWidth = 14
-        Me.btDevolucionesVentas.Text = "Devoluciones de Ventas"
-        '
-        'btBusquedaDevolucion
-        '
-        Me.btBusquedaDevolucion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaDevolucion.Enabled = False
-        Me.btBusquedaDevolucion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaDevolucion
-        Me.btBusquedaDevolucion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaDevolucion.Name = "btBusquedaDevolucion"
-        Me.btBusquedaDevolucion.SubItemsExpandWidth = 14
-        Me.btBusquedaDevolucion.Text = "Busqueda de Devoluciones"
-        '
-        'btCotizar
-        '
-        Me.btCotizar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCotizar.Enabled = False
-        Me.btCotizar.Image = Global.appFacturacion.My.Resources.Resources.Cotizacion
-        Me.btCotizar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCotizar.Name = "btCotizar"
-        Me.btCotizar.SubItemsExpandWidth = 14
-        Me.btCotizar.Text = "Cotizaciónes / Proformas"
-        '
-        'btBusquedaCotizacion
-        '
-        Me.btBusquedaCotizacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaCotizacion.Enabled = False
-        Me.btBusquedaCotizacion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCotizacion
-        Me.btBusquedaCotizacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaCotizacion.Name = "btBusquedaCotizacion"
-        Me.btBusquedaCotizacion.SubItemsExpandWidth = 14
-        Me.btBusquedaCotizacion.Text = "Busqueda de Cotizaciones"
-        '
-        'btClientes
-        '
-        Me.btClientes.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btClientes.Enabled = False
-        Me.btClientes.Image = Global.appFacturacion.My.Resources.Resources.Cliente
-        Me.btClientes.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btClientes.Name = "btClientes"
-        Me.btClientes.SubItemsExpandWidth = 14
-        Me.btClientes.Text = "Edición de Clientes"
-        '
-        'btBusquedaClientes
-        '
-        Me.btBusquedaClientes.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaClientes.Enabled = False
-        Me.btBusquedaClientes.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCliente
-        Me.btBusquedaClientes.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaClientes.Name = "btBusquedaClientes"
-        Me.btBusquedaClientes.SubItemsExpandWidth = 14
-        Me.btBusquedaClientes.Text = "Búsqueda de Clientes"
-        '
-        'btEstadoCuenta
-        '
-        Me.btEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btEstadoCuenta.Enabled = False
-        Me.btEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaCliente
-        Me.btEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btEstadoCuenta.Name = "btEstadoCuenta"
-        Me.btEstadoCuenta.SubItemsExpandWidth = 14
-        Me.btEstadoCuenta.Text = "Estado de cuenta"
-        '
-        'btPaises
-        '
-        Me.btPaises.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btPaises.Enabled = False
-        Me.btPaises.Image = Global.appFacturacion.My.Resources.Resources.Pais
-        Me.btPaises.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btPaises.Name = "btPaises"
-        Me.btPaises.Text = "Edición de Paises"
-        '
-        'btBusquedaPais
-        '
-        Me.btBusquedaPais.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaPais.Enabled = False
-        Me.btBusquedaPais.Image = Global.appFacturacion.My.Resources.Resources.BusquedaPais
-        Me.btBusquedaPais.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaPais.Name = "btBusquedaPais"
-        Me.btBusquedaPais.Text = "Búsqueda de Paises"
-        '
-        'btCiudades
-        '
-        Me.btCiudades.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCiudades.Enabled = False
-        Me.btCiudades.Image = Global.appFacturacion.My.Resources.Resources.Ciudad
-        Me.btCiudades.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCiudades.Name = "btCiudades"
-        Me.btCiudades.Text = "Edición de Ciudades"
-        '
-        'btBusquedaCiudades
-        '
-        Me.btBusquedaCiudades.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaCiudades.Enabled = False
-        Me.btBusquedaCiudades.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCiudad
-        Me.btBusquedaCiudades.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaCiudades.Name = "btBusquedaCiudades"
-        Me.btBusquedaCiudades.Text = "Búsqueda de Ciudades"
-        '
-        'btIva
-        '
-        Me.btIva.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btIva.Enabled = False
-        Me.btIva.Image = Global.appFacturacion.My.Resources.Resources.Impuesto
-        Me.btIva.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btIva.Name = "btIva"
-        Me.btIva.Text = "Impuesto I.V.A"
-        '
-        'btTaza
-        '
-        Me.btTaza.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btTaza.Enabled = False
-        Me.btTaza.Image = Global.appFacturacion.My.Resources.Resources.Tazadecambio
-        Me.btTaza.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btTaza.Name = "btTaza"
-        Me.btTaza.SubItemsExpandWidth = 14
-        Me.btTaza.Text = "Taza de Cambio"
-        '
-        'btMarcas
-        '
-        Me.btMarcas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btMarcas.Enabled = False
-        Me.btMarcas.Image = Global.appFacturacion.My.Resources.Resources.Marca
-        Me.btMarcas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btMarcas.Name = "btMarcas"
-        Me.btMarcas.SubItemsExpandWidth = 14
-        Me.btMarcas.Text = "Edición de Concentración"
-        '
-        'btUnidadMedida
-        '
-        Me.btUnidadMedida.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btUnidadMedida.Enabled = False
-        Me.btUnidadMedida.Image = Global.appFacturacion.My.Resources.Resources.UnidadMedida
-        Me.btUnidadMedida.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btUnidadMedida.Name = "btUnidadMedida"
-        Me.btUnidadMedida.SubItemsExpandWidth = 14
-        Me.btUnidadMedida.Text = "Edición de Medidas"
-        '
-        'btPresentacion
-        '
-        Me.btPresentacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btPresentacion.Enabled = False
-        Me.btPresentacion.Image = Global.appFacturacion.My.Resources.Resources.Laboratorio
-        Me.btPresentacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btPresentacion.Name = "btPresentacion"
-        Me.btPresentacion.SubItemsExpandWidth = 14
-        Me.btPresentacion.Text = "Edición de Presentación"
-        '
-        'btLaboratorio
-        '
-        Me.btLaboratorio.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btLaboratorio.Enabled = False
-        Me.btLaboratorio.Image = Global.appFacturacion.My.Resources.Resources.Presentacion
-        Me.btLaboratorio.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btLaboratorio.Name = "btLaboratorio"
-        Me.btLaboratorio.SubItemsExpandWidth = 14
-        Me.btLaboratorio.Text = "Edición de Laboratorio"
-        '
-        'btProductos
-        '
-        Me.btProductos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btProductos.Enabled = False
-        Me.btProductos.Image = Global.appFacturacion.My.Resources.Resources.Producto
-        Me.btProductos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btProductos.Name = "btProductos"
-        Me.btProductos.SubItemsExpandWidth = 14
-        Me.btProductos.Text = "Edición de Productos"
-        '
-        'btBusquedaProductos
-        '
-        Me.btBusquedaProductos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaProductos.Enabled = False
-        Me.btBusquedaProductos.Image = Global.appFacturacion.My.Resources.Resources.BusquedaProducto
-        Me.btBusquedaProductos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaProductos.Name = "btBusquedaProductos"
-        Me.btBusquedaProductos.SubItemsExpandWidth = 14
-        Me.btBusquedaProductos.Text = "Búsqueda de Productos"
-        '
-        'btEmpresa
-        '
-        Me.btEmpresa.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btEmpresa.Enabled = False
-        Me.btEmpresa.Image = Global.appFacturacion.My.Resources.Resources.Empresa
-        Me.btEmpresa.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btEmpresa.Name = "btEmpresa"
-        Me.btEmpresa.SubItemsExpandWidth = 14
-        Me.btEmpresa.Text = "Datos de la Empresa"
-        '
-        'btBodega
-        '
-        Me.btBodega.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBodega.Enabled = False
-        Me.btBodega.Image = Global.appFacturacion.My.Resources.Resources.Bodega
-        Me.btBodega.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBodega.Name = "btBodega"
-        Me.btBodega.SubItemsExpandWidth = 14
-        Me.btBodega.Text = "Sucursal / Bodegas"
-        '
-        'btSerie
-        '
-        Me.btSerie.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btSerie.Enabled = False
-        Me.btSerie.Image = Global.appFacturacion.My.Resources.Resources.Serie
-        Me.btSerie.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btSerie.Name = "btSerie"
-        Me.btSerie.SubItemsExpandWidth = 14
-        Me.btSerie.Text = "Series de Documentos"
-        '
-        'btProductoOferta
-        '
-        Me.btProductoOferta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btProductoOferta.Enabled = False
-        Me.btProductoOferta.Image = Global.appFacturacion.My.Resources.Resources.ProductoOferta
-        Me.btProductoOferta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btProductoOferta.Name = "btProductoOferta"
-        Me.btProductoOferta.SubItemsExpandWidth = 14
-        Me.btProductoOferta.Text = "Ofertas de Productos"
-        '
-        'ButtonItem8
-        '
-        Me.ButtonItem8.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.ButtonItem8.Enabled = False
-        Me.ButtonItem8.Image = Global.appFacturacion.My.Resources.Resources.ClienteOferta
-        Me.ButtonItem8.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.ButtonItem8.Name = "ButtonItem8"
-        Me.ButtonItem8.SubItemsExpandWidth = 14
-        Me.ButtonItem8.Text = "Ofertas de Clientes"
-        Me.ButtonItem8.Visible = False
-        '
-        'ButtonItem7
-        '
-        Me.ButtonItem7.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.ButtonItem7.Enabled = False
-        Me.ButtonItem7.Image = Global.appFacturacion.My.Resources.Resources.AnalisisVenta
-        Me.ButtonItem7.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.ButtonItem7.Name = "ButtonItem7"
-        Me.ButtonItem7.SubItemsExpandWidth = 14
-        Me.ButtonItem7.Text = "Estadísticas de Ventas"
-        '
-        'ButtonItem5
-        '
-        Me.ButtonItem5.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.ButtonItem5.Enabled = False
-        Me.ButtonItem5.Image = Global.appFacturacion.My.Resources.Resources.Emailing
-        Me.ButtonItem5.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.ButtonItem5.Name = "ButtonItem5"
-        Me.ButtonItem5.SubItemsExpandWidth = 14
-        Me.ButtonItem5.Text = "Gestión de E-Mailing"
-        '
-        'ButtonItem6
-        '
-        Me.ButtonItem6.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.ButtonItem6.Enabled = False
-        Me.ButtonItem6.Image = Global.appFacturacion.My.Resources.Resources.Agenda
-        Me.ButtonItem6.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.ButtonItem6.Name = "ButtonItem6"
-        Me.ButtonItem6.SubItemsExpandWidth = 14
-        Me.ButtonItem6.Text = "Agenda de los Clientes"
-        '
-        'btReciboCompra
-        '
-        Me.btReciboCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btReciboCompra.Enabled = False
-        Me.btReciboCompra.Image = Global.appFacturacion.My.Resources.Resources.ReciboCompra
-        Me.btReciboCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btReciboCompra.Name = "btReciboCompra"
-        Me.btReciboCompra.Text = "Pago de Proveedores"
-        '
-        'btBusquedaReciboCompra
-        '
-        Me.btBusquedaReciboCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaReciboCompra.Enabled = False
-        Me.btBusquedaReciboCompra.Image = Global.appFacturacion.My.Resources.Resources.BusquedaReciboCompra
-        Me.btBusquedaReciboCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaReciboCompra.Name = "btBusquedaReciboCompra"
-        Me.btBusquedaReciboCompra.Text = "Busqueda de Pago"
-        '
-        'btReciboVenta
-        '
-        Me.btReciboVenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btReciboVenta.Enabled = False
-        Me.btReciboVenta.Image = Global.appFacturacion.My.Resources.Resources.Recibo
-        Me.btReciboVenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btReciboVenta.Name = "btReciboVenta"
-        Me.btReciboVenta.SubItemsExpandWidth = 14
-        Me.btReciboVenta.Text = "Recibos de Ventas"
-        '
-        'btBusquedaRecibo
-        '
-        Me.btBusquedaRecibo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaRecibo.Enabled = False
-        Me.btBusquedaRecibo.Image = Global.appFacturacion.My.Resources.Resources.BusquedaRecibo
-        Me.btBusquedaRecibo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaRecibo.Name = "btBusquedaRecibo"
-        Me.btBusquedaRecibo.SubItemsExpandWidth = 14
-        Me.btBusquedaRecibo.Text = "Busqueda de Recibos"
-        '
-        'btCatalogoCuentas
-        '
-        Me.btCatalogoCuentas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCatalogoCuentas.Enabled = False
-        Me.btCatalogoCuentas.Image = Global.appFacturacion.My.Resources.Resources.CatalogoCuentas
-        Me.btCatalogoCuentas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCatalogoCuentas.Name = "btCatalogoCuentas"
-        Me.btCatalogoCuentas.SubItemsExpandWidth = 14
-        Me.btCatalogoCuentas.Text = "Catalogo de Cuentas"
-        '
-        'btPeriodo
-        '
-        Me.btPeriodo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btPeriodo.Enabled = False
-        Me.btPeriodo.Image = Global.appFacturacion.My.Resources.Resources.PeriodoContable
-        Me.btPeriodo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btPeriodo.Name = "btPeriodo"
-        Me.btPeriodo.SubItemsExpandWidth = 14
-        Me.btPeriodo.Text = "Período de Contabilidad"
-        '
-        'btCPEstadoCuenta
-        '
-        Me.btCPEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCPEstadoCuenta.Enabled = False
-        Me.btCPEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaProveedor
-        Me.btCPEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCPEstadoCuenta.Name = "btCPEstadoCuenta"
-        Me.btCPEstadoCuenta.SubItemsExpandWidth = 14
-        Me.btCPEstadoCuenta.Text = "Estado de cuenta"
-        '
-        'btCuentasPagar
-        '
-        Me.btCuentasPagar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCuentasPagar.Enabled = False
-        Me.btCuentasPagar.Image = Global.appFacturacion.My.Resources.Resources.CuentasporPagar
-        Me.btCuentasPagar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCuentasPagar.Name = "btCuentasPagar"
-        Me.btCuentasPagar.SubItemsExpandWidth = 14
-        Me.btCuentasPagar.Text = "Listado de Deudas"
-        '
-        'btCCEstadoCuenta
-        '
-        Me.btCCEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCCEstadoCuenta.Enabled = False
-        Me.btCCEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaCliente
-        Me.btCCEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCCEstadoCuenta.Name = "btCCEstadoCuenta"
-        Me.btCCEstadoCuenta.SubItemsExpandWidth = 14
-        Me.btCCEstadoCuenta.Text = "Estado de Cuenta"
-        '
-        'btCuentasCobrar
-        '
-        Me.btCuentasCobrar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCuentasCobrar.Enabled = False
-        Me.btCuentasCobrar.Image = Global.appFacturacion.My.Resources.Resources.CuentasporCobrar
-        Me.btCuentasCobrar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCuentasCobrar.Name = "btCuentasCobrar"
-        Me.btCuentasCobrar.SubItemsExpandWidth = 14
-        Me.btCuentasCobrar.Text = "Listado de Cobros"
-        '
-        'btEstadoResultados
-        '
-        Me.btEstadoResultados.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btEstadoResultados.Enabled = False
-        Me.btEstadoResultados.Image = Global.appFacturacion.My.Resources.Resources.EstadoResultados
-        Me.btEstadoResultados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btEstadoResultados.Name = "btEstadoResultados"
-        Me.btEstadoResultados.SubItemsExpandWidth = 14
-        Me.btEstadoResultados.Text = "Estado de Resultados"
-        '
-        'btPeriodoContable
-        '
-        Me.btPeriodoContable.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btPeriodoContable.Enabled = False
-        Me.btPeriodoContable.Image = Global.appFacturacion.My.Resources.Resources.PeriodoContable
-        Me.btPeriodoContable.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btPeriodoContable.Name = "btPeriodoContable"
-        Me.btPeriodoContable.SubItemsExpandWidth = 14
-        Me.btPeriodoContable.Text = "Período de Contabilidad"
-        '
-        'btSeleccionar
-        '
-        Me.btSeleccionar.Enabled = False
-        Me.btSeleccionar.Image = Global.appFacturacion.My.Resources.Resources.Periodo
-        Me.btSeleccionar.Name = "btSeleccionar"
-        Me.btSeleccionar.SubItemsExpandWidth = 14
-        Me.btSeleccionar.Tag = "Cambiar Período"
-        Me.btSeleccionar.Text = "Seleccionar"
-        Me.btSeleccionar.Tooltip = "Cambiar Período"
-        '
-        'btApertura
-        '
-        Me.btApertura.Enabled = False
-        Me.btApertura.Image = Global.appFacturacion.My.Resources.Resources.PeriodoApertura
-        Me.btApertura.Name = "btApertura"
-        Me.btApertura.SubItemsExpandWidth = 14
-        Me.btApertura.Tag = "Aperturar Período Actual"
-        Me.btApertura.Text = "Aperturar"
-        Me.btApertura.Tooltip = "Aperturar Período Actual"
-        '
-        'btCierre
-        '
-        Me.btCierre.Enabled = False
-        Me.btCierre.Image = Global.appFacturacion.My.Resources.Resources.PeriodoCierre
-        Me.btCierre.Name = "btCierre"
-        Me.btCierre.SubItemsExpandWidth = 14
-        Me.btCierre.Tag = "Cerrar Período Actual"
-        Me.btCierre.Text = "Cierre"
-        Me.btCierre.Tooltip = "Cerrar Período Actual"
-        '
-        'btPrinterSetting
-        '
-        Me.btPrinterSetting.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btPrinterSetting.Image = Global.appFacturacion.My.Resources.Resources.PrinterSetting
-        Me.btPrinterSetting.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btPrinterSetting.Name = "btPrinterSetting"
-        Me.btPrinterSetting.SubItemsExpandWidth = 14
-        Me.btPrinterSetting.Text = "Configuración de Impresora"
-        '
-        'btServidor
-        '
-        Me.btServidor.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btServidor.Enabled = False
-        Me.btServidor.Image = Global.appFacturacion.My.Resources.Resources.Servidor
-        Me.btServidor.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btServidor.Name = "btServidor"
-        Me.btServidor.SubItemsExpandWidth = 14
-        Me.btServidor.Text = "Configurar Servidor"
-        '
-        'btRegistro
-        '
-        Me.btRegistro.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btRegistro.Image = Global.appFacturacion.My.Resources.Resources.Registrar
-        Me.btRegistro.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btRegistro.Name = "btRegistro"
-        Me.btRegistro.SubItemsExpandWidth = 14
-        Me.btRegistro.Text = "Registrar el Software"
-        '
-        'btAyuda
-        '
-        Me.btAyuda.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btAyuda.Image = Global.appFacturacion.My.Resources.Resources.Ayuda
-        Me.btAyuda.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btAyuda.Name = "btAyuda"
-        Me.btAyuda.SubItemsExpandWidth = 14
-        Me.btAyuda.Text = "Ayuda del Software"
-        '
-        'btAcercaDe
-        '
-        Me.btAcercaDe.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btAcercaDe.Image = Global.appFacturacion.My.Resources.Resources.Acerca
-        Me.btAcercaDe.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btAcercaDe.Name = "btAcercaDe"
-        Me.btAcercaDe.SubItemsExpandWidth = 14
-        Me.btAcercaDe.Text = "Acerca del Software"
-        '
-        'btCrearRespaldo
-        '
-        Me.btCrearRespaldo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCrearRespaldo.Enabled = False
-        Me.btCrearRespaldo.Image = Global.appFacturacion.My.Resources.Resources.CrearRespaldo
-        Me.btCrearRespaldo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCrearRespaldo.Name = "btCrearRespaldo"
-        Me.btCrearRespaldo.SubItemsExpandWidth = 14
-        Me.btCrearRespaldo.Text = "Respaldar base de datos"
-        '
-        'btRestaurar
-        '
-        Me.btRestaurar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btRestaurar.Enabled = False
-        Me.btRestaurar.Image = Global.appFacturacion.My.Resources.Resources.Restaurar
-        Me.btRestaurar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btRestaurar.Name = "btRestaurar"
-        Me.btRestaurar.SubItemsExpandWidth = 14
-        Me.btRestaurar.Text = "Restaurar Datos"
-        '
-        'btLogo
-        '
-        Me.btLogo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btLogo.Image = Global.appFacturacion.My.Resources.Resources.Logo
-        Me.btLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btLogo.Name = "btLogo"
-        Me.btLogo.SubItemsExpandWidth = 14
-        Me.btLogo.Text = "Logo de Empresa"
-        '
-        'btKardex
-        '
-        Me.btKardex.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btKardex.Enabled = False
-        Me.btKardex.Image = Global.appFacturacion.My.Resources.Resources.Kardex
-        Me.btKardex.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btKardex.Name = "btKardex"
-        Me.btKardex.SubItemsExpandWidth = 14
-        Me.btKardex.Text = "Hoja de Kardex"
-        '
-        'btControlExistencia
-        '
-        Me.btControlExistencia.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btControlExistencia.Enabled = False
-        Me.btControlExistencia.Image = Global.appFacturacion.My.Resources.Resources.ControlExistencia
-        Me.btControlExistencia.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btControlExistencia.Name = "btControlExistencia"
-        Me.btControlExistencia.SubItemsExpandWidth = 14
-        Me.btControlExistencia.Text = "Control de Existencia"
-        '
-        'btValuacionInventario
-        '
-        Me.btValuacionInventario.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btValuacionInventario.Enabled = False
-        Me.btValuacionInventario.Image = Global.appFacturacion.My.Resources.Resources.ValuacionInventario
-        Me.btValuacionInventario.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btValuacionInventario.Name = "btValuacionInventario"
-        Me.btValuacionInventario.SubItemsExpandWidth = 14
-        Me.btValuacionInventario.Text = "Valuación de Inventario"
-        '
-        'btConsignar
-        '
-        Me.btConsignar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btConsignar.Enabled = False
-        Me.btConsignar.Image = Global.appFacturacion.My.Resources.Resources.Consignar
-        Me.btConsignar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btConsignar.Name = "btConsignar"
-        Me.btConsignar.Text = "Consignar Productos"
-        '
-        'btBusquedaConsignacion
-        '
-        Me.btBusquedaConsignacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaConsignacion.Enabled = False
-        Me.btBusquedaConsignacion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaConsignacion
-        Me.btBusquedaConsignacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaConsignacion.Name = "btBusquedaConsignacion"
-        Me.btBusquedaConsignacion.Text = "Busqueda de Consignaciones"
-        '
-        'btDesconsignar
-        '
-        Me.btDesconsignar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btDesconsignar.Enabled = False
-        Me.btDesconsignar.Image = Global.appFacturacion.My.Resources.Resources.Desconsignar
-        Me.btDesconsignar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btDesconsignar.Name = "btDesconsignar"
-        Me.btDesconsignar.Text = "Desconsignar productos"
-        '
-        'btBusquedaDesconsignacion
-        '
-        Me.btBusquedaDesconsignacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaDesconsignacion.Enabled = False
-        Me.btBusquedaDesconsignacion.Image = Global.appFacturacion.My.Resources.Resources.BusquedaConsignacion
-        Me.btBusquedaDesconsignacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaDesconsignacion.Name = "btBusquedaDesconsignacion"
-        Me.btBusquedaDesconsignacion.Text = "Busqueda de Desconsignaciones"
-        '
-        'btReporteConsignacion
-        '
-        Me.btReporteConsignacion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btReporteConsignacion.Enabled = False
-        Me.btReporteConsignacion.Image = Global.appFacturacion.My.Resources.Resources.ReporteConsignacion
-        Me.btReporteConsignacion.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btReporteConsignacion.Name = "btReporteConsignacion"
-        Me.btReporteConsignacion.Text = "Reporte de Consignacion"
-        '
-        'btEntradas
-        '
-        Me.btEntradas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btEntradas.Enabled = False
-        Me.btEntradas.Image = Global.appFacturacion.My.Resources.Resources.Entrada
-        Me.btEntradas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btEntradas.Name = "btEntradas"
-        Me.btEntradas.SubItemsExpandWidth = 14
-        Me.btEntradas.Text = "Entradas de Productos"
-        '
-        'btBusquedaEntradas
-        '
-        Me.btBusquedaEntradas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaEntradas.Enabled = False
-        Me.btBusquedaEntradas.Image = Global.appFacturacion.My.Resources.Resources.BusquedaEntrada
-        Me.btBusquedaEntradas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaEntradas.Name = "btBusquedaEntradas"
-        Me.btBusquedaEntradas.SubItemsExpandWidth = 14
-        Me.btBusquedaEntradas.Text = "Busqueda de Entradas"
-        '
-        'btSalidas
-        '
-        Me.btSalidas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btSalidas.Enabled = False
-        Me.btSalidas.Image = Global.appFacturacion.My.Resources.Resources.Salidas
-        Me.btSalidas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btSalidas.Name = "btSalidas"
-        Me.btSalidas.SubItemsExpandWidth = 14
-        Me.btSalidas.Text = "Salidas de Productos"
-        '
-        'btBusquedaSalida
-        '
-        Me.btBusquedaSalida.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaSalida.Enabled = False
-        Me.btBusquedaSalida.Image = Global.appFacturacion.My.Resources.Resources.BusquedaSalida
-        Me.btBusquedaSalida.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaSalida.Name = "btBusquedaSalida"
-        Me.btBusquedaSalida.SubItemsExpandWidth = 14
-        Me.btBusquedaSalida.Text = "Busqueda de Salidas"
-        '
-        'btTraslados
-        '
-        Me.btTraslados.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btTraslados.Enabled = False
-        Me.btTraslados.Image = Global.appFacturacion.My.Resources.Resources.Traslados
-        Me.btTraslados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btTraslados.Name = "btTraslados"
-        Me.btTraslados.SubItemsExpandWidth = 14
-        Me.btTraslados.Text = "Traslados de Bodega"
-        '
-        'btBusquedaTraslado
-        '
-        Me.btBusquedaTraslado.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaTraslado.Enabled = False
-        Me.btBusquedaTraslado.Image = Global.appFacturacion.My.Resources.Resources.BusquedaTraslado
-        Me.btBusquedaTraslado.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaTraslado.Name = "btBusquedaTraslado"
-        Me.btBusquedaTraslado.SubItemsExpandWidth = 14
-        Me.btBusquedaTraslado.Text = "Busqueda de Traslados"
-        '
-        'btProductosComprados
-        '
-        Me.btProductosComprados.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btProductosComprados.Enabled = False
-        Me.btProductosComprados.Image = Global.appFacturacion.My.Resources.Resources.InformeVentaDetalle
-        Me.btProductosComprados.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btProductosComprados.Name = "btProductosComprados"
-        Me.btProductosComprados.SubItemsExpandWidth = 14
-        Me.btProductosComprados.Text = "Compras Detalladas"
-        '
-        'btCompra
-        '
-        Me.btCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCompra.Enabled = False
-        Me.btCompra.Image = Global.appFacturacion.My.Resources.Resources.Compra
-        Me.btCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCompra.Name = "btCompra"
-        Me.btCompra.SubItemsExpandWidth = 14
-        Me.btCompra.Text = "Compras de Productos"
-        '
-        'btBusquedaCompra
-        '
-        Me.btBusquedaCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaCompra.Enabled = False
-        Me.btBusquedaCompra.Image = Global.appFacturacion.My.Resources.Resources.BusquedaCompra
-        Me.btBusquedaCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaCompra.Name = "btBusquedaCompra"
-        Me.btBusquedaCompra.SubItemsExpandWidth = 14
-        Me.btBusquedaCompra.Text = "Busqueda de Compras"
-        '
-        'btDevolucionCompra
-        '
-        Me.btDevolucionCompra.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btDevolucionCompra.Enabled = False
-        Me.btDevolucionCompra.Image = Global.appFacturacion.My.Resources.Resources.DevolucionCompra
-        Me.btDevolucionCompra.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btDevolucionCompra.Name = "btDevolucionCompra"
-        Me.btDevolucionCompra.Text = "Devoluciones de Compras"
-        '
-        'btBusquedaDevolucionesCompras
-        '
-        Me.btBusquedaDevolucionesCompras.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaDevolucionesCompras.Enabled = False
-        Me.btBusquedaDevolucionesCompras.Image = Global.appFacturacion.My.Resources.Resources.BusquedaDevolucionCompra
-        Me.btBusquedaDevolucionesCompras.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaDevolucionesCompras.Name = "btBusquedaDevolucionesCompras"
-        Me.btBusquedaDevolucionesCompras.Text = "Busqueda de Devoluciones"
-        '
-        'btProveedores
-        '
-        Me.btProveedores.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btProveedores.Enabled = False
-        Me.btProveedores.Image = Global.appFacturacion.My.Resources.Resources.Proveedor
-        Me.btProveedores.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btProveedores.Name = "btProveedores"
-        Me.btProveedores.SubItemsExpandWidth = 14
-        Me.btProveedores.Text = "Edición de Proveedores"
-        '
-        'btBusquedaProveedores
-        '
-        Me.btBusquedaProveedores.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaProveedores.Enabled = False
-        Me.btBusquedaProveedores.Image = Global.appFacturacion.My.Resources.Resources.BusquedaProveedor
-        Me.btBusquedaProveedores.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaProveedores.Name = "btBusquedaProveedores"
-        Me.btBusquedaProveedores.SubItemsExpandWidth = 14
-        Me.btBusquedaProveedores.Text = "Búsqueda de Proveedores"
-        '
-        'btCompraEstadoCuenta
-        '
-        Me.btCompraEstadoCuenta.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCompraEstadoCuenta.Enabled = False
-        Me.btCompraEstadoCuenta.Image = Global.appFacturacion.My.Resources.Resources.EstadoCuentaProveedor
-        Me.btCompraEstadoCuenta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCompraEstadoCuenta.Name = "btCompraEstadoCuenta"
-        Me.btCompraEstadoCuenta.SubItemsExpandWidth = 14
-        Me.btCompraEstadoCuenta.Text = "Estado de cuenta"
-        '
-        'btPlanilla
-        '
-        Me.btPlanilla.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btPlanilla.Enabled = False
-        Me.btPlanilla.Image = Global.appFacturacion.My.Resources.Resources.TrabajadorPlanilla
-        Me.btPlanilla.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btPlanilla.Name = "btPlanilla"
-        Me.btPlanilla.SubItemsExpandWidth = 14
-        Me.btPlanilla.Text = "Planillas de Pago"
-        '
-        'btBusquedasPlanillas
-        '
-        Me.btBusquedasPlanillas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedasPlanillas.Enabled = False
-        Me.btBusquedasPlanillas.Image = Global.appFacturacion.My.Resources.Resources.BusquedaTrabajadorPlanilla
-        Me.btBusquedasPlanillas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedasPlanillas.Name = "btBusquedasPlanillas"
-        Me.btBusquedasPlanillas.SubItemsExpandWidth = 14
-        Me.btBusquedasPlanillas.Text = "Búsquedas de Planillas de Pago"
-        '
-        'btVendedores
-        '
-        Me.btVendedores.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btVendedores.Enabled = False
-        Me.btVendedores.Image = Global.appFacturacion.My.Resources.Resources.Vendedor
-        Me.btVendedores.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btVendedores.Name = "btVendedores"
-        Me.btVendedores.SubItemsExpandWidth = 14
-        Me.btVendedores.Text = "Edición de Trabajadores"
-        '
-        'btBusquedaVendedor
-        '
-        Me.btBusquedaVendedor.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaVendedor.Enabled = False
-        Me.btBusquedaVendedor.Image = Global.appFacturacion.My.Resources.Resources.BusquedaVendedor
-        Me.btBusquedaVendedor.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaVendedor.Name = "btBusquedaVendedor"
-        Me.btBusquedaVendedor.SubItemsExpandWidth = 14
-        Me.btBusquedaVendedor.Text = "Búsqueda de Trabajadores"
-        '
-        'btTrabajoArea
-        '
-        Me.btTrabajoArea.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btTrabajoArea.Enabled = False
-        Me.btTrabajoArea.Image = Global.appFacturacion.My.Resources.Resources.TrabajoArea
-        Me.btTrabajoArea.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btTrabajoArea.Name = "btTrabajoArea"
-        Me.btTrabajoArea.SubItemsExpandWidth = 14
-        Me.btTrabajoArea.Text = "Edición de las Áreas"
-        Me.btTrabajoArea.Visible = False
-        '
-        'btBusquedaAreas
-        '
-        Me.btBusquedaAreas.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaAreas.Enabled = False
-        Me.btBusquedaAreas.Image = Global.appFacturacion.My.Resources.Resources.TrabajoArea
-        Me.btBusquedaAreas.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaAreas.Name = "btBusquedaAreas"
-        Me.btBusquedaAreas.SubItemsExpandWidth = 14
-        Me.btBusquedaAreas.Text = "Búsqueda de las Áreas"
-        Me.btBusquedaAreas.Visible = False
-        '
-        'btTrabajoPuestos
-        '
-        Me.btTrabajoPuestos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btTrabajoPuestos.Enabled = False
-        Me.btTrabajoPuestos.Image = Global.appFacturacion.My.Resources.Resources.TrabajoPuesto
-        Me.btTrabajoPuestos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btTrabajoPuestos.Name = "btTrabajoPuestos"
-        Me.btTrabajoPuestos.SubItemsExpandWidth = 14
-        Me.btTrabajoPuestos.Text = "Edición de los Puestos"
-        Me.btTrabajoPuestos.Visible = False
-        '
-        'btBusquedaPuestos
-        '
-        Me.btBusquedaPuestos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBusquedaPuestos.Enabled = False
-        Me.btBusquedaPuestos.Image = Global.appFacturacion.My.Resources.Resources.TrabajoPuesto
-        Me.btBusquedaPuestos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btBusquedaPuestos.Name = "btBusquedaPuestos"
-        Me.btBusquedaPuestos.SubItemsExpandWidth = 14
-        Me.btBusquedaPuestos.Text = "Búsqueda de los Puestos"
-        Me.btBusquedaPuestos.Visible = False
-        '
-        'btUsuarios
-        '
-        Me.btUsuarios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btUsuarios.Enabled = False
-        Me.btUsuarios.Image = Global.appFacturacion.My.Resources.Resources.Usuarios
-        Me.btUsuarios.Name = "btUsuarios"
-        Me.btUsuarios.SubItemsExpandWidth = 24
-        Me.btUsuarios.Text = "Usuarios"
-        '
-        'btInformeUsuarios
-        '
-        Me.btInformeUsuarios.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btInformeUsuarios.Enabled = False
-        Me.btInformeUsuarios.Image = Global.appFacturacion.My.Resources.Resources.UsuariosConsulta
-        Me.btInformeUsuarios.Name = "btInformeUsuarios"
-        Me.btInformeUsuarios.Text = "Consultar Usuarios"
-        '
-        'btBitacora
-        '
-        Me.btBitacora.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btBitacora.Enabled = False
-        Me.btBitacora.Image = Global.appFacturacion.My.Resources.Resources.Log
-        Me.btBitacora.Name = "btBitacora"
-        Me.btBitacora.Text = "Bitacora de Usuarios"
-        Me.btBitacora.Visible = False
-        '
-        'btCambiarPassword
-        '
-        Me.btCambiarPassword.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCambiarPassword.Image = Global.appFacturacion.My.Resources.Resources.Contraseña
-        Me.btCambiarPassword.Name = "btCambiarPassword"
-        Me.btCambiarPassword.Text = "Cambiar Contraseña"
-        '
-        'btCerrarSesion
-        '
-        Me.btCerrarSesion.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCerrarSesion.Image = Global.appFacturacion.My.Resources.Resources.CerrarSesion
-        Me.btCerrarSesion.Name = "btCerrarSesion"
-        Me.btCerrarSesion.Text = "Cerrar sesión"
-        '
-        'btSalir
-        '
-        Me.btSalir.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btSalir.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btSalir.Image = Global.appFacturacion.My.Resources.Resources.Cerrar_24_24
-        Me.btSalir.Name = "btSalir"
-        Me.btSalir.SubItemsExpandWidth = 24
-        Me.btSalir.Text = "&Salir"
-        '
-        'btCreditos
-        '
-        Me.btCreditos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCreditos.FontBold = True
-        Me.btCreditos.ForeColor = System.Drawing.Color.Yellow
-        Me.btCreditos.Image = Global.appFacturacion.My.Resources.Resources.Creditos
-        Me.btCreditos.Name = "btCreditos"
-        Me.btCreditos.Text = "Créditos"
-        '
-        'lblEmpresa
-        '
-        Me.lblEmpresa.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblEmpresa.ForeColor = System.Drawing.Color.Black
-        Me.lblEmpresa.Image = Global.appFacturacion.My.Resources.Resources.Icono32x32
-        Me.lblEmpresa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.lblEmpresa.Name = "lblEmpresa"
-        Me.lblEmpresa.Size = New System.Drawing.Size(266, 32)
-        Me.lblEmpresa.Text = "Sistema de Facturación de Sucursales // SIF"
-        Me.lblEmpresa.ToolTipText = "Sistema de Facturación de Sucursales // SIF"
-        '
-        'lblNombreUsuario
-        '
-        Me.lblNombreUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.lblNombreUsuario.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblNombreUsuario.ForeColor = System.Drawing.Color.Black
-        Me.lblNombreUsuario.Image = Global.appFacturacion.My.Resources.Resources.Codigo
-        Me.lblNombreUsuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.lblNombreUsuario.Name = "lblNombreUsuario"
-        Me.lblNombreUsuario.Size = New System.Drawing.Size(130, 28)
-        Me.lblNombreUsuario.Text = "Nombre Personal:"
-        '
-        'lblUsuario
-        '
-        Me.lblUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.lblUsuario.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblUsuario.ForeColor = System.Drawing.Color.Black
-        Me.lblUsuario.Image = Global.appFacturacion.My.Resources.Resources.Usuario
-        Me.lblUsuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.lblUsuario.Name = "lblUsuario"
-        Me.lblUsuario.Size = New System.Drawing.Size(78, 28)
-        Me.lblUsuario.Text = "Usuario:"
-        '
-        'lblBodega
-        '
-        Me.lblBodega.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.lblBodega.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblBodega.ForeColor = System.Drawing.Color.Black
-        Me.lblBodega.Image = Global.appFacturacion.My.Resources.Resources.Bodega1
-        Me.lblBodega.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.lblBodega.Name = "lblBodega"
-        Me.lblBodega.Size = New System.Drawing.Size(82, 28)
-        Me.lblBodega.Text = "Sucursal:"
-        '
-        'lblIva
-        '
-        Me.lblIva.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.lblIva.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblIva.ForeColor = System.Drawing.Color.Black
-        Me.lblIva.Image = Global.appFacturacion.My.Resources.Resources.BarImpuesto
-        Me.lblIva.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.lblIva.Name = "lblIva"
-        Me.lblIva.Size = New System.Drawing.Size(81, 28)
-        Me.lblIva.Text = "I.V.A: 0%"
-        '
-        'lblTaza
-        '
-        Me.lblTaza.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblTaza.ForeColor = System.Drawing.Color.Black
-        Me.lblTaza.Image = Global.appFacturacion.My.Resources.Resources.Tazadecambio1
-        Me.lblTaza.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.lblTaza.Name = "lblTaza"
-        Me.lblTaza.Size = New System.Drawing.Size(158, 24)
-        Me.lblTaza.Text = "T. / Cambio: $ 1 = C$ 27"
-        '
         'frmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -2679,11 +2679,11 @@ Partial Class frmPrincipal
         Me.stsEstado.PerformLayout()
         Me.rcCintaMenu.ResumeLayout(False)
         Me.rcCintaMenu.PerformLayout()
+        Me.RibbonPanel7.ResumeLayout(False)
         Me.RibbonPanel1.ResumeLayout(False)
         Me.RibbonPanel8.ResumeLayout(False)
         Me.RibbonPanel4.ResumeLayout(False)
         Me.RibbonPanel3.ResumeLayout(False)
-        Me.RibbonPanel7.ResumeLayout(False)
         Me.RibbonPanel2.ResumeLayout(False)
         Me.RibbonPanel6.ResumeLayout(False)
         Me.RibbonPanel9.ResumeLayout(False)
