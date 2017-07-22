@@ -1,4 +1,8 @@
-﻿Public Class frmSalida
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmSalida
     'Dim operacion As New TRANSACCION
     Public ID As String = ""
     Dim cod As String = ""
@@ -25,7 +29,7 @@
         Try
             Using db As New CodeFirst
                 Dim entrada = db.Salidas.Where(Function(f) f.IDSERIE = serie).OrderBy(Function(f) f.CONSECUTIVO).ToList().LastOrDefault()
-                If Not ENTRADA Is Nothing Then
+                If Not entrada Is Nothing Then
                     cod = entrada.CONSECUTIVO
                     If Not cod.Trim = "" Then
                         cod = (Convert.ToInt32(cod) + 1).ToString

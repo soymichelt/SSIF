@@ -1,4 +1,8 @@
-﻿Public Class frmCuentasPorPagar
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmCuentasPorPagar
 
     Sub llenar(Optional ByVal codigo As String = "", Optional ByVal nombre As String = "")
         Try

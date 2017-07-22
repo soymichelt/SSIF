@@ -1,4 +1,8 @@
-﻿Public Class frmVenta
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmVenta
 
     Dim bandDescFact As Boolean = False
     Dim bandDescProd As Boolean = False

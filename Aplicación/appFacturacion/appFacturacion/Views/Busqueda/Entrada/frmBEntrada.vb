@@ -1,4 +1,8 @@
-﻿Public Class frmBEntrada
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmBEntrada
     Public frm_return As Integer = 0
     Dim FormLoad As Boolean = False
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "")

@@ -1,4 +1,7 @@
-﻿Public Class frmInformeSalida
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmInformeSalida
     Dim FormLoad As Boolean
 
 

@@ -1,4 +1,8 @@
-﻿Public Class frmLogin
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmLogin
 
     'Tipo de inicio de sesión
     Public Property Type As Boolean

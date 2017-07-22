@@ -1,4 +1,8 @@
-﻿Public Class frmBuscarProductos
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmBuscarProductos
     Public frm_return As Integer = 0
     Dim FormLoad As Boolean = False
     Sub llenar(Optional ByVal pNombre As String = "", Optional ByVal pIDOriginal As String = "", Optional ByVal pAplicacion As String = "", Optional ByVal pIDAlterno As String = "", Optional ByVal pMarca As String = "", Optional ByVal pNombreComercial As String = "", Optional ByVal pLaboratorio As String = "", Optional ByVal pDistribuidor As String = "", Optional ByVal pForma As String = "", Optional ByVal pUbicacion As String = "", Optional ByVal pExportar As Boolean = False)
@@ -460,7 +464,7 @@
     End Sub
 
     Private Sub rdExiTodos_CheckedChanged(sender As Object, e As EventArgs) Handles rdExiTodos.CheckedChanged
-        If Me.formload Then
+        If Me.FormLoad Then
             If rdExiTodos.Checked Then
                 llenar(txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtMarca.Text.Trim, txtNombreComercial.Text.Trim, txtLaboratorio.Text.Trim, txtDistribuidor.Text.Trim, txtForma.Text.Trim, txtUbicacion.Text.Trim)
             End If

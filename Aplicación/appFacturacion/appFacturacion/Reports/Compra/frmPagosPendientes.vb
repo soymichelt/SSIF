@@ -1,4 +1,7 @@
-﻿Public Class frmPagosPendientes
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmPagosPendientes
 
     Public IdProveedor As String
     Public Moneda As String

@@ -1,4 +1,7 @@
-﻿Public Class frmInformeVentas
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmInformeVentas
     Dim FormLoad As Boolean
 
     'variables totales

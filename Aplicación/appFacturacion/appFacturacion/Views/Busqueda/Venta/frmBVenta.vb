@@ -1,4 +1,8 @@
-﻿Public Class frmBVenta
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmBVenta
     Public frm_return As Integer = 0
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "", Optional ByVal pcodigocliente As String = "", Optional ByVal pnombrecliente As String = "")
         Try

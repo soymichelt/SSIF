@@ -1,4 +1,8 @@
-﻿Public Class frmInformeVentaDetalle
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmInformeVentaDetalle
 
     Dim FormLoad As Boolean = False
 

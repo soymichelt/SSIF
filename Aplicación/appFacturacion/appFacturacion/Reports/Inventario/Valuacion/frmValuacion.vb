@@ -1,4 +1,7 @@
-﻿Public Class frmValuacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmValuacion
 
     Public frm_return As Integer = 0
     Dim FormLoad As Boolean = False

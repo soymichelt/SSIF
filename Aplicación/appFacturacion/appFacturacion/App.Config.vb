@@ -1,13 +1,13 @@
-﻿Imports System.IO
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+Imports System.IO
+
 Module Config
     'Clavo de Registro
     Public RegistryKey As Microsoft.Win32.RegistryKey
     Public Key As Object
     Public DateLimite As Nullable(Of DateTime)
-
-    'IP Config
-    Public SQLServerName As String = Nothing
-    Public ServerFileName As String = My.Application.Info.DirectoryPath & "\Server.Config.Sif"
 
     Public Sub ServerLoad()
         Try
@@ -15,51 +15,63 @@ Module Config
                 'Lector del Archivo de Configuración
                 Dim read As StreamReader = New IO.StreamReader(Config.ServerFileName)
 
-
                 'Leyendo el servidor del servidor
                 Dim sLine = read.ReadLine()
                 If Not sLine Is Nothing Then
-                    Config.SQLServerName = CryptoSecurity.Decoding(sLine)
+
+                    'Configurar Nombre del Servidor SQL en el modelo
+                    Sadara.Models.V1.Config.SQLServerName = CryptoSecurity.Decoding(sLine)
+
                 Else
                     Config.MsgErr("Configurar el archivo de conexión del Servidor SGBD.")
-                    Config.SQLServerName = Nothing
+                    Sadara.Models.V1.Config.SQLServerName = Nothing
                 End If
 
 
                 'Leyendo el nombre de la base de datos
                 sLine = read.ReadLine()
                 If Not sLine Is Nothing Then
-                    Config.InitialCatalog = CryptoSecurity.Decoding(sLine)
+
+                    'Configurar Nombre de la Base de Datos en el modelo
+                    Sadara.Models.V1.Config.InitialCatalog = CryptoSecurity.Decoding(sLine)
+
                 Else
                     Config.MsgErr("Configurar el archivo de conexión del Servidor SGBD.")
-                    Config.SQLServerName = Nothing
+                    Sadara.Models.V1.Config.SQLServerName = Nothing
                 End If
 
 
                 'Leyendo el Usuario del SGBD
                 sLine = read.ReadLine()
                 If Not sLine Is Nothing Then
-                    Config.SQLUser = CryptoSecurity.Decoding(sLine)
+
+                    'Configurar Nombre del Usuario de SQL en el modelo
+                    Sadara.Models.V1.Config.SQLUser = CryptoSecurity.Decoding(sLine)
 
 
                     'Leyendo el Password del SGBD
                     sLine = read.ReadLine()
                     If Not sLine Is Nothing Then
-                        Config.SQLPass = CryptoSecurity.Decoding(sLine)
+
+                        'Configurar Contraseña del Usuario de SQL en el modelo
+                        Sadara.Models.V1.Config.SQLPass = CryptoSecurity.Decoding(sLine)
+
                     Else
                         Config.MsgErr("Configurar el archivo de conexión del Servidor SGBD.")
-                        Config.SQLServerName = Nothing
+                        Sadara.Models.V1.Config.SQLServerName = Nothing
                     End If
+
                 Else
-                    Config.SQLUser = ""
-                    Config.SQLPass = ""
+                    Sadara.Models.V1.Config.SQLUser = ""
+                    Sadara.Models.V1.Config.SQLPass = ""
                 End If
+
             Else
                 Config.MsgErr("La configuración del servidor no existe. Deberá configurarlo manualmente.")
             End If
         Catch ex As Exception
             Config.MsgErr(ex.Message)
-            Config.SQLServerName = Nothing
+            Sadara.Models.V1.Config.SQLServerName = Nothing
         End Try
     End Sub
 
@@ -92,13 +104,17 @@ Module Config
     'Public SQLServicesName As String = "MSSQL$SQLEXPRESS" ' Instancia de SQL Server
     Public SQLServicesName As String = "" 'LocalDB
 
+    'IP Config
+    'Public SQLServerName As String = Nothing
+    Public ServerFileName As String = My.Application.Info.DirectoryPath & "\Server.Config.Sif"
+
     'SQL Data
-    Public InitialCatalog As String = "dbFacturacion-12-Noviembre-2016"
-    Public SQLUser As String = "sa"
-    Public SQLPass As String = "admin*123"
+    'Public InitialCatalog As String = "dbFacturacion-12-Noviembre-2016"
+    'Public SQLUser As String = "sa"
+    'Public SQLPass As String = "admin*123"
 
     'SQL Connection
-    Public SQLConecction As String = "Data Source=" + Config.SQLServerName + ";Initial Catalog=dbFacturacion-08-Junio-2016;Integrated Security=True"
+    'Public SQLConecction As String = "Data Source=" + Config.SQLServerName + ";Initial Catalog=dbFacturacion-08-Junio-2016;Integrated Security=True"
     'Public SQLConecction As String = "Data Source=.\UNANFAREMCH;Initial Catalog=dbFacturacion-08-Junio-2016;Integrated Security=True"
     'Public SQLConection As String = "Data Source=.\SIF;Initial Catalog=dbFacturacion-08-Junio-2016;User ID = sa; Password = admin*123;"
     'Public SQLConection As String = "Data Source=.\SQLEXPRESS;Initial Catalog=dbFacturacion-08-Junio-2016; Integrated Security = True;"

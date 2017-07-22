@@ -12,6 +12,7 @@ Namespace Database
     ''' <remarks></remarks>
     Public Class CodeFirst
         Inherits DbContext
+
         Public Sub New()
             MyBase.New("Data Source=" & Config.SQLServerName & ";Initial Catalog=" & Config.InitialCatalog & ";" & If(Config.SQLUser = "" Or Config.SQLPass = "", "Integrated Security=True;", "Integrated Security = False; User ID=" & Config.SQLUser & "; Password=" & Config.SQLPass & ";"))
         End Sub
@@ -367,31 +368,6 @@ Namespace Database
             'DECIMALES EN IVA
             modelBuilder.Entity(Of ImpuestoValorAgregado).Property(Function(f) f.PORCENTAJE).HasPrecision(18, 4)
 
-            ''DECIMALES EN TRABAJADOR
-            'modelBuilder.Entity(Of TRABAJADOR).Property(Function(f) f.SUELDO).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR).Property(Function(f) f.COMISION_POR).HasPrecision(18, 4)
-
-            ''DECIMALES EN PLANILLA
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA).Property(Function(f) f.TOTAL_SUELDO_BASE).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA).Property(Function(f) f.TOTAL_SUELDO_HORA_NORMAL).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA).Property(Function(f) f.TOTAL_SUELDO_HORA_EXTRA).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA).Property(Function(f) f.TOTAL_COMISION).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA).Property(Function(f) f.TOTAL_SALARIO_BRUTO).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA).Property(Function(f) f.TOTAL_DEDUCCION).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA).Property(Function(f) f.TOTAL_SALARIO_NETO).HasPrecision(18, 4)
-
-            ''DECIMALES EN DETALLE PLANILLA
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.SUELDO_BASE).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.HORA_NORMAL).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.HORA_NORMAL_TARIFA).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.HORA_NORMAL_TOTAL).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.HORA_EXTRA).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.HORA_EXTRA_TARIFA).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.HORA_EXTRA_TOTAL).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.COMISION).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.SALARIO_BRUTO).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of TRABAJADOR_PLANILLA_DETALLE).Property(Function(f) f.SALARIO_NETO).HasPrecision(18, 4)
-
             'DECIMALES EN TRASLADO
             modelBuilder.Entity(Of Traslado).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
 
@@ -411,23 +387,6 @@ Namespace Database
             modelBuilder.Entity(Of Venta).Property(Function(f) f.IVA_DIN_D).HasPrecision(18, 4)
             modelBuilder.Entity(Of Venta).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
             modelBuilder.Entity(Of Venta).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
-
-            ''DECIMALES EN CUENTA
-            'modelBuilder.Entity(Of CUENTA).Property(Function(f) f.DEBER_C).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of CUENTA).Property(Function(f) f.DEBER_D).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of CUENTA).Property(Function(f) f.HABER_C).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of CUENTA).Property(Function(f) f.HABER_D).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of CUENTA).Property(Function(f) f.SALDO_C).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of CUENTA).Property(Function(f) f.SALDO_D).HasPrecision(18, 4)
-
-            ''DECIMALES EN POLIZA
-            'modelBuilder.Entity(Of POLIZA).Property(Function(f) f.TOTAL).HasPrecision(18, 4)
-
-            ''DECIMALES EN DETALLE POLIZA
-            'modelBuilder.Entity(Of POLIZA_DETALLE).Property(Function(f) f.DEBER_C).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of POLIZA_DETALLE).Property(Function(f) f.DEBER_D).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of POLIZA_DETALLE).Property(Function(f) f.HABER_C).HasPrecision(18, 4)
-            'modelBuilder.Entity(Of POLIZA_DETALLE).Property(Function(f) f.HABER_D).HasPrecision(18, 4)
 
             MyBase.OnModelCreating(modelBuilder)
         End Sub

@@ -1,4 +1,8 @@
-﻿Public Class frmInformacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmInformacion
 
     Private Sub frmInformacion_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         Me.Dispose()

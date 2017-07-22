@@ -1,4 +1,7 @@
-﻿Public Class frmBuscarConsignacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmBuscarConsignacion
 
     Public idserie As String = ""
 

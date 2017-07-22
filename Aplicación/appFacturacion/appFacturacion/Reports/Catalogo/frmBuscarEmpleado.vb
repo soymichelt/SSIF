@@ -1,4 +1,8 @@
-﻿Public Class frmBuscarEmpleado
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmBuscarEmpleado
     Public frm_return As Integer = 0
     Public LaborPre As Integer = 0
 

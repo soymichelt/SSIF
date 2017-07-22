@@ -1,4 +1,7 @@
-﻿Public Class frmBuscarClientes
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmBuscarClientes
     Public frm_return As Integer = 0
 
     Sub llenar(Optional ByVal nombre As String = "", Optional ByVal codigo As String = "", Optional ByVal RazonSocialP As String = "")

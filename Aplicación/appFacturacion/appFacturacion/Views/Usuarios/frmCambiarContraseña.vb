@@ -1,4 +1,8 @@
-﻿Public Class frmCambiarContraseña
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmCambiarContraseña
 
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
         Try

@@ -1,4 +1,7 @@
-﻿Public Class frmImprimirFactura
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmImprimirFactura
     Public idventa As String
     Sub MostrarInforme()
         Try

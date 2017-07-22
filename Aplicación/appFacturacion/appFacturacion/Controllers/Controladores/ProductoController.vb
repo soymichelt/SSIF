@@ -1,4 +1,8 @@
-﻿Namespace Capadenegocio.Controller
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Namespace Capadenegocio.Controller
     Public Class ProductoController
         Dim db As New CodeFirst
 

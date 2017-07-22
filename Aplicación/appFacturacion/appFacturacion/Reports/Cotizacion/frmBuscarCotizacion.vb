@@ -1,4 +1,8 @@
-﻿Public Class frmBuscarCotizacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmBuscarCotizacion
     Dim item As New ListViewItem
     Public idserie As String = ""
     Public frm_return As Integer = 0
@@ -55,7 +59,7 @@
             MessageBox.Show("Error, " & ex.Message)
         End Try
     End Sub
-    
+
     Private Sub frmBuscarCotizacion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             llenar(DateTime.Now.ToShortDateString() & " 00:00:00", DateTime.Now.ToShortDateString() & " 23:59:59")

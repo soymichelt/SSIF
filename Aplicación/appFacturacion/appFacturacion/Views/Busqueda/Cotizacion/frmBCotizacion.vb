@@ -1,4 +1,7 @@
-﻿Public Class frmBCotizacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmBCotizacion
     Public frm_return As Integer = 0
     Dim LoadForm As Boolean = False
     ' Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "")

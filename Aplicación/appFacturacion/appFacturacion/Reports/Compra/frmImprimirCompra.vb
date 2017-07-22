@@ -1,4 +1,8 @@
-﻿Public Class frmImprimirCompra
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmImprimirCompra
     Public idcompra As String
     Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try

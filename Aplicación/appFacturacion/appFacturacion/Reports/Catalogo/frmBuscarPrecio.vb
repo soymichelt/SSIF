@@ -1,4 +1,7 @@
-﻿Public Class frmBuscarPrecio
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmBuscarPrecio
     Public idproducto As String
     Public taza As Decimal
 
@@ -23,11 +26,11 @@
 
                         Else
                             lvPrecio.Items(0).SubItems.Add(p.COSTO + ((p.COSTO * p.PRECIO1 / 100)).ToString(Config.f_m)) : lvPrecio.Items(0).SubItems.Add((Decimal.Parse(lvPrecio.Items(0).SubItems(1).Text) * Me.taza).ToString(Config.f_m))
-                        lvPrecio.Items(1).SubItems.Add(p.COSTO + ((p.COSTO * p.PRECIO2 / 100)).ToString(Config.f_m)) : lvPrecio.Items(1).SubItems.Add((Decimal.Parse(lvPrecio.Items(1).SubItems(1).Text) * Me.taza).ToString(Config.f_m))
-                        lvPrecio.Items(2).SubItems.Add(p.COSTO + ((p.COSTO * p.PRECIO3 / 100)).ToString(Config.f_m)) : lvPrecio.Items(2).SubItems.Add((Decimal.Parse(lvPrecio.Items(2).SubItems(1).Text) * Me.taza).ToString(Config.f_m))
-                        lvPrecio.Items(3).SubItems.Add(p.COSTO + ((p.COSTO * p.PRECIO4 / 100)).ToString(Config.f_m)) : lvPrecio.Items(3).SubItems.Add((Decimal.Parse(lvPrecio.Items(3).SubItems(1).Text) * Me.taza).ToString(Config.f_m))
-                    End If
-                Else
+                            lvPrecio.Items(1).SubItems.Add(p.COSTO + ((p.COSTO * p.PRECIO2 / 100)).ToString(Config.f_m)) : lvPrecio.Items(1).SubItems.Add((Decimal.Parse(lvPrecio.Items(1).SubItems(1).Text) * Me.taza).ToString(Config.f_m))
+                            lvPrecio.Items(2).SubItems.Add(p.COSTO + ((p.COSTO * p.PRECIO3 / 100)).ToString(Config.f_m)) : lvPrecio.Items(2).SubItems.Add((Decimal.Parse(lvPrecio.Items(2).SubItems(1).Text) * Me.taza).ToString(Config.f_m))
+                            lvPrecio.Items(3).SubItems.Add(p.COSTO + ((p.COSTO * p.PRECIO4 / 100)).ToString(Config.f_m)) : lvPrecio.Items(3).SubItems.Add((Decimal.Parse(lvPrecio.Items(3).SubItems(1).Text) * Me.taza).ToString(Config.f_m))
+                        End If
+                    Else
                         If p.CMONEDA.Equals(Config.cordoba) Then
                             lvPrecio.Items(0).SubItems.Add((p.PRECIO1 / Me.taza).ToString(Config.f_m)) : lvPrecio.Items(0).SubItems.Add((p.PRECIO1).ToString(Config.f_m))
                             lvPrecio.Items(1).SubItems.Add((p.PRECIO2 / Me.taza).ToString(Config.f_m)) : lvPrecio.Items(1).SubItems.Add((p.PRECIO2).ToString(Config.f_m))

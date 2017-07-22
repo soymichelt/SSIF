@@ -1,4 +1,7 @@
-﻿Public Class frmBCompra
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmBCompra
     Public frm_return As Integer = 0
     Dim FormLoad As Boolean = True
 

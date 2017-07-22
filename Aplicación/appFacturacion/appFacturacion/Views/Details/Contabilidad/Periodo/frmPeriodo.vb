@@ -1,4 +1,8 @@
-﻿Public Class frmPeriodo
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmPeriodo
     Dim idperiodo As String = ""
     Sub Limpiar()
         Try

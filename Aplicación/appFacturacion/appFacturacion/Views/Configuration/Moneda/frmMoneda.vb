@@ -1,4 +1,8 @@
-﻿Public Class frmMoneda
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmMoneda
 
     Sub llenar()
         Try
@@ -142,7 +146,7 @@
         End Try
     End Sub
 
-    
+
     Private Sub txtTazadecambio_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTazadecambio.KeyPress
         If e.KeyChar = ChrW(13) Then
             If txtTazadecambio.Text.Trim <> "" Then

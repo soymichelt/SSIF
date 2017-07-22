@@ -1,4 +1,7 @@
-﻿Public Class frmDocumentosPendientes
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmDocumentosPendientes
 
     Public IdCliente As String
     Public Moneda As String

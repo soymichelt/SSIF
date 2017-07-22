@@ -1,4 +1,8 @@
-﻿Public Class frmInformeConsignacionProducto
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmInformeConsignacionProducto
     Sub llenar(ByVal idbodega As String, Optional ByVal idcliente As String = "", Optional ByVal alterno As String = "", Optional ByVal original As String = "", Optional ByVal producto As String = "")
         Try
             Using db As New CodeFirst

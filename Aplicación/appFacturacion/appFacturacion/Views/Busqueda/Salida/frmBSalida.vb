@@ -1,4 +1,8 @@
-﻿Public Class frmBSalida
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmBSalida
     Public frm_return As Integer = 0
     Dim FormLoad As Boolean = False
 

@@ -1,4 +1,8 @@
-﻿Public Class frmBuscarUsuario
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmBuscarUsuario
     Public frm_return As Integer = 0
 
     Sub llenar(Optional ByVal nombre_ As String = "", Optional ByVal nombreusuario As String = "")

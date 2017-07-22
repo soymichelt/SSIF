@@ -1,4 +1,8 @@
-﻿Public Class frmSerie
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmSerie
     Dim FormLoad As Boolean = False
     Sub llenar(Optional ByVal nombre As String = "")
         Try

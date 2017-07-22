@@ -1,4 +1,8 @@
-﻿Public Class frmEstadoResultados
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmEstadoResultados
     Dim ds_estadoderesultado As New List(Of ESTADODERESULTADOS)
     Dim estadoderesultado As New ESTADODERESULTADOS
     Dim band As Boolean = False

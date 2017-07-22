@@ -1,4 +1,8 @@
-﻿Public Class frmControlExistencia
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmControlExistencia
     Public frm_return As Integer = 0
     Dim FormLoad As Boolean = False
     Sub llenar(ByVal idbodega As String, Optional ByVal nombre As String = "", Optional ByVal codigo_original As String = "", Optional ByVal aplicacion As String = "", Optional ByVal codigo_alterno As String = "", Optional ByVal marcas As String = "")

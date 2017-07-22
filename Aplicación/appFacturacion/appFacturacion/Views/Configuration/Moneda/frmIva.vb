@@ -1,4 +1,8 @@
-﻿Public Class frmIva
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmIva
     Sub llenar()
         Try
             lvRegistro.Items.Clear()

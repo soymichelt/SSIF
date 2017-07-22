@@ -1,4 +1,7 @@
-﻿Public Class frmBDevolucionVenta
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmBDevolucionVenta
     Public frm_return As Integer = 0
     Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "")
         Try

@@ -1,6 +1,9 @@
-﻿Namespace Capadenegocio.Controller
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Namespace Capadenegocio.Controller
     Public Class ExistenciaController
-        Dim db As New CodeFirst
+        Dim db As CodeFirst
 
         Public Function BuscarProductoPorId(ByVal Id As String) As Existencia
             db = New CodeFirst()
@@ -13,7 +16,7 @@
         End Function
 
         Public Sub Dispose()
-            db.Dispose()
+
         End Sub
     End Class
 End Namespace

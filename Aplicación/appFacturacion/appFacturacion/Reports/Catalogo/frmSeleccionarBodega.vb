@@ -1,14 +1,17 @@
-﻿Public Class frmSeleccionarBodega
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmSeleccionarBodega
     Public frm_return As Integer = 0
     Sub llenar(Optional ByVal n_bodega As String = "", Optional ByVal nombre As String = "")
         Try
             Using db As New CodeFirst
                 Dim item As New ListViewItem
                 lvRegistro.Items.Clear()
-                For Each bodega In db.Bodegas.Where(Function(f) f.ACTIVO = "S" And f.N_BODEGA.Contains(n_bodega) And f.DESCRIPCION.Contains(nombre)).OrderBy(Function(f) f.N)
-                    item = lvRegistro.Items.Add(bodega.IDBODEGA)
-                    item.SubItems.Add(bodega.N_BODEGA)
-                    item.SubItems.Add(bodega.DESCRIPCION)
+                For Each bod In db.Bodegas.Where(Function(f) f.ACTIVO = "S" And f.N_BODEGA.Contains(n_bodega) And f.DESCRIPCION.Contains(nombre)).OrderBy(Function(f) f.N)
+                    item = lvRegistro.Items.Add(bod.IDBODEGA)
+                    item.SubItems.Add(bod.N_BODEGA)
+                    item.SubItems.Add(bod.DESCRIPCION)
                 Next
                 item = Nothing
                 If lvRegistro.Items.Count > 0 Then

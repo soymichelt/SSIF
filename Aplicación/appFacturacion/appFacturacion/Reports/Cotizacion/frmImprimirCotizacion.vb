@@ -1,4 +1,7 @@
-﻿Public Class frmImprimirCotizacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmImprimirCotizacion
     Public ID As String
     Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try

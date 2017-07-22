@@ -1,3 +1,6 @@
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.vbprojResolveAssemblyReference.cache
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.Resources.resources
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.vbproj.GenerateResource.Cache
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\Sadara.Models.V1.dll.config
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\Sadara.Models.V1.dll
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\Sadara.Models.V1.pdb
@@ -6,9 +9,6 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\EntityFrame
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\EntityFramework.SqlServer.dll
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\EntityFramework.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\EntityFramework.SqlServer.xml
-D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.vbprojResolveAssemblyReference.cache
-D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.Resources.resources
-D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.vbproj.GenerateResource.Cache
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.dll
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.pdb

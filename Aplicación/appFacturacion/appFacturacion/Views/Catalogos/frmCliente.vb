@@ -1,4 +1,8 @@
-﻿Public Class frmCliente
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmCliente
 
     Sub limpiar()
         txtCodigo.Clear()

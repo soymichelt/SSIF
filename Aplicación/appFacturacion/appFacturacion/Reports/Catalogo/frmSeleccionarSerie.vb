@@ -1,4 +1,8 @@
-﻿Public Class frmSeleccionarSerie
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmSeleccionarSerie
     Public operacion As String
     Public serie As Serie
     Sub llenar(Optional ByVal descripcion As String = "")

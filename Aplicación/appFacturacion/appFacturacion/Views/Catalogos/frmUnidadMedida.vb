@@ -1,4 +1,8 @@
-﻿Public Class frmUnidadMedida
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmUnidadMedida
     Sub llenar(Optional ByVal bodega As String = "")
         Try
             Using db As New CodeFirst

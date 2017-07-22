@@ -1,4 +1,7 @@
-﻿Public Class frmInformeDesconsignacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmInformeDesconsignacion
 
     Sub llenar(ByVal fecha1 As DateTime, ByVal fecha2 As DateTime, Optional ByVal bodegap As String = "", Optional ByVal seriep As String = "")
         Try

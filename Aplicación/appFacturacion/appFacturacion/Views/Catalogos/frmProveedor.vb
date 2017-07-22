@@ -1,4 +1,8 @@
-﻿Public Class frmProveedor
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmProveedor
     Sub limpiar()
         txtCodigo.Clear()
         txtCodProveedor.Clear()

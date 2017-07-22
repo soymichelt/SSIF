@@ -1,4 +1,7 @@
-﻿Public Class frmBuscarProveedor
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmBuscarProveedor
     Public frm_return As Integer = 0
     Sub llenar(Optional ByVal nproveedor As String = "", Optional ByVal nombreproveedor As String = "", Optional ByVal RazonSocialP As String = "")
         Try

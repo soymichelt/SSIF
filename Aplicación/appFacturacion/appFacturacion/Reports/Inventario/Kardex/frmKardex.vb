@@ -1,4 +1,7 @@
-﻿Public Class frmKardex
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmKardex
 
     Dim producto As String = ""
     Dim FormLoad As Boolean = False
@@ -275,7 +278,7 @@
     Private Sub btBuscarCliente_Click(sender As Object, e As EventArgs) Handles btBuscarCliente.Click
         frmBuscarProductos.frm_return = 6
         frmBuscarProductos.ShowDialog()
-        txtIdAlterno.focus()
+        txtIdAlterno.Focus()
     End Sub
 
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
@@ -301,7 +304,7 @@
     End Sub
 
     Private Sub cmbBodega_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBodega.SelectedIndexChanged
-        If Me.formload Then
+        If Me.FormLoad Then
             cmbBodega_TextChanged(Nothing, Nothing)
         End If
     End Sub

@@ -1,4 +1,8 @@
-﻿Public Class frmInformeDevolucionesVentas
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmInformeDevolucionesVentas
 
     Dim FormLoad As Boolean
 

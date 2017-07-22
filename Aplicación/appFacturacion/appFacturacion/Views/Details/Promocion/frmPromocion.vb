@@ -1,4 +1,8 @@
-﻿Public Class frmPromocion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+'Imports System.Data.Entity
+
+Public Class frmPromocion
 
 
     Dim bandDescFact As Boolean = False
@@ -31,7 +35,7 @@
             dtpInicio.Value = DateTime.Now
             dtpFinal.Value = DateTime.Now
 
-            
+
             btGuardar.Enabled = True : btAnular.Enabled = False : btImprimir.Enabled = False
 
             txtDescripcion.Focus()
@@ -82,7 +86,7 @@
         If Config.ValidarPeriodo(dtpInicio.Value) Or Config.ValidarPeriodo(dtpFinal.Value) Then
             Try
                 If txtDescripcion.Text <> "" And dtpInicio.Value > dtpFinal.Value And Not dtRegistro.Rows.Count = 0 Then
-                    
+
                 Else
                     MessageBox.Show("Error, Faltan datos.")
                 End If
@@ -100,7 +104,7 @@
         Try
             If MessageBox.Show("¿Desea anular esta Factura?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                 If Not Me.Id.Trim() = "" Then
-                    
+
                 Else
                     MessageBox.Show("Error, Seleccione una factura")
                 End If
@@ -129,7 +133,7 @@
                     End If
             End Select
         End If
-        
+
         Select Case e.KeyData
             Case Keys.F1
                 txtCodigoAlterno.Focus()
@@ -148,7 +152,7 @@
 
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
         Try
-            
+
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
         End Try
@@ -198,10 +202,10 @@
         End If
     End Sub
 
-    
+
     Private Sub frmVenta_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         'Me.Dispose()
     End Sub
 
-    
+
 End Class

@@ -1,4 +1,7 @@
-﻿Imports System.Data.SqlClient
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Imports System.Data.SqlClient
 Public Class frmProductosVendidos
 
     Dim FormLoad As Boolean = False

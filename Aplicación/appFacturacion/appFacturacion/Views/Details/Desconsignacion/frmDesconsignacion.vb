@@ -1,4 +1,8 @@
-﻿Public Class frmDesconsignacion
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmDesconsignacion
     'consignacion seleccionada
     Public iddesconsignacion As String = ""
 

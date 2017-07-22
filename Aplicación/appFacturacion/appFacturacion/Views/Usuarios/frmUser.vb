@@ -1,4 +1,8 @@
-﻿Public Class frmUser
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+Imports System.Data.Entity
+
+Public Class frmUser
     Public ID As String
     Sub Limpiar()
         txtNombres.Clear()

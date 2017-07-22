@@ -1,4 +1,7 @@
-﻿Public Class frmEstadoCuenta
+﻿Imports Sadara.Models.V1.Database
+Imports Sadara.Models.V1.POCO
+
+Public Class frmEstadoCuenta
     Dim saldo, disponible, vencido As Decimal
     Sub MostrarEstadoCuenta(ByVal fechacorte As DateTime)
         Try
