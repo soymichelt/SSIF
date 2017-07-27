@@ -1,0 +1,10 @@
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\bin\Debug\Sadara.Views.WinFormApp.V2.exe.config
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\bin\Debug\Sadara.Views.WinFormApp.V2.exe
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\bin\Debug\Sadara.Views.WinFormApp.V2.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\obj\Debug\Sadara.Views.WinFormApp.V2.csprojResolveAssemblyReference.cache
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\obj\Debug\Sadara.Views.WinFormApp.V2.Properties.Resources.resources
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\obj\Debug\Sadara.Views.WinFormApp.V2.csproj.GenerateResource.Cache
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\obj\Debug\Sadara.Views.WinFormApp.V2.exe.licenses
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\obj\Debug\Sadara.Views.WinFormApp.V2.exe
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\obj\Debug\Sadara.Views.WinFormApp.V2.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Views.WinFormApp.V2\obj\Debug\Sadara.Views.WinFormApp.V2.Views.MainMenu.MainForm.resources
