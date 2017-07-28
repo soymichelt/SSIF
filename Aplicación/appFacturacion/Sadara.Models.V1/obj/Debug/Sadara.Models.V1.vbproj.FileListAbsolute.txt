@@ -12,3 +12,5 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\EntityFrame
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.dll
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\obj\Debug\Sadara.Models.V1.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\Sadara.Models.V2.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V1\bin\Debug\Sadara.Models.V2.pdb

@@ -28,10 +28,10 @@ namespace Sadara.Models.V2.POCO
 
     }
 
-    public class RolEntityMapping : EntityTypeConfiguration<RoleEntity>
+    public class RoleEntityMapping : EntityTypeConfiguration<RoleEntity>
     {
 
-        public RolEntityMapping()
+        public RoleEntityMapping()
         {
 
             this.ToTable("tblRoles");

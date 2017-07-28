@@ -1,0 +1,9 @@
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\Sadara.Models.V2.dll.config
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\Sadara.Models.V2.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\Sadara.Models.V2.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.xml
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.pdb

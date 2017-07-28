@@ -2,6 +2,7 @@
 Imports System.Data.Entity
 
 Imports Sadara.Models.V1.POCO
+Imports Sadara.Models.V2.POCO
 
 
 Namespace Database
@@ -388,8 +389,30 @@ Namespace Database
             modelBuilder.Entity(Of Venta).Property(Function(f) f.TOTAL_C).HasPrecision(18, 4)
             modelBuilder.Entity(Of Venta).Property(Function(f) f.TOTAL_D).HasPrecision(18, 4)
 
+            'Añadiendo configuración de entidades temporales del Models.V2
+            modelBuilder.Configurations.Add(New AccessEntityMapping())
+            modelBuilder.Configurations.Add(New AccessInRoleEntityMapping())
+            modelBuilder.Configurations.Add(New GroupAccountEntityMapping())
+            modelBuilder.Configurations.Add(New KeyAccountEntityMapping())
+            modelBuilder.Configurations.Add(New PasswordEntityMapping())
+            modelBuilder.Configurations.Add(New RoleEntityMapping())
+            modelBuilder.Configurations.Add(New UserAccountEntityMapping())
+            modelBuilder.Configurations.Add(New UserInGroupEntityMapping())
+
             MyBase.OnModelCreating(modelBuilder)
         End Sub
+
+        'Importación temporal de entidades del Models.V2
+        Public Property Access() As DbSet(Of AccessEntity)
+        Public Property AccessInRoles() As DbSet(Of AccessInRoleEntity)
+        Public Property GroupsAccounts() As DbSet(Of GroupAccountEntity)
+        Public Property KeysAccounts() As DbSet(Of KeyAccountEntity)
+        Public Property Passwords() As DbSet(Of PasswordEntity)
+        Public Property Roles() As DbSet(Of RoleEntity)
+        Public Property UsersAccounts() As DbSet(Of UserAccountEntity)
+        Public Property UsersInGroups() As DbSet(Of UserInGroupEntity)
+
     End Class
+
 
 End Namespace

@@ -5,13 +5,15 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sadara.Views.WinFormApp.V1"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. FrontEnd", "1. FrontEnd", "{2B0D377F-0F8D-4CB2-A027-54F838EE874F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Data", "3. Data", "{EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Persistencia e Infraestructura de Datos", "3. Persistencia e Infraestructura de Datos", "{EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Business", "2. Business", "{10C70BC1-9C78-46D9-AB13-1F088A1C58BD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Reglas de Negocio", "2. Reglas de Negocio", "{10C70BC1-9C78-46D9-AB13-1F088A1C58BD}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sadara.Models.V1", "Sadara.Models.V1\Sadara.Models.V1.vbproj", "{1AD1E661-2B9B-47E8-A38B-CA469E0FCA43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sadara.Views.WinFormApp.V2", "Sadara.Views.WinFormApp.V2\Sadara.Views.WinFormApp.V2.csproj", "{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sadara.Models.V2", "Sadara.Models.V2\Sadara.Models.V2.csproj", "{B9E8949F-00BC-4F35-995D-3A15DDF4D660}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,31 @@ Global
 		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.Release|x86.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.SingleImage|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,5 +142,6 @@ Global
 		{2051D340-13DD-442E-8815-CF14A0170A0B} = {2B0D377F-0F8D-4CB2-A027-54F838EE874F}
 		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B} = {2B0D377F-0F8D-4CB2-A027-54F838EE874F}
 		{1AD1E661-2B9B-47E8-A38B-CA469E0FCA43} = {EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}
+		{B9E8949F-00BC-4F35-995D-3A15DDF4D660} = {EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}
 	EndGlobalSection
 EndGlobal

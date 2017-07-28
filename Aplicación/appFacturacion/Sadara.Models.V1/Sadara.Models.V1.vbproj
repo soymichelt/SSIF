@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Config.vb" />
     <Compile Include="Database\ModelDb.vb" />
+    <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="POCO\Bodega.vb" />
     <Compile Include="POCO\Cliente.vb" />
     <Compile Include="POCO\Compra.vb" />
@@ -157,6 +158,12 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sadara.Models.V2\Sadara.Models.V2.csproj">
+      <Project>{b9e8949f-00bc-4f35-995d-3a15ddf4d660}</Project>
+      <Name>Sadara.Models.V2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
