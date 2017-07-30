@@ -52,6 +52,8 @@
     <Compile Include="POCO\KeyAccountEntity.cs" />
     <Compile Include="POCO\PasswordEntity.cs" />
     <Compile Include="POCO\RoleEntity.cs" />
+    <Compile Include="POCO\TransactionEntity.cs" />
+    <Compile Include="POCO\TransactionLogEntity.cs" />
     <Compile Include="POCO\UserAccountEntity.cs" />
     <Compile Include="POCO\UserInGroupEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -400,6 +400,7 @@ Namespace Database
             modelBuilder.Configurations.Add(New UserInGroupEntityMapping())
 
             MyBase.OnModelCreating(modelBuilder)
+
         End Sub
 
         'Importación temporal de entidades del Models.V2
@@ -413,6 +414,5 @@ Namespace Database
         Public Property UsersInGroups() As DbSet(Of UserInGroupEntity)
 
     End Class
-
 
 End Namespace

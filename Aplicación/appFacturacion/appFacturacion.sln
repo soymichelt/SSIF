@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sadara.Views.WinFormApp.V1", "appFacturacion\Sadara.Views.WinFormApp.V1.vbproj", "{2051D340-13DD-442E-8815-CF14A0170A0B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. FrontEnd", "1. FrontEnd", "{2B0D377F-0F8D-4CB2-A027-54F838EE874F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. FrontEnd - Clientes", "1. FrontEnd - Clientes", "{2B0D377F-0F8D-4CB2-A027-54F838EE874F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Persistencia e Infraestructura de Datos", "3. Persistencia e Infraestructura de Datos", "{EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}"
 EndProject
