@@ -60,13 +60,10 @@ Public Class frmBodega
 
                         Dim bodega As New Bodega : bodega.Reg = DateTime.Now : bodega.IDBODEGA = Guid.NewGuid.ToString() : bodega.N_BODEGA = txtCodBodega.Text : bodega.DESCRIPCION = txtNombre.Text : bodega.ACTIVO = "S"
 
+                        'agregar bodega
                         db.Bodegas.Add(bodega)
 
-                        'For Each producto In db.Productos
-                        '    Dim existencia As New Existencia : existencia.IDEXISTENCIA = Guid.NewGuid.ToString() : existencia.CANTIDAD = 0 : existencia.CONSIGNADO = 0 : existencia.IDBODEGA = bodega.IDBODEGA : existencia.IDPRODUCTO = producto.IDPRODUCTO
-                        '    db.Existencias.Add(existencia)
-                        'Next
-
+                        'guardar cambios
                         db.SaveChanges()
 
                         'Crear existencias
