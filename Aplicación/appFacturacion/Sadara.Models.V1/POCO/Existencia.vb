@@ -1,6 +1,8 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 
+Imports System.Data.Entity.ModelConfiguration
+
 Namespace POCO
 
     ''' <summary>
@@ -54,6 +56,17 @@ Namespace POCO
 
         'Promociones
         Public Overridable Property PromocionesExistencias As ICollection(Of PromocionExistencia)
+
+    End Class
+
+    Public Class ExistenciaMapping
+        Inherits EntityTypeConfiguration(Of Existencia)
+
+        Public Sub New()
+
+            Me.Property(Function(f) f.N).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+
+        End Sub
 
     End Class
 

@@ -9,7 +9,7 @@ Namespace Migrations
         Inherits DbMigrationsConfiguration(Of Database.CodeFirst)
 
         Public Sub New()
-            AutomaticMigrationsEnabled = False
+            AutomaticMigrationsEnabled = True
         End Sub
 
         Protected Overrides Sub Seed(context As Database.CodeFirst)

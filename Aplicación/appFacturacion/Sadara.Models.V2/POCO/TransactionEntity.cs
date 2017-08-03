@@ -38,10 +38,10 @@ namespace Sadara.Models.V2.POCO
 
     }
 
-    public class TransactionEntity : EntityTypeConfiguration<TransactionEntity>
+    public class TransactionEntityMapping : EntityTypeConfiguration<TransactionEntity>
     {
 
-        public TransactionEntity()
+        public TransactionEntityMapping()
         {
 
             this.ToTable("tblTransactions");

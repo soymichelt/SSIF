@@ -7,3 +7,4 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFrame
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.SqlServer.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.dll
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.csprojResolveAssemblyReference.cache
