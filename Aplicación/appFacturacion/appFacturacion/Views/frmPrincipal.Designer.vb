@@ -298,10 +298,10 @@ Partial Class frmPrincipal
         Me.rcCintaMenu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.rcCintaMenu.CanCustomize = False
         Me.rcCintaMenu.CaptionVisible = True
-        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel7)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel1)
-        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel8)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel4)
+        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel7)
+        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel8)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel3)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel2)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel6)
@@ -364,6 +364,7 @@ Partial Class frmPrincipal
         Me.RibbonPanel7.StyleMouseOver.Class = ""
         Me.RibbonPanel7.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonPanel7.TabIndex = 7
+        Me.RibbonPanel7.Visible = False
         '
         'RibbonBar7
         '
@@ -416,6 +417,7 @@ Partial Class frmPrincipal
         Me.btGraficosVenta.Name = "btGraficosVenta"
         Me.btGraficosVenta.SubItemsExpandWidth = 14
         Me.btGraficosVenta.Text = "Gráficos de Ventas"
+        Me.btGraficosVenta.Visible = False
         '
         'RibbonBar16
         '
@@ -581,10 +583,10 @@ Partial Class frmPrincipal
         Me.RibbonPanel1.Controls.Add(Me.RibbonBar2)
         Me.RibbonPanel1.Controls.Add(Me.RibbonBar1)
         Me.RibbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RibbonPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.RibbonPanel1.Location = New System.Drawing.Point(0, 53)
         Me.RibbonPanel1.Name = "RibbonPanel1"
         Me.RibbonPanel1.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel1.Size = New System.Drawing.Size(1026, 168)
+        Me.RibbonPanel1.Size = New System.Drawing.Size(1026, 115)
         '
         '
         '
@@ -601,7 +603,6 @@ Partial Class frmPrincipal
         Me.RibbonPanel1.StyleMouseOver.Class = ""
         Me.RibbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonPanel1.TabIndex = 1
-        Me.RibbonPanel1.Visible = False
         '
         'RibbonBar20
         '
@@ -621,7 +622,7 @@ Partial Class frmPrincipal
         Me.RibbonBar20.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btPaises, Me.btBusquedaPais, Me.btCiudades, Me.btBusquedaCiudades})
         Me.RibbonBar20.Location = New System.Drawing.Point(775, 0)
         Me.RibbonBar20.Name = "RibbonBar20"
-        Me.RibbonBar20.Size = New System.Drawing.Size(216, 165)
+        Me.RibbonBar20.Size = New System.Drawing.Size(216, 112)
         Me.RibbonBar20.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.RibbonBar20.TabIndex = 4
         Me.RibbonBar20.Text = "Ubicación Geográfica"
@@ -692,7 +693,7 @@ Partial Class frmPrincipal
         Me.RibbonBar6.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btIva, Me.btTaza})
         Me.RibbonBar6.Location = New System.Drawing.Point(648, 0)
         Me.RibbonBar6.Name = "RibbonBar6"
-        Me.RibbonBar6.Size = New System.Drawing.Size(127, 165)
+        Me.RibbonBar6.Size = New System.Drawing.Size(127, 112)
         Me.RibbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.RibbonBar6.TabIndex = 3
         Me.RibbonBar6.Text = "Moneda"
@@ -745,7 +746,7 @@ Partial Class frmPrincipal
         Me.RibbonBar2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btMarcas, Me.btUnidadMedida, Me.btPresentacion, Me.btLaboratorio, Me.btProductos, Me.btBusquedaProductos})
         Me.RibbonBar2.Location = New System.Drawing.Point(209, 0)
         Me.RibbonBar2.Name = "RibbonBar2"
-        Me.RibbonBar2.Size = New System.Drawing.Size(439, 165)
+        Me.RibbonBar2.Size = New System.Drawing.Size(439, 112)
         Me.RibbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.RibbonBar2.TabIndex = 1
         Me.RibbonBar2.Text = "Gestión de Productos"
@@ -839,7 +840,7 @@ Partial Class frmPrincipal
         Me.RibbonBar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btEmpresa, Me.btBodega, Me.btSerie})
         Me.RibbonBar1.Location = New System.Drawing.Point(3, 0)
         Me.RibbonBar1.Name = "RibbonBar1"
-        Me.RibbonBar1.Size = New System.Drawing.Size(206, 165)
+        Me.RibbonBar1.Size = New System.Drawing.Size(206, 112)
         Me.RibbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.RibbonBar1.TabIndex = 0
         Me.RibbonBar1.Text = "Administración"
@@ -1368,6 +1369,7 @@ Partial Class frmPrincipal
         Me.btEstadoResultados.Name = "btEstadoResultados"
         Me.btEstadoResultados.SubItemsExpandWidth = 14
         Me.btEstadoResultados.Text = "Estado de Resultados"
+        Me.btEstadoResultados.Visible = False
         '
         'btPeriodoContable
         '
@@ -2388,6 +2390,7 @@ Partial Class frmPrincipal
         'mnuCatalogos
         '
         Me.mnuCatalogos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.mnuCatalogos.Checked = True
         Me.mnuCatalogos.Name = "mnuCatalogos"
         Me.mnuCatalogos.Panel = Me.RibbonPanel1
         Me.mnuCatalogos.Text = "&EMPRESA"
@@ -2400,7 +2403,6 @@ Partial Class frmPrincipal
         '
         'RibbonTabItem6
         '
-        Me.RibbonTabItem6.Checked = True
         Me.RibbonTabItem6.Name = "RibbonTabItem6"
         Me.RibbonTabItem6.Panel = Me.RibbonPanel7
         Me.RibbonTabItem6.Text = "VENTAS"

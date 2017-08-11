@@ -128,3 +128,5 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.exe
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.xml
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V2.dll
+D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V2.pdb

@@ -945,6 +945,19 @@ Public Class frmNotaDevolucion
 
     Private Sub btAnular_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btAnular.Click
         Try
+
+            'restricción, solo el admin puede anular documentos
+            If Not Config.Usuario.Administrador Then 'se evalua si not tiene permiso de administrador
+
+                'mensaje que no puede anular
+                Config.MsgErr("Solo el administrador tiene permiso para anular un documento.")
+
+                'si no tiene permiso debe salir
+                Exit Sub
+
+            End If
+            'fin
+
             If MessageBox.Show("¿Desea anular esta devolución?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                 If Not Me.Id.Trim() = "" Then
                     Using db As New CodeFirst
