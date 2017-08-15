@@ -12,7 +12,7 @@
   <xs:element name="dtVenta" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dtVenta" msprop:Generator_UserDSName="dtVenta">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Venta" msprop:Generator_TableClassName="VentaDataTable" msprop:Generator_TableVarName="tableVenta" msprop:Generator_TablePropName="Venta" msprop:Generator_RowDeletingName="VentaRowDeleting" msprop:Generator_RowChangingName="VentaRowChanging" msprop:Generator_RowEvHandlerName="VentaRowChangeEventHandler" msprop:Generator_RowDeletedName="VentaRowDeleted" msprop:Generator_UserTableName="Venta" msprop:Generator_RowChangedName="VentaRowChanged" msprop:Generator_RowEvArgName="VentaRowChangeEvent" msprop:Generator_RowClassName="VentaRow">
+        <xs:element name="Venta" msprop:Generator_TableClassName="VentaDataTable" msprop:Generator_TableVarName="tableVenta" msprop:Generator_RowChangedName="VentaRowChanged" msprop:Generator_TablePropName="Venta" msprop:Generator_RowDeletingName="VentaRowDeleting" msprop:Generator_RowChangingName="VentaRowChanging" msprop:Generator_RowEvHandlerName="VentaRowChangeEventHandler" msprop:Generator_RowDeletedName="VentaRowDeleted" msprop:Generator_RowClassName="VentaRow" msprop:Generator_UserTableName="Venta" msprop:Generator_RowEvArgName="VentaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="VentaId" msprop:Generator_ColumnVarNameInTable="columnVentaId" msprop:Generator_ColumnPropNameInRow="VentaId" msprop:Generator_ColumnPropNameInTable="VentaIdColumn" msprop:Generator_UserColumnName="VentaId" type="xs:string" />
@@ -35,7 +35,6 @@
               <xs:element name="DescuentoTotal" msprop:Generator_ColumnVarNameInTable="columnDescuentoTotal" msprop:Generator_ColumnPropNameInRow="DescuentoTotal" msprop:Generator_ColumnPropNameInTable="DescuentoTotalColumn" msprop:Generator_UserColumnName="DescuentoTotal" type="xs:decimal" minOccurs="0" />
               <xs:element name="IVA" msprop:Generator_ColumnVarNameInTable="columnIVA" msprop:Generator_ColumnPropNameInRow="IVA" msprop:Generator_ColumnPropNameInTable="IVAColumn" msprop:Generator_UserColumnName="IVA" type="xs:decimal" minOccurs="0" />
               <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
-              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

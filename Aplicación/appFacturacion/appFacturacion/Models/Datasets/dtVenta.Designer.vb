@@ -323,8 +323,6 @@ Partial Public Class dtVenta
 
         Private columnTotal As Global.System.Data.DataColumn
 
-        Private columnDataColumn1 As Global.System.Data.DataColumn
-
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
@@ -521,14 +519,6 @@ Partial Public Class dtVenta
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public ReadOnly Property DataColumn1Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDataColumn1
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
@@ -585,10 +575,9 @@ Partial Public Class dtVenta
                     ByVal DescuentoPorcentaje As Decimal, _
                     ByVal DescuentoTotal As Decimal, _
                     ByVal IVA As Decimal, _
-                    ByVal Total As Decimal, _
-                    ByVal DataColumn1 As String) As VentaRow
+                    ByVal Total As Decimal) As VentaRow
             Dim rowVentaRow As VentaRow = CType(Me.NewRow, VentaRow)
-            Dim columnValuesArray() As Object = New Object() {VentaId, Dia, Mes, Año, Vendedor, Contado, Credito, Cliente, Direccion, Codigo, UnidadMedida, Cantidad, Descripcion, PrecioUnitario, PrecioTotal, SubTotal, DescuentoPorcentaje, DescuentoTotal, IVA, Total, DataColumn1}
+            Dim columnValuesArray() As Object = New Object() {VentaId, Dia, Mes, Año, Vendedor, Contado, Credito, Cliente, Direccion, Codigo, UnidadMedida, Cantidad, Descripcion, PrecioUnitario, PrecioTotal, SubTotal, DescuentoPorcentaje, DescuentoTotal, IVA, Total}
             rowVentaRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowVentaRow)
             Return rowVentaRow
@@ -637,7 +626,6 @@ Partial Public Class dtVenta
             Me.columnDescuentoTotal = MyBase.Columns("DescuentoTotal")
             Me.columnIVA = MyBase.Columns("IVA")
             Me.columnTotal = MyBase.Columns("Total")
-            Me.columnDataColumn1 = MyBase.Columns("DataColumn1")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -683,8 +671,6 @@ Partial Public Class dtVenta
             MyBase.Columns.Add(Me.columnIVA)
             Me.columnTotal = New Global.System.Data.DataColumn("Total", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotal)
-            Me.columnDataColumn1 = New Global.System.Data.DataColumn("DataColumn1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDataColumn1)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnVentaId}, True))
             Me.columnVentaId.AllowDBNull = False
             Me.columnVentaId.Unique = True
@@ -1130,21 +1116,6 @@ Partial Public Class dtVenta
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Property DataColumn1() As String
-            Get
-                Try
-                    Return CType(Me(Me.tableVenta.DataColumn1Column), String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'DataColumn1' de la tabla 'Venta' es DBNull.", e)
-                End Try
-            End Get
-            Set(value As String)
-                Me(Me.tableVenta.DataColumn1Column) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsDiaNull() As Boolean
             Return Me.IsNull(Me.tableVenta.DiaColumn)
         End Function
@@ -1369,18 +1340,6 @@ Partial Public Class dtVenta
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetTotalNull()
             Me(Me.tableVenta.TotalColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsDataColumn1Null() As Boolean
-            Return Me.IsNull(Me.tableVenta.DataColumn1Column)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetDataColumn1Null()
-            Me(Me.tableVenta.DataColumn1Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     
