@@ -1222,7 +1222,7 @@ Public Class frmVenta
                             Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not cliente Is Nothing Then
                                 txtIdCliente.Text = cliente.IDCLIENTE
-                                txtNombreCliente.Text = If(cliente.TIPOPERSONA = "Natural", cliente.N_CLIENTE & " " & cliente.NOMBRES & " " & cliente.APELLIDOS & If(cliente.RAZONSOCIAL.Trim() <> "", " // " & cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL, ""), cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL)
+                                txtNombreCliente.Text = If(cliente.TIPOPERSONA = "Natural" Or cliente.RAZONSOCIAL.Trim() = "", cliente.N_CLIENTE & " " & cliente.NOMBRES & " " & cliente.APELLIDOS, cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL)
                                 txtNCliente.Clear()
                                 txtCodigoAlterno.Focus()
                             Else
@@ -1358,7 +1358,7 @@ Public Class frmVenta
                                 t.AnadirLineaSubcabeza(t.AlinearElementos("N° FACT: " & v.CONSECUTIVO, v.Serie.NOMBRE))
                                 t.AnadirLineaSubcabeza("FECHA:   " & v.FECHAFACTURA.ToShortDateString())
                                 t.AnadirLineaSubcabeza("CÓDIGO:  " & If(v.Cliente IsNot Nothing, v.Cliente.N_CLIENTE, ""))
-                                t.AnadirLineaSubcabeza("CLIENTE: " & If(v.Cliente IsNot Nothing, If(v.Cliente.TIPOPERSONA = "Natural", v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS & If(v.Cliente.RAZONSOCIAL.Trim() <> "", " // " & v.Cliente.RAZONSOCIAL, ""), v.Cliente.N_CLIENTE & " " & v.Cliente.RAZONSOCIAL), v.CLIENTECONTADO))
+                                t.AnadirLineaSubcabeza("CLIENTE: " & If(v.Cliente IsNot Nothing, If(v.Cliente.TIPOPERSONA = "Natural" Or String.IsNullOrWhiteSpace(v.Cliente.RAZONSOCIAL), v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS, v.Cliente.N_CLIENTE & " " & v.Cliente.RAZONSOCIAL), v.CLIENTECONTADO))
                                 't.AnadirLineaSubcabeza("R. SOC.: " & If(v.CLIENTE IsNot Nothing, v.CLIENTE.RAZONSOCIAL, ""))
                                 t.AnadirLineaSubcabeza("ATENDIÓ: " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS)
                                 t.AnadirEspacio()
@@ -1406,8 +1406,9 @@ Public Class frmVenta
                                 MessageBox.Show("No se encuentra la impresora '" & Config.PrintName & "'")
                             End If
                         Else
-                            frmImprimirVenta.idventa = Me.Id
-                            frmImprimirVenta.ShowDialog()
+
+                            frmImprimirVentaFormatoCarta.idventa = Me.Id
+                            frmImprimirVentaFormatoCarta.ShowDialog()
                         End If
                     Else
                         MessageBox.Show("Esta 'Venta' esta anulado")

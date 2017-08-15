@@ -92,11 +92,11 @@ Public Class frmBuscarClientes
                             Case 1
                                 frmVenta.rdContado.Checked = True
                                 frmVenta.txtIdCliente.Text = c.IDCLIENTE
-                                frmVenta.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim() <> "", " // " & c.RAZONSOCIAL, ""), c.N_CLIENTE & " " & c.RAZONSOCIAL)
+                                frmVenta.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
                             Case 2
                                 frmCotizacion.rdContado.Checked = True
                                 frmCotizacion.txtIdCliente.Text = c.IDCLIENTE
-                                frmCotizacion.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim() <> "", " // " & c.RAZONSOCIAL, ""), c.N_CLIENTE & " " & c.RAZONSOCIAL)
+                                frmCotizacion.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
                             Case 3
 
                             Case 4
@@ -121,20 +121,20 @@ Public Class frmBuscarClientes
                                 End If
                             Case 8
                                 frmConsignacion.txtIdCliente.Text = c.IDCLIENTE
-                                frmConsignacion.txtNombreCliente.Text = c.N_CLIENTE & " - " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim <> "", " // " & c.RAZONSOCIAL, "")
+                                frmConsignacion.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
                             Case 9
                                 frmDesconsignacion.txtIdCliente.Text = c.IDCLIENTE
-                                frmDesconsignacion.txtNombreCliente.Text = c.N_CLIENTE & " - " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim <> "", " // " & c.RAZONSOCIAL, "")
+                                frmDesconsignacion.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
                             Case 10
                                 frmNotaDevolucion.txtIdCliente.Text = c.IDCLIENTE
-                                frmNotaDevolucion.txtNombreCliente.Text = c.N_CLIENTE & " - " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim <> "", " // " & c.RAZONSOCIAL, "")
+                                frmNotaDevolucion.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
                             Case 11
                                 frmEstadoCuenta.txtIdCliente.Text = c.IDCLIENTE
-                                frmEstadoCuenta.txtNombreCliente.Text = c.N_CLIENTE & " - " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim <> "", " // " & c.RAZONSOCIAL, "")
-                                frmEstadoCuenta.txtRazonSocial.Text = dtRegistro.SelectedRows(0).Cells(5).Value.ToString
+                                frmEstadoCuenta.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
+                                frmEstadoCuenta.txtRazonSocial.Text = c.RAZONSOCIAL
                             Case 12
                                 frmInformeConsignacionProducto.txtIdCliente.Text = c.IDCLIENTE
-                                frmInformeConsignacionProducto.txtNombreCliente.Text = c.N_CLIENTE & " | " & c.NOMBRES & " " & c.APELLIDOS
+                                frmInformeConsignacionProducto.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
                                 frmInformeConsignacionProducto.txtRazonSocial.Text = c.RAZONSOCIAL
                             Case 13
                                 frmInformeVentaDetalle.txtNCliente.Text = c.N_CLIENTE
@@ -142,7 +142,7 @@ Public Class frmBuscarClientes
                                 'frmInformeFacturas.txtNCliente.Text = dtRegistro.SelectedRows(0).Cells(1).Value.ToString
                             Case 15
                                 frmReciboVenta.txtIdCliente.Text = c.IDCLIENTE
-                                frmReciboVenta.txtNombreCliente.Text = c.N_CLIENTE & " | " & c.NOMBRES & " " & c.APELLIDOS & If(c.RAZONSOCIAL.Trim <> "", " // " & c.RAZONSOCIAL, "")
+                                frmReciboVenta.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
                             Case 16
                                 frmCliente.txtCodigo.Text = c.IDCLIENTE
                                 frmCliente.txtCodCliente.Text = c.N_CLIENTE

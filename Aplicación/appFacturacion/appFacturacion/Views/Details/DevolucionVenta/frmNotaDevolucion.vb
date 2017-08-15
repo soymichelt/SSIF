@@ -835,10 +835,20 @@ Public Class frmNotaDevolucion
             txtCodigo.Enabled = False
             dtpFecha.Text = v.FECHADEVOLUCION.ToShortDateString()
             txtIdVendedor.Text = v.Empleado.IDEMPLEADO
-            txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " | " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
+            txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
             If Not v.IDCLIENTE Is Nothing Then
                 txtIdCliente.Text = v.Cliente.IDCLIENTE
-                txtNombreCliente.Text = v.Cliente.N_CLIENTE & " | " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS
+
+                If v.Cliente.TIPOPERSONA = "Natural" Or v.Cliente.RAZONSOCIAL.Trim() = "" Then
+
+                    txtNombreCliente.Text = v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS
+
+                Else
+
+                    txtNombreCliente.Text = v.Cliente.RAZONSOCIAL
+
+                End If
+
             Else
                 txtNombreCliente.Text = v.CLIENTECONTADO
             End If
@@ -888,17 +898,6 @@ Public Class frmNotaDevolucion
             Next
             Grid()
             lblContador.Text = "N° ITEM: " & dtRegistro.Rows.Count
-            'If v.MONEDA = "C" Then
-            '    txtTotalDescuento.Value = v.DESCUENTO_DIN_C
-            '    txtTotalSubtotal.Value = v.SUBTOTAL_C
-            '    txtTotalIva.Value = v.IVA_DIN_C
-            '    txtTotal.Value = v.TOTAL_C
-            'Else
-            '    txtTotalDescuento.Value = v.DESCUENTO_DIN_D
-            '    txtTotalSubtotal.Value = v.SUBTOTAL_D
-            '    txtTotalIva.Value = v.IVA_DIN_D
-            '    txtTotal.Value = v.TOTAL_D
-            'End If
             If Config._Periodo.ACTUAL.Equals(Config.vTrue) And Config._Periodo.APERTURA IsNot Nothing And Config._Periodo.CIERRE Is Nothing Then
                 btAnular.Enabled = True
             End If
@@ -1111,10 +1110,15 @@ Public Class frmNotaDevolucion
                         If Not txtNCliente.Text.Trim() = "" Then
                             Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not cliente Is Nothing Then
+
                                 txtIdCliente.Text = cliente.IDCLIENTE
-                                txtNombreCliente.Text = cliente.N_CLIENTE & " | " & cliente.NOMBRES & " " & cliente.APELLIDOS
+
+                                txtNombreCliente.Text = If(cliente.TIPOPERSONA = "Natural" Or cliente.RAZONSOCIAL.Trim() = "", cliente.N_CLIENTE & " " & cliente.NOMBRES & " " & cliente.APELLIDOS, cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL)
+
                                 txtNCliente.Clear()
+
                                 txtObservacion.Focus()
+
                             Else
                                 If MessageBox.Show("Cliente no registrado. ¿Desea realizar devolución con este nombre?", "Pregunta de seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
                                     txtIdCliente.Clear()

@@ -6,7 +6,23 @@ appFacturacion
 </name>
 </assembly>
 <members>
-<member name="T:appFacturacion.dtDatos.INFORMEVENTADataTable">
+<member name="T:appFacturacion.dtVenta.VentaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtVenta.VentaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtVenta.VentaRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtVenta">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEVENTADataTable">
 	<summary>
 Represents the strongly named DataTable class.
 </summary>

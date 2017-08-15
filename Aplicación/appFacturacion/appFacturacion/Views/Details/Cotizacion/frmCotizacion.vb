@@ -805,12 +805,18 @@ Public Class frmCotizacion
             txtIdVendedor.Text = v.Empleado.IDEMPLEADO
             txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " | " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
             If Not v.IDCLIENTE Is Nothing Then
+
                 txtIdCliente.Text = v.Cliente.IDCLIENTE
 
-                'txtNombreCliente.Text = If(v.CLIENTE.TIPOPERSONA = "Natural", v.CLIENTE.NOMBRES & " " & v.CLIENTE.APELLIDOS & If(v.CLIENTE.RAZONSOCIAL.Trim() <> "", " // " & v.CLIENTE.RAZONSOCIAL, ""), v.CLIENTE.RAZONSOCIAL)
+                If v.Cliente.TIPOPERSONA = "Natural" Or v.Cliente.RAZONSOCIAL.Trim() = "" Then
 
-                txtNombreCliente.Text = If(v.Cliente.TIPOPERSONA = "Natural", v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS & If(v.Cliente.RAZONSOCIAL.Trim() <> "", " // " & v.Cliente.RAZONSOCIAL, ""), v.Cliente.N_CLIENTE & " " & v.Cliente.RAZONSOCIAL)
+                    txtNombreCliente.Text = v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS
 
+                Else
+
+                    txtNombreCliente.Text = v.Cliente.RAZONSOCIAL
+
+                End If
 
                 If v.CREDITO Then
                     rdCredito.Checked = True
@@ -867,17 +873,6 @@ Public Class frmCotizacion
             Next
             Grid()
             lblContador.Text = "N° ITEM: " & dtRegistro.Rows.Count
-            'If v.MONEDA = "C" Then
-            '    txtTotalDescuento.Value = v.DESCUENTO_DIN_C
-            '    txtTotalSubtotal.Value = v.SUBTOTAL_C
-            '    txtTotalIva.Value = v.IVA_DIN_C
-            '    txtTotal.Value = v.TOTAL_C
-            'Else
-            '    txtTotalDescuento.Value = v.DESCUENTO_DIN_D
-            '    txtTotalSubtotal.Value = v.SUBTOTAL_D
-            '    txtTotalIva.Value = v.IVA_DIN_D
-            '    txtTotal.Value = v.TOTAL_D
-            'End If
             btAnular.Enabled = True
             btEditar.Enabled = True
             btImprimir.Enabled = True
@@ -997,7 +992,7 @@ Public Class frmCotizacion
                             Dim cliente = db.Clientes.Where(Function(f) f.N_CLIENTE = txtNCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not cliente Is Nothing Then
 
-                                txtNombreCliente.Text = If(cliente.TIPOPERSONA = "Natural", cliente.N_CLIENTE & " " & cliente.NOMBRES & " " & cliente.APELLIDOS & If(cliente.RAZONSOCIAL.Trim() <> "", " // " & cliente.RAZONSOCIAL, ""), cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL)
+                                txtNombreCliente.Text = If(cliente.TIPOPERSONA = "Natural" Or cliente.RAZONSOCIAL.Trim() = "", cliente.N_CLIENTE & " " & cliente.NOMBRES & " " & cliente.APELLIDOS, cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL)
                                 txtNCliente.Clear()
                                 txtCodigoAlterno.Focus()
                             Else

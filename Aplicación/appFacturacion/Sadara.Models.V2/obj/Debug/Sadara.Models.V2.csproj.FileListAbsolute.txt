@@ -8,3 +8,13 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFrame
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.dll
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.pdb
 D:\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.csprojResolveAssemblyReference.cache
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\Sadara.Models.V2.dll.config
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\Sadara.Models.V2.dll
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\Sadara.Models.V2.pdb
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.dll
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.xml
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.csprojResolveAssemblyReference.cache
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.dll
+C:\Users\ruta3\Documents\GitHub\SSIF\Aplicación\appFacturacion\Sadara.Models.V2\obj\Debug\Sadara.Models.V2.pdb

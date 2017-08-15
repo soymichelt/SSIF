@@ -6,11 +6,35 @@ Sadara.Models.V1
 </name>
 </assembly>
 <members>
-<member name="T:Sadara.Models.V1.POCO.Promocion">
+<member name="T:Sadara.Models.V1.POCO.CompraDevolucionDetalle">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Serie">
+</member><member name="T:Sadara.Models.V1.POCO.Marca">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Salida">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Cotizacion">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.UnidadMedida">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.Database.CodeFirst">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.CompraDetalle">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Laboratorio">
 	<summary>
 	</summary>
 	<remarks></remarks>
@@ -18,16 +42,16 @@ Sadara.Models.V1
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.CompraReciboDetalle">
+</member><member name="T:Sadara.Models.V1.POCO.Empresa">
 	<summary>
  Empresa
  </summary>
 	<remarks>Información de la Empresa</remarks>
-</member><member name="T:Sadara.Models.V1.POCO.ConsignacionDetalle">
+</member><member name="T:Sadara.Models.V1.POCO.ImpuestoValorAgregado">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.DesconsignacionDetalle">
+</member><member name="T:Sadara.Models.V1.POCO.Kardex">
 	<summary>
 	</summary>
 	<remarks></remarks>
@@ -48,60 +72,7 @@ Sadara.Models.V1
 	<summary>
   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
 </summary>
-</member><member name="T:Sadara.Models.V1.POCO.Taza">
-	<summary>
-	</summary>
-	<remarks></remarks>
 </member><member name="T:Sadara.Models.V1.POCO.VentaDevolucion">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.VentaReciboDetalle">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Consignacion">
-	<summary>
-	</summary>
-	<remarks>Información de la Empresa</remarks>
-</member><member name="T:Sadara.Models.V1.POCO.EntradaDetalle">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Salida">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.Database.CodeFirst">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.CompraRecibo">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Empresa">
-	<summary>
- Empresa
- </summary>
-	<remarks>Información de la Empresa</remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Laboratorio">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Proveedor">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Kardex">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.PromocionExistencia">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.SalidaDetalle">
 	<summary>
 	</summary>
 	<remarks></remarks>
@@ -109,23 +80,11 @@ Sadara.Models.V1
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Cotizacion">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Desconsignacion">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Marca">
-	<summary>
-	</summary>
-	<remarks></remarks>
 </member><member name="T:Sadara.Models.V1.POCO.Periodo">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Producto">
+</member><member name="T:Sadara.Models.V1.POCO.Taza">
 	<summary>
 	</summary>
 	<remarks></remarks>
@@ -133,19 +92,28 @@ Sadara.Models.V1
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.CompraEstadoCuenta">
+</member><member name="T:Sadara.Models.V1.POCO.CompraDevolucion">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.ImpuestoValorAgregado">
+</member><member name="T:Sadara.Models.V1.POCO.ConsignacionDetalle">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Presentacion">
+</member><member name="T:Sadara.Models.V1.POCO.EntradaDetalle">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.VentaDetalle">
+</member><member name="T:Sadara.Models.V1.POCO.Venta">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.CompraReciboDetalle">
+	<summary>
+ Empresa
+ </summary>
+	<remarks>Información de la Empresa</remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Desconsignacion">
 	<summary>
 	</summary>
 	<remarks></remarks>
@@ -158,35 +126,43 @@ Sadara.Models.V1
  Bodega
  </summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Entrada">
+</member><member name="T:Sadara.Models.V1.POCO.Consignacion">
 	<summary>
 	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.CompraDevolucion">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.CompraDevolucionDetalle">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Traslado">
-	<summary>
-	</summary>
-	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.CompraDetalle">
-	<summary>
-	</summary>
-	<remarks></remarks>
+	<remarks>Información de la Empresa</remarks>
 </member><member name="T:Sadara.Models.V1.POCO.Existencia">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.UnidadMedida">
+</member><member name="T:Sadara.Models.V1.POCO.CompraRecibo">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.Venta">
+</member><member name="T:Sadara.Models.V1.POCO.Producto">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Entrada">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.PromocionExistencia">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.SalidaDetalle">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Serie">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.VentaReciboDetalle">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Promocion">
 	<summary>
 	</summary>
 	<remarks></remarks>
@@ -194,15 +170,39 @@ Sadara.Models.V1
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.CotizacionDetalle">
+</member><member name="T:Sadara.Models.V1.POCO.Presentacion">
 	<summary>
 	</summary>
 	<remarks></remarks>
-</member><member name="T:Sadara.Models.V1.POCO.TrasladoDetalle">
+</member><member name="T:Sadara.Models.V1.POCO.Traslado">
 	<summary>
 	</summary>
 	<remarks></remarks>
 </member><member name="T:Sadara.Models.V1.POCO.Usuario">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.Proveedor">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.VentaDetalle">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.CompraEstadoCuenta">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.CotizacionDetalle">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.DesconsignacionDetalle">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="T:Sadara.Models.V1.POCO.TrasladoDetalle">
 	<summary>
 	</summary>
 	<remarks></remarks>

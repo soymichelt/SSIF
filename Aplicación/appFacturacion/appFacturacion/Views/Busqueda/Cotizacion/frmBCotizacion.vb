@@ -120,10 +120,20 @@ Public Class frmBCotizacion
                                     frmVenta.chkExonerado.Checked = cotizacion.EXONERADO
                                     frmVenta.txtTazaCambio.Value = cotizacion.TAZACAMBIO
                                     frmVenta.txtIdVendedor.Text = cotizacion.Empleado.IDEMPLEADO
-                                    txtNombreCliente.Text = If(cotizacion.Cliente.TIPOPERSONA = "Natural", cotizacion.Cliente.N_CLIENTE & " " & cotizacion.Cliente.NOMBRES & " " & cotizacion.Cliente.APELLIDOS & If(cotizacion.Cliente.RAZONSOCIAL.Trim() <> "", " // " & cotizacion.Cliente.RAZONSOCIAL, ""), cotizacion.Cliente.N_CLIENTE & " " & cotizacion.Cliente.RAZONSOCIAL)
+
                                     If Not cotizacion.IDCLIENTE Is Nothing Then
                                         frmVenta.txtIdCliente.Text = cotizacion.Cliente.IDCLIENTE
-                                        frmVenta.txtNombreCliente.Text = cotizacion.Cliente.N_CLIENTE & " | " & cotizacion.Cliente.NOMBRES & " " & cotizacion.Cliente.APELLIDOS
+
+                                        If cotizacion.Cliente.TIPOPERSONA = "Natural" Or cotizacion.Cliente.RAZONSOCIAL.Trim() = "" Then
+
+                                            frmVenta.txtNombreCliente.Text = cotizacion.Cliente.N_CLIENTE & " " & cotizacion.Cliente.NOMBRES & " " & cotizacion.Cliente.APELLIDOS
+
+                                        Else
+
+                                            frmVenta.txtNombreCliente.Text = cotizacion.Cliente.N_CLIENTE & " " & cotizacion.Cliente.RAZONSOCIAL
+
+                                        End If
+
                                         If cotizacion.CREDITO Then
                                             frmVenta.rdCredito.Checked = True
                                         Else

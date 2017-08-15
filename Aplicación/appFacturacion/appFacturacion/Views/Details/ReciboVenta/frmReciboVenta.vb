@@ -188,8 +188,10 @@ Public Class frmReciboVenta
                                     txtNCliente.Focus()
                                     Exit Sub
                                 End If
+
                                 txtIdCliente.Text = cliente.IDCLIENTE
-                                txtNombreCliente.Text = cliente.N_CLIENTE & " | " & cliente.NOMBRES & " " & cliente.APELLIDOS
+
+                                txtNombreCliente.Text = If(cliente.TIPOPERSONA = "Natural" Or cliente.RAZONSOCIAL.Trim() = "", cliente.N_CLIENTE & " " & cliente.NOMBRES & " " & cliente.APELLIDOS, cliente.N_CLIENTE & " " & cliente.RAZONSOCIAL)
 
                                 txtNCliente.Clear()
                                 txtObservacion.Focus()
@@ -540,7 +542,7 @@ Public Class frmReciboVenta
             txtNombreVendedor.Text = v.Empleado.N_TRABAJADOR & " | " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS
             If v.VentasRecibosDetalles.Count > 0 Then
                 txtIdCliente.Text = v.VentasRecibosDetalles(0).Venta.Cliente.IDCLIENTE
-                txtNombreCliente.Text = v.VentasRecibosDetalles(0).Venta.Cliente.N_CLIENTE & " | " & v.VentasRecibosDetalles(0).Venta.Cliente.NOMBRES & " " & v.VentasRecibosDetalles(0).Venta.Cliente.APELLIDOS
+                txtNombreCliente.Text = If(v.VentasRecibosDetalles(0).Venta.Cliente.TIPOPERSONA = "Natural" Or v.VentasRecibosDetalles(0).Venta.Cliente.RAZONSOCIAL = "", v.VentasRecibosDetalles(0).Venta.Cliente.N_CLIENTE & " " & v.VentasRecibosDetalles(0).Venta.Cliente.NOMBRES & " " & v.VentasRecibosDetalles(0).Venta.Cliente.APELLIDOS, v.VentasRecibosDetalles(0).Venta.Cliente.N_CLIENTE & " " & v.VentasRecibosDetalles(0).Venta.Cliente.RAZONSOCIAL)
             End If
             txtObservacion.Text = v.CONCEPTO
             txtMontoTotal.Text = v.MONTOTOTAL_C

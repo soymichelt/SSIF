@@ -214,6 +214,14 @@
     <Compile Include="Controllers\Security\License.vb" />
     <Compile Include="Controllers\_Class\NumeroALetra.vb" />
     <Compile Include="Controllers\_Class\PrintedColilla.vb" />
+    <Compile Include="Models\Datasets\dtVenta.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtVenta.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Datasets\dtVenta.vb">
+      <DependentUpon>dtVenta.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\XYDiagramDTO.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -292,7 +300,7 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\dtDatos1.Designer.vb">
+    <Compile Include="Models\Datasets\dtDatos1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dtDatos.xsd</DependentUpon>
@@ -365,6 +373,18 @@
     </Compile>
     <Compile Include="Reports\Traslado\rptInformeTrasladosList.vb">
       <DependentUpon>rptInformeTrasladosList.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Venta\frmImprimirVentaFormatoCarta.Designer.vb">
+      <DependentUpon>frmImprimirVentaFormatoCarta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Venta\frmImprimirVentaFormatoCarta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Venta\rptImprimirFacturaFormatoCarta.vb">
+      <DependentUpon>rptImprimirFacturaFormatoCarta.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -805,7 +825,7 @@
     <Compile Include="Reports\Desconsignacion\frmBuscarDesconsignacion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\dtDatos.vb">
+    <Compile Include="Models\Datasets\dtDatos.vb">
       <DependentUpon>dtDatos.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reports\Entrada\frmBuscarEntrada.Designer.vb">
@@ -1242,6 +1262,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptInformeTrasladosList.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Venta\frmImprimirVentaFormatoCarta.resx">
+      <DependentUpon>frmImprimirVentaFormatoCarta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Venta\rptImprimirFacturaFormatoCarta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptImprimirFacturaFormatoCarta.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Venta\frmProductosVendidos.resx">
       <DependentUpon>frmProductosVendidos.vb</DependentUpon>
     </EmbeddedResource>
@@ -1666,16 +1693,27 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="app.manifest" />
+    <None Include="Models\Datasets\dtVenta.xsc">
+      <DependentUpon>dtVenta.xsd</DependentUpon>
+    </None>
+    <None Include="Models\Datasets\dtVenta.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtVenta.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Models\Datasets\dtVenta.xss">
+      <DependentUpon>dtVenta.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
-    <None Include="Reports\dtDatos.xsc">
+    <None Include="Models\Datasets\dtDatos.xsc">
       <DependentUpon>dtDatos.xsd</DependentUpon>
     </None>
-    <None Include="Reports\dtDatos.xsd">
+    <None Include="Models\Datasets\dtDatos.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dtDatos1.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Reports\dtDatos.xss">
+    <None Include="Models\Datasets\dtDatos.xss">
       <DependentUpon>dtDatos.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />

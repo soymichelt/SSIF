@@ -117,7 +117,17 @@ Public Class frmBVenta
                                     frmVenta.txtNombreVendedor.Text = venta.Empleado.N_TRABAJADOR & " | " & venta.Empleado.NOMBRES & " " & venta.Empleado.APELLIDOS
                                     If Not venta.IDCLIENTE Is Nothing Then
                                         frmVenta.txtIdCliente.Text = venta.CLIENTE.IDCLIENTE
-                                        frmVenta.txtNombreCliente.Text = venta.CLIENTE.N_CLIENTE & " | " & venta.CLIENTE.NOMBRES & " " & venta.CLIENTE.APELLIDOS
+
+                                        If venta.Cliente.TIPOPERSONA = "Natural" Or venta.Cliente.RAZONSOCIAL = "" Then
+
+                                            frmVenta.txtNombreCliente.Text = venta.Cliente.N_CLIENTE & " " & venta.Cliente.NOMBRES & " " & venta.Cliente.APELLIDOS
+
+                                        Else
+
+                                            frmVenta.txtNombreCliente.Text = venta.Cliente.N_CLIENTE & " " & venta.Cliente.RAZONSOCIAL
+
+                                        End If
+
                                         If venta.CREDITO Then
                                             frmVenta.rdCredito.Checked = True
                                         Else
