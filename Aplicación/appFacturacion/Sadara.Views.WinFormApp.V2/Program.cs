@@ -16,7 +16,7 @@ namespace Sadara.Views.WinFormApp.V2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Views.MainMenu.MainForm());
+            //Application.Run(new Views.MainMenu.MainForm());
         }
     }
 }
