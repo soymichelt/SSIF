@@ -286,6 +286,7 @@ Public Class frmProductosVendidos
     End Sub
 
     Private Sub frmInformeVentaDetalle_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        gbMoneda.Left = (PanelEx4.Width / 2) - (gbMoneda.Width / 2) + 4
         gbTipoVenta.Left = PanelEx4.Width - gbTipoVenta.Width - 4
     End Sub
 

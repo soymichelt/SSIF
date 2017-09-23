@@ -1135,12 +1135,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Views\Reports\frmDashboard.Designer.vb">
-      <DependentUpon>frmDashboard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Reports\frmDashboard.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Views\Usuarios\frmBuscarUsuario.Designer.vb">
       <DependentUpon>frmBuscarUsuario.vb</DependentUpon>
     </Compile>
@@ -1668,9 +1662,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Reports\frmDashboard.resx">
-      <DependentUpon>frmDashboard.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Usuarios\frmBuscarUsuario.resx">
       <DependentUpon>frmBuscarUsuario.vb</DependentUpon>
     </EmbeddedResource>
@@ -1929,6 +1920,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Configuration\Temas\" />
+    <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -263,12 +263,6 @@ Public Class frmInformeVentas
     End Sub
 
     Private Sub frmInformeVentas_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        'If Me.LoadForm Then
-        '    If expDetalle.Expanded Then
-        '        expDetalle.Height = dtRegistro.Height / 2
-        '        dtRegistro.Height = expDetalle.Height
-        '    End If
-        'End If
         gbMoneda.Left = (PanelEx4.Width / 2) - (gbMoneda.Width / 2) + 4
         gbTipoVenta.Left = PanelEx4.Width - gbTipoVenta.Width - 4
     End Sub

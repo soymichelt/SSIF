@@ -6,479 +6,7 @@ appFacturacion
 </name>
 </assembly>
 <members>
-<member name="T:appFacturacion.dtVenta.VentaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtVenta.VentaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtVenta.VentaRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtVenta">
-	<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEVENTADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CONTROLEXISTENCIADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.VENCIMIENTODataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRTRASLADODataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRENTRADADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRSALIDADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ESTADODECUENTADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECONSIGNADODataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.VENTADETALLEDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEUSUARIODataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.KARDEXDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEENTRADADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMESALIDADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMETRASLADODataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRFACTURADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECLIENTEDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEVENDEDORDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEPROVEEDORDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CUENTASPORCOBRARDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CUENTASPORPAGARDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOVENTADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ESTADODERESULTADOSDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECOMPRADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRCOMPRADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEDEVOLUCIONVENTADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONVENTADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONCOMPRADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRVENTADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOCOMPRADataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ValuacionDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos._InformeFacturaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.InformeMovInvDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.InformeReciboListDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ExportarProductoDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEVENTARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CONTROLEXISTENCIARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.VENCIMIENTORow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRTRASLADORow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRENTRADARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRSALIDARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ESTADODECUENTARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECONSIGNADORow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.VENTADETALLERow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEUSUARIORow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.KARDEXRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEENTRADARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMESALIDARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMETRASLADORow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRFACTURARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECLIENTERow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEVENDEDORRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEPROVEEDORRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CUENTASPORCOBRARRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CUENTASPORPAGARRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOVENTARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ESTADODERESULTADOSRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECOMPRARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRCOMPRARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEDEVOLUCIONVENTARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONVENTARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONCOMPRARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRVENTARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOCOMPRARow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ValuacionRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos._InformeFacturaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.InformeMovInvRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.InformeReciboListRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ExportarProductoRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEVENTARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CONTROLEXISTENCIARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.VENCIMIENTORowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRTRASLADORowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRENTRADARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRSALIDARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ESTADODECUENTARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECONSIGNADORowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.VENTADETALLERowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEUSUARIORowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.KARDEXRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEENTRADARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMESALIDARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMETRASLADORowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRFACTURARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECLIENTERowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEVENDEDORRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEPROVEEDORRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CUENTASPORCOBRARRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.CUENTASPORPAGARRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOVENTARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ESTADODERESULTADOSRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMECOMPRARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRCOMPRARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMEDEVOLUCIONVENTARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONVENTARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONCOMPRARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.IMPRIMIRVENTARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOCOMPRARowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ValuacionRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos._InformeFacturaRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.InformeMovInvRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.InformeReciboListRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos.ExportarProductoRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtDatos">
-	<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
-</member><member name="T:appFacturacion.dtDatosTableAdapters.INFORMEVENTATableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:appFacturacion.dtDatosTableAdapters.CONTROLEXISTENCIATableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:appFacturacion.dtDatosTableAdapters.VENCIMIENTOTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateUpdatedRows(appFacturacion.dtDatos,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Update rows in top-down order.
-</summary>
-</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateInsertedRows(appFacturacion.dtDatos,System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Insert rows in top-down order.
-</summary>
-</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateDeletedRows(appFacturacion.dtDatos,System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Delete rows in bottom-up order.
-</summary>
-</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
-</summary>
-</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateAll(appFacturacion.dtDatos)">
-	<summary>
-Update all changes to the dataset.
-</summary>
-</member><member name="T:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateOrderOption">
-	<summary>
-Update Order Option
-</summary>
-</member><member name="T:appFacturacion.dtDatosTableAdapters.TableAdapterManager.SelfReferenceComparer">
-	<summary>
-Used to sort self-referenced table's rows
-</summary>
-</member><member name="T:appFacturacion.dtDatosTableAdapters.TableAdapterManager">
-	<summary>
-TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
-</summary>
-</member><member name="P:appFacturacion.My.Resources.Resources.ResourceManager">
+<member name="P:appFacturacion.My.Resources.Resources.ResourceManager">
 	<summary>
   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
 </summary>
@@ -1154,6 +682,478 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 </member><member name="T:appFacturacion.My.Resources.Resources">
 	<summary>
   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
+</summary>
+</member><member name="T:appFacturacion.dtVenta.VentaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtVenta.VentaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtVenta.VentaRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtVenta">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEVENTADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CONTROLEXISTENCIADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.VENCIMIENTODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRTRASLADODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRENTRADADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRSALIDADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ESTADODECUENTADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECONSIGNADODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.VENTADETALLEDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEUSUARIODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.KARDEXDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEENTRADADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMESALIDADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMETRASLADODataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRFACTURADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECLIENTEDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEVENDEDORDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEPROVEEDORDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CUENTASPORCOBRARDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CUENTASPORPAGARDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOVENTADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ESTADODERESULTADOSDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECOMPRADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRCOMPRADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEDEVOLUCIONVENTADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONVENTADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONCOMPRADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRVENTADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOCOMPRADataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ValuacionDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos._InformeFacturaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.InformeMovInvDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.InformeReciboListDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ExportarProductoDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEVENTARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CONTROLEXISTENCIARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.VENCIMIENTORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRTRASLADORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRENTRADARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRSALIDARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ESTADODECUENTARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECONSIGNADORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.VENTADETALLERow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEUSUARIORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.KARDEXRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEENTRADARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMESALIDARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMETRASLADORow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRFACTURARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECLIENTERow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEVENDEDORRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEPROVEEDORRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CUENTASPORCOBRARRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CUENTASPORPAGARRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOVENTARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ESTADODERESULTADOSRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECOMPRARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRCOMPRARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEDEVOLUCIONVENTARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONVENTARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONCOMPRARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRVENTARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOCOMPRARow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ValuacionRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos._InformeFacturaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.InformeMovInvRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.InformeReciboListRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ExportarProductoRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEVENTARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CONTROLEXISTENCIARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.VENCIMIENTORowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRTRASLADORowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRENTRADARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRSALIDARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ESTADODECUENTARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECONSIGNADORowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.VENTADETALLERowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEUSUARIORowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.KARDEXRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEENTRADARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMESALIDARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMETRASLADORowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRFACTURARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECLIENTERowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEVENDEDORRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEPROVEEDORRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CUENTASPORCOBRARRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.CUENTASPORPAGARRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOVENTARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ESTADODERESULTADOSRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMECOMPRARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRCOMPRARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMEDEVOLUCIONVENTARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONVENTARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRDEVOLUCIONCOMPRARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.IMPRIMIRVENTARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.INFORMERECIBOCOMPRARowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ValuacionRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos._InformeFacturaRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.InformeMovInvRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.InformeReciboListRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos.ExportarProductoRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtDatos">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:appFacturacion.dtDatosTableAdapters.INFORMEVENTATableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:appFacturacion.dtDatosTableAdapters.CONTROLEXISTENCIATableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:appFacturacion.dtDatosTableAdapters.VENCIMIENTOTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateUpdatedRows(appFacturacion.dtDatos,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateInsertedRows(appFacturacion.dtDatos,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateDeletedRows(appFacturacion.dtDatos,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateAll(appFacturacion.dtDatos)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:appFacturacion.dtDatosTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:appFacturacion.dtDatosTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:appFacturacion.dtDatosTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
 </summary>
 </member>
 </members>

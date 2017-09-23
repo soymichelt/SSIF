@@ -5,12 +5,19 @@ Public Class frmBuscarClientes
     Public frm_return As Integer = 0
 
     Sub llenar(Optional ByVal nombre As String = "", Optional ByVal codigo As String = "", Optional ByVal RazonSocialP As String = "")
+
         Try
+
             Using db As New CodeFirst
+
                 Dim consulta = (From cli In db.Clientes Where cli.ACTIVO = "S" And cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(RazonSocialP) Select cli.IDCLIENTE, cli.N_CLIENTE, cli.IDENTIFICACION, NOMBRES = cli.NOMBRES & " " & cli.APELLIDOS, cli.TELEFONO, cli.RAZONSOCIAL, cli.DOMICILIO).ToList()
+
                 If dtRegistro.Visible Then
+
                     dtRegistro.DataSource = consulta
+
                     If dtRegistro.Columns.Count > 0 Then
+
                         dtRegistro.Columns(0).Visible = False
                         dtRegistro.Columns(1).Width = 150 : dtRegistro.Columns(1).HeaderText = vbNewLine & "N° CLIENTE" & vbNewLine
                         dtRegistro.Columns(2).Width = 150
@@ -18,11 +25,15 @@ Public Class frmBuscarClientes
                         dtRegistro.Columns(4).Width = 100
                         dtRegistro.Columns(5).Width = 300 : dtRegistro.Columns(5).HeaderText = "RAZÓN SOCIAL"
                         dtRegistro.Columns(6).Width = 400 : dtRegistro.Columns(6).HeaderText = "DIRECCIÓN"
+
                         For Each c As DataGridViewColumn In dtRegistro.Columns
                             c.HeaderCell.Style.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
                         Next
+
                     End If
+
                 Else
+
                     Dim rpt As New rptInformeCliente
                     Dim band As CrystalDecisions.CrystalReports.Engine.TextObject
                     If nombre <> "" Then
@@ -39,10 +50,15 @@ Public Class frmBuscarClientes
                     CrystalReportViewer1.ReportSource = rpt
                     CrystalReportViewer1.Zoom(75)
                     rpt = Nothing : band = Nothing
+
                 End If
+
             End Using
+
         Catch ex As Exception
+
             MessageBox.Show("Error, " & ex.Message)
+
         End Try
     End Sub
 

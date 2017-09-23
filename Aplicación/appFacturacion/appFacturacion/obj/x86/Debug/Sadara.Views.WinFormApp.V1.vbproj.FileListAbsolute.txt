@@ -371,7 +371,6 @@ E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmErrorEstablecerConexionServidor.resources
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmPrincipal.resources
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.Resources.resources
-E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmDashboard.resources
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmBuscarUsuario.resources
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmCambiarContraseña.resources
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmLogin.resources
@@ -381,3 +380,18 @@ E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.exe
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.xml
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.pdb
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\appFacturacion.exe.config
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\appFacturacion.exe
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\appFacturacion.pdb
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\appFacturacion.xml
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\EntityFramework.dll
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\EntityFramework.SqlServer.dll
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V1.dll
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\System.Data.dll
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\System.Data.Linq.dll
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V2.dll
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V1.pdb
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V1.xml
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\EntityFramework.xml
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\EntityFramework.SqlServer.xml
+E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V2.pdb
