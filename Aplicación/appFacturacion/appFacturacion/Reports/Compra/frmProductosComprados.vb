@@ -36,7 +36,7 @@ Public Class frmProductosComprados
 
                 If Not SpSQL Is Nothing Then
                     txtDescuento.Value = SpSQL.Sum(Function(f) f.Descuento)
-                    txtCostoTotal.Value = SpSQL.Sum(Function(f) f.Costo_Total)
+                    txtCostoTotal.Value = SpSQL.Sum(Function(f) f.CostoTotal)
                     txtSubtotal.Value = SpSQL.Sum(Function(f) f.SubTotal)
                     txtIva.Value = SpSQL.Sum(Function(f) f.Iva)
                     txtTotal.Value = SpSQL.Sum(Function(f) f.Total)

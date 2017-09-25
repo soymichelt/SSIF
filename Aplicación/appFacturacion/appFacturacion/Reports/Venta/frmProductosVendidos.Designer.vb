@@ -68,6 +68,10 @@ Partial Class frmProductosVendidos
         Me.cmbSerie = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.tbFiltros = New DevComponents.DotNetBar.TabItem(Me.components)
         Me.PanelEx4 = New DevComponents.DotNetBar.PanelEx()
+        Me.gbMoneda = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.rdMDolar = New System.Windows.Forms.RadioButton()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.rdMCordoba = New System.Windows.Forms.RadioButton()
         Me.gbTipoVenta = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.rdTodos = New System.Windows.Forms.RadioButton()
         Me.rdCredito = New System.Windows.Forms.RadioButton()
@@ -80,10 +84,6 @@ Partial Class frmProductosVendidos
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.gbMoneda = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
-        Me.rdMDolar = New System.Windows.Forms.RadioButton()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.rdMCordoba = New System.Windows.Forms.RadioButton()
         Me.Menu.SuspendLayout()
         CType(Me.KFormManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx2.SuspendLayout()
@@ -104,6 +104,8 @@ Partial Class frmProductosVendidos
         CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox2.SuspendLayout()
         Me.PanelEx4.SuspendLayout()
+        CType(Me.gbMoneda, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbMoneda.SuspendLayout()
         CType(Me.gbTipoVenta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbTipoVenta.SuspendLayout()
         CType(Me.gbFecha, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,8 +113,6 @@ Partial Class frmProductosVendidos
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gbMoneda, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.gbMoneda.SuspendLayout()
         Me.SuspendLayout()
         '
         'Menu
@@ -742,6 +742,69 @@ Partial Class frmProductosVendidos
         Me.PanelEx4.Style.GradientAngle = 90
         Me.PanelEx4.TabIndex = 23
         '
+        'gbMoneda
+        '
+        Me.gbMoneda.BackgroundStyle.GradientAngle = 45.0!
+        Me.gbMoneda.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.gbMoneda.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.gbMoneda.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.gbMoneda.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.gbMoneda.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.gbMoneda.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.gbMoneda.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.gbMoneda.CaptionStyle.Size = New System.Drawing.Size(0, 0)
+        Me.gbMoneda.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.gbMoneda.CaptionStyle.TextStyle.Text = "ElGroupBox5"
+        Me.gbMoneda.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.gbMoneda.Controls.Add(Me.rdMDolar)
+        Me.gbMoneda.Controls.Add(Me.Label19)
+        Me.gbMoneda.Controls.Add(Me.rdMCordoba)
+        Me.gbMoneda.Location = New System.Drawing.Point(263, 4)
+        Me.gbMoneda.Name = "gbMoneda"
+        Me.gbMoneda.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.gbMoneda.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.gbMoneda.Size = New System.Drawing.Size(170, 28)
+        Me.gbMoneda.TabIndex = 75
+        '
+        'rdMDolar
+        '
+        Me.rdMDolar.AutoSize = True
+        Me.rdMDolar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdMDolar.Location = New System.Drawing.Point(121, 5)
+        Me.rdMDolar.Name = "rdMDolar"
+        Me.rdMDolar.Size = New System.Drawing.Size(50, 18)
+        Me.rdMDolar.TabIndex = 72
+        Me.rdMDolar.Text = "Dólar"
+        Me.rdMDolar.UseVisualStyleBackColor = True
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(4, 7)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(48, 14)
+        Me.Label19.TabIndex = 1
+        Me.Label19.Text = "Móneda:"
+        '
+        'rdMCordoba
+        '
+        Me.rdMCordoba.AutoSize = True
+        Me.rdMCordoba.Checked = True
+        Me.rdMCordoba.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdMCordoba.Location = New System.Drawing.Point(52, 5)
+        Me.rdMCordoba.Name = "rdMCordoba"
+        Me.rdMCordoba.Size = New System.Drawing.Size(66, 18)
+        Me.rdMCordoba.TabIndex = 73
+        Me.rdMCordoba.TabStop = True
+        Me.rdMCordoba.Text = "Córdoba"
+        Me.rdMCordoba.UseVisualStyleBackColor = True
+        '
         'gbTipoVenta
         '
         Me.gbTipoVenta.BackgroundStyle.GradientAngle = 45.0!
@@ -994,74 +1057,13 @@ Partial Class frmProductosVendidos
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(277, 75)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtRegistro.Size = New System.Drawing.Size(682, 320)
         Me.dtRegistro.TabIndex = 25
-        '
-        'gbMoneda
-        '
-        Me.gbMoneda.BackgroundStyle.GradientAngle = 45.0!
-        Me.gbMoneda.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.gbMoneda.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.gbMoneda.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
-        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.gbMoneda.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.gbMoneda.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.gbMoneda.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.gbMoneda.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.gbMoneda.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.gbMoneda.CaptionStyle.Size = New System.Drawing.Size(0, 0)
-        Me.gbMoneda.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
-        Me.gbMoneda.CaptionStyle.TextStyle.Text = "ElGroupBox5"
-        Me.gbMoneda.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.gbMoneda.Controls.Add(Me.rdMDolar)
-        Me.gbMoneda.Controls.Add(Me.Label19)
-        Me.gbMoneda.Controls.Add(Me.rdMCordoba)
-        Me.gbMoneda.Location = New System.Drawing.Point(263, 4)
-        Me.gbMoneda.Name = "gbMoneda"
-        Me.gbMoneda.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.gbMoneda.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.gbMoneda.Size = New System.Drawing.Size(170, 28)
-        Me.gbMoneda.TabIndex = 77
-        '
-        'rdMDolar
-        '
-        Me.rdMDolar.AutoSize = True
-        Me.rdMDolar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdMDolar.Location = New System.Drawing.Point(121, 5)
-        Me.rdMDolar.Name = "rdMDolar"
-        Me.rdMDolar.Size = New System.Drawing.Size(50, 18)
-        Me.rdMDolar.TabIndex = 72
-        Me.rdMDolar.Text = "Dólar"
-        Me.rdMDolar.UseVisualStyleBackColor = True
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(4, 7)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(48, 14)
-        Me.Label19.TabIndex = 1
-        Me.Label19.Text = "Móneda:"
-        '
-        'rdMCordoba
-        '
-        Me.rdMCordoba.AutoSize = True
-        Me.rdMCordoba.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdMCordoba.Location = New System.Drawing.Point(52, 5)
-        Me.rdMCordoba.Name = "rdMCordoba"
-        Me.rdMCordoba.Size = New System.Drawing.Size(66, 18)
-        Me.rdMCordoba.TabIndex = 73
-        Me.rdMCordoba.Text = "Córdoba"
-        Me.rdMCordoba.UseVisualStyleBackColor = True
         '
         'frmProductosVendidos
         '
@@ -1105,6 +1107,9 @@ Partial Class frmProductosVendidos
         Me.ElGroupBox2.ResumeLayout(False)
         Me.ElGroupBox2.PerformLayout()
         Me.PanelEx4.ResumeLayout(False)
+        CType(Me.gbMoneda, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbMoneda.ResumeLayout(False)
+        Me.gbMoneda.PerformLayout()
         CType(Me.gbTipoVenta, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbTipoVenta.ResumeLayout(False)
         Me.gbTipoVenta.PerformLayout()
@@ -1114,9 +1119,6 @@ Partial Class frmProductosVendidos
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gbMoneda, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.gbMoneda.ResumeLayout(False)
-        Me.gbMoneda.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

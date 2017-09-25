@@ -973,26 +973,6 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Icono1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Icono1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property Icono32x32() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Icono32x32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property imprimir_det() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("imprimir_det", resourceCulture)
@@ -1176,6 +1156,16 @@ Namespace My.Resources
         Friend ReadOnly Property Iniciar() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Iniciar", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Isotipo32x32() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Isotipo32x32", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

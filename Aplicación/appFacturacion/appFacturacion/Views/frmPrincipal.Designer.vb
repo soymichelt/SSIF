@@ -221,7 +221,7 @@ Partial Class frmPrincipal
         '
         Me.lblEmpresa.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
         Me.lblEmpresa.ForeColor = System.Drawing.Color.Black
-        Me.lblEmpresa.Image = Global.appFacturacion.My.Resources.Resources.Icono32x32
+        Me.lblEmpresa.Image = Global.appFacturacion.My.Resources.Resources.Isotipo32x32
         Me.lblEmpresa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.lblEmpresa.Name = "lblEmpresa"
         Me.lblEmpresa.Size = New System.Drawing.Size(266, 32)
@@ -2651,7 +2651,7 @@ Partial Class frmPrincipal
         '
         Me.pcLogo.BackColor = System.Drawing.Color.Transparent
         Me.pcLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pcLogo.Image = Global.appFacturacion.My.Resources.Resources.Icono32x32
+        Me.pcLogo.Image = Global.appFacturacion.My.Resources.Resources.Isotipo32x32
         Me.pcLogo.Location = New System.Drawing.Point(985, 34)
         Me.pcLogo.Name = "pcLogo"
         Me.pcLogo.Size = New System.Drawing.Size(50, 50)

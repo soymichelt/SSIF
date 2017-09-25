@@ -115,13 +115,19 @@ Public Class frmBCotizacion
                                     Me.Close()
                                 Case 1
                                     frmVenta.txtSerie.Enabled = True : frmVenta.btActualizarSerie.Enabled = True
+
                                     frmVenta.txtCodigo.Enabled = True : frmVenta.Id = ""
+
                                     frmVenta.dtpFecha.Value = DateTime.Now
+
                                     frmVenta.chkExonerado.Checked = cotizacion.EXONERADO
+
                                     frmVenta.txtTazaCambio.Value = cotizacion.TAZACAMBIO
+
                                     frmVenta.txtIdVendedor.Text = cotizacion.Empleado.IDEMPLEADO
 
                                     If Not cotizacion.IDCLIENTE Is Nothing Then
+
                                         frmVenta.txtIdCliente.Text = cotizacion.Cliente.IDCLIENTE
 
                                         If cotizacion.Cliente.TIPOPERSONA = "Natural" Or cotizacion.Cliente.RAZONSOCIAL.Trim() = "" Then
@@ -135,39 +141,73 @@ Public Class frmBCotizacion
                                         End If
 
                                         If cotizacion.CREDITO Then
+
                                             frmVenta.rdCredito.Checked = True
+
                                         Else
+
                                             frmVenta.rdContado.Checked = True
+
                                         End If
+
                                     Else
+
                                         frmVenta.rdContado.Checked = True
+
                                         frmVenta.txtIdCliente.Text = ""
+
                                         frmVenta.txtNombreCliente.Text = cotizacion.CLIENTECONTADO
+
                                     End If
+
                                     If cotizacion.TIPODESCUENTO = "POR PRODUCTO" Then
+
                                         frmVenta.rdDescuentoPorProducto.Checked = True
+
                                     ElseIf cotizacion.TIPODESCUENTO = "POR FACTURA" Then
+
                                         frmVenta.rdDescuentoPorFactura.Checked = True
+
                                     Else
+
                                         frmVenta.rdSindescuento.Checked = True
+
                                     End If
+
                                     Dim item As LST_DETALLE_VENTA
+
                                     frmVenta.detalles.RemoveAll(Function(f) True)
+
                                     For Each detalle In cotizacion.CotizacionesDetalles
+
                                         item = New LST_DETALLE_VENTA()
+
                                         item.IDEXISTENCIA = detalle.IDEXISTENCIA
+
                                         item.IDALTERNO = detalle.Existencia.Producto.IDALTERNO
+
                                         item.DESCRIPCION = detalle.Existencia.Producto.DESCRIPCION
+
                                         item.IVA = detalle.Existencia.Producto.IVA
+
                                         item.MARCA = If(detalle.Existencia.Producto.Marca.ACTIVO.Equals("S"), detalle.Existencia.Producto.Marca.DESCRIPCION, "")
+
                                         item.UNIDAD_DE_MEDIDA = If(detalle.Existencia.Producto.UnidadMedida.ACTIVO.Equals("S"), detalle.Existencia.Producto.UnidadMedida.DESCRIPCION, "")
+
                                         item.PRESENTACION = If(detalle.Existencia.Producto.Presentacion.ACTIVO.Equals("S"), detalle.Existencia.Producto.Presentacion.DESCRIPCION, "")
+
                                         item.EXISTENCIA = detalle.EXISTENCIA_PRODUCTO
+
                                         item.CANTIDAD = detalle.CANTIDAD
+
                                         item.PRECIOUNITARIO_C = detalle.PRECIOUNITARIO_C : item.PRECIOUNITARIO_D = detalle.PRECIOUNITARIO_D
+
                                         item.DESCUENTO_POR = detalle.DESCUENTO_POR
+
                                         item.DESCUENTO_DIN_C = detalle.DESCUENTO_DIN_C : item.DESCUENTO_DIN_D = detalle.DESCUENTO_DIN_D
+
                                         item.DESCUENTO_DIN_TOTAL_C = detalle.DESCUENTO_DIN_TOTAL_C : item.DESCUENTO_DIN_TOTAL_D = detalle.DESCUENTO_DIN_TOTAL_D
+
                                         item.PRECIONETO_C = detalle.PRECIONETO_C : item.PRECIONETO_D = detalle.PRECIONETO_D
                                         item.SUBTOTAL_C = detalle.SUBTOTAL_C : item.SUBTOTAL_D = detalle.SUBTOTAL_D
                                         item.IVA_POR = detalle.IVA_POR
@@ -177,6 +217,7 @@ Public Class frmBCotizacion
                                         frmVenta.detalles.Add(item)
                                         item = Nothing
                                     Next
+
                                     frmVenta.Grid()
                                     frmVenta.lblContador.Text = "N° ITEM: " & frmVenta.dtRegistro.Rows.Count.ToString()
                                     frmVenta.btGuardar.Enabled = True

@@ -90,7 +90,7 @@ Partial Class frmAcercaDe
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.appFacturacion.My.Resources.Resources.Icono1
+        Me.PictureBox2.Image = Global.appFacturacion.My.Resources.Resources.Isotipo32x32
         Me.PictureBox2.Location = New System.Drawing.Point(323, 456)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(50, 50)

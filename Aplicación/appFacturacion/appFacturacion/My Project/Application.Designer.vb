@@ -94,8 +94,11 @@ Namespace My
                                 Dim periodo As New Periodo
                                 periodo.IDPERIODO = Guid.NewGuid.ToString()
                                 periodo.Reg = DateTime.Now
-                                periodo.INICIO = DateTime.Parse("01/01/" & DateTime.Now.Year & " 00:00:00")
-                                periodo.FINAL = DateTime.Parse("31/12/" & DateTime.Now.Year & " 23:59:59")
+
+                                periodo.INICIO = New DateTime(DateTime.Now.Year, 1, 1)
+
+                                periodo.FINAL = New DateTime(DateTime.Now.Year, 12, 31, 23, 59, 59)
+
                                 periodo.ACTUAL = "S"
                                 periodo.ACTIVO = "S"
                                 db.Periodos.Add(periodo)

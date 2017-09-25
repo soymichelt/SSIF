@@ -10,7 +10,7 @@ Public Class frmProductosVendidos
         Try
             Using db As New CodeFirst
                 
-                Dim SpSQL = db.Database.SqlQuery(Of lstProductosVendidos)("SpProductosVendidos @Inicio, @Final, @IDBodega, @IDSerie, @NEmpleado, @Empleado, @NCliente, @Cliente, @TipoVenta, @MonInv, @Taza", New SqlParameter("@Inicio", Fecha1), New SqlParameter("@Final", Fecha2), New SqlParameter("@IDBodega", IDBodega), New SqlParameter("@IDSerie", IDSerie), New SqlParameter("@NEmpleado", NEmpleado), New SqlParameter("@Empleado", Empleado), New SqlParameter("@NCliente", NCliente), New SqlParameter("@Cliente", Cliente), New SqlParameter("@TipoVenta", If(rdContado.Checked, 1, If(rdCredito.Checked, 2, 0))), New SqlParameter("@MonInv", If(Config.Empresa.MonedaInventario.Equals(Config.cordoba), 1, 2)), New SqlParameter("@Taza", Config.tazadecambio)).ToList()
+                Dim SpSQL = db.Database.SqlQuery(Of lstProductosVendidos)("SpProductosVendidos @Inicio, @Final, @IDBodega, @IDSerie, @NEmpleado, @Empleado, @NCliente, @Cliente, @TipoVenta, @MonInv, @Moneda, @Taza", New SqlParameter("@Inicio", Fecha1), New SqlParameter("@Final", Fecha2), New SqlParameter("@IDBodega", IDBodega), New SqlParameter("@IDSerie", IDSerie), New SqlParameter("@NEmpleado", NEmpleado), New SqlParameter("@Empleado", Empleado), New SqlParameter("@NCliente", NCliente), New SqlParameter("@Cliente", Cliente), New SqlParameter("@TipoVenta", If(rdContado.Checked, 1, If(rdCredito.Checked, 2, 0))), New SqlParameter("@MonInv", If(Config.Empresa.MonedaInventario.Equals(Config.cordoba), 1, 0)), New SqlParameter("@Moneda", If(rdMCordoba.Checked, 1, 0)), New SqlParameter("@Taza", Config.tazadecambio)).ToList()
 
                 'Unificando información
 
@@ -19,7 +19,7 @@ Public Class frmProductosVendidos
                     With SpSQL
 
                         txtDescuento.Value = .Sum(Function(f) f.Descuento)
-                        txtCostoTotal.Value = .Sum(Function(f) f.Costo_Total)
+                        txtCostoTotal.Value = .Sum(Function(f) f.CostoTotal)
                         txtSubtotal.Value = .Sum(Function(f) f.SubTotal)
                         txtIva.Value = .Sum(Function(f) f.Iva)
                         txtTotal.Value = .Sum(Function(f) f.Total)
@@ -40,7 +40,7 @@ Public Class frmProductosVendidos
 
                 If dtRegistro.Visible Then
 
-                    dtRegistro.DataSource = (From c In SpSQL Select c.IDAlterno, c.Descripcion, c.Cantidad, c.CostoPromedio, c.Costo_Total, c.PrecioPromedio, c.Descuento, c.SubTotal, c.Utilidad, c.Iva, c.Total).ToList
+                    dtRegistro.DataSource = (From c In SpSQL Select c.IDAlterno, c.Descripcion, c.Cantidad, c.CostoPromedio, c.CostoTotal, c.PrecioPromedio, c.Descuento, c.SubTotal, c.Utilidad, c.Iva, c.Total).ToList
 
                     If dtRegistro.Columns.Count > 0 Then
 
@@ -165,6 +165,7 @@ Public Class frmProductosVendidos
     End Sub
 
     Sub llenarserie(ByVal bodega As String)
+
         Try
             Using db As New CodeFirst
                 cmbSerie.DataSource = db.Series.Where(Function(f) f.ACTIVO = "S" And f.OPERACION = "VENTA" And f.IDBODEGA = bodega).ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1
@@ -173,13 +174,6 @@ Public Class frmProductosVendidos
             MessageBox.Show("Error, " & ex.Message)
         End Try
 
-
-
-        Try
-
-        Catch ex As Exception
-
-        End Try
     End Sub
 
     Private Sub cmbBodega_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBodega.SelectedIndexChanged

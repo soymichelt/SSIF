@@ -1906,6 +1906,7 @@
     <None Include="Resources\Menu_Principal\PrinterSetting.png" />
     <None Include="Resources\Promocion.png" />
     <None Include="Resources\Menu_Principal\Dashboard.png" />
+    <None Include="Resources\Icon\Isotipo32x32.png" />
     <Content Include="Resources\Serie.png" />
     <None Include="Resources\guardar1.png" />
     <Content Include="Resources\maquina_registradora.png" />

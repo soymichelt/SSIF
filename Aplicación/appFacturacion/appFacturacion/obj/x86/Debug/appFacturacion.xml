@@ -6,7 +6,23 @@ appFacturacion
 </name>
 </assembly>
 <members>
-<member name="P:appFacturacion.My.Resources.Resources.ResourceManager">
+<member name="T:appFacturacion.dtVenta.VentaDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:appFacturacion.dtVenta.VentaRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:appFacturacion.dtVenta.VentaRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:appFacturacion.dtVenta">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="P:appFacturacion.My.Resources.Resources.ResourceManager">
 	<summary>
   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
 </summary>
@@ -379,14 +395,6 @@ appFacturacion
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
-</member><member name="P:appFacturacion.My.Resources.Resources.Icono1">
-	<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member><member name="P:appFacturacion.My.Resources.Resources.Icono32x32">
-	<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
 </member><member name="P:appFacturacion.My.Resources.Resources.imprimir_det">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -460,6 +468,10 @@ appFacturacion
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:appFacturacion.My.Resources.Resources.Iniciar">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:appFacturacion.My.Resources.Resources.Isotipo32x32">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
@@ -682,22 +694,6 @@ appFacturacion
 </member><member name="T:appFacturacion.My.Resources.Resources">
 	<summary>
   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
-</summary>
-</member><member name="T:appFacturacion.dtVenta.VentaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:appFacturacion.dtVenta.VentaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:appFacturacion.dtVenta.VentaRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:appFacturacion.dtVenta">
-	<summary>
-Represents a strongly typed in-memory cache of data.
 </summary>
 </member><member name="T:appFacturacion.dtDatos.INFORMEVENTADataTable">
 	<summary>

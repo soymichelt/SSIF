@@ -118,7 +118,6 @@ D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFactur
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmErrorEstablecerConexionServidor.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmPrincipal.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.Resources.resources
-D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmDashboard.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmBuscarUsuario.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmCambiarContraseña.resources
 D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmLogin.resources
@@ -395,3 +394,4 @@ E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\EntityFramework.xml
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\EntityFramework.SqlServer.xml
 E:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\bin\Debug\Sadara.Models.V2.pdb
+D:\GitHub\SSIF\Aplicación\appFacturacion\appFacturacion\obj\x86\Debug\appFacturacion.frmImprimirVentaFormatoCarta.resources
