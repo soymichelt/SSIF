@@ -665,7 +665,7 @@ Public Class frmReciboCompra
                         If Not r Is Nothing Then
                             If Config.ValidarPeriodo(r.FECHARECIBO) Then
                                 r.ANULADO = "S" : db.Entry(r).State = EntityState.Modified
-                                For Each est In db.VentasEstadosCuentas.Where(Function(f) f.IDRECIBO IsNot Nothing).Where(Function(f) f.IDRECIBO = r.IDRECIBO)
+                                For Each est In db.ComprasEstadosCuentas.Where(Function(f) f.IDRECIBO IsNot Nothing).Where(Function(f) f.IDRECIBO = r.IDRECIBO)
                                     est.ACTIVO = "N" : db.Entry(est).State = EntityState.Modified
                                 Next
                                 For Each d_r In r.ComprasRecibosDetalles

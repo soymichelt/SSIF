@@ -818,13 +818,50 @@ Public Class frmNotaDevolucionCompra
 
     Private Sub btAnular_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btAnular.Click
         Try
+
+            'Restricción, solo el admin puede anular documentos
+            If Not Config.Usuario.Administrador Then 'se evalua si not tiene permiso de administrador
+
+                'mensaje que no puede anular
+                Config.MsgErr("Solo el administrador tiene permiso para anular un documento.")
+
+                'si no tiene permiso debe salir
+                Exit Sub
+
+            End If
+            'Fin
+
             If MessageBox.Show("¿Desea anular esta devolución?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                 If Not Me.Id.Trim() = "" Then
                     Using db As New CodeFirst
                         Dim v = db.ComprasDevoluciones.Where(Function(f) f.IDDEVOLUCION = Me.Id And f.ANULADO = "N").FirstOrDefault()
                         If Not v Is Nothing Then
                             If Config.ValidarPeriodo(v.FECHADEVOLUCION) Then
-                                v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
+
+                                If v.CREDITO Then
+                                    If v.CREDITO And Not v.IDPROVEEDOR Is Nothing Then
+                                        If v.MONEDA.Equals(Config.cordoba) Then
+                                            v.Proveedor.FACTURADO_C = v.Proveedor.FACTURADO_C + v.TOTAL_C
+                                        Else
+                                            v.Proveedor.FACTURADO_D = v.Proveedor.FACTURADO_D + v.TOTAL_D
+                                        End If
+                                        db.Entry(v.Proveedor).State = EntityState.Modified
+                                        If v.Compra.MONEDA.Equals(Config.cordoba) Then
+                                            v.Compra.SALDOCREDITO = v.Compra.SALDOCREDITO + v.TOTAL_C
+                                        Else
+                                            v.Compra.SALDOCREDITO = v.Compra.SALDOCREDITO + v.TOTAL_D
+                                        End If
+                                        db.Entry(v.Compra).State = EntityState.Modified
+                                    End If
+                                End If
+
+                                v.ANULADO = "S"
+                                db.Entry(v).State = EntityState.Modified
+
+                                For Each estado In db.ComprasEstadosCuentas.Where(Function(f) f.IDCOMPRA = v.IDCOMPRA)
+                                    estado.ACTIVO = "N"
+                                    db.Entry(estado).State = EntityState.Modified
+                                Next
 
                                 For Each item In v.ComprasDevolucionesDetalles
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD + item.CANTIDAD_DEVUELTA

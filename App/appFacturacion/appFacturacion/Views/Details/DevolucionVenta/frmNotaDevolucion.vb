@@ -990,6 +990,7 @@ Public Class frmNotaDevolucion
                                 Next
 
                                 For Each item In v.VentasDevolucionesDetalles
+
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
                                     item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD - item.CANTIDAD
 
@@ -1014,6 +1015,8 @@ Public Class frmNotaDevolucion
                                         If item.Existencia.Producto.COSTO <> item.COSTO Then
                                             item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
                                         End If
+                                    Else
+                                        item.Existencia.Producto.SALDO = 0
                                     End If
 
                                     db.Entry(item.Existencia.Producto).State = EntityState.Modified
