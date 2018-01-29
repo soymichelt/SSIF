@@ -957,13 +957,25 @@ Public Class frmNotaDevolucion
             End If
             'fin
 
+            'Evaluar si desea realmente anular
             If MessageBox.Show("¿Desea anular esta devolución?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+
+                'Evaluar si hay una devolución seleccionada
                 If Not Me.Id.Trim() = "" Then
+
                     Using db As New CodeFirst
+
+                        'Seleccionando devolución
                         Dim v = db.VentasDevoluciones.Where(Function(f) f.IDDEVOLUCION = Me.Id And f.ANULADO = "N").FirstOrDefault()
+
+                        'Evaluar si existe la devolución
                         If Not v Is Nothing Then
+
+                            'Validando el período
                             If Config.ValidarPeriodo(v.FECHADEVOLUCION) Then
 
+                                'Evaluar si la devolución es de al crédito
+                                'Registrar la anulación de dinero
                                 If v.CREDITO Then
                                     If v.CREDITO And Not v.IDCLIENTE Is Nothing Then
                                         If v.MONEDA.Equals(Config.cordoba) Then
@@ -981,14 +993,17 @@ Public Class frmNotaDevolucion
                                     End If
                                 End If
 
+                                'Anular devolución
                                 v.ANULADO = "S"
                                 db.Entry(v).State = EntityState.Modified
 
+                                'Anular movimientos en estado de cuenta
                                 For Each estado In db.VentasEstadosCuentas.Where(Function(f) f.IDVENTA = v.IDVENTA)
                                     estado.ACTIVO = "N"
                                     db.Entry(estado).State = EntityState.Modified
                                 Next
 
+                                'Metiendo productos del inventario
                                 For Each item In v.VentasDevolucionesDetalles
 
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
@@ -1023,6 +1038,7 @@ Public Class frmNotaDevolucion
                                     db.Entry(item.Existencia).State = EntityState.Modified
                                 Next
 
+                                'Anulando Kardex
                                 Using db_a As New CodeFirst
                                     Dim band As Boolean = False
                                     For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
@@ -1055,15 +1071,22 @@ Public Class frmNotaDevolucion
                                     db.SaveChanges() : MessageBox.Show("Devolución de Venta Anulada") : limpiar()
                                 End Using
                             End If
+
+                            'Se elimina el objeto
                             v = Nothing
+
                         Else
                             MessageBox.Show("Error, No se encuentra esta devolución o ya ha sido anulada.")
                         End If
+
                     End Using
+
                 Else
                     MessageBox.Show("Error, Seleccione una devolución")
                 End If
+
             End If
+
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
         End Try

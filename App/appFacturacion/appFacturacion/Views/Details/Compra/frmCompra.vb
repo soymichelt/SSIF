@@ -916,12 +916,37 @@ Public Class frmCompra
 
     Private Sub btAnular_Click(sender As Object, e As EventArgs) Handles btAnular.Click
         Try
+
+            'restricción, solo el admin puede anular documentos
+            If Not Config.Usuario.Administrador Then 'se evalua si not tiene permiso de administrador
+
+                'mensaje que no puede anular
+                Config.MsgErr("Solo el administrador tiene permiso para anular un documento.")
+
+                'si no tiene permiso debe salir
+                Exit Sub
+
+            End If
+            'fin restricción
+
+            'Evaluar si desea realmente anular
             If MessageBox.Show("¿Desea anular esta compra?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                'Evaluar si hay una compra seleccionada
                 If Not Me.Id.Trim() = "" Then
+
                     Using db As New CodeFirst
+
+                        'Seleccionando compra
                         Dim v = db.Compras.Where(Function(f) f.IDCOMPRA = Me.Id And f.ANULADO = "N").FirstOrDefault()
+
+                        'Evaluar si existe la compra
                         If Not v Is Nothing Then
+
+                            'Validando el período
                             If Config.ValidarPeriodo(v.FECHACOMPRA) Then
+
+                                'Evaluar si la compra es de al crédito
+                                'Registrar la anulación de dinero
                                 If v.CREDITO Then
                                     If v.SALDOCREDITO <> If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C, v.TOTAL_D) Then
                                         MessageBox.Show("Error, esta compra de crédito tiene recibos y/o devoluciones realizados para anularla debe anular primero los recibos y/o devoluciones.")
@@ -937,21 +962,30 @@ Public Class frmCompra
                                     End If
                                 End If
 
-                                v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
+                                'Anular compra
+                                v.ANULADO = "S"
+                                db.Entry(v).State = EntityState.Modified
 
+                                'Anular movimientos en estado de cuenta
                                 For Each estado In db.ComprasEstadosCuentas.Where(Function(f) f.IDCOMPRA = v.IDCOMPRA)
-                                    estado.ACTIVO = "N" : db.Entry(estado).State = EntityState.Modified
+                                    estado.ACTIVO = "N"
+                                    db.Entry(estado).State = EntityState.Modified
                                 Next
 
+                                'Sacando productos del inventario
                                 For Each item In v.ComprasDetalles
+
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
                                     item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD - item.CANTIDAD
+
+                                    'Validando si puede quedar en negativo
                                     If item.Existencia.CANTIDAD < 0 Then
                                         If Not item.Existencia.Producto.FACTURAR_NEGATIVO Then
                                             Config.MsgErr("No se puede anular esta Compra. Ya que la existencia del producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' quedaría en negativo.")
                                             Exit Sub
                                         End If
                                     End If
+
                                     If item.Existencia.Producto.CANTIDAD = 0 Then
                                         item.Existencia.Producto.SALDO = 0
                                     Else
@@ -965,6 +999,7 @@ Public Class frmCompra
                                             End If
                                         End If
                                     End If
+
                                     If item.Existencia.Producto.CANTIDAD <> 0 Then
                                         If item.Existencia.Producto.COSTO <> item.COSTO Then
                                             item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
@@ -973,8 +1008,10 @@ Public Class frmCompra
 
                                     db.Entry(item.Existencia.Producto).State = EntityState.Modified
                                     db.Entry(item).State = EntityState.Modified
+
                                 Next
 
+                                'Anulando Kardex
                                 Using dbk As New CodeFirst
                                     Dim ik As Boolean = False
                                     For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
@@ -1010,16 +1047,23 @@ Public Class frmCompra
                                     db.SaveChanges() : MessageBox.Show("Compra Anulada") : limpiar()
                                 End Using
 
+                                'Se elimina el objeto
                                 v = Nothing
+
                             End If
+
                         Else
                             MessageBox.Show("Error, No se encuentra esta compra. Probablemente ha sido eliminada o anulada.")
                         End If
+
                     End Using
+
                 Else
                     MessageBox.Show("Error, Seleccione una compra")
                 End If
+
             End If
+
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
         End Try

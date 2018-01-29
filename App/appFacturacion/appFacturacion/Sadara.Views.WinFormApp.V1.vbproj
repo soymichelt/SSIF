@@ -75,27 +75,27 @@
   <ItemGroup>
     <Reference Include="ComponentFactory.Krypton.Design, Version=4.4.0.0, Culture=neutral, PublicKeyToken=dc91bbef911870e2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ComponentFactory.Krypton.Design.dll</HintPath>
+      <HintPath>Components\ComponentFactory.Krypton.Design.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Docking, Version=4.4.0.0, Culture=neutral, PublicKeyToken=dc91bbef911870e2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ComponentFactory.Krypton.Docking.dll</HintPath>
+      <HintPath>Components\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.4.0.0, Culture=neutral, PublicKeyToken=dc91bbef911870e2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ComponentFactory.Krypton.Navigator.dll</HintPath>
+      <HintPath>Components\ComponentFactory.Krypton.Navigator.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.4.0.0, Culture=neutral, PublicKeyToken=dc91bbef911870e2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+      <HintPath>Components\ComponentFactory.Krypton.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=dc91bbef911870e2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+      <HintPath>Components\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.4.0.0, Culture=neutral, PublicKeyToken=dc91bbef911870e2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ComponentFactory.Krypton.Workspace.dll</HintPath>
+      <HintPath>Components\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -103,58 +103,24 @@
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DevComponents.DotNetBar.Design.dll</HintPath>
+      <HintPath>Components\DevComponents.DotNetBar.Design.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=9.0.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DevComponents.DotNetBar2.dll</HintPath>
+      <HintPath>Components\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.Instrumentation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DevComponents.Instrumentation.dll</HintPath>
+      <HintPath>Components\DevComponents.Instrumentation.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.Instrumentation.Design, Version=9.0.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DevComponents.Instrumentation.Design.dll</HintPath>
+      <HintPath>Components\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.TreeGX, Version=9.0.0.0, Culture=neutral, PublicKeyToken=e116d99a00eca71b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DevComponents.TreeGX.dll</HintPath>
+      <HintPath>Components\DevComponents.TreeGX.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dashboard.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dashboard.v16.2.Win, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v16.2.UI, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Map.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.TreeMap.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v16.2.UI, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v16.2.UI, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v16.2.Wizard, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGauges.v16.2.Presets, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGauges.v16.2.Win, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraMap.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPivotGrid.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraRichEdit.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraRichEdit.v16.2.Extensions, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeMap.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -166,15 +132,15 @@
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="itextsharp, Version=5.5.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\itextsharp.dll</HintPath>
+      <HintPath>Components\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Klik.Windows.Forms.EntryLib.V2.2008, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Klik.Windows.Forms.EntryLib.V2.2008.dll</HintPath>
+      <HintPath>Components\Klik.Windows.Forms.EntryLib.V2.2008.dll</HintPath>
     </Reference>
     <Reference Include="LibPrintTicket, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\LibPrintTicket.dll</HintPath>
+      <HintPath>Components\LibPrintTicket.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />

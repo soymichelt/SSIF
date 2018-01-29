@@ -1060,12 +1060,24 @@ Public Class frmVenta
             End If
             'fin
 
+            'Evaluar si desea realmente anular
             If MessageBox.Show("¿Desea anular esta Factura?", "Pregunta de seguridad", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                'Evaluar si hay una compra seleccionada
                 If Not Me.Id.Trim() = "" Then
+
                     Using db As New CodeFirst
+
+                        'Seleccionando venta
                         Dim v = db.Ventas.Where(Function(f) f.IDVENTA = Me.Id And f.ANULADO = "N").FirstOrDefault()
+
+                        'Evaluar si existe la venta
                         If Not v Is Nothing Then
+
+                            'Validando el período
                             If Config.ValidarPeriodo(v.FECHAFACTURA) Then
+
+                                'Evaluar si la venta es de al crédito
+                                'Registrar la anulación de dinero
                                 If v.CREDITO Then
                                     If v.SALDOCREDITO <> If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C, v.TOTAL_D) Then
                                         MessageBox.Show("Error, esta factura de crédito tiene recibos y/o devoluciones realizados para anularla debe anular primero los recibos y/o devoluciones.")
@@ -1080,15 +1092,21 @@ Public Class frmVenta
                                         db.Entry(v.Cliente).State = EntityState.Modified
                                     End If
                                 End If
-                                v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
 
+                                'Anular ventar
+                                v.ANULADO = "S"
+                                db.Entry(v).State = EntityState.Modified
+
+                                'Anular movimientos en estado de cuenta
                                 For Each estado In db.VentasEstadosCuentas.Where(Function(f) f.IDVENTA = v.IDVENTA)
                                     estado.ACTIVO = "N" : db.Entry(estado).State = EntityState.Modified
                                 Next
 
+                                'Metiendo productos al inventario
                                 For Each item In v.VentasDetalles
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD + item.CANTIDAD
                                     item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD + item.CANTIDAD
+
                                     If item.Existencia.Producto.CANTIDAD = 0 Then
                                         item.Existencia.Producto.SALDO = 0
                                     Else
@@ -1102,6 +1120,7 @@ Public Class frmVenta
                                             End If
                                         End If
                                     End If
+
                                     If item.Existencia.Producto.CANTIDAD <> 0 Then
                                         If item.Existencia.Producto.COSTO <> item.COSTO Then
                                             item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
@@ -1114,6 +1133,7 @@ Public Class frmVenta
                                     db.Entry(item.Existencia).State = EntityState.Modified
                                 Next
 
+                                'Anulando Kardex
                                 Using db_a As New CodeFirst
                                     Dim band As Boolean = False
                                     For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
@@ -1146,12 +1166,18 @@ Public Class frmVenta
                                     End If
                                     db.SaveChanges() : MessageBox.Show("Factura Anulada") : limpiar()
                                 End Using
+
+                                'Se elimina el objeto
                                 v = Nothing
+
                             End If
+
                         Else
                             MessageBox.Show("Error, No se encuentra esta factura. Probablemente ha sido eliminada o anulada.")
                         End If
+
                     End Using
+
                 Else
                     MessageBox.Show("Error, Seleccione una factura")
                 End If
