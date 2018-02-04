@@ -328,7 +328,9 @@ Public Class frmNotaDevolucionCompra
                             dtpFecha.Value = If(dtpFecha.Value.ToShortDateString() = DateTime.Now.ToShortDateString(), DateTime.Now, DateTime.Parse(dtpFecha.Value.ToShortDateString() & " " & DateTime.Now.ToString("HH:mm:ss")))
                             Dim v As New CompraDevolucion
                             v.Reg = DateTime.Now
-                            Dim Compra As Compra
+
+                            Dim Compra As Compra = Nothing
+
                             If rdContado.Checked Then
                                 If Not txtIdProveedor.Text.Trim() = "" Then
                                     v.IDDEVOLUCION = Guid.NewGuid.ToString() : v.IDSERIE = txtIdSerie.Text : v.CONSECUTIVO = txtCodigo.Text : v.N_DEVOLUCION = txtNDevolucion.Text : v.FECHADEVOLUCION = dtpFecha.Value : v.EXONERADO = chkExonerado.Checked : v.PROVEEDORCONTADO = "" : v.CREDITO = False : v.MONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : v.TAZACAMBIO = txtTazaCambio.Value : v.CONCEPTO = txtObservacion.Text : v.DESCUENTO_POR_FACT = If(rdDescuentoPorFactura.Checked, Decimal.Parse(lblDescuentoPorFactura.Text), 0) : v.DESCUENTO_DIN_FACT_C = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_C), 0) : v.DESCUENTO_DIN_FACT_D = If(rdDescuentoPorFactura.Checked, detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D), 0) : v.DESCUENTO_DIN_C = detalles.Sum(Function(f) f.DESCUENTO_DIN_C) : v.DESCUENTO_DIN_D = detalles.Sum(Function(f) f.DESCUENTO_DIN_D) : v.TIPODESCUENTO = If(v.DESCUENTO_DIN_D > 0, If(rdDescuentoPorProducto.Checked, "POR PRODUCTO", "POR FACTURA"), "SIN DESCUENTO") : v.SUBTOTAL_C = detalles.Sum(Function(f) f.SUBTOTAL_C) : v.SUBTOTAL_D = detalles.Sum(Function(f) f.SUBTOTAL_D) : v.IVA_POR = If(v.EXONERADO, 0, Config.iva) : v.IVA_DIN_C = If(v.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_C)) : v.IVA_DIN_D = If(v.EXONERADO, 0, detalles.Sum(Function(f) f.IVA_DIN_TOTAL_D)) : v.TOTAL_C = detalles.Sum(Function(f) f.TOTAL_C) : v.TOTAL_D = detalles.Sum(Function(f) f.TOTAL_D) : v.IDEMPLEADO = txtIdVendedor.Text : v.IDPROVEEDOR = txtIdProveedor.Text : v.REIMPRESION = "N" : v.ANULADO = "N"
@@ -403,9 +405,11 @@ Public Class frmNotaDevolucionCompra
 
                                 If Not producto Is Nothing Then
 
-                                    If Compra.ComprasDetalles.Where(Function(f) f.Existencia.Producto.IDALTERNO = item.IDALTERNO).FirstOrDefault Is Nothing Then
-                                        Config.MsgErr("Ningún Producto con ID Alerno: '" & item.IDALTERNO & "' pertenece a esta Compra (" & Compra.Serie.NOMBRE & " - " & Compra.CONSECUTIVO & ").")
-                                        Exit Sub
+                                    If Not Compra Is Nothing Then
+                                        If Compra.ComprasDetalles.Where(Function(f) f.Existencia.Producto.IDALTERNO = item.IDALTERNO).FirstOrDefault Is Nothing Then
+                                            Config.MsgErr("Ningún Producto con ID Alerno: '" & item.IDALTERNO & "' pertenece a esta Compra (" & Compra.Serie.NOMBRE & " - " & Compra.CONSECUTIVO & ").")
+                                            Exit Sub
+                                        End If
                                     End If
 
                                     If producto.CANTIDAD < item.CANTIDAD Then

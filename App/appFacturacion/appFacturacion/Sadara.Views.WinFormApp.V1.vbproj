@@ -1928,6 +1928,10 @@
       <Project>{1ad1e661-2b9b-47e8-a38b-ca469e0fca43}</Project>
       <Name>Sadara.Models.V1</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sadara.Models.V2\Sadara.Models.V2.csproj">
+      <Project>{b9e8949f-00bc-4f35-995d-3a15ddf4d660}</Project>
+      <Name>Sadara.Models.V2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
