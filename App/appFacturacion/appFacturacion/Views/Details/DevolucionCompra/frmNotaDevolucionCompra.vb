@@ -714,7 +714,7 @@ Public Class frmNotaDevolucionCompra
             txtIdSerie.Text = v.IDSERIE
             txtSerie.Text = v.Serie.NOMBRE
             txtCodigo.Text = v.CONSECUTIVO
-            Me.Id = v.IDCOMPRA
+            Me.Id = v.IDDEVOLUCION
             txtCodigo.Enabled = False : txtSerie.Enabled = False : btActualizarSerie.Enabled = False
             txtNDevolucion.Text = v.N_DEVOLUCION
             dtpFecha.Text = v.FECHADEVOLUCION.ToShortDateString()
@@ -876,7 +876,7 @@ Public Class frmNotaDevolucionCompra
                                 db.Entry(v).State = EntityState.Modified
 
                                 'Anular movimientos en estado de cuenta
-                                For Each estado In db.ComprasEstadosCuentas.Where(Function(f) f.IDCOMPRA = v.IDCOMPRA)
+                                For Each estado In db.ComprasEstadosCuentas.Where(Function(f) f.IDDEVOLUCION = v.IDDEVOLUCION)
                                     estado.ACTIVO = "N"
                                     db.Entry(estado).State = EntityState.Modified
                                 Next

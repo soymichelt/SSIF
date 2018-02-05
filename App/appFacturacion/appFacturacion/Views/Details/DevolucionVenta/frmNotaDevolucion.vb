@@ -1000,7 +1000,7 @@ Public Class frmNotaDevolucion
                                 db.Entry(v).State = EntityState.Modified
 
                                 'Anular movimientos en estado de cuenta
-                                For Each estado In db.VentasEstadosCuentas.Where(Function(f) f.IDVENTA = v.IDVENTA)
+                                For Each estado In db.VentasEstadosCuentas.Where(Function(f) f.IDDEVOLUCION = v.IDDEVOLUCION)
                                     estado.ACTIVO = "N"
                                     db.Entry(estado).State = EntityState.Modified
                                 Next
