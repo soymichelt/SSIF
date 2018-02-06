@@ -104,7 +104,38 @@ Public Class frmProducto
                             Exit Sub
                         End If
 
-                        Dim producto As New Producto : producto.Reg = DateTime.Now : producto.IDPRODUCTO = Guid.NewGuid.ToString() : producto.IDALTERNO = txtAlterno.Text : producto.IDORIGINAL = txtOriginal.Text : producto.IDMARCA = cmbMarca.SelectedValue.ToString() : producto.DESCRIPCION = txtDescripcion.Text : producto.MODELO = txtModelo.Text : producto.APLICACION = txtAplicacion.Text : producto.OBSERVACION = txtObservacion.Text : producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar) : producto.COSTO = Decimal.Parse(txtCosto.Text) : producto.MARGEN = chkMargen.Checked : producto.PRECIO1 = txtPrecio1.Value : producto.PRECIO2 = txtPrecio2.Value : producto.PRECIO3 = txtPrecio3.Value : producto.PRECIO4 = txtPrecio4.Value : producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString() : producto.CONTIENE = txtContiene.Value : producto.CANTIDAD_MINIMA = txtCantidadMinima.Value : producto.CANTIDAD_MAXIMA = txtCantidadMaxima.Value : producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString() : producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString() : producto.UBICACIONFISICA = txtUbicacion.Text : producto.CANTIDAD = 0 : producto.SALDO = 0 : producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5)))) : producto.IVA = rdConIVA.Checked : producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked : If txtIdProveedor.Text.Trim <> "" Then : producto.IDPROVEEDOR = txtIdProveedor.Text : End If : producto.ACTIVO = "S"
+                        Dim producto As New Producto
+                        producto.Reg = DateTime.Now
+                        producto.IDPRODUCTO = Guid.NewGuid.ToString()
+                        producto.IDALTERNO = txtAlterno.Text
+                        producto.IDORIGINAL = txtOriginal.Text
+                        producto.IDMARCA = cmbMarca.SelectedValue.ToString()
+                        producto.DESCRIPCION = txtDescripcion.Text
+                        producto.MODELO = txtModelo.Text
+                        producto.APLICACION = txtAplicacion.Text
+                        producto.OBSERVACION = txtObservacion.Text
+                        producto.CMONEDA = If(rdCordoba.Checked, Config.cordoba, Config.dolar)
+                        producto.COSTO = Decimal.Parse(txtCosto.Text)
+                        producto.MARGEN = chkMargen.Checked
+                        producto.PRECIO1 = txtPrecio1.Value
+                        producto.PRECIO2 = txtPrecio2.Value
+                        producto.PRECIO3 = txtPrecio3.Value
+                        producto.PRECIO4 = txtPrecio4.Value
+                        producto.IDUNIDAD = cmbUnidaddemedida.SelectedValue.ToString()
+                        producto.CONTIENE = txtContiene.Value
+                        producto.CANTIDAD_MINIMA = txtCantidadMinima.Value
+                        producto.CANTIDAD_MAXIMA = txtCantidadMaxima.Value
+                        producto.IDPRESENTACION = cmbPresentacion.SelectedValue.ToString()
+                        producto.IDLABORATORIO = cmbLaboratorio.SelectedValue.ToString()
+                        producto.UBICACIONFISICA = txtUbicacion.Text
+                        producto.CANTIDAD = 0 : producto.SALDO = 0
+                        producto.FACTURAR_PRECIO = If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #1", 1, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #2", 2, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #3", 3, If(cmbFacturarConPrecio.SelectedItem.ToString() = "Precio #4", 4, 5))))
+                        producto.IVA = rdConIVA.Checked
+                        producto.FACTURAR_NEGATIVO = rdSinExistencia.Checked
+                        If txtIdProveedor.Text.Trim <> "" Then
+                            producto.IDPROVEEDOR = txtIdProveedor.Text
+                        End If
+                        producto.ACTIVO = "S"
 
                         'Promociones
                         'If dtpInicio.Text <> "" And dtpFinal.Text <> "" And txtDescuentoMaximo.Value > 0 And txtDescuentoMaximo.Value > 0 Then
@@ -183,52 +214,52 @@ Public Class frmProducto
                     cmbLaboratorio.Focus()
                     Exit Sub
                 End If
-                If txtDescripcion.Text.Trim Then
+                If txtDescripcion.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar la Descripción")
                     txtDescripcion.Focus()
                     Exit Sub
                 End If
-                If txtCosto.Text Then
+                If txtCosto.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar el Costo")
                     txtCosto.Focus()
                     Exit Sub
                 End If
-                If txtPrecio1.Text Then
+                If txtPrecio1.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar el Precio #1")
                     txtPrecio1.Focus()
                     Exit Sub
                 End If
-                If txtPrecio2.Text Then
+                If txtPrecio2.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar el Precio #2")
                     txtPrecio2.Focus()
                     Exit Sub
                 End If
-                If txtPrecio3.Text Then
+                If txtPrecio3.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar el Precio #3")
                     txtPrecio3.Focus()
                     Exit Sub
                 End If
-                If txtPrecio4.Text Then
+                If txtPrecio4.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar el Precio #4")
                     txtPrecio4.Focus()
                     Exit Sub
                 End If
-                If txtContiene.Text Then
+                If txtContiene.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar la Cantidad por Unidades")
                     txtContiene.Focus()
                     Exit Sub
                 End If
-                If txtCantidadMinima.Text Then
+                If txtCantidadMinima.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar la Cantidad Mínima")
                     txtCantidadMinima.Focus()
                     Exit Sub
                 End If
-                If txtCantidadMaxima.Text Then
+                If txtCantidadMaxima.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar la Cantidad Máxima")
                     txtCantidadMaxima.Focus()
                     Exit Sub
                 End If
-                If txtDescuentoMaximo.Text Then
+                If txtDescuentoMaximo.Text.Trim = "" Then
                     Config.MsgAdv("Necesita ingresar el Descuento Máximo")
                     txtDescuentoMaximo.Focus()
                     Exit Sub

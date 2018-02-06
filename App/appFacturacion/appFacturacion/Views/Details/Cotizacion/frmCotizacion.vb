@@ -1037,7 +1037,7 @@ Public Class frmCotizacion
                             Dim vendedor = db.EMPLEADOS.Where(Function(f) f.N_TRABAJADOR = txtNVendedor.Text).FirstOrDefault()
                             If Not vendedor Is Nothing Then
                                 txtIdVendedor.Text = vendedor.IDEMPLEADO
-                                txtNombreVendedor.Text = vendedor.N_TRABAJADOR & " | " & vendedor.NOMBRES & " " & vendedor.APELLIDOS
+                                txtNombreVendedor.Text = vendedor.N_TRABAJADOR & " - " & vendedor.NOMBRES & " " & vendedor.APELLIDOS
                                 txtNVendedor.Clear()
                                 txtNCliente.Focus()
                             Else
