@@ -126,6 +126,8 @@ Public Class frmBCotizacion
 
                                     frmVenta.txtIdVendedor.Text = cotizacion.Empleado.IDEMPLEADO
 
+                                    frmVenta.txtNombreVendedor.Text = cotizacion.Empleado.N_TRABAJADOR & " | " & cotizacion.Empleado.NOMBRES & " " & cotizacion.Empleado.APELLIDOS
+
                                     If Not cotizacion.IDCLIENTE Is Nothing Then
 
                                         frmVenta.txtIdCliente.Text = cotizacion.Cliente.IDCLIENTE

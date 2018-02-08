@@ -38,8 +38,6 @@ Partial Class frmProductosComprados
         Me.TabControl1 = New DevComponents.DotNetBar.TabControl()
         Me.TabControlPanel2 = New DevComponents.DotNetBar.TabControlPanel()
         Me.ElGroupBox6 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
-        Me.txtUtilidad = New DevComponents.Editors.DoubleInput()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.txtCostoTotal = New DevComponents.Editors.DoubleInput()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtTotal = New DevComponents.Editors.DoubleInput()
@@ -80,6 +78,10 @@ Partial Class frmProductosComprados
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.gbMoneda = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.rdMDolar = New System.Windows.Forms.RadioButton()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.rdMCordoba = New System.Windows.Forms.RadioButton()
         Me.Menu.SuspendLayout()
         CType(Me.KFormManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx2.SuspendLayout()
@@ -88,7 +90,6 @@ Partial Class frmProductosComprados
         Me.TabControlPanel2.SuspendLayout()
         CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox6.SuspendLayout()
-        CType(Me.txtUtilidad, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCostoTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtIva, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +108,8 @@ Partial Class frmProductosComprados
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gbMoneda, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbMoneda.SuspendLayout()
         Me.SuspendLayout()
         '
         'Menu
@@ -116,7 +119,7 @@ Partial Class frmProductosComprados
         Me.Menu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btBuscar, Me.btLimpiar, Me.ToolStripSeparator2, Me.btBusqueda, Me.ToolStripSeparator1, Me.btImprimir})
         Me.Menu.Location = New System.Drawing.Point(0, 0)
         Me.Menu.Name = "Menu"
-        Me.Menu.Size = New System.Drawing.Size(894, 39)
+        Me.Menu.Size = New System.Drawing.Size(959, 39)
         Me.Menu.TabIndex = 21
         Me.Menu.Text = "ToolStrip1"
         '
@@ -271,8 +274,6 @@ Partial Class frmProductosComprados
         Me.ElGroupBox6.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox6.CaptionStyle.TextStyle.Text = "Resultados"
         Me.ElGroupBox6.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox6.Controls.Add(Me.txtUtilidad)
-        Me.ElGroupBox6.Controls.Add(Me.Label15)
         Me.ElGroupBox6.Controls.Add(Me.txtCostoTotal)
         Me.ElGroupBox6.Controls.Add(Me.Label14)
         Me.ElGroupBox6.Controls.Add(Me.txtTotal)
@@ -289,36 +290,6 @@ Partial Class frmProductosComprados
         Me.ElGroupBox6.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
         Me.ElGroupBox6.Size = New System.Drawing.Size(250, 161)
         Me.ElGroupBox6.TabIndex = 5
-        '
-        'txtUtilidad
-        '
-        '
-        '
-        '
-        Me.txtUtilidad.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtUtilidad.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtUtilidad.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtUtilidad.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUtilidad.ForeColor = System.Drawing.Color.Red
-        Me.txtUtilidad.Increment = 1.0R
-        Me.txtUtilidad.IsInputReadOnly = True
-        Me.txtUtilidad.Location = New System.Drawing.Point(94, 128)
-        Me.txtUtilidad.MinValue = 0.0R
-        Me.txtUtilidad.Name = "txtUtilidad"
-        Me.txtUtilidad.Size = New System.Drawing.Size(144, 20)
-        Me.txtUtilidad.TabIndex = 63
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.Black
-        Me.Label15.Location = New System.Drawing.Point(7, 130)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(44, 14)
-        Me.Label15.TabIndex = 62
-        Me.Label15.Text = "Utilidad:"
         '
         'txtCostoTotal
         '
@@ -361,7 +332,7 @@ Partial Class frmProductosComprados
         Me.txtTotal.ForeColor = System.Drawing.Color.Black
         Me.txtTotal.Increment = 1.0R
         Me.txtTotal.IsInputReadOnly = True
-        Me.txtTotal.Location = New System.Drawing.Point(94, 108)
+        Me.txtTotal.Location = New System.Drawing.Point(94, 109)
         Me.txtTotal.MinValue = 0.0R
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(144, 20)
@@ -436,7 +407,7 @@ Partial Class frmProductosComprados
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(7, 110)
+        Me.Label3.Location = New System.Drawing.Point(7, 111)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(32, 14)
         Me.Label3.TabIndex = 48
@@ -720,12 +691,13 @@ Partial Class frmProductosComprados
         '
         Me.PanelEx4.CanvasColor = System.Drawing.SystemColors.Control
         Me.PanelEx4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.PanelEx4.Controls.Add(Me.gbMoneda)
         Me.PanelEx4.Controls.Add(Me.gbTipoVenta)
         Me.PanelEx4.Controls.Add(Me.gbFecha)
         Me.PanelEx4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelEx4.Location = New System.Drawing.Point(277, 39)
         Me.PanelEx4.Name = "PanelEx4"
-        Me.PanelEx4.Size = New System.Drawing.Size(617, 36)
+        Me.PanelEx4.Size = New System.Drawing.Size(682, 36)
         Me.PanelEx4.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx4.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.PanelEx4.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -758,7 +730,7 @@ Partial Class frmProductosComprados
         Me.gbTipoVenta.Controls.Add(Me.rdCredito)
         Me.gbTipoVenta.Controls.Add(Me.Label20)
         Me.gbTipoVenta.Controls.Add(Me.rdContado)
-        Me.gbTipoVenta.Location = New System.Drawing.Point(376, 4)
+        Me.gbTipoVenta.Location = New System.Drawing.Point(441, 4)
         Me.gbTipoVenta.Name = "gbTipoVenta"
         Me.gbTipoVenta.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         Me.gbTipoVenta.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -970,7 +942,7 @@ Partial Class frmProductosComprados
         Me.CrystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CrystalReportViewer1.Location = New System.Drawing.Point(277, 75)
         Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(617, 320)
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(682, 320)
         Me.CrystalReportViewer1.TabIndex = 24
         Me.CrystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         Me.CrystalReportViewer1.Visible = False
@@ -992,15 +964,78 @@ Partial Class frmProductosComprados
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtRegistro.Size = New System.Drawing.Size(617, 320)
+        Me.dtRegistro.Size = New System.Drawing.Size(682, 320)
         Me.dtRegistro.TabIndex = 25
+        '
+        'gbMoneda
+        '
+        Me.gbMoneda.BackgroundStyle.GradientAngle = 45.0!
+        Me.gbMoneda.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.gbMoneda.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.gbMoneda.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.gbMoneda.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.gbMoneda.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.gbMoneda.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.gbMoneda.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.gbMoneda.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.gbMoneda.CaptionStyle.Size = New System.Drawing.Size(0, 0)
+        Me.gbMoneda.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.gbMoneda.CaptionStyle.TextStyle.Text = "ElGroupBox5"
+        Me.gbMoneda.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.gbMoneda.Controls.Add(Me.rdMDolar)
+        Me.gbMoneda.Controls.Add(Me.Label19)
+        Me.gbMoneda.Controls.Add(Me.rdMCordoba)
+        Me.gbMoneda.Location = New System.Drawing.Point(263, 4)
+        Me.gbMoneda.Name = "gbMoneda"
+        Me.gbMoneda.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.gbMoneda.Padding = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.gbMoneda.Size = New System.Drawing.Size(170, 28)
+        Me.gbMoneda.TabIndex = 77
+        '
+        'rdMDolar
+        '
+        Me.rdMDolar.AutoSize = True
+        Me.rdMDolar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdMDolar.Location = New System.Drawing.Point(121, 5)
+        Me.rdMDolar.Name = "rdMDolar"
+        Me.rdMDolar.Size = New System.Drawing.Size(50, 18)
+        Me.rdMDolar.TabIndex = 72
+        Me.rdMDolar.Text = "Dólar"
+        Me.rdMDolar.UseVisualStyleBackColor = True
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(4, 7)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(48, 14)
+        Me.Label19.TabIndex = 1
+        Me.Label19.Text = "Móneda:"
+        '
+        'rdMCordoba
+        '
+        Me.rdMCordoba.AutoSize = True
+        Me.rdMCordoba.Checked = True
+        Me.rdMCordoba.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rdMCordoba.Location = New System.Drawing.Point(52, 5)
+        Me.rdMCordoba.Name = "rdMCordoba"
+        Me.rdMCordoba.Size = New System.Drawing.Size(66, 18)
+        Me.rdMCordoba.TabIndex = 73
+        Me.rdMCordoba.TabStop = True
+        Me.rdMCordoba.Text = "Córdoba"
+        Me.rdMCordoba.UseVisualStyleBackColor = True
         '
         'frmProductosComprados
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(894, 395)
+        Me.ClientSize = New System.Drawing.Size(959, 395)
         Me.Controls.Add(Me.dtRegistro)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Controls.Add(Me.PanelEx4)
@@ -1023,7 +1058,6 @@ Partial Class frmProductosComprados
         CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox6.ResumeLayout(False)
         Me.ElGroupBox6.PerformLayout()
-        CType(Me.txtUtilidad, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCostoTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtIva, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1046,6 +1080,9 @@ Partial Class frmProductosComprados
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gbMoneda, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbMoneda.ResumeLayout(False)
+        Me.gbMoneda.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1102,6 +1139,8 @@ Partial Class frmProductosComprados
     Friend WithEvents dtRegistro As DevComponents.DotNetBar.Controls.DataGridViewX
     Friend WithEvents txtCostoTotal As DevComponents.Editors.DoubleInput
     Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents txtUtilidad As DevComponents.Editors.DoubleInput
-    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents gbMoneda As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
+    Friend WithEvents rdMDolar As System.Windows.Forms.RadioButton
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents rdMCordoba As System.Windows.Forms.RadioButton
 End Class
