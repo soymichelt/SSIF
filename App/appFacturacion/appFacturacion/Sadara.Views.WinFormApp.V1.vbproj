@@ -1762,6 +1762,7 @@
     <None Include="Resources\estado.png" />
     <None Include="Resources\Filtros.png" />
     <None Include="Resources\Exportar24x24.png" />
+    <Content Include="Resources\examinar16x16.png" />
     <Content Include="Resources\guardar.png" />
     <None Include="Resources\Menu_Principal\Proveedor.png" />
     <None Include="Resources\Menu_Principal\Vendedor.png" />

@@ -247,7 +247,7 @@ Public Class frmCompra
                 If txtIdSerie.Text <> "" Then
                     If Not txtCodigoAlterno.Text.Trim = "" Then
                         Using db As New CodeFirst
-                            Dim producto = db.Productos.Where(Function(f) f.IDALTERNO = txtCodigoAlterno.Text And f.ACTIVO = "S" And f.Marca.ACTIVO = "S").FirstOrDefault()
+                            Dim producto = db.Productos.Where(Function(f) f.IDALTERNO = txtCodigoAlterno.Text And f.ACTIVO = "S").FirstOrDefault()
                             If Not producto Is Nothing Then
                                 If producto.CMONEDA.Equals(Config.cordoba) Then
                                     txtPrecio.Value = If(rdCordoba.Checked, producto.COSTO, producto.COSTO / txtTazaCambio.Value)

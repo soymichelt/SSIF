@@ -103,6 +103,7 @@ Partial Class frmVenta
         Me.PanelEx2 = New DevComponents.DotNetBar.PanelEx()
         Me.PanelEx3 = New DevComponents.DotNetBar.PanelEx()
         Me.ElGroupBox2 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.btEditarPrecio = New DevComponents.DotNetBar.ButtonX()
         Me.btListadoPrecio = New DevComponents.DotNetBar.ButtonX()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.ElLabel3 = New Klik.Windows.Forms.v1.EntryLib.ELLabel()
@@ -122,7 +123,6 @@ Partial Class frmVenta
         Me.ElLabel6 = New Klik.Windows.Forms.v1.EntryLib.ELLabel()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.sptInfo = New DevComponents.DotNetBar.SuperTooltip()
-        Me.btEditarPrecio = New DevComponents.DotNetBar.ButtonX()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1201,6 +1201,20 @@ Partial Class frmVenta
         Me.ElGroupBox2.Size = New System.Drawing.Size(307, 127)
         Me.ElGroupBox2.TabIndex = 72
         '
+        'btEditarPrecio
+        '
+        Me.btEditarPrecio.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btEditarPrecio.BackColor = System.Drawing.Color.Transparent
+        Me.btEditarPrecio.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btEditarPrecio.Image = Global.appFacturacion.My.Resources.Resources.EditPrice
+        Me.btEditarPrecio.Location = New System.Drawing.Point(225, 56)
+        Me.btEditarPrecio.Name = "btEditarPrecio"
+        Me.btEditarPrecio.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor()
+        Me.btEditarPrecio.Size = New System.Drawing.Size(29, 23)
+        Me.btEditarPrecio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btEditarPrecio.TabIndex = 79
+        Me.btEditarPrecio.Visible = False
+        '
         'btListadoPrecio
         '
         Me.btListadoPrecio.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
@@ -1505,20 +1519,6 @@ Partial Class frmVenta
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtRegistro.Size = New System.Drawing.Size(565, 198)
         Me.dtRegistro.TabIndex = 74
-        '
-        'btEditarPrecio
-        '
-        Me.btEditarPrecio.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btEditarPrecio.BackColor = System.Drawing.Color.Transparent
-        Me.btEditarPrecio.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btEditarPrecio.Image = Global.appFacturacion.My.Resources.Resources.EditPrice
-        Me.btEditarPrecio.Location = New System.Drawing.Point(225, 56)
-        Me.btEditarPrecio.Name = "btEditarPrecio"
-        Me.btEditarPrecio.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor()
-        Me.btEditarPrecio.Size = New System.Drawing.Size(29, 23)
-        Me.btEditarPrecio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btEditarPrecio.TabIndex = 79
-        Me.btEditarPrecio.Visible = False
         '
         'frmVenta
         '

@@ -69,7 +69,7 @@ Partial Class frmVistaPrevia
         Me.Name = "frmVistaPrevia"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Vista Previa"
+        Me.Text = "Vista Previa de Producto"
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

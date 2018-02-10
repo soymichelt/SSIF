@@ -102,22 +102,27 @@ Public Class frmBuscarEmpleado
                                 frmEmpleado.MdiParent = frmPrincipal
                                 frmEmpleado.BringToFront()
                                 frmEmpleado.Show()
-                            Case 1
+                            Case 1 ' Venta
                                 If v.VENTA Then
                                     frmVenta.txtIdVendedor.Text = v.IDEMPLEADO
                                     frmVenta.txtNombreVendedor.Text = v.N_TRABAJADOR & " - " & v.NOMBRES & " " & v.APELLIDOS
                                 Else
                                     MessageBox.Show("Seleccione un 'Empleado' con labor de 'Venta'")
                                 End If
-                            Case 2
+                            Case 2 ' Cotización
                                 If v.VENTA Then
                                     frmCotizacion.txtIdVendedor.Text = v.IDEMPLEADO
                                     frmCotizacion.txtNombreVendedor.Text = v.N_TRABAJADOR & " - " & v.NOMBRES & " " & v.APELLIDOS
                                 Else
                                     MessageBox.Show("Seleccione un 'Empleado' con labor de 'Venta'")
                                 End If
-                            Case 3
-
+                            Case 3 ' Devolución de Venta
+                                If v.VENTA Then
+                                    frmNotaDevolucion.txtIdVendedor.Text = v.IDEMPLEADO
+                                    frmNotaDevolucion.txtNombreVendedor.Text = v.N_TRABAJADOR & " - " & v.NOMBRES & " " & v.APELLIDOS
+                                Else
+                                    MessageBox.Show("Seleccione un 'Empleado' con labor de 'Venta'")
+                                End If
                             Case 4
                                 If v.VENTA Then
                                     If frmBuscarCotizacion.rdIdTrabajador.Checked Then

@@ -424,7 +424,7 @@ Public Class frmNotaDevolucion
 
     Private Sub btVendedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btVendedor.Click
         If txtIdSerie.Text <> "" Then
-            frmBuscarEmpleado.frm_return = 1
+            frmBuscarEmpleado.frm_return = 3
             frmBuscarEmpleado.ShowDialog()
         Else
             MessageBox.Show("Error, Seleccione la serie")
@@ -1194,7 +1194,7 @@ Public Class frmNotaDevolucion
                             End If
                             vendedor = Nothing
                         Else
-                            frmBuscarEmpleado.frm_return = 1
+                            frmBuscarEmpleado.frm_return = 3
                             frmBuscarEmpleado.ShowDialog()
                         End If
                     End Using

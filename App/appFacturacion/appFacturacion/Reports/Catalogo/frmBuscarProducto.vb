@@ -488,7 +488,70 @@ Public Class frmBuscarProductos
     End Sub
 
     Private Sub btExportar_Click(sender As Object, e As EventArgs) Handles btExportar.Click
+
         llenar(txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtMarca.Text.Trim, txtNombreComercial.Text.Trim, txtLaboratorio.Text.Trim, txtDistribuidor.Text.Trim, txtForma.Text.Trim, txtUbicacion.Text.Trim, True)
+
+    End Sub
+
+    'Click derecho a una celda
+    Private Sub dtRegistro_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dtRegistro.CellMouseClick
+
+        If e.RowIndex >= 0 Then
+            If e.Button = Windows.Forms.MouseButtons.Right Then
+                dtRegistro.CurrentCell = dtRegistro.Rows(e.RowIndex).Cells(e.ColumnIndex)
+                contextMenu.Show(System.Windows.Forms.Cursor.Position)
+            End If
+        End If
+
+    End Sub
+
+    Private Function GetProduct(ByVal productId As String) As Sadara.Models.V1.POCO.Producto
+
+        Using db As New Sadara.Models.V1.Database.CodeFirst
+
+            Return (From p In db.Productos Where p.IDPRODUCTO = productId And p.ACTIVO = "S").FirstOrDefault()
+
+        End Using
+
+    End Function
+
+    Private Sub mnuSelect_Click(sender As Object, e As EventArgs) Handles mnuSelect.Click
+
+        dtRegistro_CellDoubleClick(Nothing, Nothing)
+
+    End Sub
+
+    Private Sub mnuPreview_Click(sender As Object, e As EventArgs) Handles mnuPreview.Click
+
+        Try
+
+            Dim product = Me.GetProduct(dtRegistro.SelectedRows(0).Cells(12).Value.ToString)
+
+            If product IsNot Nothing Then
+
+                If Not String.IsNullOrWhiteSpace(product.IMAGENAME) Then
+
+                    'Mostrando vista previa
+                    frmVistaPrevia.SelectImage(Config.DirectoryPathImageProducts & product.IMAGENAME & Config.ImageExtension)
+                    frmVistaPrevia.ShowDialog()
+
+                Else
+
+                    Config.MsgAdv("Este producto no tiene imagen")
+
+                End If
+
+            Else
+
+                'no se encuentra
+                Config.MsgErr("No se encuentra este producto")
+
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
 End Class

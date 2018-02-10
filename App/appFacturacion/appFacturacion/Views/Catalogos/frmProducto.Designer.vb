@@ -129,12 +129,12 @@ Partial Class frmProducto
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
         Me.rdSinExistencia = New System.Windows.Forms.RadioButton()
         Me.rdConExistencia = New System.Windows.Forms.RadioButton()
-        Me.btImagen = New DevComponents.DotNetBar.ButtonX()
         Me.txtImagen = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.pnImagen = New DevComponents.DotNetBar.PanelEx()
         Me.sptInfo = New DevComponents.DotNetBar.SuperTooltip()
         Me.pnContImage = New DevComponents.DotNetBar.PanelEx()
         Me.btEliminarImagen = New DevComponents.DotNetBar.ButtonX()
+        Me.btImagen = New DevComponents.DotNetBar.ButtonX()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1031,7 +1031,7 @@ Partial Class frmProducto
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(17, 207)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(71, 14)
+        Me.Label3.Size = New System.Drawing.Size(70, 14)
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "Cant. Mínima:"
         '
@@ -1227,7 +1227,6 @@ Partial Class frmProducto
         '
         'opArchivo
         '
-        Me.opArchivo.FileName = "OpenFileDialog1"
         Me.opArchivo.Filter = "Imagenes (.jpg, .jpeg, .png, .gif)|*.jpg;*.jpeg;*.png;*.gif"
         '
         'ElTab1
@@ -1629,17 +1628,6 @@ Partial Class frmProducto
         Me.rdConExistencia.Text = "No"
         Me.rdConExistencia.UseVisualStyleBackColor = True
         '
-        'btImagen
-        '
-        Me.btImagen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btImagen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btImagen.Location = New System.Drawing.Point(229, 5)
-        Me.btImagen.Name = "btImagen"
-        Me.btImagen.Size = New System.Drawing.Size(27, 23)
-        Me.btImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btImagen.TabIndex = 30
-        Me.btImagen.Text = "..."
-        '
         'txtImagen
         '
         Me.txtImagen.BackColor = System.Drawing.Color.White
@@ -1705,6 +1693,17 @@ Partial Class frmProducto
         Me.btEliminarImagen.Size = New System.Drawing.Size(27, 23)
         Me.btEliminarImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.btEliminarImagen.TabIndex = 32
+        '
+        'btImagen
+        '
+        Me.btImagen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btImagen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btImagen.Image = Global.appFacturacion.My.Resources.Resources.examinar16x16
+        Me.btImagen.Location = New System.Drawing.Point(229, 5)
+        Me.btImagen.Name = "btImagen"
+        Me.btImagen.Size = New System.Drawing.Size(27, 23)
+        Me.btImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btImagen.TabIndex = 30
         '
         'frmProducto
         '
