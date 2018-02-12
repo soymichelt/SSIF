@@ -33,7 +33,8 @@
                 txtClaveEncriptada.Text = Config.Key
                 txtClave.Enabled = False
                 btRegistrar.Enabled = False
-            Else                Config.MsgErr("Clave de registro incorrecta")
+            Else
+                Config.MsgErr("Clave de registro incorrecta")
             End If
         Catch ex As Exception
             Config.MsgErr(ex.Message)
