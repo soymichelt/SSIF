@@ -191,7 +191,7 @@ Partial Class frmCambiarContraseña
         Me.btGuardar.Size = New System.Drawing.Size(106, 36)
         Me.btGuardar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.btGuardar.TabIndex = 4
-        Me.btGuardar.Text = "Guardar"
+        Me.btGuardar.Text = "Cambiar"
         '
         'Label1
         '

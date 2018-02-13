@@ -63,7 +63,7 @@ Public Class frmUser
                         u.Nombres = txtNombres.Text
                         u.Apellidos = txtApellidos.Text
                         u.NombreCuenta = txtUsuario.Text
-                        u.Contraseña = txtContraseña.Text
+                        u.Contraseña = CryptoSecurity.Encoding(txtContraseña.Text)
                         u.Observacion = txtObservacion.Text
 
                         Try
@@ -128,7 +128,7 @@ Public Class frmUser
                             u.Apellidos = txtApellidos.Text
                             u.NombreCuenta = txtUsuario.Text
                             If txtContraseña.Text.Trim <> "" Then
-                                u.Contraseña = txtContraseña.Text
+                                u.Contraseña = CryptoSecurity.Encoding(txtContraseña.Text)
                             End If
                             u.Observacion = txtObservacion.Text
 

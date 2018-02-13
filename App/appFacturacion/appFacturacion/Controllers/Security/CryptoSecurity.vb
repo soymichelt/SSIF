@@ -24,4 +24,5 @@ Friend Class CryptoSecurity
             Return Converter.GetString(RSA.Decrypt(Convert.FromBase64String(ValText), False))
         End Using
     End Function
+
 End Class

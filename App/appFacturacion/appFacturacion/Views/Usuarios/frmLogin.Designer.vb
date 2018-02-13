@@ -178,9 +178,9 @@ Partial Class frmLogin
         Me.btSalir.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.btSalir.ForegroundImageStyle.Image = Global.appFacturacion.My.Resources.Resources.Cerrar_24_24
         Me.btSalir.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btSalir.Location = New System.Drawing.Point(126, 111)
+        Me.btSalir.Location = New System.Drawing.Point(121, 111)
         Me.btSalir.Name = "btSalir"
-        Me.btSalir.Size = New System.Drawing.Size(108, 31)
+        Me.btSalir.Size = New System.Drawing.Size(125, 31)
         Me.btSalir.StateStyles.FocusStyle.BackgroundPaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
         Me.btSalir.StateStyles.FocusStyle.BackgroundSolidColor = System.Drawing.Color.BurlyWood
         GradientBlend1.Factor = 0.0!
@@ -197,7 +197,7 @@ Partial Class frmLogin
         Me.btSalir.TabIndex = 4
         Me.btSalir.TextStyle.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.btSalir.TextStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btSalir.TextStyle.Text = "Salir del Sist."
+        Me.btSalir.TextStyle.Text = "Salir del Sistema"
         Me.btSalir.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.btSalir.VisualStyle = Klik.Windows.Forms.v1.EntryLib.ButtonVisualStyles.Custom
         '

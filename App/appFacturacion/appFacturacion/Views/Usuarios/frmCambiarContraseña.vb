@@ -7,32 +7,51 @@ Public Class frmCambiarContraseña
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
         Try
             If Not txtActual.Text.Trim = "" And Not txtNueva.Text.Trim = "" And Not txtConfirmar.Text.Trim = "" Then
+
                 Using db As New CodeFirst
+
                     Config.Usuario = db.Usuarios.Where(Function(f) f.NombreCuenta = Config.Usuario.NombreCuenta And f.Activo = "S").FirstOrDefault
+
                     If Not Config.Usuario Is Nothing Then
-                        If Config.Usuario.Contraseña = txtActual.Text Then
+
+                        Dim password = CryptoSecurity.Decoding(Config.Usuario.Contraseña)
+
+                        If password = txtActual.Text Then
+
                             If txtNueva.Text = txtConfirmar.Text Then
-                                Config.Usuario.Contraseña = txtNueva.Text
+
+                                Config.Usuario.Contraseña = CryptoSecurity.Encoding(txtNueva.Text)
                                 db.Entry(Config.Usuario).State = EntityState.Modified
                                 db.SaveChanges()
                                 MessageBox.Show("Contraseña guardada correctamente")
                                 Me.Close()
+
                             Else
                                 MessageBox.Show("Las contraseñas no coinciden")
                             End If
+
                         Else
                             MessageBox.Show("Contraseña incorrecta")
                         End If
+
                     Else
+
                         MessageBox.Show("Error, No se encuentra este usuario")
+                        Me.Close()
                         frmLogin.Show()
                         frmPrincipal.forzarcierre = True
                         frmPrincipal.Close()
+
                     End If
+
                 End Using
+
             Else
+
                 MessageBox.Show("Ninguna de las contraseñas puede contener cadena vacia")
+
             End If
+
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
         End Try

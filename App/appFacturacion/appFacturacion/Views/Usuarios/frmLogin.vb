@@ -43,7 +43,10 @@ Public Class frmLogin
                 Using db As New CodeFirst
                     Dim User = db.Usuarios.Where(Function(f) f.NombreCuenta = txtUsuario.Text And f.Activo = "S").FirstOrDefault
                     If Not User Is Nothing Then
-                        If User.Contraseña = txtContraseña.Text Then
+
+                        Dim password = CryptoSecurity.Decoding(User.Contraseña)
+
+                        If password = txtContraseña.Text Then
 
                             'Evaluar que tipo de inicio de sesión (-Ingreso  -Autorización)
                             If Me.Type Then
@@ -63,8 +66,6 @@ Public Class frmLogin
                                 Me.Close()
 
                             End If
-
-
 
                         Else
                             MessageBox.Show("Contraseña incorrecta")
