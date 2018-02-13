@@ -29,6 +29,8 @@ Partial Class frmBuscarClientes
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.PanelEx2 = New DevComponents.DotNetBar.PanelEx()
         Me.ElGroupBox2 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.txtNombre = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -40,8 +42,6 @@ Partial Class frmBuscarClientes
         Me.btImprimir = New System.Windows.Forms.ToolStripButton()
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
-        Me.txtRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx2.SuspendLayout()
         CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,7 +62,7 @@ Partial Class frmBuscarClientes
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(286, 39)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
@@ -119,6 +119,28 @@ Partial Class frmBuscarClientes
         Me.ElGroupBox2.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
         Me.ElGroupBox2.Size = New System.Drawing.Size(256, 107)
         Me.ElGroupBox2.TabIndex = 4
+        '
+        'txtRazonSocial
+        '
+        '
+        '
+        '
+        Me.txtRazonSocial.Border.Class = "TextBoxBorder"
+        Me.txtRazonSocial.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtRazonSocial.Location = New System.Drawing.Point(72, 77)
+        Me.txtRazonSocial.Name = "txtRazonSocial"
+        Me.txtRazonSocial.Size = New System.Drawing.Size(177, 20)
+        Me.txtRazonSocial.TabIndex = 3
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(9, 79)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(52, 14)
+        Me.Label3.TabIndex = 17
+        Me.Label3.Text = "R. Social:"
         '
         'txtNombre
         '
@@ -232,28 +254,6 @@ Partial Class frmBuscarClientes
         Me.CrystalReportViewer1.TabIndex = 59
         Me.CrystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         Me.CrystalReportViewer1.Visible = False
-        '
-        'txtRazonSocial
-        '
-        '
-        '
-        '
-        Me.txtRazonSocial.Border.Class = "TextBoxBorder"
-        Me.txtRazonSocial.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtRazonSocial.Location = New System.Drawing.Point(72, 77)
-        Me.txtRazonSocial.Name = "txtRazonSocial"
-        Me.txtRazonSocial.Size = New System.Drawing.Size(177, 20)
-        Me.txtRazonSocial.TabIndex = 3
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(9, 79)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(52, 14)
-        Me.Label3.TabIndex = 17
-        Me.Label3.Text = "R. Social:"
         '
         'frmBuscarClientes
         '

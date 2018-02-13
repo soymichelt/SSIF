@@ -36,6 +36,22 @@ Partial Class frmInformeCotizaciones
         Me.KFormManager1 = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
         Me.PanelEx2 = New DevComponents.DotNetBar.PanelEx()
         Me.TabControl1 = New DevComponents.DotNetBar.TabControl()
+        Me.tcpFiltros = New DevComponents.DotNetBar.TabControlPanel()
+        Me.ElGroupBox7 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtNombreCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.txtNCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtNVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.txtNombreVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.ElGroupBox2 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.cmbBodega = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.cmbSerie = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.tbFiltros = New DevComponents.DotNetBar.TabItem(Me.components)
         Me.TabControlPanel2 = New DevComponents.DotNetBar.TabControlPanel()
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.txtTotalDolar = New DevComponents.Editors.DoubleInput()
@@ -56,22 +72,6 @@ Partial Class frmInformeCotizaciones
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TabItem3 = New DevComponents.DotNetBar.TabItem(Me.components)
-        Me.tcpFiltros = New DevComponents.DotNetBar.TabControlPanel()
-        Me.ElGroupBox7 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtNombreCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.txtNCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtNVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.txtNombreVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.ElGroupBox2 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.cmbBodega = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.cmbSerie = New DevComponents.DotNetBar.Controls.ComboBoxEx()
-        Me.tbFiltros = New DevComponents.DotNetBar.TabItem(Me.components)
         Me.rdTodos = New System.Windows.Forms.RadioButton()
         Me.rdCredito = New System.Windows.Forms.RadioButton()
         Me.rdContado = New System.Windows.Forms.RadioButton()
@@ -99,6 +99,11 @@ Partial Class frmInformeCotizaciones
         Me.PanelEx2.SuspendLayout()
         CType(Me.TabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
+        Me.tcpFiltros.SuspendLayout()
+        CType(Me.ElGroupBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ElGroupBox7.SuspendLayout()
+        CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ElGroupBox2.SuspendLayout()
         Me.TabControlPanel2.SuspendLayout()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox1.SuspendLayout()
@@ -112,11 +117,6 @@ Partial Class frmInformeCotizaciones
         CType(Me.txtIva, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSubtotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDescuento, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tcpFiltros.SuspendLayout()
-        CType(Me.ElGroupBox7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ElGroupBox7.SuspendLayout()
-        CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ElGroupBox2.SuspendLayout()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.expDetalle.SuspendLayout()
@@ -252,8 +252,8 @@ Partial Class frmInformeCotizaciones
         Me.TabControl1.ColorScheme.TabItemSelectedBorder = System.Drawing.Color.Black
         Me.TabControl1.ColorScheme.TabPanelBackground = System.Drawing.SystemColors.InactiveCaption
         Me.TabControl1.ColorScheme.TabPanelBackground2 = System.Drawing.SystemColors.ActiveCaption
-        Me.TabControl1.Controls.Add(Me.tcpFiltros)
         Me.TabControl1.Controls.Add(Me.TabControlPanel2)
+        Me.TabControl1.Controls.Add(Me.tcpFiltros)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -265,6 +265,246 @@ Partial Class frmInformeCotizaciones
         Me.TabControl1.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox
         Me.TabControl1.Tabs.Add(Me.TabItem3)
         Me.TabControl1.Tabs.Add(Me.tbFiltros)
+        '
+        'tcpFiltros
+        '
+        Me.tcpFiltros.AutoScroll = True
+        Me.tcpFiltros.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.tcpFiltros.Controls.Add(Me.ElGroupBox7)
+        Me.tcpFiltros.Controls.Add(Me.ElGroupBox2)
+        Me.tcpFiltros.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tcpFiltros.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tcpFiltros.Location = New System.Drawing.Point(0, 26)
+        Me.tcpFiltros.Name = "tcpFiltros"
+        Me.tcpFiltros.Padding = New System.Windows.Forms.Padding(1)
+        Me.tcpFiltros.Size = New System.Drawing.Size(277, 328)
+        Me.tcpFiltros.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(232, Byte), Integer))
+        Me.tcpFiltros.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(149, Byte), Integer), CType(CType(149, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.tcpFiltros.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.tcpFiltros.Style.BorderColor.Color = System.Drawing.Color.Black
+        Me.tcpFiltros.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
+            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
+        Me.tcpFiltros.Style.ForeColor.Color = System.Drawing.Color.Black
+        Me.tcpFiltros.Style.GradientAngle = -90
+        Me.tcpFiltros.TabIndex = 1
+        Me.tcpFiltros.TabItem = Me.tbFiltros
+        Me.tcpFiltros.Visible = False
+        '
+        'ElGroupBox7
+        '
+        Me.ElGroupBox7.BackgroundStyle.GradientAngle = 45.0!
+        Me.ElGroupBox7.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox7.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox7.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox7.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox7.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox7.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElGroupBox7.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox7.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox7.CaptionStyle.Size = New System.Drawing.Size(110, 24)
+        Me.ElGroupBox7.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.ElGroupBox7.CaptionStyle.TextStyle.Text = "Personas"
+        Me.ElGroupBox7.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox7.Controls.Add(Me.Label6)
+        Me.ElGroupBox7.Controls.Add(Me.txtNombreCliente)
+        Me.ElGroupBox7.Controls.Add(Me.Label11)
+        Me.ElGroupBox7.Controls.Add(Me.Label12)
+        Me.ElGroupBox7.Controls.Add(Me.Label10)
+        Me.ElGroupBox7.Controls.Add(Me.txtNCliente)
+        Me.ElGroupBox7.Controls.Add(Me.txtNVendedor)
+        Me.ElGroupBox7.Controls.Add(Me.txtNombreVendedor)
+        Me.ElGroupBox7.Location = New System.Drawing.Point(10, 93)
+        Me.ElGroupBox7.Name = "ElGroupBox7"
+        Me.ElGroupBox7.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox7.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
+        Me.ElGroupBox7.Size = New System.Drawing.Size(241, 132)
+        Me.ElGroupBox7.TabIndex = 2
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(7, 32)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(57, 14)
+        Me.Label6.TabIndex = 1
+        Me.Label6.Text = "Nº Cliente:"
+        '
+        'txtNombreCliente
+        '
+        '
+        '
+        '
+        Me.txtNombreCliente.Border.Class = "TextBoxBorder"
+        Me.txtNombreCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNombreCliente.Location = New System.Drawing.Point(67, 55)
+        Me.txtNombreCliente.Name = "txtNombreCliente"
+        Me.txtNombreCliente.Size = New System.Drawing.Size(166, 20)
+        Me.txtNombreCliente.TabIndex = 6
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(7, 80)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(53, 14)
+        Me.Label11.TabIndex = 6
+        Me.Label11.Text = "Nº Vend.:"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(7, 103)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(57, 14)
+        Me.Label12.TabIndex = 7
+        Me.Label12.Text = "Vendedor:"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(7, 57)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(42, 14)
+        Me.Label10.TabIndex = 3
+        Me.Label10.Text = "Cliente:"
+        '
+        'txtNCliente
+        '
+        '
+        '
+        '
+        Me.txtNCliente.Border.Class = "TextBoxBorder"
+        Me.txtNCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNCliente.Location = New System.Drawing.Point(67, 32)
+        Me.txtNCliente.Name = "txtNCliente"
+        Me.txtNCliente.Size = New System.Drawing.Size(166, 20)
+        Me.txtNCliente.TabIndex = 5
+        '
+        'txtNVendedor
+        '
+        '
+        '
+        '
+        Me.txtNVendedor.Border.Class = "TextBoxBorder"
+        Me.txtNVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNVendedor.Location = New System.Drawing.Point(67, 78)
+        Me.txtNVendedor.Name = "txtNVendedor"
+        Me.txtNVendedor.Size = New System.Drawing.Size(166, 20)
+        Me.txtNVendedor.TabIndex = 7
+        '
+        'txtNombreVendedor
+        '
+        '
+        '
+        '
+        Me.txtNombreVendedor.Border.Class = "TextBoxBorder"
+        Me.txtNombreVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNombreVendedor.Location = New System.Drawing.Point(67, 101)
+        Me.txtNombreVendedor.Name = "txtNombreVendedor"
+        Me.txtNombreVendedor.Size = New System.Drawing.Size(166, 20)
+        Me.txtNombreVendedor.TabIndex = 8
+        '
+        'ElGroupBox2
+        '
+        Me.ElGroupBox2.BackgroundStyle.GradientAngle = 45.0!
+        Me.ElGroupBox2.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox2.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox2.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox2.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox2.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox2.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElGroupBox2.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox2.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox2.CaptionStyle.Size = New System.Drawing.Size(110, 24)
+        Me.ElGroupBox2.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.ElGroupBox2.CaptionStyle.TextStyle.Text = "Localidad"
+        Me.ElGroupBox2.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox2.Controls.Add(Me.Label5)
+        Me.ElGroupBox2.Controls.Add(Me.Label8)
+        Me.ElGroupBox2.Controls.Add(Me.cmbBodega)
+        Me.ElGroupBox2.Controls.Add(Me.cmbSerie)
+        Me.ElGroupBox2.Location = New System.Drawing.Point(10, 3)
+        Me.ElGroupBox2.Name = "ElGroupBox2"
+        Me.ElGroupBox2.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox2.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
+        Me.ElGroupBox2.Size = New System.Drawing.Size(241, 84)
+        Me.ElGroupBox2.TabIndex = 1
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(8, 32)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(53, 14)
+        Me.Label5.TabIndex = 1
+        Me.Label5.Text = "Sucursal:"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(9, 56)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(35, 14)
+        Me.Label8.TabIndex = 3
+        Me.Label8.Text = "Serie:"
+        '
+        'cmbBodega
+        '
+        Me.cmbBodega.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbBodega.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbBodega.DisplayMember = "Text"
+        Me.cmbBodega.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbBodega.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbBodega.FormattingEnabled = True
+        Me.cmbBodega.ItemHeight = 14
+        Me.cmbBodega.Location = New System.Drawing.Point(67, 31)
+        Me.cmbBodega.Name = "cmbBodega"
+        Me.cmbBodega.Size = New System.Drawing.Size(166, 20)
+        Me.cmbBodega.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cmbBodega.TabIndex = 1
+        '
+        'cmbSerie
+        '
+        Me.cmbSerie.DisplayMember = "Text"
+        Me.cmbSerie.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbSerie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSerie.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbSerie.FormattingEnabled = True
+        Me.cmbSerie.ItemHeight = 14
+        Me.cmbSerie.Location = New System.Drawing.Point(67, 54)
+        Me.cmbSerie.Name = "cmbSerie"
+        Me.cmbSerie.Size = New System.Drawing.Size(166, 20)
+        Me.cmbSerie.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cmbSerie.TabIndex = 2
+        '
+        'tbFiltros
+        '
+        Me.tbFiltros.AttachedControl = Me.tcpFiltros
+        Me.tbFiltros.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(232, Byte), Integer))
+        Me.tbFiltros.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(149, Byte), Integer), CType(CType(149, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.tbFiltros.BorderColor = System.Drawing.Color.Black
+        Me.tbFiltros.CloseButtonVisible = False
+        Me.tbFiltros.DarkBorderColor = System.Drawing.Color.Black
+        Me.tbFiltros.Image = Global.appFacturacion.My.Resources.Resources.Filtros
+        Me.tbFiltros.LightBorderColor = System.Drawing.Color.Black
+        Me.tbFiltros.Name = "tbFiltros"
+        Me.tbFiltros.PredefinedColor = DevComponents.DotNetBar.eTabItemColor.Silver
+        Me.tbFiltros.Text = "Busq. Avanzada"
+        Me.tbFiltros.Visible = False
         '
         'TabControlPanel2
         '
@@ -597,246 +837,6 @@ Partial Class frmInformeCotizaciones
         Me.TabItem3.PredefinedColor = DevComponents.DotNetBar.eTabItemColor.Silver
         Me.TabItem3.Text = "Resultados"
         '
-        'tcpFiltros
-        '
-        Me.tcpFiltros.AutoScroll = True
-        Me.tcpFiltros.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.tcpFiltros.Controls.Add(Me.ElGroupBox7)
-        Me.tcpFiltros.Controls.Add(Me.ElGroupBox2)
-        Me.tcpFiltros.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tcpFiltros.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tcpFiltros.Location = New System.Drawing.Point(0, 26)
-        Me.tcpFiltros.Name = "tcpFiltros"
-        Me.tcpFiltros.Padding = New System.Windows.Forms.Padding(1)
-        Me.tcpFiltros.Size = New System.Drawing.Size(277, 328)
-        Me.tcpFiltros.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(232, Byte), Integer))
-        Me.tcpFiltros.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(149, Byte), Integer), CType(CType(149, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.tcpFiltros.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.tcpFiltros.Style.BorderColor.Color = System.Drawing.Color.Black
-        Me.tcpFiltros.Style.BorderSide = CType(((DevComponents.DotNetBar.eBorderSide.Left Or DevComponents.DotNetBar.eBorderSide.Right) _
-            Or DevComponents.DotNetBar.eBorderSide.Bottom), DevComponents.DotNetBar.eBorderSide)
-        Me.tcpFiltros.Style.ForeColor.Color = System.Drawing.Color.Black
-        Me.tcpFiltros.Style.GradientAngle = -90
-        Me.tcpFiltros.TabIndex = 1
-        Me.tcpFiltros.TabItem = Me.tbFiltros
-        Me.tcpFiltros.Visible = False
-        '
-        'ElGroupBox7
-        '
-        Me.ElGroupBox7.BackgroundStyle.GradientAngle = 45.0!
-        Me.ElGroupBox7.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox7.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox7.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox7.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox7.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox7.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox7.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElGroupBox7.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox7.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox7.CaptionStyle.Size = New System.Drawing.Size(110, 24)
-        Me.ElGroupBox7.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
-        Me.ElGroupBox7.CaptionStyle.TextStyle.Text = "Personas"
-        Me.ElGroupBox7.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox7.Controls.Add(Me.Label6)
-        Me.ElGroupBox7.Controls.Add(Me.txtNombreCliente)
-        Me.ElGroupBox7.Controls.Add(Me.Label11)
-        Me.ElGroupBox7.Controls.Add(Me.Label12)
-        Me.ElGroupBox7.Controls.Add(Me.Label10)
-        Me.ElGroupBox7.Controls.Add(Me.txtNCliente)
-        Me.ElGroupBox7.Controls.Add(Me.txtNVendedor)
-        Me.ElGroupBox7.Controls.Add(Me.txtNombreVendedor)
-        Me.ElGroupBox7.Location = New System.Drawing.Point(10, 93)
-        Me.ElGroupBox7.Name = "ElGroupBox7"
-        Me.ElGroupBox7.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox7.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
-        Me.ElGroupBox7.Size = New System.Drawing.Size(241, 132)
-        Me.ElGroupBox7.TabIndex = 2
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(7, 32)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(57, 14)
-        Me.Label6.TabIndex = 1
-        Me.Label6.Text = "Nº Cliente:"
-        '
-        'txtNombreCliente
-        '
-        '
-        '
-        '
-        Me.txtNombreCliente.Border.Class = "TextBoxBorder"
-        Me.txtNombreCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNombreCliente.Location = New System.Drawing.Point(67, 55)
-        Me.txtNombreCliente.Name = "txtNombreCliente"
-        Me.txtNombreCliente.Size = New System.Drawing.Size(166, 20)
-        Me.txtNombreCliente.TabIndex = 6
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(7, 80)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(53, 14)
-        Me.Label11.TabIndex = 6
-        Me.Label11.Text = "Nº Vend.:"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(7, 103)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(57, 14)
-        Me.Label12.TabIndex = 7
-        Me.Label12.Text = "Vendedor:"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(7, 57)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(42, 14)
-        Me.Label10.TabIndex = 3
-        Me.Label10.Text = "Cliente:"
-        '
-        'txtNCliente
-        '
-        '
-        '
-        '
-        Me.txtNCliente.Border.Class = "TextBoxBorder"
-        Me.txtNCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNCliente.Location = New System.Drawing.Point(67, 32)
-        Me.txtNCliente.Name = "txtNCliente"
-        Me.txtNCliente.Size = New System.Drawing.Size(166, 20)
-        Me.txtNCliente.TabIndex = 5
-        '
-        'txtNVendedor
-        '
-        '
-        '
-        '
-        Me.txtNVendedor.Border.Class = "TextBoxBorder"
-        Me.txtNVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNVendedor.Location = New System.Drawing.Point(67, 78)
-        Me.txtNVendedor.Name = "txtNVendedor"
-        Me.txtNVendedor.Size = New System.Drawing.Size(166, 20)
-        Me.txtNVendedor.TabIndex = 7
-        '
-        'txtNombreVendedor
-        '
-        '
-        '
-        '
-        Me.txtNombreVendedor.Border.Class = "TextBoxBorder"
-        Me.txtNombreVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNombreVendedor.Location = New System.Drawing.Point(67, 101)
-        Me.txtNombreVendedor.Name = "txtNombreVendedor"
-        Me.txtNombreVendedor.Size = New System.Drawing.Size(166, 20)
-        Me.txtNombreVendedor.TabIndex = 8
-        '
-        'ElGroupBox2
-        '
-        Me.ElGroupBox2.BackgroundStyle.GradientAngle = 45.0!
-        Me.ElGroupBox2.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox2.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox2.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox2.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox2.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox2.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox2.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElGroupBox2.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox2.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox2.CaptionStyle.Size = New System.Drawing.Size(110, 24)
-        Me.ElGroupBox2.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
-        Me.ElGroupBox2.CaptionStyle.TextStyle.Text = "Localidad"
-        Me.ElGroupBox2.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox2.Controls.Add(Me.Label5)
-        Me.ElGroupBox2.Controls.Add(Me.Label8)
-        Me.ElGroupBox2.Controls.Add(Me.cmbBodega)
-        Me.ElGroupBox2.Controls.Add(Me.cmbSerie)
-        Me.ElGroupBox2.Location = New System.Drawing.Point(10, 3)
-        Me.ElGroupBox2.Name = "ElGroupBox2"
-        Me.ElGroupBox2.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox2.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
-        Me.ElGroupBox2.Size = New System.Drawing.Size(241, 84)
-        Me.ElGroupBox2.TabIndex = 1
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(8, 32)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(53, 14)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Sucursal:"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(9, 56)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(35, 14)
-        Me.Label8.TabIndex = 3
-        Me.Label8.Text = "Serie:"
-        '
-        'cmbBodega
-        '
-        Me.cmbBodega.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbBodega.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbBodega.DisplayMember = "Text"
-        Me.cmbBodega.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbBodega.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbBodega.FormattingEnabled = True
-        Me.cmbBodega.ItemHeight = 14
-        Me.cmbBodega.Location = New System.Drawing.Point(67, 31)
-        Me.cmbBodega.Name = "cmbBodega"
-        Me.cmbBodega.Size = New System.Drawing.Size(166, 20)
-        Me.cmbBodega.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cmbBodega.TabIndex = 1
-        '
-        'cmbSerie
-        '
-        Me.cmbSerie.DisplayMember = "Text"
-        Me.cmbSerie.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbSerie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbSerie.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbSerie.FormattingEnabled = True
-        Me.cmbSerie.ItemHeight = 14
-        Me.cmbSerie.Location = New System.Drawing.Point(67, 54)
-        Me.cmbSerie.Name = "cmbSerie"
-        Me.cmbSerie.Size = New System.Drawing.Size(166, 20)
-        Me.cmbSerie.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.cmbSerie.TabIndex = 2
-        '
-        'tbFiltros
-        '
-        Me.tbFiltros.AttachedControl = Me.tcpFiltros
-        Me.tbFiltros.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(232, Byte), Integer))
-        Me.tbFiltros.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(149, Byte), Integer), CType(CType(149, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.tbFiltros.BorderColor = System.Drawing.Color.Black
-        Me.tbFiltros.CloseButtonVisible = False
-        Me.tbFiltros.DarkBorderColor = System.Drawing.Color.Black
-        Me.tbFiltros.Image = Global.appFacturacion.My.Resources.Resources.Filtros
-        Me.tbFiltros.LightBorderColor = System.Drawing.Color.Black
-        Me.tbFiltros.Name = "tbFiltros"
-        Me.tbFiltros.PredefinedColor = DevComponents.DotNetBar.eTabItemColor.Silver
-        Me.tbFiltros.Text = "Busq. Avanzada"
-        Me.tbFiltros.Visible = False
-        '
         'rdTodos
         '
         Me.rdTodos.AutoSize = True
@@ -1086,7 +1086,7 @@ Partial Class frmInformeCotizaciones
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtDetalle.DefaultCellStyle = DataGridViewCellStyle2
         Me.dtDetalle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtDetalle.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dtDetalle.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.dtDetalle.Location = New System.Drawing.Point(0, 28)
         Me.dtDetalle.MultiSelect = False
         Me.dtDetalle.Name = "dtDetalle"
@@ -1249,7 +1249,7 @@ Partial Class frmInformeCotizaciones
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(277, 75)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
@@ -1282,6 +1282,13 @@ Partial Class frmInformeCotizaciones
         Me.PanelEx2.ResumeLayout(False)
         CType(Me.TabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
+        Me.tcpFiltros.ResumeLayout(False)
+        CType(Me.ElGroupBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ElGroupBox7.ResumeLayout(False)
+        Me.ElGroupBox7.PerformLayout()
+        CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ElGroupBox2.ResumeLayout(False)
+        Me.ElGroupBox2.PerformLayout()
         Me.TabControlPanel2.ResumeLayout(False)
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox1.ResumeLayout(False)
@@ -1297,13 +1304,6 @@ Partial Class frmInformeCotizaciones
         CType(Me.txtIva, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSubtotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDescuento, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.tcpFiltros.ResumeLayout(False)
-        CType(Me.ElGroupBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ElGroupBox7.ResumeLayout(False)
-        Me.ElGroupBox7.PerformLayout()
-        CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ElGroupBox2.ResumeLayout(False)
-        Me.ElGroupBox2.PerformLayout()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.expDetalle.ResumeLayout(False)

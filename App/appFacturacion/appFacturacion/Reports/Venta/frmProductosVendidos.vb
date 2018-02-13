@@ -131,12 +131,12 @@ Public Class frmProductosVendidos
     Sub Filtrar()
         If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
             If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), cmbSerie.SelectedValue.ToString(), txtIdVendedor.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), cmbSerie.SelectedValue.ToString(), txtNEmpleado.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
             Else
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), , txtIdVendedor.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), , txtNEmpleado.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
             End If
         Else
-            Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", , , txtIdVendedor.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+            Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", , , txtNEmpleado.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
         End If
     End Sub
 
@@ -180,10 +180,10 @@ Public Class frmProductosVendidos
         If Me.FormLoad Then
             If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
                 llenarserie(cmbBodega.SelectedValue.ToString())
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), , txtIdVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), , txtNEmpleado.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
                 cmbSerie.Focus()
             Else
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", , txtIdVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", , txtNEmpleado.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
             End If
         End If
     End Sub
@@ -192,12 +192,12 @@ Public Class frmProductosVendidos
         If e.KeyData = Keys.Enter Then
             If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
                 llenarserie(cmbBodega.SelectedValue.ToString())
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), , txtIdVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), , txtNEmpleado.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
                 cmbSerie.Focus()
             Else
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", , txtIdVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", , txtNEmpleado.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
                 If cmbBodega.Text.Trim = "" Then
-                    txtIdVendedor.Focus()
+                    txtNEmpleado.Focus()
                 End If
             End If
         End If
@@ -206,8 +206,8 @@ Public Class frmProductosVendidos
     Private Sub cmbSerie_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSerie.SelectedIndexChanged
         If Me.FormLoad Then
             If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), cmbSerie.SelectedValue.ToString(), txtIdVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
-                txtIdVendedor.Focus()
+                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), cmbSerie.SelectedValue.ToString(), txtNEmpleado.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                txtNEmpleado.Focus()
             End If
         End If
     End Sub
@@ -237,8 +237,8 @@ Public Class frmProductosVendidos
         dtpFechaFinal.Value = DateTime.Now
         cmbBodega.SelectedIndex = -1
         cmbSerie.SelectedIndex = -1
-        txtIdVendedor.Clear()
-        txtIdVendedor.Clear()
+        txtNEmpleado.Clear()
+        txtNEmpleado.Clear()
         txtNombreVendedor.Clear()
         txtNCliente.Clear()
         txtNombreCliente.Clear()
@@ -294,7 +294,7 @@ Public Class frmProductosVendidos
             cmbSerie.SelectedIndex = -1
             txtNCliente.Clear()
             txtNombreCliente.Clear()
-            txtIdVendedor.Clear()
+            txtNEmpleado.Clear()
             txtNombreVendedor.Clear()
             Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59")
             Me.FormLoad = True
@@ -306,7 +306,7 @@ Public Class frmProductosVendidos
         End If
     End Sub
 
-    Private Sub txtNCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNCliente.KeyDown, txtNombreVendedor.KeyDown, txtNombreCliente.KeyDown, txtIdVendedor.KeyDown
+    Private Sub txtNCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNCliente.KeyDown, txtNombreVendedor.KeyDown, txtNombreCliente.KeyDown, txtNEmpleado.KeyDown
         If e.KeyData = Keys.Enter Then
             If dtRegistro.Visible Then
                 Me.Filtrar()
@@ -325,6 +325,22 @@ Public Class frmProductosVendidos
                 Case Keys.P : btImprimir_Click(Nothing, Nothing)
             End Select
         End If
+    End Sub
+
+    Private Sub btBuscarCliente_Click(sender As Object, e As EventArgs) Handles btBuscarCliente.Click
+
+        frmBuscarClientes.frm_return = 17
+        frmBuscarClientes.ShowDialog()
+        txtNCliente.Focus()
+
+    End Sub
+
+    Private Sub btBuscarEmpleado_Click(sender As Object, e As EventArgs) Handles btBuscarEmpleado.Click
+
+        frmBuscarEmpleado.frm_return = 20
+        frmBuscarEmpleado.ShowDialog()
+        txtNEmpleado.Focus()
+
     End Sub
 
 End Class

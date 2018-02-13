@@ -33,6 +33,8 @@ Partial Class frmBuscarProveedor
         Me.btImprimir = New System.Windows.Forms.ToolStripButton()
         Me.PanelEx2 = New DevComponents.DotNetBar.PanelEx()
         Me.ElGroupBox2 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.txtNombre = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtNProveedor = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -40,8 +42,6 @@ Partial Class frmBuscarProveedor
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.txtRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         Me.PanelEx2.SuspendLayout()
         CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,6 +146,28 @@ Partial Class frmBuscarProveedor
         Me.ElGroupBox2.Size = New System.Drawing.Size(256, 107)
         Me.ElGroupBox2.TabIndex = 4
         '
+        'txtRazonSocial
+        '
+        '
+        '
+        '
+        Me.txtRazonSocial.Border.Class = "TextBoxBorder"
+        Me.txtRazonSocial.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtRazonSocial.Location = New System.Drawing.Point(89, 77)
+        Me.txtRazonSocial.Name = "txtRazonSocial"
+        Me.txtRazonSocial.Size = New System.Drawing.Size(160, 20)
+        Me.txtRazonSocial.TabIndex = 3
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(9, 79)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(52, 14)
+        Me.Label3.TabIndex = 19
+        Me.Label3.Text = "R. Social:"
+        '
         'txtNombre
         '
         '
@@ -225,35 +247,13 @@ Partial Class frmBuscarProveedor
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(286, 39)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtRegistro.Size = New System.Drawing.Size(717, 500)
         Me.dtRegistro.TabIndex = 2
-        '
-        'txtRazonSocial
-        '
-        '
-        '
-        '
-        Me.txtRazonSocial.Border.Class = "TextBoxBorder"
-        Me.txtRazonSocial.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtRazonSocial.Location = New System.Drawing.Point(89, 77)
-        Me.txtRazonSocial.Name = "txtRazonSocial"
-        Me.txtRazonSocial.Size = New System.Drawing.Size(160, 20)
-        Me.txtRazonSocial.TabIndex = 3
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(9, 79)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(52, 14)
-        Me.Label3.TabIndex = 19
-        Me.Label3.Text = "R. Social:"
         '
         'frmBuscarProveedor
         '

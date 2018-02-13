@@ -37,6 +37,9 @@ Partial Class frmCuentasPorPagar
         Me.txtTotal = New DevComponents.Editors.DoubleInput()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ButtonX2 = New DevComponents.DotNetBar.ButtonX()
         Me.txtNombreCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
@@ -45,9 +48,6 @@ Partial Class frmCuentasPorPagar
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
-        Me.txtRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.ButtonX2 = New DevComponents.DotNetBar.ButtonX()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx1.SuspendLayout()
@@ -223,6 +223,42 @@ Partial Class frmCuentasPorPagar
         Me.ElGroupBox1.Size = New System.Drawing.Size(254, 108)
         Me.ElGroupBox1.TabIndex = 0
         '
+        'txtRazonSocial
+        '
+        Me.txtRazonSocial.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txtRazonSocial.Border.Class = "TextBoxBorder"
+        Me.txtRazonSocial.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtRazonSocial.Location = New System.Drawing.Point(79, 80)
+        Me.txtRazonSocial.Name = "txtRazonSocial"
+        Me.txtRazonSocial.ReadOnly = True
+        Me.txtRazonSocial.Size = New System.Drawing.Size(137, 20)
+        Me.txtRazonSocial.TabIndex = 110
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(8, 82)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(54, 14)
+        Me.Label3.TabIndex = 111
+        Me.Label3.Text = "Razón S.:"
+        '
+        'ButtonX2
+        '
+        Me.ButtonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.ButtonX2.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.ButtonX2.Image = Global.appFacturacion.My.Resources.Resources.btn_buscar
+        Me.ButtonX2.Location = New System.Drawing.Point(215, 79)
+        Me.ButtonX2.Name = "ButtonX2"
+        Me.ButtonX2.Size = New System.Drawing.Size(29, 22)
+        Me.ButtonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.ButtonX2.TabIndex = 112
+        '
         'txtNombreCliente
         '
         Me.txtNombreCliente.BackColor = System.Drawing.Color.White
@@ -317,49 +353,13 @@ Partial Class frmCuentasPorPagar
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(297, 39)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtRegistro.Size = New System.Drawing.Size(614, 354)
         Me.dtRegistro.TabIndex = 56
-        '
-        'txtRazonSocial
-        '
-        Me.txtRazonSocial.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.txtRazonSocial.Border.Class = "TextBoxBorder"
-        Me.txtRazonSocial.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtRazonSocial.Location = New System.Drawing.Point(79, 80)
-        Me.txtRazonSocial.Name = "txtRazonSocial"
-        Me.txtRazonSocial.ReadOnly = True
-        Me.txtRazonSocial.Size = New System.Drawing.Size(137, 20)
-        Me.txtRazonSocial.TabIndex = 110
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(8, 82)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(54, 14)
-        Me.Label3.TabIndex = 111
-        Me.Label3.Text = "Razón S.:"
-        '
-        'ButtonX2
-        '
-        Me.ButtonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.ButtonX2.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.ButtonX2.Image = Global.appFacturacion.My.Resources.Resources.btn_buscar
-        Me.ButtonX2.Location = New System.Drawing.Point(215, 79)
-        Me.ButtonX2.Name = "ButtonX2"
-        Me.ButtonX2.Size = New System.Drawing.Size(29, 22)
-        Me.ButtonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.ButtonX2.TabIndex = 112
         '
         'frmCuentasPorPagar
         '

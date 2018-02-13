@@ -179,7 +179,7 @@ Partial Class frmEstadoCuenta
         'txtIdCliente
         '
         Me.txtIdCliente.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtIdCliente.Location = New System.Drawing.Point(56, 27)
+        Me.txtIdCliente.Location = New System.Drawing.Point(56, 28)
         Me.txtIdCliente.Name = "txtIdCliente"
         Me.txtIdCliente.ReadOnly = True
         Me.txtIdCliente.Size = New System.Drawing.Size(5, 20)

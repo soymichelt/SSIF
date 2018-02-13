@@ -50,7 +50,9 @@ Public Class frmBuscarEmpleado
         End Try
     End Sub
     Private Sub frmBuscarVendedor_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         llenar()
+
     End Sub
 
     Private Sub txtNombre_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
@@ -124,15 +126,7 @@ Public Class frmBuscarEmpleado
                                     MessageBox.Show("Seleccione un 'Empleado' con labor de 'Venta'")
                                 End If
                             Case 4
-                                If v.VENTA Then
-                                    If frmBuscarCotizacion.rdIdTrabajador.Checked Then
-                                        frmBuscarCotizacion.txtIdTrabajador.Text = v.N_TRABAJADOR
-                                    ElseIf frmBuscarCotizacion.rdNombreTrabajador.Checked Then
-                                        frmBuscarCotizacion.txtNombreTrabajador.Text = v.NOMBRES & " " & v.APELLIDOS
-                                    End If
-                                Else
-                                    MessageBox.Show("Seleccione un 'Empleado' con labor de 'Venta'")
-                                End If
+                                
                             Case 5
 
                             Case 6
@@ -254,8 +248,15 @@ Public Class frmBuscarEmpleado
                                 Else
                                     MessageBox.Show("Seleccione un 'Empleado' con labor de 'Inventario'.")
                                 End If
+
+                            Case 20
+
+                                frmProductosVendidos.txtNEmpleado.Text = v.N_TRABAJADOR
+
                         End Select
+
                         Me.Close()
+
                     Else
                         MessageBox.Show("Este 'Empleado' no se encuentra. Probablemente ha sido eliminado.")
                     End If

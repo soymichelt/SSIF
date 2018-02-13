@@ -106,21 +106,21 @@ Public Class frmBuscarClientes
                                 frmCliente.BringToFront()
                                 frmCliente.Show()
                             Case 1
+
                                 frmVenta.rdContado.Checked = True
                                 frmVenta.txtIdCliente.Text = c.IDCLIENTE
                                 frmVenta.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
+
                             Case 2
+
                                 frmCotizacion.rdContado.Checked = True
                                 frmCotizacion.txtIdCliente.Text = c.IDCLIENTE
                                 frmCotizacion.txtNombreCliente.Text = If(c.TIPOPERSONA = "Natural" Or c.RAZONSOCIAL.Trim() = "", c.N_CLIENTE & " " & c.NOMBRES & " " & c.APELLIDOS, c.N_CLIENTE & " " & c.RAZONSOCIAL)
+
                             Case 3
 
                             Case 4
-                                If frmBuscarCotizacion.rdIdCliente.Checked Then
-                                    frmBuscarCotizacion.txtIdCliente.Text = c.N_CLIENTE
-                                ElseIf frmBuscarCotizacion.rdNombreCliente.Checked Then
-                                    frmBuscarCotizacion.txtNombreCliente.Text = c.NOMBRES & " " & c.APELLIDOS
-                                End If
+                                
                             Case 5
 
                             Case 6
@@ -181,8 +181,15 @@ Public Class frmBuscarClientes
                                 frmCliente.btEditar.Enabled = True
 
                                 frmCliente.txtCodCliente.Focus()
+
+                            Case 17 ' Formulario Productos Vendidos
+
+                                frmProductosVendidos.txtNCliente.Text = c.N_CLIENTE
+
                         End Select
+
                         Me.Close()
+
                     Else
                         MessageBox.Show("No se encuentra este cliente. Probablemente ha sido eliminado.")
                     End If
