@@ -81,6 +81,11 @@ Namespace My
 
                 Using db As New CodeFirst
                     db.Database.CreateIfNotExists()
+
+                    'Crear Usuario de Prueba
+                    Me.CreateUserTest(db)
+                    'Fin
+
                     If Not db.Bodegas.Count() > 0 Then
                         If MessageBox.Show("¿Desea que el sistema cargue información de inicio?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                             Dim bod As New Bodega
@@ -109,7 +114,7 @@ Namespace My
                                 Dim user As New Usuario
                                 user.IDUsuario = Guid.NewGuid.ToString()
                                 user.NombreCuenta = "Admin"
-                                user.Contraseña = "admin*123"
+                                user.Contraseña = CryptoSecurity.Encoding("admin*123")
                                 user.Nombres = "MICHEL ROBERTO"
                                 user.Apellidos = "TRAÑA TABLADA"
                                 user.Administrador = True
@@ -281,19 +286,6 @@ Namespace My
                         End If
                     End If
 
-                    'Config.Key = License.GetIlimit
-                    'If Not License.LicenseValidateIlimit Then
-                    '    Me.MainForm = Global.appFacturacion.frmRegister
-                    '    Global.appFacturacion.frmRegister.ShowDialog()
-                    'End If
-
-                    'If Not Config.DateLimite Is Nothing Then
-                    '    If Config.DateLimite.Value <= DateTime.Now Then
-                    '        Config.MsgErr("El período de prueba ha expirado.")
-                    '        Config.ExitApplication()
-                    '    End If
-                    'End If
-
                     Me.MainForm = Global.appFacturacion.frmLogin
                 End Using
             Catch ex As Exception
@@ -307,5 +299,45 @@ Namespace My
 
             End Try
         End Sub
+
+        Private Sub CreateUserTest(ByVal db As Sadara.Models.V1.Database.CodeFirst)
+            Dim userTest = db.Usuarios.Where(Function(f) f.IDUsuario = "C9998C29-5F7D-4A24-83BC-9FDE643A8DF9").FirstOrDefault
+            If (userTest Is Nothing) Then
+                userTest = New Sadara.Models.V1.POCO.Usuario()
+                Dim user As New Usuario
+
+                'datos
+                user.IDUsuario = Guid.NewGuid.ToString()
+                user.Reg = DateTime.Now
+                user.NombreCuenta = "test"
+                user.Contraseña = CryptoSecurity.Encoding("admin*123")
+                user.Nombres = "USUARIO DE PRUEBA"
+                user.Apellidos = "PARA EL SISTEMA"
+                user.Administrador = True
+                user.CAdministrador = True
+                user.Venta = False
+                user.VenderNegativo = False
+                user.CVenta = False
+                user.Compra = False
+                user.CCompra = False
+                user.Contabilidad = False
+                user.CContabilidad = False
+                user.Inventario = False
+                user.CInventario = False
+                user.SalesPriceChange = False
+                user.ImageName = ""
+                user.Observacion = "USUARIO CREADO AUTOMÁTICAMENTE POR EL SISTEMA"
+                user.Activo = "S"
+
+                'añadiendo
+                db.Usuarios.Add(user)
+
+                'guardando
+                db.SaveChanges()
+                user = Nothing
+
+            End If
+        End Sub
+
     End Class
 End Namespace
