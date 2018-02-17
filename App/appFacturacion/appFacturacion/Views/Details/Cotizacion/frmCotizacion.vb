@@ -487,7 +487,7 @@ Public Class frmCotizacion
                                 End If
                                 'Validar Costo
                                 If producto.Producto.COSTO > If(producto.Producto.CMONEDA.Equals(Config.cordoba), item.PRECIOUNITARIO_C, item.PRECIOUNITARIO_D) Then
-                                    MessageBox.Show("El precio del producto '" & item.IDALTERNO & "' debe ser menor que el costo.")
+                                    MessageBox.Show("El precio del producto '" & item.IDALTERNO & "' debe ser mayor que el costo.")
                                     Exit Sub
                                 End If
                                 'Descuento costo
@@ -1294,8 +1294,8 @@ Public Class frmCotizacion
                                     End If
                                 End If
                                 'validar costo
-                                If producto.Producto.COSTO > item.PRECIONETO_D Then
-                                    MessageBox.Show("El precio neto del producto '" & item.IDALTERNO & "' debe ser menor que el costo.")
+                                If producto.Producto.COSTO > If(producto.Producto.CMONEDA.Equals(Config.cordoba), item.PRECIOUNITARIO_C, item.PRECIOUNITARIO_D) Then
+                                    MessageBox.Show("El precio neto del producto '" & item.IDALTERNO & "' debe ser mayor que el costo.")
                                     Exit Sub
                                 End If
                                 'fin validar costo
