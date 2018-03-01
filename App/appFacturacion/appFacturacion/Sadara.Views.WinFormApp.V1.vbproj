@@ -191,6 +191,11 @@
     <Compile Include="Models\Datasets\dtVenta.vb">
       <DependentUpon>dtVenta.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Models\Datasets\ProductsData.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductsData.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\XYDiagramDTO.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -288,6 +293,18 @@
     </Compile>
     <Compile Include="Reports\EstadoCuenta\rptEstadoCuentaNuevo.vb">
       <DependentUpon>rptEstadoCuentaNuevo.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Products\frmProductWithApplication.Designer.vb">
+      <DependentUpon>frmProductWithApplication.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Products\frmProductWithApplication.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Products\rptProductWithApplication.vb">
+      <DependentUpon>rptProductWithApplication.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -1188,6 +1205,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEstadoCuentaNuevo.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Products\frmProductWithApplication.resx">
+      <DependentUpon>frmProductWithApplication.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Products\rptProductWithApplication.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProductWithApplication.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Inventario\Valuacion\frmValuacion.resx">
       <DependentUpon>frmValuacion.vb</DependentUpon>
     </EmbeddedResource>
@@ -1654,6 +1678,17 @@
     </None>
     <None Include="Models\Datasets\dtVenta.xss">
       <DependentUpon>dtVenta.xsd</DependentUpon>
+    </None>
+    <None Include="Models\Datasets\ProductsData.xsc">
+      <DependentUpon>ProductsData.xsd</DependentUpon>
+    </None>
+    <None Include="Models\Datasets\ProductsData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductsData.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Models\Datasets\ProductsData.xss">
+      <DependentUpon>ProductsData.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Models\Datasets\dtDatos.xsc">

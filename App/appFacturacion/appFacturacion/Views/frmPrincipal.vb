@@ -49,6 +49,7 @@ Public Class frmPrincipal
                 If Config.Usuario.CInventario Then
                     btKardex.Enabled = True
                     btValuacionInventario.Enabled = True
+                    btProductWithApplication.Enabled = True
                     btBusquedaEntradas.Enabled = True
                     btBusquedaSalida.Enabled = True
                     btBusquedaTraslado.Enabled = True
@@ -721,4 +722,11 @@ Public Class frmPrincipal
         'frmDashboard.BringToFront()
         'frmDashboard.Show()
     End Sub
+
+    Private Sub btProductWithApplication_Click(sender As Object, e As EventArgs) Handles btProductWithApplication.Click
+        frmProductWithApplication.MdiParent = Me
+        frmProductWithApplication.BringToFront()
+        frmProductWithApplication.Show()
+    End Sub
+
 End Class

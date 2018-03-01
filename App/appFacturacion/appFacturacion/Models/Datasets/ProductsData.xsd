@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProductsData" targetNamespace="http://tempuri.org/ProductsData.xsd" xmlns:mstns="http://tempuri.org/ProductsData.xsd" xmlns="http://tempuri.org/ProductsData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProductsData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProductsData" msprop:Generator_UserDSName="ProductsData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProductsWithApplication" msprop:Generator_TableClassName="ProductsWithApplicationDataTable" msprop:Generator_TableVarName="tableProductsWithApplication" msprop:Generator_RowChangedName="ProductsWithApplicationRowChanged" msprop:Generator_TablePropName="ProductsWithApplication" msprop:Generator_RowDeletingName="ProductsWithApplicationRowDeleting" msprop:Generator_RowChangingName="ProductsWithApplicationRowChanging" msprop:Generator_RowEvHandlerName="ProductsWithApplicationRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsWithApplicationRowDeleted" msprop:Generator_RowClassName="ProductsWithApplicationRow" msprop:Generator_UserTableName="ProductsWithApplication" msprop:Generator_RowEvArgName="ProductsWithApplicationRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BODEGA" msprop:Generator_ColumnVarNameInTable="columnBODEGA" msprop:Generator_ColumnPropNameInRow="BODEGA" msprop:Generator_ColumnPropNameInTable="BODEGAColumn" msprop:Generator_UserColumnName="BODEGA" type="xs:string" minOccurs="0" />
+              <xs:element name="IDMARCA" msprop:Generator_ColumnVarNameInTable="columnIDMARCA" msprop:Generator_ColumnPropNameInRow="IDMARCA" msprop:Generator_ColumnPropNameInTable="IDMARCAColumn" msprop:Generator_UserColumnName="IDMARCA" type="xs:string" />
+              <xs:element name="MARCA" msprop:Generator_ColumnVarNameInTable="columnMARCA" msprop:Generator_ColumnPropNameInRow="MARCA" msprop:Generator_ColumnPropNameInTable="MARCAColumn" msprop:Generator_UserColumnName="MARCA" type="xs:string" minOccurs="0" />
+              <xs:element name="IDALTERNO" msprop:Generator_ColumnVarNameInTable="columnIDALTERNO" msprop:Generator_ColumnPropNameInRow="IDALTERNO" msprop:Generator_ColumnPropNameInTable="IDALTERNOColumn" msprop:Generator_UserColumnName="IDALTERNO" type="xs:string" minOccurs="0" />
+              <xs:element name="IDORIGINAL" msprop:Generator_ColumnVarNameInTable="columnIDORIGINAL" msprop:Generator_ColumnPropNameInRow="IDORIGINAL" msprop:Generator_ColumnPropNameInTable="IDORIGINALColumn" msprop:Generator_UserColumnName="IDORIGINAL" type="xs:string" minOccurs="0" />
+              <xs:element name="PRODUCTO" msprop:Generator_ColumnVarNameInTable="columnPRODUCTO" msprop:Generator_ColumnPropNameInRow="PRODUCTO" msprop:Generator_ColumnPropNameInTable="PRODUCTOColumn" msprop:Generator_UserColumnName="PRODUCTO" type="xs:string" minOccurs="0" />
+              <xs:element name="APLICACION" msprop:Generator_ColumnVarNameInTable="columnAPLICACION" msprop:Generator_ColumnPropNameInRow="APLICACION" msprop:Generator_ColumnPropNameInTable="APLICACIONColumn" msprop:Generator_UserColumnName="APLICACION" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProductsWithApplication" />
+      <xs:field xpath="mstns:IDMARCA" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
