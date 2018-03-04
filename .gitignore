@@ -1,6 +1,6 @@
 #Archivos ignorados personalizados
 
-App\appFacturacion\appFacturacion.v11.suo
+App/appFacturacion/appFacturacion.v11.suo
 
 App/appFacturacion/appFacturacion/bin/*
 App/appFacturacion/appFacturacion/obj/*
