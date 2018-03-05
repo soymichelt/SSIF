@@ -128,8 +128,8 @@ Partial Class frmPrincipal
         Me.btAyuda = New DevComponents.DotNetBar.ButtonItem()
         Me.btAcercaDe = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar10 = New DevComponents.DotNetBar.RibbonBar()
-        Me.btCrearRespaldo = New DevComponents.DotNetBar.ButtonItem()
-        Me.btRestaurar = New DevComponents.DotNetBar.ButtonItem()
+        Me.btCreateBackup = New DevComponents.DotNetBar.ButtonItem()
+        Me.btRestoreDatabase = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar8 = New DevComponents.DotNetBar.RibbonBar()
         Me.btLogo = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonPanel6 = New DevComponents.DotNetBar.RibbonPanel()
@@ -300,11 +300,11 @@ Partial Class frmPrincipal
         Me.rcCintaMenu.CanCustomize = False
         Me.rcCintaMenu.CaptionVisible = True
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel1)
-        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel2)
+        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel3)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel4)
+        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel2)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel7)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel8)
-        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel3)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel6)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel9)
         Me.rcCintaMenu.Dock = System.Windows.Forms.DockStyle.Top
@@ -1822,7 +1822,7 @@ Partial Class frmPrincipal
         Me.RibbonBar10.ContainerControlProcessDialogKey = True
         Me.RibbonBar10.Dock = System.Windows.Forms.DockStyle.Left
         Me.RibbonBar10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RibbonBar10.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btCrearRespaldo, Me.btRestaurar})
+        Me.RibbonBar10.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btCreateBackup, Me.btRestoreDatabase})
         Me.RibbonBar10.Location = New System.Drawing.Point(69, 0)
         Me.RibbonBar10.Name = "RibbonBar10"
         Me.RibbonBar10.Size = New System.Drawing.Size(152, 112)
@@ -1840,25 +1840,25 @@ Partial Class frmPrincipal
         Me.RibbonBar10.TitleStyleMouseOver.Class = ""
         Me.RibbonBar10.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         '
-        'btCrearRespaldo
+        'btCreateBackup
         '
-        Me.btCrearRespaldo.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCrearRespaldo.Enabled = False
-        Me.btCrearRespaldo.Image = Global.appFacturacion.My.Resources.Resources.CrearRespaldo
-        Me.btCrearRespaldo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btCrearRespaldo.Name = "btCrearRespaldo"
-        Me.btCrearRespaldo.SubItemsExpandWidth = 14
-        Me.btCrearRespaldo.Text = "Respaldar base de datos"
+        Me.btCreateBackup.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btCreateBackup.Enabled = False
+        Me.btCreateBackup.Image = Global.appFacturacion.My.Resources.Resources.CrearRespaldo
+        Me.btCreateBackup.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btCreateBackup.Name = "btCreateBackup"
+        Me.btCreateBackup.SubItemsExpandWidth = 14
+        Me.btCreateBackup.Text = "Respaldar base de datos"
         '
-        'btRestaurar
+        'btRestoreDatabase
         '
-        Me.btRestaurar.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btRestaurar.Enabled = False
-        Me.btRestaurar.Image = Global.appFacturacion.My.Resources.Resources.Restaurar
-        Me.btRestaurar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btRestaurar.Name = "btRestaurar"
-        Me.btRestaurar.SubItemsExpandWidth = 14
-        Me.btRestaurar.Text = "Restaurar Datos"
+        Me.btRestoreDatabase.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.btRestoreDatabase.Enabled = False
+        Me.btRestoreDatabase.Image = Global.appFacturacion.My.Resources.Resources.Restaurar
+        Me.btRestoreDatabase.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btRestoreDatabase.Name = "btRestoreDatabase"
+        Me.btRestoreDatabase.SubItemsExpandWidth = 14
+        Me.btRestoreDatabase.Text = "Restaurar Base de Datos"
         '
         'RibbonBar8
         '
@@ -2747,8 +2747,8 @@ Partial Class frmPrincipal
     Friend WithEvents RibbonBar8 As DevComponents.DotNetBar.RibbonBar
     Friend WithEvents btLogo As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents RibbonBar10 As DevComponents.DotNetBar.RibbonBar
-    Friend WithEvents btCrearRespaldo As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents btRestaurar As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents btCreateBackup As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents btRestoreDatabase As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents lblNombreUsuario As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents tmLimpiarMemoria As System.Windows.Forms.Timer
