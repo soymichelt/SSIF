@@ -22,8 +22,8 @@ Public Class frmPrincipal
                     btSerie.Enabled = True
                     btIva.Enabled = True
                     btTaza.Enabled = True
-                    btRestaurar.Enabled = True
-                    btCrearRespaldo.Enabled = True
+                    btRestoreDatabase.Enabled = True
+                    btCreateBackup.Enabled = True
                     btServidor.Enabled = True
                 End If
                 If Config.Usuario.CAdministrador Then
@@ -727,6 +727,10 @@ Public Class frmPrincipal
         frmProductWithApplication.MdiParent = Me
         frmProductWithApplication.BringToFront()
         frmProductWithApplication.Show()
+    End Sub
+
+    Private Sub btCreateBackup_Click(sender As Object, e As EventArgs) Handles btCreateBackup.Click
+        frmBackup.ShowDialog()
     End Sub
 
 End Class

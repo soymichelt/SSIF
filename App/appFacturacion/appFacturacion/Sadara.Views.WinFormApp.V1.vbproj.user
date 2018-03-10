@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+<<<<<<< HEAD
     <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory />
+=======
+    <ProjectView>ProjectFiles</ProjectView>
+    <PublishUrlHistory>publicar\</PublishUrlHistory>
+>>>>>>> 201e8e79d5cd1b7794fbf331776ac0393bfb9a61
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />

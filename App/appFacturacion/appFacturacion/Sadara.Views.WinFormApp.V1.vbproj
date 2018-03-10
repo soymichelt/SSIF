@@ -17,6 +17,8 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <PublishUrl>publicar\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,8 +33,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -385,6 +385,12 @@
       <DependentUpon>frmInformeVentas.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\Venta\frmInformeVentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BackupAndRestore\frmBackup.Designer.vb">
+      <DependentUpon>frmBackup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BackupAndRestore\frmBackup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Busqueda\Compra\frmBCompra.Designer.vb">
@@ -1256,6 +1262,9 @@
     <EmbeddedResource Include="Reports\Venta\frmInformeVentas.resx">
       <DependentUpon>frmInformeVentas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\BackupAndRestore\frmBackup.resx">
+      <DependentUpon>frmBackup.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Busqueda\Compra\frmBCompra.resx">
       <DependentUpon>frmBCompra.vb</DependentUpon>
     </EmbeddedResource>
@@ -1952,6 +1961,10 @@
     <WCFMetadataStorage Include="Service References\ServicioProducto\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sadara.BusinessLayer\Sadara.BusinessLayer.csproj">
+      <Project>{0e055545-2a62-46dc-b537-865796c07422}</Project>
+      <Name>Sadara.BusinessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sadara.Models.V1\Sadara.Models.V1.vbproj">
       <Project>{1ad1e661-2b9b-47e8-a38b-ca469e0fca43}</Project>
       <Name>Sadara.Models.V1</Name>
