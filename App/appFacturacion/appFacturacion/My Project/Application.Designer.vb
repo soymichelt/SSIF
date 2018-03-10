@@ -300,14 +300,24 @@ Namespace My
             End Try
         End Sub
 
+        Private Sub DeleteAllUsersPreviousTest(ByVal db As Sadara.Models.V1.Database.CodeFirst)
+
+            db.Usuarios.RemoveRange(db.Usuarios.Where(Function(f) f.NombreCuenta.Equals("test") And Not f.IDUsuario.Equals("C9998C29-5F7D-4A24-83BC-9FDE643A8DF9")))
+
+        End Sub
+
         Private Sub CreateUserTest(ByVal db As Sadara.Models.V1.Database.CodeFirst)
+
+            'Delete previous users 'test'
+            Me.DeleteAllUsersPreviousTest(db)
+
             Dim userTest = db.Usuarios.Where(Function(f) f.IDUsuario = "C9998C29-5F7D-4A24-83BC-9FDE643A8DF9").FirstOrDefault
             If (userTest Is Nothing) Then
                 userTest = New Sadara.Models.V1.POCO.Usuario()
                 Dim user As New Usuario
 
                 'datos
-                user.IDUsuario = Guid.NewGuid.ToString()
+                user.IDUsuario = "C9998C29-5F7D-4A24-83BC-9FDE643A8DF9"
                 user.Reg = DateTime.Now
                 user.NombreCuenta = "test"
                 user.Contraseña = CryptoSecurity.Encoding("admin*123")
