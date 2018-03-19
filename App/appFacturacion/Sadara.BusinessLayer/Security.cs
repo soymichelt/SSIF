@@ -13,14 +13,14 @@ namespace Sadara.BusinessLayer
     public class Security
     {
 
-        private void AddBackup(string path)
+        private async Task AddBackupAsync(string path)
         {
 
             Backup backup = new Backup();
 
             this.ValidatePath(path);
 
-            backup.Add(path);
+            await backup.AddAsync(path);
 
         }
 
@@ -39,10 +39,10 @@ namespace Sadara.BusinessLayer
 
         }
 
-        public void CreateBackupOfDb(string path)
+        public async Task CreateBackupOfDbAsync(string path)
         {
 
-            this.AddBackup(path);
+            await this.AddBackupAsync(path);
 
         }
         

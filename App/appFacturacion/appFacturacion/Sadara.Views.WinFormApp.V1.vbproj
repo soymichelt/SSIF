@@ -1152,11 +1152,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="App.Config.vb" />
-    <Compile Include="Service References\ServicioProducto\Reference.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\Catalogo\rptExportarBusqueda.rpt">
@@ -1721,19 +1716,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Service References\ServicioProducto\appFacturacion.ServicioProducto.CatalogoProducto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServicioProducto\Producto.wsdl" />
-    <None Include="Service References\ServicioProducto\Producto.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServicioProducto\Producto1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServicioProducto\Producto2.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Servidor.png" />
@@ -1742,13 +1724,6 @@
     <None Include="Resources\stDetenido.png" />
     <None Include="Resources\ValuacionInventario.png" />
     <None Include="Resources\Totales.png" />
-    <None Include="Service References\ServicioProducto\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.vb</LastGenOutput>
-    </None>
-    <None Include="Service References\ServicioProducto\configuration.svcinfo" />
-    <None Include="Service References\ServicioProducto\configuration91.svcinfo" />
-    <None Include="Service References\ServicioProducto\Producto.disco" />
     <None Include="Resources\Barra_Estado\Usuario.png" />
     <None Include="Resources\Barra_Estado\Bodega.png" />
     <None Include="Resources\Barra_Estado\Titulo.png" />
@@ -1956,9 +1931,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServicioProducto\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sadara.BusinessLayer\Sadara.BusinessLayer.csproj">

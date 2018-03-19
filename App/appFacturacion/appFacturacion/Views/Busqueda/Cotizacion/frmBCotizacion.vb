@@ -15,10 +15,10 @@ Public Class frmBCotizacion
                     consulta = consulta.Where(Function(f) f.CREDITO And f.ANULADO.Equals("")).ToList
                 End If
                 If pcodigocliente.Trim <> "" Then
-                    consulta = consulta.Where(Function(f) f.N_CLIENTE.ToLower.Contains(pcodigocliente.ToLower) And f.ANULADO.Equals("")).ToList
+                    consulta = consulta.Where(Function(f) f.N_CLIENTE.ToLower().Contains(pcodigocliente.ToLower()) And f.ANULADO.Equals("")).ToList
                 End If
                 If pnombrecliente.Trim <> "" Then
-                    consulta = consulta.Where(Function(f) f.CLIENTE.ToLower.Contains(pnombrecliente.ToLower) And f.ANULADO.Equals("")).ToList
+                    consulta = consulta.Where(Function(f) f.CLIENTE.ToLower().Contains(pnombrecliente.ToLower()) And f.ANULADO.Equals("")).ToList
                 End If
                 dtRegistro.DataSource = consulta.ToList()
                 If dtRegistro.Columns.Count > 0 Then

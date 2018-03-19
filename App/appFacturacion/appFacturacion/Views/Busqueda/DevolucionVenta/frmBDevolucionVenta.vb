@@ -9,7 +9,7 @@ Public Class frmBDevolucionVenta
                 Dim consulta = (From dev In db.VentasDevoluciones Join ser In db.Series On ser.IDSERIE Equals dev.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Join tra In db.Empleados On dev.IDEMPLEADO Equals tra.IDEMPLEADO Where ser.IDSERIE.Contains(pserie) And dev.FECHADEVOLUCION >= finicio And dev.FECHADEVOLUCION <= ffin Select ANULADO = If(dev.ANULADO.Equals("S"), "Anulado", ""), dev.IDDEVOLUCION, SERIE = ser.NOMBRE, dev.CONSECUTIVO, dev.FECHADEVOLUCION, N_VENDEDOR = If(dev.ANULADO.Equals("N"), tra.N_TRABAJADOR, ""), VENDEDOR = If(dev.ANULADO.Equals("N"), tra.NOMBRES & " " & tra.APELLIDOS, ""), N_CLIENTE = If(dev.ANULADO.Equals("N"), If(Not dev.IDCLIENTE Is Nothing, dev.Cliente.N_CLIENTE, ""), ""), CLIENTE = If(dev.ANULADO.Equals("N"), If(Not dev.IDCLIENTE Is Nothing, dev.Cliente.NOMBRES & " " & dev.Cliente.APELLIDOS, dev.CLIENTECONTADO), ""), CONDICIÓN = If(dev.ANULADO.Equals("N"), If(dev.CREDITO, "Crédito", "Contado"), ""), MONEDA = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), ""), TAZACAMBIO = If(dev.ANULADO.Equals(Config.vFalse), dev.TAZACAMBIO, Nothing), DESCUENTO = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.DESCUENTO_DIN_C, dev.DESCUENTO_DIN_D), Nothing), SUBTOTAL = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.SUBTOTAL_C, dev.SUBTOTAL_D), Nothing), IVA = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.IVA_DIN_C, dev.IVA_DIN_D), Nothing), TOTAL = If(dev.ANULADO.Equals("N"), If(dev.MONEDA.Equals(Config.cordoba), dev.TOTAL_C, dev.TOTAL_D), Nothing), dev.CREDITO).ToList
                 dtRegistro.DataSource = consulta.ToList()
                 If dtRegistro.Columns.Count > 0 Then
-                    dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = ""
+                    dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = vbNewLine & "" & vbNewLine
                     dtRegistro.Columns(1).Visible = False
                     dtRegistro.Columns(2).Width = 55
                     dtRegistro.Columns(3).Width = 150 : dtRegistro.Columns(3).HeaderText = "Nº DEVOLUCIÓN"
@@ -26,6 +26,11 @@ Public Class frmBDevolucionVenta
                     dtRegistro.Columns(14).Width = 100 : dtRegistro.Columns(14).HeaderText = "IVA" : dtRegistro.Columns(14).DefaultCellStyle.Format = Config.f_m
                     dtRegistro.Columns(15).Width = 100 : dtRegistro.Columns(15).HeaderText = "TOTAL" : dtRegistro.Columns(15).DefaultCellStyle.Format = Config.f_m
                     dtRegistro.Columns(16).Visible = False
+
+                    For Each c As DataGridViewColumn In dtRegistro.Columns
+                        c.HeaderCell.Style.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Bold)
+                    Next
+
                 End If
             End Using
         Catch ex As Exception

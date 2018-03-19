@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Sadara.DataLayer
 {
 
-    public class Backup : Transaction.IAdd<string>
+    public class Backup : Transaction.IAddAsync<string>
     {
 
-        private void AddBackup(string path)
+        private async Task AddBackup(string path)
         {
 
             Transaction.QueryDb cmd = new Transaction.QueryDb();
@@ -29,14 +29,14 @@ namespace Sadara.DataLayer
                 "NAME = '" + nameBackup + "'"
             );
 
-            cmd.ExecuteQuery(query);
+            await cmd.ExecuteQueryAsync(query);
 
         }
 
-        public string Add(string path)
+        public async Task<string> AddAsync(string path)
         {
 
-            this.AddBackup(path);
+            await this.AddBackup(path);
 
             return path;
 

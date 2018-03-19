@@ -25,6 +25,18 @@ namespace Sadara.DataLayer.Transaction
 
         }
 
+        public async Task<int> ExecuteQueryAsync(string query)
+        {
+
+            using (var db = new CodeFirst())
+            {
+
+                return await db.Database.ExecuteSqlCommandAsync(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, query);
+
+            }
+
+        }
+
     }
 
 }

@@ -14,10 +14,10 @@ Public Class frmBVenta
                     consulta = consulta.Where(Function(f) f.CREDITO And f.ANULADO = "").ToList
                 End If
                 If pcodigocliente.Trim <> "" Then
-                    consulta = consulta.Where(Function(f) f.N_CLIENTE.Contains(pcodigocliente)).ToList
+                    consulta = consulta.Where(Function(f) f.N_CLIENTE.ToLower().Contains(pcodigocliente.ToLower())).ToList
                 End If
                 If pnombrecliente.Trim <> "" Then
-                    consulta = consulta.Where(Function(f) f.CLIENTE.Contains(pnombrecliente)).ToList
+                    consulta = consulta.Where(Function(f) f.CLIENTE.ToLower().Contains(pnombrecliente.ToLower())).ToList
                 End If
                 dtRegistro.DataSource = consulta.ToList()
                 If dtRegistro.Columns.Count > 0 Then
@@ -37,7 +37,11 @@ Public Class frmBVenta
                     dtRegistro.Columns(13).Width = 100 : dtRegistro.Columns(13).HeaderText = "SUB-TOTAL" : dtRegistro.Columns(13).DefaultCellStyle.Format = Config.f_m
                     dtRegistro.Columns(14).Width = 100 : dtRegistro.Columns(14).HeaderText = "IVA" : dtRegistro.Columns(14).DefaultCellStyle.Format = Config.f_m
                     dtRegistro.Columns(15).Width = 100 : dtRegistro.Columns(15).HeaderText = "TOTAL" : dtRegistro.Columns(15).DefaultCellStyle.Format = Config.f_m
-                    dtRegistro.Columns(15).Visible = False
+                    dtRegistro.Columns(16).Visible = False
+
+                    For Each c As DataGridViewColumn In dtRegistro.Columns
+                        c.HeaderCell.Style.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Bold)
+                    Next
                 End If
             End Using
         Catch ex As Exception
@@ -47,10 +51,9 @@ Public Class frmBVenta
 
     Private Sub frmBEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Bold)
             Using db As New CodeFirst
                 'llenar series
-                cmbSerie.DataSource = db.SERIES.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "VENTA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "VENTA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                 dtpFechaInicial.Value = DateTime.Now
                 dtpFechaFinal.Value = DateTime.Now
                 llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), )
