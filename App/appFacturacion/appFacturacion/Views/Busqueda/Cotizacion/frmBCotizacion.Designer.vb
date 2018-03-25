@@ -29,6 +29,12 @@ Partial Class frmBCotizacion
         Me.btBuscar = New System.Windows.Forms.ToolStripButton()
         Me.btLimpiar = New System.Windows.Forms.ToolStripButton()
         Me.PanelEx2 = New DevComponents.DotNetBar.PanelEx()
+        Me.lblContador = New System.Windows.Forms.Label()
+        Me.ElGroupBox5 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtNombreVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtCodigoVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.ElGroupBox4 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.txtNombreCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -49,13 +55,10 @@ Partial Class frmBCotizacion
         Me.dtpFechaFinal = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
-        Me.ElGroupBox5 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
-        Me.txtNombreVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtCodigoVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         Me.PanelEx2.SuspendLayout()
+        CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ElGroupBox5.SuspendLayout()
         CType(Me.ElGroupBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox4.SuspendLayout()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,8 +71,6 @@ Partial Class frmBCotizacion
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ElGroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'Menu
@@ -108,6 +109,7 @@ Partial Class frmBCotizacion
         Me.PanelEx2.AutoScroll = True
         Me.PanelEx2.CanvasColor = System.Drawing.SystemColors.Control
         Me.PanelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.PanelEx2.Controls.Add(Me.lblContador)
         Me.PanelEx2.Controls.Add(Me.ElGroupBox5)
         Me.PanelEx2.Controls.Add(Me.ElGroupBox4)
         Me.PanelEx2.Controls.Add(Me.ElGroupBox1)
@@ -116,7 +118,7 @@ Partial Class frmBCotizacion
         Me.PanelEx2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelEx2.Location = New System.Drawing.Point(0, 39)
         Me.PanelEx2.Name = "PanelEx2"
-        Me.PanelEx2.Size = New System.Drawing.Size(300, 422)
+        Me.PanelEx2.Size = New System.Drawing.Size(300, 442)
         Me.PanelEx2.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.PanelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -125,6 +127,89 @@ Partial Class frmBCotizacion
         Me.PanelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.PanelEx2.Style.GradientAngle = 90
         Me.PanelEx2.TabIndex = 53
+        '
+        'lblContador
+        '
+        Me.lblContador.AutoSize = True
+        Me.lblContador.BackColor = System.Drawing.Color.Transparent
+        Me.lblContador.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblContador.ForeColor = System.Drawing.Color.Black
+        Me.lblContador.Location = New System.Drawing.Point(24, 420)
+        Me.lblContador.Name = "lblContador"
+        Me.lblContador.Size = New System.Drawing.Size(59, 14)
+        Me.lblContador.TabIndex = 73
+        Me.lblContador.Text = "N° ITEM: 0"
+        '
+        'ElGroupBox5
+        '
+        Me.ElGroupBox5.BackgroundStyle.GradientAngle = 45.0!
+        Me.ElGroupBox5.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox5.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox5.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox5.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox5.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox5.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElGroupBox5.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox5.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox5.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.ElGroupBox5.CaptionStyle.TextStyle.Text = "Filtrar Vendedor"
+        Me.ElGroupBox5.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox5.Controls.Add(Me.txtNombreVendedor)
+        Me.ElGroupBox5.Controls.Add(Me.Label5)
+        Me.ElGroupBox5.Controls.Add(Me.txtCodigoVendedor)
+        Me.ElGroupBox5.Controls.Add(Me.Label6)
+        Me.ElGroupBox5.Location = New System.Drawing.Point(15, 306)
+        Me.ElGroupBox5.Name = "ElGroupBox5"
+        Me.ElGroupBox5.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox5.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
+        Me.ElGroupBox5.Size = New System.Drawing.Size(256, 96)
+        Me.ElGroupBox5.TabIndex = 9
+        '
+        'txtNombreVendedor
+        '
+        '
+        '
+        '
+        Me.txtNombreVendedor.Border.Class = "TextBoxBorder"
+        Me.txtNombreVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtNombreVendedor.Location = New System.Drawing.Point(55, 59)
+        Me.txtNombreVendedor.Name = "txtNombreVendedor"
+        Me.txtNombreVendedor.Size = New System.Drawing.Size(195, 20)
+        Me.txtNombreVendedor.TabIndex = 31
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(9, 61)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(47, 14)
+        Me.Label5.TabIndex = 30
+        Me.Label5.Text = "Nombre:"
+        '
+        'txtCodigoVendedor
+        '
+        '
+        '
+        '
+        Me.txtCodigoVendedor.Border.Class = "TextBoxBorder"
+        Me.txtCodigoVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtCodigoVendedor.Location = New System.Drawing.Point(55, 30)
+        Me.txtCodigoVendedor.Name = "txtCodigoVendedor"
+        Me.txtCodigoVendedor.Size = New System.Drawing.Size(100, 20)
+        Me.txtCodigoVendedor.TabIndex = 29
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(9, 32)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(43, 14)
+        Me.Label6.TabIndex = 28
+        Me.Label6.Text = "Código:"
         '
         'ElGroupBox4
         '
@@ -486,7 +571,7 @@ Partial Class frmBCotizacion
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtRegistro.Size = New System.Drawing.Size(502, 422)
+        Me.dtRegistro.Size = New System.Drawing.Size(502, 442)
         Me.dtRegistro.TabIndex = 56
         '
         'bkEstilo
@@ -499,82 +584,11 @@ Partial Class frmBCotizacion
         Me.bkEstilo.MainContainer = Me
         Me.bkEstilo.ToolStripOffice2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         '
-        'ElGroupBox5
-        '
-        Me.ElGroupBox5.BackgroundStyle.GradientAngle = 45.0!
-        Me.ElGroupBox5.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox5.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox5.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox5.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox5.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox5.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox5.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElGroupBox5.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox5.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox5.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
-        Me.ElGroupBox5.CaptionStyle.TextStyle.Text = "Filtrar Vendedor"
-        Me.ElGroupBox5.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox5.Controls.Add(Me.txtNombreVendedor)
-        Me.ElGroupBox5.Controls.Add(Me.Label5)
-        Me.ElGroupBox5.Controls.Add(Me.txtCodigoVendedor)
-        Me.ElGroupBox5.Controls.Add(Me.Label6)
-        Me.ElGroupBox5.Location = New System.Drawing.Point(15, 306)
-        Me.ElGroupBox5.Name = "ElGroupBox5"
-        Me.ElGroupBox5.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox5.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
-        Me.ElGroupBox5.Size = New System.Drawing.Size(256, 96)
-        Me.ElGroupBox5.TabIndex = 9
-        '
-        'txtNombreVendedor
-        '
-        '
-        '
-        '
-        Me.txtNombreVendedor.Border.Class = "TextBoxBorder"
-        Me.txtNombreVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtNombreVendedor.Location = New System.Drawing.Point(55, 59)
-        Me.txtNombreVendedor.Name = "txtNombreVendedor"
-        Me.txtNombreVendedor.Size = New System.Drawing.Size(195, 20)
-        Me.txtNombreVendedor.TabIndex = 31
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(9, 61)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(47, 14)
-        Me.Label5.TabIndex = 30
-        Me.Label5.Text = "Nombre:"
-        '
-        'txtCodigoVendedor
-        '
-        '
-        '
-        '
-        Me.txtCodigoVendedor.Border.Class = "TextBoxBorder"
-        Me.txtCodigoVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtCodigoVendedor.Location = New System.Drawing.Point(55, 30)
-        Me.txtCodigoVendedor.Name = "txtCodigoVendedor"
-        Me.txtCodigoVendedor.Size = New System.Drawing.Size(100, 20)
-        Me.txtCodigoVendedor.TabIndex = 29
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(9, 32)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(43, 14)
-        Me.Label6.TabIndex = 28
-        Me.Label6.Text = "Código:"
-        '
         'frmBCotizacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(802, 461)
+        Me.ClientSize = New System.Drawing.Size(802, 481)
         Me.Controls.Add(Me.dtRegistro)
         Me.Controls.Add(Me.PanelEx2)
         Me.Controls.Add(Me.Menu)
@@ -592,6 +606,10 @@ Partial Class frmBCotizacion
         Me.Menu.ResumeLayout(False)
         Me.Menu.PerformLayout()
         Me.PanelEx2.ResumeLayout(False)
+        Me.PanelEx2.PerformLayout()
+        CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ElGroupBox5.ResumeLayout(False)
+        Me.ElGroupBox5.PerformLayout()
         CType(Me.ElGroupBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox4.ResumeLayout(False)
         Me.ElGroupBox4.PerformLayout()
@@ -608,9 +626,6 @@ Partial Class frmBCotizacion
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ElGroupBox5.ResumeLayout(False)
-        Me.ElGroupBox5.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -644,4 +659,5 @@ Partial Class frmBCotizacion
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtCodigoVendedor As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents lblContador As System.Windows.Forms.Label
 End Class

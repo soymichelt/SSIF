@@ -54,6 +54,7 @@ Partial Class frmBVenta
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
+        Me.lblContador = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         Me.PanelEx2.SuspendLayout()
         CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +109,7 @@ Partial Class frmBVenta
         Me.PanelEx2.AutoScroll = True
         Me.PanelEx2.CanvasColor = System.Drawing.SystemColors.Control
         Me.PanelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.PanelEx2.Controls.Add(Me.lblContador)
         Me.PanelEx2.Controls.Add(Me.ElGroupBox5)
         Me.PanelEx2.Controls.Add(Me.ElGroupBox4)
         Me.PanelEx2.Controls.Add(Me.ElGroupBox1)
@@ -116,7 +118,7 @@ Partial Class frmBVenta
         Me.PanelEx2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelEx2.Location = New System.Drawing.Point(0, 39)
         Me.PanelEx2.Name = "PanelEx2"
-        Me.PanelEx2.Size = New System.Drawing.Size(300, 422)
+        Me.PanelEx2.Size = New System.Drawing.Size(300, 442)
         Me.PanelEx2.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.PanelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -557,7 +559,7 @@ Partial Class frmBVenta
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtRegistro.Size = New System.Drawing.Size(502, 422)
+        Me.dtRegistro.Size = New System.Drawing.Size(502, 442)
         Me.dtRegistro.TabIndex = 56
         '
         'bkEstilo
@@ -570,11 +572,23 @@ Partial Class frmBVenta
         Me.bkEstilo.MainContainer = Me
         Me.bkEstilo.ToolStripOffice2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         '
+        'lblContador
+        '
+        Me.lblContador.AutoSize = True
+        Me.lblContador.BackColor = System.Drawing.Color.Transparent
+        Me.lblContador.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblContador.ForeColor = System.Drawing.Color.Black
+        Me.lblContador.Location = New System.Drawing.Point(24, 420)
+        Me.lblContador.Name = "lblContador"
+        Me.lblContador.Size = New System.Drawing.Size(59, 14)
+        Me.lblContador.TabIndex = 72
+        Me.lblContador.Text = "N° ITEM: 0"
+        '
         'frmBVenta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(802, 461)
+        Me.ClientSize = New System.Drawing.Size(802, 481)
         Me.Controls.Add(Me.dtRegistro)
         Me.Controls.Add(Me.PanelEx2)
         Me.Controls.Add(Me.Menu)
@@ -592,6 +606,7 @@ Partial Class frmBVenta
         Me.Menu.ResumeLayout(False)
         Me.Menu.PerformLayout()
         Me.PanelEx2.ResumeLayout(False)
+        Me.PanelEx2.PerformLayout()
         CType(Me.ElGroupBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox5.ResumeLayout(False)
         Me.ElGroupBox5.PerformLayout()
@@ -644,4 +659,5 @@ Partial Class frmBVenta
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtCodigoVendedor As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents lblContador As System.Windows.Forms.Label
 End Class

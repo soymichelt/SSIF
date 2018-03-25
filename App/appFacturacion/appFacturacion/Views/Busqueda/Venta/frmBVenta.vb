@@ -21,7 +21,11 @@ Public Class frmBVenta
                 If pNombreCliente.Trim <> "" Then
                     consulta = consulta.Where(Function(f) f.CLIENTE.ToLower().Contains(pNombreCliente.ToLower())).ToList
                 End If
+
                 dtRegistro.DataSource = consulta.ToList()
+
+                Me.lblContador.Text = "ITEM N°: " & consulta.Count
+
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = vbNewLine & "" & vbNewLine
                     dtRegistro.Columns(1).Visible = False
@@ -307,5 +311,8 @@ Public Class frmBVenta
         End If
     End Sub
 
+    Private Sub frmBVenta_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        lblContador.Top = Me.Height - 100
+    End Sub
 
 End Class

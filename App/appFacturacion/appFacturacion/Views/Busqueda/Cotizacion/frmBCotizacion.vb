@@ -20,7 +20,11 @@ Public Class frmBCotizacion
                 If pNombreCliente.Trim <> "" Then
                     consulta = consulta.Where(Function(f) f.CLIENTE.ToLower().Contains(pNombreCliente.ToLower()) And f.ANULADO.Equals("")).ToList
                 End If
+
                 dtRegistro.DataSource = consulta.ToList()
+
+                Me.lblContador.Text = "ITEM N°: " & consulta.Count
+
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Width = 55 : dtRegistro.Columns(0).HeaderText = vbNewLine & "" & vbNewLine
                     dtRegistro.Columns(1).Visible = False
@@ -363,4 +367,7 @@ Public Class frmBCotizacion
         End If
     End Sub
 
+    Private Sub frmBCotizacion_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        Me.lblContador.Top = Me.Height - 100
+    End Sub
 End Class
