@@ -3,21 +3,23 @@ Imports Sadara.Models.V1.POCO
 'Imports System.Data.Entity
 
 Public Class frmBVenta
+
     Public frm_return As Integer = 0
-    Sub llenar(ByVal finicio As DateTime, ByVal ffin As DateTime, Optional ByVal pserie As String = "", Optional ByVal pcodigocliente As String = "", Optional ByVal pnombrecliente As String = "")
+
+    Sub llenar(ByVal fInicio As DateTime, ByVal fFin As DateTime, Optional ByVal pSerie As String = "", Optional ByVal pCodigoCliente As String = "", Optional ByVal pNombreCliente As String = "", Optional ByVal pCodigoVendedor As String = "", Optional ByVal pNombreVendedor As String = "")
         Try
             Using db As New CodeFirst
-                Dim consulta = (From ven In db.Ventas Join ser In db.SERIES On ser.IDSERIE Equals ven.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Join tra In db.EMPLEADOS On ven.IDEMPLEADO Equals tra.IDEMPLEADO Where ser.IDSERIE.Contains(pserie) And ven.FECHAFACTURA >= finicio And ven.FECHAFACTURA <= ffin Select ANULADO = If(ven.ANULADO.Equals("S"), "Anulado", ""), ven.IDVENTA, SERIE = ser.NOMBRE, ven.CONSECUTIVO, ven.FECHAFACTURA, N_CLIENTE = If(ven.ANULADO.Equals("N"), If(Not ven.IDCLIENTE Is Nothing, ven.CLIENTE.N_CLIENTE, ""), ""), CLIENTE = If(ven.ANULADO.Equals("N"), If(Not ven.IDCLIENTE Is Nothing, ven.CLIENTE.NOMBRES & " " & ven.CLIENTE.APELLIDOS, ven.CLIENTECONTADO), ""), N_VENDEDOR = If(ven.ANULADO.Equals("N"), tra.N_TRABAJADOR, ""), VENDEDOR = If(ven.ANULADO.Equals("N"), tra.NOMBRES & " " & tra.APELLIDOS, ""), CONDICIÓN = If(ven.ANULADO.Equals("N"), If(ven.CREDITO, "Crédito", "Contado"), ""), MONEDA = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), ""), TAZACAMBIO = If(ven.ANULADO.Equals(Config.vFalse), ven.TAZACAMBIO, Nothing), DESCUENTO = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.DESCUENTO_DIN_C, ven.DESCUENTO_DIN_D), Nothing), SUBTOTAL = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.SUBTOTAL_C, ven.SUBTOTAL_D), Nothing), IVA = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.IVA_DIN_C, ven.IVA_DIN_D), Nothing), TOTAL = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.TOTAL_C, ven.TOTAL_D), Nothing), ven.CREDITO).ToList
+                Dim consulta = (From ven In db.Ventas Join ser In db.Series On ser.IDSERIE Equals ven.IDSERIE Join bod In db.Bodegas On bod.IDBODEGA Equals ser.IDBODEGA Join tra In db.Empleados On ven.IDEMPLEADO Equals tra.IDEMPLEADO Where ser.IDSERIE.Contains(pSerie) And ven.FECHAFACTURA >= fInicio And ven.FECHAFACTURA <= fFin And tra.N_TRABAJADOR.Contains(pCodigoVendedor) And (tra.NOMBRES & " " & tra.APELLIDOS).Contains(pNombreVendedor) Select ANULADO = If(ven.ANULADO.Equals("S"), "Anulado", ""), ven.IDVENTA, SERIE = ser.NOMBRE, ven.CONSECUTIVO, ven.FECHAFACTURA, N_CLIENTE = If(ven.ANULADO.Equals("N"), If(Not ven.IDCLIENTE Is Nothing, ven.Cliente.N_CLIENTE, ""), ""), CLIENTE = If(ven.ANULADO.Equals("N"), If(Not ven.IDCLIENTE Is Nothing, ven.Cliente.NOMBRES & " " & ven.Cliente.APELLIDOS, ven.CLIENTECONTADO), ""), N_VENDEDOR = If(ven.ANULADO.Equals("N"), tra.N_TRABAJADOR, ""), VENDEDOR = If(ven.ANULADO.Equals("N"), tra.NOMBRES & " " & tra.APELLIDOS, ""), CONDICIÓN = If(ven.ANULADO.Equals("N"), If(ven.CREDITO, "Crédito", "Contado"), ""), MONEDA = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), "Córdoba", "Dólar"), ""), TAZACAMBIO = If(ven.ANULADO.Equals(Config.vFalse), ven.TAZACAMBIO, Nothing), DESCUENTO = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.DESCUENTO_DIN_C, ven.DESCUENTO_DIN_D), Nothing), SUBTOTAL = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.SUBTOTAL_C, ven.SUBTOTAL_D), Nothing), IVA = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.IVA_DIN_C, ven.IVA_DIN_D), Nothing), TOTAL = If(ven.ANULADO.Equals("N"), If(ven.MONEDA.Equals(Config.cordoba), ven.TOTAL_C, ven.TOTAL_D), Nothing), ven.CREDITO).ToList
                 If rdContado.Checked Then
                     consulta = consulta.Where(Function(f) f.CREDITO = False And f.ANULADO = "").ToList
                 ElseIf rdCredito.Checked Then
                     consulta = consulta.Where(Function(f) f.CREDITO And f.ANULADO = "").ToList
                 End If
-                If pcodigocliente.Trim <> "" Then
-                    consulta = consulta.Where(Function(f) f.N_CLIENTE.ToLower().Contains(pcodigocliente.ToLower())).ToList
+                If pCodigoCliente.Trim <> "" Then
+                    consulta = consulta.Where(Function(f) f.N_CLIENTE.ToLower().Contains(pCodigoCliente.ToLower())).ToList
                 End If
-                If pnombrecliente.Trim <> "" Then
-                    consulta = consulta.Where(Function(f) f.CLIENTE.ToLower().Contains(pnombrecliente.ToLower())).ToList
+                If pNombreCliente.Trim <> "" Then
+                    consulta = consulta.Where(Function(f) f.CLIENTE.ToLower().Contains(pNombreCliente.ToLower())).ToList
                 End If
                 dtRegistro.DataSource = consulta.ToList()
                 If dtRegistro.Columns.Count > 0 Then
@@ -197,32 +199,32 @@ Public Class frmBVenta
 
     Private Sub cmbSerie_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSerie.SelectedIndexChanged
         If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
-            llenar(dtpFechaInicial.Text & " 00:00:00", dtpFechaFinal.Text & " 23:59:59", cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+            llenar(dtpFechaInicial.Text & " 00:00:00", dtpFechaFinal.Text & " 23:59:59", cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
         End If
     End Sub
 
     Private Sub dtpFechaInicial_ValueChanged(sender As Object, e As EventArgs) Handles dtpFechaInicial.ValueChanged
         If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
-            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
         Else
-            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text)
+            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtCodigoVendedor.Text)
         End If
     End Sub
 
     Private Sub dtpFechaFinal_ValueChanged(sender As Object, e As EventArgs) Handles dtpFechaFinal.ValueChanged
         If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
-            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
         Else
-            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text)
+            llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
         End If
     End Sub
 
     Private Sub rdContado_CheckedChanged(sender As Object, e As EventArgs) Handles rdContado.CheckedChanged
         If rdContado.Checked Then
             If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             Else
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             End If
         End If
     End Sub
@@ -230,9 +232,9 @@ Public Class frmBVenta
     Private Sub rdCredito_CheckedChanged(sender As Object, e As EventArgs) Handles rdCredito.CheckedChanged
         If rdCredito.Checked Then
             If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             Else
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             End If
         End If
     End Sub
@@ -240,9 +242,9 @@ Public Class frmBVenta
     Private Sub rdTodos_CheckedChanged(sender As Object, e As EventArgs) Handles rdTodos.CheckedChanged
         If rdTodos.Checked Then
             If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             Else
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             End If
         End If
     End Sub
@@ -250,9 +252,9 @@ Public Class frmBVenta
     Private Sub txtCodigoCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles txtCodigoCliente.KeyDown
         If e.KeyData = Keys.Enter Then
             If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             Else
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             End If
         End If
     End Sub
@@ -260,9 +262,29 @@ Public Class frmBVenta
     Private Sub txtNombreCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNombreCliente.KeyDown
         If e.KeyData = Keys.Enter Then
             If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             Else
-                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text)
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
+            End If
+        End If
+    End Sub
+
+    Private Sub txtCodigoVendedor_KeyDown(sender As Object, e As KeyEventArgs) Handles txtCodigoVendedor.KeyDown
+        If e.KeyData = Keys.Enter Then
+            If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
+            Else
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
+            End If
+        End If
+    End Sub
+
+    Private Sub txtNombreVendedor_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNombreVendedor.KeyDown
+        If e.KeyData = Keys.Enter Then
+            If Not cmbSerie.SelectedValue Is Nothing And cmbSerie.SelectedIndex <> -1 Then
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), cmbSerie.SelectedValue.ToString(), txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
+            Else
+                llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), , txtCodigoCliente.Text, txtNombreCliente.Text, txtCodigoVendedor.Text, txtNombreVendedor.Text)
             End If
         End If
     End Sub
@@ -284,4 +306,6 @@ Public Class frmBVenta
             End Select
         End If
     End Sub
+
+
 End Class
