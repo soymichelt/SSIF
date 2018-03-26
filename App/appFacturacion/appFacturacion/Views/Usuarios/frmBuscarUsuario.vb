@@ -116,6 +116,9 @@ Public Class frmBuscarUsuario
                             frmUser.chkConsultasInventario.Checked = u.CInventario
                             frmUser.chkContabilidad.Checked = u.Contabilidad
                             frmUser.chkConsultasContabilidad.Checked = u.CContabilidad
+                            frmUser.chkPromocion.Checked = u.Promocion
+                            frmUser.chkConsultasPromocion.Checked = u.CPromocion
+                            frmUser.chkSalesPriceChange.Checked = u.SalesPriceChange
 
                             frmUser.btGuardar.Enabled = False
                             frmUser.btEliminar.Enabled = True
@@ -160,6 +163,9 @@ Public Class frmBuscarUsuario
                             frmUser.chkConsultasInventario.Checked = u.CInventario
                             frmUser.chkContabilidad.Checked = u.Contabilidad
                             frmUser.chkConsultasContabilidad.Checked = u.CContabilidad
+                            frmUser.chkPromocion.Checked = u.Promocion
+                            frmUser.chkConsultasPromocion.Checked = u.CPromocion
+                            frmUser.chkSalesPriceChange.Checked = u.SalesPriceChange
 
                             frmUser.btGuardar.Enabled = False
                             frmUser.btEliminar.Enabled = True

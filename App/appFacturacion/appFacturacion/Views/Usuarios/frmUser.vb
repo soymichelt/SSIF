@@ -22,6 +22,9 @@ Public Class frmUser
         chkConsultasInventario.Checked = False
         chkContabilidad.Checked = False
         chkConsultasContabilidad.Checked = False
+        chkPromocion.Checked = False
+        chkConsultasPromocion.Checked = False
+        chkSalesPriceChange.Checked = False
 
         btGuardar.Enabled = True
         btEditar.Enabled = False
@@ -51,90 +54,42 @@ Public Class frmUser
         Limpiar()
     End Sub
 
+    Private Function UserExists(ByVal db As CodeFirst, ByVal userName As String, Optional ByVal userNameExcept As String = "") As Boolean
+
+        If userNameExcept Is "" Then
+
+            Return db.Usuarios.Where(Function(f) f.NombreCuenta = userName).FirstOrDefault() IsNot Nothing
+
+        Else
+
+            Return db.Usuarios.Where(Function(f) f.NombreCuenta <> userNameExcept And f.NombreCuenta = userName).FirstOrDefault() IsNot Nothing
+
+        End If
+
+    End Function
+
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
         If txtNombres.Text.Trim <> "" And txtApellidos.Text.Trim <> "" And txtUsuario.Text.Trim <> "" And txtContraseña.Text.Trim <> "" Then
             If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Or chkPromocion.Checked Or chkConsultasPromocion.Checked Or chkSalesPriceChange.Checked Then
                 Try
+
                     Using db As New CodeFirst
-                        Dim u As New Usuario
-                        u.IDUsuario = Guid.NewGuid.ToString
-                        Me.ID = u.IDUsuario
-                        u.Reg = DateTime.Now
-                        u.Nombres = txtNombres.Text
-                        u.Apellidos = txtApellidos.Text
-                        u.NombreCuenta = txtUsuario.Text
-                        u.Contraseña = CryptoSecurity.Encoding(txtContraseña.Text)
-                        u.Observacion = txtObservacion.Text
 
-                        Try
-                            If Not txtImagen.Text.Trim() = "" And pnImagen.Style.BackgroundImage Is Nothing Then
-                                If System.IO.Directory.Exists(My.Application.Info.DirectoryPath) = False Then
-                                    'System.IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath)
-                                    Throw New Exception("No se encuentra el directorio de almacen para las Imágenes.")
-                                End If
-                                Dim path As String = Config.DirectoryPathImageProducts & u.IDUsuario & Config.ImageExtension
-                                System.IO.File.Delete(path)
-                                Dim bmp As New Bitmap(pnImagen.Style.BackgroundImage)
-                                bmp.Save(path, pnImagen.Style.BackgroundImage.RawFormat)
-                                bmp.Dispose()
-                                u.ImageName = u.IDUsuario
-                                path = Nothing
-                            End If
-                        Catch ex As Exception
-                            MessageBox.Show("Error al guardar la imagen. Descripción: " & ex.Message)
-                        End Try
+                        If Not UserExists(db, txtUsuario.Text) Then
 
-                        u.Administrador = chkAdministrador.Checked
-                        u.CAdministrador = chkConsultasAdministrador.Checked
-                        u.Venta = chkVenta.Checked
-                        u.CVenta = chkConsultasVenta.Checked
-                        u.Compra = chkCompra.Checked
-                        u.CCompra = chkConsultasCompra.Checked
-                        u.Inventario = chkInventario.Checked
-                        u.CInventario = chkConsultasInventario.Checked
-                        u.Contabilidad = chkContabilidad.Checked
-                        u.CContabilidad = chkConsultasContabilidad.Checked
-                        u.Promocion = chkPromocion.Checked
-                        u.CPromocion = chkConsultasPromocion.Checked
-                        u.SalesPriceChange = chkSalesPriceChange.Checked
-
-                        u.Activo = "S"
-                        db.Usuarios.Add(u)
-                        db.SaveChanges()
-                        u = Nothing
-
-                        btGuardar.Enabled = False : btEditar.Enabled = True : btEliminar.Enabled = True
-                        txtNombres.Focus()
-                    End Using
-                Catch ex As Exception
-                    MessageBox.Show("Error: " & ex.Message)
-                End Try
-            Else
-                MessageBox.Show("Seleccionar al menos una labor a desempeñar")
-            End If
-        Else
-            MessageBox.Show("Ingresar los campos de orden obligatorio (*).")
-        End If
-    End Sub
-
-    Private Sub btEditar_Click(sender As Object, e As EventArgs) Handles btEditar.Click
-        If txtNombres.Text.Trim <> "" And txtApellidos.Text.Trim <> "" And txtUsuario.Text.Trim <> "" Then
-            If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Or chkPromocion.Checked Or chkConsultasPromocion.Checked Or chkSalesPriceChange.Checked Then
-                Try
-                    Using db As New CodeFirst
-                        Dim u = db.Usuarios.Where(Function(f) f.IDUsuario = Me.txtCodigo.Text).FirstOrDefault
-                        If Not u Is Nothing Then
+                            Dim u As New Usuario
+                            u.IDUsuario = Guid.NewGuid.ToString
+                            Me.ID = u.IDUsuario
+                            u.Reg = DateTime.Now
                             u.Nombres = txtNombres.Text
                             u.Apellidos = txtApellidos.Text
                             u.NombreCuenta = txtUsuario.Text
-                            If txtContraseña.Text.Trim <> "" Then
-                                u.Contraseña = CryptoSecurity.Encoding(txtContraseña.Text)
-                            End If
+                            u.Contraseña = CryptoSecurity.Encoding(txtContraseña.Text)
                             u.Observacion = txtObservacion.Text
 
                             Try
                                 If Not txtImagen.Text.Trim() = "" And pnImagen.Style.BackgroundImage Is Nothing Then
-                                    If System.IO.Directory.Exists(Config.DirectoryPathImageUsers) = False Then
+                                    If System.IO.Directory.Exists(My.Application.Info.DirectoryPath) = False Then
                                         'System.IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath)
                                         Throw New Exception("No se encuentra el directorio de almacen para las Imágenes.")
                                     End If
@@ -165,11 +120,94 @@ Public Class frmUser
                             u.SalesPriceChange = chkSalesPriceChange.Checked
 
                             u.Activo = "S"
-                            db.Entry(u).State = EntityState.Modified
+                            db.Usuarios.Add(u)
                             db.SaveChanges()
                             u = Nothing
 
-                            Limpiar()
+                            btGuardar.Enabled = False : btEditar.Enabled = True : btEliminar.Enabled = True
+                            txtNombres.Focus()
+
+                        Else
+
+                            Config.MsgErr("Ya existe un usuario con la cuenta '" & txtUsuario.Text & "' registrado")
+
+                        End If
+                        
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Error: " & ex.Message)
+                End Try
+            Else
+                MessageBox.Show("Seleccionar al menos una labor a desempeñar")
+            End If
+        Else
+            MessageBox.Show("Ingresar los campos de orden obligatorio (*).")
+        End If
+    End Sub
+
+    Private Sub btEditar_Click(sender As Object, e As EventArgs) Handles btEditar.Click
+        If txtNombres.Text.Trim <> "" And txtApellidos.Text.Trim <> "" And txtUsuario.Text.Trim <> "" Then
+            If chkAdministrador.Checked Or chkConsultasAdministrador.Checked Or chkVenta.Checked Or chkConsultasVenta.Checked Or chkCompra.Checked Or chkConsultasCompra.Checked Or chkInventario.Checked Or chkConsultasInventario.Checked Or chkContabilidad.Checked Or chkConsultasContabilidad.Checked Or chkPromocion.Checked Or chkConsultasPromocion.Checked Or chkSalesPriceChange.Checked Then
+                Try
+                    Using db As New CodeFirst
+                        Dim u = db.Usuarios.Where(Function(f) f.IDUsuario = Me.txtCodigo.Text).FirstOrDefault
+                        If Not u Is Nothing Then
+
+                            If Not Me.UserExists(db, txtUsuario.Text, u.NombreCuenta) Then
+
+                                u.Nombres = txtNombres.Text
+                                u.Apellidos = txtApellidos.Text
+                                u.NombreCuenta = txtUsuario.Text
+                                If txtContraseña.Text.Trim <> "" Then
+                                    u.Contraseña = CryptoSecurity.Encoding(txtContraseña.Text)
+                                End If
+                                u.Observacion = txtObservacion.Text
+
+                                Try
+                                    If Not txtImagen.Text.Trim() = "" And pnImagen.Style.BackgroundImage Is Nothing Then
+                                        If System.IO.Directory.Exists(Config.DirectoryPathImageUsers) = False Then
+                                            'System.IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath)
+                                            Throw New Exception("No se encuentra el directorio de almacen para las Imágenes.")
+                                        End If
+                                        Dim path As String = Config.DirectoryPathImageProducts & u.IDUsuario & Config.ImageExtension
+                                        System.IO.File.Delete(path)
+                                        Dim bmp As New Bitmap(pnImagen.Style.BackgroundImage)
+                                        bmp.Save(path, pnImagen.Style.BackgroundImage.RawFormat)
+                                        bmp.Dispose()
+                                        u.ImageName = u.IDUsuario
+                                        path = Nothing
+                                    End If
+                                Catch ex As Exception
+                                    MessageBox.Show("Error al guardar la imagen. Descripción: " & ex.Message)
+                                End Try
+
+                                u.Administrador = chkAdministrador.Checked
+                                u.CAdministrador = chkConsultasAdministrador.Checked
+                                u.Venta = chkVenta.Checked
+                                u.CVenta = chkConsultasVenta.Checked
+                                u.Compra = chkCompra.Checked
+                                u.CCompra = chkConsultasCompra.Checked
+                                u.Inventario = chkInventario.Checked
+                                u.CInventario = chkConsultasInventario.Checked
+                                u.Contabilidad = chkContabilidad.Checked
+                                u.CContabilidad = chkConsultasContabilidad.Checked
+                                u.Promocion = chkPromocion.Checked
+                                u.CPromocion = chkConsultasPromocion.Checked
+                                u.SalesPriceChange = chkSalesPriceChange.Checked
+
+                                u.Activo = "S"
+                                db.Entry(u).State = EntityState.Modified
+                                db.SaveChanges()
+                                u = Nothing
+
+                                Limpiar()
+
+                            Else
+
+                                Config.MsgErr("Ya existe un usuario con la cuenta '" & txtUsuario.Text & "' registrado")
+
+                            End If
+
                         Else
                             MessageBox.Show("No se encuentra este 'Usuario'. Problablemente ha sido eliminado.")
                         End If
