@@ -10,14 +10,18 @@ using Sadara.Models.V1.Database;
 namespace Sadara.DataLayer.TransactionToDb
 {
 
-    class Transaction
+    public class Transaction
     {
 
         private CodeFirst db;
 
-        public CodeFirst Db { get; }
+        public CodeFirst Db {
 
-        private void closeTransaction()
+            get { return this.db; }
+
+        }
+
+        public void CloseTransaction()
         {
 
             this.db.Dispose();
@@ -26,29 +30,29 @@ namespace Sadara.DataLayer.TransactionToDb
 
         }
 
-        private Boolean isDbStarted()
+        public Boolean IsDbStarted()
         {
 
             return this.db != null;
 
         }
 
-        private void beginTransaction()
+        public void BeginTransaction()
         {
 
-            if(this.isDbStarted())
+            if(this.IsDbStarted())
                 this.db = new CodeFirst();
 
         }
 
-        private int commit()
+        public int Commit()
         {
 
             return this.db.SaveChanges();
 
         }
 
-        private async Task<int> commitAsync()
+        public async Task<int> CommitAsync()
         {
 
             return await this.db.SaveChangesAsync();

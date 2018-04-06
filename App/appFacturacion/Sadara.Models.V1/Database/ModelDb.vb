@@ -397,6 +397,7 @@ Namespace Database
             modelBuilder.Configurations.Add(New AccessInRoleEntityMapping())
             modelBuilder.Configurations.Add(New GroupAccountEntityMapping())
             modelBuilder.Configurations.Add(New KeyAccountEntityMapping())
+            modelBuilder.Configurations.Add(New ActivityEntityMapping())
             modelBuilder.Configurations.Add(New PasswordEntityMapping())
             modelBuilder.Configurations.Add(New RoleEntityMapping())
             modelBuilder.Configurations.Add(New UserAccountEntityMapping())
@@ -409,12 +410,14 @@ Namespace Database
         'Importación temporal de entidades del Models.V2
         Public Property Access() As DbSet(Of AccessEntity)
         Public Property AccessInRoles() As DbSet(Of AccessInRoleEntity)
+        Public Property Activities() As DbSet(Of ActivityEntity)
         Public Property GroupsAccounts() As DbSet(Of GroupAccountEntity)
         Public Property KeysAccounts() As DbSet(Of KeyAccountEntity)
         Public Property Passwords() As DbSet(Of PasswordEntity)
         Public Property Roles() As DbSet(Of RoleEntity)
         Public Property UsersAccounts() As DbSet(Of UserAccountEntity)
         Public Property UsersInGroups() As DbSet(Of UserInGroupEntity)
+
 
     End Class
 

@@ -33,7 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,11 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backup.cs" />
+    <Compile Include="Activity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionToDb\TransactionBase.cs" />
     <Compile Include="TransactionToDb\Transaction.cs" />
     <Compile Include="Transaction\IAdd.cs" />
     <Compile Include="Transaction\IAddAsync.cs" />
+    <Compile Include="Transaction\IEdit.cs" />
     <Compile Include="Transaction\IFind.cs" />
+    <Compile Include="Transaction\IFindAsync.cs" />
+    <Compile Include="Transaction\IListAsync.cs" />
+    <Compile Include="Transaction\IRemove.cs" />
+    <Compile Include="Transaction\IValid.cs" />
     <Compile Include="Transaction\QueryDb.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -121,6 +121,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Components\DevComponents.TreeGX.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="itextsharp, Version=5.5.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -379,10 +387,10 @@
     <Compile Include="Reports\Venta\frmInformeVentas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\BackupAndRestore\frmBackup.Designer.vb">
+    <Compile Include="Views\Security\frmBackup.Designer.vb">
       <DependentUpon>frmBackup.vb</DependentUpon>
     </Compile>
-    <Compile Include="Views\BackupAndRestore\frmBackup.vb">
+    <Compile Include="Views\Security\frmBackup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Busqueda\Compra\frmBCompra.Designer.vb">
@@ -1249,7 +1257,7 @@
     <EmbeddedResource Include="Reports\Venta\frmInformeVentas.resx">
       <DependentUpon>frmInformeVentas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\BackupAndRestore\frmBackup.resx">
+    <EmbeddedResource Include="Views\Security\frmBackup.resx">
       <DependentUpon>frmBackup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Busqueda\Compra\frmBCompra.resx">
@@ -1709,6 +1717,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\Servidor.png" />
     <None Include="Resources\Testear.png" />
     <None Include="Resources\stIniciado.png" />
