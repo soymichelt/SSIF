@@ -12,7 +12,7 @@ using Sadara.Models.V2.POCO;
 namespace Sadara.DataLayer
 {
 
-    internal class Activity :
+    public class Activity :
         TransactionBase<ActivityEntity>
     {
 
@@ -21,13 +21,6 @@ namespace Sadara.DataLayer
         public TransactionToDb.Transaction TransactionToDb {
 
             set { this.transaction = value; }
-
-        }
-
-        public Boolean IsValid(ActivityEntity activity)
-        {
-
-            return activity != null;
 
         }
 
@@ -60,7 +53,7 @@ namespace Sadara.DataLayer
             ActivityEntity activity = await this.transaction.Db.Activities.FindAsync(ActivityId);
 
             return activity;
-            
+
         }
 
         public async override Task<List<ActivityEntity>> ListAsync()

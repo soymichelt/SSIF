@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Data.Entity
+Imports Db = System.Data.Entity.Database
 
 Imports Sadara.Models.V1.POCO
 Imports Sadara.Models.V2.POCO
@@ -15,7 +16,11 @@ Namespace Database
         Inherits DbContext
 
         Public Sub New()
+
             MyBase.New("Data Source=" & Config.SQLServerName & ";Initial Catalog=" & Config.InitialCatalog & ";" & If(Config.SQLUser = "" Or Config.SQLPass = "", "Integrated Security=True;", "Integrated Security = False; User ID=" & Config.SQLUser & "; Password=" & Config.SQLPass & ";"))
+
+            Db.SetInitializer(New MigrateDatabaseToLatestVersion(Of CodeFirst, Sadara.Models.V1.Migrations.Configuration))
+
         End Sub
 
         'MODELO DE CONTEXTO
@@ -417,7 +422,6 @@ Namespace Database
         Public Property Roles() As DbSet(Of RoleEntity)
         Public Property UsersAccounts() As DbSet(Of UserAccountEntity)
         Public Property UsersInGroups() As DbSet(Of UserInGroupEntity)
-
 
     End Class
 

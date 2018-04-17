@@ -10,7 +10,7 @@ using Sadara.Models.V2.POCO;
 namespace Sadara.DataLayer.TransactionToDb
 {
 
-    internal abstract class TransactionBase<T> :
+    public abstract class TransactionBase<T> :
         IAdd<T>,
         IEdit<T>,
         IRemove<T>,

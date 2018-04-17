@@ -17,6 +17,7 @@ namespace Sadara.DataLayer.TransactionToDb
 
         public CodeFirst Db {
 
+            set { this.db = value; }
             get { return this.db; }
 
         }
