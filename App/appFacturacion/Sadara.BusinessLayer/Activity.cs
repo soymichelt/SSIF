@@ -16,6 +16,37 @@ namespace Sadara.BusinessLayer
     public class Activity
     {
 
+        private static Activity instance;
+
+        private static bool InstanceIsInitialized()
+        {
+
+            return instance == null;
+
+        }
+
+        private static void InitializeInstance()
+        {
+
+            instance = new Activity();
+
+        }
+
+        public static Activity Instance {
+
+            get {
+
+                if (InstanceIsInitialized())
+                    InitializeInstance();
+
+                return instance;
+
+            }
+
+        }
+
+        protected Activity() { }
+
         private Transaction transaction;
 
         private DataLayer.Activity activity;

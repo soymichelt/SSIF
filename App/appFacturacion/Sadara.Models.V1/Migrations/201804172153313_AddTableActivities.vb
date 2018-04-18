@@ -28,8 +28,6 @@ Namespace Migrations
 
         Public Overrides Sub Down()
 
-            'DropForeignKey("dbo.tblAccessInRoles", "AccessId", "dbo.tblAccess")
-            'DropIndex("dbo.tblAccessInRoles", New String() {"AccessId"})
             DropTable("dbo.tblActivities")
 
         End Sub
