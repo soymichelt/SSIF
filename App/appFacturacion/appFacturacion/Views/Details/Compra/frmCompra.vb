@@ -1033,11 +1033,13 @@ Public Class frmCompra
                                                 End If
                                             End If
 
-
-                                            k.COSTO_PROMEDIO = k.SALDO / k.EXISTENCIA_ALMACEN
+                                            If k.EXISTENCIA_ALMACEN <> 0 Then
+                                                k.COSTO_PROMEDIO = k.SALDO / k.EXISTENCIA_ALMACEN
+                                            End If
 
                                             dbk.Entry(k).State = EntityState.Modified
                                             ik = True
+
                                         Next
                                         kardex.ACTIVO = "N" : db.Entry(kardex).State = EntityState.Modified
                                     Next
@@ -1179,20 +1181,6 @@ Public Class frmCompra
         If e.KeyCode = Keys.Delete Then
             If dtRegistro.SelectedRows.Count > 0 Then
                 'descargar precios del total
-                'If bandDescFact Then
-                '    txtTotalSubtotal.Value = txtTotalSubtotal.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(14).Value.ToString())
-                '    txtTotalDescuento.Value = txtTotalDescuento.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(15).Value.ToString())
-                '    txtTotalIva.Text = txtTotalIva.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(16).Value.ToString())
-                '    txtTotal.Text = txtTotal.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(17).Value.ToString())
-                'Else
-                '    txtTotalSubtotal.Value = txtTotalSubtotal.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(14).Value.ToString())
-                '    If rdDescuentoPorProducto.Checked Then
-                '        txtTotalDescuento.Value = txtTotalDescuento.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(15).Value.ToString())
-                '    End If
-                '    txtTotalIva.Text = txtTotalIva.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(16).Value.ToString())
-                '    txtTotal.Text = txtTotal.Value - Decimal.Parse(dtRegistro.SelectedRows(0).Cells(17).Value.ToString())
-                'End If
-                'quitar item
                 detalles.Remove(detalles.Where(Function(f) f.IDEXISTENCIA = dtRegistro.SelectedRows(0).Cells(0).Value).FirstOrDefault())
                 Grid()
                 txtCodigoAlterno.Focus()

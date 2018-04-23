@@ -11,6 +11,7 @@ Namespace Migrations
         Public Sub New()
 
             Me.AutomaticMigrationsEnabled = True
+            Me.AutomaticMigrationDataLossAllowed = True
 
         End Sub
 

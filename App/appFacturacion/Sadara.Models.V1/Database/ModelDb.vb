@@ -17,8 +17,9 @@ Namespace Database
 
         Public Sub New()
 
-            MyBase.New("Data Source=" & Config.SQLServerName & ";Initial Catalog=" & Config.InitialCatalog & ";" & If(Config.SQLUser = "" Or Config.SQLPass = "", "Integrated Security=True;", "Integrated Security = False; User ID=" & Config.SQLUser & "; Password=" & Config.SQLPass & ";"))
-
+            'MyBase.New("Data Source=" & Config.SQLServerName & ";Initial Catalog=" & Config.InitialCatalog & ";" & If(Config.SQLUser = "" Or Config.SQLPass = "", "Integrated Security=True;", "Integrated Security = False; User ID=" & Config.SQLUser & "; Password=" & Config.SQLPass & ";"))
+            MyBase.New("name=SadaraDbConnectionString")
+            
             Db.SetInitializer(New MigrateDatabaseToLatestVersion(Of CodeFirst, Sadara.Models.V1.Migrations.Configuration))
 
         End Sub
@@ -402,7 +403,7 @@ Namespace Database
             modelBuilder.Configurations.Add(New AccessInRoleEntityMapping())
             modelBuilder.Configurations.Add(New GroupAccountEntityMapping())
             modelBuilder.Configurations.Add(New KeyAccountEntityMapping())
-            modelBuilder.Configurations.Add(New ActivityEntityMapping())
+            'modelBuilder.Configurations.Add(New ActivityEntityMapping())
             modelBuilder.Configurations.Add(New PasswordEntityMapping())
             modelBuilder.Configurations.Add(New RoleEntityMapping())
             modelBuilder.Configurations.Add(New UserAccountEntityMapping())
@@ -415,7 +416,7 @@ Namespace Database
         'Importación temporal de entidades del Models.V2
         Public Property Access() As DbSet(Of AccessEntity)
         Public Property AccessInRoles() As DbSet(Of AccessInRoleEntity)
-        Public Property Activities() As DbSet(Of ActivityEntity)
+        'Public Property Activities() As DbSet(Of ActivityEntity)
         Public Property GroupsAccounts() As DbSet(Of GroupAccountEntity)
         Public Property KeysAccounts() As DbSet(Of KeyAccountEntity)
         Public Property Passwords() As DbSet(Of PasswordEntity)

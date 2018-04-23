@@ -13,6 +13,20 @@ Public Class frmLogin
     'Tipo de Cerrado del Formulario
     Dim salir As Boolean = False
 
+    Private Async Sub RegisterActivity()
+
+        Await Sadara.BusinessLayer.Activity.Instance.AddAsync(
+            New Sadara.Models.V2.POCO.ActivityEntity() With {
+                .AcitivityId = Guid.NewGuid(),
+                .ActivityDate = DateTime.Now,
+                .BusinessId = Guid.Empty,
+                .Type = "",
+                .OptionalMessage = ""
+            }
+        )
+
+    End Sub
+
     Private Sub frmIniciarSesion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtUsuario.Focus()
     End Sub

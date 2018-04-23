@@ -24,6 +24,8 @@ namespace Sadara.Models.V2.POCO
 
         public string OptionalMessage { get; set; }
 
+        public string Tag { get; set; }
+
         public Guid BusinessId { get; set; }
 
         public Guid UserId { get; set; }

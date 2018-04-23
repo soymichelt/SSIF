@@ -934,9 +934,13 @@ Public Class frmNotaDevolucionCompra
                                                 End If
                                             End If
 
+                                            If k.EXISTENCIA_ALMACEN <> 0 Then
+                                                k.COSTO_PROMEDIO = k.SALDO / k.EXISTENCIA_ALMACEN
+                                            End If
 
                                             dbk.Entry(k).State = EntityState.Modified
                                             ik = True
+
                                         Next
                                         kardex.ACTIVO = "N" : db.Entry(kardex).State = EntityState.Modified
                                     Next
