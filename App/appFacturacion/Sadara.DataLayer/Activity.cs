@@ -27,7 +27,7 @@ namespace Sadara.DataLayer
         public override ActivityEntity Add(ActivityEntity activity)
         {
 
-            //this.transaction.Db.Activities.Add(activity);
+            this.transaction.Db.Activities.Add(activity);
 
             return activity;
 
@@ -36,36 +36,32 @@ namespace Sadara.DataLayer
         public override void Edit(ActivityEntity activity)
         {
 
-            //this.transaction.Db.Entry(activity).State = EntityState.Modified;
+            this.transaction.Db.Entry(activity).State = EntityState.Modified;
 
         }
 
         public override void Remove(ActivityEntity activity)
         {
 
-            //this.transaction.Db.Activities.Remove(activity);
+            this.transaction.Db.Activities.Remove(activity);
 
         }
 
         public async override Task<ActivityEntity> FindAsync<Guid>(Guid ActivityId)
         {
 
-            /*ActivityEntity activity = await this.transaction.Db.Activities.FindAsync(ActivityId);
+            ActivityEntity activity = await this.transaction.Db.Activities.FindAsync(ActivityId);
 
-            return activity;*/
-
-            return null;
+            return activity;
 
         }
 
         public async override Task<List<ActivityEntity>> ListAsync()
         {
 
-            /*List<ActivityEntity> list = await this.transaction.Db.Activities.ToListAsync();
+            List<ActivityEntity> list = await this.transaction.Db.Activities.ToListAsync();
 
-            return list;*/
-
-            return null;
+            return list;
 
         }
 

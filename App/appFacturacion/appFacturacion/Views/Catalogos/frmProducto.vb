@@ -57,7 +57,7 @@ Public Class frmProducto
     End Sub
 
     Private Sub frmProducto_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If Config.Empresa.MonedaInventario.Equals(Config.cordoba) Then
+        If Config.currentBusiness.MonedaInventario.Equals(Config.cordoba) Then
             rdCordoba.Checked = True
         Else
             rdDolar.Checked = True

@@ -120,12 +120,12 @@ Public Class frmValuacion
         Try
             Using db As New CodeFirst
                 cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "DESCRIPCION"
-                cmbBodega.Text = Config._Bodega.N_BODEGA & " | " & Config._Bodega.DESCRIPCION
+                cmbBodega.Text = Config._warehouse.N_BODEGA & " | " & Config._warehouse.DESCRIPCION
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
         End Try
-        Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+        Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
         Me.FormLoad = True
     End Sub
 
@@ -134,7 +134,7 @@ Public Class frmValuacion
             If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
                 Lista(cmbBodega.SelectedValue.ToString(), txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
             Else
-                Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+                Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
             End If
         End If
     End Sub
@@ -175,7 +175,7 @@ Public Class frmValuacion
             If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
                 Lista(cmbBodega.SelectedValue.ToString(), txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
             Else
-                Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+                Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
             End If
         End If
     End Sub
@@ -185,7 +185,7 @@ Public Class frmValuacion
             If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
                 Lista(cmbBodega.SelectedValue.ToString(), txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
             Else
-                Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+                Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
             End If
         End If
     End Sub
@@ -197,7 +197,7 @@ Public Class frmValuacion
         If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
             Lista(cmbBodega.SelectedValue.ToString(), txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
         Else
-            Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+            Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
         End If
     End Sub
 
@@ -208,7 +208,7 @@ Public Class frmValuacion
         txtIdOriginal.Clear()
         txtNombre.Clear()
         txtAplicacion.Clear()
-        Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+        Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
     End Sub
 
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
@@ -218,7 +218,7 @@ Public Class frmValuacion
         If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
             Lista(cmbBodega.SelectedValue.ToString(), txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
         Else
-            Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+            Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
         End If
     End Sub
 
@@ -228,7 +228,7 @@ Public Class frmValuacion
                 If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
                     Lista(cmbBodega.SelectedValue.ToString(), txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
                 Else
-                    Lista(Config.bodega, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
+                    Lista(Config.warehouseId, txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtmarca.Text.Trim)
                 End If
             End If
         End If

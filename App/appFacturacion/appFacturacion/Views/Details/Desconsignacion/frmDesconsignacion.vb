@@ -64,7 +64,7 @@ Public Class frmDesconsignacion
         Try
             dtpFecha.Value = DateTime.Now
             Using db As New CodeFirst
-                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "DESCONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.warehouseId And f.ACTIVO = "S" And f.OPERACION = "DESCONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
                 txtReferencia.Clear()
             End Using
         Catch ex As Exception
@@ -77,12 +77,12 @@ Public Class frmDesconsignacion
             Using db As New CodeFirst
                 If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                     Dim serie As String = cmbSerie.Text
-                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "DESCONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.warehouseId And f.ACTIVO = "S" And f.OPERACION = "DESCONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
                     txtReferencia.Clear()
                     cmbSerie.Text = serie
                     serie = Nothing
                 Else
-                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "DESCONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.warehouseId And f.ACTIVO = "S" And f.OPERACION = "DESCONSIGNACION").ToList() : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.SelectedIndex = -1 : txtCodigo.Clear() : cmbSerie.Focus()
                     txtReferencia.Clear()
                 End If
                 txtCodigo.Focus()
@@ -203,7 +203,7 @@ Public Class frmDesconsignacion
                         ''''''''''''''''''''''''''''''''''''
                         If Convert.ToSingle(txtCantidad.Text) >= 0 Then
                             Using db As New CodeFirst
-                                Dim producto = (From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.bodega And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
+                                Dim producto = (From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.warehouseId And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
                                 If Not producto Is Nothing Then
 
                                     Dim consignaciones = From consig In db.Consignaciones Join det In db.ConsignacionesDetalles On consig.IDCONSIGNACION Equals det.IDCONSIGNACION Where consig.ANULADO = "N" And consig.IDCLIENTE = txtIdCliente.Text And det.Existencia.Producto.IDALTERNO = producto.prod.IDALTERNO Select det.CANTIDAD

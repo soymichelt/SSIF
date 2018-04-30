@@ -54,11 +54,11 @@ Public Class frmPromocion
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
                 'taza de cambio
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using
@@ -83,7 +83,7 @@ Public Class frmPromocion
     End Sub
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpInicio.Value) Or Config.ValidarPeriodo(dtpFinal.Value) Then
+        If Config.ValidateLapse(dtpInicio.Value) Or Config.ValidateLapse(dtpFinal.Value) Then
             Try
                 If txtDescripcion.Text <> "" And dtpInicio.Value > dtpFinal.Value And Not dtRegistro.Rows.Count = 0 Then
 

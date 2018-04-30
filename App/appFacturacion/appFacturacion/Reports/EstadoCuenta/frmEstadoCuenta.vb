@@ -9,7 +9,7 @@ Public Class frmEstadoCuenta
                 Using db As New CodeFirst
                     Dim cliente = db.Clientes.Where(Function(f) f.IDCLIENTE = txtIdCliente.Text And f.ACTIVO = "S").FirstOrDefault()
                     If Not cliente Is Nothing Then
-                        Dim ventas = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.tazadecambio), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.tazadecambio, ven.SALDOCREDITO))
+                        Dim ventas = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.exchangeRate), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.exchangeRate, ven.SALDOCREDITO))
                         If Not ventas Is Nothing Then
                             If ventas.Count() > 0 Then
                                 saldo = ventas.Sum()
@@ -20,7 +20,7 @@ Public Class frmEstadoCuenta
                             saldo = 0.0
                         End If
                         disponible = cliente.LIMITECREDITO - saldo
-                        Dim ventas_vencida = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.tazadecambio), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.tazadecambio, ven.SALDOCREDITO))
+                        Dim ventas_vencida = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(cliente.MONEDA.Equals(Config.cordoba), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO * Config.exchangeRate), If(ven.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO / Config.exchangeRate, ven.SALDOCREDITO))
                         If Not ventas_vencida Is Nothing Then
                             If ventas_vencida.Count() > 0 Then
                                 vencido = Decimal.Parse(ventas_vencida.Sum())

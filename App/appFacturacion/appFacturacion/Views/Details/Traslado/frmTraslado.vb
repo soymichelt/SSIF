@@ -57,10 +57,10 @@ Public Class frmTraslado
             txtCantidad.DisplayFormat = Config.f_c
             txtTotal.DisplayFormat = Config.f_m
             txtTotal.Value = 0
-            If Not Config._Periodo Is Nothing Then
-                If Config._Periodo.ACTUAL.Equals(Config.vTrue) Then
-                    dtpFecha.MinDate = Config._Periodo.INICIO
-                    dtpFecha.MaxDate = Config._Periodo.FINAL
+            If Not Config._lapse Is Nothing Then
+                If Config._lapse.ACTUAL.Equals(Config.vTrue) Then
+                    dtpFecha.MinDate = Config._lapse.INICIO
+                    dtpFecha.MaxDate = Config._lapse.FINAL
                 Else
                     dtpFecha.MinDate = "01/01/" & DateTime.Now.Year
                     dtpFecha.MaxDate = "31/12/" & DateTime.Now.Year
@@ -72,8 +72,8 @@ Public Class frmTraslado
             dtpFecha.Value = DateTime.Now
             Using db As New CodeFirst
                 'llenar bodegas
-                cmbBodegaEntra.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.nom_bodega
-                cmbBodegaSale.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
+                cmbBodegaEntra.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.warehouseId Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.warehouseName
+                cmbBodegaSale.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.warehouseId Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
@@ -153,11 +153,11 @@ Public Class frmTraslado
                                                 End If
                                             Next
                                             Dim item As New ListViewItem
-                                            item = lvRegistro.Items.Add(producto.Existencias.Where(Function(f) f.IDBODEGA = Config.bodega).FirstOrDefault().IDEXISTENCIA)
+                                            item = lvRegistro.Items.Add(producto.Existencias.Where(Function(f) f.IDBODEGA = Config.warehouseId).FirstOrDefault().IDEXISTENCIA)
                                             item.SubItems.Add(producto.IDALTERNO)
                                             item.SubItems.Add(producto.IDORIGINAL)
                                             item.SubItems.Add(producto.DESCRIPCION)
-                                            item.SubItems.Add(producto.Existencias.Where(Function(f) f.IDBODEGA = Config.bodega).FirstOrDefault().CANTIDAD.ToString(Config.f_m))
+                                            item.SubItems.Add(producto.Existencias.Where(Function(f) f.IDBODEGA = Config.warehouseId).FirstOrDefault().CANTIDAD.ToString(Config.f_m))
                                             item.SubItems.Add(Decimal.Parse(txtCantidad.Text).ToString(Config.f_m))
                                             item.SubItems.Add((producto.COSTO).ToString(Config.f_m))
                                             item.SubItems.Add((producto.COSTO * Decimal.Parse(txtCantidad.Text)).ToString(Config.f_m))
@@ -233,7 +233,7 @@ Public Class frmTraslado
     End Sub
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpFecha.Value) Then
+        If Config.ValidateLapse(dtpFecha.Value) Then
             Try
                 If txtIdSerie.Text <> "" And Not txtCodigo.Text.Trim = "" And Not txtConcepto.Text.Trim = "" And lvRegistro.Items.Count > 0 Then
                     Using db As New CodeFirst
@@ -279,7 +279,7 @@ Public Class frmTraslado
                                             kardex.FECHADOCUMENTO = dtpFecha.Value
                                             kardex.OPERACION = "TRASLADO"
                                             kardex.DESCRIPCION = txtReferTraslado.Text
-                                            kardex.TAZACAMBIO = Config.tazadecambio
+                                            kardex.TAZACAMBIO = Config.exchangeRate
                                             kardex.ENTRADA = detalle.CANTIDAD
                                             kardex.SALIDA = 0
                                             kardex.EXISTENCIA_ANTERIOR = existencia.CANTIDAD
@@ -308,7 +308,7 @@ Public Class frmTraslado
                                             kardex_s.FECHADOCUMENTO = dtpFecha.Value
                                             kardex_s.OPERACION = "TRASLADO"
                                             kardex_s.DESCRIPCION = txtReferTraslado.Text
-                                            kardex_s.TAZACAMBIO = Config.tazadecambio
+                                            kardex_s.TAZACAMBIO = Config.exchangeRate
                                             kardex_s.ENTRADA = 0
                                             kardex_s.SALIDA = detalle.CANTIDAD
                                             kardex_s.EXISTENCIA_ANTERIOR = existencia_s.CANTIDAD
@@ -554,7 +554,7 @@ Public Class frmTraslado
             If txtIdSerie.Text <> "" Then
                 Using db As New CodeFirst
                     'llenar bodegas
-                    cmbBodegaEntra.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.nom_bodega
+                    cmbBodegaEntra.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And bod.IDBODEGA = Config.warehouseId Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaEntra.ValueMember = "IDBODEGA" : cmbBodegaEntra.DisplayMember = "DESCRIPCION" : cmbBodegaEntra.Text = Config.warehouseName
                 End Using
                 cmbBodegaEntra.Focus()
             Else
@@ -570,7 +570,7 @@ Public Class frmTraslado
             If txtIdSerie.Text <> "" Then
                 Using db As New CodeFirst
                     'llenar bodegas
-                    cmbBodegaSale.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.bodega Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
+                    cmbBodegaSale.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" And Not bod.IDBODEGA = Config.warehouseId Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodegaSale.ValueMember = "IDBODEGA" : cmbBodegaSale.DisplayMember = "DESCRIPCION" : cmbBodegaSale.SelectedIndex = -1
                 End Using
                 cmbBodegaSale.Focus()
             Else
@@ -657,7 +657,7 @@ Public Class frmTraslado
                     Using db As New CodeFirst
                         Dim v = db.Traslados.Where(Function(f) f.IDTRASLADO = Me.ID And f.ANULADO = "N").FirstOrDefault()
                         If Not v Is Nothing Then
-                            If Config.ValidarPeriodo(v.FECHATRASLADO) Then
+                            If Config.ValidateLapse(v.FECHATRASLADO) Then
                                 v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
 
                                 For Each item In v.TrasladosDetalles
@@ -699,9 +699,9 @@ Public Class frmTraslado
                                                             k.SALDO = k.SALDO - kardex.DEBER
                                                         Else
                                                             If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                                                k.SALDO = k.SALDO - (kardex.DEBER / Config.tazadecambio)
+                                                                k.SALDO = k.SALDO - (kardex.DEBER / Config.exchangeRate)
                                                             Else
-                                                                k.SALDO = k.SALDO - (kardex.DEBER * Config.tazadecambio)
+                                                                k.SALDO = k.SALDO - (kardex.DEBER * Config.exchangeRate)
                                                             End If
                                                         End If
                                                     End If
@@ -716,9 +716,9 @@ Public Class frmTraslado
                                                             k.SALDO = k.SALDO + kardex.HABER
                                                         Else
                                                             If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                                                k.SALDO = k.SALDO + (kardex.HABER / Config.tazadecambio)
+                                                                k.SALDO = k.SALDO + (kardex.HABER / Config.exchangeRate)
                                                             Else
-                                                                k.SALDO = k.SALDO + (kardex.HABER * Config.tazadecambio)
+                                                                k.SALDO = k.SALDO + (kardex.HABER * Config.exchangeRate)
                                                             End If
                                                         End If
                                                     End If

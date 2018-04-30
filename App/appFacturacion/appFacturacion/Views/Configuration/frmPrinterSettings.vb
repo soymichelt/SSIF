@@ -11,8 +11,8 @@ Public Class frmPrinterSettings
                 cmbImpresoras.Items.Clear()
                 For i = 0 To PrinterSettings.InstalledPrinters.Count - 1
                     cmbImpresoras.Items.Add(PrinterSettings.InstalledPrinters.Item(i).ToString)
-                    If Not Config.PrintName Is Nothing Then
-                        cmbImpresoras.Text = Config.PrintName
+                    If Not Config.PrinterName Is Nothing Then
+                        cmbImpresoras.Text = Config.PrinterName
                     Else
                         cmbImpresoras.SelectedIndex = -1
                     End If
@@ -34,7 +34,7 @@ Public Class frmPrinterSettings
                     dWritter.Flush()
                 End Using
                 Config.MsgInfo("Guardado Correctamente")
-                Config.PrintName = cmbImpresoras.Text
+                Config.PrinterName = cmbImpresoras.Text
             End If
         Catch ex As Exception
             Config.MsgErr("Error: " & ex.Message)

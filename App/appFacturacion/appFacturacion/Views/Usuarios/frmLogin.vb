@@ -15,19 +15,29 @@ Public Class frmLogin
 
     Private Async Sub RegisterActivity()
 
-        Await Sadara.BusinessLayer.Activity.Instance.AddAsync(
-            New Sadara.Models.V2.POCO.ActivityEntity() With {
-                .AcitivityId = Guid.NewGuid(),
-                .ActivityDate = DateTime.Now,
-                .BusinessId = Guid.Empty,
-                .Type = "",
-                .OptionalMessage = ""
-            }
-        )
+        Try
+
+            Await Sadara.BusinessLayer.Activity.Instance.AddAsync(
+                New Sadara.Models.V2.POCO.ActivityEntity() With {
+                    .AcitivityId = Guid.NewGuid(),
+                    .ActivityDate = DateTime.Now,
+                    .Type = "Login",
+                    .ActivityValue = "Cargando Login",
+                    .OptionalMessage = "Cargando Login",
+                    .Tag = "Load"
+                }
+            )
+
+        Catch ex As Exception
+
+            Config.MsgErr(ex.Message)
+
+        End Try
 
     End Sub
 
     Private Sub frmIniciarSesion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.RegisterActivity()
         txtUsuario.Focus()
     End Sub
 
@@ -66,14 +76,14 @@ Public Class frmLogin
                             If Me.Type Then
 
                                 'Aquí se realiza la autorización
-                                Config.ActivarPrivilegio = User
+                                Config.activatePrivileges = User
                                 Me.salir = True
                                 Me.Close()
 
                             Else
 
                                 'Aquí se agrega el proceso de entrada al sistema
-                                Config.Usuario = User
+                                Config.currentUser = User
                                 frmSeleccionarBodega.frm_return = 1
                                 frmSeleccionarBodega.Show()
                                 Me.salir = True

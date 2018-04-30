@@ -18,7 +18,7 @@ Public Class frmInformeConsignacion
                         dtRegistro.Columns(1).Visible = False
                         dtRegistro.Columns(2).Width = 55
                         dtRegistro.Columns(3).Width = 140 : dtRegistro.Columns(3).HeaderText = "Nº CONSIGNACIÓN"
-                        dtRegistro.Columns(4).Width = 100 : dtRegistro.Columns(4).DefaultCellStyle.Format = Config.formato_fecha : dtRegistro.Columns(4).HeaderText = "FECHA"
+                        dtRegistro.Columns(4).Width = 100 : dtRegistro.Columns(4).DefaultCellStyle.Format = Config.dateFormat : dtRegistro.Columns(4).HeaderText = "FECHA"
                         dtRegistro.Columns(5).Width = 120 : dtRegistro.Columns(5).HeaderText = "Nº VENDEDOR"
                         dtRegistro.Columns(6).Width = 200 : dtRegistro.Columns(6).HeaderText = "NOMBRES DEL VENDEDOR"
                         dtRegistro.Columns(7).Width = 120 : dtRegistro.Columns(7).HeaderText = "Nº CLIENTE"

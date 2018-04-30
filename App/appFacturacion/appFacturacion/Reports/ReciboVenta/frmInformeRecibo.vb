@@ -43,7 +43,7 @@ Public Class frmInformeRecibo
                         dtRegistro.Columns(1).Visible = False
                         dtRegistro.Columns(2).Width = 55
                         dtRegistro.Columns(3).Width = 150 : dtRegistro.Columns(3).HeaderText = "Nº RECIBO"
-                        dtRegistro.Columns(4).Width = 150 : dtRegistro.Columns(4).DefaultCellStyle.Format = Config.formato_fecha : dtRegistro.Columns(4).HeaderText = "FECHA"
+                        dtRegistro.Columns(4).Width = 150 : dtRegistro.Columns(4).DefaultCellStyle.Format = Config.dateFormat : dtRegistro.Columns(4).HeaderText = "FECHA"
                         dtRegistro.Columns(5).Width = 150 : dtRegistro.Columns(5).HeaderText = "N° CLIENTE"
                         dtRegistro.Columns(6).Width = 250 : dtRegistro.Columns(6).HeaderText = "NOMBRES Y APELLIDOS DEL CLIENTE"
                         dtRegistro.Columns(7).Width = 120 : dtRegistro.Columns(7).HeaderText = "Nº EMPLEADO"
@@ -281,11 +281,11 @@ Public Class frmInformeRecibo
             dtpFechaInicial.Value = DateTime.Now : dtpFechaFinal.Value = DateTime.Now
             Using db As New CodeFirst
                 cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using

@@ -48,7 +48,7 @@ Public Class frmEstado
                             txtSaldoDolar.Value = 0
                         End If
                         'saldo disponible
-                        txtDisponible.Value = If(cliente.MONEDA.Equals(Config.cordoba), txtLimite.Value - txtSaldoCordoba.Value - (txtSaldoDolar.Value * Config.tazadecambio), Decimal.Parse(txtLimite.Text) - (txtSaldoCordoba.Value / Config.tazadecambio) - txtSaldoDolar.Value)
+                        txtDisponible.Value = If(cliente.MONEDA.Equals(Config.cordoba), txtLimite.Value - txtSaldoCordoba.Value - (txtSaldoDolar.Value * Config.exchangeRate), Decimal.Parse(txtLimite.Text) - (txtSaldoCordoba.Value / Config.exchangeRate) - txtSaldoDolar.Value)
                         'saldo vencido en cordobas
                         ventas = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = Me.id And ven.CREDITO = True And ven.MONEDA = Config.cordoba And ven.FECHACREDITOVENCIMIENTO < DateTime.Now Select ven.SALDOCREDITO
                         If Not ventas Is Nothing Then
@@ -115,7 +115,7 @@ Public Class frmEstado
                             txtSaldoDolar.Value = 0
                         End If
                         'saldo disponible
-                        txtDisponible.Value = If(proveedor.MONEDA.Equals(Config.cordoba), txtLimite.Value - txtSaldoCordoba.Value - (txtSaldoDolar.Value * Config.tazadecambio), Decimal.Parse(txtLimite.Text) - (txtSaldoCordoba.Value / Config.tazadecambio) - txtSaldoDolar.Value)
+                        txtDisponible.Value = If(proveedor.MONEDA.Equals(Config.cordoba), txtLimite.Value - txtSaldoCordoba.Value - (txtSaldoDolar.Value * Config.exchangeRate), Decimal.Parse(txtLimite.Text) - (txtSaldoCordoba.Value / Config.exchangeRate) - txtSaldoDolar.Value)
                         'saldo vencido en cordobas
                         compras = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = Me.id And com.CREDITO = True And com.MONEDA = Config.cordoba And com.FECHACREDITOVENCIMIENTO < DateTime.Now Select com.SALDOCREDITO
                         If Not compras Is Nothing Then

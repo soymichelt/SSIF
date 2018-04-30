@@ -10,7 +10,7 @@ Public Class frmCompraEstadoCuenta
                 Using db As New CodeFirst
                     Dim proveedor = db.Proveedores.Where(Function(f) f.IDPROVEEDOR = txtIdProveedor.Text And f.ACTIVO = "S").FirstOrDefault()
                     If Not proveedor Is Nothing Then
-                        Dim compras = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.tazadecambio), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.tazadecambio, com.SALDOCREDITO))
+                        Dim compras = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.exchangeRate), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.exchangeRate, com.SALDOCREDITO))
                         If Not compras Is Nothing Then
                             If compras.Count() > 0 Then
                                 saldo = Decimal.Parse(compras.Sum())
@@ -21,7 +21,7 @@ Public Class frmCompraEstadoCuenta
                             saldo = 0.0
                         End If
                         disponible = proveedor.LIMITECREDITO - saldo
-                        Dim compras_vencida = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True And com.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.tazadecambio), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.tazadecambio, com.SALDOCREDITO))
+                        Dim compras_vencida = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True And com.FECHACREDITOVENCIMIENTO <= DateTime.Now Select SALDOCREDITO = If(proveedor.MONEDA.Equals(Config.cordoba), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO, com.SALDOCREDITO * Config.exchangeRate), If(com.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO / Config.exchangeRate, com.SALDOCREDITO))
                         If Not compras_vencida Is Nothing Then
                             If compras_vencida.Count() > 0 Then
                                 vencido = Decimal.Parse(compras_vencida.Sum())

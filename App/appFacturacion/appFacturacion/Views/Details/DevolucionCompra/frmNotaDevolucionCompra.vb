@@ -89,21 +89,21 @@ Public Class frmNotaDevolucionCompra
 
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using
-            txtTazaCambio.Value = Config.tazadecambio
-            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.tazadecambio.ToString(Config.f_m)
+            txtTazaCambio.Value = Config.exchangeRate
+            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.exchangeRate.ToString(Config.f_m)
             txtTotalSubtotal.Value = 0 : txtTotalDescuento.Value = 0 : txtTotalIva.Value = 0 : txtTotal.Value = 0
-            If Not Config._Periodo Is Nothing Then
-                If Config._Periodo.ACTUAL.Equals(Config.vTrue) Then
-                    dtpFecha.MinDate = Config._Periodo.INICIO
-                    dtpFecha.MaxDate = Config._Periodo.FINAL
+            If Not Config._lapse Is Nothing Then
+                If Config._lapse.ACTUAL.Equals(Config.vTrue) Then
+                    dtpFecha.MinDate = Config._lapse.INICIO
+                    dtpFecha.MaxDate = Config._lapse.FINAL
                 Else
                     dtpFecha.MinDate = "01/01/" & DateTime.Now.Year
                     dtpFecha.MaxDate = "31/12/" & DateTime.Now.Year
@@ -152,7 +152,7 @@ Public Class frmNotaDevolucionCompra
                 If Not txtCodigoAlterno.Text.Trim = "" Then
                     Try
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.warehouseId)
                             If Not producto Is Nothing Then
                                 If Not txtCantidad.Text.Trim = "" And txtPrecio.Text.Trim = "" Then
                                     txtPrecio.Value = If(rdCordoba.Checked, producto.Producto.COSTO * txtTazaCambio.Value, producto.Producto.COSTO)
@@ -319,7 +319,7 @@ Public Class frmNotaDevolucionCompra
     End Sub
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpFecha.Value) Then
+        If Config.ValidateLapse(dtpFecha.Value) Then
             Try
                 If txtIdSerie.Text <> "" And txtNDevolucion.Text.Trim <> "" And txtObservacion.Text.Trim <> "" And Not dtRegistro.Rows.Count = 0 Then
                     Using db As New CodeFirst
@@ -776,7 +776,7 @@ Public Class frmNotaDevolucionCompra
             'Else
             '    txtTotalDescuento.Value = v.DESCUENTO_DIN_D : txtTotalSubtotal.Value = v.SUBTOTAL_D : txtTotalIva.Value = v.IVA_DIN_D : txtTotal.Value = v.TOTAL_D
             'End If
-            If Config._Periodo.ACTUAL.Equals(Config.vTrue) And Config._Periodo.APERTURA IsNot Nothing And Config._Periodo.CIERRE Is Nothing Then
+            If Config._lapse.ACTUAL.Equals(Config.vTrue) And Config._lapse.APERTURA IsNot Nothing And Config._lapse.CIERRE Is Nothing Then
                 btAnular.Enabled = True
             End If
             btImprimir.Enabled = True
@@ -824,7 +824,7 @@ Public Class frmNotaDevolucionCompra
         Try
 
             'Restricción, solo el admin puede anular documentos
-            If Not Config.Usuario.Administrador Then 'se evalua si not tiene permiso de administrador
+            If Not Config.currentUser.Administrador Then 'se evalua si not tiene permiso de administrador
 
                 'mensaje que no puede anular
                 Config.MsgErr("Solo el administrador tiene permiso para anular un documento.")
@@ -850,7 +850,7 @@ Public Class frmNotaDevolucionCompra
                         If Not v Is Nothing Then
 
                             'Validando el período
-                            If Config.ValidarPeriodo(v.FECHADEVOLUCION) Then
+                            If Config.ValidateLapse(v.FECHADEVOLUCION) Then
 
                                 'Evaluar si la devolución es de al crédito
                                 'Registrar la anulación de dinero
@@ -894,9 +894,9 @@ Public Class frmNotaDevolucionCompra
                                             item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.COSTO)
                                         Else
                                             If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.COSTO / Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.COSTO / Config.exchangeRate)
                                             Else
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.COSTO * Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.COSTO * Config.exchangeRate)
                                             End If
                                         End If
                                     End If
@@ -1257,13 +1257,13 @@ Public Class frmNotaDevolucionCompra
                     If Not devolucion Is Nothing Then
                         If devolucion.ANULADO = "N" Then
                             Dim tick As TicketClass = New TicketClass
-                            If tick.ImpresoraExistente(Config.PrintName) Then
+                            If tick.ImpresoraExistente(Config.PrinterName) Then
                                 tick.AnadirLineaCabeza(" DOCUMENTO DE DEVOLUCIÓN DE COMPRA ")
-                                tick.AnadirLineaCabeza(Config.NombreEmpresa)
-                                tick.AnadirLineaCabeza("Dir.: " & Config.Direccion)
-                                tick.AnadirLineaCabeza("RUC:  " & Config.RUC)
-                                tick.AnadirLineaCabeza("Tel.: " & Config.Telefono1)
-                                tick.AnadirLineaCabeza("Fax:  " & Config.Telefono2)
+                                tick.AnadirLineaCabeza(Config.businessName)
+                                tick.AnadirLineaCabeza("Dir.: " & Config.businessAddress)
+                                tick.AnadirLineaCabeza("RUC:  " & Config.businessRUC)
+                                tick.AnadirLineaCabeza("Tel.: " & Config.businessPhone1)
+                                tick.AnadirLineaCabeza("Fax:  " & Config.businessPhone2)
                                 tick.AnadirLineaCabeza(If(devolucion.REIMPRESION.Equals("S"), "****************COPIA***************", "**************ORIGINAL**************"))
                                 tick.AnadirLineaSubcabeza("Sucursal: " & devolucion.Serie.Bodega.N_BODEGA & " | " & devolucion.Serie.Bodega.DESCRIPCION)
                                 tick.AnadirLineaSubcabeza("Serie: " & devolucion.Serie.NOMBRE)
@@ -1297,9 +1297,9 @@ Public Class frmNotaDevolucionCompra
 
                                 '//Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un 
                                 '//parametro de tipo string que debe de ser el nombre de la impresora. 
-                                tick.ImprimeTicket(Config.PrintName)
+                                tick.ImprimeTicket(Config.PrinterName)
                             Else
-                                MessageBox.Show("No se encuentra la impresora '" & Config.PrintName & "'")
+                                MessageBox.Show("No se encuentra la impresora '" & Config.PrinterName & "'")
                             End If
                         Else
                             MessageBox.Show("Esta 'Devolución de Compra' esta anulada")

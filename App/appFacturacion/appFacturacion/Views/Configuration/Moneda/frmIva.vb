@@ -10,7 +10,7 @@ Public Class frmIva
                 Dim item As New ListViewItem
                 For Each taza In db.ImpuestosValoresAgregados
                     item = lvRegistro.Items.Add(taza.IDIVA)
-                    item.SubItems.Add(taza.FECHA.ToString(Config.formato_fecha))
+                    item.SubItems.Add(taza.FECHA.ToString(Config.dateFormat))
                     item.SubItems.Add(taza.PORCENTAJE.ToString(Config.f_m))
                 Next
                 item = Nothing
@@ -52,7 +52,7 @@ Public Class frmIva
                     Using db As New CodeFirst
                         Dim iva As New ImpuestoValorAgregado : iva.IDIVA = Guid.NewGuid.ToString() : iva.FECHA = DateTime.Now : iva.PORCENTAJE = Decimal.Parse(txtPorcentaje.Text) : db.ImpuestosValoresAgregados.Add(iva)
                         db.SaveChanges()
-                        Config._Iva = iva
+                        Config._iva = iva
                         Config.iva = iva.PORCENTAJE / 100
                         iva = Nothing
                     End Using

@@ -23,7 +23,7 @@ Public Class frmKardex
                         If dtRegistro.Columns.Count > 0 Then
                             dtRegistro.Columns(0).HeaderText = vbNewLine & "BODEGA" & vbNewLine : dtRegistro.Columns(0).Width = 180
                             dtRegistro.Columns(2).HeaderText = "Nº DOCUMENTO" : dtRegistro.Columns(2).Width = 120
-                            dtRegistro.Columns(3).HeaderText = "FECHA" : dtRegistro.Columns(3).DefaultCellStyle.Format = Config.formato_fecha
+                            dtRegistro.Columns(3).HeaderText = "FECHA" : dtRegistro.Columns(3).DefaultCellStyle.Format = Config.dateFormat
                             dtRegistro.Columns(5).HeaderText = "DESCRIPCIÓN" : dtRegistro.Columns(5).Width = 250
                             dtRegistro.Columns(6).DefaultCellStyle.Format = Config.f_m
                             dtRegistro.Columns(7).DefaultCellStyle.Format = Config.f_m
@@ -53,7 +53,7 @@ Public Class frmKardex
                         Dim rpt As New rptKardex
                         Config.CrystalTitle("KARDEX DE INVENTARIO", rpt)
                         Dim band As CrystalDecisions.CrystalReports.Engine.TextObject
-                        band = rpt.Section2.ReportObjects("txtMonedaInventario") : band.Text = "INVENTARIO VALORADO EN: " & If(Config.Empresa.MonedaInventario.Equals(Config.cordoba), "CÓRDOBA", "DÓLAR")
+                        band = rpt.Section2.ReportObjects("txtMonedaInventario") : band.Text = "INVENTARIO VALORADO EN: " & If(Config.currentBusiness.MonedaInventario.Equals(Config.cordoba), "CÓRDOBA", "DÓLAR")
                         band = rpt.Section2.ReportObjects("txtFecha1") : band.Text = fecha1.ToLongDateString()
                         band = rpt.Section2.ReportObjects("txtFecha2") : band.Text = fecha2.ToLongDateString()
                         band = rpt.Section2.ReportObjects("txtProducto") : band.Text = "ARTICULO: " & txtIdAlterno.Text.Trim()
@@ -84,7 +84,7 @@ Public Class frmKardex
                         If dtRegistro.Columns.Count > 0 Then
                             dtRegistro.Columns(0).HeaderText = vbNewLine & "BODEGA" & vbNewLine : dtRegistro.Columns(0).Width = 180
                             dtRegistro.Columns(2).HeaderText = "Nº DOCUMENTO" : dtRegistro.Columns(2).Width = 120
-                            dtRegistro.Columns(3).HeaderText = "FECHA" : dtRegistro.Columns(3).DefaultCellStyle.Format = Config.formato_fecha
+                            dtRegistro.Columns(3).HeaderText = "FECHA" : dtRegistro.Columns(3).DefaultCellStyle.Format = Config.dateFormat
                             dtRegistro.Columns(5).HeaderText = "DESCRIPCIÓN" : dtRegistro.Columns(5).Width = 250
                             dtRegistro.Columns(6).DefaultCellStyle.Format = Config.f_m
                             dtRegistro.Columns(7).DefaultCellStyle.Format = Config.f_m
@@ -112,7 +112,7 @@ Public Class frmKardex
                         Dim rpt As New rptKardex
                         Config.CrystalTitle("KARDEX DE INVENTARIO", rpt)
                         Dim band As CrystalDecisions.CrystalReports.Engine.TextObject
-                        band = rpt.Section2.ReportObjects("txtMonedaInventario") : band.Text = "INVENTARIO VALORADO EN: " & If(Config.Empresa.MonedaInventario.Equals(Config.cordoba), "CÓRDOBA", "DÓLAR")
+                        band = rpt.Section2.ReportObjects("txtMonedaInventario") : band.Text = "INVENTARIO VALORADO EN: " & If(Config.currentBusiness.MonedaInventario.Equals(Config.cordoba), "CÓRDOBA", "DÓLAR")
                         band = rpt.Section2.ReportObjects("txtFecha1") : band.Text = fecha1.ToLongDateString()
                         band = rpt.Section2.ReportObjects("txtFecha2") : band.Text = fecha2.ToLongDateString()
                         band = rpt.Section2.ReportObjects("txtProducto") : band.Text = "ARTICULO: " & txtIdAlterno.Text.Trim()
@@ -140,7 +140,7 @@ Public Class frmKardex
 
     Private Sub frmKardex_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            lblNombreEmpresa.Text = Config.NombreEmpresa & vbNewLine & "TARJETA AUXILIAR DE ALMACÉN"
+            lblNombreEmpresa.Text = Config.businessName & vbNewLine & "TARJETA AUXILIAR DE ALMACÉN"
             dtpFecha1.Value = DateTime.Now
             dtpFecha2.Value = DateTime.Now
             cmbOperacion.SelectedIndex = 0

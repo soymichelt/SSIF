@@ -94,21 +94,21 @@ Public Class frmNotaDevolucion
 
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using
-            txtTazaCambio.Value = Config.tazadecambio
-            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.tazadecambio.ToString(Config.f_m)
+            txtTazaCambio.Value = Config.exchangeRate
+            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.exchangeRate.ToString(Config.f_m)
             txtTotalSubtotal.Value = 0 : txtTotalDescuento.Value = 0 : txtTotalIva.Value = 0 : txtTotal.Value = 0
-            If Not Config._Periodo Is Nothing Then
-                If Config._Periodo.ACTUAL.Equals(Config.vTrue) Then
-                    dtpFecha.MinDate = Config._Periodo.INICIO
-                    dtpFecha.MaxDate = Config._Periodo.FINAL
+            If Not Config._lapse Is Nothing Then
+                If Config._lapse.ACTUAL.Equals(Config.vTrue) Then
+                    dtpFecha.MinDate = Config._lapse.INICIO
+                    dtpFecha.MaxDate = Config._lapse.FINAL
                 Else
                     dtpFecha.MinDate = "01/01/" & DateTime.Now.Year
                     dtpFecha.MaxDate = "31/12/" & DateTime.Now.Year
@@ -131,7 +131,7 @@ Public Class frmNotaDevolucion
                 If txtIdSerie.Text <> "" Then
                     If Not txtCodigoAlterno.Text.Trim = "" Then
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.warehouseId)
                             If Not producto Is Nothing Then
                                 If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
                                     With producto.Producto
@@ -218,7 +218,7 @@ Public Class frmNotaDevolucion
                 If Not txtCodigoAlterno.Text.Trim = "" Then
                     Try
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.warehouseId)
                             If Not producto Is Nothing Then
                                 If txtPrecio.Text.Trim = "" Then
                                     If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
@@ -446,7 +446,7 @@ Public Class frmNotaDevolucion
     End Sub
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpFecha.Value) Then
+        If Config.ValidateLapse(dtpFecha.Value) Then
             Try
                 If txtIdSerie.Text <> "" And Not txtIdVendedor.Text.Trim() = "" And txtObservacion.Text.Trim <> "" And dtRegistro.Rows.Count > 0 Then
                     Using db As New CodeFirst
@@ -900,7 +900,7 @@ Public Class frmNotaDevolucion
             Next
             Grid()
             lblContador.Text = "N° ITEM: " & dtRegistro.Rows.Count
-            If Config._Periodo.ACTUAL.Equals(Config.vTrue) And Config._Periodo.APERTURA IsNot Nothing And Config._Periodo.CIERRE Is Nothing Then
+            If Config._lapse.ACTUAL.Equals(Config.vTrue) And Config._lapse.APERTURA IsNot Nothing And Config._lapse.CIERRE Is Nothing Then
                 btAnular.Enabled = True
             End If
             btImprimir.Enabled = True
@@ -948,7 +948,7 @@ Public Class frmNotaDevolucion
         Try
 
             'restricción, solo el admin puede anular documentos
-            If Not Config.Usuario.Administrador Then 'se evalua si not tiene permiso de administrador
+            If Not Config.currentUser.Administrador Then 'se evalua si not tiene permiso de administrador
 
                 'mensaje que no puede anular
                 Config.MsgErr("Solo el administrador tiene permiso para anular un documento.")
@@ -974,7 +974,7 @@ Public Class frmNotaDevolucion
                         If Not v Is Nothing Then
 
                             'Validando el período
-                            If Config.ValidarPeriodo(v.FECHADEVOLUCION) Then
+                            If Config.ValidateLapse(v.FECHADEVOLUCION) Then
 
                                 'Evaluar si la devolución es de al crédito
                                 'Registrar la anulación de dinero
@@ -1398,7 +1398,7 @@ Public Class frmNotaDevolucion
                 If Not v Is Nothing Then
                     If v.ANULADO = "N" Then
                         Dim t As TicketClass = New TicketClass
-                        If t.ImpresoraExistente(Config.PrintName) Then
+                        If t.ImpresoraExistente(Config.PrinterName) Then
                             t.EncabezadoPredefinido("DEVOLUCIÓN DEL CLIENTE", If(v.REIMPRESION.Equals("S"), "REIMPRESIÓN", "ORIGINAL"))
                             t.AnadirLineaSubcabeza(t.AlinearElementos("N° DEVOL.: " & v.CONSECUTIVO, v.Serie.NOMBRE))
                             t.AnadirLineaSubcabeza("FECHA:   " & v.FECHADEVOLUCION.ToShortDateString())
@@ -1415,7 +1415,7 @@ Public Class frmNotaDevolucion
                             t.AnadirElemento("DESC.       P/U     CANT     TOTAL")
                             t.AnadirElemento(t.Linea5())
                             t.AnadirEspacio()
-                            For Each i In From pro In db.Productos Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.VentasDevolucionesDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDDEVOLUCION = v.IDVENTA Select pro.IDALTERNO, pro.IDORIGINAL, PRODUCTO = pro.DESCRIPCION, MARCA = If(pro.Marca IsNot Nothing, pro.Marca.DESCRIPCION, Config.TextNull), FORMA = If(pro.Presentacion IsNot Nothing, pro.Presentacion.DESCRIPCION, Config.TextNull), det.CANTIDAD, PRECIO = If(v.MONEDA.Equals(Config.cordoba), det.PRECIOUNITARIO_C, det.PRECIOUNITARIO_D), SUBTOTAL = If(v.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, det.SUBTOTAL_D)
+                            For Each i In From pro In db.Productos Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.VentasDevolucionesDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDDEVOLUCION = v.IDVENTA Select pro.IDALTERNO, pro.IDORIGINAL, PRODUCTO = pro.DESCRIPCION, MARCA = If(pro.Marca IsNot Nothing, pro.Marca.DESCRIPCION, Config.textNull), FORMA = If(pro.Presentacion IsNot Nothing, pro.Presentacion.DESCRIPCION, Config.textNull), det.CANTIDAD, PRECIO = If(v.MONEDA.Equals(Config.cordoba), det.PRECIOUNITARIO_C, det.PRECIOUNITARIO_D), SUBTOTAL = If(v.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, det.SUBTOTAL_D)
                                 t.AnadirElemento(i.PRODUCTO)
                                 t.AnadirElementoTotales(i.PRECIO.ToString(Config.f_m), i.CANTIDAD.ToString(Config.f_m), i.SUBTOTAL.ToString(Config.f_m))
                                 t.AnadirEspacio()
@@ -1440,7 +1440,7 @@ Public Class frmNotaDevolucion
 
                             '//Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un 
                             '//parametro de tipo string que debe de ser el nombre de la impresora. 
-                            t.ImprimeTicket(Config.PrintName)
+                            t.ImprimeTicket(Config.PrinterName)
 
                             'reimpresión
                             v.REIMPRESION = "S"
@@ -1448,7 +1448,7 @@ Public Class frmNotaDevolucion
                             db.SaveChanges()
 
                         Else
-                            MessageBox.Show("No se encuentra la impresora '" & Config.PrintName & "'")
+                            MessageBox.Show("No se encuentra la impresora '" & Config.PrinterName & "'")
                         End If
                     Else
                         MessageBox.Show("Esta 'Devolución de Cliente' esta anulado")

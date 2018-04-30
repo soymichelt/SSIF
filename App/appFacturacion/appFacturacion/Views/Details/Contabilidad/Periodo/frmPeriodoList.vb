@@ -44,7 +44,7 @@ Public Class frmPeriodoList
                     If Not p Is Nothing Then
                         Select Case Me.FrmReturn
                             Case 0
-                                Config._Periodo = p
+                                Config._lapse = p
                                 frmPrincipal.txtInicio.Text = p.INICIO.ToShortDateString
                                 frmPrincipal.txtFinal.Text = p.FINAL.ToShortDateString
                         End Select

@@ -36,7 +36,7 @@ Public Class frmCompra
                 txtObservacion.Clear()
                 chkExonerado.Checked = False
                 rdCordoba.Checked = True
-                txtTazaCambio.Value = Config.tazadecambio
+                txtTazaCambio.Value = Config.exchangeRate
                 rdContado.Checked = True
                 txtPlazo.Clear()
                 txtFechaVencimiento.Clear()
@@ -88,21 +88,21 @@ Public Class frmCompra
             txtTotalIva.DisplayFormat = Config.f_m
             txtTotal.DisplayFormat = Config.f_m
             Using db As New CodeFirst
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using
-            txtTazaCambio.Value = Config.tazadecambio
-            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.tazadecambio.ToString(Config.f_m)
+            txtTazaCambio.Value = Config.exchangeRate
+            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.exchangeRate.ToString(Config.f_m)
             txtTotalSubtotal.Value = 0 : txtTotalDescuento.Value = 0 : txtTotalIva.Value = 0 : txtTotal.Value = 0
-            If Not Config._Periodo Is Nothing Then
-                If Config._Periodo.ACTUAL.Equals(Config.vTrue) Then
-                    dtpFecha.MinDate = Config._Periodo.INICIO
-                    dtpFecha.MaxDate = Config._Periodo.FINAL
+            If Not Config._lapse Is Nothing Then
+                If Config._lapse.ACTUAL.Equals(Config.vTrue) Then
+                    dtpFecha.MinDate = Config._lapse.INICIO
+                    dtpFecha.MaxDate = Config._lapse.FINAL
                 Else
                     dtpFecha.MinDate = "01/01/" & DateTime.Now.Year
                     dtpFecha.MaxDate = "31/12/" & DateTime.Now.Year
@@ -197,7 +197,7 @@ Public Class frmCompra
                             If Not proveedor Is Nothing Then
                                 If proveedor.PLAZO > 0 Then
                                     txtPlazo.Text = proveedor.PLAZO.ToString()
-                                    txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(proveedor.PLAZO).ToString(Config.formato_fecha)
+                                    txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(proveedor.PLAZO).ToString(Config.dateFormat)
                                 Else
                                     MessageBox.Show("Error, Este 'Proveedor' no tiene plazo para crédito.")
                                     rdContado.Checked = True
@@ -298,7 +298,7 @@ Public Class frmCompra
                 If txtCodigoAlterno.Text.Trim() <> "" Then
                     Try
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.warehouseId)
                             If Not producto Is Nothing Then
                                 If txtPrecio.Text = "" Then
                                     If producto.Producto.CMONEDA.Equals(Config.cordoba) Then
@@ -713,7 +713,7 @@ Public Class frmCompra
             'Else
             '    txtTotalDescuento.Value = v.DESCUENTO_DIN_D : txtTotalSubtotal.Value = v.SUBTOTAL_D : txtTotalIva.Value = v.IVA_DIN_D : txtTotal.Value = v.TOTAL_D
             'End If
-            If Config._Periodo.ACTUAL.Equals(Config.vTrue) And Config._Periodo.APERTURA IsNot Nothing And Config._Periodo.CIERRE Is Nothing Then
+            If Config._lapse.ACTUAL.Equals(Config.vTrue) And Config._lapse.APERTURA IsNot Nothing And Config._lapse.CIERRE Is Nothing Then
                 btAnular.Enabled = True
             End If
             btImprimir.Enabled = True
@@ -758,7 +758,7 @@ Public Class frmCompra
     End Sub
 
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpFecha.Value) Then
+        If Config.ValidateLapse(dtpFecha.Value) Then
             Try
                 If txtIdSerie.Text <> "" And Not txtObservacion.Text.Trim() = "" And txtNCompra.Text.Trim() <> "" And dtRegistro.Rows.Count > 0 Then
                     Using db As New CodeFirst
@@ -784,7 +784,7 @@ Public Class frmCompra
                                 If Not p Is Nothing Then
                                     Dim saldo As Decimal
                                     Dim cs = From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True Select com.MONEDA, com.SALDOCREDITO
-                                    Dim compras = (From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True And com.MONEDA = Config.dolar Select If(p.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO * Config.tazadecambio, com.SALDOCREDITO)).Union(From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdProveedor.Text And ven.CREDITO = True And ven.MONEDA = Config.cordoba Select If(p.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO / Config.tazadecambio))
+                                    Dim compras = (From com In db.Compras Where com.ANULADO = "N" And com.IDPROVEEDOR = txtIdProveedor.Text And com.CREDITO = True And com.MONEDA = Config.dolar Select If(p.MONEDA.Equals(Config.cordoba), com.SALDOCREDITO * Config.exchangeRate, com.SALDOCREDITO)).Union(From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdProveedor.Text And ven.CREDITO = True And ven.MONEDA = Config.cordoba Select If(p.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO / Config.exchangeRate))
                                     If Not cs Is Nothing Then
                                         If p.MONEDA.Equals(Config.cordoba) Then
                                             saldo = If(cs.Where(Function(f) f.MONEDA.Equals(Config.cordoba)).Count() > 0, cs.Where(Function(f) f.MONEDA.Equals(Config.cordoba)).Sum(Function(f) f.SALDOCREDITO), 0) + If(cs.Where(Function(f) f.MONEDA.Equals(Config.dolar)).Count() > 0, cs.Where(Function(f) f.MONEDA.Equals(Config.dolar)).Sum(Function(f) f.SALDOCREDITO) * txtTazaCambio.Value, 0)
@@ -918,7 +918,7 @@ Public Class frmCompra
         Try
 
             'restricción, solo el admin puede anular documentos
-            If Not Config.Usuario.Administrador Then 'se evalua si not tiene permiso de administrador
+            If Not Config.currentUser.Administrador Then 'se evalua si not tiene permiso de administrador
 
                 'mensaje que no puede anular
                 Config.MsgErr("Solo el administrador tiene permiso para anular un documento.")
@@ -943,7 +943,7 @@ Public Class frmCompra
                         If Not v Is Nothing Then
 
                             'Validando el período
-                            If Config.ValidarPeriodo(v.FECHACOMPRA) Then
+                            If Config.ValidateLapse(v.FECHACOMPRA) Then
 
                                 'Evaluar si la compra es de al crédito
                                 'Registrar la anulación de dinero
@@ -1013,9 +1013,13 @@ Public Class frmCompra
 
                                 'Anulando Kardex
                                 Using dbk As New CodeFirst
+
                                     Dim ik As Boolean = False
+
                                     For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
+
                                         For Each k In dbk.Kardexs.Where(Function(f) f.N > kardex.N And f.IDEXISTENCIA = kardex.IDEXISTENCIA)
+
                                             k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR - kardex.ENTRADA
                                             k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN - kardex.ENTRADA
 
@@ -1033,8 +1037,12 @@ Public Class frmCompra
                                                 End If
                                             End If
 
+
+
                                             If k.EXISTENCIA_ALMACEN <> 0 Then
                                                 k.COSTO_PROMEDIO = k.SALDO / k.EXISTENCIA_ALMACEN
+                                            Else
+                                                k.COSTO_PROMEDIO = k.COSTO
                                             End If
 
                                             dbk.Entry(k).State = EntityState.Modified
@@ -1069,6 +1077,41 @@ Public Class frmCompra
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
         End Try
+    End Sub
+
+    Private Sub RecalculateCost(ByVal type As String, ByVal kardex As Kardex, ByVal db As CodeFirst)
+
+        Select Case type
+
+            Case "COMPRA CONTADO" Or "COMPRA CREDITO"
+
+                Dim purchase = (From c In db.Compras
+                                Join d In db.ComprasDetalles On c.IDCOMPRA Equals d.IDCOMPRA
+                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
+                                Select d).FirstOrDefault()
+
+                If purchase IsNot Nothing Then
+
+                    'aquí se calcula el costo
+
+                End If
+
+            Case "VENTA CONTADO"
+
+            Case "VENTA CREDITO"
+
+            Case "ENTRADA"
+
+            Case "SALIDA"
+
+            Case "TRASLADO"
+
+            Case "DEVOLUCION VENTA"
+
+            Case "DEVOLUCION COMPRA"
+
+        End Select
+
     End Sub
 
     Private Sub txtNCompra_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNCompra.KeyPress
@@ -1356,7 +1399,7 @@ Public Class frmCompra
 
     Private Sub dtpFecha_ValueChanged(sender As Object, e As EventArgs) Handles dtpFecha.ValueChanged
         If rdCredito.Checked Then
-            txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(txtPlazo.Text).ToString(Config.formato_fecha)
+            txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(txtPlazo.Text).ToString(Config.dateFormat)
         End If
         dtpCaducidad.MinDate = dtpFecha.Value
     End Sub

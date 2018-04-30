@@ -4,70 +4,115 @@ Imports Sadara.Models.V1.POCO
 
 Public Class frmInformacion
 
-    Private Sub frmInformacion_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        Me.Dispose()
+    Private business As Sadara.Models.V1.POCO.Empresa
+
+    Private Sub SelectBusiness(ByVal businessId As Guid)
+
+        Using db As New CodeFirst
+
+            Me.business = db.Empresas.Where(Function(f) f.IdEmpresa = businessId).FirstOrDefault()
+
+        End Using
+
     End Sub
 
-    Private Sub frmInformacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            Using db As New CodeFirst
-                Dim emp = db.Empresas.OrderBy(Function(f) f.N).ToList().LastOrDefault()
-                If Not emp Is Nothing Then
-                    txtNombre.Text = emp.Nombre
-                    txtRuc.Text = emp.RUC
-                    txtTelefono1.Text = emp.Telefono1
-                    txtTelefono2.Text = emp.Telefono2
-                    txtDireccion.Text = emp.Direccion
-                    If emp.MonedaInventario.Equals(Config.cordoba) Then
-                        rdCordoba.Checked = True
-                    Else
-                        rdDolar.Checked = True
-                    End If
-                    rdCordoba.Enabled = False
-                    rdDolar.Enabled = False
-                    txtNombre.Focus()
-                Else
-                    rdCordoba.Enabled = True
-                    rdDolar.Enabled = True
-                    txtNombre.Focus()
-                End If
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message)
-        End Try
+    Private Sub SetDataInControls()
+
+        Me.SelectBusiness(Config.currentBusiness.IdEmpresa)
+
+        If Me.business IsNot Nothing Then
+
+            txtNombre.Text = business.Nombre
+            txtRuc.Text = business.RUC
+            txtTelefono1.Text = business.Telefono1
+            txtTelefono2.Text = business.Telefono2
+            txtDireccion.Text = business.Direccion
+
+            If business.MonedaInventario.Equals(Config.cordoba) Then
+                rdCordoba.Checked = True
+            Else
+                rdDolar.Checked = True
+            End If
+
+        End If
+
     End Sub
 
-    Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
+    Private Sub AddOrEditBusiness()
+
         Try
+
             If txtNombre.Text.Trim <> "" Then
+
                 Using db As New CodeFirst
-                    Dim emp = New Empresa
-                    With emp
-                        .IdEmpresa = Guid.NewGuid
-                        .Reg = DateTime.Now
+
+                    Me.SelectBusiness(Config.currentBusiness.IdEmpresa)
+
+                    If Me.business IsNot Nothing Then
+
+                        db.Entry(Me.business).State = Entity.EntityState.Modified
+
+                    Else
+
+                        Me.business = New Empresa() With {
+                            .IdEmpresa = Guid.NewGuid()
+                        }
+                        db.Empresas.Add(Me.business)
+
+                    End If
+
+                    With Me.business
+
                         .Nombre = txtNombre.Text
                         .RUC = txtRuc.Text
                         .Telefono1 = txtTelefono1.Text
                         .Telefono2 = txtTelefono2.Text
                         .Direccion = txtDireccion.Text
                         .MonedaInventario = If(rdCordoba.Checked, Config.cordoba, Config.dolar)
-                        db.Empresas.Add(emp)
-                        db.SaveChanges()
-                        rdCordoba.Enabled = False
-                        rdDolar.Enabled = False
-                        Config.Empresa = emp
-                        frmPrincipal.cargarPrivilegios()
-                        emp = Nothing
-                        MessageBox.Show("Guardado!!")
-                        txtNombre.Focus()
+
                     End With
+
+                    db.SaveChanges()
+                    rdCordoba.Enabled = False
+                    rdDolar.Enabled = False
+                    Config.currentBusiness = Me.business
+                    frmPrincipal.cargarPrivilegios()
+                    Me.business = Nothing
+                    MessageBox.Show("Guardado!!")
+                    txtNombre.Focus()
+
                 End Using
+
             Else
+
                 MessageBox.Show("Ingresar los campos de orden obligatorio (*)")
+
             End If
+
         Catch ex As Exception
+
             MessageBox.Show("Error: " & ex.Message)
+
         End Try
+
+    End Sub
+
+    Private Sub frmInformacion_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+
+        Me.Dispose()
+
+    End Sub
+
+    Private Sub frmInformacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Me.SetDataInControls()
+
+    End Sub
+
+    Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
+
+        Me.AddOrEditBusiness()
+
     End Sub
 
     Private Sub txtNombre_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNombre.KeyDown

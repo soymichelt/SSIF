@@ -108,16 +108,16 @@ Public Class frmCotizacion
 
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using
-            txtTazaCambio.Value = Config.tazadecambio
-            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.tazadecambio.ToString(Config.f_m)
+            txtTazaCambio.Value = Config.exchangeRate
+            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.exchangeRate.ToString(Config.f_m)
             txtTotalSubtotal.Value = 0 : txtTotalDescuento.Value = 0 : txtTotalIva.Value = 0 : txtTotal.Value = 0
             dtpFecha.Value = DateTime.Now
             Grid()
@@ -133,7 +133,7 @@ Public Class frmCotizacion
                 If txtIdSerie.Text <> "" Then
                     If Not txtCodigoAlterno.Text.Trim = "" Then
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.warehouseId)
                             If Not producto Is Nothing Then
                                 If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
                                     With producto.Producto
@@ -220,7 +220,7 @@ Public Class frmCotizacion
                 If txtCodigoAlterno.Text.Trim() <> "" Then
                     Try
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.warehouseId)
                             If Not producto Is Nothing Then
                                 If txtPrecio.Text.Trim = "" Then
                                     If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
@@ -600,7 +600,7 @@ Public Class frmCotizacion
                                 If Not cliente Is Nothing Then
                                     If cliente.PLAZO > 0 Then
                                         txtPlazo.Text = cliente.PLAZO.ToString()
-                                        txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(cliente.PLAZO).ToString(Config.formato_fecha)
+                                        txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(cliente.PLAZO).ToString(Config.dateFormat)
                                     Else
                                         MessageBox.Show("Error, Este cliente no tiene plazo para crédito.")
                                         rdContado.Checked = True
@@ -636,7 +636,7 @@ Public Class frmCotizacion
 
     Private Sub dtpFecha_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If rdCredito.Checked Then
-            txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(txtPlazo.Text).ToString(Config.formato_fecha)
+            txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(txtPlazo.Text).ToString(Config.dateFormat)
         End If
     End Sub
 

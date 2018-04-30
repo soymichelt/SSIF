@@ -42,7 +42,7 @@ Public Class frmVenta
                 txtNombreCliente.Text = "CLIENTES VARIOS"
                 chkExonerado.Checked = False
                 rdCordoba.Checked = True
-                txtTazaCambio.Value = Config.tazadecambio
+                txtTazaCambio.Value = Config.exchangeRate
                 rdContado.Checked = True
                 txtPlazo.Clear()
                 txtFechaVencimiento.Clear()
@@ -115,21 +115,21 @@ Public Class frmVenta
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
                 'taza de cambio
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using
-            txtTazaCambio.Value = Config.tazadecambio
-            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.tazadecambio.ToString(Config.f_m)
+            txtTazaCambio.Value = Config.exchangeRate
+            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.exchangeRate.ToString(Config.f_m)
             txtTotalSubtotal.Value = 0 : txtTotalDescuento.Value = 0 : txtTotalIva.Value = 0 : txtTotal.Value = 0
-            If Not Config._Periodo Is Nothing Then
-                If Config._Periodo.ACTUAL.Equals(Config.vTrue) Then
-                    dtpFecha.MinDate = Config._Periodo.INICIO
-                    dtpFecha.MaxDate = Config._Periodo.FINAL
+            If Not Config._lapse Is Nothing Then
+                If Config._lapse.ACTUAL.Equals(Config.vTrue) Then
+                    dtpFecha.MinDate = Config._lapse.INICIO
+                    dtpFecha.MaxDate = Config._lapse.FINAL
                 Else
                     dtpFecha.MinDate = "01/01/" & DateTime.Now.Year
                     dtpFecha.MaxDate = "31/12/" & DateTime.Now.Year
@@ -152,11 +152,11 @@ Public Class frmVenta
                 If txtIdSerie.Text <> "" Then
                     If Not txtCodigoAlterno.Text.Trim = "" Then
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim(), Config.warehouseId)
                             If Not producto Is Nothing Then
 
                                 'Evaluar si tiene permisos de editar el precio
-                                txtPrecio.IsInputReadOnly = If(Config.Usuario.SalesPriceChange, False, True)
+                                txtPrecio.IsInputReadOnly = If(Config.currentUser.SalesPriceChange, False, True)
 
                                 If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
                                     With producto.Producto
@@ -243,7 +243,7 @@ Public Class frmVenta
                 If txtCodigoAlterno.Text.Trim() <> "" Then
                     Try
                         Using db As New CodeFirst
-                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.bodega)
+                            Dim producto = ExistenciaController.BuscarProductoPorCodigo(txtCodigoAlterno.Text.Trim, Config.warehouseId)
                             If Not producto Is Nothing Then
                                 If txtPrecio.Text.Trim = "" Then
                                     If producto.Producto.FACTURAR_PRECIO >= 1 And producto.Producto.FACTURAR_PRECIO <= 4 Then
@@ -461,7 +461,7 @@ Public Class frmVenta
     End Sub
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpFecha.Value) Then
+        If Config.ValidateLapse(dtpFecha.Value) Then
             Try
                 If txtIdSerie.Text <> "" And Not txtIdVendedor.Text.Trim() = "" And Not dtRegistro.Rows.Count = 0 Then
                     Using db As New CodeFirst
@@ -483,7 +483,7 @@ Public Class frmVenta
                                 If Not c Is Nothing Then
                                     Dim saldo As Decimal
                                     Dim vs = From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True Select ven.MONEDA, ven.SALDOCREDITO
-                                    Dim ventas = (From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.MONEDA = Config.dolar Select If(c.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO * Config.tazadecambio, ven.SALDOCREDITO)).Union(From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.MONEDA = Config.cordoba Select If(c.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO / Config.tazadecambio))
+                                    Dim ventas = (From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.MONEDA = Config.dolar Select If(c.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO * Config.exchangeRate, ven.SALDOCREDITO)).Union(From ven In db.Ventas Where ven.ANULADO = "N" And ven.IDCLIENTE = txtIdCliente.Text And ven.CREDITO = True And ven.MONEDA = Config.cordoba Select If(c.MONEDA.Equals(Config.cordoba), ven.SALDOCREDITO, ven.SALDOCREDITO / Config.exchangeRate))
                                     If Not vs Is Nothing Then
                                         If c.MONEDA.Equals(Config.cordoba) Then
                                             saldo = If(vs.Where(Function(f) f.MONEDA.Equals(Config.cordoba)).Count() > 0, vs.Where(Function(f) f.MONEDA.Equals(Config.cordoba)).Sum(Function(f) f.SALDOCREDITO), 0) + If(vs.Where(Function(f) f.MONEDA.Equals(Config.dolar)).Count() > 0, vs.Where(Function(f) f.MONEDA.Equals(Config.dolar)).Sum(Function(f) f.SALDOCREDITO) * txtTazaCambio.Value, 0)
@@ -719,7 +719,7 @@ Public Class frmVenta
                                 If Not c Is Nothing Then
                                     If c.PLAZO > 0 Then
                                         txtPlazo.Text = c.PLAZO.ToString()
-                                        txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(c.PLAZO).ToString(Config.formato_fecha)
+                                        txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(c.PLAZO).ToString(Config.dateFormat)
                                         txtCodigoAlterno.Focus()
                                     Else
                                         MessageBox.Show("Error, Este cliente no tiene plazo para crédito.")
@@ -756,7 +756,7 @@ Public Class frmVenta
 
     Private Sub dtpFecha_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If rdCredito.Checked Then
-            txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(txtPlazo.Text).ToString(Config.formato_fecha)
+            txtFechaVencimiento.Text = DateTime.Parse(dtpFecha.Text).AddDays(txtPlazo.Text).ToString(Config.dateFormat)
         End If
     End Sub
 
@@ -1002,7 +1002,7 @@ Public Class frmVenta
                                 '    txtTotalDescuento.Value = v.DESCUENTO_DIN_D : txtTotalSubtotal.Value = v.SUBTOTAL_D : txtTotalIva.Value = v.IVA_DIN_D : txtTotal.Value = v.TOTAL_D
                                 'End If
                                 btGuardar.Enabled = False
-                                If Config._Periodo.ACTUAL.Equals(Config.vTrue) And Config._Periodo.APERTURA IsNot Nothing And Config._Periodo.CIERRE Is Nothing Then
+                                If Config._lapse.ACTUAL.Equals(Config.vTrue) And Config._lapse.APERTURA IsNot Nothing And Config._lapse.CIERRE Is Nothing Then
                                     btAnular.Enabled = True
                                 End If
                                 btImprimir.Enabled = True
@@ -1027,7 +1027,7 @@ Public Class frmVenta
         Try
 
             'restricción, solo el admin puede anular documentos
-            If Not Config.Usuario.Administrador Then 'se evalua si not tiene permiso de administrador
+            If Not Config.currentUser.Administrador Then 'se evalua si not tiene permiso de administrador
 
                 'mensaje que no puede anular
                 Config.MsgErr("Solo el administrador tiene permiso para anular un documento.")
@@ -1052,7 +1052,7 @@ Public Class frmVenta
                         If Not v Is Nothing Then
 
                             'Validando el período
-                            If Config.ValidarPeriodo(v.FECHAFACTURA) Then
+                            If Config.ValidateLapse(v.FECHAFACTURA) Then
 
                                 'Evaluar si la venta es de al crédito
                                 'Registrar la anulación de dinero
@@ -1092,9 +1092,9 @@ Public Class frmVenta
                                             item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO)
                                         Else
                                             If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO / Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO / Config.exchangeRate)
                                             Else
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO * Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO * Config.exchangeRate)
                                             End If
                                         End If
                                     End If
@@ -1126,9 +1126,9 @@ Public Class frmVenta
                                                     k.SALDO = k.SALDO + kardex.HABER
                                                 Else
                                                     If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                                        k.SALDO = k.SALDO + (kardex.HABER / Config.tazadecambio)
+                                                        k.SALDO = k.SALDO + (kardex.HABER / Config.exchangeRate)
                                                     Else
-                                                        k.SALDO = k.SALDO + (kardex.HABER * Config.tazadecambio)
+                                                        k.SALDO = k.SALDO + (kardex.HABER * Config.exchangeRate)
                                                     End If
                                                 End If
                                             End If
@@ -1357,7 +1357,7 @@ Public Class frmVenta
                     If v.ANULADO = "N" Then
                         If v.Serie.TICKET.Equals(Config.vTrue) Then
                             Dim t As TicketClass = New TicketClass
-                            If t.ImpresoraExistente(Config.PrintName) Then
+                            If t.ImpresoraExistente(Config.PrinterName) Then
                                 t.EncabezadoPredefinido(If(v.CREDITO, "VENTA DE CRÉDITO", "VENTA DE CONTADO"), If(v.REIMPRESION.Equals("S"), "REIMPRESIÓN", "ORIGINAL"))
                                 t.AnadirLineaSubcabeza(t.AlinearElementos("N° FACT: " & v.CONSECUTIVO, v.Serie.NOMBRE))
                                 t.AnadirLineaSubcabeza("FECHA:   " & v.FECHAFACTURA.ToShortDateString())
@@ -1374,7 +1374,7 @@ Public Class frmVenta
                                 t.AnadirElemento("DESC.       P/U     CANT     TOTAL")
                                 t.AnadirElemento(t.Linea5())
                                 t.AnadirEspacio()
-                                For Each i In From pro In db.Productos Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.VentasDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDVENTA = v.IDVENTA Select pro.IDALTERNO, pro.IDORIGINAL, PRODUCTO = pro.DESCRIPCION, MARCA = If(pro.Marca IsNot Nothing, pro.Marca.DESCRIPCION, Config.TextNull), FORMA = If(pro.Presentacion IsNot Nothing, pro.Presentacion.DESCRIPCION, Config.TextNull), det.CANTIDAD, PRECIO = If(v.MONEDA.Equals(Config.cordoba), det.PRECIOUNITARIO_C, det.PRECIOUNITARIO_D), SUBTOTAL = If(v.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, det.SUBTOTAL_D)
+                                For Each i In From pro In db.Productos Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.VentasDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDVENTA = v.IDVENTA Select pro.IDALTERNO, pro.IDORIGINAL, PRODUCTO = pro.DESCRIPCION, MARCA = If(pro.Marca IsNot Nothing, pro.Marca.DESCRIPCION, Config.textNull), FORMA = If(pro.Presentacion IsNot Nothing, pro.Presentacion.DESCRIPCION, Config.textNull), det.CANTIDAD, PRECIO = If(v.MONEDA.Equals(Config.cordoba), det.PRECIOUNITARIO_C, det.PRECIOUNITARIO_D), SUBTOTAL = If(v.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, det.SUBTOTAL_D)
                                     t.AnadirElemento(i.PRODUCTO)
                                     t.AnadirElementoTotales(i.PRECIO.ToString(Config.f_m), i.CANTIDAD.ToString(Config.f_m), i.SUBTOTAL.ToString(Config.f_m))
                                     t.AnadirEspacio()
@@ -1399,7 +1399,7 @@ Public Class frmVenta
 
                                 '//Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un 
                                 '//parametro de tipo string que debe de ser el nombre de la impresora. 
-                                t.ImprimeTicket(Config.PrintName)
+                                t.ImprimeTicket(Config.PrinterName)
 
                                 'reimpresión
                                 v.REIMPRESION = "S"
@@ -1407,7 +1407,7 @@ Public Class frmVenta
                                 db.SaveChanges()
 
                             Else
-                                MessageBox.Show("No se encuentra la impresora '" & Config.PrintName & "'")
+                                MessageBox.Show("No se encuentra la impresora '" & Config.PrinterName & "'")
                             End If
                         Else
 
@@ -1643,7 +1643,7 @@ Public Class frmVenta
 
     Private Sub btEditarPrecio_Click(sender As Object, e As EventArgs) Handles btEditarPrecio.Click
         '
-        If Config.Usuario.SalesPriceChange Then
+        If Config.currentUser.SalesPriceChange Then
 
             'si tiene el privilegio
             txtPrecio.Focus()
@@ -1655,9 +1655,9 @@ Public Class frmVenta
             frmLogin.ShowDialog()
 
             'evaluación del privilegio
-            If Not Config.ActivarPrivilegio Is Nothing Then
+            If Not Config.activatePrivileges Is Nothing Then
 
-                If Config.ActivarPrivilegio.SalesPriceChange Then
+                If Config.activatePrivileges.SalesPriceChange Then
                     txtPrecio.IsInputReadOnly = False
                     txtPrecio.Focus()
                 Else

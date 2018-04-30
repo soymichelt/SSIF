@@ -82,13 +82,13 @@ Public Class frmPagosPendientes
                                     With frmReciboCompra
                                         .txtIdFactura.Text = v.IDCOMPRA
                                         .txtFactura.Text = v.Serie.NOMBRE & " | " & v.CONSECUTIVO & "(" & v.N_COMPRA & ")"
-                                        .txtMonto.Value = If(Moneda.Equals(Config.cordoba), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * Config.tazadecambio), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / Config.tazadecambio, v.SALDOCREDITO))
+                                        .txtMonto.Value = If(Moneda.Equals(Config.cordoba), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * Config.exchangeRate), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / Config.exchangeRate, v.SALDOCREDITO))
                                     End With
                                 Case 1
                                     With frmNotaDevolucionCompra
                                         .txtIdFactura.Text = v.IDCOMPRA
                                         .txtFactura.Text = v.Serie.NOMBRE & " | " & v.CONSECUTIVO
-                                        .txtSaldo.Value = If(Moneda.Equals(Config.cordoba), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * Config.tazadecambio), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / Config.tazadecambio, v.SALDOCREDITO))
+                                        .txtSaldo.Value = If(Moneda.Equals(Config.cordoba), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO, v.SALDOCREDITO * Config.exchangeRate), If(v.MONEDA.Equals(Config.cordoba), v.SALDOCREDITO / Config.exchangeRate, v.SALDOCREDITO))
 
                                         'Cargar detalle de la factura
                                         Dim item As LST_DETALLE_DEVOLUCION_COMPRA
@@ -99,9 +99,9 @@ Public Class frmPagosPendientes
                                             item.IDALTERNO = d.Existencia.Producto.IDALTERNO
                                             item.DESCRIPCION = d.Existencia.Producto.DESCRIPCION
                                             item.IVA = d.Existencia.Producto.IVA
-                                            item.MARCA = If(d.Existencia.Producto.Marca.ACTIVO.Equals(Config.vTrue), d.Existencia.Producto.Marca.DESCRIPCION, Config.TextNull)
-                                            item.UNIDAD_DE_MEDIDA = If(d.Existencia.Producto.UnidadMedida.ACTIVO = "S", d.Existencia.Producto.UnidadMedida.DESCRIPCION, Config.TextNull)
-                                            item.PRESENTACION = If(d.Existencia.Producto.Presentacion.ACTIVO = "S", d.Existencia.Producto.Presentacion.DESCRIPCION, Config.TextNull)
+                                            item.MARCA = If(d.Existencia.Producto.Marca.ACTIVO.Equals(Config.vTrue), d.Existencia.Producto.Marca.DESCRIPCION, Config.textNull)
+                                            item.UNIDAD_DE_MEDIDA = If(d.Existencia.Producto.UnidadMedida.ACTIVO = "S", d.Existencia.Producto.UnidadMedida.DESCRIPCION, Config.textNull)
+                                            item.PRESENTACION = If(d.Existencia.Producto.Presentacion.ACTIVO = "S", d.Existencia.Producto.Presentacion.DESCRIPCION, Config.textNull)
                                             item.EXISTENCIA = d.Existencia.CANTIDAD
                                             item.CANTIDAD = d.CANTIDAD
                                             If v.TAZACAMBIO = Me.Taza Then

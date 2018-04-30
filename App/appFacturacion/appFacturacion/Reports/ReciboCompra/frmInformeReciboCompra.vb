@@ -42,7 +42,7 @@ Public Class frmInformeReciboCompra
                         dtRegistro.Columns(2).Width = 55
                         dtRegistro.Columns(3).Width = 150 : dtRegistro.Columns(3).HeaderText = "Nº DOCUMENTO"
                         dtRegistro.Columns(4).Width = 150 : dtRegistro.Columns(4).HeaderText = "Nº RECIBO"
-                        dtRegistro.Columns(5).Width = 150 : dtRegistro.Columns(5).DefaultCellStyle.Format = Config.formato_fecha : dtRegistro.Columns(5).HeaderText = "FECHA"
+                        dtRegistro.Columns(5).Width = 150 : dtRegistro.Columns(5).DefaultCellStyle.Format = Config.dateFormat : dtRegistro.Columns(5).HeaderText = "FECHA"
                         dtRegistro.Columns(6).Width = 150 : dtRegistro.Columns(6).HeaderText = "N° PROVEEDOR"
                         dtRegistro.Columns(7).Width = 250 : dtRegistro.Columns(7).HeaderText = "NOMBRES Y APELLIDOS DEL PROVEEDOR"
                         dtRegistro.Columns(8).Width = 120 : dtRegistro.Columns(8).HeaderText = "Nº EMPLEADO"
@@ -280,11 +280,11 @@ Public Class frmInformeReciboCompra
             dtpFechaInicial.Value = DateTime.Now : dtpFechaFinal.Value = DateTime.Now
             Using db As New CodeFirst
                 cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using

@@ -21,8 +21,8 @@ Public Class frmBCompra
                     dtRegistro.Columns(2).Width = 55
                     dtRegistro.Columns(3).Width = 150 : dtRegistro.Columns(3).HeaderText = "Nº REQUISA"
                     dtRegistro.Columns(4).Width = 150 : dtRegistro.Columns(4).HeaderText = "Nº COMPRA"
-                    dtRegistro.Columns(5).Width = 150 : dtRegistro.Columns(5).DefaultCellStyle.Format = Config.formato_fecha : dtRegistro.Columns(5).HeaderText = "FECHA"
-                    dtRegistro.Columns(6).Width = 150 : dtRegistro.Columns(6).DefaultCellStyle.Format = Config.formato_fecha : dtRegistro.Columns(6).HeaderText = "F. DEVOLUCIÓN"
+                    dtRegistro.Columns(5).Width = 150 : dtRegistro.Columns(5).DefaultCellStyle.Format = Config.dateFormat : dtRegistro.Columns(5).HeaderText = "FECHA"
+                    dtRegistro.Columns(6).Width = 150 : dtRegistro.Columns(6).DefaultCellStyle.Format = Config.dateFormat : dtRegistro.Columns(6).HeaderText = "F. DEVOLUCIÓN"
                     dtRegistro.Columns(7).Width = 150 : dtRegistro.Columns(7).HeaderText = "N° EMPLEADO"
                     dtRegistro.Columns(8).Width = 250 : dtRegistro.Columns(8).HeaderText = "NOMBRES Y APELLIDOS DEL EMPLEADO"
                     dtRegistro.Columns(9).Width = 120 : dtRegistro.Columns(9).HeaderText = "Nº PROVEEDOR"
@@ -49,7 +49,7 @@ Public Class frmBCompra
         Try
             Using db As New CodeFirst
                 'llenar series
-                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.warehouseId And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                 dtpFechaInicial.Value = DateTime.Now
                 dtpFechaFinal.Value = DateTime.Now
                 llenar(DateTime.Parse(dtpFechaInicial.Value.ToShortDateString() & " 00:00:00"), DateTime.Parse(dtpFechaFinal.Value.ToShortDateString() & " 23:59:59"), )
@@ -66,13 +66,13 @@ Public Class frmBCompra
                 If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
                     Dim serie As String = cmbSerie.Text
                     'llenar series
-                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.warehouseId And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                     cmbSerie.Text = serie
                     serie = Nothing
                 Else
                     'llenar series
-                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.bodega And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
+                    cmbSerie.DataSource = db.Series.Where(Function(f) f.IDBODEGA = Config.warehouseId And f.ACTIVO = "S" And f.OPERACION = "COMPRA").ToList() : cmbSerie.DisplayMember = "NOMBRE" : cmbSerie.ValueMember = "IDSERIE" : cmbSerie.SelectedIndex = -1
                     cmbSerie.Focus()
                 End If
             End Using

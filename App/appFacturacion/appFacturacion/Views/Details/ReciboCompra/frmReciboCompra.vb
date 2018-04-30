@@ -126,21 +126,21 @@ Public Class frmReciboCompra
 
             dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
             Using db As New CodeFirst
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                     MessageBox.Show("Error, No existe Taza de Cambio")
                 End If
             End Using
-            txtTazaCambio.Value = Config.tazadecambio
-            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.tazadecambio.ToString(Config.f_m)
+            txtTazaCambio.Value = Config.exchangeRate
+            frmPrincipal.lblTaza.Text = "T. / Cambio: $ 1 = C$ " & Config.exchangeRate.ToString(Config.f_m)
             txtTotalImporte.Value = 0 : txtTotalDescuento.Value = 0 : txtTotalNuevoSaldo.Value = 0
-            If Not Config._Periodo Is Nothing Then
-                If Config._Periodo.ACTUAL.Equals(Config.vTrue) Then
-                    dtpFecha.MinDate = Config._Periodo.INICIO
-                    dtpFecha.MaxDate = Config._Periodo.FINAL
+            If Not Config._lapse Is Nothing Then
+                If Config._lapse.ACTUAL.Equals(Config.vTrue) Then
+                    dtpFecha.MinDate = Config._lapse.INICIO
+                    dtpFecha.MaxDate = Config._lapse.FINAL
                 Else
                     dtpFecha.MinDate = "01/01/" & DateTime.Now.Year
                     dtpFecha.MaxDate = "31/12/" & DateTime.Now.Year
@@ -454,7 +454,7 @@ Public Class frmReciboCompra
     End Sub
 
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpFecha.Value) Then
+        If Config.ValidateLapse(dtpFecha.Value) Then
             Try
                 If txtIdSerie.Text <> "" And Not txtIdProveedor.Text.Trim() = "" And detalles.Count > 0 Then
                     If Math.Round(txtAplicable.Value, 2) = 0.0 Then
@@ -610,7 +610,7 @@ Public Class frmReciboCompra
             lblContador.Text = "N° ITEM: " & dtRegistro.Rows.Count
 
             btGuardar.Enabled = False
-            If Config._Periodo.ACTUAL.Equals(Config.vTrue) And Config._Periodo.APERTURA IsNot Nothing And Config._Periodo.CIERRE Is Nothing Then
+            If Config._lapse.ACTUAL.Equals(Config.vTrue) And Config._lapse.APERTURA IsNot Nothing And Config._lapse.CIERRE Is Nothing Then
                 btAnular.Enabled = True
             End If
             btImprimir.Enabled = True
@@ -663,7 +663,7 @@ Public Class frmReciboCompra
                     Using db As New CodeFirst
                         Dim r = db.ComprasRecibos.Where(Function(f) f.IDRECIBO = Me.Id And f.ANULADO = "N").FirstOrDefault()
                         If Not r Is Nothing Then
-                            If Config.ValidarPeriodo(r.FECHARECIBO) Then
+                            If Config.ValidateLapse(r.FECHARECIBO) Then
                                 r.ANULADO = "S" : db.Entry(r).State = EntityState.Modified
                                 For Each est In db.ComprasEstadosCuentas.Where(Function(f) f.IDRECIBO IsNot Nothing).Where(Function(f) f.IDRECIBO = r.IDRECIBO)
                                     est.ACTIVO = "N" : db.Entry(est).State = EntityState.Modified

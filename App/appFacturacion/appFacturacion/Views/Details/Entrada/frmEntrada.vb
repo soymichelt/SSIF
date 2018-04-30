@@ -57,10 +57,10 @@ Public Class frmEntrada
         Try
             txtCantidad.DisplayFormat = Config.f_c
             txtTotal.DisplayFormat = Config.f_m
-            If Not Config._Periodo Is Nothing Then
-                If Config._Periodo.ACTUAL.Equals(Config.vTrue) Then
-                    dtpFecha.MinDate = Config._Periodo.INICIO
-                    dtpFecha.MaxDate = Config._Periodo.FINAL
+            If Not Config._lapse Is Nothing Then
+                If Config._lapse.ACTUAL.Equals(Config.vTrue) Then
+                    dtpFecha.MinDate = Config._lapse.INICIO
+                    dtpFecha.MaxDate = Config._lapse.FINAL
                 Else
                     dtpFecha.MinDate = "01/01/" & DateTime.Now.Year
                     dtpFecha.MaxDate = "31/12/" & DateTime.Now.Year
@@ -130,7 +130,7 @@ Public Class frmEntrada
                         ''''''''''''''''''''''''''''''''''''
                         If txtCantidad.Value > 0 Then
                             Using db As New CodeFirst
-                                Dim producto = (From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.bodega And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
+                                Dim producto = (From prod In db.Productos Join exi In db.Existencias On prod.IDPRODUCTO Equals exi.IDPRODUCTO Where exi.IDBODEGA = Config.warehouseId And prod.IDALTERNO = txtCodigoAlterno.Text Select prod, exi).FirstOrDefault()
                                 For i As Integer = 0 To lvRegistro.Items.Count - 1
                                     If txtCodigoAlterno.Text = lvRegistro.Items(i).SubItems(1).Text Then
                                         If Not producto Is Nothing Then
@@ -221,7 +221,7 @@ Public Class frmEntrada
     End Sub
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click
-        If Config.ValidarPeriodo(dtpFecha.Value) Then
+        If Config.ValidateLapse(dtpFecha.Value) Then
             Try
                 If txtIdSerie.Text.Trim <> "" And Not txtCodigo.Text.Trim = "" And Not txtConcepto.Text.Trim = "" And lvRegistro.Items.Count > 0 Then
                     Using db As New CodeFirst
@@ -256,7 +256,7 @@ Public Class frmEntrada
                                     db.Entry(producto).State = EntityState.Modified
                                     k.EXISTENCIA_ALMACEN = producto.CANTIDAD
                                     k.CMONEDA = d.CMONEDA
-                                    k.TAZACAMBIO = Config.tazadecambio
+                                    k.TAZACAMBIO = Config.exchangeRate
                                     k.COSTO = d.COSTO
                                     k.COSTO_PROMEDIO = d.COSTO
                                     k.DEBER = d.TOTAL
@@ -350,7 +350,7 @@ Public Class frmEntrada
             txtTotal.Text = v.TOTAL.ToString(Config.f_m)
             lblContador.Text = "N° ITEM: " & lvRegistro.Items.Count.ToString()
             btGuardar.Enabled = False
-            If Config._Periodo.ACTUAL.Equals(Config.vTrue) And Config._Periodo.APERTURA IsNot Nothing And Config._Periodo.CIERRE Is Nothing Then
+            If Config._lapse.ACTUAL.Equals(Config.vTrue) And Config._lapse.APERTURA IsNot Nothing And Config._lapse.CIERRE Is Nothing Then
                 btAnular.Enabled = True
             End If
             btImprimir.Enabled = True
@@ -529,7 +529,7 @@ Public Class frmEntrada
                     Using db As New CodeFirst
                         Dim v = db.Entradas.Where(Function(f) f.IDENTRADA = Me.ID And f.ANULADO = "N").FirstOrDefault()
                         If Not v Is Nothing Then
-                            If Config.ValidarPeriodo(v.FECHAENTRADA) Then
+                            If Config.ValidateLapse(v.FECHAENTRADA) Then
                                 v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
 
                                 For Each item In v.EntradasDetalles
@@ -548,9 +548,9 @@ Public Class frmEntrada
                                             item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO)
                                         Else
                                             If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO / Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO / Config.exchangeRate)
                                             Else
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO * Config.tazadecambio)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO * Config.exchangeRate)
                                             End If
                                         End If
                                     End If
@@ -577,9 +577,9 @@ Public Class frmEntrada
                                                     k.SALDO = k.SALDO - kardex.DEBER
                                                 Else
                                                     If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                                        k.SALDO = k.SALDO - (kardex.DEBER / Config.tazadecambio)
+                                                        k.SALDO = k.SALDO - (kardex.DEBER / Config.exchangeRate)
                                                     Else
-                                                        k.SALDO = k.SALDO - (kardex.DEBER * Config.tazadecambio)
+                                                        k.SALDO = k.SALDO - (kardex.DEBER * Config.exchangeRate)
                                                     End If
                                                 End If
                                             End If

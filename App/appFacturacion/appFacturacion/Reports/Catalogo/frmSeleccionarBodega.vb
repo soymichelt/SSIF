@@ -38,15 +38,15 @@ Public Class frmSeleccionarBodega
             Using db As New CodeFirst
                 If lvRegistro.SelectedItems.Count > 0 Then
                     With lvRegistro.SelectedItems(0)
-                        Config.Usuario = db.Usuarios.Where(Function(f) f.IDUsuario = Config.Usuario.IDUsuario And f.Activo.Equals(Config.vTrue)).FirstOrDefault()
-                        If Not Config.Usuario Is Nothing Then
+                        Config.currentUser = db.Usuarios.Where(Function(f) f.IDUsuario = Config.currentUser.IDUsuario And f.Activo.Equals(Config.vTrue)).FirstOrDefault()
+                        If Not Config.currentUser Is Nothing Then
                             Dim IdBodega = .SubItems(0).Text
-                            Config._Bodega = db.Bodegas.Where(Function(f) f.IDBODEGA = IdBodega And f.ACTIVO = "S").FirstOrDefault()
-                            If Not Config._Bodega Is Nothing Then
-                                Config.bodega = IdBodega
-                                Config.nom_bodega = Config._Bodega.N_BODEGA & " - " & Config._Bodega.DESCRIPCION
-                                frmPrincipal.txtBodega.Text = Config.nom_bodega
-                                frmPrincipal.lblBodega.Text = "Sucursal: " & Config.nom_bodega
+                            Config._warehouse = db.Bodegas.Where(Function(f) f.IDBODEGA = IdBodega And f.ACTIVO = "S").FirstOrDefault()
+                            If Not Config._warehouse Is Nothing Then
+                                Config.warehouseId = IdBodega
+                                Config.warehouseName = Config._warehouse.N_BODEGA & " - " & Config._warehouse.DESCRIPCION
+                                frmPrincipal.txtBodega.Text = Config.warehouseName
+                                frmPrincipal.lblBodega.Text = "Sucursal: " & Config.warehouseName
                                 Select Case Me.frm_return
                                     Case 1
                                         frmPrincipal.Show()

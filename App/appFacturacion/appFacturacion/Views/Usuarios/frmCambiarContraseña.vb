@@ -10,18 +10,18 @@ Public Class frmCambiarContraseña
 
                 Using db As New CodeFirst
 
-                    Config.Usuario = db.Usuarios.Where(Function(f) f.NombreCuenta = Config.Usuario.NombreCuenta And f.Activo = "S").FirstOrDefault
+                    Config.currentUser = db.Usuarios.Where(Function(f) f.NombreCuenta = Config.currentUser.NombreCuenta And f.Activo = "S").FirstOrDefault
 
-                    If Not Config.Usuario Is Nothing Then
+                    If Not Config.currentUser Is Nothing Then
 
-                        Dim password = CryptoSecurity.Decoding(Config.Usuario.Contraseña)
+                        Dim password = CryptoSecurity.Decoding(Config.currentUser.Contraseña)
 
                         If password = txtActual.Text Then
 
                             If txtNueva.Text = txtConfirmar.Text Then
 
-                                Config.Usuario.Contraseña = CryptoSecurity.Encoding(txtNueva.Text)
-                                db.Entry(Config.Usuario).State = EntityState.Modified
+                                Config.currentUser.Contraseña = CryptoSecurity.Encoding(txtNueva.Text)
+                                db.Entry(Config.currentUser).State = EntityState.Modified
                                 db.SaveChanges()
                                 MessageBox.Show("Contraseña guardada correctamente")
                                 Me.Close()

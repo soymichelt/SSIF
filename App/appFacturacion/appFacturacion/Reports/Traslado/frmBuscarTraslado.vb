@@ -14,7 +14,7 @@ Public Class frmBuscarTraslado
                     item = lvRegistro.Items.Add(traslado.tra.IDTRASLADO)
                     item.SubItems.Add(traslado.ser.NOMBRE)
                     item.SubItems.Add(traslado.tra.CONSECUTIVO)
-                    item.SubItems.Add(traslado.tra.FECHATRASLADO.ToString(Config.formato_fecha))
+                    item.SubItems.Add(traslado.tra.FECHATRASLADO.ToString(Config.dateFormat))
                     item.SubItems.Add(traslado.bod.DESCRIPCION)
                     item.SubItems.Add(traslado.tra.CONCEPTO)
                     item.SubItems.Add(traslado.tra.REFERENCIA)

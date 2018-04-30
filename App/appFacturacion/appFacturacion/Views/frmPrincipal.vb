@@ -9,13 +9,13 @@ Public Class frmPrincipal
     'validar permisos de usuario
     Sub cargarPrivilegios()
         Try
-            If Not Config.Empresa Is Nothing Then
-                Config.NombreEmpresa = Config.Empresa.Nombre
-                Config.RUC = Config.Empresa.RUC
-                Config.Telefono1 = Config.Empresa.Telefono1
-                Config.Telefono2 = Config.Empresa.Telefono2
-                Config.Direccion = Config.Empresa.Direccion
-                If Config.Usuario.Administrador Then
+            If Not Config.currentBusiness Is Nothing Then
+                Config.businessName = Config.currentBusiness.Nombre
+                Config.businessRUC = Config.currentBusiness.RUC
+                Config.businessPhone1 = Config.currentBusiness.Telefono1
+                Config.businessPhone2 = Config.currentBusiness.Telefono2
+                Config.businessAddress = Config.currentBusiness.Direccion
+                If Config.currentUser.Administrador Then
                     btUsuarios.Enabled = True
                     btEmpresa.Enabled = True
                     btBodega.Enabled = True
@@ -26,11 +26,11 @@ Public Class frmPrincipal
                     btCreateBackup.Enabled = True
                     btServidor.Enabled = True
                 End If
-                If Config.Usuario.CAdministrador Then
+                If Config.currentUser.CAdministrador Then
                     btInformeUsuarios.Enabled = True
                     btBitacora.Enabled = True
                 End If
-                If Config.Usuario.Inventario Then
+                If Config.currentUser.Inventario Then
                     btMarcas.Enabled = True
                     btUnidadMedida.Enabled = True
                     btPresentacion.Enabled = True
@@ -46,7 +46,7 @@ Public Class frmPrincipal
                     btConsignar.Enabled = True
                     btDesconsignar.Enabled = True
                 End If
-                If Config.Usuario.CInventario Then
+                If Config.currentUser.CInventario Then
                     btKardex.Enabled = True
                     btValuacionInventario.Enabled = True
                     btProductWithApplication.Enabled = True
@@ -57,7 +57,7 @@ Public Class frmPrincipal
                     btBusquedaDesconsignacion.Enabled = True
                     btReporteConsignacion.Enabled = True
                 End If
-                If Config.Usuario.Venta Then
+                If Config.currentUser.Venta Then
                     btVendedores.Enabled = True
                     btBusquedaVendedor.Enabled = True
                     btVenta.Enabled = True
@@ -66,14 +66,14 @@ Public Class frmPrincipal
                     btClientes.Enabled = True
                     btBusquedaClientes.Enabled = True
                 End If
-                If Config.Usuario.CVenta Then
+                If Config.currentUser.CVenta Then
                     btBusquedaFactura.Enabled = True
                     btBusquedaDevolucion.Enabled = True
                     btBusquedaCotizacion.Enabled = True
                     btInformeVentaDetalle.Enabled = True
                     btEstadoCuenta.Enabled = True
                 End If
-                If Config.Usuario.Contabilidad Then
+                If Config.currentUser.Contabilidad Then
                     btReciboVenta.Enabled = True
                     btReciboCompra.Enabled = True
                     btPeriodoContable.Enabled = True
@@ -81,7 +81,7 @@ Public Class frmPrincipal
                     btApertura.Enabled = True
                     btCierre.Enabled = True
                 End If
-                If Config.Usuario.CContabilidad Then
+                If Config.currentUser.CContabilidad Then
                     btCuentasCobrar.Enabled = True
                     btCuentasPagar.Enabled = True
                     btBusquedaRecibo.Enabled = True
@@ -91,12 +91,12 @@ Public Class frmPrincipal
                     btBusquedaReciboCompra.Enabled = True
                     btEstadoResultados.Enabled = True
                 End If
-                If Config.Usuario.Compra Then
+                If Config.currentUser.Compra Then
                     btProveedores.Enabled = True
                     btBusquedaProveedores.Enabled = True
                     btCompra.Enabled = True
                 End If
-                If Config.Usuario.CCompra Then
+                If Config.currentUser.CCompra Then
                     btBusquedaCompra.Enabled = True
                     btDevolucionCompra.Enabled = True
                     btCPEstadoCuenta.Enabled = True
@@ -112,45 +112,45 @@ Public Class frmPrincipal
     Public Sub frmPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             rcCintaMenu.SelectedRibbonTabItem = mnuCatalogos
-            txtBodega.Text = Config.nom_bodega
-            lblNombreUsuario.Text = "Nombres: " & Config.Usuario.Nombres & " " & Config.Usuario.Apellidos
-            lblUsuario.Text = "Usuario: " & Config.Usuario.NombreCuenta
-            lblBodega.Text = "Sucursal: " & Config._Bodega.N_BODEGA & " - " & Config._Bodega.DESCRIPCION
+            txtBodega.Text = Config.warehouseName
+            lblNombreUsuario.Text = "Nombres: " & Config.currentUser.Nombres & " " & Config.currentUser.Apellidos
+            lblUsuario.Text = "Usuario: " & Config.currentUser.NombreCuenta
+            lblBodega.Text = "Sucursal: " & Config._warehouse.N_BODEGA & " - " & Config._warehouse.DESCRIPCION
             Using db As New CodeFirst
                 'IVA
-                Config._Iva = db.ImpuestosValoresAgregados.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Iva Is Nothing Then
-                    Config.iva = Config._Iva.PORCENTAJE / 100
+                Config._iva = db.ImpuestosValoresAgregados.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._iva Is Nothing Then
+                    Config.iva = Config._iva.PORCENTAJE / 100
                 Else
                     Config.iva = 0
                 End If
                 'Taza de Cambio
-                Config._Taza = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
-                If Not Config._Taza Is Nothing Then
-                    Config.tazadecambio = Config._Taza.CAMBIO
+                Config._exchangeRate = db.Tazas.OrderByDescending(Function(f) f.FECHA).FirstOrDefault()
+                If Not Config._exchangeRate Is Nothing Then
+                    Config.exchangeRate = Config._exchangeRate.CAMBIO
                 Else
-                    Config.tazadecambio = 0
+                    Config.exchangeRate = 0
                 End If
                 'Periodo Contable
-                Config._Periodo = db.Periodos.Where(Function(f) f.ACTUAL.Equals("S") And f.ACTIVO.Equals("S") And f.APERTURA IsNot Nothing).FirstOrDefault()
-                If Not Config._Periodo Is Nothing Then
-                    txtInicio.Text = Config._Periodo.INICIO.ToShortDateString
-                    txtFinal.Text = Config._Periodo.FINAL.ToShortDateString
+                Config._lapse = db.Periodos.Where(Function(f) f.ACTUAL.Equals("S") And f.ACTIVO.Equals("S") And f.APERTURA IsNot Nothing).FirstOrDefault()
+                If Not Config._lapse Is Nothing Then
+                    txtInicio.Text = Config._lapse.INICIO.ToShortDateString
+                    txtFinal.Text = Config._lapse.FINAL.ToShortDateString
                 Else
                     txtInicio.Text = "S/E"
                     txtFinal.Text = "S/E"
                 End If
                 'Empresa
-                Config.Empresa = db.Empresas.OrderBy(Function(f) f.N).ToList().LastOrDefault
-                If Not Config.Empresa Is Nothing Then
+                Config.currentBusiness = db.Empresas.OrderBy(Function(f) f.N).ToList().LastOrDefault
+                If Not Config.currentBusiness Is Nothing Then
                     Me.cargarPrivilegios()
                 Else
-                    If Config.Usuario.Administrador Then
+                    If Config.currentUser.Administrador Then
                         btEmpresa.Enabled = True
                     End If
                 End If
                 lblIva.Text = "I.V.A: " & (Config.iva * 100).ToString(Config.f_m) & " %"
-                lblTaza.Text = "Taza de Cambio: $ 1 = C$ " & (Config.tazadecambio).ToString(Config.f_m)
+                lblTaza.Text = "Taza de Cambio: $ 1 = C$ " & (Config.exchangeRate).ToString(Config.f_m)
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)

@@ -8,7 +8,7 @@ Public Class frmSeleccionarSerie
     Sub llenar(Optional ByVal descripcion As String = "")
         Try
             Using db As New CodeFirst
-                dtRegistro.DataSource = (From ser In db.Series Where ser.IDBODEGA = Config.bodega And ser.OPERACION = Me.operacion And ser.DESCRIPCION.Contains(descripcion) Select ser.IDSERIE, ser.NOMBRE, SERIE = ser.DESCRIPCION, BODEGA = ser.Bodega.N_BODEGA & " | " & ser.DESCRIPCION, ser.OPERACION).ToList()
+                dtRegistro.DataSource = (From ser In db.Series Where ser.IDBODEGA = Config.warehouseId And ser.OPERACION = Me.operacion And ser.DESCRIPCION.Contains(descripcion) Select ser.IDSERIE, ser.NOMBRE, SERIE = ser.DESCRIPCION, BODEGA = ser.Bodega.N_BODEGA & " | " & ser.DESCRIPCION, ser.OPERACION).ToList()
                 If dtRegistro.Columns.Count > 0 Then
                     dtRegistro.Columns(0).Visible = False
                     dtRegistro.Columns(1).Width = 120 : dtRegistro.Columns(1).HeaderText = vbNewLine & "SERIE" & vbNewLine

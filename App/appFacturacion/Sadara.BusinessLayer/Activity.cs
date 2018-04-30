@@ -21,7 +21,7 @@ namespace Sadara.BusinessLayer
         private static bool InstanceIsInitialized()
         {
 
-            return instance == null;
+            return instance != null;
 
         }
 
@@ -36,7 +36,7 @@ namespace Sadara.BusinessLayer
 
             get {
 
-                if (InstanceIsInitialized())
+                if (!InstanceIsInitialized())
                     InitializeInstance();
 
                 return instance;
@@ -106,6 +106,8 @@ namespace Sadara.BusinessLayer
 
         public async Task<ActivityEntity> AddAsync(ActivityEntity activity)
         {
+
+            this.Init();
 
             this.activity.Add(activity);
 

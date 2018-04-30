@@ -60,9 +60,6 @@ namespace Sadara.Models.V2.POCO
             this.Property(c => c.BusinessId)
                 .IsRequired();
 
-            this.Property(c => c.UserId)
-                .IsRequired();
-
             this.Property(c => c.IsSended)
                 .IsRequired();
 

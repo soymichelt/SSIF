@@ -78,7 +78,7 @@ Public Class frmPeriodo
                             db.SaveChanges()
                             lblActual.Text = "Período Actual: Inicio " & p.INICIO.ToShortDateString & " Final " & p.FINAL.ToShortDateString
                             btApertura.Enabled = True : btCierre.Enabled = False : btAnular.Enabled = True : btGuardar.Enabled = False : dtpInicio.Enabled = False : dtpFinal.Enabled = False
-                            Config._Periodo = p : p = Nothing
+                            Config._lapse = p : p = Nothing
                         Else
                             MessageBox.Show("El 'Período' debe estar en un rango de fecha distinto a los 'Períodos' anteriores.")
                         End If
@@ -135,7 +135,7 @@ Public Class frmPeriodo
                         dtpFinal.Enabled = False
                         btApertura.Enabled = False
                         btCierre.Enabled = True
-                        Config._Periodo = p
+                        Config._lapse = p
                         frmPrincipal.txtInicio.Text = p.INICIO.ToShortDateString()
                         frmPrincipal.txtFinal.Text = p.FINAL.ToShortDateString()
                         p = Nothing
@@ -173,7 +173,7 @@ Public Class frmPeriodo
                         btApertura.Enabled = False
                         btCierre.Enabled = False
                         lblActual.Text = "No existe ciclo actualmente"
-                        Config._Periodo = Nothing
+                        Config._lapse = Nothing
                         frmPrincipal.txtInicio.Text = "S/E"
                         frmPrincipal.txtFinal.Text = "S/E"
                     Else
