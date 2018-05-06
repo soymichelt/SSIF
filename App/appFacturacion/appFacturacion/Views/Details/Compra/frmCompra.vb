@@ -75,7 +75,16 @@ Public Class frmCompra
         End Try
     End Function
 
-    Private Sub frmCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "Purchase",
+            "Load",
+            "Load Purchase",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Me.frmCompra_Resize(Nothing, Nothing)
         Try
             txtTazaCambio.DisplayFormat = Config.f_m
@@ -1037,13 +1046,29 @@ Public Class frmCompra
                                                 End If
                                             End If
 
-
-
                                             If k.EXISTENCIA_ALMACEN <> 0 Then
                                                 k.COSTO_PROMEDIO = k.SALDO / k.EXISTENCIA_ALMACEN
                                             Else
                                                 k.COSTO_PROMEDIO = k.COSTO
                                             End If
+
+                                            'Recalculando Costo
+                                            'Dim detailId As String = k.DetailId.ToString()
+                                            'Dim detail As CompraDetalle = dbk.ComprasDetalles.Where(Function(f) f.IDDETALLECOMPRA = detailId).FirstOrDefault()
+                                            'If detail.CMONEDA.Equals(Config.cordoba) Then
+                                            '    If k.CMONEDA.Equals(Config.cordoba) Then
+
+                                            '    Else
+
+                                            '    End If
+                                            'Else
+                                            '    If k.CMONEDA.Equals(Config.cordoba) Then
+
+                                            '    Else
+
+                                            '    End If
+                                            'End If
+                                            'Fin Recalcular Costo
 
                                             dbk.Entry(k).State = EntityState.Modified
                                             ik = True

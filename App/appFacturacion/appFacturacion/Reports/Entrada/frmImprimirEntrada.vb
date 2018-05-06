@@ -3,8 +3,19 @@ Imports Sadara.Models.V1.POCO
 Imports System.Data.Entity
 
 Public Class frmImprimirEntrada
+
     Public identrada As String
-    Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Private Async Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ProductEntryPrintReport",
+            "Load",
+            "Load ProductEntryPrintReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             Using db As New CodeFirst
                 Dim entrada = db.Entradas.Where(Function(f) f.IDENTRADA = Me.identrada).FirstOrDefault

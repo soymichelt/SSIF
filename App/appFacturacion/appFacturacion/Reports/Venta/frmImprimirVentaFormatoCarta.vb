@@ -4,7 +4,15 @@ Public Class frmImprimirVentaFormatoCarta
 
     Public idventa As String
 
-    Private Sub frmImprimirVentaFormatoCarta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmImprimirVentaFormatoCarta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "SaleLetterFormatPrintReport",
+            "Load",
+            "Load SaleLetterFormatPrintReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
 
         Try
             Using db As New CodeFirst

@@ -79,10 +79,6 @@
   <ItemGroup>
     <Compile Include="Config.vb" />
     <Compile Include="Database\ModelDb.vb" />
-    <Compile Include="Migrations\201804280217324_AddTableActivities.Designer.vb">
-      <DependentUpon>201804280217324_AddTableActivities.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804280217324_AddTableActivities.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="POCO\Bodega.vb" />
     <Compile Include="POCO\Cliente.vb" />
@@ -146,9 +142,6 @@
     <Compile Include="POCO\VentaReciboDetalle.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804280217324_AddTableActivities.resx">
-      <DependentUpon>201804280217324_AddTableActivities.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

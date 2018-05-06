@@ -17,6 +17,8 @@ Namespace POCO
 
         Public Property Reg As Nullable(Of DateTime)
 
+        Public Property DetailId As Nullable(Of Guid)
+
         Public Property IDEXISTENCIA As String
 
         Public Property IDSERIE As String
@@ -58,7 +60,6 @@ Namespace POCO
         Public Property SALDO As Decimal
 
         Public Property ACTIVO As String
-
 
         Public Overridable Property Existencia As Existencia
 

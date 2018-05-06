@@ -18,20 +18,24 @@ Public Class frmInformacion
 
     Private Sub SetDataInControls()
 
-        Me.SelectBusiness(Config.currentBusiness.IdEmpresa)
+        If Config.currentBusiness IsNot Nothing Then
 
-        If Me.business IsNot Nothing Then
+            Me.SelectBusiness(Config.currentBusiness.IdEmpresa)
 
-            txtNombre.Text = business.Nombre
-            txtRuc.Text = business.RUC
-            txtTelefono1.Text = business.Telefono1
-            txtTelefono2.Text = business.Telefono2
-            txtDireccion.Text = business.Direccion
+            If Me.business IsNot Nothing Then
 
-            If business.MonedaInventario.Equals(Config.cordoba) Then
-                rdCordoba.Checked = True
-            Else
-                rdDolar.Checked = True
+                txtNombre.Text = business.Nombre
+                txtRuc.Text = business.RUC
+                txtTelefono1.Text = business.Telefono1
+                txtTelefono2.Text = business.Telefono2
+                txtDireccion.Text = business.Direccion
+
+                If business.MonedaInventario.Equals(Config.cordoba) Then
+                    rdCordoba.Checked = True
+                Else
+                    rdDolar.Checked = True
+                End If
+
             End If
 
         End If
@@ -46,7 +50,11 @@ Public Class frmInformacion
 
                 Using db As New CodeFirst
 
-                    Me.SelectBusiness(Config.currentBusiness.IdEmpresa)
+                    If Config.currentBusiness IsNot Nothing Then
+
+                        Me.SelectBusiness(Config.currentBusiness.IdEmpresa)
+
+                    End If
 
                     If Me.business IsNot Nothing Then
 

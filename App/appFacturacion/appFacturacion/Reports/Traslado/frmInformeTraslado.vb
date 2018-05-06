@@ -172,16 +172,19 @@ Public Class frmInformeTraslado
     End Sub
 
     Private Sub frmInformeEntrada_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        'If Me.LoadForm Then
-        '    If expDetalle.Expanded Then
-        '        expDetalle.Height = dtRegistro.Height / 2
-        '        dtRegistro.Height = expDetalle.Height
-        '    End If
-        'End If
         gbFecha.Left = PanelEx4.Width - gbFecha.Width - 4
     End Sub
 
-    Private Sub frmInformeEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmInformeTraslado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ProductTransferReport",
+            "Load",
+            "Load ProductTransferReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         frmInformeEntrada_Resize(Nothing, Nothing)
         Me.FormLoad = False
         'Formatos de Totales

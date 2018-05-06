@@ -176,7 +176,16 @@ Public Class frmInformeSalida
         gbFecha.Left = PanelEx4.Width - gbFecha.Width - 4
     End Sub
 
-    Private Sub frmInformeSalida_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmInformeSalida_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ProductOutputReport",
+            "Load",
+            "Load ProductOutputReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         frmInformeSalida_Resize(Nothing, Nothing)
         Me.FormLoad = False
         'Formatos de Totales

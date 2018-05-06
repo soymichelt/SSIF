@@ -3,9 +3,12 @@ Imports Sadara.Models.V1.POCO
 'Imports System.Data.Entity
 
 Public Class frmPrincipal
+
     'fin definicio de variables
     Dim salir As Boolean = False
+
     Public forzarcierre As Boolean = False
+
     'validar permisos de usuario
     Sub cargarPrivilegios()
         Try
@@ -109,6 +112,23 @@ Public Class frmPrincipal
         End Try
     End Sub
 
+    Private Async Sub RegisterActivity(ByVal type As String, ByVal activityValue As String, ByVal tag As String, Optional ByVal optionalMessage As String = Nothing)
+
+        Try
+
+            Await Sadara.BusinessLayer.Activity.Instance.AddAsync(
+                New Sadara.Models.V2.POCO.ActivityEntity() With {
+                    .Type = type,
+                    .ActivityValue = activityValue,
+                    .Tag = tag,
+                    .OptionalMessage = optionalMessage
+                }
+            )
+
+        Catch : End Try
+
+    End Sub
+
     Public Sub frmPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             rcCintaMenu.SelectedRibbonTabItem = mnuCatalogos
@@ -132,7 +152,6 @@ Public Class frmPrincipal
                     Config.exchangeRate = 0
                 End If
                 'Periodo Contable
-                Config._lapse = db.Periodos.Where(Function(f) f.ACTUAL.Equals("S") And f.ACTIVO.Equals("S") And f.APERTURA IsNot Nothing).FirstOrDefault()
                 If Not Config._lapse Is Nothing Then
                     txtInicio.Text = Config._lapse.INICIO.ToShortDateString
                     txtFinal.Text = Config._lapse.FINAL.ToShortDateString
@@ -140,8 +159,8 @@ Public Class frmPrincipal
                     txtInicio.Text = "S/E"
                     txtFinal.Text = "S/E"
                 End If
+
                 'Empresa
-                Config.currentBusiness = db.Empresas.OrderBy(Function(f) f.N).ToList().LastOrDefault
                 If Not Config.currentBusiness Is Nothing Then
                     Me.cargarPrivilegios()
                 Else
@@ -149,6 +168,7 @@ Public Class frmPrincipal
                         btEmpresa.Enabled = True
                     End If
                 End If
+
                 lblIva.Text = "I.V.A: " & (Config.iva * 100).ToString(Config.f_m) & " %"
                 lblTaza.Text = "Taza de Cambio: $ 1 = C$ " & (Config.exchangeRate).ToString(Config.f_m)
             End Using
@@ -523,7 +543,7 @@ Public Class frmPrincipal
         frmInformeRecibo.Show()
     End Sub
 
-    Private Sub btEstadoResultados_Click(sender As Object, e As EventArgs)
+    Private Sub btEstadoResultados_Click(sender As Object, e As EventArgs) Handles btEstadoResultados.Click
         frmEstadoResultados.MdiParent = Me
         frmEstadoResultados.BringToFront()
         frmEstadoResultados.Show()
@@ -732,5 +752,6 @@ Public Class frmPrincipal
     Private Sub btCreateBackup_Click(sender As Object, e As EventArgs) Handles btCreateBackup.Click
         frmBackup.ShowDialog()
     End Sub
+
 
 End Class

@@ -18,6 +18,8 @@ namespace Sadara.BusinessLayer
 
         private static Activity instance;
 
+        private static readonly object padlock = new object();
+
         private static bool InstanceIsInitialized()
         {
 
@@ -36,10 +38,15 @@ namespace Sadara.BusinessLayer
 
             get {
 
-                if (!InstanceIsInitialized())
-                    InitializeInstance();
+                lock (padlock)
+                {
 
-                return instance;
+                    if (!InstanceIsInitialized())
+                        InitializeInstance();
+
+                    return instance;
+
+                }
 
             }
 
@@ -104,23 +111,41 @@ namespace Sadara.BusinessLayer
                 
         }
 
-        public async Task<ActivityEntity> AddAsync(ActivityEntity activity)
+        public async Task<ActivityEntity> CreateAsync(ActivityEntity activityEntity)
         {
 
             this.Init();
 
-            this.activity.Add(activity);
+            activityEntity.ActivityId = Guid.NewGuid();
+
+            activityEntity.ActivityDate = DateTime.Now;
+
+            this.activity.Add(activityEntity);
 
             await this.transaction.CommitAsync();
 
-            return activity;
+            return activityEntity;
 
         }
 
-        public async Task EditAsync(ActivityEntity activity)
+        public async Task<ActivityEntity> AddAsync(ActivityEntity activityEntity)
         {
 
-            this.activity.Edit(activity);
+            var response = await await Task.Factory.StartNew(() =>
+            {
+
+                return this.CreateAsync(activityEntity);
+
+            });
+
+            return response;
+
+        }
+
+        public async Task EditAsync(ActivityEntity activityEntity)
+        {
+
+            this.activity.Edit(activityEntity);
 
             await this.transaction.CommitAsync();
 

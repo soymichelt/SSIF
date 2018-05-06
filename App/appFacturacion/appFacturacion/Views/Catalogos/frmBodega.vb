@@ -36,10 +36,23 @@ Public Class frmBodega
         btEditar.Enabled = False
         txtCodBodega.Focus()
     End Sub
-    Private Sub frmBodega_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    Private Async Sub frmBodega_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "Warehouse",
+            "Load",
+            "Load Warehouse",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Me.frmBodega_Resize(Nothing, Nothing)
+
         llenar()
+
         dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
+
     End Sub
 
     Private Sub txtBuscar_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtBuscar.KeyPress
@@ -49,7 +62,9 @@ Public Class frmBodega
     End Sub
 
     Private Sub btNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btNuevo.Click
+
         limpiar()
+
     End Sub
 
     Private Sub btGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGuardar.Click

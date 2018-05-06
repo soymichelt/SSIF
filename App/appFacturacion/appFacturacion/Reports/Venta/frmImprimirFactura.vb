@@ -15,11 +15,22 @@ Public Class frmImprimirFactura
             MessageBox.Show("Error, " & ex.Message)
         End Try
     End Sub
-    Private Sub frmImprimirFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Private Async Sub frmImprimirFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "SalePrintReport",
+            "Load",
+            "Load SalePrintReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         MostrarInforme()
     End Sub
 
     Private Sub CrystalReportViewer1_ReportRefresh(source As Object, e As CrystalDecisions.Windows.Forms.ViewerEventArgs) Handles CrystalReportViewer1.ReportRefresh
         MostrarInforme()
     End Sub
+
 End Class

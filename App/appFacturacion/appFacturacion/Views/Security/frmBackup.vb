@@ -61,4 +61,16 @@
     End Sub
 
 
+    Private Async Sub frmBackup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "Backup",
+            "Load",
+            "Load Backup",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
+    End Sub
+
 End Class

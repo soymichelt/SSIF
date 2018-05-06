@@ -178,6 +178,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Logs\Log.vb" />
     <Compile Include="Controllers\Security\CryptoSecurity.vb" />
     <Compile Include="Controllers\Security\KeyConfig.vb" />
     <Compile Include="Controllers\Security\License.vb" />
@@ -814,23 +815,11 @@
     <Compile Include="Models\Datasets\dtDatos.vb">
       <DependentUpon>dtDatos.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Entrada\frmBuscarEntrada.Designer.vb">
-      <DependentUpon>frmBuscarEntrada.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Entrada\frmBuscarEntrada.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Reports\EstadoCuenta\frmEstadoCuenta.Designer.vb">
       <DependentUpon>frmEstadoCuenta.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\EstadoCuenta\frmEstadoCuenta.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\EstadoCuenta\rptEstadoCuenta.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptEstadoCuenta.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Inventario\Kardex\frmKardex.Designer.vb">
       <DependentUpon>frmKardex.vb</DependentUpon>
@@ -856,23 +845,11 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Salida\frmBuscarSalida.Designer.vb">
-      <DependentUpon>frmBuscarSalida.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Salida\frmBuscarSalida.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Reports\Salida\rptInformeSalida.vb">
       <DependentUpon>rptInformeSalida.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\Traslado\frmBuscarTraslado.Designer.vb">
-      <DependentUpon>frmBuscarTraslado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Traslado\frmBuscarTraslado.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Traslado\rptInformeTraslado.vb">
       <DependentUpon>rptInformeTraslado.rpt</DependentUpon>
@@ -1480,15 +1457,8 @@
     <EmbeddedResource Include="Reports\Desconsignacion\frmBuscarDesconsignacion.resx">
       <DependentUpon>frmBuscarDesconsignacion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Entrada\frmBuscarEntrada.resx">
-      <DependentUpon>frmBuscarEntrada.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\EstadoCuenta\frmEstadoCuenta.resx">
       <DependentUpon>frmEstadoCuenta.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\EstadoCuenta\rptEstadoCuenta.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptEstadoCuenta.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Inventario\Kardex\frmKardex.resx">
       <DependentUpon>frmKardex.vb</DependentUpon>
@@ -1505,15 +1475,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptInformeReciboVenta.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Salida\frmBuscarSalida.resx">
-      <DependentUpon>frmBuscarSalida.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Salida\rptInformeSalida.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptInformeSalida.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Traslado\frmBuscarTraslado.resx">
-      <DependentUpon>frmBuscarTraslado.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Traslado\rptInformeTraslado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1887,6 +1851,7 @@
     <None Include="Resources\Promocion.png" />
     <None Include="Resources\Menu_Principal\Dashboard.png" />
     <None Include="Resources\Icon\Isotipo32x32.png" />
+    <None Include="Resources\Icon\Isotipo24x24.png" />
     <Content Include="Resources\Serie.png" />
     <None Include="Resources\guardar1.png" />
     <Content Include="Resources\maquina_registradora.png" />

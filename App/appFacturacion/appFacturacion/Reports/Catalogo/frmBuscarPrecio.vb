@@ -2,11 +2,22 @@
 Imports Sadara.Models.V1.POCO
 
 Public Class frmBuscarPrecio
+
     Public idproducto As String
     Public taza As Decimal
 
     Public frm_return As Integer = 0
-    Private Sub frmTipoPrecio_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    Private Async Sub frmTipoPrecio_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "PriceSearch",
+            "Load",
+            "Load PriceSearch",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             Using db As New CodeFirst
                 Dim p = db.Productos.Where(Function(f) f.IDPRODUCTO = Me.idproducto And f.ACTIVO = "S" And f.Marca.ACTIVO = "S").FirstOrDefault()

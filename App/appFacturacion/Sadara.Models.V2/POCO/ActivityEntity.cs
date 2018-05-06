@@ -14,21 +14,21 @@ namespace Sadara.Models.V2.POCO
     public class ActivityEntity
     {
 
-        public Guid AcitivityId { get; set; }
+        public Guid ActivityId { get; set; }
 
         public DateTime ActivityDate { get; set; }
 
+        public Guid BusinessId { get; set; }
+
         public string Type { get; set; }
+
+        public string Tag { get; set; }
 
         public string ActivityValue { get; set; }
 
         public string OptionalMessage { get; set; }
 
-        public string Tag { get; set; }
-
-        public Guid BusinessId { get; set; }
-
-        public Guid UserId { get; set; }
+        public Nullable<Guid> UserId { get; set; }
 
         public Boolean IsSended { get; set; }
 
@@ -42,14 +42,17 @@ namespace Sadara.Models.V2.POCO
 
             this.ToTable("tblActivities");
 
-            this.HasKey(c => c.AcitivityId);
+            this.HasKey(c => c.ActivityId);
+
+            this.Property(c => c.BusinessId)
+                .IsRequired();
 
             this.Property(c => c.ActivityDate)
                 .IsRequired();
 
             this.Property(c => c.Type)
                 .HasColumnType("varchar")
-                .HasMaxLength(10)
+                .HasMaxLength(50)
                 .IsRequired();
 
             this.Property(c => c.ActivityValue)
@@ -57,8 +60,8 @@ namespace Sadara.Models.V2.POCO
                 .HasMaxLength(50)
                 .IsRequired();
 
-            this.Property(c => c.BusinessId)
-                .IsRequired();
+            this.Property(c => c.UserId)
+                .IsOptional();
 
             this.Property(c => c.IsSended)
                 .IsRequired();

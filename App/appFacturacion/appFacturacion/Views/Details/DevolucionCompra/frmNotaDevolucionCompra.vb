@@ -74,7 +74,16 @@ Public Class frmNotaDevolucionCompra
         End Try
     End Function
 
-    Private Sub frmNotaDevolucionCompra_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Async Sub frmNotaDevolucionCompra_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ReturnPurchase",
+            "Load",
+            "Load ReturnPurchase",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Me.frmNotaDevolucionCompra_Resize(Nothing, Nothing)
         Try
             txtTazaCambio.DisplayFormat = Config.f_m

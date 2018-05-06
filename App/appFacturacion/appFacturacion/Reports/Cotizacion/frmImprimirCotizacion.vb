@@ -3,7 +3,16 @@ Imports Sadara.Models.V1.POCO
 
 Public Class frmImprimirCotizacion
     Public ID As String
-    Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "QuotationPrintReport",
+            "Load",
+            "Load QuotationPrintReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             Using db As New CodeFirst
                 Dim cotizacion = db.Cotizaciones.Where(Function(f) f.IDCOTIZACION = Me.ID).FirstOrDefault

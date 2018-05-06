@@ -24,10 +24,10 @@ Partial Class frmSalida
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim PaintStyle4 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle5 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
-        Dim PaintStyle6 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle1 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalida))
+        Dim PaintStyle2 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
+        Dim PaintStyle3 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
         Me.Menu = New System.Windows.Forms.ToolStrip()
         Me.btNuevo = New System.Windows.Forms.ToolStripButton()
         Me.btGuardar = New System.Windows.Forms.ToolStripButton()
@@ -602,9 +602,9 @@ Partial Class frmSalida
         'ElLabel8
         '
         Me.ElLabel8.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle4.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle4.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel8.FlashStyle = PaintStyle4
+        PaintStyle1.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle1.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel8.FlashStyle = PaintStyle1
         Me.ElLabel8.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel8.Location = New System.Drawing.Point(7, 6)
         Me.ElLabel8.Name = "ElLabel8"
@@ -673,9 +673,9 @@ Partial Class frmSalida
         'ElLabel1
         '
         Me.ElLabel1.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle5.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle5.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel1.FlashStyle = PaintStyle5
+        PaintStyle2.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle2.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel1.FlashStyle = PaintStyle2
         Me.ElLabel1.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel1.Location = New System.Drawing.Point(7, 31)
         Me.ElLabel1.Name = "ElLabel1"
@@ -689,9 +689,9 @@ Partial Class frmSalida
         'ElLabel4
         '
         Me.ElLabel4.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        PaintStyle6.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        PaintStyle6.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElLabel4.FlashStyle = PaintStyle6
+        PaintStyle3.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        PaintStyle3.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElLabel4.FlashStyle = PaintStyle3
         Me.ElLabel4.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ElLabel4.Location = New System.Drawing.Point(7, 6)
         Me.ElLabel4.Name = "ElLabel4"

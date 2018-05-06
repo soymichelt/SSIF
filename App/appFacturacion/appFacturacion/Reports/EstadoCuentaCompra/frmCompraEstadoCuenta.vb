@@ -155,7 +155,17 @@ Public Class frmCompraEstadoCuenta
         MostrarEstadoCuenta(DateTime.Parse(dtpFechaCorte.Text & " 23:59:59"))
     End Sub
 
-    Private Sub frmEstadoCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmEstadoCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        dtpFechaCorte.Value = DateTime.Now
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "AccountStatusPurchase",
+            "Load",
+            "Load AccountStatusPurchase",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
 
     End Sub
 

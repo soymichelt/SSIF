@@ -140,7 +140,16 @@ Public Class frmProductosVendidos
         End If
     End Sub
 
-    Private Sub frmInformeVentaDetalle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmInformeVentaDetalle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "SaleProductReport",
+            "Load",
+            "Load SaleProductReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             frmInformeVentaDetalle_Resize(Nothing, Nothing)
             txtDescuento.Value = 0.0

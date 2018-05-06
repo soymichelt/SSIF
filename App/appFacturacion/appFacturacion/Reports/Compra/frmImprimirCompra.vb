@@ -4,7 +4,16 @@ Imports System.Data.Entity
 
 Public Class frmImprimirCompra
     Public idcompra As String
-    Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmImprimirCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "PurchasePrintReport",
+            "Load",
+            "Load PurchasePrintReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             Using db As New CodeFirst
                 Dim compra = db.Compras.Where(Function(f) f.IDCOMPRA = Me.idcompra).FirstOrDefault

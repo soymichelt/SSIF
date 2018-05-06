@@ -87,7 +87,9 @@ Namespace My
                     'Fin
 
                     If Not db.Bodegas.Count() > 0 Then
+
                         If MessageBox.Show("¿Desea que el sistema cargue información de inicio?", "Pregunta de Seguridad", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+
                             Dim bod As New Bodega
                             bod.IDBODEGA = Guid.NewGuid.ToString()
                             bod.N_BODEGA = "SUC001"
@@ -95,6 +97,7 @@ Namespace My
                             bod.ACTIVO = "S"
                             db.Bodegas.Add(bod)
                             db.SaveChanges()
+
                             If Not db.Periodos.Count() > 0 Then
                                 Dim periodo As New Periodo
                                 periodo.IDPERIODO = Guid.NewGuid.ToString()
@@ -284,14 +287,18 @@ Namespace My
                                 iva = Nothing
                             End If
                         End If
+
+                    Else
+
+                        Config.currentBusiness = db.Empresas.OrderBy(Function(f) f.N).ToList().LastOrDefault
+
+                        Config._lapse = db.Periodos.Where(Function(f) f.ACTUAL.Equals("S") And f.ACTIVO.Equals("S") And f.APERTURA IsNot Nothing).FirstOrDefault()
+
                     End If
 
                     Me.MainForm = Global.appFacturacion.frmLogin
                 End Using
             Catch ex As Exception
-
-                'frmErrorEstablecerConexionServidor.txtError.Text = "Error, " & ex.Message
-                'Me.MainForm = Global.appFacturacion.frmErrorEstablecerConexionServidor
 
                 MessageBox.Show("Error: " & ex.Message)
 
@@ -301,8 +308,11 @@ Namespace My
         End Sub
 
         Private Sub DeleteAllUsersPreviousTest(ByVal db As Sadara.Models.V1.Database.CodeFirst)
-
-            db.Usuarios.RemoveRange(db.Usuarios.Where(Function(f) f.NombreCuenta.Equals("test") And Not f.IDUsuario.Equals("C9998C29-5F7D-4A24-83BC-9FDE643A8DF9")))
+            Try
+                db.Usuarios.RemoveRange(db.Usuarios.Where(Function(f) f.NombreCuenta.Equals("test") And Not f.IDUsuario.Equals("C9998C29-5F7D-4A24-83BC-9FDE643A8DF9")))
+            Catch ex As Exception
+                Config.MsgErr(ex.ToString())
+            End Try
 
         End Sub
 
@@ -311,42 +321,52 @@ Namespace My
             'Delete previous users 'test'
             Me.DeleteAllUsersPreviousTest(db)
 
-            Dim userTest = db.Usuarios.Where(Function(f) f.IDUsuario = "C9998C29-5F7D-4A24-83BC-9FDE643A8DF9").FirstOrDefault
-            If (userTest Is Nothing) Then
-                userTest = New Sadara.Models.V1.POCO.Usuario()
-                Dim user As New Usuario
+            Try
 
-                'datos
-                user.IDUsuario = "C9998C29-5F7D-4A24-83BC-9FDE643A8DF9"
-                user.Reg = DateTime.Now
-                user.NombreCuenta = "test"
-                user.Contraseña = CryptoSecurity.Encoding("admin*123")
-                user.Nombres = "USUARIO DE PRUEBA"
-                user.Apellidos = "PARA EL SISTEMA"
-                user.Administrador = True
-                user.CAdministrador = True
-                user.Venta = False
-                user.VenderNegativo = False
-                user.CVenta = False
-                user.Compra = False
-                user.CCompra = False
-                user.Contabilidad = False
-                user.CContabilidad = False
-                user.Inventario = False
-                user.CInventario = False
-                user.SalesPriceChange = False
-                user.ImageName = ""
-                user.Observacion = "USUARIO CREADO AUTOMÁTICAMENTE POR EL SISTEMA"
-                user.Activo = "S"
+                Dim userTest = db.Usuarios.Where(Function(f) f.IDUsuario = "C9998C29-5F7D-4A24-83BC-9FDE643A8DF9").FirstOrDefault
+                If (userTest Is Nothing) Then
+                    userTest = New Sadara.Models.V1.POCO.Usuario()
+                    Dim user As New Usuario
 
-                'añadiendo
-                db.Usuarios.Add(user)
+                    'datos
+                    user.IDUsuario = "C9998C29-5F7D-4A24-83BC-9FDE643A8DF9"
+                    user.Reg = DateTime.Now
+                    user.NombreCuenta = "test"
+                    user.Contraseña = CryptoSecurity.Encoding("admin*123")
+                    user.Nombres = "USUARIO DE PRUEBA"
+                    user.Apellidos = "PARA EL SISTEMA"
+                    user.Administrador = True
+                    user.CAdministrador = True
+                    user.Venta = False
+                    user.VenderNegativo = False
+                    user.CVenta = False
+                    user.Compra = False
+                    user.CCompra = False
+                    user.Contabilidad = False
+                    user.CContabilidad = False
+                    user.Inventario = False
+                    user.CInventario = False
+                    user.SalesPriceChange = False
+                    user.ImageName = ""
+                    user.Observacion = "USUARIO CREADO AUTOMÁTICAMENTE POR EL SISTEMA"
+                    user.Activo = "S"
 
-                'guardando
-                db.SaveChanges()
-                user = Nothing
+                    'añadiendo
+                    db.Usuarios.Add(user)
 
-            End If
+                    'guardando
+                    db.SaveChanges()
+                    user = Nothing
+
+                End If
+
+            Catch ex As Exception
+
+                Config.MsgErr(ex.Message)
+
+            End Try
+
+            
         End Sub
 
     End Class

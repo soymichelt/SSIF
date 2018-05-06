@@ -25,7 +25,6 @@ Partial Class frmEstadoCuenta
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEstadoCuenta))
-        Me.dtpFechaCorte = New System.Windows.Forms.DateTimePicker()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ElGroupBox2 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.rdTodas = New System.Windows.Forms.RadioButton()
@@ -47,6 +46,7 @@ Partial Class frmEstadoCuenta
         Me.btBuscar = New System.Windows.Forms.ToolStripButton()
         Me.PanelEx1 = New DevComponents.DotNetBar.PanelEx()
         Me.ElGroupBox3 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.dtpFechaCorte = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         CType(Me.ElGroupBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox2.SuspendLayout()
@@ -57,16 +57,8 @@ Partial Class frmEstadoCuenta
         Me.PanelEx1.SuspendLayout()
         CType(Me.ElGroupBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox3.SuspendLayout()
+        CType(Me.dtpFechaCorte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'dtpFechaCorte
-        '
-        Me.dtpFechaCorte.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpFechaCorte.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFechaCorte.Location = New System.Drawing.Point(122, 29)
-        Me.dtpFechaCorte.Name = "dtpFechaCorte"
-        Me.dtpFechaCorte.Size = New System.Drawing.Size(121, 20)
-        Me.dtpFechaCorte.TabIndex = 4
         '
         'Label4
         '
@@ -357,14 +349,65 @@ Partial Class frmEstadoCuenta
         Me.ElGroupBox3.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox3.CaptionStyle.TextStyle.Text = "Cortar en:"
         Me.ElGroupBox3.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox3.Controls.Add(Me.Label4)
         Me.ElGroupBox3.Controls.Add(Me.dtpFechaCorte)
+        Me.ElGroupBox3.Controls.Add(Me.Label4)
         Me.ElGroupBox3.Location = New System.Drawing.Point(12, 186)
         Me.ElGroupBox3.Name = "ElGroupBox3"
         Me.ElGroupBox3.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         Me.ElGroupBox3.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
         Me.ElGroupBox3.Size = New System.Drawing.Size(254, 59)
         Me.ElGroupBox3.TabIndex = 5
+        '
+        'dtpFechaCorte
+        '
+        '
+        '
+        '
+        Me.dtpFechaCorte.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.dtpFechaCorte.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFechaCorte.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
+        Me.dtpFechaCorte.ButtonDropDown.Visible = True
+        Me.dtpFechaCorte.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpFechaCorte.Location = New System.Drawing.Point(122, 29)
+        '
+        '
+        '
+        Me.dtpFechaCorte.MonthCalendar.AnnuallyMarkedDates = New Date(-1) {}
+        '
+        '
+        '
+        Me.dtpFechaCorte.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpFechaCorte.MonthCalendar.BackgroundStyle.Class = ""
+        Me.dtpFechaCorte.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFechaCorte.MonthCalendar.ClearButtonVisible = True
+        '
+        '
+        '
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.Class = ""
+        Me.dtpFechaCorte.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFechaCorte.MonthCalendar.DisplayMonth = New Date(2014, 12, 1, 0, 0, 0, 0)
+        Me.dtpFechaCorte.MonthCalendar.MarkedDates = New Date(-1) {}
+        Me.dtpFechaCorte.MonthCalendar.MonthlyMarkedDates = New Date(-1) {}
+        '
+        '
+        '
+        Me.dtpFechaCorte.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.dtpFechaCorte.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
+        Me.dtpFechaCorte.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.dtpFechaCorte.MonthCalendar.NavigationBackgroundStyle.Class = ""
+        Me.dtpFechaCorte.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.dtpFechaCorte.MonthCalendar.TodayButtonVisible = True
+        Me.dtpFechaCorte.MonthCalendar.WeeklyMarkedDays = New System.DayOfWeek(-1) {}
+        Me.dtpFechaCorte.Name = "dtpFechaCorte"
+        Me.dtpFechaCorte.Size = New System.Drawing.Size(121, 20)
+        Me.dtpFechaCorte.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.dtpFechaCorte.TabIndex = 6
         '
         'CrystalReportViewer1
         '
@@ -406,6 +449,7 @@ Partial Class frmEstadoCuenta
         CType(Me.ElGroupBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox3.ResumeLayout(False)
         Me.ElGroupBox3.PerformLayout()
+        CType(Me.dtpFechaCorte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -425,7 +469,6 @@ Partial Class frmEstadoCuenta
     Friend WithEvents rdTodas As System.Windows.Forms.RadioButton
     Friend WithEvents txtIdCliente As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents dtpFechaCorte As System.Windows.Forms.DateTimePicker
     Friend WithEvents Menu As System.Windows.Forms.ToolStrip
     Friend WithEvents btBuscar As System.Windows.Forms.ToolStripButton
     Friend WithEvents btLimpiar As System.Windows.Forms.ToolStripButton
@@ -433,4 +476,5 @@ Partial Class frmEstadoCuenta
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ElGroupBox3 As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
+    Friend WithEvents dtpFechaCorte As DevComponents.Editors.DateTimeAdv.DateTimeInput
 End Class

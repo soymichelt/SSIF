@@ -111,7 +111,16 @@ Public Class frmReciboVenta
         End Try
     End Function
 
-    Private Sub frmReciboVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmReciboVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "SaleReceipt",
+            "Load",
+            "Load SaleReceipt",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Me.frmReciboVenta_Resize(Nothing, Nothing)
         Try
             txtTazaCambio.DisplayFormat = Config.f_m

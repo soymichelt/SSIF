@@ -56,7 +56,16 @@ Public Class frmPagosPendientes
         End Try
     End Sub
 
-    Private Sub frmDocumentosPendientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmDocumentosPendientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "PurchaseDocumentPending",
+            "Load",
+            "Load PurchaseDocumentPending",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Llenar()
         If dtRegistro.Rows.Count > 0 Then
             dtRegistro.Focus()

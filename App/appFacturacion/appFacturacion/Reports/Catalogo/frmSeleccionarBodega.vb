@@ -2,7 +2,9 @@
 Imports Sadara.Models.V1.POCO
 
 Public Class frmSeleccionarBodega
+
     Public frm_return As Integer = 0
+
     Sub llenar(Optional ByVal n_bodega As String = "", Optional ByVal nombre As String = "")
         Try
             Using db As New CodeFirst
@@ -23,8 +25,18 @@ Public Class frmSeleccionarBodega
         End Try
     End Sub
 
-    Private Sub frmSeleccionarBodega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmSeleccionarBodega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "WarehouseSelect",
+            "Load",
+            "Load WarehouseSelect",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         llenar()
+
     End Sub
 
     Private Sub txtN_Bodega_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDescripcion.KeyPress, txtN_Bodega.KeyPress

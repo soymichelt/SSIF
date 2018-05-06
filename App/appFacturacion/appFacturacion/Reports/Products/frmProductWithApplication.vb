@@ -89,7 +89,16 @@ Public Class frmProductWithApplication
         End Try
     End Sub
 
-    Private Sub frmProductWithApplication_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmProductWithApplication_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ProductApplicationReport",
+            "Load",
+            "Load ProductApplicationReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         cmbExistencia.SelectedIndex = 0
         Try
             Using db As New CodeFirst

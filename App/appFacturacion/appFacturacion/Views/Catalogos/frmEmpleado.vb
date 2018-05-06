@@ -26,7 +26,15 @@ Public Class frmEmpleado
         txtCodTrabajador.Focus()
     End Sub
 
-    Private Sub frmEmpleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmEmpleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "Employee",
+            "Load",
+            "Load Employee",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
 
     End Sub
 

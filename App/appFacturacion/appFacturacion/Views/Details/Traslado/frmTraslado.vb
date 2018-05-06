@@ -51,7 +51,16 @@ Public Class frmTraslado
         End Try
     End Function
 
-    Private Sub frmTraslado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Async Sub frmTraslado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ProductTransfer",
+            "Load",
+            "Load ProductTransfer",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Me.frmTraslado_Resize(Nothing, Nothing)
         Try
             txtCantidad.DisplayFormat = Config.f_c

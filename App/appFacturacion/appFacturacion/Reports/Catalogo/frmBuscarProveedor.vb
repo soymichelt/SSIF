@@ -43,9 +43,19 @@ Public Class frmBuscarProveedor
         End Try
     End Sub
 
-    Private Sub frmBuscarProveedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmBuscarProveedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ProviderSearch",
+            "Load",
+            "Load ProviderSearch",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
         llenar()
+
     End Sub
 
     Private Sub btBuscar_Click(sender As Object, e As EventArgs) Handles btBuscar.Click

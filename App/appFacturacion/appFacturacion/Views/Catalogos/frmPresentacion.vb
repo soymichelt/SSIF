@@ -27,7 +27,16 @@ Public Class frmPresentacion
         btEliminar.Enabled = False
         btEditar.Enabled = False
     End Sub
-    Private Sub frmPresentacion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Async Sub frmPresentacion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "Presentation",
+            "Load",
+            "Load Presentation",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
         Me.frmPresentacion_Resize(Nothing, Nothing)
         llenar()

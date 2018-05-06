@@ -4,7 +4,16 @@ Imports System.Data.Entity
 
 Public Class frmImprimirReciboVenta
     Public idrecibo As String
-    Private Sub frmImprimirReciboVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmImprimirReciboVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "SaleReceiptPrintReport",
+            "Load",
+            "Load SaleReceiptPrintReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             Using db As New CodeFirst
                 Dim recibo = db.VentasRecibos.Where(Function(f) f.IDRECIBO = Me.idrecibo).FirstOrDefault

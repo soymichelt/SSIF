@@ -219,7 +219,16 @@ Public Class frmInformeCompras
         gbTipoVenta.Left = PanelEx4.Width - gbTipoVenta.Width - 4
     End Sub
 
-    Private Sub frmInformeVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmInformeVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "PurchaseReport",
+            "Load",
+            "Load PurchaseReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Me.FormLoad = False
         'Formatos de Totales
         txtDescuento.DisplayFormat = Config.f_m : txtDescuentoDolar.DisplayFormat = Config.f_m

@@ -4,7 +4,16 @@ Imports System.Data.Entity
 
 Public Class frmImprimirDevolucionVenta
     Public iddevolucion As String
-    Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmImprimirDevolucionVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ReturnSalePrintReport",
+            "Load",
+            "Load ReturnSalePrintReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             Using db As New CodeFirst
                 Dim devolucion = db.VentasDevoluciones.Where(Function(f) f.IDDEVOLUCION = Me.iddevolucion).FirstOrDefault

@@ -120,9 +120,19 @@ Public Class frmBuscarProductos
         End Try
     End Sub
 
-    Private Sub frmBuscarProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        llenar(txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtMarca.Text.Trim, txtNombreComercial.Text.Trim, txtLaboratorio.Text.Trim, txtDistribuidor.Text.Trim, txtForma.Text.Trim, txtUbicacion.Text.Trim)
+    Private Async Sub frmBuscarProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ProductSearch",
+            "Load",
+            "Load ProductSearch",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
+        'llenar(txtNombre.Text.Trim, txtIdOriginal.Text.Trim, txtAplicacion.Text.Trim, txtIdAlterno.Text.Trim, txtMarca.Text.Trim, txtNombreComercial.Text.Trim, txtLaboratorio.Text.Trim, txtDistribuidor.Text.Trim, txtForma.Text.Trim, txtUbicacion.Text.Trim)
         Me.FormLoad = True
+
     End Sub
 
     Private Sub txtIdAlterno_TextChanged(sender As Object, e As EventArgs) Handles txtIdAlterno.TextChanged, txtNombre.TextChanged, txtIdOriginal.TextChanged, txtAplicacion.TextChanged, txtMarca.TextChanged, txtNombreComercial.TextChanged, txtLaboratorio.TextChanged, txtForma.TextChanged, txtDistribuidor.TextChanged, txtUbicacion.TextChanged

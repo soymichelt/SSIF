@@ -56,7 +56,16 @@ Public Class frmProducto
         fs.Dispose()
     End Sub
 
-    Private Sub frmProducto_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Async Sub frmProducto_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "Product",
+            "Load",
+            "Load Product",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         If Config.currentBusiness.MonedaInventario.Equals(Config.cordoba) Then
             rdCordoba.Checked = True
         Else

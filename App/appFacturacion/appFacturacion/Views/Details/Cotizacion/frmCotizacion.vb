@@ -93,7 +93,16 @@ Public Class frmCotizacion
         End Try
     End Function
 
-    Private Sub frmFacturacion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Async Sub frmCotizacion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "Quotation",
+            "Load",
+            "Load Quotation",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Me.frmFacturacion_Resize(Nothing, Nothing)
         Try
             txtTazaCambio.DisplayFormat = Config.f_m

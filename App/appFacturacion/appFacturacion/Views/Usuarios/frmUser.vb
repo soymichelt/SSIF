@@ -46,7 +46,15 @@ Public Class frmUser
         pnImagen.Height = pnContImage.Height - pnImagen.Location.X - 31
     End Sub
 
-    Private Sub frmUser_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub frmUser_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "User",
+            "Load",
+            "Load User",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
 
     End Sub
 

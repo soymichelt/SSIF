@@ -49,7 +49,16 @@ Public Class frmBuscarEmpleado
             MessageBox.Show("Error, " & ex.Message)
         End Try
     End Sub
-    Private Sub frmBuscarVendedor_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    Private Async Sub frmBuscarVendedor_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "EmployeeSearch",
+            "Load",
+            "Load EmployeeSearch",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
 
         llenar()
 

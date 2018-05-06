@@ -138,7 +138,16 @@ Public Class frmKardex
         End Try
     End Sub
 
-    Private Sub frmKardex_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Async Sub frmKardex_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "KardexReport",
+            "Load",
+            "Load KardexReport",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
         Try
             lblNombreEmpresa.Text = Config.businessName & vbNewLine & "TARJETA AUXILIAR DE ALMACÉN"
             dtpFecha1.Value = DateTime.Now

@@ -94,4 +94,17 @@ Public Class frmCambiarContraseña
             End If
         End If
     End Sub
+
+    Private Async Sub frmCambiarContraseña_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Await Log.Instance.RegisterActivity(
+            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
+            "ChangePassword",
+            "Load",
+            "Load ChangePassword",
+            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
+        )
+
+    End Sub
+
 End Class
