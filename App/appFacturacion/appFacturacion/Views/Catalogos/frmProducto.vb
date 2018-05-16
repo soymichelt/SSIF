@@ -58,6 +58,12 @@ Public Class frmProducto
 
     Private Async Sub frmProducto_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        txtCosto.DisplayFormat = Config.f_m_e
+        txtPrecio1.DisplayFormat = Config.f_m_e
+        txtPrecio2.DisplayFormat = Config.f_m_e
+        txtPrecio3.DisplayFormat = Config.f_m_e
+        txtPrecio3.DisplayFormat = Config.f_m_e
+
         Await Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "Product",

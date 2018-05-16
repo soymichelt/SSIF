@@ -232,7 +232,7 @@ Partial Class frmPrincipal
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(193, 28)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(224, 28)
         Me.ToolStripStatusLabel2.Spring = True
         Me.ToolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2457,6 +2457,7 @@ Partial Class frmPrincipal
         Me.btCreditos.Image = Global.appFacturacion.My.Resources.Resources.Creditos
         Me.btCreditos.Name = "btCreditos"
         Me.btCreditos.Text = "Créditos"
+        Me.btCreditos.Visible = False
         '
         'styEstiloSistema
         '

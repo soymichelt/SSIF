@@ -157,6 +157,7 @@ Module Config
     Public f_m As String = "#,##0.00"
     Public f_t As String = "#,##0.00"
     Public f_m_r As String = "-(#,##0.00)"
+    Public f_m_e As String = "#,##0.0000"
 
 
     '''''''''''''''''''''''''''''''''''''''''

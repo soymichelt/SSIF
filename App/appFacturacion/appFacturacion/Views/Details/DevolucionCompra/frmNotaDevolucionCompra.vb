@@ -427,6 +427,8 @@ Public Class frmNotaDevolucionCompra
                                             Exit Sub
                                         End If
                                     End If
+
+                                    'creación detalle
                                     d = New CompraDevolucionDetalle
                                     d.IDDETALLEDEVOLUCION = Guid.NewGuid.ToString()
                                     d.CMONEDA = producto.Producto.CMONEDA
@@ -454,6 +456,9 @@ Public Class frmNotaDevolucionCompra
                                     d.IDEXISTENCIA = item.IDEXISTENCIA
                                     d.IDDEVOLUCION = v.IDDEVOLUCION
                                     db.ComprasDevolucionesDetalles.Add(d)
+                                    'fin detalle
+
+                                    'kardex
                                     Dim k As New Kardex
                                     k.IDKARDEX = Guid.NewGuid.ToString()
                                     k.IDEXISTENCIA = producto.IDEXISTENCIA

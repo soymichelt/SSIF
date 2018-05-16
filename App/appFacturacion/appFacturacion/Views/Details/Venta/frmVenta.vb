@@ -570,9 +570,35 @@ Public Class frmVenta
                                         End If
                                     End If
                                     'fin validar costo
-                                    d = New VentaDetalle : d.IDDETALLEVENTA = Guid.NewGuid.ToString()
+
+                                    'creación de detalle
+                                    d = New VentaDetalle
+                                    d.IDDETALLEVENTA = Guid.NewGuid.ToString()
                                     d.CMONEDA = producto.Producto.CMONEDA
-                                    d.COSTO = producto.Producto.COSTO : d.EXISTENCIA_PRODUCTO = producto.CANTIDAD : d.CANTIDAD = item.CANTIDAD : d.PRECIOUNITARIO_D = item.PRECIOUNITARIO_D : d.PRECIOUNITARIO_C = item.PRECIOUNITARIO_C : d.DESCUENTO_POR = item.DESCUENTO_POR : d.DESCUENTO_DIN_C = item.DESCUENTO_DIN_C : d.DESCUENTO_DIN_D = item.DESCUENTO_DIN_D : d.DESCUENTO_DIN_TOTAL_C = item.DESCUENTO_DIN_TOTAL_C : d.DESCUENTO_DIN_TOTAL_D = item.DESCUENTO_DIN_TOTAL_D : d.PRECIONETO_C = item.PRECIONETO_C : d.PRECIONETO_D = item.PRECIONETO_D : d.SUBTOTAL_C = item.SUBTOTAL_C : d.SUBTOTAL_D = item.SUBTOTAL_D : d.IVA_POR = item.IVA_POR : d.IVA_DIN_C = item.IVA_DIN_C : d.IVA_DIN_D = item.IVA_DIN_D : d.IVA_DIN_TOTAL_C = item.IVA_DIN_TOTAL_C : d.IVA_DIN_TOTAL_D = item.IVA_DIN_TOTAL_D : d.TOTAL_C = item.TOTAL_C : d.TOTAL_D = item.TOTAL_D : d.IDEXISTENCIA = item.IDEXISTENCIA : d.IDVENTA = v.IDVENTA
+                                    d.COSTO = producto.Producto.COSTO
+                                    d.EXISTENCIA_PRODUCTO = producto.CANTIDAD
+                                    d.CANTIDAD = item.CANTIDAD
+                                    d.PRECIOUNITARIO_D = item.PRECIOUNITARIO_D
+                                    d.PRECIOUNITARIO_C = item.PRECIOUNITARIO_C
+                                    d.DESCUENTO_POR = item.DESCUENTO_POR
+                                    d.DESCUENTO_DIN_C = item.DESCUENTO_DIN_C
+                                    d.DESCUENTO_DIN_D = item.DESCUENTO_DIN_D
+                                    d.DESCUENTO_DIN_TOTAL_C = item.DESCUENTO_DIN_TOTAL_C
+                                    d.DESCUENTO_DIN_TOTAL_D = item.DESCUENTO_DIN_TOTAL_D
+                                    d.PRECIONETO_C = item.PRECIONETO_C
+                                    d.PRECIONETO_D = item.PRECIONETO_D
+                                    d.SUBTOTAL_C = item.SUBTOTAL_C
+                                    d.SUBTOTAL_D = item.SUBTOTAL_D
+                                    d.IVA_POR = item.IVA_POR
+                                    d.IVA_DIN_C = item.IVA_DIN_C
+                                    d.IVA_DIN_D = item.IVA_DIN_D
+                                    d.IVA_DIN_TOTAL_C = item.IVA_DIN_TOTAL_C
+                                    d.IVA_DIN_TOTAL_D = item.IVA_DIN_TOTAL_D
+                                    d.TOTAL_C = item.TOTAL_C
+                                    d.TOTAL_D = item.TOTAL_D
+                                    d.IDEXISTENCIA = item.IDEXISTENCIA
+                                    d.IDVENTA = v.IDVENTA
+                                    'fin creación de detalle
 
                                     If v.MONEDA = d.CMONEDA Then
                                         v.COSTO_TOTAL = v.COSTO_TOTAL + (d.CANTIDAD * d.COSTO)

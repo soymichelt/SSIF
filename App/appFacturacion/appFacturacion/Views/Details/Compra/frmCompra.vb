@@ -1025,58 +1025,51 @@ Public Class frmCompra
 
                                     Dim ik As Boolean = False
 
-                                    For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
+                                    For Each itemKardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
 
-                                        For Each k In dbk.Kardexs.Where(Function(f) f.N > kardex.N And f.IDEXISTENCIA = kardex.IDEXISTENCIA)
+                                        Dim postKardexs = dbk.Kardexs.Where(Function(f) f.N > itemKardex.N And f.IDEXISTENCIA = itemKardex.IDEXISTENCIA).ToList()
 
-                                            k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR - kardex.ENTRADA
-                                            k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN - kardex.ENTRADA
+                                        For Each postItemKardex In postKardexs
 
-                                            If k.EXISTENCIA_ALMACEN = 0 Then
-                                                k.SALDO = 0
+                                            Dim currentItemKardex = dbk.Kardexs.Where(Function(f) f.IDKARDEX = postItemKardex.IDKARDEX).FirstOrDefault()
+
+                                            currentItemKardex.EXISTENCIA_ANTERIOR = currentItemKardex.EXISTENCIA_ANTERIOR - itemKardex.ENTRADA
+                                            currentItemKardex.EXISTENCIA_ALMACEN = currentItemKardex.EXISTENCIA_ALMACEN - itemKardex.ENTRADA
+
+                                            If currentItemKardex.EXISTENCIA_ALMACEN = 0 Then
+                                                currentItemKardex.SALDO = 0
                                             Else
-                                                If k.CMONEDA.Equals(kardex.CMONEDA) Then
-                                                    k.SALDO = k.SALDO - kardex.DEBER
+                                                If currentItemKardex.CMONEDA.Equals(itemKardex.CMONEDA) Then
+                                                    currentItemKardex.SALDO = currentItemKardex.SALDO - itemKardex.DEBER
                                                 Else
-                                                    If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                                        k.SALDO = k.SALDO - (kardex.DEBER / kardex.TAZACAMBIO)
+                                                    If itemKardex.CMONEDA.Equals(Config.cordoba) Then
+                                                        currentItemKardex.SALDO = currentItemKardex.SALDO - (itemKardex.DEBER / itemKardex.TAZACAMBIO)
                                                     Else
-                                                        k.SALDO = k.SALDO - (kardex.DEBER * kardex.TAZACAMBIO)
+                                                        currentItemKardex.SALDO = currentItemKardex.SALDO - (itemKardex.DEBER * itemKardex.TAZACAMBIO)
                                                     End If
                                                 End If
                                             End If
 
-                                            If k.EXISTENCIA_ALMACEN <> 0 Then
-                                                k.COSTO_PROMEDIO = k.SALDO / k.EXISTENCIA_ALMACEN
+                                            If currentItemKardex.EXISTENCIA_ALMACEN <> 0 Then
+                                                currentItemKardex.COSTO_PROMEDIO = currentItemKardex.SALDO / currentItemKardex.EXISTENCIA_ALMACEN
                                             Else
-                                                k.COSTO_PROMEDIO = k.COSTO
+                                                currentItemKardex.COSTO_PROMEDIO = currentItemKardex.COSTO
                                             End If
 
                                             'Recalculando Costo
-                                            'Dim detailId As String = k.DetailId.ToString()
-                                            'Dim detail As CompraDetalle = dbk.ComprasDetalles.Where(Function(f) f.IDDETALLECOMPRA = detailId).FirstOrDefault()
-                                            'If detail.CMONEDA.Equals(Config.cordoba) Then
-                                            '    If k.CMONEDA.Equals(Config.cordoba) Then
-
-                                            '    Else
-
-                                            '    End If
-                                            'Else
-                                            '    If k.CMONEDA.Equals(Config.cordoba) Then
-
-                                            '    Else
-
-                                            '    End If
-                                            'End If
+                                            'RecalculateCost(currentItemKardex, dbk)
                                             'Fin Recalcular Costo
 
-                                            dbk.Entry(k).State = EntityState.Modified
+                                            dbk.Entry(currentItemKardex).State = EntityState.Modified
                                             ik = True
 
                                         Next
-                                        kardex.ACTIVO = "N" : db.Entry(kardex).State = EntityState.Modified
+                                        itemKardex.ACTIVO = "N" : db.Entry(itemKardex).State = EntityState.Modified
                                     Next
+
+
                                     If ik Then
+                                        Config.MsgErr("Michel aquí")
                                         dbk.SaveChanges()
                                     End If
                                     db.SaveChanges() : MessageBox.Show("Compra Anulada") : limpiar()
@@ -1100,40 +1093,152 @@ Public Class frmCompra
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Error, " & ex.Message)
+            MessageBox.Show("Error, " & ex.ToString())
         End Try
     End Sub
 
-    Private Sub RecalculateCost(ByVal type As String, ByVal kardex As Kardex, ByVal db As CodeFirst)
+    Private Sub RecalculateCost(ByVal kardex As Kardex, ByVal db As CodeFirst)
 
-        Select Case type
+        Select Case kardex.OPERACION
 
-            Case "COMPRA CONTADO" Or "COMPRA CREDITO"
+            Case "VENTA CONTADO", "VENTA CREDITO"
 
-                Dim purchase = (From c In db.Compras
-                                Join d In db.ComprasDetalles On c.IDCOMPRA Equals d.IDCOMPRA
+                Config.MsgErr("Michel aquí 2")
+                Dim saleDetail = (From c In db.Ventas
+                                Join d In db.VentasDetalles On c.IDVENTA Equals d.IDVENTA
                                 Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
                                 Select d).FirstOrDefault()
 
-                If purchase IsNot Nothing Then
+                If saleDetail IsNot Nothing Then
 
                     'aquí se calcula el costo
+                    If saleDetail.CMONEDA.Equals(Config.cordoba) Then
+                        saleDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO,
+                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                    Else
+                        saleDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
+                                              kardex.COSTO_PROMEDIO)
+                    End If
+                    db.Entry(saleDetail).State = EntityState.Modified
 
                 End If
 
-            Case "VENTA CONTADO"
-
-            Case "VENTA CREDITO"
-
             Case "ENTRADA"
+
+                Dim entryDetail = (From c In db.Entradas
+                                Join d In db.EntradasDetalles On c.IDENTRADA Equals d.IDENTRADA
+                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
+                                Select d).FirstOrDefault()
+
+                If entryDetail IsNot Nothing Then
+
+                    'aquí se calcula el costo
+                    If entryDetail.CMONEDA.Equals(Config.cordoba) Then
+                        entryDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO,
+                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                    Else
+                        entryDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
+                                              kardex.COSTO_PROMEDIO)
+                    End If
+                    db.Entry(entryDetail).State = EntityState.Modified
+
+                End If
 
             Case "SALIDA"
 
+                Dim outputDetail = (From c In db.Salidas
+                                Join d In db.SalidasDetalles On c.IDSALIDA Equals d.IDSALIDA
+                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
+                                Select d).FirstOrDefault()
+
+                If outputDetail IsNot Nothing Then
+
+                    'aquí se calcula el costo
+                    If outputDetail.CMONEDA.Equals(Config.cordoba) Then
+                        outputDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO,
+                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                    Else
+                        outputDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
+                                              kardex.COSTO_PROMEDIO)
+                    End If
+                    db.Entry(outputDetail).State = EntityState.Modified
+
+                End If
+
             Case "TRASLADO"
+
+                Dim transferDetail = (From c In db.Traslados
+                                Join d In db.TrasladosDetalles On c.IDTRASLADO Equals d.IDTRASLADO
+                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
+                                Select d).FirstOrDefault()
+
+                If transferDetail IsNot Nothing Then
+
+                    'aquí se calcula el costo
+                    If transferDetail.CMONEDA.Equals(Config.cordoba) Then
+                        transferDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO,
+                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                    Else
+                        transferDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
+                                              kardex.COSTO_PROMEDIO)
+                    End If
+                    db.Entry(transferDetail).State = EntityState.Modified
+
+                End If
 
             Case "DEVOLUCION VENTA"
 
+                Dim saleReturnDetail = (From c In db.VentasDevoluciones
+                                Join d In db.VentasDevolucionesDetalles On c.IDDEVOLUCION Equals d.IDDEVOLUCION
+                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
+                                Select d).FirstOrDefault()
+
+                If saleReturnDetail IsNot Nothing Then
+
+                    'aquí se calcula el costo
+                    If saleReturnDetail.CMONEDA.Equals(Config.cordoba) Then
+                        saleReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO,
+                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                    Else
+                        saleReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
+                                              kardex.COSTO_PROMEDIO)
+                    End If
+                    db.Entry(saleReturnDetail).State = EntityState.Modified
+
+                End If
+
             Case "DEVOLUCION COMPRA"
+
+                Dim purchaseReturnDetail = (From c In db.ComprasDevoluciones
+                                Join d In db.ComprasDevolucionesDetalles On c.IDDEVOLUCION Equals d.IDDEVOLUCION
+                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
+                                Select d).FirstOrDefault()
+
+                If purchaseReturnDetail IsNot Nothing Then
+
+                    'aquí se calcula el costo
+                    If purchaseReturnDetail.CMONEDA.Equals(Config.cordoba) Then
+                        purchaseReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO,
+                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                    Else
+                        purchaseReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
+                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
+                                              kardex.COSTO_PROMEDIO)
+                    End If
+                    db.Entry(purchaseReturnDetail).State = EntityState.Modified
+
+                End If
 
         End Select
 
