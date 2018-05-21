@@ -116,8 +116,7 @@ Public Class frmLogin
                             "Login",
                             "Enter",
                             "Enter Login",
-                            "User - Failed",
-                            Guid.Parse(User.IDUsuario)
+                            "User - Failed"
                         )
 
                         MessageBox.Show("No se encuentra ningún usuario con este nombre")

@@ -981,8 +981,54 @@ Public Class frmCompra
                                     db.Entry(estado).State = EntityState.Modified
                                 Next
 
+
+
+                                'Recorrer listado de productos de kardexs de esta compra
+                                For Each kardexItemForThisPurchase In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text).ToList()
+
+                                    'acumuladores de costos
+                                    Dim accumulatedCostToDebit = 0, accumulatedCostToAcredit As Decimal = 0
+
+                                    'item actual
+                                    Dim kardexSelectedForThisPurchase = db.Kardexs.Where(Function(f) f.IDKARDEX = kardexItemForThisPurchase.IDKARDEX).Include(Function(f) f.Existencia).First()
+
+                                    Dim postKardexs = db.Kardexs.Where(Function(f) f.N > kardexSelectedForThisPurchase.N And f.IDEXISTENCIA = kardexSelectedForThisPurchase.IDEXISTENCIA).OrderBy(Function(f) f.N).ToList()
+
+                                    For Each postItemKardex In postKardexs
+
+                                        Dim currentPostItemKardex = db.Kardexs.Where(Function(f) f.IDKARDEX = postItemKardex.IDKARDEX).FirstOrDefault()
+
+                                        currentPostItemKardex.EXISTENCIA_ANTERIOR = currentPostItemKardex.EXISTENCIA_ANTERIOR - kardexSelectedForThisPurchase.ENTRADA
+                                        currentPostItemKardex.EXISTENCIA_ALMACEN = currentPostItemKardex.EXISTENCIA_ALMACEN - kardexSelectedForThisPurchase.ENTRADA
+
+                                        'Recalculando Costo
+                                        RecalculateCost(
+                                            currentPostItemKardex,
+                                            kardexSelectedForThisPurchase,
+                                            db,
+                                            accumulatedCostToDebit,
+                                            accumulatedCostToAcredit
+                                        )
+                                        'Fin Recalcular Costo
+
+                                        db.Entry(currentPostItemKardex).State = EntityState.Modified
+
+                                    Next
+
+                                    Dim productForKardexItem = kardexSelectedForThisPurchase.Existencia.Producto
+
+                                    productForKardexItem.SALDO += (accumulatedCostToDebit - accumulatedCostToAcredit)
+
+                                    kardexSelectedForThisPurchase.ACTIVO = "N" : db.Entry(kardexSelectedForThisPurchase).State = EntityState.Modified
+
+                                Next
+
+
+                                'Costo General
                                 'Sacando productos del inventario
-                                For Each item In v.ComprasDetalles
+                                For Each compraDetalle In v.ComprasDetalles.ToList()
+
+                                    Dim item = db.ComprasDetalles.Find(compraDetalle.IDDETALLECOMPRA)
 
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
                                     item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD - item.CANTIDAD
@@ -1019,61 +1065,13 @@ Public Class frmCompra
                                     db.Entry(item).State = EntityState.Modified
 
                                 Next
-
-                                'Anulando Kardex
-                                Using dbk As New CodeFirst
-
-                                    Dim ik As Boolean = False
-
-                                    For Each itemKardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
-
-                                        Dim postKardexs = dbk.Kardexs.Where(Function(f) f.N > itemKardex.N And f.IDEXISTENCIA = itemKardex.IDEXISTENCIA).ToList()
-
-                                        For Each postItemKardex In postKardexs
-
-                                            Dim currentItemKardex = dbk.Kardexs.Where(Function(f) f.IDKARDEX = postItemKardex.IDKARDEX).FirstOrDefault()
-
-                                            currentItemKardex.EXISTENCIA_ANTERIOR = currentItemKardex.EXISTENCIA_ANTERIOR - itemKardex.ENTRADA
-                                            currentItemKardex.EXISTENCIA_ALMACEN = currentItemKardex.EXISTENCIA_ALMACEN - itemKardex.ENTRADA
-
-                                            If currentItemKardex.EXISTENCIA_ALMACEN = 0 Then
-                                                currentItemKardex.SALDO = 0
-                                            Else
-                                                If currentItemKardex.CMONEDA.Equals(itemKardex.CMONEDA) Then
-                                                    currentItemKardex.SALDO = currentItemKardex.SALDO - itemKardex.DEBER
-                                                Else
-                                                    If itemKardex.CMONEDA.Equals(Config.cordoba) Then
-                                                        currentItemKardex.SALDO = currentItemKardex.SALDO - (itemKardex.DEBER / itemKardex.TAZACAMBIO)
-                                                    Else
-                                                        currentItemKardex.SALDO = currentItemKardex.SALDO - (itemKardex.DEBER * itemKardex.TAZACAMBIO)
-                                                    End If
-                                                End If
-                                            End If
-
-                                            If currentItemKardex.EXISTENCIA_ALMACEN <> 0 Then
-                                                currentItemKardex.COSTO_PROMEDIO = currentItemKardex.SALDO / currentItemKardex.EXISTENCIA_ALMACEN
-                                            Else
-                                                currentItemKardex.COSTO_PROMEDIO = currentItemKardex.COSTO
-                                            End If
-
-                                            'Recalculando Costo
-                                            'RecalculateCost(currentItemKardex, dbk)
-                                            'Fin Recalcular Costo
-
-                                            dbk.Entry(currentItemKardex).State = EntityState.Modified
-                                            ik = True
-
-                                        Next
-                                        itemKardex.ACTIVO = "N" : db.Entry(itemKardex).State = EntityState.Modified
-                                    Next
+                                'Final Costo General
 
 
-                                    If ik Then
-                                        Config.MsgErr("Michel aquí")
-                                        dbk.SaveChanges()
-                                    End If
-                                    db.SaveChanges() : MessageBox.Show("Compra Anulada") : limpiar()
-                                End Using
+
+                                db.SaveChanges() : MessageBox.Show("Compra Anulada") : limpiar()
+
+
 
                                 'Se elimina el objeto
                                 v = Nothing
@@ -1097,52 +1095,269 @@ Public Class frmCompra
         End Try
     End Sub
 
-    Private Sub RecalculateCost(ByVal kardex As Kardex, ByVal db As CodeFirst)
+    Private Sub RecalculateQuantityToDebit(ByRef currentPostItemKardex As Kardex, ByRef itemKardexToRemove As Kardex, ByRef accumulatedCostToDebit As Decimal, ByRef accumulatedCostToAcredit As Decimal, Optional ByVal withAverageCost As Boolean = False)
 
-        Select Case kardex.OPERACION
+        If currentPostItemKardex.EXISTENCIA_ALMACEN = 0 Then
+
+            currentPostItemKardex.SALDO = 0
+            currentPostItemKardex.COSTO_PROMEDIO = 0
+
+        Else
+
+            Dim quantityOfMoney = If(itemKardexToRemove.DEBER > 0, itemKardexToRemove.DEBER * -1, itemKardexToRemove.HABER)
+            Dim typeMovement = If(currentPostItemKardex.DEBER > 0, True, False)
+
+            If Config.currentBusiness.MonedaInventario.Equals(itemKardexToRemove.CMONEDA) Then
+
+                If withAverageCost Then
+
+                    currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + itemKardexToRemove.DEBER - currentPostItemKardex.DEBER
+                    currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR
+                    currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO
+
+                    If typeMovement Then
+
+                        currentPostItemKardex.DEBER = currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + currentPostItemKardex.DEBER
+
+                    Else
+
+                        currentPostItemKardex.HABER = currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - currentPostItemKardex.DEBER
+
+                    End If
+
+                Else
+
+                    currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + quantityOfMoney
+                    currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ALMACEN
+
+                End If
+
+            Else
+
+                If itemKardexToRemove.CMONEDA.Equals(Config.cordoba) Then
+
+                    If withAverageCost Then
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (itemKardexToRemove.DEBER / itemKardexToRemove.TAZACAMBIO) - If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba), currentPostItemKardex.DEBER / currentPostItemKardex.TAZACAMBIO, currentPostItemKardex.DEBER)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR
+                        currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO
+
+                        If typeMovement Then
+
+                            currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (currentPostItemKardex.DEBER / currentPostItemKardex.TAZACAMBIO)
+
+                        Else
+
+                            currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (currentPostItemKardex.HABER / currentPostItemKardex.TAZACAMBIO)
+
+                        End If
+
+                    Else
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney / itemKardexToRemove.TAZACAMBIO)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ALMACEN
+
+                    End If
+
+                Else
+
+                    If withAverageCost Then
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (itemKardexToRemove.DEBER * itemKardexToRemove.TAZACAMBIO) - If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba), currentPostItemKardex.DEBER, currentPostItemKardex.DEBER * currentPostItemKardex.TAZACAMBIO)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR
+                        currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO
+
+                        If typeMovement Then
+
+                            currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (currentPostItemKardex.DEBER * currentPostItemKardex.TAZACAMBIO)
+
+                        Else
+
+                            currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER * currentPostItemKardex.TAZACAMBIO)
+
+                        End If
+
+                    Else
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney * itemKardexToRemove.TAZACAMBIO)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ALMACEN
+
+                    End If
+
+                End If
+
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub RecalculateQuantityToAcredit(ByRef currentPostItemKardex As Kardex, ByRef itemKardexToRemove As Kardex, ByRef accumulatedCostToDebit As Decimal, ByRef AccumulatedCostToAcredit As Decimal, Optional ByVal withAverageCost As Boolean = False)
+
+        If currentPostItemKardex.EXISTENCIA_ALMACEN = 0 Then
+
+            currentPostItemKardex.SALDO = 0
+            currentPostItemKardex.COSTO_PROMEDIO = 0
+
+        Else
+
+            Dim quantityOfMoney = If(itemKardexToRemove.DEBER > 0, itemKardexToRemove.DEBER * -1, itemKardexToRemove.HABER)
+            Dim typeMovement = If(currentPostItemKardex.DEBER > 0, True, False)
+
+            If Config.currentBusiness.MonedaInventario.Equals(itemKardexToRemove.CMONEDA) Then
+
+                If withAverageCost Then
+                    currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + quantityOfMoney + currentPostItemKardex.HABER
+                    currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR
+                    currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO
+
+                    If typeMovement Then
+
+                        currentPostItemKardex.DEBER = currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + currentPostItemKardex.DEBER
+
+                    Else
+
+                        currentPostItemKardex.HABER = currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - currentPostItemKardex.HABER
+
+                    End If
+
+                Else
+
+                    currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + quantityOfMoney
+                    currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ALMACEN
+
+                End If
+
+            Else
+
+                If itemKardexToRemove.CMONEDA.Equals(Config.cordoba) Then
+
+                    If withAverageCost Then
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney / itemKardexToRemove.TAZACAMBIO) + If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba), currentPostItemKardex.HABER / currentPostItemKardex.TAZACAMBIO, currentPostItemKardex.HABER)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / (currentPostItemKardex.EXISTENCIA_ANTERIOR)
+                        currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO
+
+                        If typeMovement Then
+
+                            currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (currentPostItemKardex.DEBER / currentPostItemKardex.TAZACAMBIO)
+
+                        Else
+
+                            currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER / currentPostItemKardex.TAZACAMBIO)
+
+                        End If
+
+                    Else
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney / itemKardexToRemove.TAZACAMBIO)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ALMACEN
+
+                    End If
+
+                Else
+
+                    If withAverageCost Then
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (itemKardexToRemove.HABER * itemKardexToRemove.TAZACAMBIO) + If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba), currentPostItemKardex.HABER, currentPostItemKardex.HABER * currentPostItemKardex.TAZACAMBIO)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR
+                        currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO
+
+                        If typeMovement Then
+
+                            currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney * currentPostItemKardex.TAZACAMBIO)
+
+                        Else
+
+                            currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO
+                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER * currentPostItemKardex.TAZACAMBIO)
+
+                        End If
+
+                    Else
+
+                        currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney * itemKardexToRemove.TAZACAMBIO)
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ALMACEN
+
+                    End If
+
+                End If
+
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub RecalculateCost(ByRef currentPostItemKardex As Kardex, ByRef itemKardex As Kardex, ByRef db As CodeFirst, ByRef accumulatedCostToDebit As Decimal, ByRef accumulatedCostToAcredit As Decimal)
+
+        Dim serieId = currentPostItemKardex.IDSERIE,
+            nDocumento = currentPostItemKardex.N_DOCUMENTO,
+            existenciaId = currentPostItemKardex.IDEXISTENCIA
+
+        Select Case currentPostItemKardex.OPERACION
+
+            Case "COMPRA CONTADO", "COMPRA CREDITO"
+
+                Me.RecalculateQuantityToDebit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit)
 
             Case "VENTA CONTADO", "VENTA CREDITO"
 
-                Config.MsgErr("Michel aquí 2")
+                Me.RecalculateQuantityToAcredit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit, True)
+
                 Dim saleDetail = (From c In db.Ventas
-                                Join d In db.VentasDetalles On c.IDVENTA Equals d.IDVENTA
-                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
-                                Select d).FirstOrDefault()
+                                  Join d In db.VentasDetalles On c.IDVENTA Equals d.IDVENTA
+                                  Where c.IDSERIE = serieId And c.CONSECUTIVO = nDocumento And d.IDEXISTENCIA = existenciaId
+                                  Select d).FirstOrDefault()
 
                 If saleDetail IsNot Nothing Then
 
                     'aquí se calcula el costo
                     If saleDetail.CMONEDA.Equals(Config.cordoba) Then
-                        saleDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO,
-                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                        saleDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO * currentPostItemKardex.TAZACAMBIO)
                     Else
-                        saleDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
-                                              kardex.COSTO_PROMEDIO)
+                        saleDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO / currentPostItemKardex.TAZACAMBIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO)
                     End If
+
                     db.Entry(saleDetail).State = EntityState.Modified
 
                 End If
 
             Case "ENTRADA"
 
+                Me.RecalculateQuantityToDebit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit, True)
+
                 Dim entryDetail = (From c In db.Entradas
-                                Join d In db.EntradasDetalles On c.IDENTRADA Equals d.IDENTRADA
-                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
-                                Select d).FirstOrDefault()
+                                   Join d In db.EntradasDetalles On c.IDENTRADA Equals d.IDENTRADA
+                                   Where c.IDSERIE = serieId And c.CONSECUTIVO = nDocumento And d.IDEXISTENCIA = existenciaId
+                                   Select d).FirstOrDefault()
 
                 If entryDetail IsNot Nothing Then
 
                     'aquí se calcula el costo
                     If entryDetail.CMONEDA.Equals(Config.cordoba) Then
-                        entryDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO,
-                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                        entryDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO * currentPostItemKardex.TAZACAMBIO)
                     Else
-                        entryDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
-                                              kardex.COSTO_PROMEDIO)
+                        entryDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO / currentPostItemKardex.TAZACAMBIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO)
                     End If
                     db.Entry(entryDetail).State = EntityState.Modified
 
@@ -1150,22 +1365,24 @@ Public Class frmCompra
 
             Case "SALIDA"
 
+                Me.RecalculateQuantityToAcredit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit, True)
+
                 Dim outputDetail = (From c In db.Salidas
-                                Join d In db.SalidasDetalles On c.IDSALIDA Equals d.IDSALIDA
-                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
-                                Select d).FirstOrDefault()
+                                    Join d In db.SalidasDetalles On c.IDSALIDA Equals d.IDSALIDA
+                                    Where c.IDSERIE = serieId And c.CONSECUTIVO = nDocumento And d.IDEXISTENCIA = existenciaId
+                                    Select d).FirstOrDefault()
 
                 If outputDetail IsNot Nothing Then
 
                     'aquí se calcula el costo
                     If outputDetail.CMONEDA.Equals(Config.cordoba) Then
-                        outputDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO,
-                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                        outputDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO * currentPostItemKardex.TAZACAMBIO)
                     Else
-                        outputDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
-                                              kardex.COSTO_PROMEDIO)
+                        outputDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO / currentPostItemKardex.TAZACAMBIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO)
                     End If
                     db.Entry(outputDetail).State = EntityState.Modified
 
@@ -1173,22 +1390,29 @@ Public Class frmCompra
 
             Case "TRASLADO"
 
+                If currentPostItemKardex.DEBER > 0 Then
+                    Me.RecalculateQuantityToDebit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit, True)
+                End If
+                If currentPostItemKardex.HABER > 0 Then
+                    Me.RecalculateQuantityToAcredit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit, True)
+                End If
+
                 Dim transferDetail = (From c In db.Traslados
-                                Join d In db.TrasladosDetalles On c.IDTRASLADO Equals d.IDTRASLADO
-                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
-                                Select d).FirstOrDefault()
+                                      Join d In db.TrasladosDetalles On c.IDTRASLADO Equals d.IDTRASLADO
+                                      Where c.IDSERIE = serieId And c.CONSECUTIVO = nDocumento And d.IDEXISTENCIA = existenciaId
+                                      Select d).FirstOrDefault()
 
                 If transferDetail IsNot Nothing Then
 
                     'aquí se calcula el costo
                     If transferDetail.CMONEDA.Equals(Config.cordoba) Then
-                        transferDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO,
-                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                        transferDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO * currentPostItemKardex.TAZACAMBIO)
                     Else
-                        transferDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
-                                              kardex.COSTO_PROMEDIO)
+                        transferDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO / currentPostItemKardex.TAZACAMBIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO)
                     End If
                     db.Entry(transferDetail).State = EntityState.Modified
 
@@ -1196,22 +1420,24 @@ Public Class frmCompra
 
             Case "DEVOLUCION VENTA"
 
+                Me.RecalculateQuantityToDebit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit, True)
+
                 Dim saleReturnDetail = (From c In db.VentasDevoluciones
-                                Join d In db.VentasDevolucionesDetalles On c.IDDEVOLUCION Equals d.IDDEVOLUCION
-                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
-                                Select d).FirstOrDefault()
+                                        Join d In db.VentasDevolucionesDetalles On c.IDDEVOLUCION Equals d.IDDEVOLUCION
+                                        Where c.IDSERIE = serieId And c.CONSECUTIVO = nDocumento And d.IDEXISTENCIA = existenciaId
+                                        Select d).FirstOrDefault()
 
                 If saleReturnDetail IsNot Nothing Then
 
                     'aquí se calcula el costo
                     If saleReturnDetail.CMONEDA.Equals(Config.cordoba) Then
-                        saleReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO,
-                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                        saleReturnDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO * currentPostItemKardex.TAZACAMBIO)
                     Else
-                        saleReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
-                                              kardex.COSTO_PROMEDIO)
+                        saleReturnDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO / currentPostItemKardex.TAZACAMBIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO)
                     End If
                     db.Entry(saleReturnDetail).State = EntityState.Modified
 
@@ -1219,22 +1445,24 @@ Public Class frmCompra
 
             Case "DEVOLUCION COMPRA"
 
+                Me.RecalculateQuantityToAcredit(currentPostItemKardex, itemKardex, accumulatedCostToDebit, accumulatedCostToAcredit, True)
+
                 Dim purchaseReturnDetail = (From c In db.ComprasDevoluciones
-                                Join d In db.ComprasDevolucionesDetalles On c.IDDEVOLUCION Equals d.IDDEVOLUCION
-                                Where c.IDSERIE = kardex.IDSERIE And c.CONSECUTIVO = kardex.N_DOCUMENTO And d.IDEXISTENCIA = kardex.IDEXISTENCIA
-                                Select d).FirstOrDefault()
+                                            Join d In db.ComprasDevolucionesDetalles On c.IDDEVOLUCION Equals d.IDDEVOLUCION
+                                            Where c.IDSERIE = serieId And c.CONSECUTIVO = nDocumento And d.IDEXISTENCIA = existenciaId
+                                            Select d).FirstOrDefault()
 
                 If purchaseReturnDetail IsNot Nothing Then
 
                     'aquí se calcula el costo
                     If purchaseReturnDetail.CMONEDA.Equals(Config.cordoba) Then
-                        purchaseReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO,
-                                              kardex.COSTO_PROMEDIO * kardex.TAZACAMBIO)
+                        purchaseReturnDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO * currentPostItemKardex.TAZACAMBIO)
                     Else
-                        purchaseReturnDetail.COSTO = If(kardex.CMONEDA.Equals(Config.cordoba),
-                                              kardex.COSTO_PROMEDIO / kardex.TAZACAMBIO,
-                                              kardex.COSTO_PROMEDIO)
+                        purchaseReturnDetail.COSTO = If(currentPostItemKardex.CMONEDA.Equals(Config.cordoba),
+                                              currentPostItemKardex.COSTO_PROMEDIO / currentPostItemKardex.TAZACAMBIO,
+                                              currentPostItemKardex.COSTO_PROMEDIO)
                     End If
                     db.Entry(purchaseReturnDetail).State = EntityState.Modified
 

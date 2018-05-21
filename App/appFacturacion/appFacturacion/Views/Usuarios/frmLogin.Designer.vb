@@ -50,21 +50,23 @@ Partial Class frmLogin
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(9, 37)
+        Me.Label1.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(33, 37)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(102, 14)
+        Me.Label1.Size = New System.Drawing.Size(53, 15)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Nombre de Usuario:"
+        Me.Label1.Text = "Usuario:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(9, 67)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(66, 14)
+        Me.Label2.Size = New System.Drawing.Size(77, 15)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Contraseña:"
         '
@@ -82,12 +84,12 @@ Partial Class frmLogin
         Me.txtUsuario.Border.Class = "TextBoxBorder"
         Me.txtUsuario.Border.CornerDiameter = 3
         Me.txtUsuario.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtUsuario.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUsuario.ForeColor = System.Drawing.Color.Black
-        Me.txtUsuario.Location = New System.Drawing.Point(117, 35)
+        Me.txtUsuario.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.txtUsuario.Location = New System.Drawing.Point(101, 35)
         Me.txtUsuario.Margin = New System.Windows.Forms.Padding(5)
         Me.txtUsuario.Name = "txtUsuario"
-        Me.txtUsuario.Size = New System.Drawing.Size(129, 20)
+        Me.txtUsuario.Size = New System.Drawing.Size(145, 22)
         Me.txtUsuario.TabIndex = 1
         '
         'txtContraseña
@@ -100,12 +102,12 @@ Partial Class frmLogin
         Me.txtContraseña.Border.Class = "TextBoxBorder"
         Me.txtContraseña.Border.CornerDiameter = 3
         Me.txtContraseña.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtContraseña.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtContraseña.ForeColor = System.Drawing.Color.Black
-        Me.txtContraseña.Location = New System.Drawing.Point(117, 65)
+        Me.txtContraseña.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtContraseña.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.txtContraseña.Location = New System.Drawing.Point(101, 65)
         Me.txtContraseña.Name = "txtContraseña"
-        Me.txtContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtContraseña.Size = New System.Drawing.Size(129, 20)
+        Me.txtContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
+        Me.txtContraseña.Size = New System.Drawing.Size(145, 22)
         Me.txtContraseña.TabIndex = 2
         '
         'KFormManager1
@@ -183,9 +185,9 @@ Partial Class frmLogin
         Me.btSalir.Size = New System.Drawing.Size(125, 31)
         Me.btSalir.StateStyles.FocusStyle.BackgroundPaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
         Me.btSalir.StateStyles.FocusStyle.BackgroundSolidColor = System.Drawing.Color.BurlyWood
-        GradientBlend1.Factor = 0.0!
-        GradientBlend1.Position = 0.0!
-        GradientBlend2.Factor = 0.0!
+        GradientBlend1.Factor = 0!
+        GradientBlend1.Position = 0!
+        GradientBlend2.Factor = 0!
         GradientBlend2.Position = 0.5!
         GradientBlend3.Factor = 1.0!
         GradientBlend3.Position = 1.0!
