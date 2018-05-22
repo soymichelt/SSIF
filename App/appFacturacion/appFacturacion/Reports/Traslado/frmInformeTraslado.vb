@@ -175,9 +175,9 @@ Public Class frmInformeTraslado
         gbFecha.Left = PanelEx4.Width - gbFecha.Width - 4
     End Sub
 
-    Private Async Sub frmInformeTraslado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmInformeTraslado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "ProductTransferReport",
             "Load",

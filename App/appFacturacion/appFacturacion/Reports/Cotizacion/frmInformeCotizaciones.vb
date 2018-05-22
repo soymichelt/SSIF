@@ -202,9 +202,9 @@ Public Class frmInformeCotizaciones
         gbTipoVenta.Left = PanelEx4.Width - gbTipoVenta.Width - 4
     End Sub
 
-    Private Async Sub frmInformeCotizaciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmInformeCotizaciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "QuotationReport",
             "Load",

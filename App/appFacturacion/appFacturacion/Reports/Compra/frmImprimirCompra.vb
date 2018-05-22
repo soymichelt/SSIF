@@ -4,9 +4,9 @@ Imports System.Data.Entity
 
 Public Class frmImprimirCompra
     Public idcompra As String
-    Private Async Sub frmImprimirCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmImprimirCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "PurchasePrintReport",
             "Load",

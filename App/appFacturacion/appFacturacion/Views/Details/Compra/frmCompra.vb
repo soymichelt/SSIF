@@ -75,9 +75,9 @@ Public Class frmCompra
         End Try
     End Function
 
-    Private Async Sub frmCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "Purchase",
             "Load",

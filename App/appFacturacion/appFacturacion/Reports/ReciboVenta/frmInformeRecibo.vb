@@ -260,9 +260,9 @@ Public Class frmInformeRecibo
         gbMoneda.Left = PanelEx4.Width - gbMoneda.Width - 4
     End Sub
 
-    Private Async Sub frmInformeRecibo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmInformeRecibo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "SaleReceiptReport",
             "Load",

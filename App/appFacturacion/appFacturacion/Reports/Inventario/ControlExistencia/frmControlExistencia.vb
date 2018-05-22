@@ -111,9 +111,9 @@ Public Class frmControlExistencia
         End Try
     End Sub
 
-    Private Async Sub frmControlExistencia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmControlExistencia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "StockControlReport",
             "Load",
@@ -122,6 +122,7 @@ Public Class frmControlExistencia
         )
 
         cmbExistencia.SelectedIndex = 0
+
         Try
             Using db As New CodeFirst
                 cmbBodega.DataSource = (From bod In db.Bodegas Where bod.ACTIVO = "S" Select bod.IDBODEGA, DESCRIPCION = bod.N_BODEGA & " | " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "DESCRIPCION"

@@ -15,7 +15,7 @@ Public Class frmLogin
 
     Private Async Sub frmIniciarSesion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "Login",
             "Load",
@@ -64,7 +64,7 @@ Public Class frmLogin
 
                         If password = txtContraseña.Text Then
 
-                            Await Log.Instance.RegisterActivity(
+                            Log.Instance.RegisterActivity(
                                 If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
                                 "Login",
                                 "Enter",
@@ -94,7 +94,7 @@ Public Class frmLogin
 
                         Else
 
-                            Await Log.Instance.RegisterActivity(
+                            Log.Instance.RegisterActivity(
                                 If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
                                 "Login",
                                 "Enter",
@@ -111,7 +111,7 @@ Public Class frmLogin
 
                     Else
 
-                        Await Log.Instance.RegisterActivity(
+                        Log.Instance.RegisterActivity(
                             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
                             "Login",
                             "Enter",
@@ -129,7 +129,7 @@ Public Class frmLogin
 
             Else
 
-                Await Log.Instance.RegisterActivity(
+                Log.Instance.RegisterActivity(
                     If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
                     "Login",
                     "Enter",
@@ -151,7 +151,7 @@ Public Class frmLogin
 
         If Not String.IsNullOrEmpty(catchMessage) Then
 
-            Await Log.Instance.RegisterActivity(
+            Log.Instance.RegisterActivity(
                 If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
                 "Login",
                 "Enter",

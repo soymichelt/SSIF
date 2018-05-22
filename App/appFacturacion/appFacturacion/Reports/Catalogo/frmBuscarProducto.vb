@@ -120,9 +120,9 @@ Public Class frmBuscarProductos
         End Try
     End Sub
 
-    Private Async Sub frmBuscarProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmBuscarProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "ProductSearch",
             "Load",

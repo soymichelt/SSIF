@@ -27,9 +27,9 @@ Public Class frmUnidadMedida
         btEliminar.Enabled = False
         btEditar.Enabled = False
     End Sub
-    Private Async Sub frmMarca_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmMarca_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "UnitOfMeasurement",
             "Load",

@@ -51,9 +51,9 @@ Public Class frmSalida
         End Try
     End Function
 
-    Private Async Sub frmSalida_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmSalida_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "ProductOutput",
             "Load",
@@ -62,6 +62,7 @@ Public Class frmSalida
         )
 
         Me.frmSalida_Resize(Nothing, Nothing)
+
         Try
             txtCantidad.DisplayFormat = Config.f_c
             txtTotal.DisplayFormat = Config.f_m

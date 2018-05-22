@@ -37,9 +37,9 @@ Public Class frmBodega
         txtCodBodega.Focus()
     End Sub
 
-    Private Async Sub frmBodega_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmBodega_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "Warehouse",
             "Load",

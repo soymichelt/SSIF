@@ -6,9 +6,9 @@ Public Class frmImprimirVenta
 
     Public idventa As String
 
-    Private Async Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmImprimirEntrada_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "SalePrintReport",
             "Load",

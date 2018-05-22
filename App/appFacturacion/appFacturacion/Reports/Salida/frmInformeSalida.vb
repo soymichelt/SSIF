@@ -176,9 +176,9 @@ Public Class frmInformeSalida
         gbFecha.Left = PanelEx4.Width - gbFecha.Width - 4
     End Sub
 
-    Private Async Sub frmInformeSalida_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmInformeSalida_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "ProductOutputReport",
             "Load",

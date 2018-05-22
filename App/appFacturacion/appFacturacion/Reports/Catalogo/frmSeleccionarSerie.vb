@@ -28,9 +28,9 @@ Public Class frmSeleccionarSerie
         End Try
     End Sub
 
-    Private Async Sub frmSeleccionarBodega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmSeleccionarBodega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "SeriesSearch",
             "Load",

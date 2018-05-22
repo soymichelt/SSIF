@@ -46,9 +46,9 @@ Public Class frmVistaPrevia
         pnImagen.Top = (Me.Height / 2) - (pnImagen.Height / 2) - 17
     End Sub
 
-    Private Async Sub frmVistaPrevia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmVistaPrevia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "PreviewImage",
             "Load",

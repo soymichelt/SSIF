@@ -70,9 +70,9 @@ Public Class frmDocumentosPendientes
         End Try
     End Sub
 
-    Private Async Sub frmDocumentosPendientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmDocumentosPendientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Await Log.Instance.RegisterActivity(
+        Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
             "SaleDocumentPending",
             "Load",
