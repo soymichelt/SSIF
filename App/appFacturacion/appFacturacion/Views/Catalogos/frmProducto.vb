@@ -62,7 +62,7 @@ Public Class frmProducto
         txtPrecio1.DisplayFormat = Config.f_m_e
         txtPrecio2.DisplayFormat = Config.f_m_e
         txtPrecio3.DisplayFormat = Config.f_m_e
-        txtPrecio3.DisplayFormat = Config.f_m_e
+        txtPrecio4.DisplayFormat = Config.f_m_e
 
         Log.Instance.RegisterActivity(
             If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
