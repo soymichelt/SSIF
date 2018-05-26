@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sadara.Views.WinFormApp.V1", "appFacturacion\Sadara.Views.WinFormApp.V1.vbproj", "{2051D340-13DD-442E-8815-CF14A0170A0B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. FrontEnd - Clientes", "1. FrontEnd - Clientes", "{2B0D377F-0F8D-4CB2-A027-54F838EE874F}"
@@ -11,13 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Reglas de Negocio", "2. 
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sadara.Models.V1", "Sadara.Models.V1\Sadara.Models.V1.vbproj", "{1AD1E661-2B9B-47E8-A38B-CA469E0FCA43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sadara.Views.WinFormApp.V2", "Sadara.Views.WinFormApp.V2\Sadara.Views.WinFormApp.V2.csproj", "{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sadara.Models.V2", "Sadara.Models.V2\Sadara.Models.V2.csproj", "{B9E8949F-00BC-4F35-995D-3A15DDF4D660}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sadara.BusinessLayer", "Sadara.BusinessLayer\Sadara.BusinessLayer.csproj", "{0E055545-2A62-46DC-B537-865796C07422}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sadara.DataLayer", "Sadara.DataLayer\Sadara.DataLayer.csproj", "{E7559008-EDD6-4F6F-A9DB-79FD137B8674}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Helpers - Components - Others", "4. Helpers - Components - Others", "{CB03A5B4-5728-4809-A3DF-B3D525D00F47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,31 +90,6 @@ Global
 		{1AD1E661-2B9B-47E8-A38B-CA469E0FCA43}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1AD1E661-2B9B-47E8-A38B-CA469E0FCA43}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{1AD1E661-2B9B-47E8-A38B-CA469E0FCA43}.SingleImage|x86.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.CD_ROM|x86.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.DVD-5|x86.ActiveCfg = Debug|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.Release|x86.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B}.SingleImage|x86.ActiveCfg = Release|Any CPU
 		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{B9E8949F-00BC-4F35-995D-3A15DDF4D660}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -194,10 +171,12 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2051D340-13DD-442E-8815-CF14A0170A0B} = {2B0D377F-0F8D-4CB2-A027-54F838EE874F}
-		{9E43DEF0-FB10-4131-A2CC-6C1F1C597F5B} = {2B0D377F-0F8D-4CB2-A027-54F838EE874F}
 		{1AD1E661-2B9B-47E8-A38B-CA469E0FCA43} = {EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}
 		{B9E8949F-00BC-4F35-995D-3A15DDF4D660} = {EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}
-		{E7559008-EDD6-4F6F-A9DB-79FD137B8674} = {EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}
 		{0E055545-2A62-46DC-B537-865796C07422} = {10C70BC1-9C78-46D9-AB13-1F088A1C58BD}
+		{E7559008-EDD6-4F6F-A9DB-79FD137B8674} = {EE83F6C3-B954-4DC1-BB67-D438ED3D4C7C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5C61D6B-2011-4A0B-BF96-4602CF9D0A0E}
 	EndGlobalSection
 EndGlobal
