@@ -17,9 +17,9 @@ Namespace Database
 
         Public Sub New()
 
-            'MyBase.New("Data Source=" & Config.SQLServerName & ";Initial Catalog=" & Config.InitialCatalog & ";" & If(Config.SQLUser = "" Or Config.SQLPass = "", "Integrated Security=True;", "Integrated Security = False; User ID=" & Config.SQLUser & "; Password=" & Config.SQLPass & ";"))
-            MyBase.New("name=SadaraDbConnectionString")
-            
+            MyBase.New("Data Source=" & Config.SQLServerName & ";Initial Catalog=" & Config.InitialCatalog & ";" & If(Config.SQLUser = "" Or Config.SQLPass = "", "Integrated Security=True;", "Integrated Security = False; User ID=" & Config.SQLUser & "; Password=" & Config.SQLPass & ";"))
+            'MyBase.New("name=SadaraDbConnectionString")
+
             Db.SetInitializer(New MigrateDatabaseToLatestVersion(Of CodeFirst, Sadara.Models.V1.Migrations.Configuration))
 
         End Sub

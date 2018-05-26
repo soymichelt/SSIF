@@ -4,15 +4,24 @@ Imports Sadara.Models.V1.POCO
 
 Public Class frmCuentasPorCobrar
 
+    Private Function GetList() As List(Of Sadara.Models.V2.POCO.AccountReceivableEntity)
+
+        Return Sadara.BusinessLayer.Customer.Instance.GetListAccountsReceivable(Config.currentBusiness.MonedaInventario, txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+
+    End Function
+
     Sub llenar(Optional ByVal codigo As String = "", Optional ByVal nombre As String = "", Optional ByVal razon As String = "")
         Try
             Using db As New CodeFirst
-                Dim consulta = (From cli In db.Clientes Where cli.FACTURADO_C <> 0 And cli.ACTIVO = "S" And cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(razon) Select cli.N_CLIENTE, cli.IDENTIFICACION, CLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, cli.TELEFONO, cli.PLAZO, LIMITE = cli.LIMITECREDITO, FACTURADO = If(cli.MONEDA.Equals(Config.cordoba), cli.FACTURADO_C + (cli.FACTURADO_D * Config.exchangeRate), (cli.FACTURADO_C / Config.exchangeRate) + cli.FACTURADO_D), DISPONIBLE = cli.LIMITECREDITO - If(cli.MONEDA.Equals(Config.cordoba), cli.FACTURADO_C + (cli.FACTURADO_D * Config.exchangeRate), (cli.FACTURADO_C / Config.exchangeRate) + cli.FACTURADO_D))
+
+                'Dim result = (From cli In db.Clientes Where cli.FACTURADO_C <> 0 And cli.ACTIVO = "S" And cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(razon) Select cli.N_CLIENTE, cli.IDENTIFICACION, CLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, cli.TELEFONO, cli.PLAZO, LIMITE = cli.LIMITECREDITO, FACTURADO = If(cli.MONEDA.Equals(Config.cordoba), cli.FACTURADO_C + (cli.FACTURADO_D * Config.exchangeRate), (cli.FACTURADO_C / Config.exchangeRate) + cli.FACTURADO_D), DISPONIBLE = cli.LIMITECREDITO - If(cli.MONEDA.Equals(Config.cordoba), cli.FACTURADO_C + (cli.FACTURADO_D * Config.exchangeRate), (cli.FACTURADO_C / Config.exchangeRate) + cli.FACTURADO_D))
+                Dim result = Me.GetList()
+
                 If dtRegistro.Visible Then
                     'dtRegistro.DataSource = (From cli In db.CLIENTES Join ven In db.VENTAS On cli.IDCLIENTE Equals ven.IDCLIENTE Where cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(razon) Group ven By cli Into ven = Group Select cli.N_CLIENTE, cli.IDENTIFICACION, CLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, cli.PLAZO, cli.LIMITECREDITO, cli.FACTURADO, VENCIDO = If(Not ven.Where(Function(f) f.FECHACREDITOVENCIMIENTO > DateTime.Now And f.SALDOCREDITO > 0).Select(Function(f) f.SALDOCREDITO).Count() > 0, ven.Where(Function(f) f.FECHACREDITOVENCIMIENTO > DateTime.Now And f.SALDOCREDITO > 0).Select(Function(f) f.SALDOCREDITO).Sum(), 0.0), SALDO = cli.LIMITECREDITO - cli.FACTURADO).ToList()
-                    dtRegistro.DataSource = consulta.ToList
-                    If consulta.Count > 0 Then
-                        txtTotal.Value = (consulta).Sum(Function(f) f.FACTURADO)
+                    dtRegistro.DataSource = result.ToList
+                    If result.Count > 0 Then
+                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
                     Else
                         txtTotal.Value = 0.0
                     End If
@@ -25,7 +34,8 @@ Public Class frmCuentasPorCobrar
                         dtRegistro.Columns(5).Width = 100 : dtRegistro.Columns(5).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(5).HeaderText = "PLAZO"
                         dtRegistro.Columns(6).Width = 100 : dtRegistro.Columns(6).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(6).HeaderText = "LÍMITE"
                         dtRegistro.Columns(7).Width = 100 : dtRegistro.Columns(7).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(7).HeaderText = "SALDO"
-                        dtRegistro.Columns(8).Width = 100 : dtRegistro.Columns(8).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(8).HeaderText = "DISPONIBLE"
+                        dtRegistro.Columns(8).Width = 100 : dtRegistro.Columns(8).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(8).HeaderText = "S. VENCIDO"
+                        dtRegistro.Columns(9).Width = 100 : dtRegistro.Columns(9).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(9).HeaderText = "DISPONIBLE"
                         For Each c As DataGridViewColumn In dtRegistro.Columns
                             c.HeaderCell.Style.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Bold)
                         Next
@@ -49,12 +59,12 @@ Public Class frmCuentasPorCobrar
                     Else
                         band = rpt.Section2.ReportObjects("txtRazonSocial") : band.Text = "%Todos%"
                     End If
-                    If consulta.Count > 0 Then
-                        txtTotal.Value = (consulta).Sum(Function(f) f.FACTURADO)
+                    If result.Count > 0 Then
+                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
                     Else
                         txtTotal.Value = 0.0
                     End If
-                    rpt.SetDataSource(consulta.ToList())
+                    rpt.SetDataSource((From r In result Select N_CLIENTE = r.CustomerCode, IDENTIFICACION = r.DNI, CLIENTE = r.CustomerName, RAZONSOCIAL = r.BusinessName, PLAZO = r.CreditTerm, LIMITE = r.CreditLimit, FACTURADO = r.Billed, VENCIDO = r.AmountExpired, DISPONIBLE = r.AmountAvailable).ToList())
                     CrystalReportViewer1.ReportSource = rpt
                     CrystalReportViewer1.Zoom(75)
                     rpt = Nothing : band = Nothing

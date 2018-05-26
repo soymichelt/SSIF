@@ -133,7 +133,7 @@ Public Class frmPrincipal
         Try
             rcCintaMenu.SelectedRibbonTabItem = mnuCatalogos
             txtBodega.Text = Config.warehouseName
-            lblNombreUsuario.Text = "Nombres: " & Config.currentUser.Nombres & " " & Config.currentUser.Apellidos
+            lblNombreUsuario.Text = "Nombre: " & Config.currentUser.Nombres & " " & Config.currentUser.Apellidos
             lblUsuario.Text = "Usuario: " & Config.currentUser.NombreCuenta
             lblBodega.Text = "Sucursal: " & Config._warehouse.N_BODEGA & " - " & Config._warehouse.DESCRIPCION
             Using db As New CodeFirst
@@ -169,8 +169,8 @@ Public Class frmPrincipal
                     End If
                 End If
 
-                lblIva.Text = "I.V.A: " & (Config.iva * 100).ToString(Config.f_m) & " %"
-                lblTaza.Text = "Taza de Cambio: $ 1 = C$ " & (Config.exchangeRate).ToString(Config.f_m)
+                lblIva.Text = "IVA: " & (Config.iva * 100).ToString(Config.f_m) & " %"
+                lblTaza.Text = "T/C: $ 1 = C$ " & (Config.exchangeRate).ToString(Config.f_m)
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
@@ -469,11 +469,6 @@ Public Class frmPrincipal
         pcLogo.Left = ExpandablePanel1.Width - 62
         Me.Text = "Sistema de Facturación e Inventario // SIF " & Me.Width & " x " & Me.Height
         Me.rcCintaMenu.TitleText = Me.Text
-        If Me.Width >= 1175 Then
-            lblEmpresa.Text = "Sistema de Inventario y Facturación // SIF"
-        Else
-            lblEmpresa.Text = ""
-        End If
     End Sub
 
 

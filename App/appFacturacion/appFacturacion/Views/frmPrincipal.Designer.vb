@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmPrincipal
     Inherits DevComponents.DotNetBar.Office2007RibbonForm
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmPrincipal
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim PaintStyle1 As Klik.Windows.Forms.v1.Common.PaintStyle = New Klik.Windows.Forms.v1.Common.PaintStyle()
@@ -28,6 +28,7 @@ Partial Class frmPrincipal
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
         Me.stsEstado = New System.Windows.Forms.StatusStrip()
         Me.lblEmpresa = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StateLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblNombreUsuario = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblUsuario = New System.Windows.Forms.ToolStripStatusLabel()
@@ -211,10 +212,10 @@ Partial Class frmPrincipal
         'stsEstado
         '
         Me.stsEstado.BackColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(207, Byte), Integer))
-        Me.stsEstado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblEmpresa, Me.ToolStripStatusLabel2, Me.lblNombreUsuario, Me.lblUsuario, Me.lblBodega, Me.lblIva, Me.lblTaza})
-        Me.stsEstado.Location = New System.Drawing.Point(5, 678)
+        Me.stsEstado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblEmpresa, Me.StateLabel, Me.ToolStripStatusLabel2, Me.lblNombreUsuario, Me.lblUsuario, Me.lblBodega, Me.lblIva, Me.lblTaza})
+        Me.stsEstado.Location = New System.Drawing.Point(5, 677)
         Me.stsEstado.Name = "stsEstado"
-        Me.stsEstado.Size = New System.Drawing.Size(1026, 33)
+        Me.stsEstado.Size = New System.Drawing.Size(1012, 33)
         Me.stsEstado.TabIndex = 3
         Me.stsEstado.Text = "BARRA DE ESTADO"
         '
@@ -225,14 +226,22 @@ Partial Class frmPrincipal
         Me.lblEmpresa.Image = Global.appFacturacion.My.Resources.Resources.Isotipo24x24
         Me.lblEmpresa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.lblEmpresa.Name = "lblEmpresa"
-        Me.lblEmpresa.Size = New System.Drawing.Size(258, 28)
-        Me.lblEmpresa.Text = "Sistema de Facturación de Sucursales // SIF"
-        Me.lblEmpresa.ToolTipText = "Sistema de Facturación de Sucursales // SIF"
+        Me.lblEmpresa.Size = New System.Drawing.Size(24, 28)
+        Me.lblEmpresa.ToolTipText = "Sistema de Inventario y Facturación" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "© Copyright - Sadara 2018. All rights reserv" &
+    "ed."
+        '
+        'StateLabel
+        '
+        Me.StateLabel.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.StateLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.StateLabel.Name = "StateLabel"
+        Me.StateLabel.Size = New System.Drawing.Size(34, 28)
+        Me.StateLabel.Text = "Listo"
         '
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(224, 28)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(575, 28)
         Me.ToolStripStatusLabel2.Spring = True
         Me.ToolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -240,55 +249,61 @@ Partial Class frmPrincipal
         '
         Me.lblNombreUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
         Me.lblNombreUsuario.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblNombreUsuario.ForeColor = System.Drawing.Color.Black
+        Me.lblNombreUsuario.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.lblNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.lblNombreUsuario.Image = Global.appFacturacion.My.Resources.Resources.Codigo
         Me.lblNombreUsuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.lblNombreUsuario.Name = "lblNombreUsuario"
-        Me.lblNombreUsuario.Size = New System.Drawing.Size(130, 28)
-        Me.lblNombreUsuario.Text = "Nombre Personal:"
+        Me.lblNombreUsuario.Size = New System.Drawing.Size(84, 28)
+        Me.lblNombreUsuario.Text = "Nombre:"
+        Me.lblNombreUsuario.Visible = False
         '
         'lblUsuario
         '
         Me.lblUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
         Me.lblUsuario.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblUsuario.ForeColor = System.Drawing.Color.Black
+        Me.lblUsuario.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.lblUsuario.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.lblUsuario.Image = Global.appFacturacion.My.Resources.Resources.Usuario
         Me.lblUsuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.lblUsuario.Name = "lblUsuario"
-        Me.lblUsuario.Size = New System.Drawing.Size(78, 28)
+        Me.lblUsuario.Size = New System.Drawing.Size(81, 28)
         Me.lblUsuario.Text = "Usuario:"
         '
         'lblBodega
         '
         Me.lblBodega.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
         Me.lblBodega.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblBodega.ForeColor = System.Drawing.Color.Black
+        Me.lblBodega.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.lblBodega.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.lblBodega.Image = Global.appFacturacion.My.Resources.Resources.Bodega1
         Me.lblBodega.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.lblBodega.Name = "lblBodega"
-        Me.lblBodega.Size = New System.Drawing.Size(82, 28)
+        Me.lblBodega.Size = New System.Drawing.Size(87, 28)
         Me.lblBodega.Text = "Sucursal:"
         '
         'lblIva
         '
         Me.lblIva.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
         Me.lblIva.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblIva.ForeColor = System.Drawing.Color.Black
+        Me.lblIva.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.lblIva.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.lblIva.Image = Global.appFacturacion.My.Resources.Resources.BarImpuesto
         Me.lblIva.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.lblIva.Name = "lblIva"
-        Me.lblIva.Size = New System.Drawing.Size(81, 28)
-        Me.lblIva.Text = "I.V.A: 0%"
+        Me.lblIva.Size = New System.Drawing.Size(77, 28)
+        Me.lblIva.Text = "IVA: 0%"
         '
         'lblTaza
         '
         Me.lblTaza.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedInner
-        Me.lblTaza.ForeColor = System.Drawing.Color.Black
+        Me.lblTaza.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.lblTaza.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.lblTaza.Image = Global.appFacturacion.My.Resources.Resources.Tazadecambio1
         Me.lblTaza.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.lblTaza.Name = "lblTaza"
-        Me.lblTaza.Size = New System.Drawing.Size(158, 28)
-        Me.lblTaza.Text = "T. / Cambio: $ 1 = C$ 27"
+        Me.lblTaza.Size = New System.Drawing.Size(119, 28)
+        Me.lblTaza.Text = "T/C: $ 1 = C$ 27"
         '
         'rcCintaMenu
         '
@@ -316,7 +331,7 @@ Partial Class frmPrincipal
         Me.rcCintaMenu.Name = "rcCintaMenu"
         Me.rcCintaMenu.Padding = New System.Windows.Forms.Padding(0, 0, 0, 2)
         Me.rcCintaMenu.QuickToolbarItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btCreditos})
-        Me.rcCintaMenu.Size = New System.Drawing.Size(1026, 170)
+        Me.rcCintaMenu.Size = New System.Drawing.Size(1012, 170)
         Me.rcCintaMenu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.rcCintaMenu.SystemText.MaximizeRibbonText = "&Maximize the Ribbon"
         Me.rcCintaMenu.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon"
@@ -351,7 +366,7 @@ Partial Class frmPrincipal
         Me.RibbonPanel4.Location = New System.Drawing.Point(0, 53)
         Me.RibbonPanel4.Name = "RibbonPanel4"
         Me.RibbonPanel4.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel4.Size = New System.Drawing.Size(1026, 115)
+        Me.RibbonPanel4.Size = New System.Drawing.Size(1012, 115)
         '
         '
         '
@@ -2471,11 +2486,12 @@ Partial Class frmPrincipal
         '
         Me.txtBodega.Border.Class = "TextBoxBorder"
         Me.txtBodega.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtBodega.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtBodega.Location = New System.Drawing.Point(9, 31)
+        Me.txtBodega.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBodega.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.txtBodega.Location = New System.Drawing.Point(9, 29)
         Me.txtBodega.Name = "txtBodega"
         Me.txtBodega.ReadOnly = True
-        Me.txtBodega.Size = New System.Drawing.Size(188, 20)
+        Me.txtBodega.Size = New System.Drawing.Size(188, 22)
         Me.txtBodega.TabIndex = 1
         '
         'tmLimpiarMemoria
@@ -2498,6 +2514,7 @@ Partial Class frmPrincipal
         Me.ElGroupBox2.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.ElGroupBox2.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         Me.ElGroupBox2.CaptionStyle.Size = New System.Drawing.Size(120, 24)
+        Me.ElGroupBox2.CaptionStyle.TextStyle.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
         Me.ElGroupBox2.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox2.CaptionStyle.TextStyle.Text = "Período Contable"
         Me.ElGroupBox2.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2517,7 +2534,8 @@ Partial Class frmPrincipal
         '
         Me.btCargarCiclo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.btCargarCiclo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btCargarCiclo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btCargarCiclo.Font = New System.Drawing.Font("Google Sans Medium", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btCargarCiclo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.btCargarCiclo.Image = Global.appFacturacion.My.Resources.Resources.Periodo
         Me.btCargarCiclo.Location = New System.Drawing.Point(10, 26)
         Me.btCargarCiclo.Name = "btCargarCiclo"
@@ -2536,14 +2554,17 @@ Partial Class frmPrincipal
         Me.ElLabel2.Location = New System.Drawing.Point(294, 29)
         Me.ElLabel2.Name = "ElLabel2"
         Me.ElLabel2.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ClassicBlack
-        Me.ElLabel2.Size = New System.Drawing.Size(105, 23)
+        Me.ElLabel2.Size = New System.Drawing.Size(115, 23)
         Me.ElLabel2.TabIndex = 7
         Me.ElLabel2.TabStop = False
+        Me.ElLabel2.TextStyle.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.ElLabel2.TextStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.ElLabel2.TextStyle.Text = "Final del Período:"
         '
         'ElLabel1
         '
         Me.ElLabel1.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElLabel1.Cursor = System.Windows.Forms.Cursors.Default
         PaintStyle2.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
         PaintStyle2.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.ElLabel1.FlashStyle = PaintStyle2
@@ -2551,9 +2572,11 @@ Partial Class frmPrincipal
         Me.ElLabel1.Location = New System.Drawing.Point(81, 29)
         Me.ElLabel1.Name = "ElLabel1"
         Me.ElLabel1.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ClassicBlack
-        Me.ElLabel1.Size = New System.Drawing.Size(105, 23)
+        Me.ElLabel1.Size = New System.Drawing.Size(115, 23)
         Me.ElLabel1.TabIndex = 5
         Me.ElLabel1.TabStop = False
+        Me.ElLabel1.TextStyle.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.ElLabel1.TextStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.ElLabel1.TextStyle.Text = "Inicio del Período:"
         '
         'txtFinal
@@ -2564,11 +2587,12 @@ Partial Class frmPrincipal
         '
         Me.txtFinal.Border.Class = "TextBoxBorder"
         Me.txtFinal.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtFinal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFinal.Location = New System.Drawing.Point(404, 31)
+        Me.txtFinal.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtFinal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.txtFinal.Location = New System.Drawing.Point(415, 29)
         Me.txtFinal.Name = "txtFinal"
         Me.txtFinal.ReadOnly = True
-        Me.txtFinal.Size = New System.Drawing.Size(97, 20)
+        Me.txtFinal.Size = New System.Drawing.Size(86, 22)
         Me.txtFinal.TabIndex = 8
         Me.txtFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2580,11 +2604,12 @@ Partial Class frmPrincipal
         '
         Me.txtInicio.Border.Class = "TextBoxBorder"
         Me.txtInicio.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtInicio.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtInicio.Location = New System.Drawing.Point(191, 31)
+        Me.txtInicio.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtInicio.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.txtInicio.Location = New System.Drawing.Point(202, 29)
         Me.txtInicio.Name = "txtInicio"
         Me.txtInicio.ReadOnly = True
-        Me.txtInicio.Size = New System.Drawing.Size(97, 20)
+        Me.txtInicio.Size = New System.Drawing.Size(86, 22)
         Me.txtInicio.TabIndex = 8
         Me.txtInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2604,6 +2629,7 @@ Partial Class frmPrincipal
         Me.ElGroupBox1.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.ElGroupBox1.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         Me.ElGroupBox1.CaptionStyle.Size = New System.Drawing.Size(120, 24)
+        Me.ElGroupBox1.CaptionStyle.TextStyle.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
         Me.ElGroupBox1.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox1.CaptionStyle.TextStyle.Text = "Sucursal / Bodega"
         Me.ElGroupBox1.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2622,7 +2648,7 @@ Partial Class frmPrincipal
         Me.btCargar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.btCargar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btCargar.Image = Global.appFacturacion.My.Resources.Resources.Cargar_24_24
-        Me.btCargar.Location = New System.Drawing.Point(196, 26)
+        Me.btCargar.Location = New System.Drawing.Point(196, 25)
         Me.btCargar.Name = "btCargar"
         Me.btCargar.Size = New System.Drawing.Size(32, 28)
         Me.btCargar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -2640,7 +2666,7 @@ Partial Class frmPrincipal
         Me.ExpandablePanel1.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ExpandablePanel1.Location = New System.Drawing.Point(5, 171)
         Me.ExpandablePanel1.Name = "ExpandablePanel1"
-        Me.ExpandablePanel1.Size = New System.Drawing.Size(1026, 93)
+        Me.ExpandablePanel1.Size = New System.Drawing.Size(1012, 93)
         Me.ExpandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.ExpandablePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
         Me.ExpandablePanel1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
@@ -2654,15 +2680,15 @@ Partial Class frmPrincipal
         Me.ExpandablePanel1.TitleStyle.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
         Me.ExpandablePanel1.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner
         Me.ExpandablePanel1.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.ExpandablePanel1.TitleStyle.Font = New System.Drawing.Font("Google Sans Medium", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ExpandablePanel1.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.ExpandablePanel1.TitleStyle.GradientAngle = 90
-        Me.ExpandablePanel1.TitleText = "<b>S</b>istema de <font color=""#C0504D""><b>I</b>nventario y <b>F</b>acturación</f" & _
+        Me.ExpandablePanel1.TitleText = "<b>S</b>istema de <font color=""#C0504D""><b>I</b>nventario y <b>F</b>acturación</f" &
     "ont>"
         '
         'pcLogo
         '
         Me.pcLogo.BackColor = System.Drawing.Color.Transparent
-        Me.pcLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pcLogo.Image = Global.appFacturacion.My.Resources.Resources.Isotipo32x32
         Me.pcLogo.Location = New System.Drawing.Point(985, 34)
         Me.pcLogo.Name = "pcLogo"
@@ -2677,7 +2703,7 @@ Partial Class frmPrincipal
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1036, 713)
+        Me.ClientSize = New System.Drawing.Size(1022, 712)
         Me.Controls.Add(Me.ExpandablePanel1)
         Me.Controls.Add(Me.rcCintaMenu)
         Me.Controls.Add(Me.stsEstado)
@@ -2876,4 +2902,5 @@ Partial Class frmPrincipal
     Friend WithEvents btPrinterSetting As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btGraficosVenta As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btProductWithApplication As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents StateLabel As ToolStripStatusLabel
 End Class

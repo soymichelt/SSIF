@@ -243,9 +243,9 @@ Partial Class frmCuentasPorCobrar
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(8, 81)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(54, 14)
+        Me.Label3.Size = New System.Drawing.Size(52, 14)
         Me.Label3.TabIndex = 6
-        Me.Label3.Text = "Razón S.:"
+        Me.Label3.Text = "R. Social:"
         '
         'txtNombreCliente
         '

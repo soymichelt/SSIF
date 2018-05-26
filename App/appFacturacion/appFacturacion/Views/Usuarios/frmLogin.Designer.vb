@@ -136,8 +136,9 @@ Partial Class frmLogin
         Me.gpSesion.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.gpSesion.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.gpSesion.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.gpSesion.CaptionStyle.Size = New System.Drawing.Size(210, 24)
-        Me.gpSesion.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.gpSesion.CaptionStyle.Size = New System.Drawing.Size(220, 24)
+        Me.gpSesion.CaptionStyle.TextStyle.Font = New System.Drawing.Font("Google Sans Medium", 9.0!)
+        Me.gpSesion.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.gpSesion.CaptionStyle.TextStyle.Text = "Sistema de Inventario y Facturación"
         Me.gpSesion.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.gpSesion.Controls.Add(Me.PictureBox3)
@@ -180,9 +181,9 @@ Partial Class frmLogin
         Me.btSalir.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.btSalir.ForegroundImageStyle.Image = Global.appFacturacion.My.Resources.Resources.Cerrar_24_24
         Me.btSalir.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btSalir.Location = New System.Drawing.Point(121, 111)
+        Me.btSalir.Location = New System.Drawing.Point(134, 111)
         Me.btSalir.Name = "btSalir"
-        Me.btSalir.Size = New System.Drawing.Size(125, 31)
+        Me.btSalir.Size = New System.Drawing.Size(84, 31)
         Me.btSalir.StateStyles.FocusStyle.BackgroundPaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
         Me.btSalir.StateStyles.FocusStyle.BackgroundSolidColor = System.Drawing.Color.BurlyWood
         GradientBlend1.Factor = 0!
@@ -197,9 +198,9 @@ Partial Class frmLogin
         Me.btSalir.StateStyles.PressedStyle.BackgroundGradientEndColor = System.Drawing.Color.NavajoWhite
         Me.btSalir.StateStyles.PressedStyle.BackgroundGradientStartColor = System.Drawing.Color.BurlyWood
         Me.btSalir.TabIndex = 4
-        Me.btSalir.TextStyle.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.btSalir.TextStyle.Font = New System.Drawing.Font("Google Sans Medium", 10.0!)
         Me.btSalir.TextStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btSalir.TextStyle.Text = "Salir del Sistema"
+        Me.btSalir.TextStyle.Text = "Cerrar"
         Me.btSalir.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.btSalir.VisualStyle = Klik.Windows.Forms.v1.EntryLib.ButtonVisualStyles.Custom
         '
@@ -215,13 +216,14 @@ Partial Class frmLogin
         Me.btEntrar.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.btEntrar.ForegroundImageStyle.Image = Global.appFacturacion.My.Resources.Resources.Entrar
         Me.btEntrar.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btEntrar.Location = New System.Drawing.Point(12, 111)
+        Me.btEntrar.Location = New System.Drawing.Point(40, 111)
         Me.btEntrar.Name = "btEntrar"
         Me.btEntrar.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ClassicBlack
-        Me.btEntrar.Size = New System.Drawing.Size(108, 31)
+        Me.btEntrar.Size = New System.Drawing.Size(84, 31)
         Me.btEntrar.TabIndex = 3
-        Me.btEntrar.TextStyle.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.btEntrar.TextStyle.Text = "Iniciar Sesión"
+        Me.btEntrar.TextStyle.Font = New System.Drawing.Font("Google Sans Medium", 10.0!)
+        Me.btEntrar.TextStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.btEntrar.TextStyle.Text = "Entrar"
         Me.btEntrar.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmLogin

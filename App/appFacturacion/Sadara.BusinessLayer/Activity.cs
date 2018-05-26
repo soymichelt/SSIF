@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Sadara.DataLayer;
-using Sadara.DataLayer.Transaction;
 using Sadara.DataLayer.TransactionToDb;
 using Sadara.Models.V1.Database;
 using Sadara.Models.V2.POCO;
@@ -56,18 +55,18 @@ namespace Sadara.BusinessLayer
 
         private Transaction transaction;
 
-        private DataLayer.Activity activity;
+        private DataLayer.ActivityTransaction activityTransaction;
 
         private CodeFirst db;
 
-        private void Init()
+        private void InitializeTransactionComponents()
         {
 
             this.db = new CodeFirst();
-            this.transaction = new Transaction();
-            this.transaction.Db = this.db;
-            this.activity = new DataLayer.Activity();
-            this.activity.TransactionToDb = this.transaction;
+
+            this.transaction = new Transaction { Db = this.db };
+
+            this.activityTransaction = new DataLayer.ActivityTransaction { TransactionToDb = this.transaction };
 
         }
 
@@ -81,7 +80,7 @@ namespace Sadara.BusinessLayer
         private Boolean IsActivityInitialized()
         {
 
-            return this.activity != null;
+            return this.activityTransaction != null;
 
         }
 
@@ -98,7 +97,7 @@ namespace Sadara.BusinessLayer
 
             if (this.IsActivityInitialized())
 
-                this.activity = null;
+                this.activityTransaction = null;
 
         }
 
@@ -111,16 +110,16 @@ namespace Sadara.BusinessLayer
                 
         }
 
-        public async Task<ActivityEntity> CreateAsync(ActivityEntity activityEntity)
+        public async Task<ActivityEntity> AddAsync(ActivityEntity activityEntity)
         {
 
-            this.Init();
+            this.InitializeTransactionComponents();
 
             activityEntity.ActivityId = Guid.NewGuid();
 
             activityEntity.ActivityDate = DateTime.Now;
 
-            this.activity.Add(activityEntity);
+            this.activityTransaction.Add(activityEntity);
 
             await this.transaction.CommitAsync();
 
@@ -128,24 +127,10 @@ namespace Sadara.BusinessLayer
 
         }
 
-        public async Task<ActivityEntity> AddAsync(ActivityEntity activityEntity)
-        {
-
-            var response = await await Task.Factory.StartNew(() =>
-            {
-
-                return this.CreateAsync(activityEntity);
-
-            });
-
-            return response;
-
-        }
-
         public async Task EditAsync(ActivityEntity activityEntity)
         {
 
-            this.activity.Edit(activityEntity);
+            this.activityTransaction.Edit(activityEntity);
 
             await this.transaction.CommitAsync();
 
@@ -154,7 +139,7 @@ namespace Sadara.BusinessLayer
         public async Task<ActivityEntity> FindAsync(Guid activityId)
         {
 
-            return await this.activity.FindAsync(activityId);
+            return await this.activityTransaction.FindAsync(activityId);
 
         }
 
@@ -166,7 +151,7 @@ namespace Sadara.BusinessLayer
             if (activitySelected != null)
             {
 
-                this.activity.Remove(activitySelected);
+                this.activityTransaction.Remove(activitySelected);
 
                 await this.transaction.CommitAsync();
 

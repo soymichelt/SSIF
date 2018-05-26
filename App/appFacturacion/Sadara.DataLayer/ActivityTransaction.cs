@@ -12,7 +12,7 @@ using Sadara.Models.V2.POCO;
 namespace Sadara.DataLayer
 {
 
-    public class Activity :
+    public class ActivityTransaction :
         TransactionBase<ActivityEntity>
     {
 
