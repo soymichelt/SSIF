@@ -1270,7 +1270,7 @@ Public Class frmNotaDevolucionCompra
                     Dim devolucion = db.ComprasDevoluciones.Where(Function(f) f.IDDEVOLUCION = Me.Id).FirstOrDefault
                     If Not devolucion Is Nothing Then
                         If devolucion.ANULADO = "N" Then
-                            Dim tick As TicketClass = New TicketClass
+                            Dim tick As TicketPrintingManager = New TicketPrintingManager
                             If tick.ImpresoraExistente(Config.PrinterName) Then
                                 tick.AnadirLineaCabeza(" DOCUMENTO DE DEVOLUCIÓN DE COMPRA ")
                                 tick.AnadirLineaCabeza(Config.businessName)

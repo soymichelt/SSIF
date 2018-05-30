@@ -483,7 +483,7 @@ Partial Class frmProducto
         Me.txtDescuentoMaximo.Increment = 1.0R
         Me.txtDescuentoMaximo.Location = New System.Drawing.Point(465, 231)
         Me.txtDescuentoMaximo.MaxValue = 100.0R
-        Me.txtDescuentoMaximo.MinValue = 0.0R
+        Me.txtDescuentoMaximo.MinValue = 0R
         Me.txtDescuentoMaximo.Name = "txtDescuentoMaximo"
         Me.txtDescuentoMaximo.Size = New System.Drawing.Size(74, 20)
         Me.txtDescuentoMaximo.TabIndex = 25
@@ -661,7 +661,7 @@ Partial Class frmProducto
         Me.txtCantidadMaxima.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidadMaxima.Increment = 1.0R
         Me.txtCantidadMaxima.Location = New System.Drawing.Point(234, 206)
-        Me.txtCantidadMaxima.MinValue = 0.0R
+        Me.txtCantidadMaxima.MinValue = 0R
         Me.txtCantidadMaxima.Name = "txtCantidadMaxima"
         Me.txtCantidadMaxima.Size = New System.Drawing.Size(48, 20)
         Me.txtCantidadMaxima.TabIndex = 19
@@ -708,7 +708,7 @@ Partial Class frmProducto
         Me.txtContiene.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtContiene.Increment = 1.0R
         Me.txtContiene.Location = New System.Drawing.Point(457, 129)
-        Me.txtContiene.MinValue = 0.0R
+        Me.txtContiene.MinValue = 0R
         Me.txtContiene.Name = "txtContiene"
         Me.txtContiene.Size = New System.Drawing.Size(48, 20)
         Me.txtContiene.TabIndex = 12
@@ -789,7 +789,7 @@ Partial Class frmProducto
         Me.txtCantidadMinima.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidadMinima.Increment = 1.0R
         Me.txtCantidadMinima.Location = New System.Drawing.Point(93, 206)
-        Me.txtCantidadMinima.MinValue = 0.0R
+        Me.txtCantidadMinima.MinValue = 0R
         Me.txtCantidadMinima.Name = "txtCantidadMinima"
         Me.txtCantidadMinima.Size = New System.Drawing.Size(48, 20)
         Me.txtCantidadMinima.TabIndex = 18
@@ -956,7 +956,7 @@ Partial Class frmProducto
         Me.txtCosto.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCosto.Increment = 1.0R
         Me.txtCosto.Location = New System.Drawing.Point(118, 154)
-        Me.txtCosto.MinValue = 0.0R
+        Me.txtCosto.MinValue = 0R
         Me.txtCosto.Name = "txtCosto"
         Me.txtCosto.Size = New System.Drawing.Size(82, 20)
         Me.txtCosto.TabIndex = 9
@@ -972,7 +972,7 @@ Partial Class frmProducto
         Me.txtPrecio1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio1.Increment = 1.0R
         Me.txtPrecio1.Location = New System.Drawing.Point(76, 180)
-        Me.txtPrecio1.MinValue = 0.0R
+        Me.txtPrecio1.MinValue = 0R
         Me.txtPrecio1.Name = "txtPrecio1"
         Me.txtPrecio1.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio1.TabIndex = 14
@@ -988,7 +988,7 @@ Partial Class frmProducto
         Me.txtPrecio2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio2.Increment = 1.0R
         Me.txtPrecio2.Location = New System.Drawing.Point(213, 180)
-        Me.txtPrecio2.MinValue = 0.0R
+        Me.txtPrecio2.MinValue = 0R
         Me.txtPrecio2.Name = "txtPrecio2"
         Me.txtPrecio2.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio2.TabIndex = 15
@@ -1004,7 +1004,7 @@ Partial Class frmProducto
         Me.txtPrecio3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio3.Increment = 1.0R
         Me.txtPrecio3.Location = New System.Drawing.Point(351, 180)
-        Me.txtPrecio3.MinValue = 0.0R
+        Me.txtPrecio3.MinValue = 0R
         Me.txtPrecio3.Name = "txtPrecio3"
         Me.txtPrecio3.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio3.TabIndex = 16
@@ -1020,7 +1020,7 @@ Partial Class frmProducto
         Me.txtPrecio4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio4.Increment = 1.0R
         Me.txtPrecio4.Location = New System.Drawing.Point(485, 180)
-        Me.txtPrecio4.MinValue = 0.0R
+        Me.txtPrecio4.MinValue = 0R
         Me.txtPrecio4.Name = "txtPrecio4"
         Me.txtPrecio4.Size = New System.Drawing.Size(55, 20)
         Me.txtPrecio4.TabIndex = 17
@@ -1607,24 +1607,24 @@ Partial Class frmProducto
         'rdSinExistencia
         '
         Me.rdSinExistencia.AutoSize = True
+        Me.rdSinExistencia.Checked = True
         Me.rdSinExistencia.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdSinExistencia.Location = New System.Drawing.Point(114, 16)
         Me.rdSinExistencia.Name = "rdSinExistencia"
         Me.rdSinExistencia.Size = New System.Drawing.Size(34, 18)
         Me.rdSinExistencia.TabIndex = 34
+        Me.rdSinExistencia.TabStop = True
         Me.rdSinExistencia.Text = "Si"
         Me.rdSinExistencia.UseVisualStyleBackColor = True
         '
         'rdConExistencia
         '
         Me.rdConExistencia.AutoSize = True
-        Me.rdConExistencia.Checked = True
         Me.rdConExistencia.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdConExistencia.Location = New System.Drawing.Point(154, 16)
         Me.rdConExistencia.Name = "rdConExistencia"
         Me.rdConExistencia.Size = New System.Drawing.Size(38, 18)
         Me.rdConExistencia.TabIndex = 34
-        Me.rdConExistencia.TabStop = True
         Me.rdConExistencia.Text = "No"
         Me.rdConExistencia.UseVisualStyleBackColor = True
         '

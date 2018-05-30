@@ -1,18 +1,3 @@
-EXEC dbo.SpAccountsReceivable
-	@CustomerCode = '',
-	@CustomerName = '',
-	@BusinessName = '',
-	@Money = 'C'
-GO
-
-SELECT * FROM Venta ORDER BY Venta.N
-GO
-
-UPDATE Venta SET FECHACREDITOVENCIMIENTO = '2018-05-20 20:01:38.597'
-WHERE N = 8
-GO
-
-
 /****** Object:  StoredProcedure [dbo].[SpProductosVendidos]    Script Date: 23/05/2018 17:00:21 a.m. ******/
 SET ANSI_NULLS ON
 GO

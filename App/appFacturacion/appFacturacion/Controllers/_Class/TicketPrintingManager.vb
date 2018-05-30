@@ -5,7 +5,8 @@ Imports System.Drawing.Printing
 Imports System.IO
 
 #Region "Principal"
-Public Class TicketClass
+Public Class TicketPrintingManager
+
     Public ListElement As New ArrayList()
     Public contador As Integer = 0
     Public PosLine As Integer = 0

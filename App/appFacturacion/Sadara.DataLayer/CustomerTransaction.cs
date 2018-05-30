@@ -6,22 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sadara.Models.V1.POCO;
+using Sadara.Models.V2.POCO;
 
 namespace Sadara.DataLayer
 {
 
     public class CustomerTransaction :
-        TransactionToDb.TransactionBase<Sadara.Models.V1.POCO.Cliente>
+        TransactionToDb.TransactionBase<Cliente>
     {
 
         private TransactionToDb.Transaction transaction;
 
-        public TransactionToDb.Transaction TransactionToDb
-        {
-
-            set { this.transaction = value; }
-
-        }
+        public TransactionToDb.Transaction TransactionToDb { set => this.transaction = value; }
 
         public override Cliente Add(Cliente customer)
         {
@@ -64,12 +60,20 @@ namespace Sadara.DataLayer
 
         }
 
-        public List<Sadara.Models.V2.POCO.AccountReceivableEntity> GetListAccountsReceivable(string money, string customerCode = "", string customerName = "", string businessName = "")
+        public async Task<List<AccountReceivableEntity>> GetListAccountsReceivableAsync(string money, string customerCode = "", string customerName = "", string businessName = "")
         {
             
-            var list = this.transaction.Db.Database.SqlQuery<Sadara.Models.V2.POCO.AccountReceivableEntity>("SpAccountsReceivable @CustomerCode, @CustomerName, @BusinessName, @Money", new SqlParameter("@CustomerCode", customerCode), new SqlParameter("@CustomerName", customerName), new SqlParameter("@BusinessName", businessName), new SqlParameter("@Money", money)).ToList();
+            var accountsReceivable = await this.transaction.Db.Database.SqlQuery<AccountReceivableEntity>
+                (
+                    "SpAccountsReceivable @CustomerCode, @CustomerName, @BusinessName, @Money",
+                    new SqlParameter("@CustomerCode", customerCode),
+                    new SqlParameter("@CustomerName", customerName),
+                    new SqlParameter("@BusinessName", businessName),
+                    new SqlParameter("@Money", money)
+                )
+                .ToListAsync();
 
-            return list;
+            return accountsReceivable;
 
         }
 

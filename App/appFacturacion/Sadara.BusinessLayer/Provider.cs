@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Sadara.DataLayer;
+using Sadara.DataLayer.TransactionToDb;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Sadara.DataLayer;
-using Sadara.DataLayer.TransactionToDb;
-
 namespace Sadara.BusinessLayer
 {
 
-    public class Customer
+    public class Provider
     {
-
-        private static Customer instance;
+        
+        private static Provider instance;
 
         private static readonly object padlock = new object();
 
@@ -27,11 +26,11 @@ namespace Sadara.BusinessLayer
         private static void InitializeInstance()
         {
 
-            instance = new Customer();
+            instance = new Provider();
 
         }
 
-        public static Customer Instance
+        public static Provider Instance
         {
 
             get
@@ -51,12 +50,12 @@ namespace Sadara.BusinessLayer
 
         }
 
-        protected Customer()
+        protected Provider()
         { }
 
         private Transaction transaction;
 
-        private CustomerTransaction customerTransaction;
+        private ProviderTransaction providerTransaction;
 
         private Sadara.Models.V1.Database.CodeFirst db;
 
@@ -67,16 +66,16 @@ namespace Sadara.BusinessLayer
 
             this.transaction = new Transaction() { Db = this.db };
 
-            this.customerTransaction = new CustomerTransaction() { TransactionToDb = this.transaction };
+            this.providerTransaction = new ProviderTransaction() { TransactionToDb = this.transaction };
 
         }
 
-        public async Task<List<Sadara.Models.V2.POCO.AccountReceivableEntity>> GetListAccountsReceivableAsync(string money, string customerCode = "", string customerName = "", string businessName = "")
+        public async Task<List<Sadara.Models.V2.POCO.AccountToPayEntity>> GetListAccountsToPayAsync(string money, string customerCode = "", string customerName = "", string businessName = "")
         {
 
             this.InitializeTransactionComponents();
 
-            return await this.customerTransaction.GetListAccountsReceivableAsync(money, customerCode, customerName, businessName);
+            return await this.providerTransaction.GetListAccountsToPayAsync(money, customerCode, customerName, businessName);
 
         }
 

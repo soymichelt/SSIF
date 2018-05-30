@@ -167,6 +167,9 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
@@ -191,12 +194,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Logs\Log.vb" />
+    <Compile Include="Controllers\Activities\Log.vb" />
     <Compile Include="Controllers\Security\CryptoSecurity.vb" />
     <Compile Include="Controllers\Security\KeyConfig.vb" />
     <Compile Include="Controllers\Security\License.vb" />
-    <Compile Include="Controllers\_Class\NumeroALetra.vb" />
-    <Compile Include="Controllers\_Class\PrintedColilla.vb" />
+    <Compile Include="Controllers\_Class\ConvertNumberToLetter.vb" />
+    <Compile Include="Controllers\_Class\TicketPrintingManager.vb" />
     <Compile Include="Models\Datasets\dtVenta.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -553,8 +556,6 @@
     <Compile Include="Views\Catalogos\frmVistaPrevia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controllers\_Class\TicketClass.vb" />
-    <Compile Include="Controllers\_Class\TRANSACCION.vb" />
     <Compile Include="Views\Configuration\Application\frmSqlState.Designer.vb">
       <DependentUpon>frmSqlState.vb</DependentUpon>
     </Compile>
@@ -1086,12 +1087,6 @@
     <Compile Include="Views\Details\Traslado\frmTraslado.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Errs\frmErrorEstablecerConexionServidor.Designer.vb">
-      <DependentUpon>frmErrorEstablecerConexionServidor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Errs\frmErrorEstablecerConexionServidor.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Views\frmPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1613,9 +1608,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Details\Traslado\frmTraslado.resx">
       <DependentUpon>frmTraslado.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Errs\frmErrorEstablecerConexionServidor.resx">
-      <DependentUpon>frmErrorEstablecerConexionServidor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.vb</DependentUpon>

@@ -1,4 +1,4 @@
-﻿Module NumeroALetra
+﻿Module ConvertNumberToLetter
 
     Public Function Letras(ByVal numero As String) As String
         '********Declara variables de tipo cadena************

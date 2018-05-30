@@ -1,30 +1,31 @@
 ﻿Imports Sadara.Models.V1.Database
 Imports Sadara.Models.V1.POCO
-'Imports System.Data.Entity
+Imports System.Data.Entity
 
 Public Class frmCuentasPorCobrar
 
-    Private Function GetList() As List(Of Sadara.Models.V2.POCO.AccountReceivableEntity)
+    Private Async Function GetList() As Threading.Tasks.Task(Of List(Of Sadara.Models.V2.POCO.AccountReceivableEntity))
 
-        Return Sadara.BusinessLayer.Customer.Instance.GetListAccountsReceivable(Config.currentBusiness.MonedaInventario, txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        Return Await Sadara.BusinessLayer.Customer.Instance.GetListAccountsReceivableAsync(Config.currentBusiness.MonedaInventario, txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
 
     End Function
 
-    Sub llenar(Optional ByVal codigo As String = "", Optional ByVal nombre As String = "", Optional ByVal razon As String = "")
+    Async Sub LoadDataInDatagrid(Optional ByVal codigo As String = "", Optional ByVal nombre As String = "", Optional ByVal razon As String = "")
         Try
             Using db As New CodeFirst
 
-                'Dim result = (From cli In db.Clientes Where cli.FACTURADO_C <> 0 And cli.ACTIVO = "S" And cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(razon) Select cli.N_CLIENTE, cli.IDENTIFICACION, CLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, cli.TELEFONO, cli.PLAZO, LIMITE = cli.LIMITECREDITO, FACTURADO = If(cli.MONEDA.Equals(Config.cordoba), cli.FACTURADO_C + (cli.FACTURADO_D * Config.exchangeRate), (cli.FACTURADO_C / Config.exchangeRate) + cli.FACTURADO_D), DISPONIBLE = cli.LIMITECREDITO - If(cli.MONEDA.Equals(Config.cordoba), cli.FACTURADO_C + (cli.FACTURADO_D * Config.exchangeRate), (cli.FACTURADO_C / Config.exchangeRate) + cli.FACTURADO_D))
-                Dim result = Me.GetList()
+                Dim result = Await Me.GetList()
 
                 If dtRegistro.Visible Then
-                    'dtRegistro.DataSource = (From cli In db.CLIENTES Join ven In db.VENTAS On cli.IDCLIENTE Equals ven.IDCLIENTE Where cli.N_CLIENTE.Contains(codigo) And (cli.NOMBRES & " " & cli.APELLIDOS).Contains(nombre) And cli.RAZONSOCIAL.Contains(razon) Group ven By cli Into ven = Group Select cli.N_CLIENTE, cli.IDENTIFICACION, CLIENTE = cli.NOMBRES & " " & cli.APELLIDOS, cli.RAZONSOCIAL, cli.PLAZO, cli.LIMITECREDITO, cli.FACTURADO, VENCIDO = If(Not ven.Where(Function(f) f.FECHACREDITOVENCIMIENTO > DateTime.Now And f.SALDOCREDITO > 0).Select(Function(f) f.SALDOCREDITO).Count() > 0, ven.Where(Function(f) f.FECHACREDITOVENCIMIENTO > DateTime.Now And f.SALDOCREDITO > 0).Select(Function(f) f.SALDOCREDITO).Sum(), 0.0), SALDO = cli.LIMITECREDITO - cli.FACTURADO).ToList()
+
                     dtRegistro.DataSource = result.ToList
+
                     If result.Count > 0 Then
-                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
+                        txtTotal.Value = (result).Sum(Function(f) f.billed)
                     Else
                         txtTotal.Value = 0.0
                     End If
+
                     If dtRegistro.Columns.Count > 0 Then
                         dtRegistro.Columns(0).Width = 90 : dtRegistro.Columns(0).HeaderText = vbNewLine & "N° CLIENTE" & vbNewLine
                         dtRegistro.Columns(1).Width = 120 : dtRegistro.Columns(1).HeaderText = "IDENTIFICACIÓN"
@@ -40,7 +41,9 @@ Public Class frmCuentasPorCobrar
                             c.HeaderCell.Style.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Bold)
                         Next
                     End If
+
                 Else
+
                     Dim rpt As New rptCuentasPorCobrar
                     Config.CrystalTitle("CUENTAS POR COBRAR", rpt)
                     Dim band As CrystalDecisions.CrystalReports.Engine.TextObject
@@ -60,14 +63,15 @@ Public Class frmCuentasPorCobrar
                         band = rpt.Section2.ReportObjects("txtRazonSocial") : band.Text = "%Todos%"
                     End If
                     If result.Count > 0 Then
-                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
+                        txtTotal.Value = (result).Sum(Function(f) f.billed)
                     Else
                         txtTotal.Value = 0.0
                     End If
-                    rpt.SetDataSource((From r In result Select N_CLIENTE = r.CustomerCode, IDENTIFICACION = r.DNI, CLIENTE = r.CustomerName, RAZONSOCIAL = r.BusinessName, PLAZO = r.CreditTerm, LIMITE = r.CreditLimit, FACTURADO = r.Billed, VENCIDO = r.AmountExpired, DISPONIBLE = r.AmountAvailable).ToList())
+                    rpt.SetDataSource((From r In result Select N_CLIENTE = r.customerCode, IDENTIFICACION = r.dni, CLIENTE = r.customerName, RAZONSOCIAL = r.businessName, PLAZO = r.creditTerm, LIMITE = r.creditLimit, FACTURADO = r.billed, VENCIDO = r.amountExpired, DISPONIBLE = r.amountAvailable).ToList())
                     CrystalReportViewer1.ReportSource = rpt
                     CrystalReportViewer1.Zoom(75)
                     rpt = Nothing : band = Nothing
+
                 End If
             End Using
         Catch ex As Exception
@@ -87,18 +91,18 @@ Public Class frmCuentasPorCobrar
 
         dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
         txtTotal.DisplayFormat = Config.f_m
-        llenar()
+        LoadDataInDatagrid()
     End Sub
 
     Private Sub txtNCliente_TextChanged(sender As Object, e As EventArgs) Handles txtRazonSocial.TextChanged, txtNombreCliente.TextChanged, txtNCliente.TextChanged
         If dtRegistro.Visible Then
-            llenar(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+            LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
         End If
     End Sub
 
     Private Sub txtNombreCliente_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtRazonSocial.KeyPress, txtNombreCliente.KeyPress, txtNCliente.KeyPress
         If e.KeyChar = ChrW(13) Then
-            llenar(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+            LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
         End If
     End Sub
 
@@ -106,16 +110,16 @@ Public Class frmCuentasPorCobrar
         txtNCliente.Clear()
         txtNombreCliente.Clear()
         txtRazonSocial.Clear()
-        llenar(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
     End Sub
 
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
         dtRegistro.Visible = False
         CrystalReportViewer1.Visible = True
-        llenar(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
     End Sub
 
     Private Sub btBuscar_Click(sender As Object, e As EventArgs) Handles btBuscar.Click
-        llenar(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
     End Sub
 End Class

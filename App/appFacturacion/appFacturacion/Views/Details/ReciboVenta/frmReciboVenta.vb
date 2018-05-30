@@ -729,7 +729,7 @@ Public Class frmReciboVenta
                 Dim v = db.VentasRecibos.Where(Function(f) f.IDRECIBO = Me.Id).FirstOrDefault
                 If Not v Is Nothing Then
                     If v.ANULADO = "N" Then
-                        Dim t As TicketClass = New TicketClass
+                        Dim t As TicketPrintingManager = New TicketPrintingManager
                         If t.ImpresoraExistente(Config.PrinterName) Then
                             t.EncabezadoPredefinido("RECIBO DE VENTA", If(v.REIMPRESION.Equals("S"), "REIMPRESIÓN", "ORIGINAL"))
 
@@ -757,7 +757,7 @@ Public Class frmReciboVenta
                             t.AnadirTotal(" DESCUENTO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.DESCUENTOTOTAL_C, v.DESCUENTOTOTAL_D))
                             t.AnadirTotal("     TOTAL " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.MONTOTOTAL_C, v.MONTOTOTAL_D))
                             t.AnadirEspacio()
-                            t.AnadeLineaAlPie(NumeroALetra.Letras(If(v.MONEDA.Equals(Config.cordoba), v.MONTOTOTAL_C.ToString(), v.MONTOTOTAL_D.ToString())))
+                            t.AnadeLineaAlPie(ConvertNumberToLetter.Letras(If(v.MONEDA.Equals(Config.cordoba), v.MONTOTOTAL_C.ToString(), v.MONTOTOTAL_D.ToString())))
                             t.AnadirEspacio()
                             t.AnadirEspacio()
                             t.AnadirEspacio()

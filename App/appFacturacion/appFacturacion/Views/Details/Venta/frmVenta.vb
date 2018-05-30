@@ -1391,7 +1391,7 @@ Public Class frmVenta
                 If Not v Is Nothing Then
                     If v.ANULADO = "N" Then
                         If v.Serie.TICKET.Equals(Config.vTrue) Then
-                            Dim t As TicketClass = New TicketClass
+                            Dim t As TicketPrintingManager = New TicketPrintingManager
                             If t.ImpresoraExistente(Config.PrinterName) Then
                                 t.EncabezadoPredefinido(If(v.CREDITO, "VENTA DE CRÉDITO", "VENTA DE CONTADO"), If(v.REIMPRESION.Equals("S"), "REIMPRESIÓN", "ORIGINAL"))
                                 t.AnadirLineaSubcabeza(t.AlinearElementos("N° FACT: " & v.CONSECUTIVO, v.Serie.NOMBRE))
@@ -1421,7 +1421,7 @@ Public Class frmVenta
                                 t.AnadirTotal("       IVA " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.IVA_DIN_C, v.IVA_DIN_D))
                                 t.AnadirTotal("     TOTAL " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C, v.TOTAL_D))
                                 t.AnadirEspacio()
-                                t.AnadeLineaAlPie(NumeroALetra.Letras(If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C.ToString(), v.TOTAL_D.ToString())))
+                                t.AnadeLineaAlPie(ConvertNumberToLetter.Letras(If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C.ToString(), v.TOTAL_D.ToString())))
                                 t.AnadirEspacio()
                                 t.AnadirEspacio()
                                 t.AnadirEspacio()

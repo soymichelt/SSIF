@@ -1,10 +1,10 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmBuscarProductos
     'Inherits System.Windows.Forms.Form
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,7 +21,7 @@ Partial Class frmBuscarProductos
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -75,7 +75,6 @@ Partial Class frmBuscarProductos
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuPreview = New System.Windows.Forms.ToolStripMenuItem()
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
-        Me.GetListProgressBar = New CircularProgressBar.CircularProgressBar()
         Me.PanelEx1.SuspendLayout()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox1.SuspendLayout()
@@ -650,7 +649,7 @@ Partial Class frmBuscarProductos
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtExistencia.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtExistencia.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtExistencia.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.dtExistencia.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dtExistencia.Location = New System.Drawing.Point(0, 26)
         Me.dtExistencia.Name = "dtExistencia"
         Me.dtExistencia.Size = New System.Drawing.Size(930, 0)
@@ -668,7 +667,7 @@ Partial Class frmBuscarProductos
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle2
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(0, 115)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
@@ -722,44 +721,11 @@ Partial Class frmBuscarProductos
         Me.bkEstilo.MainContainer = Me
         Me.bkEstilo.ToolStripOffice2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         '
-        'GetListProgressBar
-        '
-        Me.GetListProgressBar.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner
-        Me.GetListProgressBar.AnimationSpeed = 500
-        Me.GetListProgressBar.BackColor = System.Drawing.Color.Transparent
-        Me.GetListProgressBar.Font = New System.Drawing.Font("Microsoft Sans Serif", 72.0!, System.Drawing.FontStyle.Bold)
-        Me.GetListProgressBar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.GetListProgressBar.InnerColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.GetListProgressBar.InnerMargin = 2
-        Me.GetListProgressBar.InnerWidth = 1
-        Me.GetListProgressBar.Location = New System.Drawing.Point(0, 0)
-        Me.GetListProgressBar.MarqueeAnimationSpeed = 2000
-        Me.GetListProgressBar.Name = "GetListProgressBar"
-        Me.GetListProgressBar.OuterColor = System.Drawing.Color.Gray
-        Me.GetListProgressBar.OuterMargin = -25
-        Me.GetListProgressBar.OuterWidth = 26
-        Me.GetListProgressBar.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GetListProgressBar.ProgressWidth = 27
-        Me.GetListProgressBar.SecondaryFont = New System.Drawing.Font("Microsoft Sans Serif", 36.0!)
-        Me.GetListProgressBar.Size = New System.Drawing.Size(40, 40)
-        Me.GetListProgressBar.StartAngle = 270
-        Me.GetListProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee
-        Me.GetListProgressBar.SubscriptColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(166, Byte), Integer), CType(CType(166, Byte), Integer))
-        Me.GetListProgressBar.SubscriptMargin = New System.Windows.Forms.Padding(10, -35, 0, 0)
-        Me.GetListProgressBar.SubscriptText = ".23"
-        Me.GetListProgressBar.SuperscriptColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(166, Byte), Integer), CType(CType(166, Byte), Integer))
-        Me.GetListProgressBar.SuperscriptMargin = New System.Windows.Forms.Padding(10, 35, 0, 0)
-        Me.GetListProgressBar.SuperscriptText = "°C"
-        Me.GetListProgressBar.TabIndex = 5
-        Me.GetListProgressBar.TextMargin = New System.Windows.Forms.Padding(8, 8, 0, 0)
-        Me.GetListProgressBar.Value = 33
-        '
         'frmBuscarProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1046, 393)
-        Me.Controls.Add(Me.GetListProgressBar)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Controls.Add(Me.dtRegistro)
         Me.Controls.Add(Me.ExpandablePanel1)
@@ -840,5 +806,4 @@ Partial Class frmBuscarProductos
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnuPreview As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents bkEstilo As Klik.Windows.Forms.v1.Common.KFormManager
-    Friend WithEvents GetListProgressBar As CircularProgressBar.CircularProgressBar
 End Class

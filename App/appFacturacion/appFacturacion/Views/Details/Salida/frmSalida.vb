@@ -460,7 +460,7 @@ Public Class frmSalida
                     If v.ANULADO = "N" Then
                         If v.Serie.TICKET.Equals(Config.vTrue) Then
                             'Si es ticket se imprime ticket
-                            Dim tick As TicketClass = New TicketClass
+                            Dim tick As TicketPrintingManager = New TicketPrintingManager
                             If tick.ImpresoraExistente(Config.PrinterName) Then
                                 tick.AnadirLineaCabeza("      DOCUMENTO DE SALIDA        ")
                                 tick.AnadirLineaCabeza(Config.businessName)
