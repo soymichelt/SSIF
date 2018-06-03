@@ -669,85 +669,188 @@ Public Class frmTraslado
                             If Config.ValidateLapse(v.FECHATRASLADO) Then
                                 v.ANULADO = "S" : db.Entry(v).State = EntityState.Modified
 
-                                For Each item In v.TrasladosDetalles
-                                    Dim ExiS = db.Existencias.Where(Function(f) f.IDBODEGA = v.IDBODEGA And f.IDPRODUCTO = item.Existencia.IDPRODUCTO).FirstOrDefault
-                                    If ExiS Is Nothing Then
-                                        Config.MsgErr("No se puede anular este Traslado por que no se encuentra el producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' no se encuentra en la bodega que salio.")
-                                        Exit Sub
-                                    End If
+                                'For Each item In v.TrasladosDetalles
+                                '    Dim ExiS = db.Existencias.Where(Function(f) f.IDBODEGA = v.IDBODEGA And f.IDPRODUCTO = item.Existencia.IDPRODUCTO).FirstOrDefault
+                                '    If ExiS Is Nothing Then
+                                '        Config.MsgErr("No se puede anular este Traslado por que no se encuentra el producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' no se encuentra en la bodega que salio.")
+                                '        Exit Sub
+                                '    End If
+
+                                '    item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
+                                '    If item.Existencia.CANTIDAD < 0 Then
+                                '        If Not item.Existencia.Producto.FACTURAR_NEGATIVO Then
+                                '            Config.MsgErr("No se puede anular esta Traslado. Ya que la existencia del producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' quedaría en negativo.")
+                                '            Exit Sub
+                                '        End If
+                                '    End If
+
+                                '    db.Entry(item.Existencia).State = EntityState.Modified
+                                '    ExiS.CANTIDAD = ExiS.CANTIDAD + item.CANTIDAD
+                                '    db.Entry(ExiS).State = EntityState.Modified
+                                'Next
+
+                                'Using db_a As New CodeFirst
+                                '    Dim band As Boolean = False
+                                '    Using db_exi As New CodeFirst
+                                '        For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
+                                '            For Each k In db_a.Kardexs.Where(Function(f) f.N > kardex.N And f.Existencia.IDPRODUCTO = kardex.Existencia.IDPRODUCTO)
+                                '                Dim s = db_exi.Series.Where(Function(f) f.IDSERIE = k.IDSERIE).FirstOrDefault
+                                '                Dim ExiS = db_exi.Existencias.Where(Function(f) f.IDEXISTENCIA = k.IDEXISTENCIA).FirstOrDefault
+
+                                '                If ExiS.IDBODEGA = s.IDBODEGA Then
+                                '                    k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR - kardex.ENTRADA
+                                '                    k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN - kardex.ENTRADA
+
+                                '                    If k.EXISTENCIA_ALMACEN = 0 Then
+                                '                        k.SALDO = 0
+                                '                    Else
+                                '                        If k.CMONEDA.Equals(kardex.CMONEDA) Then
+                                '                            k.SALDO = k.SALDO - kardex.DEBER
+                                '                        Else
+                                '                            If kardex.CMONEDA.Equals(Config.cordoba) Then
+                                '                                k.SALDO = k.SALDO - (kardex.DEBER / Config.exchangeRate)
+                                '                            Else
+                                '                                k.SALDO = k.SALDO - (kardex.DEBER * Config.exchangeRate)
+                                '                            End If
+                                '                        End If
+                                '                    End If
+                                '                ElseIf ExiS.IDBODEGA = v.IDBODEGA Then
+                                '                    k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR + kardex.SALIDA
+                                '                    k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN + kardex.SALIDA
+
+                                '                    If k.EXISTENCIA_ALMACEN = 0 Then
+                                '                        k.SALDO = 0
+                                '                    Else
+                                '                        If k.CMONEDA.Equals(kardex.CMONEDA) Then
+                                '                            k.SALDO = k.SALDO + kardex.HABER
+                                '                        Else
+                                '                            If kardex.CMONEDA.Equals(Config.cordoba) Then
+                                '                                k.SALDO = k.SALDO + (kardex.HABER / Config.exchangeRate)
+                                '                            Else
+                                '                                k.SALDO = k.SALDO + (kardex.HABER * Config.exchangeRate)
+                                '                            End If
+                                '                        End If
+                                '                    End If
+                                '                End If
+
+
+                                '                db_a.Entry(k).State = EntityState.Modified
+                                '                band = True
+                                '            Next
+                                '            kardex.ACTIVO = "N" : db.Entry(kardex).State = EntityState.Modified
+                                '        Next
+                                '    End Using
+
+                                '    If band Then
+                                '        db_a.SaveChanges()
+                                '    End If
+                                '    db.SaveChanges() : MessageBox.Show("Traslado Anulada") : limpiar()
+                                'End Using
+
+
+
+
+
+                                'Recorrer listado de productos de kardexs de esta Entrada
+                                For Each kardexItemForThisTransfer In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text).ToList()
+
+                                    'acumuladores de costos
+                                    Dim accumulatedCostToDebit = 0, accumulatedCostToAcredit As Decimal = 0
+
+                                    'item actual
+                                    Dim kardexSelectedForThisTransfer = db.Kardexs.Where(Function(f) f.IDKARDEX = kardexItemForThisTransfer.IDKARDEX).Include(Function(f) f.Existencia).First()
+
+                                    Dim postKardexs = db.Kardexs.Where(Function(f) f.N > kardexSelectedForThisTransfer.N And f.IDEXISTENCIA = kardexSelectedForThisTransfer.IDEXISTENCIA).OrderBy(Function(f) f.N).ToList()
+
+                                    For Each postItemKardex In postKardexs
+
+                                        Dim currentPostItemKardex = db.Kardexs.Where(Function(f) f.IDKARDEX = postItemKardex.IDKARDEX).FirstOrDefault()
+
+                                        currentPostItemKardex.EXISTENCIA_ANTERIOR = currentPostItemKardex.EXISTENCIA_ANTERIOR - kardexSelectedForThisTransfer.ENTRADA
+                                        currentPostItemKardex.EXISTENCIA_ALMACEN = currentPostItemKardex.EXISTENCIA_ALMACEN - kardexSelectedForThisTransfer.ENTRADA
+
+                                        'Recalculando Costo
+                                        Sadara.BusinessLayer.Inventory.Instance.CurrencyOfProducts = Config.currentBusiness.MonedaInventario
+                                        Sadara.BusinessLayer.Inventory.Instance.RecalculateCostByNullification(
+                                            currentPostItemKardex,
+                                            kardexSelectedForThisTransfer,
+                                            db,
+                                            accumulatedCostToDebit,
+                                            accumulatedCostToAcredit
+                                        )
+                                        'Fin Recalcular Costo
+
+                                        db.Entry(currentPostItemKardex).State = EntityState.Modified
+
+                                    Next
+
+                                    Dim productForKardexItem = kardexSelectedForThisTransfer.Existencia.Producto
+
+                                    productForKardexItem.SALDO += (accumulatedCostToDebit - accumulatedCostToAcredit)
+
+                                    kardexSelectedForThisTransfer.ACTIVO = "N" : db.Entry(kardexSelectedForThisTransfer).State = EntityState.Modified
+
+                                Next
+
+
+
+                                'Costo General
+                                'Sacando productos del inventario
+                                For Each transfer In v.TrasladosDetalles.ToList()
+
+                                    Dim item = db.TrasladosDetalles.Find(transfer.IDDETALLETRASLADO)
 
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
+                                    item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD - item.CANTIDAD
+
+                                    'Validando si puede quedar en negativo
                                     If item.Existencia.CANTIDAD < 0 Then
                                         If Not item.Existencia.Producto.FACTURAR_NEGATIVO Then
-                                            Config.MsgErr("No se puede anular esta Traslado. Ya que la existencia del producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' quedaría en negativo.")
+                                            Config.MsgErr("No se puede anular este Traslado. Ya que la existencia del producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' quedaría en negativo.")
                                             Exit Sub
                                         End If
                                     End If
 
-                                    db.Entry(item.Existencia).State = EntityState.Modified
-                                    ExiS.CANTIDAD = ExiS.CANTIDAD + item.CANTIDAD
-                                    db.Entry(ExiS).State = EntityState.Modified
-                                Next
-
-                                Using db_a As New CodeFirst
-                                    Dim band As Boolean = False
-                                    Using db_exi As New CodeFirst
-                                        For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
-                                            For Each k In db_a.Kardexs.Where(Function(f) f.N > kardex.N And f.Existencia.IDPRODUCTO = kardex.Existencia.IDPRODUCTO)
-                                                Dim s = db_exi.Series.Where(Function(f) f.IDSERIE = k.IDSERIE).FirstOrDefault
-                                                Dim ExiS = db_exi.Existencias.Where(Function(f) f.IDEXISTENCIA = k.IDEXISTENCIA).FirstOrDefault
-
-                                                If ExiS.IDBODEGA = s.IDBODEGA Then
-                                                    k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR - kardex.ENTRADA
-                                                    k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN - kardex.ENTRADA
-
-                                                    If k.EXISTENCIA_ALMACEN = 0 Then
-                                                        k.SALDO = 0
-                                                    Else
-                                                        If k.CMONEDA.Equals(kardex.CMONEDA) Then
-                                                            k.SALDO = k.SALDO - kardex.DEBER
-                                                        Else
-                                                            If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                                                k.SALDO = k.SALDO - (kardex.DEBER / Config.exchangeRate)
-                                                            Else
-                                                                k.SALDO = k.SALDO - (kardex.DEBER * Config.exchangeRate)
-                                                            End If
-                                                        End If
-                                                    End If
-                                                ElseIf ExiS.IDBODEGA = v.IDBODEGA Then
-                                                    k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR + kardex.SALIDA
-                                                    k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN + kardex.SALIDA
-
-                                                    If k.EXISTENCIA_ALMACEN = 0 Then
-                                                        k.SALDO = 0
-                                                    Else
-                                                        If k.CMONEDA.Equals(kardex.CMONEDA) Then
-                                                            k.SALDO = k.SALDO + kardex.HABER
-                                                        Else
-                                                            If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                                                k.SALDO = k.SALDO + (kardex.HABER / Config.exchangeRate)
-                                                            Else
-                                                                k.SALDO = k.SALDO + (kardex.HABER * Config.exchangeRate)
-                                                            End If
-                                                        End If
-                                                    End If
-                                                End If
-
-
-                                                db_a.Entry(k).State = EntityState.Modified
-                                                band = True
-                                            Next
-                                            kardex.ACTIVO = "N" : db.Entry(kardex).State = EntityState.Modified
-                                        Next
-                                    End Using
-
-                                    If band Then
-                                        db_a.SaveChanges()
+                                    If item.Existencia.Producto.CANTIDAD = 0 Then
+                                        item.Existencia.Producto.SALDO = 0
+                                    Else
+                                        If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
+                                            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO)
+                                        Else
+                                            If item.CMONEDA.Equals(Config.cordoba) Then
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO / Config.exchangeRate)
+                                            Else
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO * Config.exchangeRate)
+                                            End If
+                                        End If
                                     End If
-                                    db.SaveChanges() : MessageBox.Show("Traslado Anulada") : limpiar()
-                                End Using
+
+                                    If item.Existencia.Producto.CANTIDAD <> 0 Then
+                                        If item.Existencia.Producto.COSTO <> item.COSTO Then
+                                            item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
+                                        End If
+                                    End If
+
+                                    db.Entry(item.Existencia.Producto).State = EntityState.Modified
+                                    db.Entry(item).State = EntityState.Modified
+
+                                Next
+                                'Final Costo General
+
+
+                                db.SaveChanges()
+                                MessageBox.Show("Traslado Anulado")
+                                limpiar()
+
+
+
+
+
+
                             End If
+
                             v = Nothing
+
                         Else
                             MessageBox.Show("Error, No se encuentra esta Traslado. Probablemente ha sido eliminada o anulada.")
                         End If

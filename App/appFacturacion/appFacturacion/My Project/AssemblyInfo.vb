@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("appFacturacion")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Microsoft")> 
-<Assembly: AssemblyProduct("appFacturacion")> 
-<Assembly: AssemblyCopyright("Copyright © Microsoft 2014")> 
+<Assembly: AssemblyTitle("SIF")>
+<Assembly: AssemblyDescription("Sistema de Inventario y Facturación")>
+<Assembly: AssemblyCompany("Sadara")>
+<Assembly: AssemblyProduct("SIF")>
+<Assembly: AssemblyCopyright("Copyright © Sadara 2016")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
