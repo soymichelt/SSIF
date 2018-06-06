@@ -85,7 +85,6 @@ Partial Class frmPrincipal
         Me.btServidor = New DevComponents.DotNetBar.ButtonItem()
         Me.btRegistro = New DevComponents.DotNetBar.ButtonItem()
         Me.btAyuda = New DevComponents.DotNetBar.ButtonItem()
-        Me.btAcercaDe = New DevComponents.DotNetBar.ButtonItem()
         Me.RibbonBar10 = New DevComponents.DotNetBar.RibbonBar()
         Me.btCreateBackup = New DevComponents.DotNetBar.ButtonItem()
         Me.btRestoreDatabase = New DevComponents.DotNetBar.ButtonItem()
@@ -175,7 +174,6 @@ Partial Class frmPrincipal
         Me.RibbonTabItem7 = New DevComponents.DotNetBar.RibbonTabItem()
         Me.RibbonTabItem3 = New DevComponents.DotNetBar.RibbonTabItem()
         Me.RibbonTabItem2 = New DevComponents.DotNetBar.RibbonTabItem()
-        Me.btCreditos = New DevComponents.DotNetBar.ButtonItem()
         Me.styEstiloSistema = New DevComponents.DotNetBar.StyleManager(Me.components)
         Me.txtBodega = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.tmLimpiarMemoria = New System.Windows.Forms.Timer(Me.components)
@@ -314,9 +312,9 @@ Partial Class frmPrincipal
         Me.rcCintaMenu.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.rcCintaMenu.CanCustomize = False
         Me.rcCintaMenu.CaptionVisible = True
-        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel4)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel1)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel3)
+        Me.rcCintaMenu.Controls.Add(Me.RibbonPanel4)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel2)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel7)
         Me.rcCintaMenu.Controls.Add(Me.RibbonPanel8)
@@ -330,7 +328,6 @@ Partial Class frmPrincipal
         Me.rcCintaMenu.Location = New System.Drawing.Point(5, 1)
         Me.rcCintaMenu.Name = "rcCintaMenu"
         Me.rcCintaMenu.Padding = New System.Windows.Forms.Padding(0, 0, 0, 2)
-        Me.rcCintaMenu.QuickToolbarItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btCreditos})
         Me.rcCintaMenu.Size = New System.Drawing.Size(1012, 170)
         Me.rcCintaMenu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.rcCintaMenu.SystemText.MaximizeRibbonText = "&Maximize the Ribbon"
@@ -383,6 +380,7 @@ Partial Class frmPrincipal
         Me.RibbonPanel4.StyleMouseOver.Class = ""
         Me.RibbonPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonPanel4.TabIndex = 8
+        Me.RibbonPanel4.Visible = False
         '
         'RibbonBar23
         '
@@ -754,7 +752,7 @@ Partial Class frmPrincipal
         Me.RibbonPanel1.Location = New System.Drawing.Point(0, 53)
         Me.RibbonPanel1.Name = "RibbonPanel1"
         Me.RibbonPanel1.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel1.Size = New System.Drawing.Size(1026, 115)
+        Me.RibbonPanel1.Size = New System.Drawing.Size(1012, 115)
         '
         '
         '
@@ -771,7 +769,6 @@ Partial Class frmPrincipal
         Me.RibbonPanel1.StyleMouseOver.Class = ""
         Me.RibbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonPanel1.TabIndex = 1
-        Me.RibbonPanel1.Visible = False
         '
         'RibbonBar20
         '
@@ -1064,7 +1061,7 @@ Partial Class frmPrincipal
         Me.RibbonPanel3.Location = New System.Drawing.Point(0, 53)
         Me.RibbonPanel3.Name = "RibbonPanel3"
         Me.RibbonPanel3.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.RibbonPanel3.Size = New System.Drawing.Size(1026, 115)
+        Me.RibbonPanel3.Size = New System.Drawing.Size(1012, 115)
         '
         '
         '
@@ -1098,7 +1095,7 @@ Partial Class frmPrincipal
         Me.RibbonBar24.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.RibbonBar24.ContainerControlProcessDialogKey = True
         Me.RibbonBar24.Dock = System.Windows.Forms.DockStyle.Left
-        Me.RibbonBar24.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btPrinterSetting, Me.btServidor, Me.btRegistro, Me.btAyuda, Me.btAcercaDe})
+        Me.RibbonBar24.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btPrinterSetting, Me.btServidor, Me.btRegistro, Me.btAyuda})
         Me.RibbonBar24.Location = New System.Drawing.Point(221, 0)
         Me.RibbonBar24.Name = "RibbonBar24"
         Me.RibbonBar24.Size = New System.Drawing.Size(331, 112)
@@ -1152,15 +1149,6 @@ Partial Class frmPrincipal
         Me.btAyuda.Name = "btAyuda"
         Me.btAyuda.SubItemsExpandWidth = 14
         Me.btAyuda.Text = "Ayuda del Software"
-        '
-        'btAcercaDe
-        '
-        Me.btAcercaDe.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btAcercaDe.Image = Global.appFacturacion.My.Resources.Resources.Acerca
-        Me.btAcercaDe.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btAcercaDe.Name = "btAcercaDe"
-        Me.btAcercaDe.SubItemsExpandWidth = 14
-        Me.btAcercaDe.Text = "Acerca del Software"
         '
         'RibbonBar10
         '
@@ -2416,6 +2404,7 @@ Partial Class frmPrincipal
         'mnuCatalogos
         '
         Me.mnuCatalogos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.mnuCatalogos.Checked = True
         Me.mnuCatalogos.Name = "mnuCatalogos"
         Me.mnuCatalogos.Panel = Me.RibbonPanel1
         Me.mnuCatalogos.Text = "&EMPRESA"
@@ -2453,7 +2442,6 @@ Partial Class frmPrincipal
         '
         'RibbonTabItem3
         '
-        Me.RibbonTabItem3.Checked = True
         Me.RibbonTabItem3.Name = "RibbonTabItem3"
         Me.RibbonTabItem3.Panel = Me.RibbonPanel4
         Me.RibbonTabItem3.Text = "CAJA"
@@ -2463,16 +2451,6 @@ Partial Class frmPrincipal
         Me.RibbonTabItem2.Name = "RibbonTabItem2"
         Me.RibbonTabItem2.Panel = Me.RibbonPanel3
         Me.RibbonTabItem2.Text = "CON&FIGURACIÓN"
-        '
-        'btCreditos
-        '
-        Me.btCreditos.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.btCreditos.FontBold = True
-        Me.btCreditos.ForeColor = System.Drawing.Color.Yellow
-        Me.btCreditos.Image = Global.appFacturacion.My.Resources.Resources.Creditos
-        Me.btCreditos.Name = "btCreditos"
-        Me.btCreditos.Text = "Créditos"
-        Me.btCreditos.Visible = False
         '
         'styEstiloSistema
         '
@@ -2752,7 +2730,6 @@ Partial Class frmPrincipal
     Friend WithEvents ItemContainer4 As DevComponents.DotNetBar.ItemContainer
     Friend WithEvents btSalir As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents mnuCatalogos As DevComponents.DotNetBar.RibbonTabItem
-    Friend WithEvents btCreditos As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents styEstiloSistema As DevComponents.DotNetBar.StyleManager
     Friend WithEvents RibbonPanel2 As DevComponents.DotNetBar.RibbonPanel
     Friend WithEvents RibbonTabItem1 As DevComponents.DotNetBar.RibbonTabItem
@@ -2888,7 +2865,6 @@ Partial Class frmPrincipal
     Friend WithEvents RibbonBar24 As DevComponents.DotNetBar.RibbonBar
     Friend WithEvents btRegistro As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btAyuda As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents btAcercaDe As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents pcLogo As System.Windows.Forms.PictureBox
     Friend WithEvents RibbonBar25 As DevComponents.DotNetBar.RibbonBar
     Friend WithEvents btKardex As DevComponents.DotNetBar.ButtonItem

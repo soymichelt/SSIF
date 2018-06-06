@@ -780,6 +780,12 @@ Public Class frmTraslado
                                         )
                                         'Fin Recalcular Costo
 
+
+
+
+
+
+
                                         db.Entry(currentPostItemKardex).State = EntityState.Modified
 
                                     Next
@@ -788,7 +794,9 @@ Public Class frmTraslado
 
                                     productForKardexItem.SALDO += (accumulatedCostToDebit - accumulatedCostToAcredit)
 
-                                    kardexSelectedForThisTransfer.ACTIVO = "N" : db.Entry(kardexSelectedForThisTransfer).State = EntityState.Modified
+                                    kardexSelectedForThisTransfer.ACTIVO = "N"
+
+                                    db.Entry(kardexSelectedForThisTransfer).State = EntityState.Modified
 
                                 Next
 

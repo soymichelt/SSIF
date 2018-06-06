@@ -698,10 +698,6 @@ Public Class frmPrincipal
 
     End Sub
 
-    Private Sub btAcercaDe_Click(sender As Object, e As EventArgs) Handles btAcercaDe.Click
-        frmAcercaDe.ShowDialog()
-    End Sub
-
     Private Sub btValuacionInventario_Click(sender As Object, e As EventArgs) Handles btValuacionInventario.Click
         frmValuacion.MdiParent = Me
         frmValuacion.BringToFront()
@@ -712,10 +708,6 @@ Public Class frmPrincipal
         frmProductosComprados.MdiParent = Me
         frmProductosComprados.BringToFront()
         frmProductosComprados.Show()
-    End Sub
-
-    Private Sub btCreditos_Click(sender As Object, e As EventArgs) Handles btCreditos.Click
-        frmAcercaDe.ShowDialog()
     End Sub
 
     Private Sub btServidor_Click(sender As Object, e As EventArgs) Handles btServidor.Click
