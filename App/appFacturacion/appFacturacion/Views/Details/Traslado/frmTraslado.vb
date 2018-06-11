@@ -748,9 +748,6 @@ Public Class frmTraslado
                                 'End Using
 
 
-
-
-
                                 'Recorrer listado de productos de kardexs de esta Entrada
                                 For Each kardexItemForThisTransfer In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text).ToList()
 
@@ -766,8 +763,17 @@ Public Class frmTraslado
 
                                         Dim currentPostItemKardex = db.Kardexs.Where(Function(f) f.IDKARDEX = postItemKardex.IDKARDEX).FirstOrDefault()
 
-                                        currentPostItemKardex.EXISTENCIA_ANTERIOR = currentPostItemKardex.EXISTENCIA_ANTERIOR - kardexSelectedForThisTransfer.ENTRADA
-                                        currentPostItemKardex.EXISTENCIA_ALMACEN = currentPostItemKardex.EXISTENCIA_ALMACEN - kardexSelectedForThisTransfer.ENTRADA
+                                        If kardexSelectedForThisTransfer.ENTRADA > 0 Then
+
+                                            currentPostItemKardex.EXISTENCIA_ANTERIOR = currentPostItemKardex.EXISTENCIA_ANTERIOR - kardexSelectedForThisTransfer.ENTRADA
+                                            currentPostItemKardex.EXISTENCIA_ALMACEN = currentPostItemKardex.EXISTENCIA_ALMACEN - kardexSelectedForThisTransfer.ENTRADA
+
+                                        Else
+
+                                            currentPostItemKardex.EXISTENCIA_ANTERIOR = currentPostItemKardex.EXISTENCIA_ANTERIOR + kardexSelectedForThisTransfer.SALIDA
+                                            currentPostItemKardex.EXISTENCIA_ALMACEN = currentPostItemKardex.EXISTENCIA_ALMACEN + kardexSelectedForThisTransfer.SALIDA
+
+                                        End If
 
                                         'Recalculando Costo
                                         Sadara.BusinessLayer.Inventory.Instance.CurrencyOfProducts = Config.currentBusiness.MonedaInventario
