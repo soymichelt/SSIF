@@ -6,11 +6,11 @@ Public Class frmCuentasPorCobrar
 
     Private Async Function GetList() As Threading.Tasks.Task(Of List(Of Sadara.Models.V2.POCO.AccountReceivableEntity))
 
-        Return Await Sadara.BusinessLayer.Customer.Instance.GetListAccountsReceivableAsync(Config.currentBusiness.MonedaInventario, txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        Return Await Sadara.BusinessLayer.Customer.Instance.GetListAccountsReceivableAsync(Config.currentBusiness.MonedaInventario, Config.exchangeRate, txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
 
     End Function
 
-    Async Sub LoadDataInDatagrid(Optional ByVal codigo As String = "", Optional ByVal nombre As String = "", Optional ByVal razon As String = "")
+    Async Sub LoadDataInUI(Optional ByVal codigo As String = "", Optional ByVal nombre As String = "", Optional ByVal razon As String = "")
         Try
             Using db As New CodeFirst
 
@@ -21,7 +21,7 @@ Public Class frmCuentasPorCobrar
                     dtRegistro.DataSource = result.ToList
 
                     If result.Count > 0 Then
-                        txtTotal.Value = (result).Sum(Function(f) f.billed)
+                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
                     Else
                         txtTotal.Value = 0.0
                     End If
@@ -63,11 +63,11 @@ Public Class frmCuentasPorCobrar
                         band = rpt.Section2.ReportObjects("txtRazonSocial") : band.Text = "%Todos%"
                     End If
                     If result.Count > 0 Then
-                        txtTotal.Value = (result).Sum(Function(f) f.billed)
+                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
                     Else
                         txtTotal.Value = 0.0
                     End If
-                    rpt.SetDataSource((From r In result Select N_CLIENTE = r.customerCode, IDENTIFICACION = r.dni, CLIENTE = r.customerName, RAZONSOCIAL = r.businessName, PLAZO = r.creditTerm, LIMITE = r.creditLimit, FACTURADO = r.billed, VENCIDO = r.amountExpired, DISPONIBLE = r.amountAvailable).ToList())
+                    rpt.SetDataSource((From r In result Select N_CLIENTE = r.CustomerCode, IDENTIFICACION = r.DNI, CLIENTE = r.CustomerName, RAZONSOCIAL = r.BusinessName, PLAZO = r.CreditTerm, LIMITE = r.CreditLimit, FACTURADO = r.Billed, VENCIDO = r.AmountExpired, DISPONIBLE = r.AmountAvailable).ToList())
                     CrystalReportViewer1.ReportSource = rpt
                     CrystalReportViewer1.Zoom(75)
                     rpt = Nothing : band = Nothing
@@ -91,18 +91,18 @@ Public Class frmCuentasPorCobrar
 
         dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
         txtTotal.DisplayFormat = Config.f_m
-        LoadDataInDatagrid()
+        LoadDataInUI()
     End Sub
 
     Private Sub txtNCliente_TextChanged(sender As Object, e As EventArgs) Handles txtRazonSocial.TextChanged, txtNombreCliente.TextChanged, txtNCliente.TextChanged
         If dtRegistro.Visible Then
-            LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+            LoadDataInUI(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
         End If
     End Sub
 
     Private Sub txtNombreCliente_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtRazonSocial.KeyPress, txtNombreCliente.KeyPress, txtNCliente.KeyPress
         If e.KeyChar = ChrW(13) Then
-            LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+            LoadDataInUI(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
         End If
     End Sub
 
@@ -110,16 +110,16 @@ Public Class frmCuentasPorCobrar
         txtNCliente.Clear()
         txtNombreCliente.Clear()
         txtRazonSocial.Clear()
-        LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        LoadDataInUI(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
     End Sub
 
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
         dtRegistro.Visible = False
         CrystalReportViewer1.Visible = True
-        LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        LoadDataInUI(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
     End Sub
 
     Private Sub btBuscar_Click(sender As Object, e As EventArgs) Handles btBuscar.Click
-        LoadDataInDatagrid(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        LoadDataInUI(txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
     End Sub
 End Class

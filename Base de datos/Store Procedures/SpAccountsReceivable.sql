@@ -1,11 +1,11 @@
-/****** Object:  StoredProcedure [dbo].[SpProductosVendidos]    Script Date: 23/05/2018 17:00:21 a.m. ******/
+/****** Object:  StoredProcedure [dbo].[SpAccountsReceivable]    Script Date: 23/05/2018 17:00:21 a.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		MICHEL ROBERTO TRAÑA TABLADA
--- Create date: 23/05/2018
+-- Create date: 08/06/2018
 -- Description:	Retorna listado de clientes con su deuda actual
 -- =============================================
 ALTER PROCEDURE [dbo].[SpAccountsReceivable]
@@ -14,7 +14,8 @@ ALTER PROCEDURE [dbo].[SpAccountsReceivable]
 	@CustomerCode AS VARCHAR(50),
 	@CustomerName AS VARCHAR(100),
 	@BusinessName AS VARCHAR(100),
-	@Money AS CHAR(1)
+	@Money AS CHAR(1),
+	@ExchangeRate AS DECIMAL
 
 AS
 BEGIN
@@ -45,7 +46,19 @@ BEGIN
 					Cliente.RAZONSOCIAL AS BusinessName,
 					Cliente.TELEFONO AS Phone,
 					Cliente.PLAZO AS CreditTerm,
-					Cliente.LIMITECREDITO AS CreditLimit,
+
+					CASE @Money WHEN Cliente.MONEDA THEN
+						Cliente.LIMITECREDITO
+					ELSE
+						CASE @Money WHEN 'C' THEN
+							Cliente.LIMITECREDITO * @ExchangeRate
+						ELSE
+							Cliente.LIMITECREDITO / @ExchangeRate
+						END
+					END
+					AS
+						CreditLimit,
+
 					SUM(
 						CASE @Money WHEN 'C' THEN
 							CASE Venta.MONEDA WHEN 'C' THEN
@@ -63,23 +76,34 @@ BEGIN
 					)
 					AS
 						Billed,
+
 					0.0 AS AmountExpired,
-					Cliente.LIMITECREDITO -
-					SUM(
-						CASE @Money WHEN 'C' THEN
-							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO
-							ELSE
-								Venta.TAZACAMBIO * Venta.SALDOCREDITO
-							END
+
+						CASE @Money WHEN Cliente.MONEDA THEN
+							Cliente.LIMITECREDITO
 						ELSE
-							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO / Venta.TAZACAMBIO
+							CASE @Money WHEN 'C' THEN
+								Cliente.LIMITECREDITO * @ExchangeRate
 							ELSE
-								Venta.SALDOCREDITO
+								Cliente.LIMITECREDITO / @ExchangeRate
 							END
 						END
-					)
+					-
+						SUM(
+							CASE @Money WHEN 'C' THEN
+								CASE Venta.MONEDA WHEN 'C' THEN
+									Venta.SALDOCREDITO
+								ELSE
+									Venta.TAZACAMBIO * Venta.SALDOCREDITO
+								END
+							ELSE
+								CASE Venta.MONEDA WHEN 'C' THEN
+									Venta.SALDOCREDITO / Venta.TAZACAMBIO
+								ELSE
+									Venta.SALDOCREDITO
+								END
+							END
+						)
 					AS
 						AmountAvailable
 				FROM
@@ -97,6 +121,7 @@ BEGIN
 					CONCAT(Cliente.NOMBRES, ' ', Cliente.APELLIDOS),
 					Cliente.RAZONSOCIAL,
 					Cliente.TELEFONO,
+					Cliente.MONEDA,
 					Cliente.PLAZO,
 					Cliente.LIMITECREDITO
 			)
@@ -109,8 +134,20 @@ BEGIN
 					Cliente.RAZONSOCIAL AS BusinessName,
 					Cliente.TELEFONO AS Phone,
 					Cliente.PLAZO AS CreditTerm,
-					Cliente.LIMITECREDITO AS CreditLimit,
+					CASE @Money WHEN Cliente.MONEDA THEN
+						Cliente.LIMITECREDITO
+					ELSE
+						CASE @Money WHEN 'C' THEN
+							Cliente.LIMITECREDITO * @ExchangeRate
+						ELSE
+							Cliente.LIMITECREDITO / @ExchangeRate
+						END
+					END
+					AS
+						CreditLimit,
+
 					0.0 AS Billed,
+
 					SUM(
 						CASE @Money WHEN 'C' THEN
 							CASE Venta.MONEDA WHEN 'C' THEN
@@ -150,6 +187,7 @@ BEGIN
 					CONCAT(Cliente.NOMBRES, ' ', Cliente.APELLIDOS),
 					Cliente.RAZONSOCIAL,
 					Cliente.TELEFONO,
+					Cliente.MONEDA,
 					Cliente.PLAZO,
 					Cliente.LIMITECREDITO
 			)

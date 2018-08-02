@@ -386,7 +386,7 @@ Public Class frmReciboVenta
                                                 .NUEVO_SALDO_C = 0.0 : .NUEVO_SALDO_D = 0.0
                                             End If
                                         Else
-                                            If txtMonto.Value + txtDescuento.Value < If(v.ven.MONEDA.Equals(Config.cordoba), If(rdCordoba.Checked, v.ven.SALDOCREDITO, v.ven.SALDOCREDITO * txtTazaCambio.Value), If(rdDolar.Checked, v.ven.SALDOCREDITO, v.ven.SALDOCREDITO / txtTazaCambio.Value)) Then
+                                            If txtMonto.Value + txtDescuento.Value < If(v.ven.MONEDA.Equals(Config.cordoba), If(rdCordoba.Checked, v.ven.SALDOCREDITO, v.ven.SALDOCREDITO / txtTazaCambio.Value), If(rdDolar.Checked, v.ven.SALDOCREDITO, v.ven.SALDOCREDITO * txtTazaCambio.Value)) Then
                                                 .NUEVO_SALDO_C = If(v.ven.MONEDA.Equals(Config.cordoba), v.ven.SALDOCREDITO, v.ven.SALDOCREDITO * txtTazaCambio.Value) - .IMPORTE_C - .DESCUENTO_C : .NUEVO_SALDO_D = If(v.ven.MONEDA.Equals(Config.dolar), v.ven.SALDOCREDITO, v.ven.SALDOCREDITO / txtTazaCambio.Value) - .IMPORTE_D - .DESCUENTO_D
                                             Else
                                                 .NUEVO_SALDO_C = 0.0 : .NUEVO_SALDO_D = 0.0

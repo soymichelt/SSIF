@@ -382,12 +382,14 @@ Public Class frmReciboCompra
                                         If cmbOperacion.Text = "C" Then
                                             If txtMonto.Value + txtDescuento.Value < If(v.com.MONEDA.Equals(Config.cordoba), If(rdCordoba.Checked, v.com.SALDOCREDITO, v.com.SALDOCREDITO / txtTazaCambio.Value), If(rdDolar.Checked, v.com.SALDOCREDITO, v.com.SALDOCREDITO * txtTazaCambio.Value)) Then
                                                 .OPERACION = "A"
-                                                .NUEVO_SALDO_C = If(v.com.MONEDA.Equals(Config.cordoba), v.com.SALDOCREDITO, v.com.SALDOCREDITO * txtTazaCambio.Value) - .IMPORTE_C - .DESCUENTO_C : .NUEVO_SALDO_D = If(v.com.MONEDA.Equals(Config.dolar), v.com.SALDOCREDITO, v.com.SALDOCREDITO / txtTazaCambio.Value) - .IMPORTE_D - .DESCUENTO_D
+                                                .NUEVO_SALDO_C = If(v.com.MONEDA.Equals(Config.cordoba), v.com.SALDOCREDITO, v.com.SALDOCREDITO * txtTazaCambio.Value) - .IMPORTE_C - .DESCUENTO_C
+                                                .NUEVO_SALDO_D = If(v.com.MONEDA.Equals(Config.dolar), v.com.SALDOCREDITO, v.com.SALDOCREDITO / txtTazaCambio.Value) - .IMPORTE_D - .DESCUENTO_D
                                             Else
-                                                .NUEVO_SALDO_C = 0.0 : .NUEVO_SALDO_D = 0.0
+                                                .NUEVO_SALDO_C = 0.0
+                                                .NUEVO_SALDO_D = 0.0
                                             End If
                                         Else
-                                            If txtMonto.Value + txtDescuento.Value < If(v.com.MONEDA.Equals(Config.cordoba), If(rdCordoba.Checked, v.com.SALDOCREDITO, v.com.SALDOCREDITO * txtTazaCambio.Value), If(rdDolar.Checked, v.com.SALDOCREDITO, v.com.SALDOCREDITO / txtTazaCambio.Value)) Then
+                                            If txtMonto.Value + txtDescuento.Value < If(v.com.MONEDA.Equals(Config.cordoba), If(rdCordoba.Checked, v.com.SALDOCREDITO, v.com.SALDOCREDITO / txtTazaCambio.Value), If(rdDolar.Checked, v.com.SALDOCREDITO, v.com.SALDOCREDITO * txtTazaCambio.Value)) Then
                                                 .NUEVO_SALDO_C = If(v.com.MONEDA.Equals(Config.cordoba), v.com.SALDOCREDITO, v.com.SALDOCREDITO * txtTazaCambio.Value) - .IMPORTE_C - .DESCUENTO_C : .NUEVO_SALDO_D = If(v.com.MONEDA.Equals(Config.dolar), v.com.SALDOCREDITO, v.com.SALDOCREDITO / txtTazaCambio.Value) - .IMPORTE_D - .DESCUENTO_D
                                             Else
                                                 .NUEVO_SALDO_C = 0.0 : .NUEVO_SALDO_D = 0.0
@@ -874,7 +876,7 @@ Public Class frmReciboCompra
         If e.KeyData = Keys.Enter Then
             If txtIdSerie.Text <> "" Then
                 If txtNRecibo.Text.Trim <> "" Then
-                    txtNProveedor.Focus()
+                    txtNVendedor.Focus()
                 Else
                     MessageBox.Show("Ingresar el Nº de Recibo.")
                 End If

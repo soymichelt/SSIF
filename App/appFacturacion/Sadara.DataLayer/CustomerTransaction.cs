@@ -60,16 +60,24 @@ namespace Sadara.DataLayer
 
         }
 
-        public async Task<List<AccountReceivableEntity>> GetListAccountsReceivableAsync(string money, string customerCode = "", string customerName = "", string businessName = "")
+        public async Task<List<AccountReceivableEntity>> GetListAccountsReceivableAsync(
+            string money,
+            decimal exchangeRate,
+            string customerCode = "",
+            string customerName = "",
+            string businessName = ""
+        )
         {
             
             var accountsReceivable = await this.transaction.Db.Database.SqlQuery<AccountReceivableEntity>
                 (
-                    "SpAccountsReceivable @CustomerCode, @CustomerName, @BusinessName, @Money",
+                    "SpAccountsReceivable @CustomerCode, @CustomerName, @BusinessName, @Money, @ExchangeRate",
                     new SqlParameter("@CustomerCode", customerCode),
                     new SqlParameter("@CustomerName", customerName),
                     new SqlParameter("@BusinessName", businessName),
-                    new SqlParameter("@Money", money)
+                    new SqlParameter("@Money", money),
+                    new SqlParameter("@ExchangeRate" +
+                    "", exchangeRate)
                 )
                 .ToListAsync();
 

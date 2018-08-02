@@ -180,7 +180,7 @@ Partial Class frmReciboCompra
         Me.btGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btGuardar.Name = "btGuardar"
         Me.btGuardar.Size = New System.Drawing.Size(83, 36)
-        Me.sptInfo.SetSuperTooltip(Me.btGuardar, New DevComponents.DotNetBar.SuperTooltipInfo("Guardar: Ctrl + G", "", "Guardar el registro en pantalla con su respectiva información. Cabe destacar que " & _
+        Me.sptInfo.SetSuperTooltip(Me.btGuardar, New DevComponents.DotNetBar.SuperTooltipInfo("Guardar: Ctrl + G", "", "Guardar el registro en pantalla con su respectiva información. Cabe destacar que " &
             "los datos previamente son expuestos a un proceso de validación.", Global.appFacturacion.My.Resources.Resources.guardar, Nothing, DevComponents.DotNetBar.eTooltipColor.[Default], True, False, New System.Drawing.Size(0, 0)))
         Me.btGuardar.Tag = "Guardar: Ctrl + G"
         Me.btGuardar.Text = "Guardar"
@@ -688,7 +688,7 @@ Partial Class frmReciboCompra
         Me.txtSobrantedeCaja.Font = New System.Drawing.Font("Arial", 8.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSobrantedeCaja.Increment = 1.0R
         Me.txtSobrantedeCaja.Location = New System.Drawing.Point(70, 52)
-        Me.txtSobrantedeCaja.MinValue = 0.0R
+        Me.txtSobrantedeCaja.MinValue = 0R
         Me.txtSobrantedeCaja.Name = "txtSobrantedeCaja"
         Me.txtSobrantedeCaja.Size = New System.Drawing.Size(79, 21)
         Me.txtSobrantedeCaja.TabIndex = 10
@@ -704,7 +704,7 @@ Partial Class frmReciboCompra
         Me.txtMontoTotal.Font = New System.Drawing.Font("Arial", 8.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMontoTotal.Increment = 1.0R
         Me.txtMontoTotal.Location = New System.Drawing.Point(70, 30)
-        Me.txtMontoTotal.MinValue = 0.0R
+        Me.txtMontoTotal.MinValue = 0R
         Me.txtMontoTotal.Name = "txtMontoTotal"
         Me.txtMontoTotal.Size = New System.Drawing.Size(79, 21)
         Me.txtMontoTotal.TabIndex = 9
@@ -951,7 +951,7 @@ Partial Class frmReciboCompra
         Me.txtMonto.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMonto.Increment = 1.0R
         Me.txtMonto.Location = New System.Drawing.Point(98, 58)
-        Me.txtMonto.MinValue = 0.0R
+        Me.txtMonto.MinValue = 0R
         Me.txtMonto.Name = "txtMonto"
         Me.txtMonto.Size = New System.Drawing.Size(101, 23)
         Me.txtMonto.TabIndex = 20
@@ -1001,7 +1001,7 @@ Partial Class frmReciboCompra
         Me.txtDescuento.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescuento.Increment = 1.0R
         Me.txtDescuento.Location = New System.Drawing.Point(98, 84)
-        Me.txtDescuento.MinValue = 0.0R
+        Me.txtDescuento.MinValue = 0R
         Me.txtDescuento.Name = "txtDescuento"
         Me.txtDescuento.Size = New System.Drawing.Size(101, 23)
         Me.txtDescuento.TabIndex = 21
@@ -1118,7 +1118,6 @@ Partial Class frmReciboCompra
         Me.txtTotalNuevoSaldo.Increment = 1.0R
         Me.txtTotalNuevoSaldo.IsInputReadOnly = True
         Me.txtTotalNuevoSaldo.Location = New System.Drawing.Point(96, 58)
-        Me.txtTotalNuevoSaldo.MinValue = 0.0R
         Me.txtTotalNuevoSaldo.Name = "txtTotalNuevoSaldo"
         Me.txtTotalNuevoSaldo.Size = New System.Drawing.Size(93, 23)
         Me.txtTotalNuevoSaldo.TabIndex = 78
@@ -1135,7 +1134,6 @@ Partial Class frmReciboCompra
         Me.txtTotalDescuento.Increment = 1.0R
         Me.txtTotalDescuento.IsInputReadOnly = True
         Me.txtTotalDescuento.Location = New System.Drawing.Point(96, 32)
-        Me.txtTotalDescuento.MinValue = 0.0R
         Me.txtTotalDescuento.Name = "txtTotalDescuento"
         Me.txtTotalDescuento.Size = New System.Drawing.Size(93, 23)
         Me.txtTotalDescuento.TabIndex = 78
@@ -1152,7 +1150,6 @@ Partial Class frmReciboCompra
         Me.txtTotalImporte.Increment = 1.0R
         Me.txtTotalImporte.IsInputReadOnly = True
         Me.txtTotalImporte.Location = New System.Drawing.Point(96, 6)
-        Me.txtTotalImporte.MinValue = 0.0R
         Me.txtTotalImporte.Name = "txtTotalImporte"
         Me.txtTotalImporte.Size = New System.Drawing.Size(93, 23)
         Me.txtTotalImporte.TabIndex = 78
@@ -1329,7 +1326,7 @@ Partial Class frmReciboCompra
         Me.DoubleInput2.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DoubleInput2.Increment = 1.0R
         Me.DoubleInput2.Location = New System.Drawing.Point(96, 58)
-        Me.DoubleInput2.MinValue = 0.0R
+        Me.DoubleInput2.MinValue = 0R
         Me.DoubleInput2.Name = "DoubleInput2"
         Me.DoubleInput2.Size = New System.Drawing.Size(93, 23)
         Me.DoubleInput2.TabIndex = 78
@@ -1348,7 +1345,7 @@ Partial Class frmReciboCompra
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(394, 212)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"

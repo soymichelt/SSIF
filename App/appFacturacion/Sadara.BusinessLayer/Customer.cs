@@ -13,6 +13,8 @@ namespace Sadara.BusinessLayer
     public class Customer
     {
 
+        #region Abstracción en Singleton
+
         private static Customer instance;
 
         private static readonly object padlock = new object();
@@ -51,6 +53,8 @@ namespace Sadara.BusinessLayer
 
         }
 
+        #endregion
+
         protected Customer()
         { }
 
@@ -71,12 +75,20 @@ namespace Sadara.BusinessLayer
 
         }
 
-        public async Task<List<Sadara.Models.V2.POCO.AccountReceivableEntity>> GetListAccountsReceivableAsync(string money, string customerCode = "", string customerName = "", string businessName = "")
+        public async Task<List<Sadara.Models.V2.POCO.AccountReceivableEntity>> GetListAccountsReceivableAsync(
+            string money,
+            decimal exchangeRate,
+            string customerCode = "",
+            string customerName = "",
+            string businessName = ""
+        )
         {
 
             this.InitializeTransactionComponents();
 
-            return await this.customerTransaction.GetListAccountsReceivableAsync(money, customerCode, customerName, businessName);
+            return await this.customerTransaction.GetListAccountsReceivableAsync(
+                money, exchangeRate, customerCode, customerName, businessName
+            );
 
         }
 

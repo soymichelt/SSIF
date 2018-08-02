@@ -1,35 +1,21 @@
-﻿EXEC dbo.SpAccountsToPay
-	@ProviderCode = '',
-	@ProviderName = '',
-	@BusinessName = '',
-	@Money = 'C'
-GO
-
-SELECT * FROM Compra ORDER BY Compra.N
-GO
-
-UPDATE Compra SET FECHACREDITOVENCIMIENTO = '2018-05-20 20:01:38.597'
-WHERE N = 8
-GO
-
-
-/****** Object:  StoredProcedure [dbo].[SpProductosVendidos]    Script Date: 23/05/2018 17:00:21 a.m. ******/
+﻿/****** Object:  StoredProcedure [dbo].[SpAccountsToPay]    Script Date: 23/05/2018 17:00:21 a.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		MICHEL ROBERTO TRAÑA TABLADA
--- Create date: 23/05/2018
--- Description:	Retorna listado de clientes con su deuda actual
+-- Create date: 10/06/2018
+-- Description:	Retorna listado de proveedores con su deuda actual
 -- =============================================
-CREATE PROCEDURE [dbo].[SpAccountsToPay]
+ALTER PROCEDURE [dbo].[SpAccountsToPay]
 
 	-- Add the parameters for the stored procedure here
 	@ProviderCode AS VARCHAR(50),
 	@ProviderName AS VARCHAR(100),
 	@BusinessName AS VARCHAR(100),
-	@Money AS CHAR(1)
+	@Money AS CHAR(1),
+	@ExchangeRate AS DECIMAL
 
 AS
 BEGIN
@@ -60,7 +46,19 @@ BEGIN
 					Proveedor.RAZONSOCIAL AS BusinessName,
 					Proveedor.TELEFONO AS Phone,
 					Proveedor.PLAZO AS CreditTerm,
-					Proveedor.LIMITECREDITO AS CreditLimit,
+
+					CASE @Money WHEN Proveedor.MONEDA THEN
+						Proveedor.LIMITECREDITO
+					ELSE
+						CASE @Money WHEN 'C' THEN
+							Proveedor.LIMITECREDITO * @ExchangeRate
+						ELSE
+							Proveedor.LIMITECREDITO / @ExchangeRate
+						END
+					END
+					AS
+						CreditLimit,
+
 					SUM(
 						CASE @Money WHEN 'C' THEN
 							CASE Compra.MONEDA WHEN 'C' THEN
@@ -78,25 +76,37 @@ BEGIN
 					)
 					AS
 						Billed,
+
 					0.0 AS AmountExpired,
-					Proveedor.LIMITECREDITO -
-					SUM(
-						CASE @Money WHEN 'C' THEN
-							CASE Compra.MONEDA WHEN 'C' THEN
-								Compra.SALDOCREDITO
-							ELSE
-								Compra.TAZACAMBIO * Compra.SALDOCREDITO
-							END
+
+						CASE @Money WHEN Proveedor.MONEDA THEN
+							Proveedor.LIMITECREDITO
 						ELSE
-							CASE Compra.MONEDA WHEN 'C' THEN
-								Compra.SALDOCREDITO / Compra.TAZACAMBIO
+							CASE @Money WHEN 'C' THEN
+								Proveedor.LIMITECREDITO * @ExchangeRate
 							ELSE
-								Compra.SALDOCREDITO
+								Proveedor.LIMITECREDITO / @ExchangeRate
 							END
 						END
-					)
+					-
+						SUM(
+							CASE @Money WHEN 'C' THEN
+								CASE Compra.MONEDA WHEN 'C' THEN
+									Compra.SALDOCREDITO
+								ELSE
+									Compra.TAZACAMBIO * Compra.SALDOCREDITO
+								END
+							ELSE
+								CASE Compra.MONEDA WHEN 'C' THEN
+									Compra.SALDOCREDITO / Compra.TAZACAMBIO
+								ELSE
+									Compra.SALDOCREDITO
+								END
+							END
+						)
 					AS
 						AmountAvailable
+
 				FROM
 					Proveedor
 					INNER JOIN Compra ON Compra.IDPROVEEDOR = Proveedor.IDPROVEEDOR
@@ -112,6 +122,7 @@ BEGIN
 					CONCAT(Proveedor.NOMBRES, ' ', Proveedor.APELLIDOS),
 					Proveedor.RAZONSOCIAL,
 					Proveedor.TELEFONO,
+					Proveedor.MONEDA,
 					Proveedor.PLAZO,
 					Proveedor.LIMITECREDITO
 			)
@@ -124,8 +135,21 @@ BEGIN
 					Proveedor.RAZONSOCIAL AS BusinessName,
 					Proveedor.TELEFONO AS Phone,
 					Proveedor.PLAZO AS CreditTerm,
-					Proveedor.LIMITECREDITO AS CreditLimit,
+					
+					CASE @Money WHEN Proveedor.MONEDA THEN
+						Proveedor.LIMITECREDITO
+					ELSE
+						CASE @Money WHEN 'C' THEN
+							Proveedor.LIMITECREDITO * @ExchangeRate
+						ELSE
+							Proveedor.LIMITECREDITO / @ExchangeRate
+						END
+					END
+					AS
+						CreditLimit,
+
 					0.0 AS Billed,
+
 					SUM(
 						CASE @Money WHEN 'C' THEN
 							CASE Compra.MONEDA WHEN 'C' THEN
@@ -143,7 +167,9 @@ BEGIN
 					)
 					AS
 						AmountExpired,
+
 					0.0 AS AmountAvailable
+
 				FROM
 					Proveedor
 					INNER JOIN Compra ON Compra.IDPROVEEDOR = Proveedor.IDPROVEEDOR
@@ -165,6 +191,7 @@ BEGIN
 					CONCAT(Proveedor.NOMBRES, ' ', Proveedor.APELLIDOS),
 					Proveedor.RAZONSOCIAL,
 					Proveedor.TELEFONO,
+					Proveedor.MONEDA,
 					Proveedor.PLAZO,
 					Proveedor.LIMITECREDITO
 			)
