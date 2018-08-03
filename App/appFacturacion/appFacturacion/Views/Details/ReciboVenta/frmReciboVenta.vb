@@ -49,7 +49,7 @@ Public Class frmReciboVenta
                 txtTotalNuevoSaldo.Value = detalles.Sum(Function(f) f.NUEVO_SALDO_C)
             Else
                 txtTotalImporte.Value = detalles.Sum(Function(f) f.IMPORTE_D)
-                txtTotalDescuento.Value = detalles.Sum(Function(f) f.DESCUENTO_DIN_TOTAL_D)
+                txtTotalDescuento.Value = detalles.Sum(Function(f) f.DESCUENTO_D)
                 txtTotalNuevoSaldo.Value = detalles.Sum(Function(f) f.NUEVO_SALDO_D)
             End If
         Else
