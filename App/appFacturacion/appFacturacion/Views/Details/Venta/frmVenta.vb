@@ -633,8 +633,10 @@ Public Class frmVenta
                                     k.HABER = (k.SALIDA * k.COSTO)
                                     k.PRECIO_C = d.PRECIONETO_C
                                     k.PRECIO_D = d.PRECIONETO_D
+
                                     producto.Producto.CANTIDAD = producto.Producto.CANTIDAD - d.CANTIDAD
                                     producto.Producto.SALDO = producto.Producto.SALDO - (d.COSTO * d.CANTIDAD)
+
                                     k.COSTO_PROMEDIO = producto.Producto.COSTO
                                     If producto.Producto.CANTIDAD <> 0 Then
                                         'producto.PRODUCTO.COSTO = (producto.PRODUCTO.SALDO / producto.PRODUCTO.CANTIDAD)
@@ -1116,71 +1118,6 @@ Public Class frmVenta
                                     db.Entry(estado).State = EntityState.Modified
                                 Next
 
-                                'Metiendo productos al inventario
-                                'For Each item In v.VentasDetalles
-                                '    item.Existencia.CANTIDAD = item.Existencia.CANTIDAD + item.CANTIDAD
-                                '    item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD + item.CANTIDAD
-
-                                '    If item.Existencia.Producto.CANTIDAD = 0 Then
-                                '        item.Existencia.Producto.SALDO = 0
-                                '    Else
-                                '        If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
-                                '            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO)
-                                '        Else
-                                '            If item.CMONEDA.Equals(Config.cordoba) Then
-                                '                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO / Config.exchangeRate)
-                                '            Else
-                                '                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO * Config.exchangeRate)
-                                '            End If
-                                '        End If
-                                '    End If
-
-                                '    If item.Existencia.Producto.CANTIDAD <> 0 Then
-                                '        If item.Existencia.Producto.COSTO <> item.COSTO Then
-                                '            item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
-                                '        End If
-                                '    Else
-                                '        item.Existencia.Producto.SALDO = 0
-                                '    End If
-
-                                '    db.Entry(item.Existencia.Producto).State = EntityState.Modified
-                                '    db.Entry(item.Existencia).State = EntityState.Modified
-                                'Next
-
-                                'Anulando Kardex
-                                'Using db_a As New CodeFirst
-                                '    Dim band As Boolean = False
-                                '    For Each kardex In db.Kardexs.Where(Function(f) f.IDSERIE = v.IDSERIE And f.N_DOCUMENTO = txtCodigo.Text)
-                                '        For Each k In db_a.Kardexs.Where(Function(f) f.N > kardex.N And f.IDEXISTENCIA = kardex.IDEXISTENCIA)
-                                '            k.EXISTENCIA_ANTERIOR = k.EXISTENCIA_ANTERIOR + kardex.SALIDA
-                                '            k.EXISTENCIA_ALMACEN = k.EXISTENCIA_ALMACEN + kardex.SALIDA
-
-                                '            If k.EXISTENCIA_ALMACEN = 0 Then
-                                '                k.SALDO = 0
-                                '            Else
-                                '                If k.CMONEDA.Equals(kardex.CMONEDA) Then
-                                '                    k.SALDO = k.SALDO + kardex.HABER
-                                '                Else
-                                '                    If kardex.CMONEDA.Equals(Config.cordoba) Then
-                                '                        k.SALDO = k.SALDO + (kardex.HABER / Config.exchangeRate)
-                                '                    Else
-                                '                        k.SALDO = k.SALDO + (kardex.HABER * Config.exchangeRate)
-                                '                    End If
-                                '                End If
-                                '            End If
-
-
-                                '            db_a.Entry(k).State = EntityState.Modified
-                                '            band = True
-                                '        Next
-                                '        kardex.ACTIVO = "N" : db.Entry(kardex).State = EntityState.Modified
-                                '    Next
-                                '    If band Then
-                                '        db_a.SaveChanges()
-                                '    End If
-                                '    db.SaveChanges() : MessageBox.Show("Factura Anulada") : limpiar()
-                                'End Using
-
 
 
 
@@ -1250,21 +1187,27 @@ Public Class frmVenta
                                     If item.Existencia.Producto.CANTIDAD = 0 Then
                                         item.Existencia.Producto.SALDO = 0
                                     Else
-                                        If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
-                                            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * If(item.CMONEDA.Equals(Config.cordoba), item.PRECIOUNITARIO_C, item.PRECIOUNITARIO_D))
-                                        Else
-                                            If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.PRECIOUNITARIO_D)
-                                            Else
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.PRECIOUNITARIO_C)
-                                            End If
-                                        End If
+
+                                        item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO)
+
+                                        'If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
+                                        '    item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO)
+                                        'Else
+                                        '    If item.CMONEDA.Equals(Config.cordoba) Then
+                                        '        item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.PRECIOUNITARIO_D)
+                                        '    Else
+                                        '        item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.PRECIOUNITARIO_C)
+                                        '    End If
+                                        'End If
+
                                     End If
 
                                     If item.Existencia.Producto.CANTIDAD <> 0 Then
                                         If item.Existencia.Producto.COSTO <> item.COSTO Then
                                             item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
                                         End If
+                                    Else
+                                        item.Existencia.Producto.SALDO = 0
                                     End If
 
                                     db.Entry(item.Existencia.Producto).State = EntityState.Modified

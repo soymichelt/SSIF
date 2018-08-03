@@ -11,6 +11,8 @@ namespace Sadara.BusinessLayer
     public class Inventory
     {
 
+        #region Singleton
+
         private static Inventory instance;
 
         private static readonly object padlock = new object();
@@ -47,6 +49,8 @@ namespace Sadara.BusinessLayer
             }
 
         }
+
+        #endregion
 
         public string CurrencyOfProducts { get; set; }
 
@@ -283,22 +287,7 @@ namespace Sadara.BusinessLayer
 
                         currentPostItemKardex.DEBER = currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO;
                         currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + currentPostItemKardex.DEBER;
-
-                        /*if (typeMovement)
-                        {
-
-                            currentPostItemKardex.DEBER = currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO;
-                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + currentPostItemKardex.DEBER;
-
-                        }
-                        else
-                        {
-
-                            currentPostItemKardex.HABER = currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO;
-                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - currentPostItemKardex.HABER;
-
-                        }*/
-
+                        
                     }
                     else
                     {
@@ -324,22 +313,7 @@ namespace Sadara.BusinessLayer
 
                             currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (currentPostItemKardex.DEBER / currentPostItemKardex.TAZACAMBIO);
-
-                            /*if (typeMovement)
-                            {
-
-                                currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (currentPostItemKardex.DEBER / currentPostItemKardex.TAZACAMBIO);
-
-                            }
-                            else
-                            {
-
-                                currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER / currentPostItemKardex.TAZACAMBIO);
-
-                            }*/
-
+                            
                         }
                         else
                         {
@@ -362,22 +336,7 @@ namespace Sadara.BusinessLayer
 
                             currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney * currentPostItemKardex.TAZACAMBIO);
-
-                            /*if (typeMovement)
-                            {
-
-                                currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney * currentPostItemKardex.TAZACAMBIO);
-
-                            }
-                            else
-                            {
-
-                                currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER * currentPostItemKardex.TAZACAMBIO);
-
-                            }*/
-
+                            
                         }
                         else
                         {
@@ -430,22 +389,7 @@ namespace Sadara.BusinessLayer
 
                         currentPostItemKardex.HABER = currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO;
                         currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - currentPostItemKardex.HABER;
-
-                        /*if (typeMovement)
-                        {
-
-                            currentPostItemKardex.DEBER = currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO;
-                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + currentPostItemKardex.DEBER;
-
-                        }
-                        else
-                        {
-
-                            currentPostItemKardex.HABER = currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO;
-                            currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - currentPostItemKardex.HABER;
-
-                        }*/
-
+                        
                     }
                     else
                     {
@@ -471,22 +415,7 @@ namespace Sadara.BusinessLayer
 
                             currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER / currentPostItemKardex.TAZACAMBIO);
-
-                            /*if (typeMovement)
-                            {
-
-                                currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (currentPostItemKardex.DEBER / currentPostItemKardex.TAZACAMBIO);
-
-                            }
-                            else
-                            {
-
-                                currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER / currentPostItemKardex.TAZACAMBIO);
-
-                            }*/
-
+                            
                         }
                         else
                         {
@@ -509,21 +438,7 @@ namespace Sadara.BusinessLayer
 
                             currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER * currentPostItemKardex.TAZACAMBIO);
-
-                            /*if (typeMovement)
-                            {
-
-                                currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney * currentPostItemKardex.TAZACAMBIO);
-
-                            }
-                            else
-                            {
-
-                                currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
-                                currentPostItemKardex.SALDO = currentPostItemKardex.SALDO - (currentPostItemKardex.HABER * currentPostItemKardex.TAZACAMBIO);
-
-                            }*/
+                            
 
                         }
                         else
