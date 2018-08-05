@@ -1492,8 +1492,8 @@ Public Class frmVenta
                             End If
                         Else
 
-                            frmImprimirVentaFormatoCarta.idventa = Me.Id
-                            frmImprimirVentaFormatoCarta.ShowDialog()
+                            frmImprimirVenta.idventa = Me.Id
+                            frmImprimirVenta.ShowDialog()
                         End If
                     Else
                         MessageBox.Show("Esta 'Venta' esta anulado")
