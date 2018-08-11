@@ -236,7 +236,19 @@ Public Class frmSalida
                                 idexistencia = lvRegistro.Items(i).Text
                                 producto = db.Existencias.Where(Function(f) f.IDEXISTENCIA = idexistencia And f.Producto.ACTIVO = "S" And f.Bodega.ACTIVO = "S").FirstOrDefault()
                                 If Not producto Is Nothing Then
-                                    Dim d As New SalidaDetalle : d.IDDETALLESALIDA = Guid.NewGuid.ToString() : d.EXISTENCIA_PRODUCTO = producto.CANTIDAD : d.CANTIDAD = Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text) : d.CMONEDA = producto.Producto.CMONEDA : d.COSTO = producto.Producto.COSTO : d.TOTAL = d.CANTIDAD * d.COSTO : salida.TOTAL = salida.TOTAL + d.TOTAL : d.IDEXISTENCIA = producto.IDEXISTENCIA : d.IDSALIDA = salida.IDSALIDA : db.SalidasDetalles.Add(d)
+
+                                    Dim d As New SalidaDetalle
+                                    d.IDDETALLESALIDA = Guid.NewGuid.ToString()
+                                    d.EXISTENCIA_PRODUCTO = producto.CANTIDAD
+                                    d.CANTIDAD = Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text)
+                                    d.CMONEDA = producto.Producto.CMONEDA
+                                    d.COSTO = producto.Producto.COSTO
+                                    d.TOTAL = d.CANTIDAD * d.COSTO
+                                    salida.TOTAL = salida.TOTAL + d.TOTAL
+                                    d.IDEXISTENCIA = producto.IDEXISTENCIA
+                                    d.IDSALIDA = salida.IDSALIDA
+                                    db.SalidasDetalles.Add(d)
+
                                     Dim k As New Kardex
                                     k.IDKARDEX = Guid.NewGuid.ToString()
                                     k.IDEXISTENCIA = producto.IDEXISTENCIA
@@ -256,6 +268,7 @@ Public Class frmSalida
                                     k.HABER = d.TOTAL
                                     k.PRECIO_C = 0
                                     k.ACTIVO = "S"
+
                                     producto.Producto.CANTIDAD = producto.Producto.CANTIDAD - d.CANTIDAD
                                     If producto.CANTIDAD < 0 Then
                                         If Not producto.Producto.FACTURAR_NEGATIVO Then
@@ -727,6 +740,8 @@ Public Class frmSalida
                                         If item.Existencia.Producto.COSTO <> item.COSTO Then
                                             item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
                                         End If
+                                    Else
+                                        item.Existencia.Producto.COSTO = 0
                                     End If
 
                                     db.Entry(item.Existencia.Producto).State = EntityState.Modified
