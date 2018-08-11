@@ -1149,21 +1149,27 @@ Public Class frmNotaDevolucion
                                     If item.Existencia.Producto.CANTIDAD = 0 Then
                                         item.Existencia.Producto.SALDO = 0
                                     Else
-                                        If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
-                                            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * If(item.CMONEDA.Equals(Config.cordoba), item.PRECIOUNITARIO_C, item.PRECIOUNITARIO_D))
-                                        Else
-                                            If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.PRECIOUNITARIO_D)
-                                            Else
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.PRECIOUNITARIO_C)
-                                            End If
-                                        End If
+
+                                        item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD * item.COSTO)
+
+                                        'If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
+                                        '    item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * If(item.CMONEDA.Equals(Config.cordoba), item.PRECIONETO_C, item.PRECIONETO_D))
+                                        'Else
+                                        '    If item.CMONEDA.Equals(Config.cordoba) Then
+                                        '        item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.PRECIONETO_D)
+                                        '    Else
+                                        '        item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.PRECIONETO_C)
+                                        '    End If
+                                        'End If
+
                                     End If
 
                                     If item.Existencia.Producto.CANTIDAD <> 0 Then
                                         If item.Existencia.Producto.COSTO <> item.COSTO Then
                                             item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
                                         End If
+                                    Else
+                                        item.Existencia.Producto.COSTO = 0
                                     End If
 
                                     db.Entry(item.Existencia.Producto).State = EntityState.Modified
