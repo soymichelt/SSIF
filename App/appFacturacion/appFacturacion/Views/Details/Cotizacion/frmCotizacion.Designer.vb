@@ -545,7 +545,7 @@ Partial Class frmCotizacion
         Me.txtDescuentoPorFactura.Increment = 1.0R
         Me.txtDescuentoPorFactura.Location = New System.Drawing.Point(111, 65)
         Me.txtDescuentoPorFactura.MaxValue = 100.0R
-        Me.txtDescuentoPorFactura.MinValue = 0.0R
+        Me.txtDescuentoPorFactura.MinValue = 0R
         Me.txtDescuentoPorFactura.Name = "txtDescuentoPorFactura"
         Me.txtDescuentoPorFactura.Size = New System.Drawing.Size(45, 20)
         Me.txtDescuentoPorFactura.TabIndex = 25
@@ -977,7 +977,7 @@ Partial Class frmCotizacion
         Me.txtCantidad.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidad.Increment = 1.0R
         Me.txtCantidad.Location = New System.Drawing.Point(96, 31)
-        Me.txtCantidad.MinValue = 0.0R
+        Me.txtCantidad.MinValue = 0R
         Me.txtCantidad.Name = "txtCantidad"
         Me.txtCantidad.Size = New System.Drawing.Size(101, 23)
         Me.txtCantidad.TabIndex = 29
@@ -994,7 +994,7 @@ Partial Class frmCotizacion
         Me.txtPrecio.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrecio.Increment = 1.0R
         Me.txtPrecio.Location = New System.Drawing.Point(96, 56)
-        Me.txtPrecio.MinValue = 0.0R
+        Me.txtPrecio.MinValue = 0R
         Me.txtPrecio.Name = "txtPrecio"
         Me.txtPrecio.Size = New System.Drawing.Size(101, 23)
         Me.txtPrecio.TabIndex = 30
@@ -1011,7 +1011,7 @@ Partial Class frmCotizacion
         Me.txtDescuentoPorProducto.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescuentoPorProducto.Increment = 1.0R
         Me.txtDescuentoPorProducto.Location = New System.Drawing.Point(96, 81)
-        Me.txtDescuentoPorProducto.MinValue = 0.0R
+        Me.txtDescuentoPorProducto.MinValue = 0R
         Me.txtDescuentoPorProducto.Name = "txtDescuentoPorProducto"
         Me.txtDescuentoPorProducto.Size = New System.Drawing.Size(101, 23)
         Me.txtDescuentoPorProducto.TabIndex = 31
@@ -1028,7 +1028,7 @@ Partial Class frmCotizacion
         Me.txtIva.Increment = 1.0R
         Me.txtIva.Location = New System.Drawing.Point(251, 106)
         Me.txtIva.MaxValue = 100.0R
-        Me.txtIva.MinValue = 0.0R
+        Me.txtIva.MinValue = 0R
         Me.txtIva.Name = "txtIva"
         Me.txtIva.Size = New System.Drawing.Size(50, 20)
         Me.txtIva.TabIndex = 32
@@ -1263,7 +1263,7 @@ Partial Class frmCotizacion
         Me.txtTotal.Increment = 1.0R
         Me.txtTotal.IsInputReadOnly = True
         Me.txtTotal.Location = New System.Drawing.Point(96, 81)
-        Me.txtTotal.MinValue = 0.0R
+        Me.txtTotal.MinValue = 0R
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(93, 23)
         Me.txtTotal.TabIndex = 76
@@ -1280,7 +1280,7 @@ Partial Class frmCotizacion
         Me.txtTotalIva.Increment = 1.0R
         Me.txtTotalIva.IsInputReadOnly = True
         Me.txtTotalIva.Location = New System.Drawing.Point(96, 56)
-        Me.txtTotalIva.MinValue = 0.0R
+        Me.txtTotalIva.MinValue = 0R
         Me.txtTotalIva.Name = "txtTotalIva"
         Me.txtTotalIva.Size = New System.Drawing.Size(93, 23)
         Me.txtTotalIva.TabIndex = 76
@@ -1297,7 +1297,7 @@ Partial Class frmCotizacion
         Me.txtTotalSubtotal.Increment = 1.0R
         Me.txtTotalSubtotal.IsInputReadOnly = True
         Me.txtTotalSubtotal.Location = New System.Drawing.Point(96, 31)
-        Me.txtTotalSubtotal.MinValue = 0.0R
+        Me.txtTotalSubtotal.MinValue = 0R
         Me.txtTotalSubtotal.Name = "txtTotalSubtotal"
         Me.txtTotalSubtotal.Size = New System.Drawing.Size(93, 23)
         Me.txtTotalSubtotal.TabIndex = 76
@@ -1362,7 +1362,7 @@ Partial Class frmCotizacion
         Me.txtTotalDescuento.Increment = 1.0R
         Me.txtTotalDescuento.IsInputReadOnly = True
         Me.txtTotalDescuento.Location = New System.Drawing.Point(96, 6)
-        Me.txtTotalDescuento.MinValue = 0.0R
+        Me.txtTotalDescuento.MinValue = 0R
         Me.txtTotalDescuento.Name = "txtTotalDescuento"
         Me.txtTotalDescuento.Size = New System.Drawing.Size(93, 23)
         Me.txtTotalDescuento.TabIndex = 76

@@ -1034,12 +1034,12 @@ Public Class frmNotaDevolucionCompra
                                         item.Existencia.Producto.SALDO = 0
                                     Else
                                         If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
-                                            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * If(item.CMONEDA.Equals(Config.cordoba), item.PRECIOUNITARIO_C, item.PRECIOUNITARIO_D))
+                                            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * If(item.CMONEDA.Equals(Config.cordoba), item.PRECIONETO_C, item.PRECIONETO_D))
                                         Else
                                             If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.PRECIOUNITARIO_D)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.PRECIONETO_D)
                                             Else
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.PRECIOUNITARIO_C)
+                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO + (item.CANTIDAD_DEVUELTA * item.PRECIONETO_C)
                                             End If
                                         End If
                                     End If
@@ -1048,6 +1048,8 @@ Public Class frmNotaDevolucionCompra
                                         If item.Existencia.Producto.COSTO <> item.COSTO Then
                                             item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
                                         End If
+                                    Else
+                                        item.Existencia.Producto.COSTO = 0
                                     End If
 
                                     db.Entry(item.Existencia.Producto).State = EntityState.Modified

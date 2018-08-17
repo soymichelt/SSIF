@@ -1170,7 +1170,7 @@ Public Class frmCotizacion
             dtRegistro.Columns(8).HeaderText = "P./ U." : dtRegistro.Columns(8).Width = 60 : dtRegistro.Columns(8).DefaultCellStyle.Format = Config.f_m
             dtRegistro.Columns(9).HeaderText = "DESC. %" : dtRegistro.Columns(9).Width = 100 : dtRegistro.Columns(9).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(9).Visible = False
             dtRegistro.Columns(10).HeaderText = "DESC. UNI." : dtRegistro.Columns(10).Width = 100 : dtRegistro.Columns(10).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(10).Visible = False
-            dtRegistro.Columns(12).HeaderText = "P./ N." : dtRegistro.Columns(12).Width = 60 : dtRegistro.Columns(11).DefaultCellStyle.Format = Config.f_m
+            dtRegistro.Columns(12).HeaderText = "P./ N." : dtRegistro.Columns(12).Width = 60 : dtRegistro.Columns(12).DefaultCellStyle.Format = Config.f_m
             dtRegistro.Columns(14).HeaderText = "IVA %" : dtRegistro.Columns(14).Width = 100 : dtRegistro.Columns(14).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(14).Visible = False
             dtRegistro.Columns(13).HeaderText = "IVA UNI." : dtRegistro.Columns(13).Width = 100 : dtRegistro.Columns(13).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(13).Visible = False
             dtRegistro.Columns(11).HeaderText = "DESC." : dtRegistro.Columns(11).Width = 75 : dtRegistro.Columns(11).DefaultCellStyle.Format = Config.f_m_r : dtRegistro.Columns(11).DefaultCellStyle.ForeColor = Color.Red : dtRegistro.Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight : dtRegistro.Columns(11).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight

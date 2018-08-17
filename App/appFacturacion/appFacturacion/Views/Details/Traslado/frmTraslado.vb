@@ -812,10 +812,20 @@ Public Class frmTraslado
                                 'Sacando productos del inventario
                                 For Each transfer In v.TrasladosDetalles.ToList()
 
+                                    'Obteniendo objeto DetalleTraslado
                                     Dim item = db.TrasladosDetalles.Find(transfer.IDDETALLETRASLADO)
 
+                                    'Obteniendo objeto Existencia de la bodega donde salió el producto
+                                    Dim itemReturn = db.Existencias.Where(Function(f) f.IDBODEGA = v.IDBODEGA And f.IDPRODUCTO = item.Existencia.IDPRODUCTO).FirstOrDefault()
+
+                                    'Validando que el objeto Existencia en bodega anterior sea válido
+                                    If itemReturn Is Nothing Then
+                                        Config.MsgErr("No se puede anular este Traslado por que no se encuentra el producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' no se encuentra en la bodega que salio.")
+                                        Exit Sub
+                                    End If
+
+                                    'Quitando existencia de la bodega a la que había ingresado
                                     item.Existencia.CANTIDAD = item.Existencia.CANTIDAD - item.CANTIDAD
-                                    item.Existencia.Producto.CANTIDAD = item.Existencia.Producto.CANTIDAD - item.CANTIDAD
 
                                     'Validando si puede quedar en negativo
                                     If item.Existencia.CANTIDAD < 0 Then
@@ -823,28 +833,6 @@ Public Class frmTraslado
                                             Config.MsgErr("No se puede anular este Traslado. Ya que la existencia del producto '" & item.Existencia.Producto.IDALTERNO & " - " & item.Existencia.Producto.DESCRIPCION & "' quedaría en negativo.")
                                             Exit Sub
                                         End If
-                                    End If
-
-                                    If item.Existencia.Producto.CANTIDAD = 0 Then
-                                        item.Existencia.Producto.SALDO = 0
-                                    Else
-                                        If item.CMONEDA.Equals(item.Existencia.Producto.CMONEDA) Then
-                                            item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO)
-                                        Else
-                                            If item.CMONEDA.Equals(Config.cordoba) Then
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO / Config.exchangeRate)
-                                            Else
-                                                item.Existencia.Producto.SALDO = item.Existencia.Producto.SALDO - (item.CANTIDAD * item.COSTO * Config.exchangeRate)
-                                            End If
-                                        End If
-                                    End If
-
-                                    If item.Existencia.Producto.CANTIDAD <> 0 Then
-                                        If item.Existencia.Producto.COSTO <> item.COSTO Then
-                                            item.Existencia.Producto.COSTO = item.Existencia.Producto.SALDO / item.Existencia.Producto.CANTIDAD
-                                        End If
-                                    Else
-                                        item.Existencia.Producto.COSTO = 0
                                     End If
 
                                     db.Entry(item.Existencia.Producto).State = EntityState.Modified

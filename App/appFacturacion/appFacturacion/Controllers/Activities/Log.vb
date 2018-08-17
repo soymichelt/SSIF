@@ -90,7 +90,13 @@
 
     Private Async Sub Save(ByVal activity As Sadara.Models.V2.POCO.ActivityEntity)
 
-        Await Sadara.BusinessLayer.Activity.Instance.AddAsync(activity)
+        Try
+
+            Await Sadara.BusinessLayer.Activity.Instance.AddAsync(activity)
+
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
