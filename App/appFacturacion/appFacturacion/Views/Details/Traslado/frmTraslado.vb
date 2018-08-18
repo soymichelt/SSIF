@@ -835,8 +835,12 @@ Public Class frmTraslado
                                         End If
                                     End If
 
-                                    db.Entry(item.Existencia.Producto).State = EntityState.Modified
-                                    db.Entry(item).State = EntityState.Modified
+                                    db.Entry(item.Existencia).State = EntityState.Modified
+
+                                    'Regresando existencia a la bodega de salida
+                                    itemReturn.CANTIDAD = itemReturn.CANTIDAD + item.CANTIDAD
+
+                                    db.Entry(itemReturn).State = EntityState.Modified
 
                                 Next
                                 'Final Costo General
