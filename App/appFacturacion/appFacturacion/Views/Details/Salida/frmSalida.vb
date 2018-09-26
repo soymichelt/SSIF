@@ -260,9 +260,11 @@ Public Class frmSalida
                                     k.ENTRADA = 0
                                     k.SALIDA = d.CANTIDAD
                                     k.EXISTENCIA_ANTERIOR = producto.CANTIDAD
-                                    producto.CANTIDAD = producto.CANTIDAD - Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text) : db.Entry(producto).State = EntityState.Modified
+                                    producto.CANTIDAD = producto.CANTIDAD - Decimal.Parse(lvRegistro.Items(i).SubItems(5).Text)
+                                    db.Entry(producto).State = EntityState.Modified
                                     k.EXISTENCIA_ALMACEN = producto.CANTIDAD
                                     k.CMONEDA = d.CMONEDA
+                                    k.TAZACAMBIO = Config.exchangeRate
                                     k.COSTO = d.COSTO
                                     k.DEBER = 0
                                     k.HABER = d.TOTAL
