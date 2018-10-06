@@ -282,7 +282,9 @@ namespace Sadara.BusinessLayer
                     {
 
                         currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + quantityOfMoney - currentPostItemKardex.DEBER;
-                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR;
+
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.EXISTENCIA_ANTERIOR == 0 ? currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR : currentPostItemKardex.COSTO_PROMEDIO;
+
                         currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO;
 
                         currentPostItemKardex.DEBER = currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO;
@@ -308,7 +310,7 @@ namespace Sadara.BusinessLayer
                         {
 
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney / itemKardexToRemove.TAZACAMBIO) - (currentPostItemKardex.CMONEDA.Equals(this.CordobaLabel) ? currentPostItemKardex.DEBER / currentPostItemKardex.TAZACAMBIO : currentPostItemKardex.DEBER);
-                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / (currentPostItemKardex.EXISTENCIA_ANTERIOR);
+                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.EXISTENCIA_ANTERIOR == 0 ? currentPostItemKardex.SALDO / (currentPostItemKardex.EXISTENCIA_ANTERIOR) : currentPostItemKardex.COSTO_PROMEDIO;
                             currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO;
 
                             currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
@@ -331,7 +333,7 @@ namespace Sadara.BusinessLayer
                         {
 
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (itemKardexToRemove.DEBER * itemKardexToRemove.TAZACAMBIO) + (currentPostItemKardex.CMONEDA.Equals(this.CordobaLabel) ? currentPostItemKardex.DEBER : currentPostItemKardex.DEBER * currentPostItemKardex.TAZACAMBIO);
-                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR;
+                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.EXISTENCIA_ANTERIOR == 0 ? currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR : currentPostItemKardex.COSTO_PROMEDIO;
                             currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO;
 
                             currentPostItemKardex.DEBER = (currentPostItemKardex.ENTRADA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
@@ -384,7 +386,7 @@ namespace Sadara.BusinessLayer
                     {
 
                         currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + quantityOfMoney + currentPostItemKardex.HABER;
-                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR;
+                        currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.EXISTENCIA_ANTERIOR == 0 ? currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR : currentPostItemKardex.COSTO_PROMEDIO;
                         currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO;
 
                         currentPostItemKardex.HABER = currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO;
@@ -410,7 +412,7 @@ namespace Sadara.BusinessLayer
                         {
 
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (quantityOfMoney / itemKardexToRemove.TAZACAMBIO) + (currentPostItemKardex.CMONEDA.Equals(this.CordobaLabel) ? currentPostItemKardex.HABER / currentPostItemKardex.TAZACAMBIO : currentPostItemKardex.HABER);
-                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / (currentPostItemKardex.EXISTENCIA_ANTERIOR);
+                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.EXISTENCIA_ANTERIOR == 0 ?currentPostItemKardex.SALDO / (currentPostItemKardex.EXISTENCIA_ANTERIOR) : currentPostItemKardex.COSTO_PROMEDIO;
                             currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO;
 
                             currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) * currentPostItemKardex.TAZACAMBIO;
@@ -433,7 +435,7 @@ namespace Sadara.BusinessLayer
                         {
 
                             currentPostItemKardex.SALDO = currentPostItemKardex.SALDO + (itemKardexToRemove.HABER * itemKardexToRemove.TAZACAMBIO) + (currentPostItemKardex.CMONEDA.Equals(this.CordobaLabel) ? currentPostItemKardex.HABER : currentPostItemKardex.HABER * currentPostItemKardex.TAZACAMBIO);
-                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR;
+                            currentPostItemKardex.COSTO_PROMEDIO = currentPostItemKardex.EXISTENCIA_ANTERIOR == 0 ? currentPostItemKardex.SALDO / currentPostItemKardex.EXISTENCIA_ANTERIOR : currentPostItemKardex.COSTO_PROMEDIO;
                             currentPostItemKardex.COSTO = currentPostItemKardex.COSTO_PROMEDIO;
 
                             currentPostItemKardex.HABER = (currentPostItemKardex.SALIDA * currentPostItemKardex.COSTO_PROMEDIO) / currentPostItemKardex.TAZACAMBIO;
