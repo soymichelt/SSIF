@@ -214,11 +214,12 @@ Public Class lstProductosVendidos
     Public Property Descripcion As String
     Public Property Cantidad As Decimal
     Public Property CostoPromedio As Decimal
-    Public Property Costo_Total As Decimal
+    Public Property CostoTotal As Decimal
     Public Property PrecioPromedio As Decimal
     Public Property Descuento As Decimal
     Public Property SubTotal As Decimal
     Public Property Utilidad As Decimal
+    Public Property UtilidadPorcentaje As Decimal
     Public Property Iva As Decimal
     Public Property Total As Decimal
 End Class
