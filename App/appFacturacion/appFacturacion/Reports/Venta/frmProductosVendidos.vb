@@ -10,7 +10,7 @@ Public Class frmProductosVendidos
         Try
             Using db As New CodeFirst
 
-                Dim SpSQL = db.Database.SqlQuery(Of lstProductosVendidos)("SpProductosVendidos @Inicio, @Final, @IDBodega, @IDSerie, @NEmpleado, @Empleado, @NCliente, @Cliente, @TipoVenta, @MonInv, @Moneda, @Taza, @LaboratorioId, @ProveedorId", New SqlParameter("@Inicio", Fecha1), New SqlParameter("@Final", Fecha2), New SqlParameter("@IDBodega", IDBodega), New SqlParameter("@IDSerie", IDSerie), New SqlParameter("@NEmpleado", NEmpleado), New SqlParameter("@Empleado", Empleado), New SqlParameter("@NCliente", NCliente), New SqlParameter("@Cliente", Cliente), New SqlParameter("@TipoVenta", If(rdContado.Checked, 1, If(rdCredito.Checked, 2, 0))), New SqlParameter("@MonInv", If(Config.currentBusiness.MonedaInventario.Equals(Config.cordoba), 1, 0)), New SqlParameter("@Moneda", If(rdMCordoba.Checked, 1, 0)), New SqlParameter("@Taza", Config.exchangeRate), New SqlParameter("@LaboratorioId", LaboratorioId), New SqlParameter("@ProveedorId", ProveedorId)).ToList()
+                Dim SpSQL = db.Database.SqlQuery(Of lstProductosVendidos)("SpProductosVendidosFiltrados @Inicio, @Final, @IDBodega, @IDSerie, @NEmpleado, @Empleado, @NCliente, @Cliente, @TipoVenta, @MonInv, @Moneda, @Taza, @LaboratorioId, @ProveedorId", New SqlParameter("@Inicio", Fecha1), New SqlParameter("@Final", Fecha2), New SqlParameter("@IDBodega", IDBodega), New SqlParameter("@IDSerie", IDSerie), New SqlParameter("@NEmpleado", NEmpleado), New SqlParameter("@Empleado", Empleado), New SqlParameter("@NCliente", NCliente), New SqlParameter("@Cliente", Cliente), New SqlParameter("@TipoVenta", If(rdContado.Checked, 1, If(rdCredito.Checked, 2, 0))), New SqlParameter("@MonInv", If(Config.currentBusiness.MonedaInventario.Equals(Config.cordoba), 1, 0)), New SqlParameter("@Moneda", If(rdMCordoba.Checked, 1, 0)), New SqlParameter("@Taza", Config.exchangeRate), New SqlParameter("@LaboratorioId", LaboratorioId), New SqlParameter("@ProveedorId", ProveedorId)).ToList()
 
                 'Unificando información
 
@@ -24,6 +24,7 @@ Public Class frmProductosVendidos
                         txtIva.Value = .Sum(Function(f) f.Iva)
                         txtTotal.Value = .Sum(Function(f) f.Total)
                         txtUtilidad.Value = .Sum(Function(f) f.Utilidad)
+                        txtUtilidadPorcentaje.Value = txtUtilidad.Value * 100 / txtTotal.Value
 
                     End With
 
@@ -35,6 +36,7 @@ Public Class frmProductosVendidos
                     txtIva.Value = 0.0
                     txtTotal.Value = 0.0
                     txtUtilidad.Value = 0.0
+                    txtUtilidadPorcentaje.Value = 0.0
 
                 End If
 
@@ -141,8 +143,8 @@ Public Class frmProductosVendidos
                     txtNombreVendedor.Text.Trim,
                     txtNCliente.Text.Trim,
                     txtNombreCliente.Text.Trim,
-                    If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                    If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
                 )
             Else
                 Lista(
@@ -153,8 +155,8 @@ Public Class frmProductosVendidos
                     txtNombreVendedor.Text.Trim,
                     txtNCliente.Text.Trim,
                     txtNombreCliente.Text.Trim,
-                    If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                    If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
                 )
             End If
         Else
@@ -165,8 +167,8 @@ Public Class frmProductosVendidos
                 txtNombreVendedor.Text.Trim,
                 txtNCliente.Text.Trim,
                 txtNombreCliente.Text.Trim,
-                If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
             )
         End If
     End Sub
@@ -189,6 +191,7 @@ Public Class frmProductosVendidos
             txtIva.Value = 0.0
             txtTotal.Value = 0.0
             txtUtilidad.Value = 0.0
+            txtUtilidadPorcentaje.Value = 0.0
 
             dtpFechaInicial.Value = DateTime.Now
             dtpFechaFinal.Value = DateTime.Now
@@ -241,8 +244,8 @@ Public Class frmProductosVendidos
                     txtNEmpleado.Text.Trim,
                     txtNCliente.Text.Trim,
                     txtNombreCliente.Text.Trim,
-                    If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                    If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
                 )
                 cmbSerie.Focus()
             Else
@@ -251,8 +254,8 @@ Public Class frmProductosVendidos
                     txtNEmpleado.Text.Trim,
                     txtNCliente.Text.Trim,
                     txtNombreCliente.Text.Trim,
-                    If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                    If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
                 )
             End If
         End If
@@ -269,8 +272,8 @@ Public Class frmProductosVendidos
                     txtNEmpleado.Text.Trim,
                     txtNCliente.Text.Trim,
                     txtNombreCliente.Text.Trim,
-                    If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                    If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
                 )
                 cmbSerie.Focus()
             Else
@@ -280,8 +283,8 @@ Public Class frmProductosVendidos
                     txtNEmpleado.Text.Trim,
                     txtNCliente.Text.Trim,
                     txtNombreCliente.Text.Trim,
-                    If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                    If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
                 )
                 If cmbBodega.Text.Trim = "" Then
                     txtNEmpleado.Focus()
@@ -301,8 +304,8 @@ Public Class frmProductosVendidos
                     txtNEmpleado.Text.Trim,
                     txtNCliente.Text.Trim,
                     txtNombreCliente.Text.Trim,
-                    If(cmbLaboratorio.SelectedValue Is Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
-                    If(cmbDistribuidor.SelectedValue Is Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And Not cmbLaboratorio.SelectedIndex = -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbDistribuidor.SelectedValue IsNot Nothing And Not cmbDistribuidor.SelectedIndex = -1, cmbDistribuidor.SelectedValue.ToString(), "")
                 )
                 txtNEmpleado.Focus()
             End If

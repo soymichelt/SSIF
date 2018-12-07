@@ -91,6 +91,8 @@ Partial Class frmProductosVendidos
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.txtUtilidadPorcentaje = New DevComponents.Editors.DoubleInput()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         CType(Me.KFormManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx2.SuspendLayout()
@@ -122,6 +124,7 @@ Partial Class frmProductosVendidos
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtUtilidadPorcentaje, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu
@@ -235,8 +238,8 @@ Partial Class frmProductosVendidos
         Me.TabControl1.ColorScheme.TabItemSelectedBorder = System.Drawing.Color.Black
         Me.TabControl1.ColorScheme.TabPanelBackground = System.Drawing.SystemColors.InactiveCaption
         Me.TabControl1.ColorScheme.TabPanelBackground2 = System.Drawing.SystemColors.ActiveCaption
-        Me.TabControl1.Controls.Add(Me.tcpFiltros)
         Me.TabControl1.Controls.Add(Me.TabControlPanel2)
+        Me.TabControl1.Controls.Add(Me.tcpFiltros)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -633,6 +636,8 @@ Partial Class frmProductosVendidos
         Me.ElGroupBox6.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox6.CaptionStyle.TextStyle.Text = "Resultados"
         Me.ElGroupBox6.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox6.Controls.Add(Me.txtUtilidadPorcentaje)
+        Me.ElGroupBox6.Controls.Add(Me.Label16)
         Me.ElGroupBox6.Controls.Add(Me.txtUtilidad)
         Me.ElGroupBox6.Controls.Add(Me.Label15)
         Me.ElGroupBox6.Controls.Add(Me.txtCostoTotal)
@@ -1180,6 +1185,35 @@ Partial Class frmProductosVendidos
         Me.dtRegistro.Size = New System.Drawing.Size(682, 320)
         Me.dtRegistro.TabIndex = 25
         '
+        'txtUtilidadPorcentaje
+        '
+        '
+        '
+        '
+        Me.txtUtilidadPorcentaje.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtUtilidadPorcentaje.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtUtilidadPorcentaje.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtUtilidadPorcentaje.Font = New System.Drawing.Font("Google Sans Medium", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUtilidadPorcentaje.ForeColor = System.Drawing.Color.Red
+        Me.txtUtilidadPorcentaje.Increment = 1.0R
+        Me.txtUtilidadPorcentaje.IsInputReadOnly = True
+        Me.txtUtilidadPorcentaje.Location = New System.Drawing.Point(94, 154)
+        Me.txtUtilidadPorcentaje.Name = "txtUtilidadPorcentaje"
+        Me.txtUtilidadPorcentaje.Size = New System.Drawing.Size(144, 21)
+        Me.txtUtilidadPorcentaje.TabIndex = 66
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.Black
+        Me.Label16.Location = New System.Drawing.Point(7, 156)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(86, 14)
+        Me.Label16.TabIndex = 65
+        Me.Label16.Text = "Porcentaje Utili.:"
+        '
         'frmProductosVendidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -1237,6 +1271,7 @@ Partial Class frmProductosVendidos
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtUtilidadPorcentaje, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1306,4 +1341,6 @@ Partial Class frmProductosVendidos
     Friend WithEvents Label18 As Label
     Friend WithEvents cmbDistribuidor As DevComponents.DotNetBar.Controls.ComboBoxEx
     Friend WithEvents cmbLaboratorio As DevComponents.DotNetBar.Controls.ComboBoxEx
+    Friend WithEvents txtUtilidadPorcentaje As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label16 As Label
 End Class
