@@ -10,18 +10,18 @@ GO
 -- =============================================
 ALTER PROCEDURE [dbo].[SpProductosVendidosFiltrados]
 	-- Add the parameters for the stored procedure here
-	@Inicio AS DATETIME,
-	@Final AS DATETIME,
-	@IDBodega AS VARCHAR(36),
-	@IDSerie AS VARCHAR(36),
-	@NEmpleado AS VARCHAR(50),
-	@Empleado AS VARCHAR(100),
-	@NCliente AS VARCHAR(50),
-	@Cliente AS VARCHAR(100),
-	@TipoVenta AS INTEGER,
-	@MonInv AS Bit,
-	@Moneda AS Bit,
-	@Taza AS DECIMAL,
+	@Inicio		AS		DATETIME,
+	@Final		AS		DATETIME,
+	@IDBodega	AS		VARCHAR(36),
+	@IDSerie	AS		VARCHAR(36),
+	@NEmpleado	AS		VARCHAR(50),
+	@Empleado	AS		VARCHAR(100),
+	@NCliente	AS		VARCHAR(50),
+	@Cliente	AS		VARCHAR(100),
+	@TipoVenta	AS		INTEGER,
+	@MonInv		AS		Bit,
+	@Moneda		AS		Bit,
+	@Taza		AS		DECIMAL,
 
 	--Id de Laboratorio y Proveedor
 	@LaboratorioId AS VARCHAR(36),
@@ -37,34 +37,34 @@ BEGIN
 
 	--CONSULTA
 	CREATE TABLE #dataWithoutFilter (
-		IDAlterno VARCHAR(36),
-		LaboratorioId VARCHAR(36),
-		ProveedorId VARCHAR(36),
-		Descripcion VARCHAR(500),
-		Cantidad DECIMAL,
-		CostoPromedio DECIMAL(10,4),
-		CostoTotal DECIMAL(10,4),
-		PrecioPromedio DECIMAL(10,4),
-		SubTotal DECIMAL(10,4),
-		Descuento DECIMAL(10,4),
-		Iva DECIMAL(10,4),
-		Total DECIMAL(10,4),
-		Utilidad DECIMAL(10,4),
-		UtilidadPorcentaje DECIMAL(10,4)
+		IDAlterno			VARCHAR(36),
+		LaboratorioId		VARCHAR(36),
+		ProveedorId			VARCHAR(36),
+		Descripcion			VARCHAR(500),
+		Cantidad			DECIMAL,
+		CostoPromedio		DECIMAL(10,4),
+		CostoTotal			DECIMAL(10,4),
+		PrecioPromedio		DECIMAL(10,4),
+		SubTotal			DECIMAL(10,4),
+		Descuento			DECIMAL(10,4),
+		Iva					DECIMAL(10,4),
+		Total				DECIMAL(10,4),
+		Utilidad			DECIMAL(10,4),
+		UtilidadPorcentaje	DECIMAL(10,4)
 	)
 	INSERT INTO #dataWithoutFilter Exec dbo.SpProductosVendidos
-								@Inicio = '2018-01-01',
-								@Final = '2018-12-31',
-								@IDBodega = '',
-								@IDSerie = '',
-								@NEmpleado = '',
-								@Empleado = '',
-								@NCliente = '',
-								@Cliente = '',
-								@TipoVenta = 0,
-								@MonInv = 1,
-								@Moneda = 1,
-								@Taza = 27
+								@Inicio		=		@Inicio,
+								@Final		=		@Final,
+								@IDBodega	=		@IDBodega,
+								@IDSerie	=		@IDSerie,
+								@NEmpleado	=		@NEmpleado,
+								@Empleado	=		@Empleado,
+								@NCliente	=		@NCliente,
+								@Cliente	=		@Cliente,
+								@TipoVenta	=		@TipoVenta,
+								@MonInv		=		@MonInv,
+								@Moneda		=		@Moneda,
+								@Taza		=		@Taza
 
 	IF @LaboratorioId <> ''
 		BEGIN
@@ -84,17 +84,17 @@ BEGIN
 END
 
 Exec dbo.SpProductosVendidosFiltrados
-								@Inicio = '2018-01-01',
-								@Final = '2018-12-31',
-								@IDBodega = '',
-								@IDSerie = '',
-								@NEmpleado = '',
-								@Empleado = '',
-								@NCliente = '',
-								@Cliente = '',
-								@TipoVenta = 0,
-								@MonInv = 1,
-								@Moneda = 1,
-								@Taza = 27,
-								@LaboratorioId = '',
-								@ProveedorId = ''
+								@Inicio			=		'2018-01-01',
+								@Final			=		'2018-12-31',
+								@IDBodega		=		'',
+								@IDSerie		=		'',
+								@NEmpleado		=		'',
+								@Empleado		=		'',
+								@NCliente		=		'',
+								@Cliente		=		'',
+								@TipoVenta		=		0,
+								@MonInv			=		0,
+								@Moneda			=		1,
+								@Taza			=		27,
+								@LaboratorioId	=		'',
+								@ProveedorId	=		''

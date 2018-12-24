@@ -31,22 +31,15 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	--DECLARAR VARIABLES DE TAZA DE CAMBIO
-	DECLARE @TazaCordoba AS DECIMAL(18,4)
-	DECLARE @TazaDolar AS DECIMAL(18,4)
-	IF @Moneda = 1
-		BEGIN
-			SET @TazaCordoba = 1
-			SET @TazaDolar = @Taza
-		END
-	ELSE
-		BEGIN
-			SET @TazaDolar = 1
-			SET @TazaCordoba = @Taza
-		END
+
 	-- 1. SELECCIONAR TODOS LOS DATOS
 	IF @TipoVenta <> 1 AND @TipoVenta <> 2
 	BEGIN
+
+
+		
+		PRINT @Moneda
+		PRINT @MonInv
 		
 
 
@@ -689,7 +682,7 @@ BEGIN
 					VentaDetalle.CANTIDAD)
 				AS DetalleCostoTotal,
 
-				SUM(CASE Venta.MONEDA WHEN 'C' THEN VentaDetalle.SUBTOTAL_C / @TazaCordoba ELSE VentaDetalle.SUBTOTAL_D * @TazaDolar END) / SUM(VentaDetalle.CANTIDAD) AS PrecioPromedio,
+				SUM(CASE @Moneda WHEN 1 THEN VentaDetalle.SUBTOTAL_C ELSE VentaDetalle.SUBTOTAL_D END) / SUM(VentaDetalle.CANTIDAD) AS PrecioPromedio,
 
 				SUM(VentaDetalle.CANTIDAD) AS Cantidad,
 
@@ -754,7 +747,7 @@ Exec dbo.SpProductosVendidos
 @NCliente = '',
 @Cliente = '',
 @TipoVenta = 0,
-@MonInv = 1,
+@MonInv = 0,
 @Moneda = 1,
 @Taza = 27
 
