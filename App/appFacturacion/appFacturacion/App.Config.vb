@@ -153,7 +153,7 @@ Module Config
     Public dateFormat As String = "dd/MM/yyyy"
 
     Public f_c As String = "#,##0"
-    Public f_m As String = "#,##0.00"
+    Public f_m As String = "#,##0.0000"
     Public f_t As String = "#,##0.00"
     Public f_m_r As String = "-(#,##0.00)"
     Public f_m_e As String = "#,##0.0000"
