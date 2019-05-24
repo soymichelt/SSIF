@@ -6,7 +6,7 @@ Public Class frmCuentasPorPagar
 
     Private Async Function GetList() As Threading.Tasks.Task(Of List(Of Sadara.Models.V2.POCO.AccountToPayEntity))
 
-        Return Await Sadara.BusinessLayer.Provider.Instance.GetListAccountsToPayAsync(Config.currentBusiness.MonedaInventario, txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
+        Return Await Sadara.BusinessLayer.Provider.Instance.GetListAccountsToPayAsync(Config.currentBusiness.MonedaInventario, Config.exchangeRate, txtNCliente.Text.Trim(), txtNombreCliente.Text.Trim(), txtRazonSocial.Text.Trim())
 
     End Function
 

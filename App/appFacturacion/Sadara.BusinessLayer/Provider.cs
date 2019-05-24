@@ -70,12 +70,12 @@ namespace Sadara.BusinessLayer
 
         }
 
-        public async Task<List<Sadara.Models.V2.POCO.AccountToPayEntity>> GetListAccountsToPayAsync(string money, string customerCode = "", string customerName = "", string businessName = "")
+        public async Task<List<Sadara.Models.V2.POCO.AccountToPayEntity>> GetListAccountsToPayAsync(string money, decimal exchangeRate, string customerCode = "", string customerName = "", string businessName = "")
         {
 
             this.InitializeTransactionComponents();
 
-            return await this.providerTransaction.GetListAccountsToPayAsync(money, customerCode, customerName, businessName);
+            return await this.providerTransaction.GetListAccountsToPayAsync(money, exchangeRate, customerCode, customerName, businessName);
 
         }
 

@@ -1608,6 +1608,7 @@ Partial Class frmProducto
         '
         Me.rdSinExistencia.AutoSize = True
         Me.rdSinExistencia.Checked = True
+        Me.rdSinExistencia.Enabled = False
         Me.rdSinExistencia.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdSinExistencia.Location = New System.Drawing.Point(114, 16)
         Me.rdSinExistencia.Name = "rdSinExistencia"
@@ -1620,6 +1621,7 @@ Partial Class frmProducto
         'rdConExistencia
         '
         Me.rdConExistencia.AutoSize = True
+        Me.rdConExistencia.Enabled = False
         Me.rdConExistencia.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdConExistencia.Location = New System.Drawing.Point(154, 16)
         Me.rdConExistencia.Name = "rdConExistencia"

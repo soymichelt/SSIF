@@ -59,7 +59,13 @@ namespace Sadara.DataLayer
 
         }
         
-        public async Task<List<Sadara.Models.V2.POCO.AccountToPayEntity>> GetListAccountsToPayAsync(string money, string providerCode = "", string providerName = "", string businessName = "")
+        public async Task<List<Sadara.Models.V2.POCO.AccountToPayEntity>> GetListAccountsToPayAsync(
+            string money,
+            decimal exchangeRate,
+            string providerCode = "",
+            string providerName = "",
+            string businessName = ""
+        )
         {
 
             var accountsToPay = await this.transaction.Db.Database.SqlQuery<Sadara.Models.V2.POCO.AccountToPayEntity>
@@ -68,7 +74,8 @@ namespace Sadara.DataLayer
                     new SqlParameter("@ProviderCode", providerCode),
                     new SqlParameter("@ProviderName", providerName),
                     new SqlParameter("@BusinessName", businessName),
-                    new SqlParameter("@Money", money)
+                    new SqlParameter("@Money", money),
+                    new SqlParameter("@ExchangeRate", exchangeRate)
                 )
                 .ToListAsync();
             
