@@ -1,6 +1,6 @@
 ﻿namespace Sadara.Services.SyncService
 {
-    partial class Service1
+    partial class LogService
     {
         /// <summary> 
         /// Variable del diseñador necesaria.

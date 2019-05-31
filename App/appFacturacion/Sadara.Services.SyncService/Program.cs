@@ -17,7 +17,7 @@ namespace Sadara.Services.SyncService
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new LogService()
             };
             ServiceBase.Run(ServicesToRun);
         }

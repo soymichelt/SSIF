@@ -10,15 +10,16 @@ using System.Threading.Tasks;
 
 namespace Sadara.Services.SyncService
 {
-    public partial class Service1 : ServiceBase
+    public partial class LogService : ServiceBase
     {
-        public Service1()
+        public LogService()
         {
             InitializeComponent();
         }
 
         protected override void OnStart(string[] args)
         {
+
         }
 
         protected override void OnStop()
