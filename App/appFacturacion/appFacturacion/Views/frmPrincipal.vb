@@ -20,6 +20,8 @@ Public Class frmPrincipal
                 Config.businessAddress = Config.currentBusiness.Direccion
                 If Config.currentUser.Administrador Then
                     btUsuarios.Enabled = True
+                    btVendedores.Enabled = True
+                    btBusquedaVendedor.Enabled = True
                     btEmpresa.Enabled = True
                     btBodega.Enabled = True
                     btSerie.Enabled = True
@@ -61,8 +63,8 @@ Public Class frmPrincipal
                     btReporteConsignacion.Enabled = True
                 End If
                 If Config.currentUser.Venta Then
-                    btVendedores.Enabled = True
-                    btBusquedaVendedor.Enabled = True
+                    'btVendedores.Enabled = True
+                    'btBusquedaVendedor.Enabled = True
                     btVenta.Enabled = True
                     btDevolucionesVentas.Enabled = True
                     btCotizar.Enabled = True
