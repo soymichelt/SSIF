@@ -76,8 +76,7 @@ namespace Sadara.DataLayer
                     new SqlParameter("@CustomerName", customerName),
                     new SqlParameter("@BusinessName", businessName),
                     new SqlParameter("@Money", money),
-                    new SqlParameter("@ExchangeRate" +
-                    "", exchangeRate)
+                    new SqlParameter("@ExchangeRate", exchangeRate)
                 )
                 .ToListAsync();
 

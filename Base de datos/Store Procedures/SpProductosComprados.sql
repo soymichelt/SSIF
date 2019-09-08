@@ -8,7 +8,7 @@ GO
 -- Create date: 12/07/2016
 -- Description:	ESTE PROCEDIMIENTO ALMACENADO PERMITE SELECCIONAR EL LISTADO DE ProductoS VENDIDOS EN UN RANGO DE TIEMPO
 -- =============================================
-CREATE PROCEDURE [dbo].[SpProductosComprados]
+CREATE OR ALTER PROCEDURE [dbo].[SpProductosComprados]
 	-- Add the parameters for the stored procedure here
 @Inicio AS DATETIME,
 @Final AS DATETIME,

@@ -8,7 +8,7 @@ GO
 -- Create date: 08/06/2018
 -- Description:	Retorna listado de clientes con su deuda actual
 -- =============================================
-ALTER PROCEDURE [dbo].[SpAccountsReceivable]
+CREATE OR ALTER PROCEDURE [dbo].[SpAccountsReceivable]
 
 	-- Add the parameters for the stored procedure here
 	@CustomerCode AS VARCHAR(50),
@@ -64,11 +64,11 @@ BEGIN
 							CASE Venta.MONEDA WHEN 'C' THEN
 								Venta.SALDOCREDITO
 							ELSE
-								Venta.TAZACAMBIO * Venta.SALDOCREDITO
+								Venta.SALDOCREDITO * @ExchangeRate
 							END
 						ELSE
 							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO / Venta.TAZACAMBIO
+								Venta.SALDOCREDITO / @ExchangeRate
 							ELSE
 								Venta.SALDOCREDITO
 							END
@@ -94,11 +94,11 @@ BEGIN
 								CASE Venta.MONEDA WHEN 'C' THEN
 									Venta.SALDOCREDITO
 								ELSE
-									Venta.TAZACAMBIO * Venta.SALDOCREDITO
+									Venta.SALDOCREDITO * @ExchangeRate
 								END
 							ELSE
 								CASE Venta.MONEDA WHEN 'C' THEN
-									Venta.SALDOCREDITO / Venta.TAZACAMBIO
+									Venta.SALDOCREDITO / @ExchangeRate
 								ELSE
 									Venta.SALDOCREDITO
 								END
@@ -153,11 +153,11 @@ BEGIN
 							CASE Venta.MONEDA WHEN 'C' THEN
 								Venta.SALDOCREDITO
 							ELSE
-								Venta.TAZACAMBIO * Venta.SALDOCREDITO
+								Venta.SALDOCREDITO * @ExchangeRate
 							END
 						ELSE
 							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO / Venta.TAZACAMBIO
+								Venta.SALDOCREDITO / @ExchangeRate
 							ELSE
 								Venta.SALDOCREDITO
 							END

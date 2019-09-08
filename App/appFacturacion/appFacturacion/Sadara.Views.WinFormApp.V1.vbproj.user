@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory />
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory>publicar\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
