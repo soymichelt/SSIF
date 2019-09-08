@@ -1430,6 +1430,8 @@ Public Class frmVenta
         End If
     End Sub
 
+    Public totalVuelto As Decimal = 0
+
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
         Try
             Using db As New CodeFirst
@@ -1469,6 +1471,8 @@ Public Class frmVenta
                                 t.AnadirEspacio()
                                 t.AnadeLineaAlPie(ConvertNumberToLetter.Letras(If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C.ToString(), v.TOTAL_D.ToString())))
                                 t.AnadirEspacio()
+                                t.AnadirTotal("    CAMBIO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(Me.totalVuelto > 0, Me.totalVuelto, "--"))
+                                t.AnadirEspacio()
                                 t.AnadirEspacio()
                                 t.AnadirEspacio()
                                 '//firma del cliente
@@ -1481,6 +1485,8 @@ Public Class frmVenta
                                 '//Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un 
                                 '//parametro de tipo string que debe de ser el nombre de la impresora. 
                                 t.ImprimeTicket(Config.PrinterName)
+
+                                Me.totalVuelto = 0
 
                                 'reimpresión
                                 v.REIMPRESION = "S"

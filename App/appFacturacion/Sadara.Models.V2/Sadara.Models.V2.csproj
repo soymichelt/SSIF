@@ -77,6 +77,7 @@
     <Compile Include="POCO\ActivityEntity.cs" />
     <Compile Include="POCO\GroupAccountEntity.cs" />
     <Compile Include="POCO\KeyAccountEntity.cs" />
+    <Compile Include="POCO\MovementLogEntity.cs" />
     <Compile Include="POCO\PasswordEntity.cs" />
     <Compile Include="POCO\RoleEntity.cs" />
     <Compile Include="POCO\TransactionEntity.cs" />

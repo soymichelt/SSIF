@@ -408,6 +408,7 @@ Namespace Database
             modelBuilder.Configurations.Add(New RoleEntityMapping())
             modelBuilder.Configurations.Add(New UserAccountEntityMapping())
             modelBuilder.Configurations.Add(New UserInGroupEntityMapping())
+            modelBuilder.Configurations.Add(New MovementLogEntityMapping())
 
             MyBase.OnModelCreating(modelBuilder)
 
@@ -423,6 +424,8 @@ Namespace Database
         Public Property Roles() As DbSet(Of RoleEntity)
         Public Property UsersAccounts() As DbSet(Of UserAccountEntity)
         Public Property UsersInGroups() As DbSet(Of UserInGroupEntity)
+
+        Public Property MovementLogs() As DbSet(Of MovementLogEntity)
 
     End Class
 
