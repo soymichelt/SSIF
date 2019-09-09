@@ -15,7 +15,7 @@ CREATE OR ALTER PROCEDURE [dbo].[SpAccountsReceivable]
 	@CustomerName AS VARCHAR(100),
 	@BusinessName AS VARCHAR(100),
 	@Money AS CHAR(1),
-	@ExchangeRate AS DECIMAL
+	@ExchangeRate AS DECIMAL(18,4)
 
 AS
 BEGIN
@@ -60,17 +60,13 @@ BEGIN
 						CreditLimit,
 
 					SUM(
-						CASE @Money WHEN 'C' THEN
-							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO
-							ELSE
-								Venta.SALDOCREDITO * @ExchangeRate
-							END
+						CASE @Money WHEN Venta.MONEDA THEN
+							Venta.SALDOCREDITO
 						ELSE
-							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO / @ExchangeRate
+							CASE @Money WHEN 'C' THEN
+								Venta.SALDOCREDITO * @ExchangeRate
 							ELSE
-								Venta.SALDOCREDITO
+								Venta.SALDOCREDITO / @ExchangeRate
 							END
 						END
 					)
@@ -90,17 +86,13 @@ BEGIN
 						END
 					-
 						SUM(
-							CASE @Money WHEN 'C' THEN
-								CASE Venta.MONEDA WHEN 'C' THEN
-									Venta.SALDOCREDITO
-								ELSE
-									Venta.SALDOCREDITO * @ExchangeRate
-								END
+							CASE @Money WHEN Venta.MONEDA THEN
+								Venta.SALDOCREDITO
 							ELSE
-								CASE Venta.MONEDA WHEN 'C' THEN
-									Venta.SALDOCREDITO / @ExchangeRate
+								CASE @Money WHEN 'C' THEN
+									Venta.SALDOCREDITO * @ExchangeRate
 								ELSE
-									Venta.SALDOCREDITO
+									Venta.SALDOCREDITO / @ExchangeRate
 								END
 							END
 						)
@@ -115,6 +107,8 @@ BEGIN
 						CONCAT(Cliente.NOMBRES, ' ', Cliente.APELLIDOS) LIKE @CustomerName + '%'
 					AND
 						Cliente.RAZONSOCIAL LIKE @BusinessName + '%'
+					AND
+						Venta.ANULADO = 'N'
 				GROUP BY
 					Cliente.N_CLIENTE,
 					Cliente.IDENTIFICACION,
@@ -149,15 +143,11 @@ BEGIN
 					0.0 AS Billed,
 
 					SUM(
-						CASE @Money WHEN 'C' THEN
-							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO
-							ELSE
-								Venta.SALDOCREDITO * @ExchangeRate
-							END
+						CASE @Money WHEN Venta.MONEDA THEN
+							Venta.SALDOCREDITO
 						ELSE
-							CASE Venta.MONEDA WHEN 'C' THEN
-								Venta.SALDOCREDITO / @ExchangeRate
+							CASE @Money WHEN 'C' THEN
+								Venta.SALDOCREDITO * @ExchangeRate
 							ELSE
 								Venta.SALDOCREDITO
 							END
