@@ -21,11 +21,15 @@ Public Class frmCuentasPorCobrar
                     dtRegistro.DataSource = result.ToList
 
                     If result.Count > 0 Then
-                        txtTotal.Value = (result).Where(Function(f) f.MoneyOfCredit.Equals(Config.cordoba)).Sum(Function(f) f.Billed)
-                        txtTotalDolar.Value = (result).Where(Function(f) f.MoneyOfCredit.Equals(Config.dolar)).Sum(Function(f) f.BilledDollar)
+                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
+                        txtTotalDolar.Value = (result).Sum(Function(f) f.BilledDollar)
+                        txtVencidoCordoba.Value = (result).Sum(Function(f) f.AmountExpired)
+                        txtVencidoDolar.Value = result.Sum(Function(f) f.AmountExpiredDollar)
                     Else
                         txtTotal.Value = 0.0
                         txtTotalDolar.Value = 0.0
+                        txtVencidoCordoba.Value = 0.0
+                        txtVencidoDolar.Value = 0.0
                     End If
 
                     If dtRegistro.Columns.Count > 0 Then
@@ -101,6 +105,9 @@ Public Class frmCuentasPorCobrar
 
         dtRegistro.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Regular)
         txtTotal.DisplayFormat = Config.f_m
+        txtTotalDolar.DisplayFormat = Config.f_m
+        txtVencidoCordoba.DisplayFormat = Config.f_m
+        txtVencidoDolar.DisplayFormat = Config.f_m
         LoadDataInUI()
     End Sub
 

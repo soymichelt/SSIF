@@ -155,6 +155,8 @@ BEGIN
 					Cliente
 					INNER JOIN Venta ON Venta.IDCLIENTE = Cliente.IDCLIENTE
 				WHERE
+						Venta.ANULADO = 'N'
+					AND
 						Cliente.N_CLIENTE LIKE @CustomerCode + '%'
 					AND
 						CONCAT(Cliente.NOMBRES, ' ', Cliente.APELLIDOS) LIKE @CustomerName + '%'
