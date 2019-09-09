@@ -149,7 +149,7 @@ BEGIN
 							CASE @Money WHEN 'C' THEN
 								Venta.SALDOCREDITO * @ExchangeRate
 							ELSE
-								Venta.SALDOCREDITO
+								Venta.SALDOCREDITO / @ExchangeRate
 							END
 						END
 					)
