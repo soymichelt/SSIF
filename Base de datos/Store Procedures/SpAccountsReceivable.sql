@@ -38,7 +38,7 @@ BEGIN
 		SUM(res.AmountAvailable) AS AmountAvailable
 	FROM
 		(
-			--(
+			(
 				SELECT
 					Cliente.N_CLIENTE AS CustomerCode,
 					Cliente.IDENTIFICACION AS DNI,
@@ -118,7 +118,7 @@ BEGIN
 					Cliente.MONEDA,
 					Cliente.PLAZO,
 					Cliente.LIMITECREDITO
-			/*)
+			)
 		UNION
 			(
 				SELECT
@@ -180,7 +180,7 @@ BEGIN
 					Cliente.MONEDA,
 					Cliente.PLAZO,
 					Cliente.LIMITECREDITO
-			)*/
+			)
 		)
 	AS
 		res
