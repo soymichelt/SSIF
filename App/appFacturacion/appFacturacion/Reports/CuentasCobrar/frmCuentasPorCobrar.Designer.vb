@@ -48,6 +48,8 @@ Partial Class frmCuentasPorCobrar
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.txtTotalDolar = New DevComponents.Editors.DoubleInput()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx1.SuspendLayout()
@@ -57,6 +59,7 @@ Partial Class frmCuentasPorCobrar
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox1.SuspendLayout()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalDolar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu
@@ -152,13 +155,15 @@ Partial Class frmCuentasPorCobrar
         Me.ElGroupBox6.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
         Me.ElGroupBox6.CaptionStyle.TextStyle.Text = "Resultados"
         Me.ElGroupBox6.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox6.Controls.Add(Me.txtTotalDolar)
+        Me.ElGroupBox6.Controls.Add(Me.Label4)
         Me.ElGroupBox6.Controls.Add(Me.txtTotal)
         Me.ElGroupBox6.Controls.Add(Me.Label7)
         Me.ElGroupBox6.Location = New System.Drawing.Point(12, 123)
         Me.ElGroupBox6.Name = "ElGroupBox6"
         Me.ElGroupBox6.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
         Me.ElGroupBox6.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
-        Me.ElGroupBox6.Size = New System.Drawing.Size(256, 60)
+        Me.ElGroupBox6.Size = New System.Drawing.Size(256, 87)
         Me.ElGroupBox6.TabIndex = 15
         '
         'txtTotal
@@ -185,9 +190,9 @@ Partial Class frmCuentasPorCobrar
         Me.Label7.ForeColor = System.Drawing.Color.Black
         Me.Label7.Location = New System.Drawing.Point(9, 31)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(62, 14)
+        Me.Label7.Size = New System.Drawing.Size(56, 14)
         Me.Label7.TabIndex = 8
-        Me.Label7.Text = "Saldo Total:"
+        Me.Label7.Text = "Total (C$):"
         '
         'ElGroupBox1
         '
@@ -353,6 +358,7 @@ Partial Class frmCuentasPorCobrar
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dtRegistro.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(297, 39)
         Me.dtRegistro.MultiSelect = False
@@ -360,6 +366,34 @@ Partial Class frmCuentasPorCobrar
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtRegistro.Size = New System.Drawing.Size(614, 354)
         Me.dtRegistro.TabIndex = 56
+        '
+        'txtTotalDolar
+        '
+        '
+        '
+        '
+        Me.txtTotalDolar.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtTotalDolar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtTotalDolar.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtTotalDolar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotalDolar.Increment = 1.0R
+        Me.txtTotalDolar.IsInputReadOnly = True
+        Me.txtTotalDolar.Location = New System.Drawing.Point(79, 56)
+        Me.txtTotalDolar.Name = "txtTotalDolar"
+        Me.txtTotalDolar.Size = New System.Drawing.Size(165, 20)
+        Me.txtTotalDolar.TabIndex = 10
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(9, 57)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(49, 14)
+        Me.Label4.TabIndex = 11
+        Me.Label4.Text = "Total ($):"
         '
         'frmCuentasPorCobrar
         '
@@ -389,6 +423,7 @@ Partial Class frmCuentasPorCobrar
         Me.ElGroupBox1.ResumeLayout(False)
         Me.ElGroupBox1.PerformLayout()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalDolar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -415,4 +450,6 @@ Partial Class frmCuentasPorCobrar
     Friend WithEvents ElGroupBox6 As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
     Friend WithEvents txtTotal As DevComponents.Editors.DoubleInput
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents txtTotalDolar As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label4 As Label
 End Class

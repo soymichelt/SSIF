@@ -14,7 +14,6 @@ CREATE OR ALTER PROCEDURE [dbo].[SpAccountsReceivable]
 	@CustomerCode AS VARCHAR(50),
 	@CustomerName AS VARCHAR(100),
 	@BusinessName AS VARCHAR(100),
-	@Money AS CHAR(1),
 	@ExchangeRate AS DECIMAL(18,4)
 
 AS
@@ -31,10 +30,13 @@ BEGIN
 		res.CustomerName,
 		res.BusinessName,
 		res.Phone,
+		res.MoneyOfCredit,
 		res.CreditTerm,
 		res.CreditLimit,
 		SUM(res.Billed) AS Billed,
+		SUM(res.BilledDollar) AS BilledDollar,
 		SUM(res.AmountExpired) AS AmountExpired,
+		SUM(res.AmountExpiredDollar) AS AmountExpiredDollar,
 		SUM(res.AmountAvailable) AS AmountAvailable
 	FROM
 		(
@@ -47,55 +49,47 @@ BEGIN
 					Cliente.TELEFONO AS Phone,
 					Cliente.PLAZO AS CreditTerm,
 
-					CASE @Money WHEN Cliente.MONEDA THEN
-						Cliente.LIMITECREDITO
-					ELSE
-						CASE @Money WHEN 'C' THEN
-							Cliente.LIMITECREDITO * @ExchangeRate
-						ELSE
-							Cliente.LIMITECREDITO / @ExchangeRate
-						END
-					END
-					AS
-						CreditLimit,
+					Cliente.MONEDA AS MoneyOfCredit,
+
+					Cliente.LIMITECREDITO AS CreditLimit,
 
 					SUM(
-						CASE @Money WHEN Venta.MONEDA THEN
+						CASE Venta.MONEDA WHEN 'C' THEN
 							Venta.SALDOCREDITO
 						ELSE
-							CASE @Money WHEN 'C' THEN
+							0.0
+						END
+					)
+					AS
+						Billed,
+
+					SUM(
+						CASE Venta.MONEDA WHEN 'D' THEN
+							Venta.SALDOCREDITO
+						ELSE
+							0.0
+						END
+					)
+					AS
+						BilledDollar,
+
+					0.0 AS AmountExpired,
+
+					0.0 AS AmountExpiredDollar,
+
+					Cliente.LIMITECREDITO
+					-
+					SUM(
+						CASE Cliente.MONEDA WHEN Venta.MONEDA THEN
+							Venta.SALDOCREDITO
+						ELSE
+							CASE Cliente.MONEDA WHEN 'C' THEN
 								Venta.SALDOCREDITO * @ExchangeRate
 							ELSE
 								Venta.SALDOCREDITO / @ExchangeRate
 							END
 						END
 					)
-					AS
-						Billed,
-
-					0.0 AS AmountExpired,
-
-						CASE @Money WHEN Cliente.MONEDA THEN
-							Cliente.LIMITECREDITO
-						ELSE
-							CASE @Money WHEN 'C' THEN
-								Cliente.LIMITECREDITO * @ExchangeRate
-							ELSE
-								Cliente.LIMITECREDITO / @ExchangeRate
-							END
-						END
-					-
-						SUM(
-							CASE @Money WHEN Venta.MONEDA THEN
-								Venta.SALDOCREDITO
-							ELSE
-								CASE @Money WHEN 'C' THEN
-									Venta.SALDOCREDITO * @ExchangeRate
-								ELSE
-									Venta.SALDOCREDITO / @ExchangeRate
-								END
-							END
-						)
 					AS
 						AmountAvailable
 				FROM
@@ -128,34 +122,35 @@ BEGIN
 					Cliente.RAZONSOCIAL AS BusinessName,
 					Cliente.TELEFONO AS Phone,
 					Cliente.PLAZO AS CreditTerm,
-					CASE @Money WHEN Cliente.MONEDA THEN
-						Cliente.LIMITECREDITO
-					ELSE
-						CASE @Money WHEN 'C' THEN
-							Cliente.LIMITECREDITO * @ExchangeRate
-						ELSE
-							Cliente.LIMITECREDITO / @ExchangeRate
-						END
-					END
-					AS
-						CreditLimit,
+					Cliente.MONEDA AS MoneyOfCredit,
+					Cliente.LIMITECREDITO AS CreditLimit,
 
 					0.0 AS Billed,
 
+					0.0 AS BilledDollar,
+
 					SUM(
-						CASE @Money WHEN Venta.MONEDA THEN
+						CASE Venta.MONEDA WHEN 'C' THEN
 							Venta.SALDOCREDITO
 						ELSE
-							CASE @Money WHEN 'C' THEN
-								Venta.SALDOCREDITO * @ExchangeRate
-							ELSE
-								Venta.SALDOCREDITO / @ExchangeRate
-							END
+							0.0
 						END
 					)
 					AS
 						AmountExpired,
+
+					SUM(
+						CASE Venta.MONEDA WHEN 'D' THEN
+							Venta.SALDOCREDITO
+						ELSE
+							0.0
+						END
+					)
+					AS
+						AmountExpiredDollar,
+
 					0.0 AS AmountAvailable
+
 				FROM
 					Cliente
 					INNER JOIN Venta ON Venta.IDCLIENTE = Cliente.IDCLIENTE
@@ -190,6 +185,7 @@ BEGIN
 		res.CustomerName,
 		res.BusinessName,
 		res.Phone,
+		res.MoneyOfCredit,
 		res.CreditTerm,
 		res.CreditLimit
 	ORDER BY

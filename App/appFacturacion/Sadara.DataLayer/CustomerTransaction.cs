@@ -71,11 +71,10 @@ namespace Sadara.DataLayer
             
             var accountsReceivable = await this.transaction.Db.Database.SqlQuery<AccountReceivableEntity>
                 (
-                    "SpAccountsReceivable @CustomerCode, @CustomerName, @BusinessName, @Money, @ExchangeRate",
+                    "SpAccountsReceivable @CustomerCode, @CustomerName, @BusinessName, @ExchangeRate",
                     new SqlParameter("@CustomerCode", customerCode),
                     new SqlParameter("@CustomerName", customerName),
                     new SqlParameter("@BusinessName", businessName),
-                    new SqlParameter("@Money", money),
                     new SqlParameter("@ExchangeRate", exchangeRate)
                 )
                 .ToListAsync();
