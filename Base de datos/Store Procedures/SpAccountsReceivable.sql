@@ -190,6 +190,8 @@ BEGIN
 		res.MoneyOfCredit,
 		res.CreditTerm,
 		res.CreditLimit
+	HAVING
+		res.CreditLimit > SUM(res.AmountAvailable)
 	ORDER BY
 		res.CustomerCode
 	--FIN DEL STATEMENT

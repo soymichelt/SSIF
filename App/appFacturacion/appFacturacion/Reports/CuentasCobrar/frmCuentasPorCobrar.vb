@@ -16,41 +16,38 @@ Public Class frmCuentasPorCobrar
 
                 Dim result = Await Me.GetList()
 
+                If result.Count > 0 Then
+                    txtTotal.Value = (result).Sum(Function(f) f.Billed)
+                    txtTotalDolar.Value = (result).Sum(Function(f) f.BilledDollar)
+                    txtVencidoCordoba.Value = (result).Sum(Function(f) f.AmountExpired)
+                    txtVencidoDolar.Value = result.Sum(Function(f) f.AmountExpiredDollar)
+                Else
+                    txtTotal.Value = 0.0
+                    txtTotalDolar.Value = 0.0
+                    txtVencidoCordoba.Value = 0.0
+                    txtVencidoDolar.Value = 0.0
+                End If
+
                 If dtRegistro.Visible Then
 
                     dtRegistro.DataSource = result.ToList
 
-                    If result.Count > 0 Then
-                        txtTotal.Value = (result).Sum(Function(f) f.Billed)
-                        txtTotalDolar.Value = (result).Sum(Function(f) f.BilledDollar)
-                        txtVencidoCordoba.Value = (result).Sum(Function(f) f.AmountExpired)
-                        txtVencidoDolar.Value = result.Sum(Function(f) f.AmountExpiredDollar)
-                    Else
-                        txtTotal.Value = 0.0
-                        txtTotalDolar.Value = 0.0
-                        txtVencidoCordoba.Value = 0.0
-                        txtVencidoDolar.Value = 0.0
-                    End If
-
                     If dtRegistro.Columns.Count > 0 Then
+
                         dtRegistro.Columns(0).Width = 90 : dtRegistro.Columns(0).HeaderText = vbNewLine & "N° CLIENTE" & vbNewLine
                         dtRegistro.Columns(1).Width = 120 : dtRegistro.Columns(1).HeaderText = "IDENTIFICACIÓN"
                         dtRegistro.Columns(2).Width = 250 : dtRegistro.Columns(2).HeaderText = "NOMBRES Y APELLIDOS DEL CLIENTE"
                         dtRegistro.Columns(3).Width = 200 : dtRegistro.Columns(3).HeaderText = "RAZÓN SOCIAL"
                         dtRegistro.Columns(4).Width = 100 : dtRegistro.Columns(4).HeaderText = "TELÉFONO"
-
                         dtRegistro.Columns(5).Width = 100 : dtRegistro.Columns(5).HeaderText = "MONEDA CRÉDITO"
-
                         dtRegistro.Columns(6).Width = 100 : dtRegistro.Columns(6).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(6).HeaderText = "PLAZO"
                         dtRegistro.Columns(7).Width = 100 : dtRegistro.Columns(7).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(7).HeaderText = "LÍMITE"
-
                         dtRegistro.Columns(8).Width = 100 : dtRegistro.Columns(8).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(8).HeaderText = "SALDO (C$)"
                         dtRegistro.Columns(9).Width = 100 : dtRegistro.Columns(9).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(9).HeaderText = "SALDO ($)"
-
                         dtRegistro.Columns(10).Width = 100 : dtRegistro.Columns(10).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(10).HeaderText = "VENCIDO (C$)"
                         dtRegistro.Columns(11).Width = 100 : dtRegistro.Columns(11).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(11).HeaderText = "VENCIDO ($)"
-
                         dtRegistro.Columns(12).Width = 100 : dtRegistro.Columns(12).DefaultCellStyle.Format = Config.f_m : dtRegistro.Columns(12).HeaderText = "DISPONIBLE"
+
                         For Each c As DataGridViewColumn In dtRegistro.Columns
                             c.HeaderCell.Style.Font = New Font(Me.Font.FontFamily, Me.Font.Size, FontStyle.Bold)
                         Next
@@ -58,7 +55,7 @@ Public Class frmCuentasPorCobrar
 
                 Else
 
-                        Dim rpt As New rptCuentasPorCobrar
+                    Dim rpt As New rptCuentasPorCobrar
                     Config.CrystalTitle("CUENTAS POR COBRAR", rpt)
                     Dim band As CrystalDecisions.CrystalReports.Engine.TextObject
                     If codigo <> "" Then

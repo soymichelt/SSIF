@@ -70,11 +70,10 @@ namespace Sadara.DataLayer
 
             var accountsToPay = await this.transaction.Db.Database.SqlQuery<Sadara.Models.V2.POCO.AccountToPayEntity>
                 (
-                    "SpAccountsToPay @ProviderCode, @ProviderName, @BusinessName, @Money",
+                    "SpAccountsToPay @ProviderCode, @ProviderName, @BusinessName, @ExchangeRate",
                     new SqlParameter("@ProviderCode", providerCode),
                     new SqlParameter("@ProviderName", providerName),
                     new SqlParameter("@BusinessName", businessName),
-                    new SqlParameter("@Money", money),
                     new SqlParameter("@ExchangeRate", exchangeRate)
                 )
                 .ToListAsync();

@@ -33,9 +33,6 @@ Partial Class frmCuentasPorPagar
         Me.btImprimir = New System.Windows.Forms.ToolStripButton()
         Me.bkEstilo = New Klik.Windows.Forms.v1.Common.KFormManager(Me.components)
         Me.PanelEx1 = New DevComponents.DotNetBar.PanelEx()
-        Me.ElGroupBox6 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
-        Me.txtTotal = New DevComponents.Editors.DoubleInput()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
         Me.txtRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -48,15 +45,27 @@ Partial Class frmCuentasPorPagar
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.ElGroupBox6 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.txtVencidoDolar = New DevComponents.Editors.DoubleInput()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtVencidoCordoba = New DevComponents.Editors.DoubleInput()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtTotalDolar = New DevComponents.Editors.DoubleInput()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtTotal = New DevComponents.Editors.DoubleInput()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Menu.SuspendLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx1.SuspendLayout()
-        CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ElGroupBox6.SuspendLayout()
-        CType(Me.txtTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ElGroupBox1.SuspendLayout()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ElGroupBox6.SuspendLayout()
+        CType(Me.txtVencidoDolar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtVencidoCordoba, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalDolar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu
@@ -133,61 +142,6 @@ Partial Class frmCuentasPorPagar
         Me.PanelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.PanelEx1.Style.GradientAngle = 90
         Me.PanelEx1.TabIndex = 53
-        '
-        'ElGroupBox6
-        '
-        Me.ElGroupBox6.BackgroundStyle.GradientAngle = 45.0!
-        Me.ElGroupBox6.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox6.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox6.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
-        Me.ElGroupBox6.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
-        Me.ElGroupBox6.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
-        Me.ElGroupBox6.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
-        Me.ElGroupBox6.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox6.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox6.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
-        Me.ElGroupBox6.CaptionStyle.TextStyle.Text = "Resultados"
-        Me.ElGroupBox6.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ElGroupBox6.Controls.Add(Me.txtTotal)
-        Me.ElGroupBox6.Controls.Add(Me.Label7)
-        Me.ElGroupBox6.Location = New System.Drawing.Point(12, 123)
-        Me.ElGroupBox6.Name = "ElGroupBox6"
-        Me.ElGroupBox6.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
-        Me.ElGroupBox6.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
-        Me.ElGroupBox6.Size = New System.Drawing.Size(256, 60)
-        Me.ElGroupBox6.TabIndex = 15
-        '
-        'txtTotal
-        '
-        '
-        '
-        '
-        Me.txtTotal.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.txtTotal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.txtTotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotal.Increment = 1.0R
-        Me.txtTotal.IsInputReadOnly = True
-        Me.txtTotal.Location = New System.Drawing.Point(79, 30)
-        Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.Size = New System.Drawing.Size(165, 20)
-        Me.txtTotal.TabIndex = 8
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(6, 33)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(62, 14)
-        Me.Label7.TabIndex = 8
-        Me.Label7.Text = "Saldo Total:"
         '
         'ElGroupBox1
         '
@@ -353,13 +307,158 @@ Partial Class frmCuentasPorPagar
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dtRegistro.DefaultCellStyle = DataGridViewCellStyle1
         Me.dtRegistro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.dtRegistro.GridColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(229, Byte), Integer))
         Me.dtRegistro.Location = New System.Drawing.Point(297, 39)
         Me.dtRegistro.MultiSelect = False
         Me.dtRegistro.Name = "dtRegistro"
         Me.dtRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtRegistro.Size = New System.Drawing.Size(614, 354)
         Me.dtRegistro.TabIndex = 56
+        '
+        'ElGroupBox6
+        '
+        Me.ElGroupBox6.BackgroundStyle.GradientAngle = 45.0!
+        Me.ElGroupBox6.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox6.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox6.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox6.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox6.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox6.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElGroupBox6.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox6.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox6.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.ElGroupBox6.CaptionStyle.TextStyle.Text = "Resultados"
+        Me.ElGroupBox6.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox6.Controls.Add(Me.txtVencidoDolar)
+        Me.ElGroupBox6.Controls.Add(Me.Label5)
+        Me.ElGroupBox6.Controls.Add(Me.txtVencidoCordoba)
+        Me.ElGroupBox6.Controls.Add(Me.Label6)
+        Me.ElGroupBox6.Controls.Add(Me.txtTotalDolar)
+        Me.ElGroupBox6.Controls.Add(Me.Label4)
+        Me.ElGroupBox6.Controls.Add(Me.txtTotal)
+        Me.ElGroupBox6.Controls.Add(Me.Label7)
+        Me.ElGroupBox6.Location = New System.Drawing.Point(12, 123)
+        Me.ElGroupBox6.Name = "ElGroupBox6"
+        Me.ElGroupBox6.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox6.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
+        Me.ElGroupBox6.Size = New System.Drawing.Size(256, 142)
+        Me.ElGroupBox6.TabIndex = 16
+        '
+        'txtVencidoDolar
+        '
+        '
+        '
+        '
+        Me.txtVencidoDolar.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtVencidoDolar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtVencidoDolar.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtVencidoDolar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtVencidoDolar.Increment = 1.0R
+        Me.txtVencidoDolar.IsInputReadOnly = True
+        Me.txtVencidoDolar.Location = New System.Drawing.Point(79, 108)
+        Me.txtVencidoDolar.Name = "txtVencidoDolar"
+        Me.txtVencidoDolar.Size = New System.Drawing.Size(165, 20)
+        Me.txtVencidoDolar.TabIndex = 15
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(9, 109)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(66, 14)
+        Me.Label5.TabIndex = 16
+        Me.Label5.Text = "Vencido ($):"
+        '
+        'txtVencidoCordoba
+        '
+        '
+        '
+        '
+        Me.txtVencidoCordoba.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtVencidoCordoba.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtVencidoCordoba.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtVencidoCordoba.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtVencidoCordoba.Increment = 1.0R
+        Me.txtVencidoCordoba.IsInputReadOnly = True
+        Me.txtVencidoCordoba.Location = New System.Drawing.Point(79, 82)
+        Me.txtVencidoCordoba.Name = "txtVencidoCordoba"
+        Me.txtVencidoCordoba.Size = New System.Drawing.Size(165, 20)
+        Me.txtVencidoCordoba.TabIndex = 13
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Black
+        Me.Label6.Location = New System.Drawing.Point(9, 83)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(73, 14)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Vencido (C$):"
+        '
+        'txtTotalDolar
+        '
+        '
+        '
+        '
+        Me.txtTotalDolar.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtTotalDolar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtTotalDolar.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtTotalDolar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotalDolar.Increment = 1.0R
+        Me.txtTotalDolar.IsInputReadOnly = True
+        Me.txtTotalDolar.Location = New System.Drawing.Point(79, 56)
+        Me.txtTotalDolar.Name = "txtTotalDolar"
+        Me.txtTotalDolar.Size = New System.Drawing.Size(165, 20)
+        Me.txtTotalDolar.TabIndex = 10
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(9, 57)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(54, 14)
+        Me.Label4.TabIndex = 11
+        Me.Label4.Text = "Saldo ($):"
+        '
+        'txtTotal
+        '
+        '
+        '
+        '
+        Me.txtTotal.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.txtTotal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.txtTotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.txtTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal.Increment = 1.0R
+        Me.txtTotal.IsInputReadOnly = True
+        Me.txtTotal.Location = New System.Drawing.Point(79, 30)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.Size = New System.Drawing.Size(165, 20)
+        Me.txtTotal.TabIndex = 8
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(9, 31)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(61, 14)
+        Me.Label7.TabIndex = 8
+        Me.Label7.Text = "Saldo (C$):"
         '
         'frmCuentasPorPagar
         '
@@ -381,14 +480,17 @@ Partial Class frmCuentasPorPagar
         Me.Menu.PerformLayout()
         CType(Me.bkEstilo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelEx1.ResumeLayout(False)
-        CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ElGroupBox6.ResumeLayout(False)
-        Me.ElGroupBox6.PerformLayout()
-        CType(Me.txtTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ElGroupBox1.ResumeLayout(False)
         Me.ElGroupBox1.PerformLayout()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ElGroupBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ElGroupBox6.ResumeLayout(False)
+        Me.ElGroupBox6.PerformLayout()
+        CType(Me.txtVencidoDolar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtVencidoCordoba, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalDolar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -409,10 +511,16 @@ Partial Class frmCuentasPorPagar
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents btImprimir As System.Windows.Forms.ToolStripButton
     Friend WithEvents dtRegistro As DevComponents.DotNetBar.Controls.DataGridViewX
-    Friend WithEvents ElGroupBox6 As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
-    Friend WithEvents txtTotal As DevComponents.Editors.DoubleInput
-    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents txtRazonSocial As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents ButtonX2 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents ElGroupBox6 As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
+    Friend WithEvents txtVencidoDolar As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label5 As Label
+    Friend WithEvents txtVencidoCordoba As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txtTotalDolar As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtTotal As DevComponents.Editors.DoubleInput
+    Friend WithEvents Label7 As Label
 End Class

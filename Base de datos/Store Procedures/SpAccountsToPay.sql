@@ -14,8 +14,7 @@ CREATE OR ALTER PROCEDURE [dbo].[SpAccountsToPay]
 	@ProviderCode AS VARCHAR(50),
 	@ProviderName AS VARCHAR(100),
 	@BusinessName AS VARCHAR(100),
-	@Money AS CHAR(1),
-	@ExchangeRate AS DECIMAL
+	@ExchangeRate AS DECIMAL(18,4)
 
 AS
 BEGIN
@@ -31,10 +30,13 @@ BEGIN
 		res.ProviderName,
 		res.BusinessName,
 		res.Phone,
+		res.MoneyOfCredit,
 		res.CreditTerm,
 		res.CreditLimit,
 		SUM(res.Billed) AS Billed,
+		SUM(res.BilledDollar) AS BilledDollar,
 		SUM(res.AmountExpired) AS AmountExpired,
+		SUM(res.AmountExpiredDollar) AS AmountExpiredDollar,
 		SUM(res.AmountAvailable) AS AmountAvailable
 	FROM
 		(
@@ -47,63 +49,47 @@ BEGIN
 					Proveedor.TELEFONO AS Phone,
 					Proveedor.PLAZO AS CreditTerm,
 
-					CASE @Money WHEN Proveedor.MONEDA THEN
-						Proveedor.LIMITECREDITO
-					ELSE
-						CASE @Money WHEN 'C' THEN
-							Proveedor.LIMITECREDITO * @ExchangeRate
-						ELSE
-							Proveedor.LIMITECREDITO / @ExchangeRate
-						END
-					END
-					AS
-						CreditLimit,
+					Proveedor.MONEDA AS MoneyOfCredit,
+
+					Proveedor.LIMITECREDITO AS CreditLimit,
 
 					SUM(
-						CASE @Money WHEN 'C' THEN
-							CASE Compra.MONEDA WHEN 'C' THEN
-								Compra.SALDOCREDITO
-							ELSE
-								Compra.TAZACAMBIO * Compra.SALDOCREDITO
-							END
+						CASE Compra.MONEDA WHEN 'C' THEN
+							Compra.SALDOCREDITO
 						ELSE
-							CASE Compra.MONEDA WHEN 'C' THEN
-								Compra.SALDOCREDITO / Compra.TAZACAMBIO
-							ELSE
-								Compra.SALDOCREDITO
-							END
+							0.0
 						END
 					)
 					AS
 						Billed,
 
+					SUM(
+						CASE Compra.MONEDA WHEN 'D' THEN
+							Compra.SALDOCREDITO
+						ELSE
+							0.0
+						END
+					)
+					AS
+						BilledDollar,
+
 					0.0 AS AmountExpired,
 
-						CASE @Money WHEN Proveedor.MONEDA THEN
-							Proveedor.LIMITECREDITO
+					0.0 AS AmountExpiredDollar,
+
+					Proveedor.LIMITECREDITO
+					-
+					SUM(
+						CASE Proveedor.MONEDA WHEN Compra.MONEDA THEN
+							Compra.SALDOCREDITO
 						ELSE
-							CASE @Money WHEN 'C' THEN
-								Proveedor.LIMITECREDITO * @ExchangeRate
+							CASE Proveedor.MONEDA WHEN 'C' THEN
+								Compra.SALDOCREDITO * @ExchangeRate
 							ELSE
-								Proveedor.LIMITECREDITO / @ExchangeRate
+								Compra.SALDOCREDITO / @ExchangeRate
 							END
 						END
-					-
-						SUM(
-							CASE @Money WHEN 'C' THEN
-								CASE Compra.MONEDA WHEN 'C' THEN
-									Compra.SALDOCREDITO
-								ELSE
-									Compra.TAZACAMBIO * Compra.SALDOCREDITO
-								END
-							ELSE
-								CASE Compra.MONEDA WHEN 'C' THEN
-									Compra.SALDOCREDITO / Compra.TAZACAMBIO
-								ELSE
-									Compra.SALDOCREDITO
-								END
-							END
-						)
+					)
 					AS
 						AmountAvailable
 
@@ -116,6 +102,8 @@ BEGIN
 						CONCAT(Proveedor.NOMBRES, ' ', Proveedor.APELLIDOS) LIKE @ProviderName + '%'
 					AND
 						Proveedor.RAZONSOCIAL LIKE @BusinessName + '%'
+					AND
+						Compra.ANULADO = 'N'
 				GROUP BY
 					Proveedor.N_PROVEEDOR,
 					Proveedor.IDENTIFICACION,
@@ -135,38 +123,34 @@ BEGIN
 					Proveedor.RAZONSOCIAL AS BusinessName,
 					Proveedor.TELEFONO AS Phone,
 					Proveedor.PLAZO AS CreditTerm,
+
+					Proveedor.MONEDA AS MoneyOfCredit,
 					
-					CASE @Money WHEN Proveedor.MONEDA THEN
-						Proveedor.LIMITECREDITO
-					ELSE
-						CASE @Money WHEN 'C' THEN
-							Proveedor.LIMITECREDITO * @ExchangeRate
-						ELSE
-							Proveedor.LIMITECREDITO / @ExchangeRate
-						END
-					END
-					AS
-						CreditLimit,
+					Proveedor.LIMITECREDITO AS CreditLimit,
 
 					0.0 AS Billed,
 
+					0.0 AS BilledDollar,
+
 					SUM(
-						CASE @Money WHEN 'C' THEN
-							CASE Compra.MONEDA WHEN 'C' THEN
-								Compra.SALDOCREDITO
-							ELSE
-								Compra.TAZACAMBIO * Compra.SALDOCREDITO
-							END
+						CASE Compra.MONEDA WHEN 'C' THEN
+							Compra.SALDOCREDITO
 						ELSE
-							CASE Compra.MONEDA WHEN 'C' THEN
-								Compra.SALDOCREDITO / Compra.TAZACAMBIO
-							ELSE
-								Compra.SALDOCREDITO
-							END
+							0.0
 						END
 					)
 					AS
 						AmountExpired,
+
+					SUM(
+						CASE Compra.MONEDA WHEN 'D' THEN
+							Compra.SALDOCREDITO
+						ELSE
+							0.0
+						END
+					)
+					AS
+						AmountExpiredDollar,
 
 					0.0 AS AmountAvailable
 
@@ -174,6 +158,8 @@ BEGIN
 					Proveedor
 					INNER JOIN Compra ON Compra.IDPROVEEDOR = Proveedor.IDPROVEEDOR
 				WHERE
+						Compra.ANULADO = 'N'
+					AND
 						Proveedor.N_PROVEEDOR LIKE @ProviderCode + '%'
 					AND
 						CONCAT(Proveedor.NOMBRES, ' ', Proveedor.APELLIDOS) LIKE @ProviderName + '%'
@@ -204,10 +190,16 @@ BEGIN
 		res.ProviderName,
 		res.BusinessName,
 		res.Phone,
+		res.MoneyOfCredit,
 		res.CreditTerm,
 		res.CreditLimit
+	HAVING
+		res.CreditLimit > SUM(res.AmountAvailable)
 	ORDER BY
 		res.ProviderCode
 	--FIN DEL STATEMENT
 
 END
+
+
+EXEC dbo.SpAccountsToPay @ProviderCode = '', @ProviderName = '', @BusinessName = '', @ExchangeRate = 30.95

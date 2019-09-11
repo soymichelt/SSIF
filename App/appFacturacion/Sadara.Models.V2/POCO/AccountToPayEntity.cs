@@ -20,13 +20,19 @@ namespace Sadara.Models.V2.POCO
 
         public string Phone { get; set; }
 
+        public string MoneyOfCredit { get; set; }
+
         public int CreditTerm { get; set; }
 
         public decimal CreditLimit { get; set; }
 
         public decimal Billed { get; set; }
 
+        public decimal BilledDollar { get; set; }
+
         public decimal AmountExpired { get; set; }
+
+        public decimal AmountExpiredDollar { get; set; }
 
         public decimal AmountAvailable { get; set; }
 
