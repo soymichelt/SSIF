@@ -6,11 +6,26 @@ Public Class frmProductosVendidos
 
     Dim FormLoad As Boolean = False
 
-    Sub Lista(ByVal Fecha1 As DateTime, ByVal Fecha2 As DateTime, Optional ByVal IDBodega As String = "", Optional ByVal IDSerie As String = "", Optional ByVal NEmpleado As String = "", Optional ByVal Empleado As String = "", Optional ByVal NCliente As String = "", Optional ByVal Cliente As String = "")
+    Sub Lista(ByVal Fecha1 As DateTime, ByVal Fecha2 As DateTime, Optional ByVal IDBodega As String = "", Optional ByVal IDSerie As String = "", Optional ByVal NEmpleado As String = "", Optional ByVal Empleado As String = "", Optional ByVal NCliente As String = "", Optional ByVal Cliente As String = "", Optional ByVal LaboratorioId As String = "", Optional ByVal proveedorId As String = "")
         Try
             Using db As New CodeFirst
 
-                Dim SpSQL = db.Database.SqlQuery(Of lstProductosVendidos)("SpProductosVendidos @Inicio, @Final, @IDBodega, @IDSerie, @NEmpleado, @Empleado, @NCliente, @Cliente, @TipoVenta, @MonInv, @Moneda, @Taza", New SqlParameter("@Inicio", Fecha1), New SqlParameter("@Final", Fecha2), New SqlParameter("@IDBodega", IDBodega), New SqlParameter("@IDSerie", IDSerie), New SqlParameter("@NEmpleado", NEmpleado), New SqlParameter("@Empleado", Empleado), New SqlParameter("@NCliente", NCliente), New SqlParameter("@Cliente", Cliente), New SqlParameter("@TipoVenta", If(rdContado.Checked, 1, If(rdCredito.Checked, 2, 0))), New SqlParameter("@MonInv", If(Config.currentBusiness.MonedaInventario.Equals(Config.cordoba), 1, 0)), New SqlParameter("@Moneda", If(rdMCordoba.Checked, 1, 0)), New SqlParameter("@Taza", Config.exchangeRate)).ToList()
+                Dim SpSQL = db.Database.SqlQuery(Of lstProductosVendidos)("SpProductosVendidos @Inicio, @Final, @IDBodega, @IDSerie, @NEmpleado, @Empleado, @NCliente, @Cliente, @TipoVenta, @MonInv, @Moneda, @Taza, @LaboratorioId, @ProveedorId",
+                                New SqlParameter("@Inicio", Fecha1),
+                                New SqlParameter("@Final", Fecha2),
+                                New SqlParameter("@IDBodega", IDBodega),
+                                New SqlParameter("@IDSerie", IDSerie),
+                                New SqlParameter("@NEmpleado", NEmpleado),
+                                New SqlParameter("@Empleado", Empleado),
+                                New SqlParameter("@NCliente", NCliente),
+                                New SqlParameter("@Cliente", Cliente),
+                                New SqlParameter("@TipoVenta", If(rdContado.Checked, 1, If(rdCredito.Checked, 2, 0))),
+                                New SqlParameter("@MonInv", If(Config.currentBusiness.MonedaInventario.Equals(Config.cordoba), 1, 0)),
+                                New SqlParameter("@Moneda", If(rdMCordoba.Checked, 1, 0)),
+                                New SqlParameter("@Taza", Config.exchangeRate),
+                                New SqlParameter("@LaboratorioId", LaboratorioId),
+                                New SqlParameter("@ProveedorId", proveedorId)
+                            ).ToList()
 
                 'Unificando información
 
@@ -131,12 +146,45 @@ Public Class frmProductosVendidos
     Sub Filtrar()
         If Not cmbBodega.SelectedValue Is Nothing And Not cmbBodega.SelectedIndex = -1 Then
             If Not cmbSerie.SelectedValue Is Nothing And Not cmbSerie.SelectedIndex = -1 Then
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), cmbSerie.SelectedValue.ToString(), txtNEmpleado.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(
+                    dtpFechaInicial.Value.ToShortDateString & " 00:00:00",
+                    dtpFechaFinal.Value.ToShortDateString & " 23:59:59",
+                    cmbBodega.SelectedValue.ToString(),
+                    cmbSerie.SelectedValue.ToString(),
+                    txtNEmpleado.Text.Trim,
+                    txtNombreVendedor.Text.Trim,
+                    txtNCliente.Text.Trim,
+                    txtNombreCliente.Text.Trim,
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And cmbLaboratorio.SelectedIndex <> -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbProveedor.SelectedValue IsNot Nothing And cmbLaboratorio.SelectedIndex <> -1, cmbProveedor.SelectedValue.ToString(), "")
+                )
             Else
-                Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), , txtNEmpleado.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+                Lista(
+                    dtpFechaInicial.Value.ToShortDateString & " 00:00:00",
+                    dtpFechaFinal.Value.ToShortDateString & " 23:59:59",
+                    cmbBodega.SelectedValue.ToString(),
+                    ,
+                    txtNEmpleado.Text.Trim,
+                    txtNombreVendedor.Text.Trim,
+                    txtNCliente.Text.Trim,
+                    txtNombreCliente.Text.Trim,
+                    If(cmbLaboratorio.SelectedValue IsNot Nothing And cmbLaboratorio.SelectedIndex <> -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                    If(cmbProveedor.SelectedValue IsNot Nothing And cmbLaboratorio.SelectedIndex <> -1, cmbProveedor.SelectedValue.ToString(), "")
+                )
             End If
         Else
-            Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", , , txtNEmpleado.Text.Trim, txtNombreVendedor.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
+            Lista(
+                dtpFechaInicial.Value.ToShortDateString & " 00:00:00",
+                dtpFechaFinal.Value.ToShortDateString & " 23:59:59",
+                ,
+                ,
+                txtNEmpleado.Text.Trim,
+                txtNombreVendedor.Text.Trim,
+                txtNCliente.Text.Trim,
+                txtNombreCliente.Text.Trim,
+                If(cmbLaboratorio.SelectedValue IsNot Nothing And cmbLaboratorio.SelectedIndex <> -1, cmbLaboratorio.SelectedValue.ToString(), ""),
+                If(cmbProveedor.SelectedValue IsNot Nothing And cmbLaboratorio.SelectedIndex <> -1, cmbProveedor.SelectedValue.ToString(), "")
+            )
         End If
     End Sub
 
@@ -164,9 +212,9 @@ Public Class frmProductosVendidos
             Using db As New CodeFirst
                 cmbBodega.DataSource = (From bod In db.Bodegas Select bod.IDBODEGA, NOMBRE = bod.N_BODEGA & " - " & bod.DESCRIPCION).ToList() : cmbBodega.ValueMember = "IDBODEGA" : cmbBodega.DisplayMember = "NOMBRE" : cmbBodega.SelectedIndex = -1
                 cmbSerie.DataSource = Nothing
+                cmbLaboratorio.DataSource = (From lab In db.Laboratorios Select lab.IDLABORATORIO, lab.DESCRIPCION).ToList() : cmbLaboratorio.ValueMember = "IDLABORATORIO" : cmbLaboratorio.DisplayMember = "DESCRIPCION" : cmbLaboratorio.SelectedIndex = -1
             End Using
 
-            'Lista(DateTime.Now.ToShortDateString() & " 00:00:00", DateTime.Now.ToShortDateString() & " 23:59:59")
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
         End Try
@@ -218,6 +266,34 @@ Public Class frmProductosVendidos
                 Lista(dtpFechaInicial.Value.ToShortDateString & " 00:00:00", dtpFechaFinal.Value.ToShortDateString & " 23:59:59", cmbBodega.SelectedValue.ToString(), cmbSerie.SelectedValue.ToString(), txtNEmpleado.Text.Trim, txtNCliente.Text.Trim, txtNombreCliente.Text.Trim)
                 txtNEmpleado.Focus()
             End If
+        End If
+    End Sub
+
+    Private Sub cmbLaboratorio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbLaboratorio.SelectedIndexChanged
+        If Me.FormLoad Then
+            'cargar
+            Me.Filtrar()
+        End If
+    End Sub
+
+    Private Sub cmbLaboratorio_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbLaboratorio.KeyDown
+        If e.KeyData = Keys.Enter Then
+            'cargar
+            Me.Filtrar()
+        End If
+    End Sub
+
+    Private Sub cmbProveedor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProveedor.SelectedIndexChanged
+        If Me.FormLoad Then
+            'cargar
+            Me.Filtrar()
+        End If
+    End Sub
+
+    Private Sub cmbProveedor_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbProveedor.KeyDown
+        If e.KeyData = Keys.Enter Then
+            'cargar
+            Me.Filtrar()
         End If
     End Sub
 
@@ -351,5 +427,6 @@ Public Class frmProductosVendidos
         txtNEmpleado.Focus()
 
     End Sub
+
 
 End Class

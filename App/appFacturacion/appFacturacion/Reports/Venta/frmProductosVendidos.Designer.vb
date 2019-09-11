@@ -86,6 +86,11 @@ Partial Class frmProductosVendidos
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.dtRegistro = New DevComponents.DotNetBar.Controls.DataGridViewX()
+        Me.ElGroupBox1 = New Klik.Windows.Forms.v1.EntryLib.ELGroupBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.cmbLaboratorio = New DevComponents.DotNetBar.Controls.ComboBoxEx()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.cmbProveedor = New DevComponents.DotNetBar.Controls.ComboBoxEx()
         Me.Menu.SuspendLayout()
         CType(Me.KFormManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelEx2.SuspendLayout()
@@ -115,6 +120,8 @@ Partial Class frmProductosVendidos
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ElGroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Menu
@@ -228,8 +235,8 @@ Partial Class frmProductosVendidos
         Me.TabControl1.ColorScheme.TabItemSelectedBorder = System.Drawing.Color.Black
         Me.TabControl1.ColorScheme.TabPanelBackground = System.Drawing.SystemColors.InactiveCaption
         Me.TabControl1.ColorScheme.TabPanelBackground2 = System.Drawing.SystemColors.ActiveCaption
-        Me.TabControl1.Controls.Add(Me.TabControlPanel2)
         Me.TabControl1.Controls.Add(Me.tcpFiltros)
+        Me.TabControl1.Controls.Add(Me.TabControlPanel2)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -306,24 +313,24 @@ Partial Class frmProductosVendidos
         Me.txtUtilidad.BackgroundStyle.Class = "DateTimeInputBackground"
         Me.txtUtilidad.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtUtilidad.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtUtilidad.Font = New System.Drawing.Font("Google Sans Medium", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUtilidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUtilidad.ForeColor = System.Drawing.Color.Red
         Me.txtUtilidad.Increment = 1.0R
         Me.txtUtilidad.IsInputReadOnly = True
         Me.txtUtilidad.Location = New System.Drawing.Point(94, 133)
         Me.txtUtilidad.Name = "txtUtilidad"
-        Me.txtUtilidad.Size = New System.Drawing.Size(144, 21)
+        Me.txtUtilidad.Size = New System.Drawing.Size(144, 20)
         Me.txtUtilidad.TabIndex = 63
         '
         'Label15
         '
         Me.Label15.AutoSize = True
         Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.Black
         Me.Label15.Location = New System.Drawing.Point(7, 135)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(47, 14)
+        Me.Label15.Size = New System.Drawing.Size(45, 13)
         Me.Label15.TabIndex = 62
         Me.Label15.Text = "Utilidad:"
         '
@@ -335,24 +342,24 @@ Partial Class frmProductosVendidos
         Me.txtCostoTotal.BackgroundStyle.Class = "DateTimeInputBackground"
         Me.txtCostoTotal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtCostoTotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtCostoTotal.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCostoTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCostoTotal.Increment = 1.0R
         Me.txtCostoTotal.IsInputReadOnly = True
         Me.txtCostoTotal.Location = New System.Drawing.Point(94, 52)
         Me.txtCostoTotal.MinValue = 0R
         Me.txtCostoTotal.Name = "txtCostoTotal"
-        Me.txtCostoTotal.Size = New System.Drawing.Size(144, 21)
+        Me.txtCostoTotal.Size = New System.Drawing.Size(144, 20)
         Me.txtCostoTotal.TabIndex = 61
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Black
         Me.Label14.Location = New System.Drawing.Point(7, 54)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(68, 14)
+        Me.Label14.Size = New System.Drawing.Size(64, 13)
         Me.Label14.TabIndex = 60
         Me.Label14.Text = "Costo Total:"
         '
@@ -364,14 +371,14 @@ Partial Class frmProductosVendidos
         Me.txtTotal.BackgroundStyle.Class = "DateTimeInputBackground"
         Me.txtTotal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtTotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtTotal.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.ForeColor = System.Drawing.Color.Black
         Me.txtTotal.Increment = 1.0R
         Me.txtTotal.IsInputReadOnly = True
         Me.txtTotal.Location = New System.Drawing.Point(94, 112)
         Me.txtTotal.MinValue = 0R
         Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.Size = New System.Drawing.Size(144, 21)
+        Me.txtTotal.Size = New System.Drawing.Size(144, 20)
         Me.txtTotal.TabIndex = 59
         '
         'txtIva
@@ -382,13 +389,13 @@ Partial Class frmProductosVendidos
         Me.txtIva.BackgroundStyle.Class = "DateTimeInputBackground"
         Me.txtIva.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtIva.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtIva.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIva.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIva.Increment = 1.0R
         Me.txtIva.IsInputReadOnly = True
         Me.txtIva.Location = New System.Drawing.Point(94, 92)
         Me.txtIva.MinValue = 0R
         Me.txtIva.Name = "txtIva"
-        Me.txtIva.Size = New System.Drawing.Size(144, 21)
+        Me.txtIva.Size = New System.Drawing.Size(144, 20)
         Me.txtIva.TabIndex = 58
         '
         'txtSubtotal
@@ -399,13 +406,13 @@ Partial Class frmProductosVendidos
         Me.txtSubtotal.BackgroundStyle.Class = "DateTimeInputBackground"
         Me.txtSubtotal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtSubtotal.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtSubtotal.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSubtotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSubtotal.Increment = 1.0R
         Me.txtSubtotal.IsInputReadOnly = True
         Me.txtSubtotal.Location = New System.Drawing.Point(94, 72)
         Me.txtSubtotal.MinValue = 0R
         Me.txtSubtotal.Name = "txtSubtotal"
-        Me.txtSubtotal.Size = New System.Drawing.Size(144, 21)
+        Me.txtSubtotal.Size = New System.Drawing.Size(144, 20)
         Me.txtSubtotal.TabIndex = 57
         '
         'txtDescuento
@@ -416,24 +423,24 @@ Partial Class frmProductosVendidos
         Me.txtDescuento.BackgroundStyle.Class = "DateTimeInputBackground"
         Me.txtDescuento.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.txtDescuento.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.txtDescuento.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDescuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescuento.Increment = 1.0R
         Me.txtDescuento.IsInputReadOnly = True
         Me.txtDescuento.Location = New System.Drawing.Point(94, 32)
         Me.txtDescuento.MinValue = 0R
         Me.txtDescuento.Name = "txtDescuento"
-        Me.txtDescuento.Size = New System.Drawing.Size(144, 21)
+        Me.txtDescuento.Size = New System.Drawing.Size(144, 20)
         Me.txtDescuento.TabIndex = 56
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
         Me.Label9.Location = New System.Drawing.Point(7, 74)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(64, 14)
+        Me.Label9.Size = New System.Drawing.Size(62, 13)
         Me.Label9.TabIndex = 50
         Me.Label9.Text = "Sub - Total:"
         '
@@ -441,11 +448,11 @@ Partial Class frmProductosVendidos
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(7, 114)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 14)
+        Me.Label3.Size = New System.Drawing.Size(34, 13)
         Me.Label3.TabIndex = 48
         Me.Label3.Text = "Total:"
         '
@@ -453,11 +460,11 @@ Partial Class frmProductosVendidos
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
         Me.Label4.Location = New System.Drawing.Point(7, 94)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(85, 14)
+        Me.Label4.Size = New System.Drawing.Size(79, 13)
         Me.Label4.TabIndex = 46
         Me.Label4.Text = "Impuesto (IVA):"
         '
@@ -465,11 +472,11 @@ Partial Class frmProductosVendidos
         '
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Google Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Black
         Me.Label7.Location = New System.Drawing.Point(7, 34)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(64, 14)
+        Me.Label7.Size = New System.Drawing.Size(62, 13)
         Me.Label7.TabIndex = 44
         Me.Label7.Text = "Descuento:"
         '
@@ -487,6 +494,7 @@ Partial Class frmProductosVendidos
         '
         Me.tcpFiltros.AutoScroll = True
         Me.tcpFiltros.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.tcpFiltros.Controls.Add(Me.ElGroupBox1)
         Me.tcpFiltros.Controls.Add(Me.ElGroupBox7)
         Me.tcpFiltros.Controls.Add(Me.ElGroupBox2)
         Me.tcpFiltros.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1092,6 +1100,87 @@ Partial Class frmProductosVendidos
         Me.dtRegistro.Size = New System.Drawing.Size(682, 320)
         Me.dtRegistro.TabIndex = 25
         '
+        'ElGroupBox1
+        '
+        Me.ElGroupBox1.BackgroundStyle.GradientAngle = 45.0!
+        Me.ElGroupBox1.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox1.CaptionStyle.BackgroundStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox1.CaptionStyle.BackgroundStyle.SolidColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ElGroupBox1.CaptionStyle.BorderStyle.BorderShape.BottomLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox1.CaptionStyle.BorderStyle.BorderShape.BottomRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox1.CaptionStyle.BorderStyle.BorderShape.TopLeft = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox1.CaptionStyle.BorderStyle.BorderShape.TopRight = Klik.Windows.Forms.v1.Common.BorderShapes.Circle
+        Me.ElGroupBox1.CaptionStyle.BorderStyle.SmoothingMode = Klik.Windows.Forms.v1.Common.SmoothingModes.AntiAlias
+        Me.ElGroupBox1.CaptionStyle.FlashStyle.PaintType = Klik.Windows.Forms.v1.Common.PaintTypes.Solid
+        Me.ElGroupBox1.CaptionStyle.FlashStyle.SolidColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(191, Byte), Integer))
+        Me.ElGroupBox1.CaptionStyle.ForegroundImageStyle.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox1.CaptionStyle.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox1.CaptionStyle.Size = New System.Drawing.Size(110, 24)
+        Me.ElGroupBox1.CaptionStyle.TextStyle.ForeColor = System.Drawing.Color.White
+        Me.ElGroupBox1.CaptionStyle.TextStyle.Text = "Otros"
+        Me.ElGroupBox1.CaptionStyle.TextStyle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ElGroupBox1.Controls.Add(Me.Label16)
+        Me.ElGroupBox1.Controls.Add(Me.cmbProveedor)
+        Me.ElGroupBox1.Controls.Add(Me.Label13)
+        Me.ElGroupBox1.Controls.Add(Me.cmbLaboratorio)
+        Me.ElGroupBox1.Enabled = False
+        Me.ElGroupBox1.Location = New System.Drawing.Point(10, 231)
+        Me.ElGroupBox1.Name = "ElGroupBox1"
+        Me.ElGroupBox1.Office2007Scheme = Klik.Windows.Forms.v1.Common.Office2007Schemes.ModernBlack
+        Me.ElGroupBox1.Padding = New System.Windows.Forms.Padding(4, 27, 4, 3)
+        Me.ElGroupBox1.Size = New System.Drawing.Size(241, 87)
+        Me.ElGroupBox1.TabIndex = 3
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(8, 32)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(68, 14)
+        Me.Label13.TabIndex = 1
+        Me.Label13.Text = "Laboratorio: "
+        '
+        'cmbLaboratorio
+        '
+        Me.cmbLaboratorio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbLaboratorio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbLaboratorio.DisplayMember = "Text"
+        Me.cmbLaboratorio.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbLaboratorio.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbLaboratorio.FormattingEnabled = True
+        Me.cmbLaboratorio.ItemHeight = 14
+        Me.cmbLaboratorio.Location = New System.Drawing.Point(82, 31)
+        Me.cmbLaboratorio.Name = "cmbLaboratorio"
+        Me.cmbLaboratorio.Size = New System.Drawing.Size(151, 20)
+        Me.cmbLaboratorio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cmbLaboratorio.TabIndex = 1
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.Location = New System.Drawing.Point(8, 58)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(60, 14)
+        Me.Label16.TabIndex = 5
+        Me.Label16.Text = "Proveedor:"
+        '
+        'cmbProveedor
+        '
+        Me.cmbProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbProveedor.DisplayMember = "Text"
+        Me.cmbProveedor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbProveedor.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbProveedor.FormattingEnabled = True
+        Me.cmbProveedor.ItemHeight = 14
+        Me.cmbProveedor.Location = New System.Drawing.Point(67, 57)
+        Me.cmbProveedor.Name = "cmbProveedor"
+        Me.cmbProveedor.Size = New System.Drawing.Size(166, 20)
+        Me.cmbProveedor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.cmbProveedor.TabIndex = 6
+        '
         'frmProductosVendidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -1146,6 +1235,9 @@ Partial Class frmProductosVendidos
         CType(Me.dtpFechaFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpFechaInicial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtRegistro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ElGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ElGroupBox1.ResumeLayout(False)
+        Me.ElGroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1210,4 +1302,9 @@ Partial Class frmProductosVendidos
     Friend WithEvents rdMCordoba As System.Windows.Forms.RadioButton
     Friend WithEvents btBuscarCliente As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btBuscarEmpleado As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents ElGroupBox1 As Klik.Windows.Forms.v1.EntryLib.ELGroupBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents cmbLaboratorio As DevComponents.DotNetBar.Controls.ComboBoxEx
+    Friend WithEvents Label16 As Label
+    Friend WithEvents cmbProveedor As DevComponents.DotNetBar.Controls.ComboBoxEx
 End Class
