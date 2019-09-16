@@ -1,0 +1,86 @@
+﻿CREATE OR ALTER TRIGGER dbo.[PeriodoTrigger] ON SadaraDb.dbo.[Periodo]
+	AFTER INSERT, UPDATE, DELETE
+AS
+
+	DECLARE @triggerTransactionType AS VARCHAR(10);
+
+	IF EXISTS(SELECT 1 FROM inserted) BEGIN
+		IF NOT EXISTS(SELECT 1 FROM deleted) BEGIN
+			SET @triggerTransactionType = 'INSERT';
+		END
+		ELSE BEGIN
+			SET @triggerTransactionType = 'UPDATE';
+		END
+	END
+	ELSE BEGIN
+		SET @triggerTransactionType = 'DELETE';
+	END
+
+	DECLARE @countRegs INT;
+	SET @countRegs = (SELECT COUNT(*) AS countRegs FROM inserted);
+
+	DECLARE @countRegsDeleted INT;
+	SET @countRegsDeleted = (SELECT COUNT(*) AS countRegs FROM deleted);
+
+	DECLARE @periodoId VARCHAR(36);
+
+	IF (@countRegs = 1 OR @countRegsDeleted = 1) BEGIN
+
+		IF @countRegs = 1 BEGIN
+
+			SELECT TOP 1 @periodoId = IDPERIODO FROM inserted;
+			EXEC [dbo].SpInsertDataForSync
+				@tableName = 'Periodo',
+				@transactionType = @triggerTransactionType,
+				@valueId = @periodoId;
+
+		END
+		ELSE BEGIN
+			
+			SELECT TOP 1 @periodoId = IDPERIODO FROM deleted;
+			EXEC [dbo].SpInsertDataForSync
+				@tableName = 'Periodo',
+				@transactionType = @triggerTransactionType,
+				@valueId = @periodoId;
+
+		END
+		
+	END
+	ELSE BEGIN
+		
+		IF(@countRegs = 1) BEGIN
+			
+			DECLARE periodoCursor CURSOR FOR
+				SELECT IDPERIODO FROM inserted;
+
+		END
+		ELSE BEGIN
+
+			DECLARE periodoCursor CURSOR FOR
+				SELECT IDPERIODO FROM deleted;
+
+		END
+
+		OPEN periodoCursor;
+
+		FETCH NEXT FROM periodoCursor INTO
+			@periodoId;
+
+		WHILE @@FETCH_STATUS = 0 BEGIN
+			
+			EXEC [dbo].SpInsertDataForSync
+				@tableName = 'Periodo',
+				@transactionType = @triggerTransactionType,
+				@valueId = @periodoId;
+
+			FETCH NEXT FROM periodoCursor INTO
+				@periodoId;
+
+		END
+
+		CLOSE cotizacionDetalleCursor;
+		DEALLOCATE cotizacionDetalleCursor;
+
+	END
+	
+GO
