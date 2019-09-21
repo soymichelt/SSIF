@@ -410,6 +410,8 @@ Namespace Database
             modelBuilder.Configurations.Add(New UserInGroupEntityMapping())
             modelBuilder.Configurations.Add(New MovementLogEntityMapping())
 
+            modelBuilder.Configurations.Add(New DataForSyncEntityConfiguration())
+
             MyBase.OnModelCreating(modelBuilder)
 
         End Sub
@@ -425,7 +427,7 @@ Namespace Database
         Public Property UsersAccounts() As DbSet(Of UserAccountEntity)
         Public Property UsersInGroups() As DbSet(Of UserInGroupEntity)
 
-        Public Property MovementLogs() As DbSet(Of MovementLogEntity)
+        Public Property DataForSyncs() As DbSet(Of DataForSyncEntity)
 
     End Class
 

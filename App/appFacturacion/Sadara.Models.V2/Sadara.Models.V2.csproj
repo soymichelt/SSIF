@@ -75,6 +75,7 @@
     <Compile Include="POCO\AccountReceivableEntity.cs" />
     <Compile Include="POCO\AccountToPayEntity.cs" />
     <Compile Include="POCO\ActivityEntity.cs" />
+    <Compile Include="POCO\DataForSyncEntity.cs" />
     <Compile Include="POCO\GroupAccountEntity.cs" />
     <Compile Include="POCO\KeyAccountEntity.cs" />
     <Compile Include="POCO\MovementLogEntity.cs" />
