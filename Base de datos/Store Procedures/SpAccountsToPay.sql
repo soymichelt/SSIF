@@ -8,7 +8,7 @@ GO
 -- Create date: 10/06/2018
 -- Description:	Retorna listado de proveedores con su deuda actual
 -- =============================================
-ALTER PROCEDURE [dbo].[SpAccountsToPay]
+CREATE OR ALTER PROCEDURE [dbo].[SpAccountsToPay]
 
 	-- Add the parameters for the stored procedure here
 	@ProviderCode AS VARCHAR(50),

@@ -28,6 +28,13 @@ BEGIN
 			@TransactionType = @TransactionType,
 			@ValueId = @ValueId;
 	END
+
+	IF @TableName = 'Cliente'
+	BEGIN
+		EXEC dbo.SpSyncCliente
+			@TransactionType = @TransactionType,
+			@ValueId = @ValueId;
+	END
 	--FIN DEL STATEMENT
 
 END

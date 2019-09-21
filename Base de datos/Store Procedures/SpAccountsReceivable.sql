@@ -8,7 +8,7 @@ GO
 -- Create date: 08/06/2018
 -- Description:	Retorna listado de clientes con su deuda actual
 -- =============================================
-ALTER PROCEDURE [dbo].[SpAccountsReceivable]
+CREATE OR ALTER PROCEDURE [dbo].[SpAccountsReceivable]
 
 	-- Add the parameters for the stored procedure here
 	@CustomerCode AS VARCHAR(50),
