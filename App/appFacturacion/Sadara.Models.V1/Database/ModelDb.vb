@@ -24,6 +24,14 @@ Namespace Database
 
         End Sub
 
+        Public Sub New(ByVal nameDbOrConnectionString As String)
+
+            MyBase.New(nameDbOrConnectionString)
+
+            Db.SetInitializer(New MigrateDatabaseToLatestVersion(Of CodeFirst, Sadara.Models.V1.Migrations.Configuration))
+
+        End Sub
+
         'MODELO DE CONTEXTO
         'VARIABLES DE NAVEGACION
         Public Property Empresas() As DbSet(Of Empresa)
@@ -408,7 +416,6 @@ Namespace Database
             modelBuilder.Configurations.Add(New RoleEntityMapping())
             modelBuilder.Configurations.Add(New UserAccountEntityMapping())
             modelBuilder.Configurations.Add(New UserInGroupEntityMapping())
-            modelBuilder.Configurations.Add(New MovementLogEntityMapping())
 
             modelBuilder.Configurations.Add(New DataForSyncEntityConfiguration())
 
