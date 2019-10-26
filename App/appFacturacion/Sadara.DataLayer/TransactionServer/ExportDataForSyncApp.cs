@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sadara.Models.V1.Database;
+using System;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Sadara.DataLayer.TransactionServer
 {
@@ -16,53 +14,21 @@ namespace Sadara.DataLayer.TransactionServer
         public string ExportFromDatabase { get; set; }
 
         public SqlConnection SqlConnection { get; set; }
-
-        string GenerateQueryForExport(
-            string fromDatabase,
-            string toDatabase,
-            string tableName,
-            Dictionary<string, string> parameters
-        )
+        
+        private void CreateIfNotExistDatabaseToGetData()
         {
 
-            StringBuilder queryStatement = new StringBuilder();
-
-            queryStatement.AppendLine($"INSERT INTO [{toDatabase}].[dbo].[{tableName.Trim()}]");
-
-            queryStatement.AppendLine("(");
-
-            int i = 0;
-
-            string separator;
-
-            foreach (var param in parameters)
+            using (CodeFirst dbToGetData = new CodeFirst(this.ExportFromDatabase))
             {
-                i++;
-                separator = i != parameters.Count ? "," : "";
-                queryStatement.AppendLine($"[{param.Key}]{separator}");
+
+                dbToGetData.Database.CreateIfNotExists();
+
             }
-
-            queryStatement.AppendLine(")");
-
-            queryStatement.AppendLine("SELECT");
-
-            i = 0;
-
-            foreach (var param in parameters)
-            {
-                i++;
-                separator = i != parameters.Count ? "," : "";
-                queryStatement.AppendLine($"{param.Value}{separator}");
-            }
-
-            queryStatement.AppendLine($"FROM [{fromDatabase}].[dbo].[{tableName}]");
-
-            return queryStatement.ToString();
 
         }
 
-        private List<string> queries = new List<string>();
 
+        
         private void ExecuteTransaction(SqlConnection sqlConnection)
         {
 
@@ -78,11 +44,7 @@ namespace Sadara.DataLayer.TransactionServer
             try
             {
 
-                queries.ForEach(query =>
-                {
-                    command.CommandText = query;
-                    command.ExecuteNonQuery();
-                });
+                //Ejecutar transaction
 
                 transaction.Commit();
 

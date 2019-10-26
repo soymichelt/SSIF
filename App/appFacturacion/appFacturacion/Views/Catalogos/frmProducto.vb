@@ -36,7 +36,7 @@ Public Class frmProducto
         chkMargen.Checked = False
         pnImagen.Style.BackgroundImage = Nothing
         cmbFacturarConPrecio.SelectedIndex = 4
-        rdSinExistencia.Checked = True
+        rdConExistencia.Checked = True
         rdConIVA.Checked = True
         btGuardar.Enabled = True
         btEliminar.Enabled = False

@@ -9,7 +9,7 @@ Imports Sadara.Models.V2.POCO
 Namespace Database
 
     ''' <summary>
-    ''' 
+    ''' ORM App Facturación
     ''' </summary>
     ''' <remarks></remarks>
     Public Class CodeFirst
@@ -18,9 +18,18 @@ Namespace Database
         Public Sub New()
 
             MyBase.New("Data Source=" & Config.SQLServerName & ";Initial Catalog=" & Config.InitialCatalog & ";" & If(Config.SQLUser = "" Or Config.SQLPass = "", "Integrated Security=True;", "Integrated Security = False; User ID=" & Config.SQLUser & "; Password=" & Config.SQLPass & ";"))
-            'MyBase.New("name=SadaraDbConnectionString")
 
             Db.SetInitializer(New MigrateDatabaseToLatestVersion(Of CodeFirst, Sadara.Models.V1.Migrations.Configuration))
+
+        End Sub
+
+        ''' <summary>
+        ''' Inicialización personalizada de la base de datos
+        ''' </summary>
+        ''' <param name="connectionString">Cadena de conexión personalizada</param>
+        Public Sub New(ByVal connectionString As String)
+
+            MyBase.New(connectionString)
 
         End Sub
 
@@ -408,7 +417,6 @@ Namespace Database
             modelBuilder.Configurations.Add(New RoleEntityMapping())
             modelBuilder.Configurations.Add(New UserAccountEntityMapping())
             modelBuilder.Configurations.Add(New UserInGroupEntityMapping())
-            modelBuilder.Configurations.Add(New MovementLogEntityMapping())
 
             modelBuilder.Configurations.Add(New DataForSyncEntityConfiguration())
 

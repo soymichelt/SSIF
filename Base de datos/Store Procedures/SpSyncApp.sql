@@ -38,7 +38,10 @@ BEGIN
 	WHILE (@@FETCH_STATUS = 0)
 	BEGIN
 
-		
+		EXEC [dbo].[SpCallSyncForTable]
+			@TableName = @TableName,
+			@TransactionType = @TransactionType,
+			@ValueId = @ValueId
 
 		FETCH NEXT FROM dataForSyncCursor INTO
 			@Date, @TableName, @TransactionType, @ValueId, @IsApplied;

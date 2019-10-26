@@ -1607,26 +1607,26 @@ Partial Class frmProducto
         'rdSinExistencia
         '
         Me.rdSinExistencia.AutoSize = True
-        Me.rdSinExistencia.Checked = True
         Me.rdSinExistencia.Enabled = False
         Me.rdSinExistencia.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdSinExistencia.Location = New System.Drawing.Point(114, 16)
         Me.rdSinExistencia.Name = "rdSinExistencia"
         Me.rdSinExistencia.Size = New System.Drawing.Size(34, 18)
         Me.rdSinExistencia.TabIndex = 34
-        Me.rdSinExistencia.TabStop = True
         Me.rdSinExistencia.Text = "Si"
         Me.rdSinExistencia.UseVisualStyleBackColor = True
         '
         'rdConExistencia
         '
         Me.rdConExistencia.AutoSize = True
+        Me.rdConExistencia.Checked = True
         Me.rdConExistencia.Enabled = False
         Me.rdConExistencia.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rdConExistencia.Location = New System.Drawing.Point(154, 16)
         Me.rdConExistencia.Name = "rdConExistencia"
         Me.rdConExistencia.Size = New System.Drawing.Size(38, 18)
         Me.rdConExistencia.TabIndex = 34
+        Me.rdConExistencia.TabStop = True
         Me.rdConExistencia.Text = "No"
         Me.rdConExistencia.UseVisualStyleBackColor = True
         '
