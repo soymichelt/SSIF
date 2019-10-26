@@ -17,6 +17,8 @@ namespace Sadara.DataLayer.TransactionServer
 
         public SqlConnection SqlConnection { get; set; }
 
+
+
         string GenerateQueryForExport(
             string fromDatabase,
             string toDatabase,

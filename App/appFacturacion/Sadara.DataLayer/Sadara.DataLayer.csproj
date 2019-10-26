@@ -173,6 +173,7 @@
     <Compile Include="CustomerTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProviderTransaction.cs" />
+    <Compile Include="SyncApp\SyncApp.cs" />
     <Compile Include="TransactionServer\AdminDatabase.cs" />
     <Compile Include="TransactionServer\ExportDataForSyncApp.cs" />
     <Compile Include="TransactionToDb\Result.cs" />
