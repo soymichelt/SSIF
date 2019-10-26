@@ -14,7 +14,7 @@ namespace Sadara.DataLayer.TransactionServer
         public string ExportFromDatabase { get; set; }
 
         public SqlConnection SqlConnection { get; set; }
-        
+
         private void CreateIfNotExistDatabaseToGetData()
         {
 

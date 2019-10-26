@@ -1431,6 +1431,7 @@ Public Class frmVenta
     End Sub
 
     Public totalVuelto As Decimal = 0
+    Public efectivoCliente As Decimal = 0
 
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
         Try
@@ -1471,6 +1472,7 @@ Public Class frmVenta
                                 t.AnadirEspacio()
                                 t.AnadeLineaAlPie(ConvertNumberToLetter.Letras(If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C.ToString(), v.TOTAL_D.ToString())))
                                 t.AnadirEspacio()
+                                t.AnadirTotal("  EFECTIVO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(Me.efectivoCliente > 0, Me.efectivoCliente, "--"))
                                 t.AnadirTotal("    CAMBIO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(Me.totalVuelto > 0, Me.totalVuelto, "--"))
                                 t.AnadirEspacio()
                                 t.AnadirEspacio()
@@ -1487,6 +1489,7 @@ Public Class frmVenta
                                 t.ImprimeTicket(Config.PrinterName)
 
                                 Me.totalVuelto = 0
+                                Me.efectivoCliente = 0
 
                                 'reimpresión
                                 v.REIMPRESION = "S"

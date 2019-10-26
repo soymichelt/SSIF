@@ -17,6 +17,7 @@
 
     Private Sub btAceptar_Click(sender As Object, e As EventArgs) Handles btAceptar.Click
         frmVenta.totalVuelto = txtCambio.Text
+        frmVenta.efectivoCliente = txtPago.Value
         Me.Close()
     End Sub
 

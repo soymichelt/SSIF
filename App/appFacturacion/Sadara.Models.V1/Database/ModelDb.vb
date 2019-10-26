@@ -26,10 +26,13 @@ Namespace Database
         ''' <summary>
         ''' Inicialización personalizada de la base de datos
         ''' </summary>
-        ''' <param name="connectionString">Cadena de conexión personalizada</param>
-        Public Sub New(ByVal connectionString As String)
+        ''' <param name="nameDbOrConnectionString">Cadena de conexión personalizada</param>
 
-            MyBase.New(connectionString)
+        Public Sub New(ByVal nameDbOrConnectionString As String)
+
+            MyBase.New(nameDbOrConnectionString)
+
+            Db.SetInitializer(New MigrateDatabaseToLatestVersion(Of CodeFirst, Sadara.Models.V1.Migrations.Configuration))
 
         End Sub
 
