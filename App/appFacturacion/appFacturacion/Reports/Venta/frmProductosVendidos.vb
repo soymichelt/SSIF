@@ -34,7 +34,7 @@ Public Class frmProductosVendidos
                     With SpSQL
 
                         txtDescuento.Value = .Sum(Function(f) f.Descuento)
-                        txtCostoTotal.Value = .Sum(Function(f) f.Costo_Total)
+                        txtCostoTotal.Value = .Sum(Function(f) f.CostoTotal)
                         txtSubtotal.Value = .Sum(Function(f) f.SubTotal)
                         txtIva.Value = .Sum(Function(f) f.Iva)
                         txtTotal.Value = .Sum(Function(f) f.Total)
@@ -55,7 +55,7 @@ Public Class frmProductosVendidos
 
                 If dtRegistro.Visible Then
 
-                    dtRegistro.DataSource = (From c In SpSQL Select c.IDAlterno, c.Descripcion, c.Cantidad, c.CostoPromedio, c.Costo_Total, c.PrecioPromedio, c.Descuento, c.SubTotal, c.Utilidad, c.Iva, c.Total).ToList
+                    dtRegistro.DataSource = (From c In SpSQL Select c.IDAlterno, c.Descripcion, c.Cantidad, c.CostoPromedio, c.CostoTotal, c.PrecioPromedio, c.Descuento, c.SubTotal, c.Utilidad, c.Iva, c.Total).ToList
 
                     If dtRegistro.Columns.Count > 0 Then
 
