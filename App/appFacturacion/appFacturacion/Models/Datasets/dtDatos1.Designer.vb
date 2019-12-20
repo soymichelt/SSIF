@@ -33536,6 +33536,17 @@ Namespace dtDatosTableAdapters
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As dtDatos.CONTROLEXISTENCIADataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As dtDatos.CONTROLEXISTENCIADataTable = New dtDatos.CONTROLEXISTENCIADataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
     End Class
     
     '''<summary>
