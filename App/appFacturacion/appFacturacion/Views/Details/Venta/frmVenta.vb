@@ -70,25 +70,23 @@ Public Class frmVenta
         End Try
     End Sub
 
+    Class Autonumeric
+        Public Property Id As Integer
+    End Class
+
     Function generarCodigo(ByVal serie As String) As String
         Try
             Using db As New CodeFirst
-                Dim venta = ((From ven In db.Ventas Where ven.IDSERIE = serie Select ven.IDSERIE, ven.CONSECUTIVO).Union(From dev In db.VentasDevoluciones Where dev.IDSERIE = serie Select dev.IDSERIE, dev.CONSECUTIVO)).OrderBy(Function(f) f.CONSECUTIVO).ToList.LastOrDefault
-                If Not venta Is Nothing Then
-                    cod = venta.CONSECUTIVO
-                    If Not cod.Trim = "" Then
-                        cod = (Convert.ToInt32(cod) + 1).ToString
-                        Dim longitud As Integer = cod.Length
-                        For i As Integer = 0 To 9 - longitud
-                            cod = "0" & cod
-                        Next
-                        Return cod
-                    Else
-                        Return "0000000001"
-                    End If
-                Else
-                    Return "0000000001"
-                End If
+
+                Dim raw = db.Database.SqlQuery(Of Autonumeric)(
+                    "SpGenerateAutonumericSaleId @SerieId",
+                    New SqlClient.SqlParameter("@SerieId", serie)
+                )
+
+                Dim id = raw.First().Id
+
+                Return id.ToString(Config.formatoAutonumerico)
+
             End Using
         Catch ex As Exception
             MessageBox.Show("Error, " & ex.Message)
