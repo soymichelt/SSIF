@@ -48,7 +48,7 @@ Public Class frmCompraEstadoCuenta
                             Else
                                 temp = temp - If(m.Equals(Config.cordoba), c.DEBE_C, c.DEBE_D)
                             End If
-                            Dim reg As New ESTADODECUENTA : reg.N = c.N : reg.SERIE = c.SERIE : reg.N_DOCUMENTO = c.N_DOCUMENTO : reg.OPERACION = c.OPERACION : reg.FECHA = c.FECHA : reg.PLAZO = If(Not c.FECHAVENCIMIENTO Is Nothing, DateDiff("d", c.FECHA, c.FECHAVENCIMIENTO).ToString(), "") : reg.FECHAVENCIMIENTO = If(Not c.FECHAVENCIMIENTO Is Nothing, c.FECHAVENCIMIENTO.Value.ToShortDateString(), "") : reg.MONEDA = c.MONEDA : reg.TAZA = c.TAZACAMBIO : reg.DEBE = If(c.MONEC.Equals(Config.cordoba), c.DEBE_C, c.DEBE_D) : reg.HABER = If(c.MONEC.Equals(Config.cordoba), c.HABER_C, c.HABER_D) : reg.SALDO = temp : reg.ID = c.ID : estadodecuenta.Add(reg) : reg = Nothing
+                            Dim reg As New ESTADODECUENTA : reg.N = c.N : reg.N_COMPRA = c.N_COMPRA : reg.SERIE = c.SERIE : reg.N_DOCUMENTO = c.N_DOCUMENTO : reg.OPERACION = c.OPERACION : reg.FECHA = c.FECHA : reg.PLAZO = If(Not c.FECHAVENCIMIENTO Is Nothing, DateDiff("d", c.FECHA, c.FECHAVENCIMIENTO).ToString(), "") : reg.FECHAVENCIMIENTO = If(Not c.FECHAVENCIMIENTO Is Nothing, c.FECHAVENCIMIENTO.Value.ToShortDateString(), "") : reg.MONEDA = c.MONEDA : reg.TAZA = c.TAZACAMBIO : reg.DEBE = If(c.MONEC.Equals(Config.cordoba), c.DEBE_C, c.DEBE_D) : reg.HABER = If(c.MONEC.Equals(Config.cordoba), c.HABER_C, c.HABER_D) : reg.SALDO = temp : reg.ID = c.ID : estadodecuenta.Add(reg) : reg = Nothing
                         Next
                         Dim rpt As New rptCompraEstadoCuenta
                         Dim itextobject As CrystalDecisions.CrystalReports.Engine.TextObject
