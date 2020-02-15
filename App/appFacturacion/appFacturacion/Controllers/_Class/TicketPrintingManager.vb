@@ -70,15 +70,16 @@ Public Class TicketPrintingManager
     Dim lc As Integer = 0
     Dim list As List(Of String)
 
-    Public Function ListString(ByVal linea As String) As List(Of String)
+    Public Function ListString(ByVal linea As String, Optional ByVal maxChar As Integer = 0) As List(Of String)
         list = New List(Of String)
-        If linea.Length > MaximoCaracter Then
+        Dim max As Integer = If(maxChar > 0, maxChar, MaximoCaracter())
+        If linea.Length > max Then
             l = 0 : lc = linea.Length
-            While (lc > MaximoCaracter())
-                CadenaPorEscribirEnLinea = linea.Substring(l, MaximoCaracter)
+            While (lc > max)
+                CadenaPorEscribirEnLinea = linea.Substring(l, max)
                 list.Add(CadenaPorEscribirEnLinea)
-                l += MaximoCaracter()
-                lc -= MaximoCaracter()
+                l += max
+                lc -= max
             End While
             CadenaPorEscribirEnLinea = linea
             list.Add(CadenaPorEscribirEnLinea.Substring(l, CadenaPorEscribirEnLinea.Length - l))
@@ -177,10 +178,14 @@ Public Class TicketPrintingManager
         With ListElement
             .Add(Me.Linea4())
             .Add(Me.Centrar("", "•", "•"))
-            .Add(Me.Centrar(Config.businessName, "•", "•"))
-            .Add(Me.Centrar(Config.businessAddress, "•", "•"))
-            '.Add(Me.Centrar("Ciudad Rama, frente al Colegio", "•", "•"))
-            '.Add(Me.Centrar("Nuestra Señora de Fatima", "•", "•"))
+            'agregando nombre
+            For Each c In ListString(Config.businessName, MaximoCaracter - 2)
+                .Add(Me.Centrar(c, "•", "•"))
+            Next
+            'agregando direccion
+            For Each c In ListString(Config.businessAddress, MaximoCaracter - 2)
+                .Add(Me.Centrar(c, "•", "•"))
+            Next
             .Add(Me.Centrar(Config.businessRUC, "•", "•"))
             .Add(Me.Centrar(Config.businessPhone1 & " / " & Config.businessPhone2 & " ", "•", "•"))
             .Add(Me.Centrar("", "•", "•"))
