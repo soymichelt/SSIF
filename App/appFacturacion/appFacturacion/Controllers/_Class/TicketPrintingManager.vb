@@ -186,6 +186,7 @@ Public Class TicketPrintingManager
             For Each c In ListString(Config.businessAddress, MaximoCaracter - 2)
                 .Add(Me.Centrar(c, "•", "•"))
             Next
+
             .Add(Me.Centrar(Config.businessRUC, "•", "•"))
             .Add(Me.Centrar(Config.businessPhone1 & " / " & Config.businessPhone2 & " ", "•", "•"))
             .Add(Me.Centrar("", "•", "•"))
