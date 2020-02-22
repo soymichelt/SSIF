@@ -34,9 +34,9 @@ Public Class frmCuentasPorPagar
 
                     If dtRegistro.Columns.Count > 0 Then
 
-                        dtRegistro.Columns(0).Width = 90 : dtRegistro.Columns(0).HeaderText = vbNewLine & "N° CLIENTE" & vbNewLine
+                        dtRegistro.Columns(0).Width = 90 : dtRegistro.Columns(0).HeaderText = vbNewLine & "N° PROVEEDOR" & vbNewLine
                         dtRegistro.Columns(1).Width = 120 : dtRegistro.Columns(1).HeaderText = "IDENTIFICACIÓN"
-                        dtRegistro.Columns(2).Width = 250 : dtRegistro.Columns(2).HeaderText = "NOMBRES Y APELLIDOS DEL CLIENTE"
+                        dtRegistro.Columns(2).Width = 250 : dtRegistro.Columns(2).HeaderText = "NOMBRES Y APELLIDOS DEL PROVEEDOR"
                         dtRegistro.Columns(3).Width = 200 : dtRegistro.Columns(3).HeaderText = "RAZÓN SOCIAL"
                         dtRegistro.Columns(4).Width = 100 : dtRegistro.Columns(4).HeaderText = "TELÉFONO"
                         dtRegistro.Columns(5).Width = 100 : dtRegistro.Columns(5).HeaderText = "MONEDA CRÉDITO"
