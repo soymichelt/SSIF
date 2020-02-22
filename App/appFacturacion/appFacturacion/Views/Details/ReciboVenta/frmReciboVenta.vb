@@ -746,10 +746,12 @@ Public Class frmReciboVenta
                             t.AnadirEspacio()
 
                             t.DetalleSeparador()
+                            Dim saldoRestante As Decimal = 0
                             For Each i In From ven In db.Ventas Join det In db.VentasRecibosDetalles On ven.IDVENTA Equals det.IDVENTA Where det.IDRECIBO = v.IDRECIBO Select SERIE = ven.Serie.NOMBRE, ven.CONSECUTIVO, ven.FECHAFACTURA, ven.MONEDA, TOTAL = If(ven.MONEDA.Equals(Config.cordoba), ven.TOTAL_C, ven.TOTAL_D), det.SALDOCREDITO, OPERACION = If(det.OPERACION.Equals("C"), "Cancelar", "Abonar"), IMPORTE = If(v.MONEDA.Equals(Config.cordoba), det.IMPORTE_C, det.IMPORTE_D), DESCUENTO = If(v.MONEDA.Equals(Config.cordoba), det.DESCUENTO_C, det.DESCUENTO_D), NUEVO_SALDO = If(v.MONEDA.Equals(Config.cordoba), det.NUEVO_SALDO_C, det.NUEVO_SALDO_D)
                                 t.AnadirElemento(i.SERIE & " - " & i.CONSECUTIVO)
                                 t.AnadirElementoTotales(i.SALDOCREDITO.ToString(Config.f_m), i.IMPORTE.ToString(Config.f_m), i.DESCUENTO.ToString(Config.f_m))
                                 t.AnadirEspacio()
+                                saldoRestante += i.NUEVO_SALDO
                             Next
                             t.AnadirEspacio()
                             t.AnadirElemento(t.Linea5())
@@ -758,6 +760,8 @@ Public Class frmReciboVenta
                             t.AnadirTotal("     TOTAL " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.MONTOTOTAL_C, v.MONTOTOTAL_D))
                             t.AnadirEspacio()
                             t.AnadeLineaAlPie(ConvertNumberToLetter.Letras(If(v.MONEDA.Equals(Config.cordoba), v.MONTOTOTAL_C.ToString(), v.MONTOTOTAL_D.ToString())))
+                            t.AnadirEspacio()
+                            t.AnadeLineaAlPie("SALDO: " + If(v.MONEDA.Equals(Config.cordoba), "C$", "$") + " " + saldoRestante.ToString(Config.f_m))
                             t.AnadirEspacio()
                             t.AnadirEspacio()
                             t.AnadirEspacio()
