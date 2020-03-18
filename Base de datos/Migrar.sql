@@ -298,3 +298,59 @@ SELECT
 FROM
 	SadaraDb.dbo.ImpuestoValorAgregado
 GO
+
+--INSERTANDO USUARIOS
+INSERT INTO sadara190319.dbo.Usuario(
+	IDUsuario,
+	Reg,
+	Nombres,
+	Apellidos,
+	NombreCuenta,
+	Contraseña,
+	ImageName,
+	Observacion,
+	Administrador,
+	CAdministrador,
+	Venta,
+	VenderNegativo,
+	CVenta,
+	Compra,
+	CCompra,
+	Inventario,
+	CInventario,
+	Contabilidad,
+	CContabilidad,
+	Promocion,
+	CPromocion,
+	SalesPriceChange,
+	Activo
+)
+SELECT
+	IDUsuario,
+	Reg,
+	Nombres,
+	Apellidos,
+	NombreCuenta,
+	Contraseña,
+	ImageName,
+	Observacion,
+	Administrador,
+	CAdministrador,
+	Venta,
+	VenderNegativo,
+	CVenta,
+	Compra,
+	CCompra,
+	Inventario,
+	CInventario,
+	Contabilidad,
+	CContabilidad,
+	Promocion,
+	CPromocion,
+	SalesPriceChange,
+	Activo
+FROM
+	sadara190319.dbo.Usuario
+WHERE
+	sadara190319.dbo.Usuario.IDUsuario <> '0e822ac8-ce1a-4026-941c-3211b555a4f8'
+GO
