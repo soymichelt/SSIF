@@ -751,7 +751,8 @@ Public Class frmReciboVenta
                                 t.AnadirElemento(i.SERIE & " - " & i.CONSECUTIVO)
                                 t.AnadirElementoTotales(i.SALDOCREDITO.ToString(Config.f_m), i.IMPORTE.ToString(Config.f_m), i.DESCUENTO.ToString(Config.f_m))
                                 t.AnadirEspacio()
-                                saldoRestante += i.NUEVO_SALDO
+
+                                saldoRestante = saldoRestante + i.NUEVO_SALDO
                             Next
                             t.AnadirEspacio()
                             t.AnadirElemento(t.Linea5())
