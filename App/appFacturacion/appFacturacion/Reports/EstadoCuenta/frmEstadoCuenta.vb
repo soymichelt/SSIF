@@ -6,6 +6,7 @@ Public Class frmEstadoCuenta
     Dim saldo, disponible, vencido As Decimal
 
     Sub MostrarEstadoCuenta(ByVal fechacorte As DateTime)
+
         Try
             If Not txtIdCliente.Text.Trim() = "" Then
                 Using db As New CodeFirst
