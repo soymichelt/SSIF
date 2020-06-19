@@ -14,7 +14,7 @@ Esta aplicación está desarrollada con las siguientes tecnologías:
 # Pantallas de la aplicación
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="Mostrando ventas" src="https://raw.githubusercontent.com/soymichelt/SSIF/master/Screenshots/ventas.jpg" />  |  <img width="1604" alt="Realizar venta" src="https://raw.githubusercontent.com/soymichelt/SSIF/master/screenshots/vender.jpg" />  |  <img width="1604" alt="Imprimiendo factura" src="https://raw.githubusercontent.com/soymichelt/SSIF/master/screenshots/factura.jpg" />|
+|<img width="1604" alt="Mostrando ventas" src="https://raw.githubusercontent.com/soymichelt/SSIF/master/Screenshots/ventas.jpg" />  |  <img width="1604" alt="Realizar venta" src="https://raw.githubusercontent.com/soymichelt/SSIF/master/Screenshots/vender.jpg" />  |  <img width="1604" alt="Imprimiendo factura" src="https://raw.githubusercontent.com/soymichelt/SSIF/master/Screenshots/factura.jpg" />|
 
 # Desarrollador
 [<img width="128" alt="Ing. Michel Roberto Traña Tablada" src="https://raw.githubusercontent.com/soymichelt/cv-cdn/master/images/perfil.png" />](http://soymichel.com)
