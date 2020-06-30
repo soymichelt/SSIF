@@ -429,6 +429,12 @@
     <Compile Include="Reports\Venta\frmInformeVentas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Venta\rptSaleReport.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSaleReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Views\Configuration\Server\SyncAppForm.Designer.vb">
       <DependentUpon>SyncAppForm.vb</DependentUpon>
     </Compile>
@@ -1266,6 +1272,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Venta\frmInformeVentas.resx">
       <DependentUpon>frmInformeVentas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Venta\rptSaleReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSaleReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Configuration\Server\SyncAppForm.resx">
       <DependentUpon>SyncAppForm.vb</DependentUpon>

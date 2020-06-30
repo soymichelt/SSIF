@@ -1438,67 +1438,68 @@ Public Class frmVenta
                 If Not v Is Nothing Then
                     If v.ANULADO = "N" Then
                         If v.Serie.TICKET.Equals(Config.vTrue) Then
-                            Dim t As TicketPrintingManager = New TicketPrintingManager
-                            If t.ImpresoraExistente(Config.PrinterName) Then
-                                t.EncabezadoPredefinido(If(v.CREDITO, "VENTA DE CRÉDITO", "VENTA DE CONTADO"), If(v.REIMPRESION.Equals("S"), "REIMPRESIÓN", "ORIGINAL"))
-                                t.AnadirLineaSubcabeza(t.AlinearElementos("N° FACT: " & v.CONSECUTIVO, v.Serie.NOMBRE))
-                                t.AnadirLineaSubcabeza("FECHA:   " & v.FECHAFACTURA.ToShortDateString())
-                                t.AnadirLineaSubcabeza("CÓDIGO:  " & If(v.Cliente IsNot Nothing, v.Cliente.N_CLIENTE, ""))
-                                t.AnadirLineaSubcabeza("CLIENTE: " & If(v.Cliente IsNot Nothing, If(v.Cliente.TIPOPERSONA = "Natural" Or String.IsNullOrWhiteSpace(v.Cliente.RAZONSOCIAL), v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS, v.Cliente.N_CLIENTE & " " & v.Cliente.RAZONSOCIAL), v.CLIENTECONTADO))
-                                't.AnadirLineaSubcabeza("R. SOC.: " & If(v.CLIENTE IsNot Nothing, v.CLIENTE.RAZONSOCIAL, ""))
-                                t.AnadirLineaSubcabeza("ATENDIÓ: " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS)
-                                t.AnadirEspacio()
-                                If v.EXONERADO Then
-                                    t.AnadirLineaSubcabeza("FACTURA EXONERADO")
-                                    t.AnadirEspacio()
-                                End If
-                                t.AnadirElemento(t.Linea5())
-                                t.AnadirElemento("DESC.       P/U     CANT     TOTAL")
-                                t.AnadirElemento(t.Linea5())
-                                t.AnadirEspacio()
-                                For Each i In From pro In db.Productos Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.VentasDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDVENTA = v.IDVENTA Select pro.IDALTERNO, pro.IDORIGINAL, PRODUCTO = pro.DESCRIPCION, MARCA = If(pro.Marca IsNot Nothing, pro.Marca.DESCRIPCION, Config.textNull), FORMA = If(pro.Presentacion IsNot Nothing, pro.Presentacion.DESCRIPCION, Config.textNull), det.CANTIDAD, PRECIO = If(v.MONEDA.Equals(Config.cordoba), det.PRECIOUNITARIO_C, det.PRECIOUNITARIO_D), SUBTOTAL = If(v.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, det.SUBTOTAL_D)
-                                    t.AnadirElemento(i.PRODUCTO)
-                                    t.AnadirElementoTotales(i.PRECIO.ToString(Config.f_m), i.CANTIDAD.ToString(Config.f_m), i.SUBTOTAL.ToString(Config.f_m))
-                                    t.AnadirEspacio()
-                                Next
-                                t.AnadirEspacio()
-                                t.AnadirElemento(t.Linea5())
-                                t.AnadirTotal(" DESCUENTO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.DESCUENTO_DIN_C, v.DESCUENTO_DIN_D))
-                                t.AnadirTotal("  SUBTOTAL " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.SUBTOTAL_C, v.SUBTOTAL_D))
-                                t.AnadirTotal("       IVA " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.IVA_DIN_C, v.IVA_DIN_D))
-                                t.AnadirTotal("     TOTAL " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C, v.TOTAL_D))
-                                t.AnadirEspacio()
-                                t.AnadeLineaAlPie(ConvertNumberToLetter.Letras(If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C.ToString(), v.TOTAL_D.ToString())))
-                                t.AnadirEspacio()
-                                t.AnadirTotal("  EFECTIVO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(Me.efectivoCliente > 0, Me.efectivoCliente, "--"))
-                                t.AnadirTotal("    CAMBIO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(Me.totalVuelto > 0, Me.totalVuelto, "--"))
-                                t.AnadirEspacio()
-                                t.AnadirEspacio()
-                                t.AnadirEspacio()
-                                '//firma del cliente
-                                t.AnadeLineaAlPie("__________________________________")
-                                t.AnadeLineaAlPie("           FIRMA DEL CLIENTE")
-                                '//El metodo AddFooterLine funciona igual que la cabecera 
-                                t.AnadeLineaAlPie("*******GRACIAS POR TU VISITA******")
-                                t.AnadeLineaAlPie(t.Centrar(v.Serie.Bodega.DESCRIPCION, "", ""))
+                            'Dim t As TicketPrintingManager = New TicketPrintingManager
+                            'If t.ImpresoraExistente(Config.PrinterName) Then
+                            '    t.EncabezadoPredefinido(If(v.CREDITO, "VENTA DE CRÉDITO", "VENTA DE CONTADO"), If(v.REIMPRESION.Equals("S"), "REIMPRESIÓN", "ORIGINAL"))
+                            '    t.AnadirLineaSubcabeza(t.AlinearElementos("N° FACT: " & v.CONSECUTIVO, v.Serie.NOMBRE))
+                            '    t.AnadirLineaSubcabeza("FECHA:   " & v.FECHAFACTURA.ToShortDateString())
+                            '    t.AnadirLineaSubcabeza("CÓDIGO:  " & If(v.Cliente IsNot Nothing, v.Cliente.N_CLIENTE, ""))
+                            '    t.AnadirLineaSubcabeza("CLIENTE: " & If(v.Cliente IsNot Nothing, If(v.Cliente.TIPOPERSONA = "Natural" Or String.IsNullOrWhiteSpace(v.Cliente.RAZONSOCIAL), v.Cliente.N_CLIENTE & " " & v.Cliente.NOMBRES & " " & v.Cliente.APELLIDOS, v.Cliente.N_CLIENTE & " " & v.Cliente.RAZONSOCIAL), v.CLIENTECONTADO))
+                            '    't.AnadirLineaSubcabeza("R. SOC.: " & If(v.CLIENTE IsNot Nothing, v.CLIENTE.RAZONSOCIAL, ""))
+                            '    t.AnadirLineaSubcabeza("ATENDIÓ: " & v.Empleado.NOMBRES & " " & v.Empleado.APELLIDOS)
+                            '    t.AnadirEspacio()
+                            '    If v.EXONERADO Then
+                            '        t.AnadirLineaSubcabeza("FACTURA EXONERADO")
+                            '        t.AnadirEspacio()
+                            '    End If
+                            '    t.AnadirElemento(t.Linea5())
+                            '    t.AnadirElemento("DESC.       P/U     CANT     TOTAL")
+                            '    t.AnadirElemento(t.Linea5())
+                            '    t.AnadirEspacio()
+                            '    For Each i In From pro In db.Productos Join exi In db.Existencias On pro.IDPRODUCTO Equals exi.IDPRODUCTO Join det In db.VentasDetalles On exi.IDEXISTENCIA Equals det.IDEXISTENCIA Where det.IDVENTA = v.IDVENTA Select pro.IDALTERNO, pro.IDORIGINAL, PRODUCTO = pro.DESCRIPCION, MARCA = If(pro.Marca IsNot Nothing, pro.Marca.DESCRIPCION, Config.textNull), FORMA = If(pro.Presentacion IsNot Nothing, pro.Presentacion.DESCRIPCION, Config.textNull), det.CANTIDAD, PRECIO = If(v.MONEDA.Equals(Config.cordoba), det.PRECIOUNITARIO_C, det.PRECIOUNITARIO_D), SUBTOTAL = If(v.MONEDA.Equals(Config.cordoba), det.SUBTOTAL_C, det.SUBTOTAL_D)
+                            '        t.AnadirElemento(i.PRODUCTO)
+                            '        t.AnadirElementoTotales(i.PRECIO.ToString(Config.f_m), i.CANTIDAD.ToString(Config.f_m), i.SUBTOTAL.ToString(Config.f_m))
+                            '        t.AnadirEspacio()
+                            '    Next
+                            '    t.AnadirEspacio()
+                            '    t.AnadirElemento(t.Linea5())
+                            '    t.AnadirTotal(" DESCUENTO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.DESCUENTO_DIN_C, v.DESCUENTO_DIN_D))
+                            '    t.AnadirTotal("  SUBTOTAL " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.SUBTOTAL_C, v.SUBTOTAL_D))
+                            '    t.AnadirTotal("       IVA " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.IVA_DIN_C, v.IVA_DIN_D))
+                            '    t.AnadirTotal("     TOTAL " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C, v.TOTAL_D))
+                            '    t.AnadirEspacio()
+                            '    t.AnadeLineaAlPie(ConvertNumberToLetter.Letras(If(v.MONEDA.Equals(Config.cordoba), v.TOTAL_C.ToString(), v.TOTAL_D.ToString())))
+                            '    t.AnadirEspacio()
+                            '    t.AnadirTotal("  EFECTIVO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(Me.efectivoCliente > 0, Me.efectivoCliente, "--"))
+                            '    t.AnadirTotal("    CAMBIO " & If(v.MONEDA.Equals(Config.cordoba), "C$", " $"), If(Me.totalVuelto > 0, Me.totalVuelto, "--"))
+                            '    t.AnadirEspacio()
+                            '    t.AnadirEspacio()
+                            '    t.AnadirEspacio()
+                            '    '//firma del cliente
+                            '    t.AnadeLineaAlPie("__________________________________")
+                            '    t.AnadeLineaAlPie("           FIRMA DEL CLIENTE")
+                            '    '//El metodo AddFooterLine funciona igual que la cabecera 
+                            '    t.AnadeLineaAlPie("*******GRACIAS POR TU VISITA******")
+                            '    t.AnadeLineaAlPie(t.Centrar(v.Serie.Bodega.DESCRIPCION, "", ""))
 
-                                '//Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un 
-                                '//parametro de tipo string que debe de ser el nombre de la impresora. 
-                                t.ImprimeTicket(Config.PrinterName)
+                            '    '//Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un 
+                            '    '//parametro de tipo string que debe de ser el nombre de la impresora. 
+                            '    t.ImprimeTicket(Config.PrinterName)
 
-                                Me.totalVuelto = 0
-                                Me.efectivoCliente = 0
+                            '    Me.totalVuelto = 0
+                            '    Me.efectivoCliente = 0
 
-                                'reimpresión
-                                v.REIMPRESION = "S"
-                                db.Entry(v).State = EntityState.Modified
-                                db.SaveChanges()
+                            '    'reimpresión
+                            '    v.REIMPRESION = "S"
+                            '    db.Entry(v).State = EntityState.Modified
+                            '    db.SaveChanges()
 
-                            Else
-                                MessageBox.Show("No se encuentra la impresora '" & Config.PrinterName & "'")
-                            End If
+                            'Else
+                            '    MessageBox.Show("No se encuentra la impresora '" & Config.PrinterName & "'")
+                            'End If
+                            frmImprimirFactura.idventa = Me.Id
+                            frmImprimirFactura.ShowDialog()
                         Else
-
                             frmImprimirVenta.idventa = Me.Id
                             frmImprimirVenta.ShowDialog()
                         End If

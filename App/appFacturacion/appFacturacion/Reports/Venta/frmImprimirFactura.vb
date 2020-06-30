@@ -17,15 +17,6 @@ Public Class frmImprimirFactura
     End Sub
 
     Private Sub frmImprimirFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        Log.Instance.RegisterActivity(
-            If(Config.currentBusiness IsNot Nothing, Config.currentBusiness.IdEmpresa, Guid.Empty),
-            "SalePrintReport",
-            "Load",
-            "Load SalePrintReport",
-            userId:=If(Config.currentUser IsNot Nothing, Guid.Parse(Config.currentUser.IDUsuario), Nothing)
-        )
-
         MostrarInforme()
     End Sub
 
