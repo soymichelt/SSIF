@@ -15,15 +15,15 @@ Public Class TicketPrintingManager
     Public imageHeight As Integer = 0
     Public MargenIzquierdo As Double = 2
     Public MargenSuperior As Double = 2
-    Public NombreDeLaFuente As String = "Lucida Console"
+    Public NombreDeLaFuente As String = "Arial"
     Public TamanoDeLaFuente As Integer = 8
     Public FuenteImpresa As Font
     Public ColorDeLaFuente As SolidBrush = New SolidBrush(Color.Black)
     Public gfx As Graphics
     Public CadenaPorEscribirEnLinea As String = ""
     Private WithEvents DocumentoAImprimir As New PrintDocument
-    Public PaperHeight As Integer = 800 ' Impresora es 1170
-    Public PaperWidth As Integer = 254 ' Impresora es 300
+    Public PaperHeight As Integer = 288 ' Impresora es 1170
+    Public PaperWidth As Integer = 272 ' Impresora es 300
     Public Incremento As Integer = 0
 
     Public Property MaximoCaracter() As Integer
@@ -278,6 +278,13 @@ Public Class TicketPrintingManager
         Return False
     End Function
 
+    Private Sub GetSize(ByVal printer As String)
+        Dim settings As New PrinterSettings
+        settings.PrinterName = printer
+        Dim height = settings.DefaultPageSettings.PaperSize.Height
+
+    End Sub
+
     Public Sub ImprimeTicket(ByVal impresora As String)
         FuenteImpresa = New Font(NombreLetra, TamanoLetra, FontStyle.Regular)
         DocumentoAImprimir.PrinterSettings.PrinterName = impresora
@@ -290,10 +297,9 @@ Public Class TicketPrintingManager
         e.Graphics.PageUnit = GraphicsUnit.Millimeter
         gfx = e.Graphics
         For i = Me.PosLine To Me.ListElement.Count - 1
-            If Me.contador <= 70 Then
+            If Me.contador <= 24 Then
                 gfx.DrawString(Me.ListElement.Item(i), FuenteImpresa, ColorDeLaFuente, MargenIzquierdo, Renglon(), New StringFormat)
                 Me.contador += 1
-                'Me.MaxLine += 1
                 Me.PosLine += 1
             Else
                 e.HasMorePages = True
